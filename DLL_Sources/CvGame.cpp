@@ -7393,7 +7393,7 @@ void CvGame::updateOceanDistances()
 		}
 	}
 
-	OutputDebugStr(CvString::format("[CvGame::updateOceanDistances] Plots: %i, Visits: %i\n", GC.getMapINLINE().numPlotsINLINE(), iVisits).GetCString());
+	OutputDebugString(CvString::format("[CvGame::updateOceanDistances] Plots: %i, Visits: %i\n", GC.getMapINLINE().numPlotsINLINE(), iVisits).GetCString());
 }
 
 ///TKs Invention Core Mod v 1.0
