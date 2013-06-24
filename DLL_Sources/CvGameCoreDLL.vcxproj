@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Assert-fast|Win32">
+      <Configuration>Assert-fast</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Assert|Win32">
+      <Configuration>Assert</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release-fast|Win32">
+      <Configuration>Release-fast</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvArea.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvArtFileMgr.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvCity.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvCityAI.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDeal.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDiploParameters.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLButtonPopup.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLEntity.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLPython.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLWidgetData.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvFractal.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGame.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameAI.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameCoreDLL.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameCoreUtils.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameTextMgr.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGlobals.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvHallOfFameInfo.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvInfos.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvInfoWater.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvInitCore.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvMap.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvMapGenerator.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPlayer.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPlayerAI.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPlot.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPopupInfo.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPopupReturn.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvRandom.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvReplayInfo.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvReplayMessage.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvSelectionGroup.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvSelectionGroupAI.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvStructs.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvTalkingHeadMessage.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvTeam.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvTeamAI.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvTextScreens.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvTradeRoute.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvUnit.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvUnitAI.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvXMLLoadUtility.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvXMLLoadUtilityGet.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvXMLLoadUtilityInit.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvXMLLoadUtilitySet.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyArea.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyAreaInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyArgsList.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyArtFileMgr.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyArtFileMgrInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyCity.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyCityInterface1.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyDeal.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyEnumsInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGame.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGameCoreUtils.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGameCoreUtilsInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGameInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGameTextMgr.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGameTextMgrInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGlobalContext.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGlobalContextInterface1.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGlobalContextInterface2.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGlobalContextInterface3.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGlobalContextInterface4.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyHallOfFameInfo.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyHallOfFameInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyInfoInterface1.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyInfoInterface2.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyInfoInterface3.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyMap.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyMapGenerator.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyMapGeneratorInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyMapInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyPlayer.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyPlayerInterface1.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyPlayerInterface2.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyPlot.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyPlotInterface1.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyRandomInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyReplayInfo.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CySelectionGroup.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CySelectionGroupInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyStructsInterface1.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyTeam.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyTeamInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyTradeRoute.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyTradeRouteInterface.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyUnit.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyUnitInterface1.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FAssert.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FDialogTemplate.cpp" />
+    <ClCompile Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\_precompile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FVariableSystem.inl" />
+    <None Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\interfaceDirtyBits.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvArea.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvArtFileMgr.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvCity.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvCityAI.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDeal.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDefines.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDiploParameters.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLButtonPopup.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLDataStreamIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLEngineIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLEntity.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLEntityIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLEventReporterIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLFAStarIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLFlagEntityIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLIniParserIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLInterfaceIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLPlotBuilderIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLPythonIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLSymbolIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLUtilityIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLWidgetData.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvDLLXMLIFaceBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvEnums.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvFractal.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGame.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameAI.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameCoreDLL.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameCoreDLLDefNew.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameCoreDLLUndefNew.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameCoreUtils.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGameTextMgr.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvGlobals.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvHallOfFameInfo.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvIdVector.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvInfos.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvInfoWater.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvInitCore.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvMap.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvMapGenerator.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPlayer.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPlayerAI.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPlot.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPopupInfo.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvPopupReturn.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvRandom.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvReplayInfo.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvReplayMessage.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvSelectionGroup.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvSelectionGroupAI.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvString.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvStructs.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvTalkingHeadMessage.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvTeam.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvTeamAI.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvTradeRoute.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvUnit.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvUnitAI.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CvXMLLoadUtility.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyArea.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyArgsList.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyArtFileMgr.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyCity.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyDeal.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGame.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGameCoreUtils.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGameTextMgr.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyGlobalContext.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyHallOfFameInfo.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyMap.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyMapGenerator.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyPlayer.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyPlot.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyReplayInfo.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CySelectionGroup.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyTeam.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyTradeRoute.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\CyUnit.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FAssert.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FAStarNode.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FDataStreamBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FDialogTemplate.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FFreeListArray.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FFreeListArrayBase.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FFreeListTrashArray.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FInputDevice.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FProfiler.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\FVariableSystem.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\LinkedList.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\pyconfig.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\resource.h" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\test_tools.hpp" />
+    <ClInclude Include="..\..\..\..\Sid Meier%27s Civilization IV Colonization\MODS\Medieval_Tech\DLL_Sources\unit_test_suite.hpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3021AF0E-699D-4232-86F6-FC374A0C9957}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Assert|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-fast|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Assert-fast|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Assert|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release-fast|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Assert-fast|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>set TARGET=Debug
+nmake dll</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set TARGET=Debug
+nmake clean
+nmake all</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set TARGET=Debug
+nmake clean</NMakeCleanCommandLine>
+    <AdditionalOptions>/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /D_DEBUG</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>set TARGET=Profile
+nmake dll</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set TARGET=Profile
+nmake clean
+nmake dll</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set TARGET=Profile
+nmake clean</NMakeCleanCommandLine>
+    <AdditionalOptions>/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>set TARGET=Release
+nmake dll</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set TARGET=Release
+nmake clean
+nmake dll</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set TARGET=Release
+nmake clean</NMakeCleanCommandLine>
+    <AdditionalOptions>/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Assert|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>set TARGET=Assert
+nmake dll</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set TARGET=Assert
+nmake clean
+nmake dll</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set TARGET=Assert
+nmake clean</NMakeCleanCommandLine>
+    <AdditionalOptions>/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE /DFASSERT_ENABLE</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-fast|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>set TARGET=Release
+nmake precompile
+bin\jom build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set TARGET=Release
+nmake clean
+nmake precompile
+bin\jom build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set TARGET=Release
+nmake clean</NMakeCleanCommandLine>
+    <AdditionalOptions>/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Assert-fast|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>set TARGET=Assert
+nmake precompile
+bin\jom build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set TARGET=Assert
+nmake clean
+nmake precompile
+bin\jom build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set TARGET=Assert
+nmake clean</NMakeCleanCommandLine>
+    <AdditionalOptions>/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE /DFASSERT_ENABLE</AdditionalOptions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
