@@ -23,7 +23,7 @@ LD="$(TOOLKIT)\bin\link.exe"
 RC="$(PSDK)\bin\rc.exe"
 ## Uncomment to build dependencies using fastdep
 ## Overwritten by enviroment variable FASTDEP_FULL_PATH
-#FD="$(MAKEDIR)\bin\fastdep.exe"
+FD="$(MAKEDIR)\bin\fastdep.exe"
 
 #### BLACKLIST ####
 ## Uncomment to block CvTextScreen (accidentally included by Firaxis)
