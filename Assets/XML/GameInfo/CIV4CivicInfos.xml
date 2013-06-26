@@ -5681,6 +5681,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
+      <CivicPortrait>Art/Interface/Screens/CivicPortraits/CivicPortraitTrading.dds</CivicPortrait>
       <iAIWeight>0</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
