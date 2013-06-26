@@ -9,8 +9,12 @@
 TOOLKIT=C:\Program Files (x86)\Microsoft Visual C++ Toolkit 2003
 PSDK=C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A
 ## Uncomment to have newly compiled dlls copied to your mod's Assets directory
-## .. 
 YOURMOD=..
+
+## Civ install path
+## Path to the directory where boost and python is stored
+## Overwritten by enviroment variable CIV4_LIB_INSTALL_PATH
+#CIV4_PATH=C:\Program Files (x86)\2K Games\Firaxis Games\Sid Meier's Civilization IV Colonization\CvGameCoreDLL
 
 #### Tools ####
 CC="$(TOOLKIT)\bin\cl.exe"
@@ -18,6 +22,7 @@ CPP="$(TOOLKIT)\bin\cl.exe"
 LD="$(TOOLKIT)\bin\link.exe"
 RC="$(PSDK)\bin\rc.exe"
 ## Uncomment to build dependencies using fastdep
+## Overwritten by enviroment variable FASTDEP_FULL_PATH
 FD="$(MAKEDIR)\bin\fastdep.exe"
 
 #### BLACKLIST ####
@@ -36,6 +41,15 @@ Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /D
 
 #### You shouldn't need to modify anything beyond this point ####
 #################################################################
+
+## Enrironmental path overwrite
+!IFDEF CIV4_LIB_INSTALL_PATH
+CIV4_PATH=$(CIV4_LIB_INSTALL_PATH)
+!ENDIF
+
+!IFDEF FASTDEP_FULL_PATH
+FD=$(FASTDEP_FULL_PATH)
+!ENDIF
 
 #### Target Files ####
 Target_BIN=$(TARGET)\CvGameCoreDLL.dll
@@ -66,12 +80,17 @@ Release_LDFLAGS=/INCREMENTAL:NO /OPT:REF /OPT:ICF $(GLOBAL_LDFLAGS)
 
 #### INCLUDES ####
 GLOBAL_INCS=/I"$(TOOLKIT)/include" /I"$(PSDK)/Include" /I"$(PSDK)/Include/mfc"
+!IFDEF CIV4_PATH
+PROJECT_INCS=/I"$(CIV4_PATH)/Boost-1.32.0/include" /I"$(CIV4_PATH)/Python24/include"
+PROJECT_LIBS=/LIBPATH:"$(CIV4_PATH)"/Python24/libs /LIBPATH:"$(CIV4_PATH)"/boost-1.32.0/libs/ boost_python-vc71-mt-1_32.lib
+!ELSE
 PROJECT_INCS=/IBoost-1.32.0/include /IPython24/include
+PROJECT_LIBS=/LIBPATH:Python24/libs /LIBPATH:boost-1.32.0/libs/ boost_python-vc71-mt-1_32.lib
+!ENDIF
 INCS = $(PROJECT_INCS) $(GLOBAL_INCS)
 
 #### LIBS ####
 GLOBAL_LIBS=/LIBPATH:"$(TOOLKIT)/lib" /LIBPATH:"$(PSDK)/Lib" winmm.lib user32.lib
-PROJECT_LIBS=/LIBPATH:Python24/libs /LIBPATH:boost-1.32.0/libs/ boost_python-vc71-mt-1_32.lib
 LIBS = $(PROJECT_LIBS) $(GLOBAL_LIBS)
 
 #### Auto SOURCES/OBJS ####
