@@ -7222,7 +7222,12 @@
 				<City/>
 			</Cities>
 			<Buildings/>
-			<Units/>
+      <Units>
+        <Unit>
+          <UnitClassType>UNITCLASS_TREASURE</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+      </Units>
 			<Professions/>
 			<Traits/>
 			<FreeUnitClasses/>

@@ -9755,6 +9755,12 @@ int CvCity::getMaxYieldCapacity(YieldTypes eYield) const
 
 bool CvCity::isAutoRaze() const
 {
+    ///TKs Med 1.2
+    if (GC.getGameINLINE().isBarbarianPlayer(getOwner()))
+    {
+        return true;
+    }
+    ///TKe
 	if (getPopulation() == 0)
 	{
 		return true;

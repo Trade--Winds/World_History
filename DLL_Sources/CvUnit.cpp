@@ -975,10 +975,10 @@ void CvUnit::doTurn()
 	        }
 
 	    }
-
+        ///TKs Med 2.1 This kills all this teams Marauders once they form an alliance
 	    if (isAlwaysHostile(plot()))
 	    {
-	        if (GET_TEAM(getTeam()).getNumMembers() > 1)
+	        if (isNative() && GET_PLAYER(getOwner()).getVassalOwner() != NO_PLAYER)
 	        {
 	            kill(true);
 	        }
@@ -14486,8 +14486,20 @@ bool CvUnit::raidWeapons(CvCity* pCity)
 {
 	if (!isNative())
 	{
-		return false;
+	    ///TKs Med 1.2
+	    if (isBarbarian())
+	    {
+	        if (m_pUnitInfo->isAnimal())
+	        {
+                return false;
+	        }
+	    }
+	    else
+	    {
+	        return false;
+	    }
 	}
+	///TKe
 
 	if (!isEnemy(pCity->getTeam()))
 	{
@@ -14529,8 +14541,20 @@ bool CvUnit::raidWeapons(CvUnit* pUnit)
 {
 	if (!isNative())
 	{
-		return false;
+	    ///TKs Med 1.2
+	    if (isBarbarian())
+	    {
+	        if (m_pUnitInfo->isAnimal())
+	        {
+                return false;
+	        }
+	    }
+	    else
+	    {
+	        return false;
+	    }
 	}
+	///TKe
 
 	FAssert(pUnit->isDead());
 
@@ -14571,9 +14595,21 @@ bool CvUnit::raidGoods(CvCity* pCity)
 {
 	if (!isNative())
 	{
-		return false;
+	    ///TKs Med 1.2
+	    if (isBarbarian())
+	    {
+	        if (m_pUnitInfo->isAnimal())
+	        {
+                return false;
+	        }
+	    }
+	    else
+	    {
+	        return false;
+	    }
 	}
-
+	///TKe
+///TKe
 	if (!isEnemy(pCity->getTeam()))
 	{
 		return false;

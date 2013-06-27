@@ -520,7 +520,7 @@
   </Define>
   <Define>
     <DefineName>MAX_CITY_POPULATION_VILLAGE</DefineName>
-    <iDefineIntVal>4</iDefineIntVal>
+    <iDefineIntVal>5</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>MAX_CITY_POPULATION_TOWN</DefineName>
