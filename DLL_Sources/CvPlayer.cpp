@@ -214,11 +214,11 @@ void CvPlayer::init(PlayerTypes eID)
         ///TKs Invention Core Mod v 1.0
 
 
-            int iAdvancedAIStart = GC.getDefineINT("AI_ADVANCED_TECH_START");
+            int iAdvancedAIStart = GC.getCache_AI_ADVANCED_TECH_START();
             if (!isNative() && !isEurope() && iAdvancedAIStart <= 0)
             {
                 bool bSetTrade = false;
-                FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getDefineINT("FATHER_POINT_REAL_TRADE");
+                FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
                 for (int iLoopCivic = 0; iLoopCivic < GC.getNumCivicInfos(); ++iLoopCivic)
                 {
                     if (GC.getCivilizationInfo(getCivilizationType()).getCivilizationTechs(iLoopCivic) != -1)
@@ -233,7 +233,7 @@ void CvPlayer::init(PlayerTypes eID)
 
                     }
 
-                    if (bSetTrade == false && GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                    if (bSetTrade == false && GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                     {
                         if (GC.getCivicInfo((CivicTypes)iLoopCivic).getRequiredFatherPoints(eFatherPoint) > 0)
                         {
@@ -251,13 +251,13 @@ void CvPlayer::init(PlayerTypes eID)
                 }
 
                setTechsInitialized(true);
-               setDefaultPopUnit((UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getDefineINT("DEFAULT_DAWN_POPULATION_UNIT")));
+               setDefaultPopUnit((UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getCache_DEFAULT_DAWN_POPULATION_UNIT()));
 
             }
 
             if (!isNative() && !isEurope())
             {
-               setDefaultPopUnit((UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getDefineINT("DEFAULT_DAWN_POPULATION_UNIT")));
+               setDefaultPopUnit((UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getCache_DEFAULT_DAWN_POPULATION_UNIT()));
 
             }
 
@@ -266,9 +266,9 @@ void CvPlayer::init(PlayerTypes eID)
                 CivicTypes eCivic = NO_CIVIC;
                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                 {
-                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                     {
-                        if (GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() != -1 && GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == GC.getDefineINT("NATIVE_TECH"))
+                        if (GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() != -1 && GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == GC.getCache_NATIVE_TECH())
                         {
                             char szOut[1024];
                             sprintf(szOut, "######################## Native Player %d %S Has Learned %d \n", getID(), getNameKey(), iCivic);
@@ -436,7 +436,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iVillages = 0;
 	m_iMonasterys = 0;
 	m_iCastles = 0;
-	m_iNumDocksNextUnits = GC.getDefineINT("DOCKS_NEXT_UNITS");
+	m_iNumDocksNextUnits = GC.getCache_DOCKS_NEXT_UNITS();
 	///TKe
 
 
@@ -764,7 +764,7 @@ void CvPlayer::initFreeUnits()
 			{
 				CvPlot* pPlot = GC.getMapINLINE().plotByIndex(iPlotLoop);
 
-				if (plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE()) <= GC.getDefineINT("ADVANCED_START_SIGHT_RANGE"))
+				if (plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE()) <= GC.getCache_ADVANCED_START_SIGHT_RANGE())
 				{
 					pPlot->setRevealed(getTeam(), true, false, NO_TEAM);
 				}
@@ -943,7 +943,7 @@ int CvPlayer::startingPlotRange() const
 
 	iRange = (GC.getMapINLINE().maxStepDistance() + 40);
 
-	iRange *= GC.getDefineINT("STARTING_DISTANCE_PERCENT");
+	iRange *= GC.getCache_STARTING_DISTANCE_PERCENT();
 	iRange /= 100;
 
 	iRange *= (GC.getMapINLINE().getLandPlots() / (GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities() * GC.getGameINLINE().countCivPlayersAlive()));
@@ -958,7 +958,7 @@ int CvPlayer::startingPlotRange() const
 		iRange /= 100;
 	}
 
-	return std::max(iRange, GC.getDefineINT("MIN_CIV_STARTING_DISTANCE"));
+	return std::max(iRange, GC.getCache_MIN_CIV_STARTING_DISTANCE());
 }
 
 
@@ -980,12 +980,12 @@ int CvPlayer::startingPlotDistanceFactor(CvPlot* pPlot, PlayerTypes ePlayer, int
 		{
 			if (GET_PLAYER(ePlayer).getTeam() == getTeam())
 			{
-				iRange *= GC.getDefineINT("OWN_TEAM_STARTING_MODIFIER");
+				iRange *= GC.getCache_OWN_TEAM_STARTING_MODIFIER();
 				iRange /= 100;
 			}
 			else
 			{
-				iRange *= GC.getDefineINT("RIVAL_TEAM_STARTING_MODIFIER");
+				iRange *= GC.getCache_RIVAL_TEAM_STARTING_MODIFIER();
 				iRange /= 100;
 			}
 		}
@@ -1653,9 +1653,9 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade)
 	{
 		iTeamCulturePercent = pNewCity->calculateTeamCulturePercent(getTeam());
 
-		if (iTeamCulturePercent < GC.getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD"))
+		if (iTeamCulturePercent < GC.getCache_OCCUPATION_CULTURE_PERCENT_THRESHOLD())
 		{
-			pNewCity->changeOccupationTimer(((GC.getDefineINT("BASE_OCCUPATION_TURNS") + ((pNewCity->getPopulation() * GC.getDefineINT("OCCUPATION_TURNS_POPULATION_PERCENT")) / 100)) * (100 - iTeamCulturePercent)) / 100);
+			pNewCity->changeOccupationTimer(((GC.getCache_BASE_OCCUPATION_TURNS() + ((pNewCity->getPopulation() * GC.getCache_OCCUPATION_TURNS_POPULATION_PERCENT()) / 100)) * (100 - iTeamCulturePercent)) / 100);
 		}
 
 		GC.getMapINLINE().verifyUnitValidPlot();
@@ -2501,7 +2501,7 @@ void CvPlayer::doTurnUnits()
 					buyEuropeUnit(eCheapestShip, 0);
                         //change taxrate
                         int iOldTaxRate = getTaxRate();
-                        int iNewTaxRate = std::min(99, iOldTaxRate + 1 + GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("TAX_RATE_MAX_INCREASE"), "Tax Rate Increase for ship"));
+                        int iNewTaxRate = std::min(99, iOldTaxRate + 1 + GC.getGameINLINE().getSorenRandNum(GC.getCache_TAX_RATE_MAX_INCREASE(), "Tax Rate Increase for ship"));
                         int iChange = iNewTaxRate - iOldTaxRate;
 					if (!isHuman() && GC.getGameINLINE().getGameTurn() > 20)
                     {
@@ -2554,7 +2554,7 @@ void CvPlayer::verifyCivics()
 	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 	{
 	    ///TK Update 1.1b
-	    if (iI = GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+	    if (iI = GC.getCache_CIVICOPTION_INVENTIONS())
 	    {
 	        continue;
 	    }
@@ -2720,7 +2720,7 @@ int CvPlayer::calculateScore(bool bFinal, bool bVictory) const
 
 int CvPlayer::getScoreTaxFactor() const
 {
-	return std::max(0, 100 - GC.getDefineINT("SCORE_TAX_FACTOR") * getTaxRate() / 100);
+	return std::max(0, 100 - GC.getCache_SCORE_TAX_FACTOR() * getTaxRate() / 100);
 }
 
 int CvPlayer::findBestFoundValue() const
@@ -3154,9 +3154,9 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
                     //CensureType eCensureType = kPlayer.getCensureType();
                     if (iBaseCensure < 25)
                     {
-                        int iTurns = GC.getDefineINT("DEFAULT_CENSURETYPE_EXCOMMUNICATION_COUNT");
+                        int iTurns = GC.getCache_DEFAULT_CENSURETYPE_EXCOMMUNICATION_COUNT();
                         kPlayer.changeCensureType(CENSURE_EXCOMMUNICATION, iTurns);
-                        CivicTypes eCivic = (CivicTypes)GC.getDefineINT("DEFAULT_CENSURETYPE_EXCOMMUNICATION");
+                        CivicTypes eCivic = (CivicTypes)GC.getCache_DEFAULT_CENSURETYPE_EXCOMMUNICATION();
                         kPlayer.changeIdeasResearched(eCivic, 1);
                         kPlayer.processCivics(eCivic, 1);
                         CvWString szMessage = gDLL->getText("TXT_KEY_CENSURE_EXCOMMUNICATION", getCivilizationAdjectiveKey(), GC.getCivicInfo(eCivic).getDescription(), iTurns, GC.getCivicInfo(eCivic).getStrategy());
@@ -3166,9 +3166,9 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
                     }
                     else if (iBaseCensure >= 75)
                     {
-                        int iTurns = GC.getDefineINT("DEFAULT_CENSURETYPE_ANATHEMA_COUNT");
+                        int iTurns = GC.getCache_DEFAULT_CENSURETYPE_ANATHEMA_COUNT();
                         kPlayer.changeCensureType(CENSURE_ANATHEMA, iTurns);
-                        CivicTypes eCivic = (CivicTypes)GC.getDefineINT("DEFAULT_CENSURETYPE_ANATHEMA");
+                        CivicTypes eCivic = (CivicTypes)GC.getCache_DEFAULT_CENSURETYPE_ANATHEMA();
                         kPlayer.changeIdeasResearched(eCivic, 1);
                         kPlayer.processCivics(eCivic, 1);
                         CvWString szMessage = gDLL->getText("TXT_KEY_CENSURE_EXCOMMUNICATION", getCivilizationAdjectiveKey(), GC.getCivicInfo(eCivic).getDescription(), iTurns, GC.getCivicInfo(eCivic).getStrategy());
@@ -3196,9 +3196,9 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
                     }
                     else if (iBaseCensure >= 25 )
                     {
-                        int iTurns = GC.getDefineINT("DEFAULT_CENSURETYPE_INTERDICT_COUNT");
+                        int iTurns = GC.getCache_DEFAULT_CENSURETYPE_INTERDICT_COUNT();
                         kPlayer.changeCensureType(CENSURE_INTERDICT, iTurns);
-                        CivicTypes eCivic = (CivicTypes)GC.getDefineINT("DEFAULT_CENSURETYPE_INTERDICT");
+                        CivicTypes eCivic = (CivicTypes)GC.getCache_DEFAULT_CENSURETYPE_INTERDICT();
                         kPlayer.changeIdeasResearched(eCivic, 1);
                         kPlayer.processCivics(eCivic, 1);
                         int iLoop;
@@ -3361,7 +3361,7 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
 
                // CvWString szBuffer = gDLL->getText("USER_DIPLO_KING_GIFT_SHIP_REJECT_TEXT");
                /// gDLL->getInterfaceIFace()->addMessage(ePlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_SND_PIRATE_CHEER1", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
-                if (GET_PLAYER(ePlayer).AI_getAttitudeVal(getID(), false) > -GC.getDefineINT("MAX_INSULT_MODIFIER"))
+                if (GET_PLAYER(ePlayer).AI_getAttitudeVal(getID(), false) > -GC.getCache_MAX_INSULT_MODIFIER())
                 {
                     AI_changeMemoryCount(ePlayer, MEMORY_INSULTED, 1);
                 }
@@ -3983,7 +3983,7 @@ void CvPlayer::findNewCapital()
 	int iBestValue;
 	int iLoop;
 
-	BuildingClassTypes eCapitalBuildingClass = (BuildingClassTypes) GC.getDefineINT("CAPITAL_BUILDINGCLASS");
+	BuildingClassTypes eCapitalBuildingClass = (BuildingClassTypes) GC.getCache_CAPITAL_BUILDINGCLASS();
 	if(eCapitalBuildingClass == NO_BUILDINGCLASS)
 	{
 		return;
@@ -4048,7 +4048,7 @@ bool CvPlayer::canRaze(CvCity* pCity) const
 			return false;
 		}
 
-		if (pCity->calculateTeamCulturePercent(getTeam()) >= GC.getDefineINT("RAZING_CULTURAL_PERCENT_THRESHOLD"))
+		if (pCity->calculateTeamCulturePercent(getTeam()) >= GC.getCache_RAZING_CULTURAL_PERCENT_THRESHOLD())
 		{
 			return false;
 		}
@@ -4138,7 +4138,7 @@ void CvPlayer::raze(CvCity* pCity)
 			}
 		}
 
-		int iTreasure = GC.getDefineINT("SETTLEMENT_TREASURE_YIELD") * pCity->getHighestPopulation();
+		int iTreasure = GC.getCache_SETTLEMENT_TREASURE_YIELD() * pCity->getHighestPopulation();
 		iTreasure = iTreasure * GC.getCivilizationInfo(GET_PLAYER(pCity->getPreviousOwner()).getCivilizationType()).getTreasure() / 100;
 		iTreasure = iTreasure * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent() / 100;
 		iTreasure = iTreasure / 2 + GC.getGameINLINE().getSorenRandNum(iTreasure / 2, "Treasure Gold 1") + GC.getGameINLINE().getSorenRandNum(iTreasure / 2, "Treasure Gold 2");
@@ -4157,7 +4157,7 @@ void CvPlayer::raze(CvCity* pCity)
 
 		if (iTreasure != 0)
 		{
-			UnitClassTypes eUnitClass = (UnitClassTypes) GC.getDefineINT("TREASURE_UNITCLASS");
+			UnitClassTypes eUnitClass = (UnitClassTypes) GC.getCache_TREASURE_UNITCLASS();
 
 			if (eUnitClass != NO_UNITCLASS)
 			{
@@ -4212,8 +4212,8 @@ bool CvPlayer::canReceiveGoody(CvPlot* pPlot, GoodyTypes eGoody, const CvUnit* p
         for (int iX = 0; iX < GC.getNumCivicInfos(); iX++)
         {
             CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iX);
-            FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getDefineINT("FATHER_POINT_REAL_TRADE");
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS") && canDoCivics((CivicTypes) iX))
+            FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
+            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS() && canDoCivics((CivicTypes) iX))
             {
                 if (!kCivicInfo.isGoodyTech() && GC.getCivicInfo((CivicTypes)iX).getRequiredFatherPoints(eFatherPoint) <= 0)
                 {
@@ -4374,7 +4374,7 @@ int CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 	iGold = iGold * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent() / 100;
 	if ((pUnit != NULL) && pUnit->isNoBadGoodies())
 	{
-		iGold = iGold * GC.getDefineINT("NO_BAD_GOODIES_GOLD_PERCENT") / 100;
+		iGold = iGold * GC.getCache_NO_BAD_GOODIES_GOLD_PERCENT() / 100;
 	}
 
 	if (iGold != 0)
@@ -4422,7 +4422,7 @@ int CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 	int iRange = kGoody.getMapRange();
 	if ((pUnit != NULL) && pUnit->isNoBadGoodies())
 	{
-		iRange = iRange * GC.getDefineINT("NO_BAD_GOODIES_GOLD_PERCENT") / 100;
+		iRange = iRange * GC.getCache_NO_BAD_GOODIES_GOLD_PERCENT() / 100;
 	}
 
 	if (iRange > 0)
@@ -4489,7 +4489,7 @@ int CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 		int iExperience = kGoody.getExperience();
 		if (pUnit->isNoBadGoodies())
 		{
-			iExperience = iExperience * GC.getDefineINT("NO_BAD_GOODIES_EXPERIENCE_PERCENT") / 100;
+			iExperience = iExperience * GC.getCache_NO_BAD_GOODIES_EXPERIENCE_PERCENT() / 100;
 		}
 		pUnit->changeExperience(iExperience);
 	}
@@ -4540,9 +4540,9 @@ int CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
         for (int iX = 0; iX < GC.getNumCivicInfos(); iX++)
         {
             CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iX);
-            FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getDefineINT("FATHER_POINT_REAL_TRADE");
+            FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
 
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS") && canDoCivics((CivicTypes) iX))
+            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS() && canDoCivics((CivicTypes) iX))
             {
                 if (!kCivicInfo.isGoodyTech() && GC.getCivicInfo((CivicTypes)iX).getRequiredFatherPoints(eFatherPoint) <= 0)
                 {    bFoundTech = true;
@@ -4697,7 +4697,7 @@ bool CvPlayer::canFound(int iX, int iY, bool bTestVisible, int iCityType) const
 	{
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                 if (kCivicInfo.getFoundCityType() == iCityType)
@@ -4903,7 +4903,7 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
     {
         if ((UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType() == UNITAI_MARAUDER)
         {
-            int iMaxMarauders = GC.getDefineINT("MAX_MARAUDERS");
+            int iMaxMarauders = GC.getCache_MAX_MARAUDERS();
             for (int iWorld=0; iWorld<NUM_WORLDSIZE_TYPES; iWorld++)
             {
                 if (GC.getMapINLINE().getWorldSize() == (WorldSizeTypes)iWorld)
@@ -4957,7 +4957,7 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 	{
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                 if (kCivicInfo.getAllowsUnitClasses(eUnitClass) > 0)
@@ -5043,7 +5043,7 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 	{
 	    if (eCanBuild == NATIVES_VIKING_AGE)
 	    {
-	        if (getCurrentEra() == (EraTypes)GC.getDefineINT("DEFAULT_VIKING_ERA"))
+	        if (getCurrentEra() == (EraTypes)GC.getCache_DEFAULT_VIKING_ERA())
 	        {
 	            return false;
 	        }
@@ -5064,7 +5064,7 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 	//{
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {	CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 if (eBuilding != NO_BUILDING)
                 {
@@ -5185,7 +5185,7 @@ int CvPlayer::getYieldProductionNeeded(UnitTypes eUnit, YieldTypes eYield) const
 
 	int iProductionNeeded = GC.getUnitInfo(eUnit).getYieldCost(eYield);
 
-	iProductionNeeded *= GC.getDefineINT("UNIT_PRODUCTION_PERCENT");
+	iProductionNeeded *= GC.getCache_UNIT_PRODUCTION_PERCENT();
 	iProductionNeeded /= 100;
 
 	iProductionNeeded *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
@@ -5228,7 +5228,7 @@ int CvPlayer::getYieldProductionNeeded(BuildingTypes eBuilding, YieldTypes eYiel
 {
 	int iProductionNeeded = GC.getBuildingInfo(eBuilding).getYieldCost(eYield);
 
-	iProductionNeeded *= GC.getDefineINT("BUILDING_PRODUCTION_PERCENT");
+	iProductionNeeded *= GC.getCache_BUILDING_PRODUCTION_PERCENT();
 	iProductionNeeded /= 100;
 
 	iProductionNeeded *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
@@ -5647,7 +5647,7 @@ bool CvPlayer::canBuild(const CvPlot* pPlot, BuildTypes eBuild, bool bTestEra, b
 	{
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                 if (GC.getBuildInfo(eBuild).getRoute() != NO_ROUTE)
@@ -5848,7 +5848,7 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
             ///Disallow Tech Code
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                     if (kCivicInfo.getDisallowsTech() == eCivic)
@@ -5869,7 +5869,7 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
                 }
             }
             CvCivicInfo& kCivicInfo = GC.getCivicInfo(eCivic);
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 if (getIdeasResearched(eCivic) > 0)
                 {
@@ -5959,7 +5959,7 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
 
 int CvPlayer::greatGeneralThreshold() const
 {
-	int iThreshold = ((GC.getDefineINT("GREAT_GENERALS_THRESHOLD") * std::max(0, (getGreatGeneralsThresholdModifier() + 100))) / 100);
+	int iThreshold = ((GC.getCache_GREAT_GENERALS_THRESHOLD() * std::max(0, (getGreatGeneralsThresholdModifier() + 100))) / 100);
 
 	iThreshold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGreatGeneralPercent();
 	iThreshold /= 100;
@@ -5971,7 +5971,7 @@ int CvPlayer::greatGeneralThreshold() const
 
 int CvPlayer::immigrationThreshold() const
 {
-	int iThreshold = ((GC.getDefineINT("IMMIGRATION_THRESHOLD") * std::max(0, (getImmigrationThresholdMultiplier()))) / 100);
+	int iThreshold = ((GC.getCache_IMMIGRATION_THRESHOLD() * std::max(0, (getImmigrationThresholdMultiplier()))) / 100);
 
 	for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); ++iTrait)
 	{
@@ -6000,7 +6000,7 @@ int CvPlayer::immigrationThreshold() const
 
 int CvPlayer::revolutionEuropeUnitThreshold() const
 {
-	int iThreshold = ((GC.getDefineINT("REVOLUTION_EUROPE_UNIT_THRESHOLD") * std::max(0, (getRevolutionEuropeUnitThresholdMultiplier()))) / 100);
+	int iThreshold = ((GC.getCache_REVOLUTION_EUROPE_UNIT_THRESHOLD() * std::max(0, (getRevolutionEuropeUnitThresholdMultiplier()))) / 100);
 
 	iThreshold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
 	iThreshold /= 100;
@@ -6246,7 +6246,7 @@ void CvPlayer::changeGreatGeneralRateModifier(int iChange)
 
 int CvPlayer::getDomesticGreatGeneralRateModifier() const
 {
-	return (GC.getDefineINT("COMBAT_EXPERIENCE_IN_BORDERS_PERCENT") + m_iDomesticGreatGeneralRateModifier);
+	return (GC.getCache_COMBAT_EXPERIENCE_IN_BORDERS_PERCENT() + m_iDomesticGreatGeneralRateModifier);
 }
 
 
@@ -6835,7 +6835,7 @@ void CvPlayer::verifyAlive()
 
 					//change taxrate
 					int iOldTaxRate = getTaxRate();
-					int iNewTaxRate = std::min(99, iOldTaxRate + 1 + GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("TAX_RATE_MAX_INCREASE"), "Tax Rate Increase"));
+					int iNewTaxRate = std::min(99, iOldTaxRate + 1 + GC.getGameINLINE().getSorenRandNum(GC.getCache_TAX_RATE_MAX_INCREASE(), "Tax Rate Increase"));
 					int iChange = iNewTaxRate - iOldTaxRate;
 					changeTaxRate(iChange);
 
@@ -7598,7 +7598,7 @@ bool CvPlayer::isYieldEuropeTradable(YieldTypes eYield) const
     {
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                 if (eYield != NO_YIELD && kCivicInfo.getAllowsYields(eYield) > 0)
@@ -7746,7 +7746,7 @@ bool CvPlayer::isBuildingFree(BuildingTypes eIndex)	const
 	{
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {	CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 if (eIndex != NO_BUILDING && kCivicInfo.getAllowsBuildingTypes(GC.getBuildingInfo(eIndex).getBuildingClassType()) > 0)
                 {
@@ -8112,7 +8112,7 @@ void CvPlayer::setCivic(CivicOptionTypes eIndex, CivicTypes eNewValue)
     CivicTypes eOldCivic;
     ///TK Update 1.1b
    // bool bIdea = false;
-    if (eIndex == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+    if (eIndex == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
     {
         return;
         //eOldCivic = NO_CIVIC;
@@ -9267,7 +9267,7 @@ void CvPlayer::doBells()
 		if (getBellsStored() >= revolutionEuropeUnitThreshold() && iBellsRate > GC.getCivilizationInfo(getCivilizationType()).getFreeYields(YIELD_BELLS))
 		{
 			changeBellsStored(-revolutionEuropeUnitThreshold());
-			setRevolutionEuropeUnitThresholdMultiplier((getRevolutionEuropeUnitThresholdMultiplier() * (100 + GC.getDefineINT("REVOLUTION_EUROPE_UNIT_THRESHOLD_INCREASE"))) / 100);
+			setRevolutionEuropeUnitThresholdMultiplier((getRevolutionEuropeUnitThresholdMultiplier() * (100 + GC.getCache_REVOLUTION_EUROPE_UNIT_THRESHOLD_INCREASE())) / 100);
 			setKingNumUnitMultiplier(getKingNumUnitMultiplier() * GC.getHandicapInfo(getHandicapType()).getKingNumUnitMultiplier() / 100);
 
 			if (NO_PLAYER != getParent())
@@ -9290,14 +9290,14 @@ void CvPlayer::doBells()
 					{
 						if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_SEA)
 						{
-							aiUnitWeights[i] += std::max(-100, GC.getDefineINT("REVOLUTION_EUROPE_UNIT_SHIP_MODIFIER"));
+							aiUnitWeights[i] += std::max(-100, GC.getCache_REVOLUTION_EUROPE_UNIT_SHIP_MODIFIER());
 						}
 					}
 				}
 
 				if (iNumFreeUnits > 0)
 				{
-					int iNumUnits = std::max(1, GC.getDefineINT("KING_INITIAL_UNIT_INCREASE") * getKingNumUnitMultiplier() / 100);
+					int iNumUnits = std::max(1, GC.getCache_KING_INITIAL_UNIT_INCREASE() * getKingNumUnitMultiplier() / 100);
 					for (int i = 0; i < iNumUnits; ++i)
 					{
 						int iIndex = GC.getGameINLINE().getSorenRand().pickValue(aiUnitWeights, "Pick Expeditionary force unit");
@@ -9928,7 +9928,7 @@ int CvPlayer::getAdvancedStartUnitCost(UnitTypes eUnit, bool bAdd, CvPlot* pPlot
 	{
 		CvCity* pCity = NULL;
 
-		if (0 == GC.getDefineINT("ADVANCED_START_ALLOW_UNITS_OUTSIDE_CITIES"))
+		if (0 == GC.getCache_ADVANCED_START_ALLOW_UNITS_OUTSIDE_CITIES())
 		{
 			pCity = pPlot->getPlotCity();
 
@@ -9954,7 +9954,7 @@ int CvPlayer::getAdvancedStartUnitCost(UnitTypes eUnit, bool bAdd, CvPlot* pPlot
 
 		if (bAdd)
 		{
-			int iMaxUnitsPerCity = GC.getDefineINT("ADVANCED_START_MAX_UNITS_PER_CITY");
+			int iMaxUnitsPerCity = GC.getCache_ADVANCED_START_MAX_UNITS_PER_CITY();
 			if (iMaxUnitsPerCity >= 0)
 			{
 				if (getNumUnits() >= iMaxUnitsPerCity * getNumCities())
@@ -10091,7 +10091,7 @@ int CvPlayer::getAdvancedStartCityCost(bool bAdd, CvPlot* pPlot)
 		}
 
 		// Is there a distance limit on how far a city can be placed from a player's start/another city?
-		if (GC.getDefineINT("ADVANCED_START_CITY_PLACEMENT_MAX_RANGE") > 0)
+		if (GC.getCache_ADVANCED_START_CITY_PLACEMENT_MAX_RANGE() > 0)
 		{
 			PlayerTypes eClosestPlayer = NO_PLAYER;
 			int iClosestDistance = MAX_INT;
@@ -10107,7 +10107,7 @@ int CvPlayer::getAdvancedStartCityCost(bool bAdd, CvPlot* pPlot)
 					if (NULL != pStartingPlot)
 					{
 						int iDistance = ::plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE());
-						if (iDistance <= GC.getDefineINT("ADVANCED_START_CITY_PLACEMENT_MAX_RANGE"))
+						if (iDistance <= GC.getCache_ADVANCED_START_CITY_PLACEMENT_MAX_RANGE())
 						{
 							if (iDistance < iClosestDistance || (iDistance == iClosestDistance && getTeam() != kPlayer.getTeam()))
 							{
@@ -10133,7 +10133,7 @@ int CvPlayer::getAdvancedStartCityCost(bool bAdd, CvPlot* pPlot)
 	}
 
 	// Increase cost if the XML defines that additional units will cost more
-	if (0 != GC.getDefineINT("ADVANCED_START_CITY_COST_INCREASE"))
+	if (0 != GC.getCache_ADVANCED_START_CITY_COST_INCREASE())
 	{
 		if (!bAdd)
 		{
@@ -10142,7 +10142,7 @@ int CvPlayer::getAdvancedStartCityCost(bool bAdd, CvPlot* pPlot)
 
 		if (iNumCities > 0)
 		{
-			iCost *= 100 + GC.getDefineINT("ADVANCED_START_CITY_COST_INCREASE") * iNumCities;
+			iCost *= 100 + GC.getCache_ADVANCED_START_CITY_COST_INCREASE() * iNumCities;
 			iCost /= 100;
 		}
 	}
@@ -10161,7 +10161,7 @@ int CvPlayer::getAdvancedStartPopCost(bool bAdd, CvCity* pCity)
 		return -1;
 	}
 
-	int iCost = (getGrowthThreshold(1) * GC.getDefineINT("ADVANCED_START_POPULATION_COST")) / 100;
+	int iCost = (getGrowthThreshold(1) * GC.getCache_ADVANCED_START_POPULATION_COST()) / 100;
 
 	if (NULL != pCity)
 	{
@@ -10177,22 +10177,22 @@ int CvPlayer::getAdvancedStartPopCost(bool bAdd, CvCity* pCity)
 		{
 			--iPopulation;
 
-			if (iPopulation < GC.getDefineINT("INITIAL_CITY_POPULATION") + GC.getEraInfo(GC.getGameINLINE().getStartEra()).getFreePopulation())
+			if (iPopulation < GC.getCache_INITIAL_CITY_POPULATION() + GC.getEraInfo(GC.getGameINLINE().getStartEra()).getFreePopulation())
 			{
 				return -1;
 			}
 		}
 
-		iCost = (getGrowthThreshold(iPopulation) * GC.getDefineINT("ADVANCED_START_POPULATION_COST")) / 100;
+		iCost = (getGrowthThreshold(iPopulation) * GC.getCache_ADVANCED_START_POPULATION_COST()) / 100;
 
 		// Increase cost if the XML defines that additional Pop will cost more
-		if (0 != GC.getDefineINT("ADVANCED_START_POPULATION_COST_INCREASE"))
+		if (0 != GC.getCache_ADVANCED_START_POPULATION_COST_INCREASE())
 		{
 			--iPopulation;
 
 			if (iPopulation > 0)
 			{
-				iCost *= 100 + GC.getDefineINT("ADVANCED_START_POPULATION_COST_INCREASE") * iPopulation;
+				iCost *= 100 + GC.getCache_ADVANCED_START_POPULATION_COST_INCREASE() * iPopulation;
 				iCost /= 100;
 			}
 		}
@@ -10212,7 +10212,7 @@ int CvPlayer::getAdvancedStartCultureCost(bool bAdd, CvCity* pCity)
 		return -1;
 	}
 
-	int iCost = GC.getDefineINT("ADVANCED_START_CULTURE_COST");
+	int iCost = GC.getCache_ADVANCED_START_CULTURE_COST();
 	if (iCost < 0)
 	{
 		return -1;
@@ -10579,7 +10579,7 @@ int CvPlayer::getAdvancedStartVisibilityCost(bool bAdd, CvPlot* pPlot)
 	}
 
 	int iNumVisiblePlots = 0;
-	int iCost = GC.getDefineINT("ADVANCED_START_VISIBILITY_COST");
+	int iCost = GC.getCache_ADVANCED_START_VISIBILITY_COST();
 
 	// This denotes Visibility may not be purchased through Advanced Start
 	if (iCost == -1)
@@ -10611,7 +10611,7 @@ int CvPlayer::getAdvancedStartVisibilityCost(bool bAdd, CvPlot* pPlot)
 	}
 
 	// Increase cost if the XML defines that additional units will cost more
-	if (0 != GC.getDefineINT("ADVANCED_START_VISIBILITY_COST_INCREASE"))
+	if (0 != GC.getCache_ADVANCED_START_VISIBILITY_COST_INCREASE())
 	{
 		int iPlotLoop = 0;
 		CvPlot* pPlot;
@@ -10633,7 +10633,7 @@ int CvPlayer::getAdvancedStartVisibilityCost(bool bAdd, CvPlot* pPlot)
 
 		if (iNumVisiblePlots > 0)
 		{
-			iCost *= 100 + GC.getDefineINT("ADVANCED_START_VISIBILITY_COST_INCREASE") * iNumVisiblePlots;
+			iCost *= 100 + GC.getCache_ADVANCED_START_VISIBILITY_COST_INCREASE() * iNumVisiblePlots;
 			iCost /= 100;
 		}
 	}
@@ -12010,13 +12010,13 @@ void CvPlayer::createGreatGeneral(UnitTypes eGreatGeneralUnit, bool bIncrementEx
 	{
 		incrementGreatGeneralsCreated();
 
-		changeGreatGeneralsThresholdModifier(GC.getDefineINT("GREAT_GENERALS_THRESHOLD_INCREASE"));
+		changeGreatGeneralsThresholdModifier(GC.getCache_GREAT_GENERALS_THRESHOLD_INCREASE());
 
 		for (int iI = 0; iI < MAX_PLAYERS; iI++)
 		{
 			if (GET_PLAYER((PlayerTypes)iI).getTeam() == getTeam())
 			{
-				GET_PLAYER((PlayerTypes)iI).changeGreatGeneralsThresholdModifier(GC.getDefineINT("GREAT_GENERALS_THRESHOLD_INCREASE_TEAM"));
+				GET_PLAYER((PlayerTypes)iI).changeGreatGeneralsThresholdModifier(GC.getCache_GREAT_GENERALS_THRESHOLD_INCREASE_TEAM());
 			}
 		}
 	}
@@ -12343,7 +12343,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
         {
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                 {
                     if (iCivic == kTrigger.getCivic() && getIdeasResearched((CivicTypes) iCivic) <= 0)
                     {
@@ -13429,14 +13429,14 @@ void CvPlayer::doEvents()
 	}
 
 	bool bNewEventEligible = true;
-	if (GC.getGameINLINE().getElapsedGameTurns() < GC.getDefineINT("FIRST_EVENT_DELAY_TURNS"))
+	if (GC.getGameINLINE().getElapsedGameTurns() < GC.getCache_FIRST_EVENT_DELAY_TURNS())
 	{
 		bNewEventEligible = false;
 	}
 
 	if (bNewEventEligible)
 	{
-		if (GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("EVENT_PROBABILITY_ROLL_SIDES"), "Global event check") >= GC.getEraInfo(getCurrentEra()).getEventChancePerTurn())
+		if (GC.getGameINLINE().getSorenRandNum(GC.getCache_EVENT_PROBABILITY_ROLL_SIDES(), "Global event check") >= GC.getEraInfo(getCurrentEra()).getEventChancePerTurn())
 		{
 			bNewEventEligible = false;
 		}
@@ -13878,7 +13878,7 @@ int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 		///TKs Med
 		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 if (iCivic == kTrigger.getCivic() && getIdeasResearched((CivicTypes) iCivic) > 0)
                 {
@@ -14181,15 +14181,15 @@ int CvPlayer::getNewCityProductionValue() const
 		}
 	}
 
-	iValue *= 100 + GC.getDefineINT("NEW_CITY_BUILDING_VALUE_MODIFIER");
+	iValue *= 100 + GC.getCache_NEW_CITY_BUILDING_VALUE_MODIFIER();
 	iValue /= 100;
 
-	iValue += (GC.getDefineINT("ADVANCED_START_CITY_COST") * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent()) / 100;
+	iValue += (GC.getCache_ADVANCED_START_CITY_COST() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent()) / 100;
 
-	int iPopulation = GC.getDefineINT("INITIAL_CITY_POPULATION") + GC.getEraInfo(GC.getGameINLINE().getStartEra()).getFreePopulation();
+	int iPopulation = GC.getCache_INITIAL_CITY_POPULATION() + GC.getEraInfo(GC.getGameINLINE().getStartEra()).getFreePopulation();
 	for (int i = 1; i <= iPopulation; ++i)
 	{
-		iValue += (getGrowthThreshold(i) * GC.getDefineINT("ADVANCED_START_POPULATION_COST")) / 100;
+		iValue += (getGrowthThreshold(i) * GC.getCache_ADVANCED_START_POPULATION_COST()) / 100;
 	}
 
 	return iValue;
@@ -14199,7 +14199,7 @@ int CvPlayer::getGrowthThreshold(int iPopulation) const
 {
 	int iThreshold;
 
-	iThreshold = (GC.getDefineINT("BASE_CITY_GROWTH_THRESHOLD") + (iPopulation * GC.getDefineINT("CITY_GROWTH_MULTIPLIER")));
+	iThreshold = (GC.getCache_BASE_CITY_GROWTH_THRESHOLD() + (iPopulation * GC.getCache_CITY_GROWTH_MULTIPLIER()));
 
 	iThreshold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent();
 	iThreshold /= 100;
@@ -14209,7 +14209,7 @@ int CvPlayer::getGrowthThreshold(int iPopulation) const
 
 	if (isNative())
 	{
-		iThreshold *= GC.getDefineINT("NATIVE_GROWTH_THRESHOLD_MULTIPLIER");
+		iThreshold *= GC.getCache_NATIVE_GROWTH_THRESHOLD_MULTIPLIER();
 		iThreshold /= 100;
 	}
 	else if (!isHuman())
@@ -14384,7 +14384,7 @@ void CvPlayer::sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission
                 ///TKs Invention Core Mod v 1.0
                 if (GC.getGameINLINE().isIndustrialVictoryAll())
                 {
-                    YieldTypes eVictoryYield = (YieldTypes) GC.getDefineINT("INDUSTRIAL_VICTORY_SINGLE_YIELD");
+                    YieldTypes eVictoryYield = (YieldTypes) GC.getCache_INDUSTRIAL_VICTORY_SINGLE_YIELD();
                     if (eYield == eVictoryYield)
                     {
                         int iVicYieldCount = getVictoryYieldCount(eVictoryYield);
@@ -14413,9 +14413,9 @@ void CvPlayer::sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission
 
 				///TKs
                 CivicTypes ePlayerResearch = getCurrentResearch();
-                if (ePlayerResearch != NO_CIVIC && iProfit >= GC.getDefineINT("TRADE_STIMULATES_RESEARCH_MIN_VALUE"))
+                if (ePlayerResearch != NO_CIVIC && iProfit >= GC.getCache_TRADE_STIMULATES_RESEARCH_MIN_VALUE())
                 {
-                   int iExtraResearch = iProfit * GC.getDefineINT("TRADE_STIMULATES_RESEARCH_PERCENT") / 100;
+                   int iExtraResearch = iProfit * GC.getCache_TRADE_STIMULATES_RESEARCH_PERCENT() / 100;
                    changeIdeasStored(iExtraResearch);
                    changeIdeaProgress(ePlayerResearch, iExtraResearch);
                    char szOut[1024];
@@ -14602,7 +14602,7 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit) const
         eUnitClass = ((UnitClassTypes)kUnit.getUnitClassType());
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                 if (kCivicInfo.getAllowsUnitClasses(eUnitClass) > 0)
@@ -14739,8 +14739,8 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier)
             if (pUnit != NULL)
             {
                 pUnit->setUnitTravelState(UNIT_TRAVEL_STATE_FROM_IMMIGRATION, false);
-                int iTravelTime = GC.getEuropeInfo((EuropeTypes)GC.getDefineINT("EUROPE_EAST")).getTripLength();
-                int iRandom = GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("IMMIGRATION_TRAVEL_MOD"), "Summon Mod");
+                int iTravelTime = GC.getEuropeInfo((EuropeTypes)GC.getCache_EUROPE_EAST()).getTripLength();
+                int iRandom = GC.getGameINLINE().getSorenRandNum(GC.getCache_IMMIGRATION_TRAVEL_MOD(), "Summon Mod");
                 iTravelTime *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent() + iRandom;
                 iTravelTime /= 100;
 
@@ -14803,7 +14803,7 @@ void CvPlayer::buyUnitsFromKing()
 	ProfessionTypes eProfession;
 	int iPrice = kParent.AI_militaryHelp(getID(), iNumUnits, eUnit, eProfession);
 
-	int iPriceModifier = GC.getDefineINT("KING_BUY_UNIT_PRICE_MODIFIER");
+	int iPriceModifier = GC.getCache_KING_BUY_UNIT_PRICE_MODIFIER();
 	for (int i = 0; i < iNumUnits; ++i)
 	{
 		CvUnit* pUnit = buyEuropeUnit(eUnit, iPriceModifier);
@@ -15332,7 +15332,7 @@ void CvPlayer::applyMissionaryPoints(CvCity* pCity)
 						gDLL->getInterfaceIFace()->addMessage(ePlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_INFO, GC.getUnitInfo(eUnit).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_UNIT_TEXT"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
 
 						changeMissionaryPoints(ePlayer, -iThreshold);
-						setMissionaryThresholdMultiplier(ePlayer, (getMissionaryThresholdMultiplier(ePlayer) * (100 + GC.getDefineINT("MISSIONARY_THRESHOLD_INCREASE"))) / 100);
+						setMissionaryThresholdMultiplier(ePlayer, (getMissionaryThresholdMultiplier(ePlayer) * (100 + GC.getCache_MISSIONARY_THRESHOLD_INCREASE())) / 100);
 					}
 				}
 			}
@@ -15372,7 +15372,7 @@ void CvPlayer::setMissionaryThresholdMultiplier(PlayerTypes ePlayer, int iValue)
 
 int CvPlayer::missionaryThreshold(PlayerTypes ePlayer) const
 {
-	int iThreshold = ((GC.getDefineINT("MISSIONARY_THRESHOLD") * std::max(0, (getMissionaryThresholdMultiplier(ePlayer)))) / 100);
+	int iThreshold = ((GC.getCache_MISSIONARY_THRESHOLD() * std::max(0, (getMissionaryThresholdMultiplier(ePlayer)))) / 100);
 
 	iThreshold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent();
 	iThreshold /= 100;
@@ -15468,7 +15468,7 @@ int CvPlayer::getRebelCombatPercent() const
 		}
 	}
 
-	iPercent *= GC.getDefineINT("MAX_REBEL_COMBAT_MULTIPLER");
+	iPercent *= GC.getCache_MAX_REBEL_COMBAT_MULTIPLER();
 	iPercent /= 100;
 
 	return iPercent;
@@ -15552,7 +15552,7 @@ int CvPlayer::getYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eY
 	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
 	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
     ///TKs Med
-    if (GC.isEquipmentType(eYield, EQUIPMENT_HEAVY_ARMOR) && !isHuman() && !isNative() && GC.getDefineINT("AI_MILITARY_PROFESSION_HACK") > 0)
+    if (GC.isEquipmentType(eYield, EQUIPMENT_HEAVY_ARMOR) && !isHuman() && !isNative() && GC.getCache_AI_MILITARY_PROFESSION_HACK() > 0)
     {
         return 0;
     }
@@ -15613,7 +15613,7 @@ bool CvPlayer::isProfessionValid(ProfessionTypes eProfession, UnitTypes eUnit) c
             {
                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                 {
-                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                     {
                         CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                         CvProfessionInfo& kProfessionInfo = GC.getProfessionInfo(eProfession);
@@ -15786,17 +15786,17 @@ void CvPlayer::doPrices()
 						iMultiplier += kTrait.getTaxRateThresholdModifier();
 					}
 				}
-				iMultiplier += getTaxRate() * GC.getDefineINT("TAX_TRADE_THRESHOLD_TAX_RATE_PERCENT") / 100;
-				iMultiplier += GET_PLAYER(eParent).AI_getAttitudeVal(getID()) * GC.getDefineINT("TAX_TRADE_THRESHOLD_ATTITUDE_PERCENT");
+				iMultiplier += getTaxRate() * GC.getCache_TAX_TRADE_THRESHOLD_TAX_RATE_PERCENT() / 100;
+				iMultiplier += GET_PLAYER(eParent).AI_getAttitudeVal(getID()) * GC.getCache_TAX_TRADE_THRESHOLD_ATTITUDE_PERCENT();
 
 				//compare total traded with trade threshold
-				if (iTotalTraded * 10000 > GC.getDefineINT("TAX_TRADE_THRESHOLD") * std::max(100, iMultiplier) * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent())
+				if (iTotalTraded * 10000 > GC.getCache_TAX_TRADE_THRESHOLD() * std::max(100, iMultiplier) * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent())
 				{
 					//random chance to raise tax rate
-					if(GC.getGameINLINE().getSorenRandNum(100, "Tax rate increase") < GC.getDefineINT("TAX_INCREASE_CHANCE"))
+					if(GC.getGameINLINE().getSorenRandNum(100, "Tax rate increase") < GC.getCache_TAX_INCREASE_CHANCE())
 					{
 						int iOldTaxRate = getTaxRate();
-						int iNewTaxRate = std::min(99, iOldTaxRate + 1 + GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("TAX_RATE_MAX_INCREASE"), "Tax Rate Increase"));
+						int iNewTaxRate = std::min(99, iOldTaxRate + 1 + GC.getGameINLINE().getSorenRandNum(GC.getCache_TAX_RATE_MAX_INCREASE(), "Tax Rate Increase"));
 						int iChange = iNewTaxRate - iOldTaxRate;
 
 						if (isHuman())
@@ -15886,7 +15886,7 @@ UnitTypes CvPlayer::pickBestImmigrant()
 		bool bAllowed = true;
 		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 		{
-			if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+			if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
 			{
 				CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 				if (kCivicInfo.getAllowsUnitClasses(iUnitClass) > 0)
@@ -16050,7 +16050,7 @@ void CvPlayer::doImmigrant(int iIndex, int iReason)
             if (iReason <= 1)
             {
                 changeCrossesStored(-immigrationThreshold());
-                setImmigrationThresholdMultiplier((getImmigrationThresholdMultiplier() * (100 + GC.getDefineINT("IMMIGRATION_THRESHOLD_INCREASE"))) / 100);
+                setImmigrationThresholdMultiplier((getImmigrationThresholdMultiplier() * (100 + GC.getCache_IMMIGRATION_THRESHOLD_INCREASE())) / 100);
             }
 
             CvUnit* pUnit = NULL;
@@ -16058,7 +16058,7 @@ void CvPlayer::doImmigrant(int iIndex, int iReason)
             if (!GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
             {
                 CvCity* pPrimaryCity = getPrimaryCity();
-                CvCity* pImmigationCity = findImmigrationCity(pPrimaryCity, GC.getDefineINT("IMMIGRATION_MAX_CITY_DISTANCE"));
+                CvCity* pImmigationCity = findImmigrationCity(pPrimaryCity, GC.getCache_IMMIGRATION_MAX_CITY_DISTANCE());
 
                 if (pImmigationCity != NULL)
                 {
@@ -16081,8 +16081,8 @@ void CvPlayer::doImmigrant(int iIndex, int iReason)
                     if (pUnit != NULL)
                     {
                         pUnit->setUnitTravelState(UNIT_TRAVEL_STATE_FROM_IMMIGRATION, false);
-                        int iRandom = GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("IMMIGRATION_TRAVEL_MOD"), "Immigration Mod");
-                        int iTravelTime = GC.getEuropeInfo((EuropeTypes)GC.getDefineINT("EUROPE_EAST")).getTripLength() + iRandom;
+                        int iRandom = GC.getGameINLINE().getSorenRandNum(GC.getCache_IMMIGRATION_TRAVEL_MOD(), "Immigration Mod");
+                        int iTravelTime = GC.getEuropeInfo((EuropeTypes)GC.getCache_EUROPE_EAST()).getTripLength() + iRandom;
                         iTravelTime *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent();
                         iTravelTime /= 100;
 
@@ -16148,7 +16148,7 @@ void CvPlayer::buyLand(CvPlot* pPlot, bool bFree)
 		pPlot->setCulture(eOldOwner, 0, false);
 		if (!GET_TEAM(pPlot->getTeam()).isAtWar(getTeam()))
 		{
-			GET_PLAYER(eOldOwner).changeGold((iGoldCost * GC.getDefineINT("BUY_PLOT_SELLER_INCOME_PERCENT")) / 100);
+			GET_PLAYER(eOldOwner).changeGold((iGoldCost * GC.getCache_BUY_PLOT_SELLER_INCOME_PERCENT()) / 100);
 			GET_PLAYER(getID()).AI_changeGoldTradedTo(eOldOwner, iGoldCost);
 		}
 	}
@@ -16296,7 +16296,7 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
         case TRADE_IDEAS:
 			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                 {
                     CivicTypes eCivic = (CivicTypes) iCivic;
                     if (getIdeasResearched(eCivic) > 0)
@@ -16464,7 +16464,7 @@ bool CvPlayer::getItemTradeString(PlayerTypes eOtherPlayer, bool bOffer, bool bS
 		szString = gDLL->getText("TXT_KEY_TRADE_PERMANENT_ALLIANCE_STRING");
 		break;
 	case TRADE_PEACE_TREATY:
-		szString = gDLL->getText("TXT_KEY_TRADE_PEACE_TREATY_STRING", GC.getDefineINT("PEACE_TREATY_LENGTH"));
+		szString = gDLL->getText("TXT_KEY_TRADE_PEACE_TREATY_STRING", GC.getCache_PEACE_TREATY_LENGTH());
 		break;
 	case TRADE_YIELD:
 		{
@@ -16694,9 +16694,9 @@ void CvPlayer::changeProfessionEurope(int iUnitId, ProfessionTypes eProfession)
 				}
 				///TKs
                 CivicTypes ePlayerResearch = getCurrentResearch();
-                if (ePlayerResearch != NO_CIVIC && iGold >= GC.getDefineINT("TRADE_STIMULATES_RESEARCH_MIN_VALUE"))
+                if (ePlayerResearch != NO_CIVIC && iGold >= GC.getCache_TRADE_STIMULATES_RESEARCH_MIN_VALUE())
                 {
-                   int iExtraResearch = iGold * GC.getDefineINT("TRADE_STIMULATES_RESEARCH_PERCENT") / 100;
+                   int iExtraResearch = iGold * GC.getCache_TRADE_STIMULATES_RESEARCH_PERCENT() / 100;
                    changeIdeasStored(iExtraResearch);
                    changeIdeaProgress(ePlayerResearch, iExtraResearch);
                    char szOut[1024];
@@ -16983,7 +16983,7 @@ int CvPlayer::getCostToResearch(CivicTypes eCivic)
 //
 //                    }
 //                }
-                iMod = GC.getDefineINT("TK_AI_RESEARCH_COST_MOD_PERCENT");
+                iMod = GC.getCache_TK_AI_RESEARCH_COST_MOD_PERCENT();
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo(eCivic);
                 iCivicResearchCost = kCivicInfo.getCostToResearch();
                 iCivicResearchCost = (iCivicResearchCost * iMod) / 100;
@@ -17046,10 +17046,10 @@ int CvPlayer::getIdea(bool Research, PlayerTypes ePlayer) const
     {
         std::vector<int> eIdea;
         std::vector<int> eIdeaWithWeight;
-        FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getDefineINT("FATHER_POINT_REAL_TRADE");
+        FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 CivicTypes eCivic = (CivicTypes) iCivic;
                 if (!GC.getCivicInfo((CivicTypes)iCivic).isGoodyTech() && GC.getCivicInfo((CivicTypes)iCivic).getRequiredFatherPoints(eFatherPoint) <= 0)
@@ -17089,7 +17089,7 @@ int CvPlayer::getIdea(bool Research, PlayerTypes ePlayer) const
         std::vector<int> eIdea;
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 CivicTypes eCivic = (CivicTypes) iCivic;
                 if (getIdeasResearched(eCivic) > 0 && GET_PLAYER(ePlayer).getIdeasResearched(eCivic) == 0)
@@ -17168,7 +17168,7 @@ void CvPlayer::changeIdeaProgress(CivicTypes eCivic, int iChange)
 void CvPlayer::doSetupIdeas(bool Cheat)
 {
 
-    int iTest = GC.getDefineINT("AI_ADVANCED_TECH_START");
+    int iTest = GC.getCache_AI_ADVANCED_TECH_START();
     if (!isNative() && !isEurope())
     //if (!isNative() && !isEurope())
 	{
@@ -17208,7 +17208,7 @@ void CvPlayer::doSetupIdeas(bool Cheat)
                 CivicTypes eCivic = NO_CIVIC;
                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                 {
-                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                     {
                         CivicTypes eCivic = (CivicTypes) iCivic;
 
@@ -17283,9 +17283,9 @@ void CvPlayer::doSetupIdeas(bool Cheat)
         CivicTypes eCivic = NO_CIVIC;
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
-                if (GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() != -1 && GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == GC.getDefineINT("NATIVE_TECH"))
+                if (GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() != -1 && GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == GC.getCache_NATIVE_TECH())
                 {
                     char szOut[1024];
                     sprintf(szOut, "######################## Native Player %d %S Has Learned %d \n", getID(), getNameKey(), iCivic);
@@ -17374,7 +17374,7 @@ void CvPlayer::doIdeas(bool Cheat)
                         FatherPointTypes ePointType = (FatherPointTypes) i;
                         if (GC.getFatherPointInfo(ePointType).getEuropeTradeGoldPointPercent() > 0)
                         {
-                            GET_TEAM(getTeam()).changeFatherPoints(ePointType, GC.getDefineINT("DEAL_TRADE_RELATIONS_POINTS"));
+                            GET_TEAM(getTeam()).changeFatherPoints(ePointType, GC.getCache_DEAL_TRADE_RELATIONS_POINTS());
                         }
                     }
 				}
@@ -17415,12 +17415,12 @@ void CvPlayer::doIdeas(bool Cheat)
         {
 
             CivicTypes eTradeCivic = getCurrentTradeResearch();
-            FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getDefineINT("FATHER_POINT_REAL_TRADE");
+            FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
             FAssert(eTradeCivic < GC.getNumCivicInfos());
             CvCivicInfo& kTradeCivicInfo = GC.getCivicInfo(eTradeCivic);
             int iCurrrentPoints = GET_TEAM(getTeam()).getFatherPoints(eFatherPoint);
-            int iRequiredPoints = kTradeCivicInfo.getRequiredFatherPoints(GC.getDefineINT("FATHER_POINT_REAL_TRADE"));
-            iRequiredPoints = (iRequiredPoints * GC.getDefineINT("TRADING_POINTS_MOD_PERCENT")) / 100;
+            int iRequiredPoints = kTradeCivicInfo.getRequiredFatherPoints(GC.getCache_FATHER_POINT_REAL_TRADE());
+            iRequiredPoints = (iRequiredPoints * GC.getCache_TRADING_POINTS_MOD_PERCENT()) / 100;
             if (kTradeCivicInfo.getProlificInventorRateChange() > 0)
             {
                 int iGold = GET_TEAM(getTeam()).getFatherPoints(eFatherPoint);
@@ -17463,10 +17463,10 @@ void CvPlayer::doIdeas(bool Cheat)
                     ///Select New Trade Research
                     int iMultTradingPerk = 0;
                     CivicTypes eNewTech = NO_CIVIC;
-                    CivicTypes eSpiceRoute = (CivicTypes)GC.getDefineINT("TRADE_ROUTE_SPICE");
+                    CivicTypes eSpiceRoute = (CivicTypes)GC.getCache_TRADE_ROUTE_SPICE();
                     for (int iLoopCivic = 0; iLoopCivic < GC.getNumCivicInfos(); ++iLoopCivic)
                     {
-                        if (GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                        if (GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                         {
                             if (GC.getCivicInfo((CivicTypes)iLoopCivic).getRequiredFatherPoints(eFatherPoint) > 0)
                             {
@@ -17683,11 +17683,11 @@ void CvPlayer::setCurrentResearch(CivicTypes eCurrentResearch)
 
 int CvPlayer::getIdeasResearched(CivicTypes eIndex) const
 {
-    if (isHuman() && GC.getDefineINT("AUTORESEARCH_ALL") == 2)
+    if (isHuman() && GC.getCache_AUTORESEARCH_ALL() == 2)
     {
         return 1;
     }
-    else if (GC.getDefineINT("AUTORESEARCH_ALL") == 1)
+    else if (GC.getCache_AUTORESEARCH_ALL() == 1)
     {
         return 1;
     }
@@ -17841,7 +17841,7 @@ int CvPlayer::getIdeasExperience() const
 
 int CvPlayer::prolificInventorThreshold() const
 {
-	int iThreshold = (GC.getDefineINT("TK_PROLIFIC_INVENTOR_THRESHOLD") * ((getProlificInventorThresholdModifier() + 100) / 100));
+	int iThreshold = (GC.getCache_TK_PROLIFIC_INVENTOR_THRESHOLD() * ((getProlificInventorThresholdModifier() + 100) / 100));
 ///TK Update 1.1b
 	iThreshold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGreatGeneralPercent();
 	iThreshold /= 100;
@@ -17887,7 +17887,7 @@ void CvPlayer::setIdeasExperience(int iExperience)
 			if (pBestCity)
 			{
 
-                UnitTypes eInvetorUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(GC.getDefineINT("DEFAULT_INVENTOR_CLASS"));
+                UnitTypes eInvetorUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(GC.getCache_DEFAULT_INVENTOR_CLASS());
                 if (eInvetorUnit != NO_UNIT)
                 {
                     createProlificInventor(eInvetorUnit, true, pBestCity->getX(), pBestCity->getY());
@@ -17934,7 +17934,7 @@ void CvPlayer::createProlificInventor(UnitTypes eInvetorUnit, bool bIncrementExp
 		{
 			if (GET_PLAYER((PlayerTypes)iI).getTeam() == getTeam())
 			{
-				GET_PLAYER((PlayerTypes)iI).changeProlificInventorThresholdModifier(GC.getDefineINT("PROLIFIC_INVENTOR_THRESHOLD_INCREASE"));
+				GET_PLAYER((PlayerTypes)iI).changeProlificInventorThresholdModifier(GC.getCache_PROLIFIC_INVENTOR_THRESHOLD_INCREASE());
 			}
 		}
 	}
@@ -17966,7 +17966,7 @@ UnitTypes CvPlayer::getDefaultPopUnit() const
 {
     if (m_iDefaultPopUnit == NO_UNIT)
     {
-        return  (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(GC.getDefineINT("DEFAULT_POPULATION_UNIT"));
+        return  (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(GC.getCache_DEFAULT_POPULATION_UNIT());
     }
 
     return m_iDefaultPopUnit;
@@ -18163,7 +18163,7 @@ bool CvPlayer::canUnitBeTraded(YieldTypes eYield, UnitTravelStates eTravelState,
         {
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                     if (eYield != NO_YIELD && kCivicInfo.getAllowsYields(eYield) > 0)
@@ -18270,7 +18270,7 @@ MedCityTypes CvPlayer::getAICityType()
     int iNumVillages = getVillages();
     int iNumMonasterys = getMonasterys();
     int iNumCastles = getCastles();
-    if (iNumVillages >= 1 && (GC.getDefineINT("MONASTERIES_TO_VILLAGES_RATIO") * iNumVillages) > iNumMonasterys)
+    if (iNumVillages >= 1 && (GC.getCache_MONASTERIES_TO_VILLAGES_RATIO() * iNumVillages) > iNumMonasterys)
     {
         iCityType = CITYTYPE_MONASTERY;
         if (iNumMonasterys == 0)
@@ -18279,16 +18279,16 @@ MedCityTypes CvPlayer::getAICityType()
         }
     }
     int iGameTurn = GC.getGameINLINE().getGameTurn();
-    if (iGameTurn >= GC.getDefineINT("AI_HANDICAP_CASTLE"))
+    if (iGameTurn >= GC.getCache_AI_HANDICAP_CASTLE())
     {
-        if ((GC.getDefineINT("CASTLES_TO_VILLAGES_RATIO") * iNumVillages) > iNumCastles)
+        if ((GC.getCache_CASTLES_TO_VILLAGES_RATIO() * iNumVillages) > iNumCastles)
         {
             iCityType = CITYTYPE_CASTLE;
         }
     }
-    else if (iGameTurn >= GC.getDefineINT("AI_HANDICAP_MOTTE"))
+    else if (iGameTurn >= GC.getCache_AI_HANDICAP_MOTTE())
     {
-        if ((GC.getDefineINT("CASTLES_TO_VILLAGES_RATIO") * iNumVillages) > iNumCastles)
+        if ((GC.getCache_CASTLES_TO_VILLAGES_RATIO() * iNumVillages) > iNumCastles)
         {
             iCityType = CITYTYPE_BAILEY;
         }
@@ -18321,7 +18321,7 @@ int CvPlayer::getCensureType(CensureType eCensure) const
 
 bool CvPlayer::getHasTradeRouteType(TradeRouteTypes eTradeRoute) const
 {
-    if (GC.getDefineINT("CHEAT_TRAVEL_ALL"))
+    if (GC.getCache_CHEAT_TRAVEL_ALL())
     {
         return true;
     }
@@ -18356,7 +18356,7 @@ void CvPlayer::changeCensureType(CensureType eCensure, int iValue)
         {
             case CENSURE_EXCOMMUNICATION:
                 {
-                    CivicTypes eCivic = (CivicTypes)GC.getDefineINT("DEFAULT_CENSURETYPE_EXCOMMUNICATION");
+                    CivicTypes eCivic = (CivicTypes)GC.getCache_DEFAULT_CENSURETYPE_EXCOMMUNICATION();
                     changeIdeasResearched(eCivic, -1);
                     processCivics(eCivic, -1);
                     CvWString szMessage = gDLL->getText("TXT_KEY_CENSURE_EXCOMMUNICATION_LIFTED");
@@ -18365,7 +18365,7 @@ void CvPlayer::changeCensureType(CensureType eCensure, int iValue)
                 break;
             case CENSURE_INTERDICT:
                 {
-                    CivicTypes eCivic = (CivicTypes)GC.getDefineINT("DEFAULT_CENSURETYPE_INTERDICT");
+                    CivicTypes eCivic = (CivicTypes)GC.getCache_DEFAULT_CENSURETYPE_INTERDICT();
                     changeIdeasResearched(eCivic, -1);
                     processCivics(eCivic, -1);
                     CvWString szMessage = gDLL->getText("TXT_KEY_CENSURE_EXCOMMUNICATION_LIFTED");
@@ -18374,7 +18374,7 @@ void CvPlayer::changeCensureType(CensureType eCensure, int iValue)
                 break;
             case CENSURE_ANATHEMA:
                 {
-                    CivicTypes eCivic = (CivicTypes)GC.getDefineINT("DEFAULT_CENSURETYPE_ANATHEMA");
+                    CivicTypes eCivic = (CivicTypes)GC.getCache_DEFAULT_CENSURETYPE_ANATHEMA();
                     changeIdeasResearched(eCivic, -1);
                     processCivics(eCivic, -1);
                     CvWString szMessage = gDLL->getText("TXT_KEY_CENSURE_EXCOMMUNICATION_LIFTED");
@@ -18482,7 +18482,7 @@ int CvPlayer::getAltYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes
 	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
 	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
     ///TKs Med
-    if (GC.isEquipmentType(eYield, EQUIPMENT_HEAVY_ARMOR) && !isHuman() && !isNative() && GC.getDefineINT("AI_MILITARY_PROFESSION_HACK") > 0)
+    if (GC.isEquipmentType(eYield, EQUIPMENT_HEAVY_ARMOR) && !isHuman() && !isNative() && GC.getCache_AI_MILITARY_PROFESSION_HACK() > 0)
     {
         return 0;
     }

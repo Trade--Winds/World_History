@@ -220,15 +220,15 @@ void CvGameTextMgr::setDateStr(CvWString& szString, int iGameTurn, bool bSave, C
 		break;
 
 	case CALENDAR_WEEKS:
-		szWeekBuffer = gDLL->getText("TXT_KEY_TIME_WEEK", ((iGameTurn % GC.getDefineINT("WEEKS_PER_MONTHS")) + 1));
+		szWeekBuffer = gDLL->getText("TXT_KEY_TIME_WEEK", ((iGameTurn % GC.getCache_WEEKS_PER_MONTHS()) + 1));
 
 		if (bSave)
 		{
-			szString = (szYearBuffer + "-" + GC.getMonthInfo((MonthTypes)((iGameTurn / GC.getDefineINT("WEEKS_PER_MONTHS")) % GC.getNumMonthInfos())).getDescription() + "-" + szWeekBuffer);
+			szString = (szYearBuffer + "-" + GC.getMonthInfo((MonthTypes)((iGameTurn / GC.getCache_WEEKS_PER_MONTHS()) % GC.getNumMonthInfos())).getDescription() + "-" + szWeekBuffer);
 		}
 		else
 		{
-			szString = (szWeekBuffer + ", " + GC.getMonthInfo((MonthTypes)((iGameTurn / GC.getDefineINT("WEEKS_PER_MONTHS")) % GC.getNumMonthInfos())).getDescription() + ", " + szYearBuffer);
+			szString = (szWeekBuffer + ", " + GC.getMonthInfo((MonthTypes)((iGameTurn / GC.getCache_WEEKS_PER_MONTHS()) % GC.getNumMonthInfos())).getDescription() + ", " + szYearBuffer);
 		}
 		break;
 
@@ -533,18 +533,18 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
         if ( pUnit->canTrainUnit())
         {
             int iTrainCounter = pUnit->getTrainCounter();
-            bool bKnighted = (pUnit->getUnitInfo().getKnightDubbingWeight() == -1 || pUnit->isHasRealPromotion((PromotionTypes)GC.getDefineINT("DEFAULT_KNIGHT_PROMOTION")));
+            bool bKnighted = (pUnit->getUnitInfo().getKnightDubbingWeight() == -1 || pUnit->isHasRealPromotion((PromotionTypes)GC.getCache_DEFAULT_KNIGHT_PROMOTION()));
             if (!bKnighted)
             {
                 if (iTrainCounter == 0)
                 {
                     szString.append(NEWLINE);
-                    szString.append(gDLL->getText("TXT_KEY_UNITS_TRAINED_HELP_TEXT", GC.getDefineINT("TURNS_TO_TRAIN")));
+                    szString.append(gDLL->getText("TXT_KEY_UNITS_TRAINED_HELP_TEXT", GC.getCache_TURNS_TO_TRAIN()));
                 }
                 else if (iTrainCounter > 0)
                 {
                     szString.append(NEWLINE);
-                    szString.append(gDLL->getText("TXT_KEY_UNITS_TRAINED_HELP_FORTIFIED_TEXT", GC.getDefineINT("TURNS_TO_TRAIN") - iTrainCounter));
+                    szString.append(gDLL->getText("TXT_KEY_UNITS_TRAINED_HELP_FORTIFIED_TEXT", GC.getCache_TURNS_TO_TRAIN() - iTrainCounter));
                 }
             }
         }
@@ -929,7 +929,7 @@ void CvGameTextMgr::setUnitPromotionHelp(CvWStringBuffer &szString, const CvUnit
 		}
 	}
 	///Tks Med
-	PromotionTypes eHomeBoy = (PromotionTypes) GC.getDefineINT("PROMOTION_BUILD_HOME");
+	PromotionTypes eHomeBoy = (PromotionTypes) GC.getCache_PROMOTION_BUILD_HOME();
 	if (eHomeBoy != NO_PROMOTION)
 	{
         if (pUnit->isHasPromotion(eHomeBoy))
@@ -1148,37 +1148,37 @@ void CvGameTextMgr::setProfessionHelp(CvWStringBuffer &szBuffer, ProfessionTypes
         szBuffer.append(NEWLINE);
         szBuffer.append(gDLL->getText("TXT_KEY_TAX_COLLECTOR_PROFESSION", kProfession.getTaxCollectRate()));
     }
-    if (kProfession.getCombatGearTypes(GC.getDefineINT("UNITARMOR_LEATHER")))
+    if (kProfession.getCombatGearTypes(GC.getCache_UNITARMOR_LEATHER()))
     {
         szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_LEATHER_ARMOR_TEXT"));
     }
-    if (kProfession.getCombatGearTypes(GC.getDefineINT("UNITARMOR_SCALE")))
+    if (kProfession.getCombatGearTypes(GC.getCache_UNITARMOR_SCALE()))
     {
         szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_SCALE_ARMOR_TEXT"));
     }
-    if (kProfession.getCombatGearTypes(GC.getDefineINT("UNITARMOR_MAIL")))
+    if (kProfession.getCombatGearTypes(GC.getCache_UNITARMOR_MAIL()))
     {
         szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_MAIL_ARMOR_TEXT"));
     }
-    if (kProfession.getCombatGearTypes(GC.getDefineINT("UNITARMOR_PLATE")))
+    if (kProfession.getCombatGearTypes(GC.getCache_UNITARMOR_PLATE()))
     {
         szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_PLATE_ARMOR_TEXT"));
     }
-    if (kProfession.getCombatGearTypes(GC.getDefineINT("UNITTACTIC_PARRY")))
+    if (kProfession.getCombatGearTypes(GC.getCache_UNITTACTIC_PARRY()))
     {
         szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_UNITTACTIC_PARRY_TEXT"));
     }
-    if (kProfession.getCombatGearTypes(GC.getDefineINT("UNITARMOR_SHIELD")))
+    if (kProfession.getCombatGearTypes(GC.getCache_UNITARMOR_SHIELD()))
     {
         szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_UNITARMOR_SHIELD_TEXT"));
     }
-    if (kProfession.getCombatGearTypes(GC.getDefineINT("UNITWEAPON_BLUNT")))
+    if (kProfession.getCombatGearTypes(GC.getCache_UNITWEAPON_BLUNT()))
     {
         szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_UNITWEAPON_BLUNT_TEXT"));
@@ -1204,7 +1204,7 @@ void CvGameTextMgr::setProfessionHelp(CvWStringBuffer &szBuffer, ProfessionTypes
             iAllows = GC.getCivicInfo((CivicTypes)iCivic).getAllowsProfessions(eProfession);
             if (iAllows > 0)
             {
-                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getDefineINT("MEDIEVAL_TRADE_TECH"))
+                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getCache_MEDIEVAL_TRADE_TECH())
                 {
                     szBuffer.append(NEWLINE);
                     szBuffer.append(gDLL->getText("TXT_KEY_TRADE_PERK_MAKES_AVAILABLE", GC.getCivicInfo((CivicTypes)iCivic).getDescription()));
@@ -2314,7 +2314,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
             szString.append(CvWString::format(L"\n Player Culture = %d, Player Land = %d\n Total = %d", iActiveCulture, iActiveLand, iActiveCulture + iActiveLand));
             if (pPlot->getOwnerINLINE() != GC.getGameINLINE().getActivePlayer())
 			{
-                iActiveCulture = (iActiveCulture + iActiveLand) * GC.getDefineINT("ALLIANCE_CULTURE_PERCENT_DENIAL") / 100;
+                iActiveCulture = (iActiveCulture + iActiveLand) * GC.getCache_ALLIANCE_CULTURE_PERCENT_DENIAL() / 100;
                 szString.append(CvWString::format(L"\n Vassal Percent = %d", iActiveCulture));
 			}
 
@@ -2611,7 +2611,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		     YieldTypes eBonusYield = NO_YIELD;
                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                 {
-                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                     {
                         for (int i = 0; i < GC.getNUM_YIELD_TYPES(); ++i)
                         {
@@ -2628,7 +2628,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
                 {
                     for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                     {
-                        if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+                        if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                         {
                             CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                             if (kCivicInfo.getAllowsYields(eBonusYield) > 0 || kCivicInfo.getAllowsBonuses(eBonus) > 0)
@@ -4193,7 +4193,7 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
             iAllows = GC.getCivicInfo((CivicTypes)iCivic).getAllowsPromotions(ePromotion);
             if (iAllows > 0)
             {
-                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getDefineINT("MEDIEVAL_TRADE_TECH"))
+                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getCache_MEDIEVAL_TRADE_TECH())
                 {
                     szBuffer.append(NEWLINE);
                     szBuffer.append(gDLL->getText("TXT_KEY_TRADE_PERK_MAKES_AVAILABLE", GC.getCivicInfo((CivicTypes)iCivic).getDescription()));
@@ -4364,7 +4364,7 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
         return;
     }
     //TK end Update
-    YieldTypes eVictoryYield = (YieldTypes) GC.getDefineINT("INDUSTRIAL_VICTORY_SINGLE_YIELD");
+    YieldTypes eVictoryYield = (YieldTypes) GC.getCache_INDUSTRIAL_VICTORY_SINGLE_YIELD();
     if (kCivicInfo.getIndustrializationVictory(eVictoryYield) > 0)
 	{
 	    iCost = kCivicInfo.getIndustrializationVictory(eVictoryYield);
@@ -4654,7 +4654,7 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
         {
             CvProfessionInfo& kProfession = GC.getProfessionInfo((ProfessionTypes)iI);
             szHelpText.append(NEWLINE);
-            if (kCivicInfo.getInventionCategory() == GC.getDefineINT("MEDIEVAL_CENSURE"))
+            if (kCivicInfo.getInventionCategory() == GC.getCache_MEDIEVAL_CENSURE())
             {
                 szHelpText.append(gDLL->getText("TXT_KEY_INVENTION_DISALLOWS_CENSURE", kProfession.getDescription()));
             }
@@ -4890,7 +4890,7 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	   szHelpText.append(gDLL->getText("TXT_KEY_ALLOWS_TRADE_MAPS"));
 	}
 
-	if (eCivic == (CivicTypes)GC.getDefineINT("FREE_PEASANT_CIVIC"))
+	if (eCivic == (CivicTypes)GC.getCache_FREE_PEASANT_CIVIC())
 	{
 	   szHelpText.append(NEWLINE);
 	   szHelpText.append(gDLL->getText("TXT_KEY_ALLOWS_DEFAULT_UNIT"));
@@ -5026,7 +5026,7 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
         for (int iLoopCivic = 0; iLoopCivic < GC.getNumCivicInfos(); ++iLoopCivic)
         {
             CvCivicInfo& kLoopCivicInfo = GC.getCivicInfo((CivicTypes) iLoopCivic);
-            if ((CivicTypes)iLoopCivic != eCivic && kLoopCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+            if ((CivicTypes)iLoopCivic != eCivic && kLoopCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
             {
                 if ((CivicTypes)kLoopCivicInfo.getRequiredInvention() == eCivic)
                 {
@@ -5046,7 +5046,7 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
         }
     }
 
-    if (eCivic == (CivicTypes)GC.getDefineINT("CONTACT_YIELD_GIFT_TECH"))
+    if (eCivic == (CivicTypes)GC.getCache_CONTACT_YIELD_GIFT_TECH())
     {
         szHelpText.append(NEWLINE);
         szHelpText.append(gDLL->getText("TXT_KEY_ENCOMEDIA_HELP"));
@@ -5124,13 +5124,13 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
         }
 	}
 
-    if (kCivicInfo.getDisallowsTech() != NO_CIVIC && (CivicTypes)kCivicInfo.getInventionCategory() != (CivicTypes)GC.getDefineINT("MEDIEVAL_TRADE_TECH"))
+    if (kCivicInfo.getDisallowsTech() != NO_CIVIC && (CivicTypes)kCivicInfo.getInventionCategory() != (CivicTypes)GC.getCache_MEDIEVAL_TRADE_TECH())
     {
         szHelpText.append(NEWLINE);
         szHelpText.append(gDLL->getText("TXT_KEY_DISALLOWS_TECH", GC.getCivicInfo((CivicTypes)kCivicInfo.getDisallowsTech()).getDescription()));
     }
 
-    if (kCivicInfo.isNoneTradeable() && (CivicTypes)kCivicInfo.getInventionCategory() != (CivicTypes)GC.getDefineINT("MEDIEVAL_TRADE_TECH") && (CivicTypes)kCivicInfo.getInventionCategory() != (CivicTypes)GC.getDefineINT("MEDIEVAL_CENSURE"))
+    if (kCivicInfo.isNoneTradeable() && (CivicTypes)kCivicInfo.getInventionCategory() != (CivicTypes)GC.getCache_MEDIEVAL_TRADE_TECH() && (CivicTypes)kCivicInfo.getInventionCategory() != (CivicTypes)GC.getCache_MEDIEVAL_CENSURE())
     {
         szHelpText.append(NEWLINE);
         szHelpText.append(gDLL->getText("TXT_KEY_NON_TRADEABLE"));
@@ -5174,7 +5174,7 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 
 	if (kUnitInfo.getLeaderExperience() > 0)
 	{
-		if (0 == GC.getDefineINT("WARLORD_EXTRA_EXPERIENCE_PER_UNIT_PERCENT"))
+		if (0 == GC.getCache_WARLORD_EXTRA_EXPERIENCE_PER_UNIT_PERCENT())
 		{
 			szBuffer.append(NEWLINE);
 			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_LEADER", kUnitInfo.getLeaderExperience()));
@@ -5396,7 +5396,7 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
     if (kUnitInfo.getCasteAttribute() == 4)
     {
         szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_NOBLE_LABOR_PENALTY", GC.getDefineINT("NOBLE_FIELD_LABOR_PENALTY")));
+		szBuffer.append(gDLL->getText("TXT_KEY_NOBLE_LABOR_PENALTY", GC.getCache_NOBLE_FIELD_LABOR_PENALTY()));
     }
 
     if (kUnitInfo.getCasteAttribute() == 6)
@@ -5665,7 +5665,7 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
             iAllows = GC.getCivicInfo((CivicTypes)iCivic).getAllowsUnitClasses(kUnitInfo.getUnitClassType());
             if (iAllows > 0)
             {
-                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getDefineINT("MEDIEVAL_TRADE_TECH"))
+                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getCache_MEDIEVAL_TRADE_TECH())
                 {
                     szBuffer.append(NEWLINE);
                     szBuffer.append(gDLL->getText("TXT_KEY_TRADE_PERK_MAKES_AVAILABLE", GC.getCivicInfo((CivicTypes)iCivic).getDescription()));
@@ -6218,7 +6218,7 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
         szBuffer.append(NEWLINE);
         szBuffer.append(gDLL->getText("TXT_KEY_CLICK_TRADE_FAIR_DEPART"));
     }
-    if (kBuilding.getSpecialBuildingType() == (SpecialBuildingTypes)GC.getDefineINT("DEFAULT_SPECIALBUILDING_COURTHOUSE"))
+    if (kBuilding.getSpecialBuildingType() == (SpecialBuildingTypes)GC.getCache_DEFAULT_SPECIALBUILDING_COURTHOUSE())
     {
         szBuffer.append(NEWLINE);
         szBuffer.append(gDLL->getText("TXT_KEY_UNIT_REHIBILITATE_HELP"));
@@ -6491,7 +6491,7 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
             iAllows = GC.getCivicInfo((CivicTypes)iCivic).getAllowsBuildingTypes(GC.getBuildingInfo(eBuilding).getBuildingClassType());
             if (iAllows > 0)
             {
-                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getDefineINT("MEDIEVAL_TRADE_TECH"))
+                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getCache_MEDIEVAL_TRADE_TECH())
                 {
                     szBuffer.append(NEWLINE);
                     szBuffer.append(gDLL->getText("TXT_KEY_TRADE_PERK_MAKES_AVAILABLE", GC.getCivicInfo((CivicTypes)iCivic).getDescription()));
@@ -6934,7 +6934,7 @@ void CvGameTextMgr::setBonusHelp(CvWStringBuffer &szBuffer, BonusTypes eBonus, b
             iAllows = GC.getCivicInfo((CivicTypes)iCivic).getAllowsBonuses(eBonus);
             if (iAllows > 0)
             {
-                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getDefineINT("MEDIEVAL_TRADE_TECH"))
+                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getCache_MEDIEVAL_TRADE_TECH())
                 {
                     szBuffer.append(NEWLINE);
                     szBuffer.append(gDLL->getText("TXT_KEY_TRADE_PERK_MAKES_AVAILABLE", GC.getCivicInfo((CivicTypes)iCivic).getDescription()));
@@ -7070,7 +7070,7 @@ void CvGameTextMgr::setImprovementHelp(CvWStringBuffer &szBuffer, ImprovementTyp
 		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_DEFENSE_MODIFIER_EXTRA"));
 		///TKs Med
 		szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_WATCH_TOWER_HELP", GC.getDefineINT("MARAUDERS_TOWER_RANGE")));
+		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_WATCH_TOWER_HELP", GC.getCache_MARAUDERS_TOWER_RANGE()));
 		///TKe
 	}
 
@@ -7100,7 +7100,7 @@ void CvGameTextMgr::setImprovementHelp(CvWStringBuffer &szBuffer, ImprovementTyp
             iAllows = GC.getCivicInfo((CivicTypes)iCivic).getAllowsBuildTypes(eImprovement);
             if (iAllows > 0)
             {
-                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getDefineINT("MEDIEVAL_TRADE_TECH"))
+                if ((CivicTypes)GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == (CivicTypes)GC.getCache_MEDIEVAL_TRADE_TECH())
                 {
                     szBuffer.append(NEWLINE);
                     szBuffer.append(gDLL->getText("TXT_KEY_TRADE_PERK_MAKES_AVAILABLE", GC.getCivicInfo((CivicTypes)iCivic).getDescription()));
@@ -7428,7 +7428,7 @@ void CvGameTextMgr::getTradeString(CvWStringBuffer& szBuffer, const TradeData& t
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_ALLIANCE"));
 		break;
 	case TRADE_PEACE_TREATY:
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PEACE_TREATY", GC.getDefineINT("PEACE_TREATY_LENGTH")));
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PEACE_TREATY", GC.getCache_PEACE_TREATY_LENGTH()));
 		break;
     ///TKs Invention Core Mod v 1.0
     case TRADE_RESEARCH:
@@ -7908,7 +7908,7 @@ void CvGameTextMgr::setYieldHelp(CvWStringBuffer &szBuffer, CvCity& city, YieldT
                     else if (city.isMarket(eMustSaleYield) && city.getYieldStored(eMustSaleYield) >= (city.getMaintainLevel(eMustSaleYield) + 1))
                     {
 
-                        int iLoss = std::max(GC.getDefineINT("CITY_YIELD_DECAY_PERCENT") * city.getYieldStored(eMustSaleYield) / 100, GC.getDefineINT("MIN_CITY_YIELD_DECAY"));
+                        int iLoss = std::max(GC.getCache_CITY_YIELD_DECAY_PERCENT() * city.getYieldStored(eMustSaleYield) / 100, GC.getCache_MIN_CITY_YIELD_DECAY());
 
                         iLoss = std::min(city.getYieldStored(eMustSaleYield) - city.getMaintainLevel(eMustSaleYield), iLoss);
                         if (iLoss >= GC.getBuildingInfo((BuildingTypes)i).getYieldChange(eYieldType))
@@ -8424,7 +8424,7 @@ void CvGameTextMgr::setYieldHelp(CvWStringBuffer &szBuffer, CvCity& city, YieldT
 	szBuffer.append(SEPARATOR);
 	szBuffer.append(NEWLINE);
 	///TKs Med
-	if (eYieldType == GC.getDefineINT("CULTURE_YIELD"))
+	if (eYieldType == GC.getCache_CULTURE_YIELD())
 	{
 //	    int iCrossRate = city.getYieldRate(YIELD_CROSSES);
 //	    int iBellsRate = city.getYieldRate(YIELD_BELLS);
@@ -8445,7 +8445,7 @@ void CvGameTextMgr::setYieldHelp(CvWStringBuffer &szBuffer, CvCity& city, YieldT
 
 	FAssert(iModifiedProduction == aiYields[eYieldType]);
 
-	if (eYieldType == GC.getDefineINT("CULTURE_YIELD"))
+	if (eYieldType == GC.getCache_CULTURE_YIELD())
 	{
 		szBuffer.append(SEPARATOR);
 		szBuffer.append(NEWLINE);
@@ -8574,7 +8574,7 @@ int CvGameTextMgr::setCityYieldModifierString(CvWStringBuffer& szBuffer, YieldTy
 	iCivicMod = 0;
 	for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); iCivic++)
     {
-        if (GC.getCivicInfo((CivicTypes)iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getDefineINT("CIVICOPTION_INVENTIONS"))
+        if (GC.getCivicInfo((CivicTypes)iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
         {
             if (kOwner.getIdeasResearched((CivicTypes) iCivic) > 0)
             {
@@ -8815,7 +8815,7 @@ void CvGameTextMgr::setScoreHelp(CvWStringBuffer &szString, PlayerTypes ePlayer)
 		int iMaxPop = GC.getGameINLINE().getMaxPopulation();
 		if (iMaxPop > 0)
 		{
-			iPopScore = (GC.getDefineINT("SCORE_POPULATION_FACTOR") * iPop) / iMaxPop;
+			iPopScore = (GC.getCache_SCORE_POPULATION_FACTOR() * iPop) / iMaxPop;
 		}
 
 		int iLandScore = 0;
@@ -8823,13 +8823,13 @@ void CvGameTextMgr::setScoreHelp(CvWStringBuffer &szString, PlayerTypes ePlayer)
 		int iMaxLand = GC.getGameINLINE().getMaxLand();
 		if (iMaxLand > 0)
 		{
-			iLandScore = (GC.getDefineINT("SCORE_LAND_FACTOR") * iLand) / iMaxLand;
+			iLandScore = (GC.getCache_SCORE_LAND_FACTOR() * iLand) / iMaxLand;
 		}
 
 		int iFatherScore = 0;
 		int iFather = player.getFatherScore();
 		int iMaxFather = GC.getGameINLINE().getMaxFather();
-		iFatherScore = (GC.getDefineINT("SCORE_FATHER_FACTOR") * iFather) / iMaxFather;
+		iFatherScore = (GC.getCache_SCORE_FATHER_FACTOR() * iFather) / iMaxFather;
 
 		int iScoreTaxFactor = player.getScoreTaxFactor();
 		int iSubTotal = iPopScore + iLandScore + iFatherScore;
@@ -8838,17 +8838,17 @@ void CvGameTextMgr::setScoreHelp(CvWStringBuffer &szString, PlayerTypes ePlayer)
 		int iVictoryScore = player.calculateScore(true, true);
 		if (iTotalScore == player.calculateScore())
 		{
-			if (GC.getDefineINT("SCORE_POPULATION_FACTOR") > 0)
+			if (GC.getCache_SCORE_POPULATION_FACTOR() > 0)
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_SCORE_BREAKDOWN_POPULATION", iPopScore, iPop, iMaxPop));
 			}
-			if (GC.getDefineINT("SCORE_LAND_FACTOR") > 0)
+			if (GC.getCache_SCORE_LAND_FACTOR() > 0)
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_SCORE_BREAKDOWN_LAND", iLandScore, iLand, iMaxLand));
 			}
-			if (GC.getDefineINT("SCORE_LAND_FACTOR") > 0)
+			if (GC.getCache_SCORE_LAND_FACTOR() > 0)
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_SCORE_BREAKDOWN_FATHERS", iFatherScore, iFather, iMaxFather));
@@ -8943,7 +8943,7 @@ void CvGameTextMgr::setCitizenHelp(CvWStringBuffer &szString, const CvCity& kCit
                 int iEducationThreshold = kCity.educationThreshold();
                 if (bSkipTuition)
                 {
-                    iEducationThreshold = GC.getDefineINT("EDUCATION_THRESHOLD");
+                    iEducationThreshold = GC.getCache_EDUCATION_THRESHOLD();
                 }
                 ///TKe Update 1.1g
                 ///TKs Med Update 1.1c
@@ -9004,7 +9004,7 @@ void CvGameTextMgr::setCitizenHelp(CvWStringBuffer &szString, const CvCity& kCit
                             ProfessionTypes eProfession = pUnit->getProfession();
                             if (NO_PROFESSION != eProfession)
                             {
-                                if (GC.getProfessionInfo(eProfession).getSpecialBuilding() == (SpecialBuildingTypes)GC.getDefineINT("DEFAULT_SPECIALBUILDING_COURTHOUSE"))
+                                if (GC.getProfessionInfo(eProfession).getSpecialBuilding() == (SpecialBuildingTypes)GC.getCache_DEFAULT_SPECIALBUILDING_COURTHOUSE())
                                 {
                                     iStudentOutput += kCity.getProfessionOutput(eProfession, pUnit, NULL) * kCity.getBaseYieldRateModifier(YIELD_CULTURE) / 100;
                                 }
@@ -9156,9 +9156,9 @@ void CvGameTextMgr::setEuropeYieldSoldHelp(CvWStringBuffer &szString, const CvPl
     szString.append(gDLL->getText("TXT_KEY_YIELD_NET_PROFIT", iGross));
 
     CivicTypes ePlayerResearch = kPlayer.getCurrentResearch();
-    if (ePlayerResearch != NO_CIVIC && iTotalGross >= GC.getDefineINT("TRADE_STIMULATES_RESEARCH_MIN_VALUE"))
+    if (ePlayerResearch != NO_CIVIC && iTotalGross >= GC.getCache_TRADE_STIMULATES_RESEARCH_MIN_VALUE())
     {
-        iTotalGross = iTotalGross * GC.getDefineINT("TRADE_STIMULATES_RESEARCH_PERCENT") / 100;
+        iTotalGross = iTotalGross * GC.getCache_TRADE_STIMULATES_RESEARCH_PERCENT() / 100;
         szString.append(NEWLINE);
         szString.append(gDLL->getText("TXT_KEY_YIELD_SOLD_RESEARCH_STIMULATED", iTotalGross));
     }
