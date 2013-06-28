@@ -21559,7 +21559,7 @@
       <Capture>UNITCLASS_CRIMINAL</Capture>
       <Combat>UNITCOMBAT_MELEE</Combat>
       <Domain>DOMAIN_LAND</Domain>
-      <DefaultUnitAI>UNITAI_MARAUDER</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
       <DefaultProfession>PROFESSION_MARAUDER</DefaultProfession>
       <bEuropeInvalid>1</bEuropeInvalid>
       <bColonialInvalid>1</bColonialInvalid>
@@ -21591,7 +21591,7 @@
       <UnitClassUpgrades/>
       <UnitAIs>
         <UnitAI>
-          <UnitAIType>UNITAI_MARAUDER</UnitAIType>
+          <UnitAIType>UNITAI_ANIMAL</UnitAIType>
           <bUnitAI>1</bUnitAI>
         </UnitAI>
       </UnitAIs>
