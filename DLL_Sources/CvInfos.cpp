@@ -13189,7 +13189,7 @@ bool CvGameText::read(CvXMLLoadUtility* pXML)
 	gDLL->getXMLIFace()->SetToChild(pXML->GetXML()); // Move down to Child level
 	pXML->GetXmlVal(m_szType);		// TAG
 
-	static const int iMaxNumLanguages = GC.getDefineINT("MAX_NUM_LANGUAGES");
+	static const int iMaxNumLanguages = GC.getDefineINT("MAX_NUM_LANGUAGES"); // has to be uncached
 	int iNumLanguages = NUM_LANGUAGES ? NUM_LANGUAGES : iMaxNumLanguages + 1;
 	int j=0;
 	for (j = 0; j < iNumLanguages; j++)

@@ -223,7 +223,7 @@ void CvSelectionGroup::doTurn()
 					pLoopUnit = ::getUnit(pUnitNode->m_data);
 					pUnitNode = nextUnitNode(pUnitNode);
 
-					iWaitTurns = (GC.getDefineINT("MIN_TIMER_UNIT_DOUBLE_MOVES") - (GC.getGameINLINE().getTurnSlice() - pLoopUnit->getLastMoveTurn()));
+					iWaitTurns = (GC.getCache_MIN_TIMER_UNIT_DOUBLE_MOVES() - (GC.getGameINLINE().getTurnSlice() - pLoopUnit->getLastMoveTurn()));
 
 					if (iWaitTurns > iBestWaitTurns)
 					{
@@ -692,7 +692,7 @@ bool CvSelectionGroup::canStartMission(int iMission, int iData1, int iData2, CvP
 			break;
         ///TKs Med
 		case MISSION_FOUND:
-			if (pLoopUnit->canFound(pPlot, bTestVisible, GC.getDefineINT("FOUND_VILLAGE_NUMBER")))
+			if (pLoopUnit->canFound(pPlot, bTestVisible, GC.getCache_FOUND_VILLAGE_NUMBER()))
 			{
                 if (pLoopUnit->getProfession() != NO_PROFESSION)
                 {
@@ -706,7 +706,7 @@ bool CvSelectionGroup::canStartMission(int iMission, int iData1, int iData2, CvP
 			break;
 
 		case MISSION_FOUND_MONASTERY:
-            if (pLoopUnit->canFound(pPlot, bTestVisible, GC.getDefineINT("FOUND_MONASTERY_NUMBER")))
+            if (pLoopUnit->canFound(pPlot, bTestVisible, GC.getCache_FOUND_MONASTERY_NUMBER()))
 			{
 			   if (pLoopUnit->getProfession() != NO_PROFESSION)
 			   {
@@ -718,7 +718,7 @@ bool CvSelectionGroup::canStartMission(int iMission, int iData1, int iData2, CvP
 			}
 			break;
         case MISSION_FOUND_OUTPOST:
-            if (pLoopUnit->canFound(pPlot, bTestVisible, GC.getDefineINT("FOUND_OUTPOST_NUMBER")))
+            if (pLoopUnit->canFound(pPlot, bTestVisible, GC.getCache_FOUND_OUTPOST_NUMBER()))
 			{
 			  if (pLoopUnit->getProfession() != NO_PROFESSION)
 			  {
@@ -1031,7 +1031,7 @@ void CvSelectionGroup::continueMission(int iSteps)
 						switch (eMission)
 						{
 						case MISSION_FOUND:
-							if (pLoopUnit->found(GC.getDefineINT("FOUND_VILLAGE_NUMBER")))
+							if (pLoopUnit->found(GC.getCache_FOUND_VILLAGE_NUMBER()))
 							{
 								bAction = true;
 								bBreak = true;
@@ -1040,7 +1040,7 @@ void CvSelectionGroup::continueMission(int iSteps)
 							break;
                         ///TKs Med
                         case MISSION_FOUND_MONASTERY:
-                            if (pLoopUnit->found(GC.getDefineINT("FOUND_MONASTERY_NUMBER")))
+                            if (pLoopUnit->found(GC.getCache_FOUND_MONASTERY_NUMBER()))
 							{
 								bAction = true;
 								bBreak = true;
@@ -1048,7 +1048,7 @@ void CvSelectionGroup::continueMission(int iSteps)
 							bDone = true;
 							break;
                         case MISSION_FOUND_OUTPOST:
-                            if (pLoopUnit->found(GC.getDefineINT("FOUND_OUTPOST_NUMBER")))
+                            if (pLoopUnit->found(GC.getCache_FOUND_OUTPOST_NUMBER()))
 							{
 								bAction = true;
 								bBreak = true;
@@ -2743,7 +2743,7 @@ bool CvSelectionGroup::groupBuild(BuildTypes eBuild)
 		{
 			if (GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_SAFE_AUTOMATION))
 			{
-				if ((pPlot->getImprovementType() != NO_IMPROVEMENT) && (pPlot->getImprovementType() != (ImprovementTypes)(GC.getDefineINT("RUINS_IMPROVEMENT"))))
+				if ((pPlot->getImprovementType() != NO_IMPROVEMENT) && (pPlot->getImprovementType() != (ImprovementTypes)(GC.getCache_RUINS_IMPROVEMENT())))
 				{
 					if (GC.getImprovementInfo(eImprovement).getImprovementPillage() != NO_IMPROVEMENT)
 					{

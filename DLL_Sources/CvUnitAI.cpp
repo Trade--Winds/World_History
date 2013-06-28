@@ -754,8 +754,8 @@ int CvUnitAI::AI_attackOdds(const CvPlot* pPlot, bool bPotentialEnemy) const
 
 	iStrengthFactor = ((iOurFirepower + iTheirFirepower + 1) / 2);
 
-	iDamageToUs = std::max(1,((GC.getDefineINT("COMBAT_DAMAGE") * (iTheirFirepower + iStrengthFactor)) / (iOurFirepower + iStrengthFactor)));
-	iDamageToThem = std::max(1,((GC.getDefineINT("COMBAT_DAMAGE") * (iOurFirepower + iStrengthFactor)) / (iTheirFirepower + iStrengthFactor)));
+	iDamageToUs = std::max(1,((GC.getCache_COMBAT_DAMAGE() * (iTheirFirepower + iStrengthFactor)) / (iOurFirepower + iStrengthFactor)));
+	iDamageToThem = std::max(1,((GC.getCache_COMBAT_DAMAGE() * (iOurFirepower + iStrengthFactor)) / (iTheirFirepower + iStrengthFactor)));
 
 	iNeededRoundsUs = (std::max(0, pDefender->currHitPoints()) + iDamageToThem - 1 ) / iDamageToThem;
 	iNeededRoundsThem = (std::max(0, currHitPoints()) + iDamageToUs - 1 ) / iDamageToUs;
@@ -808,7 +808,7 @@ bool CvUnitAI::AI_bestCityBuild(CvCity* pCity, CvPlot** ppBestPlot, BuildTypes* 
 				{
 					if (pLoopPlot != pIgnorePlot)
 					{
-						if ((pLoopPlot->getImprovementType() == NO_IMPROVEMENT) || !(GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_SAFE_AUTOMATION) && !(pLoopPlot->getImprovementType() == (GC.getDefineINT("RUINS_IMPROVEMENT")))))
+						if ((pLoopPlot->getImprovementType() == NO_IMPROVEMENT) || !(GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_SAFE_AUTOMATION) && !(pLoopPlot->getImprovementType() == (GC.getCache_RUINS_IMPROVEMENT()))))
 						{
 							iValue = pCity->AI_getBestBuildValue(iI);
 
@@ -1209,7 +1209,7 @@ bool CvUnitAI::AI_animalLandPatrol()
                             {
                                 if (getUnitInfo().getBonusNative(pAdjacentPlot->getBonusType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_LAND_BONUS_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_LAND_BONUS_NATIVE_WEIGHT();
                                     iValue += (1 + GC.getGameINLINE().getSorenRandNum(iRand, "Wild Land Animal Patrol - Bonus Weight"));
                                 }
                             }
@@ -1217,7 +1217,7 @@ bool CvUnitAI::AI_animalLandPatrol()
                             {
                                 if (getUnitInfo().getFeatureNative(pAdjacentPlot->getFeatureType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_LAND_FEATURE_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_LAND_FEATURE_NATIVE_WEIGHT();
                                     iValue += (1 + GC.getGameINLINE().getSorenRandNum(iRand, "Wild Land Animal Patrol - Feature Weight"));
                                 }
                             }
@@ -1225,14 +1225,14 @@ bool CvUnitAI::AI_animalLandPatrol()
                             {
                                 if (getUnitInfo().getTerrainNative(pAdjacentPlot->getTerrainType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT();
                                     iValue += (1 + GC.getGameINLINE().getSorenRandNum(iRand, "Wild Land Animal Patrol - Terrain Weight"));
                                 }
                             }
 
                             if (isOnlyDefensive() && pAdjacentPlot->isCity(true))
                             {
-                                iRand = GC.getDefineINT("WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT");
+                                iRand = GC.getCache_WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT();
                                 iValue += (1 + GC.getGameINLINE().getSorenRandNum(iRand, "Wild Land Animal Patrol - Terrain Weight"));
                             }
 
@@ -1307,7 +1307,7 @@ bool CvUnitAI::AI_animalSeaPatrol()
                             {
                                 if (getUnitInfo().getBonusNative(pAdjacentPlot->getBonusType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_SEA_BONUS_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_SEA_BONUS_NATIVE_WEIGHT();
                                     iValue += (1 + GC.getGameINLINE().getSorenRandNum(iRand, "Wild Sea Animal Patrol - Bonus Weight"));
                                 }
                             }
@@ -1315,7 +1315,7 @@ bool CvUnitAI::AI_animalSeaPatrol()
                             {
                                 if (getUnitInfo().getFeatureNative(pAdjacentPlot->getFeatureType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_SEA_FEATURE_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_SEA_FEATURE_NATIVE_WEIGHT();
                                     iValue += (1 + GC.getGameINLINE().getSorenRandNum(iRand, "Wild Sea Animal Patrol - Feature Weight"));
                                 }
                             }
@@ -1323,7 +1323,7 @@ bool CvUnitAI::AI_animalSeaPatrol()
                             {
                                 if (getUnitInfo().getTerrainNative(pAdjacentPlot->getTerrainType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT();
                                     iValue += (1 + GC.getGameINLINE().getSorenRandNum(iRand, "Wild Sea Animal Patrol - Terrain Weight"));
                                 }
                             }
@@ -2612,7 +2612,7 @@ void CvUnitAI::AI_defensiveBraveMove()
 					if (bMakeTribute == true)
 					{
 						//FAssertMsg(bMakeTribute == false, "This dumb ass should be false");
-						iGiftTimer = std::max(0, iGiftTimer - GC.getDefineINT("CONTACT_YIELD_GIFT_ENCOMEIDA_TIMER"));
+						iGiftTimer = std::max(0, iGiftTimer - GC.getCache_CONTACT_YIELD_GIFT_ENCOMEIDA_TIMER());
 						//FAssert(iGiftTimer <= 0);
 					}
 				}
@@ -9752,7 +9752,7 @@ bool CvUnitAI::AI_targetCityNative(int iFlags)
 		if (pBestPlot != NULL)
 		{
 			FAssert(!(pBestCity->at(pBestPlot)) || 0 != (iFlags & MOVE_THROUGH_ENEMY)); // no suicide missions...
-			if (!atPlot(pBestPlot))
+			if (!atPlot(pBestPlot) && canMoveInto(pBestPlot, true)) // bugfix: don't attack plots the unit can't enter - Nightinggale
 			{
 				getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), iFlags);
 				return true;
@@ -11948,7 +11948,7 @@ bool CvUnitAI::AI_improveLocalPlot(int iRange, CvCity* pIgnoreCity)
 
 										if (GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_SAFE_AUTOMATION))
 										{
-											if (pLoopPlot->getImprovementType() != NO_IMPROVEMENT && pLoopPlot->getImprovementType() != GC.getDefineINT("RUINS_IMPROVEMENT"))
+											if (pLoopPlot->getImprovementType() != NO_IMPROVEMENT && pLoopPlot->getImprovementType() != GC.getCache_RUINS_IMPROVEMENT())
 											{
 												bAllowed = false;
 											}
@@ -13460,7 +13460,7 @@ int CvUnitAI::AI_finalOddsThreshold(CvPlot* pPlot, int iOddsThreshold)
 	{
 		if (pCity->getDefenseDamage() < ((GC.getMAX_CITY_DEFENSE_DAMAGE() * 3) / 4))
 		{
-			iFinalOddsThreshold += std::max(0, (pCity->getDefenseDamage() - pCity->getLastDefenseDamage() - (GC.getDefineINT("CITY_DEFENSE_DAMAGE_HEAL_RATE") * 2)));
+			iFinalOddsThreshold += std::max(0, (pCity->getDefenseDamage() - pCity->getLastDefenseDamage() - (GC.getCache_CITY_DEFENSE_DAMAGE_HEAL_RATE() * 2)));
 		}
 	}
 
@@ -14250,7 +14250,7 @@ bool CvUnitAI::AI_moveTowardsPilgramCity()
 		CvCity* pCity = pLoopPlot->getPlotCity();
 		if (pCity != NULL)
 		{
-			if (pCity->isHasBuildingClass((BuildingClassTypes)GC.getDefineINT("DEFAULT_SHRINE_CLASS")))
+			if (pCity->isHasBuildingClass((BuildingClassTypes)GC.getCache_DEFAULT_SHRINE_CLASS()))
 			{
                 int iCityValue = 1 + GC.getGameINLINE().getSorenRandNum(pCity->getPopulation() * 1000, "AI Pilgrim City Target");
               //  for (int iDirection = 0; iDirection < NUM_DIRECTION_TYPES; iDirection++)

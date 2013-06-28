@@ -76,6 +76,8 @@ void CvGame::init(HandicapTypes eHandicap)
 	int iEstimateEndTurn;
 	int iI;
 
+	GC.setXMLCache(); // cache XML - Nightinggale
+
 	//--------------------------------
 	// Init saved data
 	reset(eHandicap);
@@ -226,7 +228,7 @@ void CvGame::init(HandicapTypes eHandicap)
 		setEstimateEndTurn(getGameTurn() + getMaxTurns());
 	}
 
-	setStartYear(GC.getDefineINT("START_YEAR"));
+	setStartYear(GC.getCache_START_YEAR());
 
 	for (iI = 0; iI < GC.getNumSpecialUnitInfos(); iI++)
 	{
@@ -2237,7 +2239,7 @@ void CvGame::selectGroup(CvUnit* pUnit, bool bShift, bool bCtrl, bool bAlt)
 			{
 				if (pLoopUnit->canMove())
 				{
-					if (!isMPOption(MPOPTION_SIMULTANEOUS_TURNS) || getTurnSlice() - pLoopUnit->getLastMoveTurn() > GC.getDefineINT("MIN_TIMER_UNIT_DOUBLE_MOVES"))
+					if (!isMPOption(MPOPTION_SIMULTANEOUS_TURNS) || getTurnSlice() - pLoopUnit->getLastMoveTurn() > GC.getCache_MIN_TIMER_UNIT_DOUBLE_MOVES())
 					{
 						if (bAlt || (pLoopUnit->getUnitType() == pUnit->getUnitType()))
 						{
@@ -2695,7 +2697,7 @@ void CvGame::doControl(ControlTypes eControl)
 
 					if (pUnit->getOwnerINLINE() == getActivePlayer())
 					{
-						if (!isMPOption(MPOPTION_SIMULTANEOUS_TURNS) || getTurnSlice() - pUnit->getLastMoveTurn() > GC.getDefineINT("MIN_TIMER_UNIT_DOUBLE_MOVES"))
+						if (!isMPOption(MPOPTION_SIMULTANEOUS_TURNS) || getTurnSlice() - pUnit->getLastMoveTurn() > GC.getCache_MIN_TIMER_UNIT_DOUBLE_MOVES())
 						{
 							if (pUnit->isHurt())
 							{
@@ -3043,7 +3045,7 @@ void CvGame::doControl(ControlTypes eControl)
 		   {
                 if (GET_PLAYER(getActivePlayer()).isAlive() && GET_PLAYER(getActivePlayer()).getCurrentTradeResearch() != NO_CIVIC)
                 {
-                    FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getDefineINT("FATHER_POINT_REAL_TRADE");
+                    FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
                     GET_TEAM(GET_PLAYER(getActivePlayer()).getTeam()).changeFatherPoints(eFatherPoint, 500);
                 }
 		   }
@@ -3833,18 +3835,18 @@ void CvGame::getTurnTimerText(CvWString& szBuffer) const
 
 	if (getGameState() == GAMESTATE_ON)
 	{
-		if (isOption(GAMEOPTION_ADVANCED_START) && !isOption(GAMEOPTION_ALWAYS_WAR) && getElapsedGameTurns() <= GC.getDefineINT("PEACE_TREATY_LENGTH"))
+		if (isOption(GAMEOPTION_ADVANCED_START) && !isOption(GAMEOPTION_ALWAYS_WAR) && getElapsedGameTurns() <= GC.getCache_PEACE_TREATY_LENGTH())
 		{
 			if (!szBuffer.empty())
 			{
 				szBuffer += L" -- ";
 			}
 
-			szBuffer += gDLL->getText("TXT_KEY_MISC_ADVANCED_START_PEACE_REMAINING", GC.getDefineINT("PEACE_TREATY_LENGTH") - getElapsedGameTurns());
+			szBuffer += gDLL->getText("TXT_KEY_MISC_ADVANCED_START_PEACE_REMAINING", GC.getCache_PEACE_TREATY_LENGTH() - getElapsedGameTurns());
 		}
 		else if (getMaxTurns() > 0)
 		{
-			if ((getElapsedGameTurns() >= (getMaxTurns() - GC.getDefineINT("END_GAME_DISPLAY_WARNING"))) && (getElapsedGameTurns() < getMaxTurns()))
+			if ((getElapsedGameTurns() >= (getMaxTurns() - GC.getCache_END_GAME_DISPLAY_WARNING())) && (getElapsedGameTurns() < getMaxTurns()))
 			{
 				if (!isEmpty(szBuffer))
 				{
@@ -4671,7 +4673,7 @@ int CvGame::getCultureLevelThreshold(CultureLevelTypes eCultureLevel) const
 
 int CvGame::getCargoYieldCapacity() const
 {
-	return (GC.getDefineINT("CITY_YIELD_CAPACITY") * GC.getGameSpeedInfo(getGameSpeedType()).getStoragePercent() / 100);
+	return (GC.getCache_CITY_YIELD_CAPACITY() * GC.getGameSpeedInfo(getGameSpeedType()).getStoragePercent() / 100);
 }
 
 EraTypes CvGame::getStartEra() const
@@ -5223,7 +5225,7 @@ void CvGame::createBarbarianPlayer()
             CvPlayer& player = GET_PLAYER((PlayerTypes)iP);
             if (player.isAlive())
             {
-                if (player.getCivilizationType() == (CivilizationTypes) GC.getDefineINT("BARBARIAN_CIVILIZATION"))
+                if (player.getCivilizationType() == (CivilizationTypes) GC.getCache_BARBARIAN_CIVILIZATION())
                 {
                     setBarbarianPlayer(player.getID());
                     return;
@@ -5235,8 +5237,8 @@ void CvGame::createBarbarianPlayer()
         PlayerTypes eNewPlayer = getNextPlayerType();
         if (eNewPlayer != NO_PLAYER)
         {
-            LeaderHeadTypes eBarbLeader = (LeaderHeadTypes) GC.getDefineINT("BARBARIAN_LEADER");
-            CivilizationTypes eBarbCiv = (CivilizationTypes) GC.getDefineINT("BARBARIAN_CIVILIZATION");
+            LeaderHeadTypes eBarbLeader = (LeaderHeadTypes) GC.getCache_BARBARIAN_LEADER();
+            CivilizationTypes eBarbCiv = (CivilizationTypes) GC.getCache_BARBARIAN_CIVILIZATION();
             if (eBarbLeader != NO_LEADER && eBarbCiv != NO_CIVILIZATION)
             {
                 addPlayer(eNewPlayer, eBarbLeader, eBarbCiv);
@@ -5370,7 +5372,7 @@ void CvGame::createAnimalsLand()
                             {
                                 if (GC.getUnitInfo(eLoopUnit).getBonusNative(pPlot->getBonusType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_LAND_BONUS_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_LAND_BONUS_NATIVE_WEIGHT();
                                     iValue += (1 + getSorenRandNum(iRand, "Wild Land Animal Selection - Bonus Weight"));
                                 }
                             }
@@ -5378,7 +5380,7 @@ void CvGame::createAnimalsLand()
                             {
                                 if (GC.getUnitInfo(eLoopUnit).getFeatureNative(pPlot->getFeatureType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_LAND_FEATURE_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_LAND_FEATURE_NATIVE_WEIGHT();
                                     iValue += (1 + getSorenRandNum(iRand, "Wild Land Animal Selection - Feature Weight"));
                                 }
                             }
@@ -5386,13 +5388,13 @@ void CvGame::createAnimalsLand()
                             {
                                 if (GC.getUnitInfo(eLoopUnit).getTerrainNative(pPlot->getTerrainType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT();
                                     iValue += (1 + getSorenRandNum(iRand, "Wild Land Animal Selection - Terrain Weight"));
                                 }
                             }
                             if (eLastUnit != NO_UNIT && eLastUnit == eBestUnit)
                             {
-                                iRand = GC.getDefineINT("WILD_ANIMAL_LAND_UNIT_VARIATION_WEIGHT");
+                                iRand = GC.getCache_WILD_ANIMAL_LAND_UNIT_VARIATION_WEIGHT();
                                 iValue -= (1 + getSorenRandNum(iRand, "Wild Land Animal Selection - Unit Variation Weight"));
                             }
                             if (iValue > 0 && iValue > iBestValue)
@@ -5501,7 +5503,7 @@ void CvGame::createAnimalsSea()
                             {
                                 if (GC.getUnitInfo(eLoopUnit).getBonusNative(pPlot->getBonusType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_SEA_BONUS_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_SEA_BONUS_NATIVE_WEIGHT();
                                     iValue += (1 + getSorenRandNum(iRand, "Wild Sea Animal Selection - Bonus Weight"));
                                 }
                             }
@@ -5509,7 +5511,7 @@ void CvGame::createAnimalsSea()
                             {
                                 if (GC.getUnitInfo(eLoopUnit).getFeatureNative(pPlot->getFeatureType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_SEA_FEATURE_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_SEA_FEATURE_NATIVE_WEIGHT();
                                     iValue += (1 + getSorenRandNum(iRand, "Wild Sea Animal Selection - Feature Weight"));
                                 }
                             }
@@ -5517,13 +5519,13 @@ void CvGame::createAnimalsSea()
                             {
                                 if (GC.getUnitInfo(eLoopUnit).getTerrainNative(pPlot->getTerrainType()))
                                 {
-                                    iRand = GC.getDefineINT("WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT");
+                                    iRand = GC.getCache_WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT();
                                     iValue += (1 + getSorenRandNum(iRand, "Wild Sea Animal Selection - Terrain Weight"));
                                 }
                             }
                             if (eLastUnit != NO_UNIT && eLastUnit == eBestUnit)
                             {
-                                iRand = GC.getDefineINT("WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT");
+                                iRand = GC.getCache_WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT();
                                 iValue -= (1 + getSorenRandNum(iRand, "Animal Sea Unit Selection"));
                             }
                             if (iValue > 0 && iValue > iBestValue)
@@ -5904,7 +5906,7 @@ bool CvGame::testVictory(VictoryTypes eVictory, TeamTypes eTeam, bool* pbEndScor
         {
             bIndustrialAttempt = false;
             CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-            YieldTypes eVictoryYield = (YieldTypes) GC.getDefineINT("INDUSTRIAL_VICTORY_SINGLE_YIELD");
+            YieldTypes eVictoryYield = (YieldTypes) GC.getCache_INDUSTRIAL_VICTORY_SINGLE_YIELD();
             if (eVictoryYield == NO_YIELD)
             {
                  bValid = false;
@@ -6563,6 +6565,8 @@ void CvGame::read(FDataStreamBase* pStream)
 {
 	int iI;
 
+	GC.setXMLCache(); // cache XML - Nightinggale
+
 	reset(NO_HANDICAP);
 
 	uint uiFlag=0;
@@ -6942,7 +6946,7 @@ void CvGame::addPlayer(PlayerTypes eNewPlayer, LeaderHeadTypes eLeader, Civiliza
 		{
 			for (int iK = 0; iK < GC.getNumPlayerColorInfos(); iK++)
 			{
-				if (iK != GC.getCivilizationInfo((CivilizationTypes)GC.getDefineINT("BARBARIAN_CIVILIZATION")).getDefaultPlayerColor())
+				if (iK != GC.getCivilizationInfo((CivilizationTypes)GC.getCache_BARBARIAN_CIVILIZATION()).getDefaultPlayerColor())
 				{
 					bool bValid = true;
 
@@ -7318,7 +7322,7 @@ void CvGame::changeYieldBoughtTotal(PlayerTypes eMainEurope, YieldTypes eYield, 
 		if(kEuropePlayer.isAlive() && kEuropePlayer.isEurope())
 		{
 			//check if any children are mercantile
-			int iMercantilePercent = (iEurope == eMainEurope) ? 100 : GC.getDefineINT("EUROPE_MARKET_CORRELATION_PERCENT");
+			int iMercantilePercent = (iEurope == eMainEurope) ? 100 : GC.getCache_EUROPE_MARKET_CORRELATION_PERCENT();
 			for(int iPlayer=0;iPlayer<MAX_PLAYERS;iPlayer++)
 			{
 				CvPlayer& kChildPlayer = GET_PLAYER((PlayerTypes) iPlayer);
@@ -7418,8 +7422,8 @@ void CvGame::createVassalPlayer(PlayerTypes eVassalOwner, CvCity* pCity)
         PlayerTypes eNewPlayer = getNextPlayerType();
         if (eNewPlayer != NO_PLAYER)
         {
-            LeaderHeadTypes eBarbLeader = (LeaderHeadTypes) GC.getDefineINT("VASSAL_LEADER");
-            CivilizationTypes eBarbCiv = (CivilizationTypes) GC.getDefineINT("VASSAL_CIVILIZATION");
+            LeaderHeadTypes eBarbLeader = (LeaderHeadTypes) GC.getCache_VASSAL_LEADER();
+            CivilizationTypes eBarbCiv = (CivilizationTypes) GC.getCache_VASSAL_CIVILIZATION();
             if (eBarbLeader != NO_LEADER && eBarbCiv != NO_CIVILIZATION)
             {
                 addPlayer(eNewPlayer, eBarbLeader, eBarbCiv);

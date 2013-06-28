@@ -1128,7 +1128,7 @@ int CyCity::getCityType()
 
 int CyCity::getMaxCityPop()
 {
-	return m_pCity ? m_pCity->getMaxCityPop() : GC.getDefineINT("MAX_CITY_POPULATION_VILLAGE");
+	return m_pCity ? m_pCity->getMaxCityPop() : GC.getCache_MAX_CITY_POPULATION_VILLAGE();
 }
 ///Tke
 
