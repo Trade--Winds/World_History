@@ -3554,6 +3554,8 @@ void CvGameTextMgr::parseLeaderTraits(CvWStringBuffer &szHelpString, LeaderHeadT
 {
 	PROFILE_FUNC();
 
+	GC.setXMLCache(); // cache XML - Nightinggale
+
 	CvWString szTempBuffer;	// Formatting
 	int iI;
 
