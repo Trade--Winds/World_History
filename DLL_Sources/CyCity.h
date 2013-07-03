@@ -203,6 +203,8 @@ public:
 	int calculateActualYieldConsumed(int /*YieldTypes*/ eYield) const;
 
 	bool isEverOwned(int /*PlayerTypes*/ eIndex);
+	int /*PlayerTypes*/ getMissionaryPlayer() const; // R&R, Robert Surcouf, No More Variables Hidden game option START
+	int getMissionaryRate() const; // R&R, Robert Surcouf, No More Variables Hidden game option END
 
 	bool isRevealed(int /*TeamTypes*/ eIndex, bool bDebug);
 	void setRevealed(int /*TeamTypes*/ eIndex, bool bNewValue);
@@ -257,6 +259,7 @@ public:
 	bool AI_isEmphasize(int iEmphasizeType);
 	int AI_countBestBuilds(CyArea* pArea);
 	int AI_cityValue();
+	int /*YieldTypes*/ AI_getDesiredYield() const;// Robert Surcouf
 
 	std::string getScriptData() const;
 	void setScriptData(std::string szNewValue);
@@ -269,6 +272,7 @@ public:
 	bool removePopulationUnit(CyUnit* pUnit, bool bDelete, int /*ProfessionTypes*/ eProfession);
 
 	int getTeachUnitClass();
+	int getTeachUnit() const; // native advisor update - Nightinggale
 	///Tks Med
 	int getSelectedArmor();
 	int getMaxCityPop();
