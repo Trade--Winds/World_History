@@ -1216,6 +1216,13 @@ int CyCity::getMaintainLevel(int /*YieldTypes*/ eYield) const
 	return m_pCity ? m_pCity->getMaintainLevel((YieldTypes) eYield) : -1;
 }
 
+// transport feeder - start - Nightinggale
+bool CyCity::isImportFeeder(int /*YieldTypes*/ eYield) const
+{
+	return m_pCity ? m_pCity->getImportsMaintain((YieldTypes) eYield) : false;
+}
+// transport feeder - end - Nightinggale
+
 python::tuple CyCity::isOrderWaitingForYield(int /*YieldTypes*/ eYield)
 {
 	if (m_pCity)

@@ -4,6 +4,7 @@
 #define CIV4_CITY_H
 #include "CvDLLEntity.h"
 #include "LinkedList.h"
+#include "JustInTimeArray.h"
 
 class CvPlot;
 class CvArea;
@@ -586,6 +587,9 @@ public:
 	void removeTradeRoutes();
 	void setMaintainLevel(YieldTypes eYield, int iMaintainLevel);
 	int getMaintainLevel(YieldTypes eYield) const;
+	// transport feeder - start - Nightinggale
+ 	bool getImportsMaintain(YieldTypes eYield) const;
+ 	// transport feeder - end - Nightinggale
 	///TKs Invention Core Mod v 1.0
 	int canResearch() const;
 	///Tke
@@ -675,12 +679,19 @@ protected:
 	std::vector<EventTypes> m_aEventsOccured;
 	std::vector<BuildingYieldChange> m_aBuildingYieldChange;
 	std::vector<CvUnit*> m_aPopulationUnits;
-	std::set<YieldTypes> m_setImports;
-	std::set<YieldTypes> m_setExports;
+
+	// traderoute just-in-time - start - Nightinggale
+ 	YieldArray<bool> ma_tradeImports;
+ 	YieldArray<bool> ma_tradeExports;
 	///Tks
-	std::set<YieldTypes> m_setMarket;
+	YieldArray<bool> ma_tradeMarket;
 	///Tke
-	std::map<YieldTypes, int> m_mapMaintain;
+ 	YieldArray<int> ma_tradeThreshold;
+ 	// traderoute just-in-time - end - Nightinggale
+ 	// transport feeder - start - Nightinggale
+ 	YieldArray<bool> ma_tradeImportsMaintain;
+ 	// transport feeder - end - Nightinggale
+
 	// CACHE: cache frequently used values
 	mutable int	m_iPopulationRank;
 	mutable bool m_bPopulationRankValid;
@@ -718,6 +729,11 @@ protected:
 	void setUnitWorkingPlot(int iPlotIndex, int iUnitId);
 	void setUnitWorkingPlot(const CvPlot* pPlot, int iUnitId);
 	int getNextFreeUnitId() const;
+
+	// transport feeder - start - Nightinggale
+	void setImportsMaintain(YieldTypes eYield, bool bSetting);
+	void checkImportsMaintain(YieldTypes eYield);
+	// transport feeder - end - Nightinggale
 	virtual bool AI_addBestCitizen() = 0;
 	virtual bool AI_removeWorstCitizen() = 0;
 };
