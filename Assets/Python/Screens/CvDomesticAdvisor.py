@@ -129,18 +129,20 @@ class CvDomesticAdvisor:
 
 		self.StateButtons = []
 		self.StatePages = []
+		self.StateHelp = []
 		
 		# Button generation
+		# index                       = self.addButton( button icon name,                      help popup string)
 		
-		self.GENERAL_STATE            = self.addButton("GeneralState",           "INTERFACE_CITY_MAP_BUTTON")
-		self.PRODUCTION_STATE         = self.addButton("ProductionState",        "INTERFACE_NET_YIELD_BUTTON")
-		self.WAREHOUSE_STATE          = self.addButton("WareHouseState",         "INTERFACE_STORES_BUTTON")
-		self.BUILDING_STATE           = self.addButton("BuildingState",          "INTERFACE_CITY_BUILD_BUTTON")
-		self.IMPORTEXPORT_STATE       = self.addButton("ImportExportState",      "INTERFACE_CITY_GOVENOR_BUTTON")
-		self.CITIZEN_STATE            = self.addButton("CitizenState",           "INTERFACE_CITY_CITIZEN_BUTTON")
-		self.TOTAL_PRODUCTION_STATE   = self.addButton("TotalProductionState",   "INTERFACE_TOTAL_PRODUCTION_BUTTON")  # total production page - Nightinggale
-		self.TRADEROUTE_STATE         = self.addButton("TradeRouteState",        "INTERFACE_IMPORT_EXPORT_BUTTON")
-		self.NATIVE_STATE             = self.addButton("NativeState",            "INTERFACE_NATIVE_BUTTON")
+		self.GENERAL_STATE            = self.addButton("INTERFACE_CITY_MAP_BUTTON",            "TXT_KEY_DOMESTIC_ADVISOR_STATE_GENERAL")
+		self.PRODUCTION_STATE         = self.addButton("INTERFACE_NET_YIELD_BUTTON",           "TXT_KEY_CONCEPT_PRODUCTION")
+		self.WAREHOUSE_STATE          = self.addButton("INTERFACE_STORES_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_WAREHOUSE")
+		self.BUILDING_STATE           = self.addButton("INTERFACE_CITY_BUILD_BUTTON",          "TXT_KEY_BUILDINGS")
+		self.IMPORTEXPORT_STATE       = self.addButton("INTERFACE_CITY_GOVENOR_BUTTON",        "TXT_KEY_CONCEPT_TRADE_ROUTE")
+		self.CITIZEN_STATE            = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN")
+		self.TOTAL_PRODUCTION_STATE   = self.addButton("INTERFACE_TOTAL_PRODUCTION_BUTTON",    "TXT_KEY_CONCEPT_TOTAL_PRODUCTION")  # total production page - Nightinggale
+		self.TRADEROUTE_STATE         = self.addButton("INTERFACE_IMPORT_EXPORT_BUTTON",       "TXT_KEY_DOMESTIC_ADVISOR_STATE_TRADEROUTE")
+		self.NATIVE_STATE             = self.addButton("INTERFACE_NATIVE_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_STATE_NATIVE")
 		
 		self.YieldPages = set([self.PRODUCTION_STATE])
 		self.YieldPages.add(self.WAREHOUSE_STATE)
@@ -938,29 +940,8 @@ class CvDomesticAdvisor:
 		iScreen, eWidgetType, iData1, iData2, bOption = argsList
 
 		if eWidgetType == WidgetTypes.WIDGET_GENERAL:
-			if iData1 == self.GENERAL_STATE:
-				return localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_GENERAL", ())
-			elif iData1 == self.PRODUCTION_STATE:
-				return localText.getText("TXT_KEY_CONCEPT_PRODUCTION", ())
-			elif iData1 == self.BUILDING_STATE:
-				return localText.getText("TXT_KEY_BUILDINGS", ())
-			elif iData1 == self.WAREHOUSE_STATE:
-				# R&R, Robert Surcouf, French game text fix START
-				#return localText.getText("TXT_KEY_BUILDING_WAREHOUSE", ())
-				return localText.getText("TXT_KEY_DOMESTIC_ADVISOR_WAREHOUSE", ())
-				# R&R, Robert Surcouf, French game text fix END
-			elif iData1 == self.CITIZEN_STATE:
-				return localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN", ())
-			elif iData1 == self.IMPORTEXPORT_STATE:
-				return localText.getText("TXT_KEY_CONCEPT_TRADE_ROUTE", ())
-			# total production page - start - Nightinggale
-			elif iData1 == self.TOTAL_PRODUCTION_STATE:
-				return localText.getText("TXT_KEY_CONCEPT_TOTAL_PRODUCTION", ())
-			# total production page - end - Nightinggale
-			elif iData1 == self.TRADEROUTE_STATE:
-				return localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_TRADEROUTE", ())
-			elif iData1 == self.NATIVE_STATE:
-				return localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_NATIVE", ())
+			if iData1 >= 0 and iData1 < len(self.StateHelp):
+				return localText.getText(self.StateHelp[iData1], ())
 			elif iData1 == 10001:
 				unit = gc.getActivePlayer().getUnit(iData2)
 				if not unit.isNone():
@@ -976,13 +957,14 @@ class CvDomesticAdvisor:
 		return self.MAX_YIELDS_IN_A_PAGE * self.CurrentPage
 		
 	def YieldEnd(self):
-		return min((self.MAX_YIELDS_IN_A_PAGE * (self.CurrentPage + 1)) - 1, self.num_yields)
+		return min((self.MAX_YIELDS_IN_A_PAGE * (self.CurrentPage + 1)), self.num_yields)
 	
 	# auto-generated list creation - start - Nightinggale
-	def addButton(self, state_type, state_button):
+	def addButton(self, state_button, state_help):
 		index = len(self.StatePages)
 		self.StateButtons.append(state_button)
-		self.StatePages.append([state_type])
+		self.StatePages.append(["State" + str(index)])
+		self.StateHelp.append(state_help)
 		return index
 		
 	def createSubpage(self, iState, iPage):
