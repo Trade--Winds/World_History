@@ -431,6 +431,8 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 		}
 	}
 
+	UpdateBuildingAffectedCache(); // building affected cache - Nightinggale 
+
 	GET_PLAYER(getOwnerINLINE()).AI_invalidateDistanceMap();
 	AI_init();
 }
@@ -6531,6 +6533,7 @@ void CvCity::setHasRealBuildingTimed(BuildingTypes eIndex, bool bNewValue, bool 
 				GC.getGameINLINE().incrementBuildingClassCreatedCount((BuildingClassTypes)(GC.getBuildingInfo(eIndex).getBuildingClassType()));
 			}
 		}
+		UpdateBuildingAffectedCache(); // building affected cache - Nightinggale
 	}
 }
 
@@ -8360,6 +8363,8 @@ void CvCity::read(FDataStreamBase* pStream)
 		kChange.read(pStream);
 		m_aBuildingYieldChange.push_back(kChange);
 	}
+
+	UpdateBuildingAffectedCache(); // building affected cache - Nightinggale
 }
 
 void CvCity::write(FDataStreamBase* pStream)
@@ -9773,7 +9778,7 @@ bool CvCity::canProduceYield(YieldTypes eYield)
 	return false;
 }
 ///Tke
-int CvCity::getMaxYieldCapacity(YieldTypes eYield) const
+int CvCity::getMaxYieldCapacityUncached(YieldTypes eYield) const // building affected cache - Nightinggale
 {
 	int iCapacity = GC.getGameINLINE().getCargoYieldCapacity();
 
@@ -11457,3 +11462,16 @@ void CvCity::changeEventTimer(int iEvent, int iChange)
 	}
 }
 ///TKe
+
+// building affected cache - start - Nightinggale
+void CvCity::UpdateBuildingAffectedCache()
+{
+	// cache getMaxYieldCapacity - start - Nightinggale
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+	{
+		m_cache_MaxYieldCapacity[iYield] = getMaxYieldCapacityUncached((YieldTypes) iYield);
+	}
+	m_cache_MaxYieldCapacity[NUM_YIELD_TYPES] = getMaxYieldCapacityUncached(NO_YIELD);
+	// cache getMaxYieldCapacity - end - Nightinggale
+}
+// building affected cache - end - Nightinggale 

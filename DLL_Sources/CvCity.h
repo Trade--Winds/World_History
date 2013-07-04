@@ -736,5 +736,25 @@ protected:
 	// transport feeder - end - Nightinggale
 	virtual bool AI_addBestCitizen() = 0;
 	virtual bool AI_removeWorstCitizen() = 0;
+
+	// building affected cache - Nightinggale
+protected:
+	// cache getMaxYieldCapacity - start - Nightinggale
+	int getMaxYieldCapacityUncached(YieldTypes eYield) const;
+	int m_cache_MaxYieldCapacity[NUM_YIELD_TYPES + 1]; // nosave cache
+	// cache getMaxYieldCapacity - end - Nightinggale
+public:
+	void UpdateBuildingAffectedCache();
+	// building affected cache - end - Nightinggale 
 };
+
+// cache getMaxYieldCapacity - start - Nightinggale
+inline int CvCity::getMaxYieldCapacity(YieldTypes eYield) const
+{
+	FAssert(eYield >= NO_YIELD);
+	FAssert(eYield < NUM_YIELD_TYPES);
+	return m_cache_MaxYieldCapacity[eYield == NO_YIELD ? NUM_YIELD_TYPES : eYield];
+};
+// cache getMaxYieldCapacity - end - Nightinggale 
+
 #endif
