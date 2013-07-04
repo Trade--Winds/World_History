@@ -88,6 +88,8 @@ CvPlayer::CvPlayer()
 	m_ppiImprovementYieldChange = NULL;
 	m_ppiBuildingYieldChange = NULL;
 
+	m_cache_YieldEquipmentAmount = NULL; // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
+
 	reset(NO_PLAYER, true);
 }
 
@@ -116,6 +118,15 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_abFeatAccomplished);
 	SAFE_DELETE_ARRAY(m_abOptions);
 
+	// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
+ 	if (m_cache_YieldEquipmentAmount != NULL)
+ 	{
+ 		for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++) {
+ 			m_cache_YieldEquipmentAmount[iProfession].reset();
+ 		}
+ 		SAFE_DELETE_ARRAY(m_cache_YieldEquipmentAmount);
+ 	}
+ 	// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
 }
 
 
@@ -289,6 +300,8 @@ void CvPlayer::init(PlayerTypes eID)
 	}
 
 	AI_init();
+
+	Update_cache_YieldEquipmentAmount(); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 }
 
 
@@ -679,6 +692,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	{
 		AI_reset();
 	}
+	Update_cache_YieldEquipmentAmount(); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 }
 
 
@@ -2108,6 +2122,7 @@ bool CvPlayer::isHuman() const
 
 void CvPlayer::updateHuman()
 {
+	bool old_m_bHuman = m_bHuman; // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 	if (getID() == NO_PLAYER)
 	{
 		m_bHuman = false;
@@ -2116,6 +2131,13 @@ void CvPlayer::updateHuman()
 	{
 		m_bHuman = GC.getInitCore().getHuman(getID());
 	}
+
+	// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
+ 	if (old_m_bHuman != m_bHuman)
+ 	{
+ 		Update_cache_YieldEquipmentAmount();
+ 	}
+ 	// cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 }
 
 bool CvPlayer::isNative() const
@@ -11607,6 +11629,8 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bAllResearchComplete);
 	pStream->Read(&m_bFirstCityRazed);
 	///TKe
+
+	Update_cache_YieldEquipmentAmount(); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 }
 
 //
@@ -15544,10 +15568,12 @@ void CvPlayer::setProfessionEquipmentModifier(ProfessionTypes eProfession, int i
 		}
 
 		FAssert(getProfessionEquipmentModifier(eProfession) >= -100);
+		Update_cache_YieldEquipmentAmount(eProfession); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 	}
 }
 
-int CvPlayer::getYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const
+// cache CvPlayer::getYieldEquipmentAmount - function rename - Nightinggale
+int CvPlayer::getYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const
 {
 	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
 	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
@@ -15573,6 +15599,39 @@ int CvPlayer::getYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eY
 
 	return std::max(0, iAmount);
 }
+
+// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
+void CvPlayer::Update_cache_YieldEquipmentAmount(ProfessionTypes eProfession)
+{
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++) {
+		m_cache_YieldEquipmentAmount[eProfession].set(getYieldEquipmentAmountUncached(eProfession, (YieldTypes)iYield), iYield);
+	}
+	m_cache_YieldEquipmentAmount[eProfession].isEmpty(); // This will release the array if it's empty
+}
+
+void CvPlayer::Update_cache_YieldEquipmentAmount()
+{
+	if (m_eID <= NO_PLAYER || m_aiProfessionEquipmentModifier == NULL)
+	{
+		// Some update calls gets triggered during player init. They can safely be ignored.
+		return;
+	}
+
+	if (m_cache_YieldEquipmentAmount == NULL)
+	{
+		// only init NULL pointers.
+		// don't do anything about already allocated arrays as data is overwritten anyway.
+		m_cache_YieldEquipmentAmount = new YieldArray<int>[GC.getNumProfessionInfos()];
+		for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++) {
+			m_cache_YieldEquipmentAmount[iProfession].init();
+		}
+	}
+
+	for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++) {
+		Update_cache_YieldEquipmentAmount((ProfessionTypes)iProfession);
+	}
+}
+// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
 
 bool CvPlayer::isProfessionValid(ProfessionTypes eProfession, UnitTypes eUnit) const
 {
