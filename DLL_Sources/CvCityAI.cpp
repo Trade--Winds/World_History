@@ -1408,13 +1408,16 @@ int CvCityAI::AI_numPotentialDefenders() const
 		if (kOwner.AI_professionValue(eLoopProfession, UNITAI_DEFENSIVE) > 0)
 		{
 			int iEquipable = getPopulation();
-			for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+			if (kOwner.hasContentsYieldEquipmentAmount(eLoopProfession)) // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 			{
-				int iAmount = kOwner.getYieldEquipmentAmount(eLoopProfession, (YieldTypes)iYield);
-
-				if (iAmount > 0)
+				for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
 				{
-					iEquipable = std::min(iEquipable, getYieldStored((YieldTypes)iYield) / iAmount);
+					int iAmount = kOwner.getYieldEquipmentAmount(eLoopProfession, (YieldTypes)iYield);
+
+					if (iAmount > 0)
+					{
+						iEquipable = std::min(iEquipable, getYieldStored((YieldTypes)iYield) / iAmount);
+					}
 				}
 			}
 

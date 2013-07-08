@@ -276,6 +276,23 @@ void CyCityPythonInterface1(python::class_<CyCity>& x)
 		.def("removeImport", &CyCity::removeImport, "void removeImport(int /*YieldTypes*/ eYield)")
 		.def("getMaintainLevel", &CyCity::getMaintainLevel, "int getMaintainLevel(int /*YieldTypes*/ eYield)")
 
+		// transport feeder - start - Nightinggale
+		.def("isImportFeeder", &CyCity::isImportFeeder, "bool isImportFeeder(int /*YieldTypes*/ eYield) const")
+		// transport feeder - end - Nightinggale
+
+		// R&R, Robert Surcouf, No More Variables Hidden game option START
+		.def("AI_getDesiredYield", &CyCity::AI_getDesiredYield, "int /*YieldTypes*/ ()")
+		// R&R, Robert Surcouf, No More Variables Hidden game option END
+
+		// R&R, Robert Surcouf, No More Variables Hidden game option START
+		.def("getMissionaryPlayer", &CyCity::getMissionaryPlayer, "int /*PlayerTypes*/ ()")
+		.def("getMissionaryRate", &CyCity::getMissionaryRate, "int ()")
+		// R&R, Robert Surcouf, No More Variables Hidden game option END
+
+		// native advisor update - start - Nightinggale
+		.def("getTeachUnit", &CyCity::getTeachUnit, "int /*UnitType*/ ()")
+		// native advisor update - end - Nightinggale
+
 		.def("isOrderWaitingForYield", &CyCity::isOrderWaitingForYield, "python::tuple isOrderWaitingForYield(int /*YieldTypes*/ eYield)")
 		;
 }

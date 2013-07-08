@@ -971,5 +971,13 @@
 			<Type>INTERFACE_DEEMPHASIZE_LOZENGE</Type>
 			<Path>Art/Interface/Screens/City_Management/black_oval.dds</Path>
 		</InterfaceArtInfo>
+		<InterfaceArtInfo>
+			<Type>INTERFACE_NATIVE_BUTTON</Type>
+			<Path>Art/Interface/Screens/City_Management/yields.dds</Path>
+		</InterfaceArtInfo>
+		<InterfaceArtInfo>
+			<Type>INTERFACE_TOTAL_PRODUCTION_BUTTON</Type>
+			<Path>Art/Interface/Screens/City_Management/yields.dds</Path>
+		</InterfaceArtInfo>
 	</InterfaceArtInfos>
 </Civ4ArtDefines>

@@ -2173,4 +2173,50 @@
     <Italian>Deemphasize Religion</Italian>
     <Spanish>Deemphasize Religion</Spanish>
   </TEXT>
+  <TEXT>
+		<Tag>TXT_KEY_POPUP_IMPORT_FEEDER_HELP</Tag>
+		<English>Import feeder
+Turn import on at 75%
+Turn import off at 100%</English>
+		<French>Import feeder
+Turn import on at 75%
+Turn import off at 100%</French>
+		<German>Import feeder
+Turn import on at 75%
+Turn import off at 100%</German>
+		<Italian>Import feeder
+Turn import on at 75%
+Turn import off at 100%</Italian>
+		<Spanish>Import feeder
+Turn import on at 75%
+Turn import off at 100%</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DOMESTIC_ADVISOR_WAREHOUSE</Tag>
+		<English>Warehouse</English>
+		<French>
+			<Text>Entrep&#244;ts</Text>
+			<Gender>Male</Gender>
+			<Plural>1</Plural>
+		</French>
+		<German>Lagerhaus</German>
+		<Italian>
+			<Text>Magazzino</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</Italian>
+		<Spanish>
+			<Text>Almac&#233;n:Almacenes</Text>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CONCEPT_TOTAL_PRODUCTION</Tag>
+		<English>Total production and storage</English>
+		<French>Total production and storage</French>
+		<German>Total production and storage</German>
+		<Italian>Total production and storage</Italian>
+		<Spanish>Total production and storage</Spanish>
+	</TEXT>
 </Civ4GameText>

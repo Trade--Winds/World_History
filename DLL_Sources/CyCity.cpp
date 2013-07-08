@@ -827,6 +827,16 @@ bool CyCity::isEverOwned(int /*PlayerTypes*/ eIndex)
 {
 	return m_pCity ? m_pCity->isEverOwned((PlayerTypes)eIndex) : false;
 }
+// R&R, Robert Surcouf, No More Variables Hidden game option START
+int /*PlayerTypes*/ CyCity::getMissionaryPlayer() const
+{
+	return m_pCity ? m_pCity->getMissionaryPlayer() :NO_PLAYER;
+}
+int CyCity::getMissionaryRate() const
+{
+	return m_pCity ? m_pCity->getMissionaryRate() : -1;
+}
+// R&R, Robert Surcouf, No More Variables Hidden game option END
 
 bool CyCity::isRevealed(int /*TeamTypes */eIndex, bool bDebug)
 {
@@ -1043,6 +1053,13 @@ int CyCity::AI_cityValue()
 	return m_pCity ? m_pCity->AI_cityValue() : -1;
 }
 
+// R&R, Robert Surcouf, No More Variables Hidden game option START
+int /*YieldTypes*/ CyCity::AI_getDesiredYield() const
+{
+	return m_pCity ? m_pCity->AI_getDesiredYield() : 0;
+}
+// R&R, Robert Surcouf, No More Variables Hidden game option END
+
 std::string CyCity::getScriptData() const
 {
 	return m_pCity ? m_pCity->getScriptData() : "";
@@ -1114,6 +1131,23 @@ int CyCity::getTeachUnitClass()
 {
 	return m_pCity ? m_pCity->getTeachUnitClass() : -1;
 }
+// native advisor update - start - Nightinggale
+int CyCity::getTeachUnit() const
+{
+	PlayerTypes ePlayer = GC.getGameINLINE().getActivePlayer();
+	if (m_pCity == NULL || ePlayer == NO_PLAYER)
+	{
+		return NO_UNIT;
+	}
+	UnitClassTypes eClassType = m_pCity->getTeachUnitClass();
+	if (eClassType == NO_UNITCLASS)
+	{
+		return NO_UNIT;
+	}
+	return GC.getCivilizationInfo(GET_PLAYER(ePlayer).getCivilizationType()).getCivilizationUnits(eClassType);
+}
+// native advisor update - end - Nightinggale
+
 ///TKs Med
 
 int CyCity::getSelectedArmor()
@@ -1215,6 +1249,13 @@ int CyCity::getMaintainLevel(int /*YieldTypes*/ eYield) const
 {
 	return m_pCity ? m_pCity->getMaintainLevel((YieldTypes) eYield) : -1;
 }
+
+// transport feeder - start - Nightinggale
+bool CyCity::isImportFeeder(int /*YieldTypes*/ eYield) const
+{
+	return m_pCity ? m_pCity->getImportsMaintain((YieldTypes) eYield) : false;
+}
+// transport feeder - end - Nightinggale
 
 python::tuple CyCity::isOrderWaitingForYield(int /*YieldTypes*/ eYield)
 {

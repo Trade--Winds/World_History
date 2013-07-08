@@ -8348,10 +8348,14 @@ int CvUnit::getPower() const
 	if (getProfession() != NO_PROFESSION)
 	{
 		iPower += GC.getProfessionInfo(getProfession()).getPowerValue();
-		for (int i = 0; i < NUM_YIELD_TYPES; ++i)
+
+		if (GET_PLAYER(getOwnerINLINE()).hasContentsYieldEquipmentAmount(getProfession())) // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 		{
-			YieldTypes eYield = (YieldTypes) i;
-			iPower += GC.getYieldInfo(eYield).getPowerValue() * GET_PLAYER(getOwnerINLINE()).getYieldEquipmentAmount(getProfession(), eYield);
+			for (int i = 0; i < NUM_YIELD_TYPES; ++i)
+			{
+				YieldTypes eYield = (YieldTypes) i;
+				iPower += GC.getYieldInfo(eYield).getPowerValue() * GET_PLAYER(getOwnerINLINE()).getYieldEquipmentAmount(getProfession(), eYield);
+			}
 		}
 	}
 
@@ -8370,10 +8374,14 @@ int CvUnit::getAsset() const
 	if (getProfession() != NO_PROFESSION)
 	{
 		iAsset += GC.getProfessionInfo(getProfession()).getAssetValue();
-		for (int i = 0; i < NUM_YIELD_TYPES; ++i)
+
+		if (GET_PLAYER(getOwnerINLINE()).hasContentsYieldEquipmentAmount(getProfession())) // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 		{
-			YieldTypes eYield = (YieldTypes) i;
-			iAsset += GC.getYieldInfo(eYield).getAssetValue() * GET_PLAYER(getOwnerINLINE()).getYieldEquipmentAmount(getProfession(), eYield);
+			for (int i = 0; i < NUM_YIELD_TYPES; ++i)
+			{
+				YieldTypes eYield = (YieldTypes) i;
+				iAsset += GC.getYieldInfo(eYield).getAssetValue() * GET_PLAYER(getOwnerINLINE()).getYieldEquipmentAmount(getProfession(), eYield);
+			}
 		}
 	}
 	YieldTypes eYield = getYield();
@@ -11267,72 +11275,75 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 
 		if (!pCity->AI_isWorkforceHack())
 		{
-			for (int i=0; i < NUM_YIELD_TYPES; ++i)
+			if (kOwner.hasContentsYieldEquipmentAmountSecure(getProfession()) || kOwner.hasContentsYieldEquipmentAmount(eProfession)) // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 			{
-				YieldTypes eYieldType = (YieldTypes) i;
-				///Tks Med
-				int iYieldCarried = 0;
-				if (getProfession() != NO_PROFESSION)
+				for (int i=0; i < NUM_YIELD_TYPES; ++i)
 				{
-					iYieldCarried += kOwner.getYieldEquipmentAmount(getProfession(), eYieldType);
-				}
-				int iYieldRequired = kOwner.getYieldEquipmentAmount(eProfession, eYieldType);
-				bool bTryAlt = false;
-				if (iYieldRequired > 0)
-				{
-					int iMissing = iYieldRequired - iYieldCarried;
-					if (iMissing > pCity->getYieldStored(eYieldType))
+					YieldTypes eYieldType = (YieldTypes) i;
+					///Tks Med
+					int iYieldCarried = 0;
+					if (getProfession() != NO_PROFESSION)
 					{
-						bTryAlt = true;
+						iYieldCarried += kOwner.getYieldEquipmentAmount(getProfession(), eYieldType);
 					}
+					int iYieldRequired = kOwner.getYieldEquipmentAmount(eProfession, eYieldType);
+					bool bTryAlt = false;
+					if (iYieldRequired > 0)
+					{
+						int iMissing = iYieldRequired - iYieldCarried;
+						if (iMissing > pCity->getYieldStored(eYieldType))
+						{
+							bTryAlt = true;
+						}
+					}
+					if (bTryAlt)
+					{
+						if (kOwner.getAltYieldEquipmentAmount(eProfession, eYieldType) < 0)
+						{
+//					        int iAltYieldArray = kNewProfession.getAltEquipmentTypesArray();
+//					        int iSize = (int)iAltYieldArray.size();
+//					        int iYield = (int)iAltYieldArray[1];
+							 int iYield = 0;
+						   // YieldTypes eFirstAltYield = (YieldTypes)iAltYieldArray[0];
+						   YieldTypes eAltYield = NO_YIELD;
+							for (iYield=0;iYield< NUM_YIELD_TYPES; ++iYield)
+							{
+								//eAltYield = kNewProfession.getAltEquipmentAt(iYield);
+								//YieldTypes eAltYield = (YieldTypes)iYield;
+								if (kNewProfession.getAltEquipmentAt(iYield) > 0)
+								{
+									eAltYield = (YieldTypes)iYield;
+									break;
+								}
+
+							}
+							if (eAltYield != NO_YIELD)
+							{
+								iYieldCarried = 0;
+								if (getProfession() != NO_PROFESSION)
+								{
+									iYieldCarried += kOwner.getYieldEquipmentAmount(getProfession(), eAltYield);
+								}
+								iYieldRequired = kOwner.getAltYieldEquipmentAmount(eProfession, eAltYield);
+								if (iYieldRequired > 0)
+								{
+									int iMissing = iYieldRequired - iYieldCarried;
+									if (iMissing <= pCity->getYieldStored(eAltYield))
+									{
+										bTryAlt = false;
+									}
+								}
+							}
+
+						}
+					}
+
+					if (bTryAlt)
+					{
+						return false;
+					}
+
 				}
-				if (bTryAlt)
-				{
-				    if (kOwner.getAltYieldEquipmentAmount(eProfession, eYieldType) < 0)
-				    {
-//				        int iAltYieldArray = kNewProfession.getAltEquipmentTypesArray();
-//				        int iSize = (int)iAltYieldArray.size();
-//				        int iYield = (int)iAltYieldArray[1];
-				         int iYield = 0;
-				       // YieldTypes eFirstAltYield = (YieldTypes)iAltYieldArray[0];
-				       YieldTypes eAltYield = NO_YIELD;
-                        for (iYield=0;iYield< NUM_YIELD_TYPES; ++iYield)
-                        {
-                            //eAltYield = kNewProfession.getAltEquipmentAt(iYield);
-                            //YieldTypes eAltYield = (YieldTypes)iYield;
-                            if (kNewProfession.getAltEquipmentAt(iYield) > 0)
-                            {
-                                eAltYield = (YieldTypes)iYield;
-                                break;
-                            }
-
-                        }
-				        if (eAltYield != NO_YIELD)
-				        {
-                            iYieldCarried = 0;
-                            if (getProfession() != NO_PROFESSION)
-                            {
-                                iYieldCarried += kOwner.getYieldEquipmentAmount(getProfession(), eAltYield);
-                            }
-                            iYieldRequired = kOwner.getAltYieldEquipmentAmount(eProfession, eAltYield);
-                            if (iYieldRequired > 0)
-                            {
-                                int iMissing = iYieldRequired - iYieldCarried;
-                                if (iMissing <= pCity->getYieldStored(eAltYield))
-                                {
-                                    bTryAlt = false;
-                                }
-                            }
-				        }
-
-				    }
-				}
-
-				if (bTryAlt)
-				{
-				    return false;
-				}
-
 			}
 
 			if (!kNewProfession.isCitizen())
@@ -11352,14 +11363,17 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 			return false;
 		}
 
-		for (int i=0; i < NUM_YIELD_TYPES; ++i)
+		if (kOwner.hasContentsYieldEquipmentAmount(eProfession)) // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 		{
-			YieldTypes eYield = (YieldTypes) i;
-			if (!kOwner.isYieldEuropeTradable(eYield))
+			for (int i=0; i < NUM_YIELD_TYPES; ++i)
 			{
-				if (kOwner.getYieldEquipmentAmount(eProfession, eYield) > kOwner.getYieldEquipmentAmount(getProfession(), eYield))
+				YieldTypes eYield = (YieldTypes) i;
+				if (!kOwner.isYieldEuropeTradable(eYield))
 				{
-					return false;
+					if (kOwner.getYieldEquipmentAmount(eProfession, eYield) > kOwner.getYieldEquipmentAmount(getProfession(), eYield))
+					{
+						return false;
+					}
 				}
 			}
 		}
@@ -11477,21 +11491,24 @@ void CvUnit::processProfession(ProfessionTypes eProfession, int iChange, bool bU
 			kOwner.changeAssets(iChange * kProfession.getAssetValue());
 
 			int iPower = iChange * kProfession.getPowerValue();
-			for (int i = 0; i < NUM_YIELD_TYPES; ++i)
+			if (GET_PLAYER(getOwnerINLINE()).hasContentsYieldEquipmentAmount(eProfession)) // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 			{
-				YieldTypes eYield = (YieldTypes) i;
-				int iYieldAmount = GET_PLAYER(getOwnerINLINE()).getYieldEquipmentAmount(eProfession, eYield);
-//				int iAltEquipmentYield = getAltEquipmentTypes(eYield);
-//				if (iAltEquipmentYield > 0)
-//				{
-//				    iYieldAmount += iAltEquipmentYield;
-//				}
-//				if (iaAltEquipment[i] > 0)
-//				{
-//				    iYieldAmount -= iaAltEquipment[i];
-//				}
-				iPower += iChange * GC.getYieldInfo(eYield).getPowerValue() * iYieldAmount;
-				kOwner.changeAssets(iChange * GC.getYieldInfo(eYield).getAssetValue() * iYieldAmount);
+				for (int i = 0; i < NUM_YIELD_TYPES; ++i)
+				{
+					YieldTypes eYield = (YieldTypes) i;
+					int iYieldAmount = GET_PLAYER(getOwnerINLINE()).getYieldEquipmentAmount(eProfession, eYield);
+//					int iAltEquipmentYield = getAltEquipmentTypes(eYield);
+//					if (iAltEquipmentYield > 0)
+//					{
+//					    iYieldAmount += iAltEquipmentYield;
+//					}
+//					if (iaAltEquipment[i] > 0)
+//					{
+//					    iYieldAmount -= iaAltEquipment[i];
+//					}
+					iPower += iChange * GC.getYieldInfo(eYield).getPowerValue() * iYieldAmount;
+					kOwner.changeAssets(iChange * GC.getYieldInfo(eYield).getAssetValue() * iYieldAmount);
+				}
 			}
 
 			kOwner.changePower(iPower);
@@ -14564,10 +14581,10 @@ bool CvUnit::raidWeapons(CvUnit* pUnit)
 	}
 
 	std::vector<int> aYields(NUM_YIELD_TYPES, 0);
-	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+	CvPlayer& kOwner = GET_PLAYER(pUnit->getOwnerINLINE());
+	if (kOwner.hasContentsYieldEquipmentAmountSecure(pUnit->getProfession())) // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 	{
-		CvPlayer& kOwner = GET_PLAYER(pUnit->getOwnerINLINE());
-		if (pUnit->getProfession() != NO_PROFESSION)
+		for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
 		{
 			aYields[iYield] += kOwner.getYieldEquipmentAmount(pUnit->getProfession(), (YieldTypes) iYield);
 		}

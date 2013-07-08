@@ -121,6 +121,11 @@ CvTraitInfo* CyGlobalContext::getTraitInfo(int i) const
 
 CvUnitInfo* CyGlobalContext::getUnitInfo(int i) const
 {
+	// cache XML - start - Nightinggale
+	// This is the first function called when opening the Pedia.
+	// Set the cache in case the Pedia in opened from main menu
+	GC.setXMLCache();
+	// cache XML - end - Nightinggale
 	return (i>=0 && i<GC.getNumUnitInfos()) ? &GC.getUnitInfo((UnitTypes) i) : NULL;
 }
 CvSpecialUnitInfo* CyGlobalContext::getSpecialUnitInfo(int i) const

@@ -11386,18 +11386,20 @@ bool CvUnitAI::AI_joinCityDefender()
 
 	CvProfessionInfo& kProfession = GC.getProfessionInfo(getProfession());
 
-
-	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+	if (GET_PLAYER(getOwnerINLINE()).hasContentsYieldEquipmentAmount(getProfession())) // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
 	{
-	    ///Tks Med
-	    int iCapacity = pCity->getMaxYieldCapacity((YieldTypes)iYield);
-	    ///Tke
-		int iAmount = GET_PLAYER(getOwnerINLINE()).getYieldEquipmentAmount(getProfession(), (YieldTypes)iYield);
-		if (iAmount > 0)
+		for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
 		{
-			if ((pCity->getYieldStored((YieldTypes)iYield) + (iAmount * 2)) > iCapacity)
+			///Tks Med
+			int iCapacity = pCity->getMaxYieldCapacity((YieldTypes)iYield);
+			///Tke
+			int iAmount = GET_PLAYER(getOwnerINLINE()).getYieldEquipmentAmount(getProfession(), (YieldTypes)iYield);
+			if (iAmount > 0)
 			{
-				return false;
+				if ((pCity->getYieldStored((YieldTypes)iYield) + (iAmount * 2)) > iCapacity)
+				{
+					return false;
+				}
 			}
 		}
 	}
