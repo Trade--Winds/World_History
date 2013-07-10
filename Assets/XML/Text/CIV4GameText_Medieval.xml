@@ -1006,8 +1006,40 @@
     <Spanish>The first armor you can make here will be [COLOR_UNIT_TEXT]Scale Armor[COLOR_REVERT]. With further research you can also make [COLOR_UNIT_TEXT]Mail Armor[COLOR_REVERT] and [COLOR_UNIT_TEXT]Plate Armor[COLOR_REVERT]. To change the type of armor made click the building icon while in the City Management screen.</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_MISC_UNIT_DESTROYED_BARBARIAN</Tag>
+    <English>A %s1_Civ %s2_UnitName has defeated a %s3_EnUName near your Realm!</English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MISC_ANIMAL_UNIT_DESTROYED_PATROL</Tag>
+    <English>A %s1_UnitName has be hunted by your %s2_lodge hunting party!</English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MISC_BANDIT_UNIT_DESTROYED_PATROL</Tag>
+    <English>A %s1_UnitName has be killed by your %s2_lodge patrol!</English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_IMPROVEMENT_WATCH_TOWER_HELP</Tag>
-    <English>[ICON_BULLET]Patrols out to %d1 tiles in search of Marauders.[NEWLINE][ICON_BULLET]Kills any animals that enters this plot</English>
+    <English>[ICON_BULLET]Patrols out to %d1 tiles in search of Marauders.[NEWLINE][ICON_BULLET]Kills any animals or bandits that enters within 1 tile</English>
+    <French>[ICON_BULLET]Patrols out to %d1 tiles in search of Marauders.</French>
+    <German>[ICON_BULLET]Patrols out to %d1 tiles in search of Marauders.</German>
+    <Italian>[ICON_BULLET]Patrols out to %d1 tiles in search of Marauders.</Italian>
+    <Spanish>[ICON_BULLET]Patrols out to %d1 tiles in search of Marauders.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_IMPROVEMENT_LODGE_HUNT_HELP</Tag>
+    <English>[ICON_BULLET]Hunts any animals that enters within 1 tile.</English>
     <French>[ICON_BULLET]Patrols out to %d1 tiles in search of Marauders.</French>
     <German>[ICON_BULLET]Patrols out to %d1 tiles in search of Marauders.</German>
     <Italian>[ICON_BULLET]Patrols out to %d1 tiles in search of Marauders.</Italian>
@@ -1771,7 +1803,7 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_AUTO_TRAVEL_SILK_ROAD_HELP</Tag>
-    <English>The unit returns to home city or nearest city then leaves to travel along the Silk Road and then can be accessed through The Silk Road Screen.</English>
+    <English>The unit travels off the map headed for the Silk Road and then can be accessed through The Silk Road Screen. (North or South Sea)</English>
     <French>The unit travels off the map along the Silk Road and can be accessed through The Silk Road Screen.</French>
     <German>The unit travels off the map along the Silk Road and can be accessed through The Silk Road Screen.</German>
     <Italian>The unit travels off the map along the Silk Road and can be accessed through The Silk Road Screen.</Italian>
@@ -1779,7 +1811,7 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_COMMAND_TRAVEL_SILK_ROAD_HELP</Tag>
-    <English>The unit travels off the map along the Silk Road and then can be accessed through The Silk Road Screen.</English>
+    <English>The unit travels off the map headed for the Silk Road and then can be accessed through The Silk Road Screen. (North or South Sea)</English>
     <French>The unit travels off the map along the Silk Road and can be accessed through The Silk Road Screen.</French>
     <German>The unit travels off the map along the Silk Road and can be accessed through The Silk Road Screen.</German>
     <Italian>The unit travels off the map along the Silk Road and can be accessed through The Silk Road Screen.</Italian>
@@ -1787,15 +1819,15 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_COMMAND_TRAVEL_SILK_ROAD</Tag>
-    <English>Travel the Silk Road</English>
-    <French>Travel the Silk Road</French>
-    <German>Travel the Silk Road</German>
-    <Italian>Travel the Silk Road</Italian>
-    <Spanish>Travel the Silk Road</Spanish>
+    <English>Embark on the Silk Road</English>
+    <French>Embark on the Silk Road</French>
+    <German>Embark on the Silk Road</German>
+    <Italian>Embark on the Silk Road</Italian>
+    <Spanish>Embark on the Silk Road</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_AUTO_SELL_SPICE_ROUTE_HELP</Tag>
-    <English>The unit travels off the map along the Spice Route and can then be accessed through the The Spice Route Screen.</English>
+    <English>The unit travels off the map along the Spice Route and can then be accessed through the The Spice Route Screen. (East or West Seas)</English>
     <French>The unit travels off the map along the Spice Route and can then be accessed through the The Spice Route Screen.</French>
     <German>The unit travels off the map along the Spice Route and can then be accessed through the The Spice Route Screen.</German>
     <Italian>The unit travels off the map along the Spice Route and can then be accessed through the The Spice Route Screen.</Italian>

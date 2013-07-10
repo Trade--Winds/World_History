@@ -333,6 +333,7 @@
 	<iUpgradeTime>0</iUpgradeTime>
 	<iDefenseModifier>0</iDefenseModifier>
 	<iPillageGold>5</iPillageGold>
+  <iPatrolLevel>1</iPatrolLevel>
 	<bOutsideBorders>0</bOutsideBorders>
 	<TerrainMakesValids>
 		<TerrainMakesValid>
@@ -865,6 +866,7 @@
       <iUpgradeTime>0</iUpgradeTime>
       <iDefenseModifier>50</iDefenseModifier>
       <iPillageGold>50</iPillageGold>
+      <iPatrolLevel>2</iPatrolLevel>
       <bOutsideBorders>1</bOutsideBorders>
       <TerrainMakesValids>
         <TerrainMakesValid>
@@ -958,6 +960,7 @@
       <iUpgradeTime>0</iUpgradeTime>
       <iDefenseModifier>50</iDefenseModifier>
       <iPillageGold>200</iPillageGold>
+      <iPatrolLevel>2</iPatrolLevel>
       <bOutsideBorders>0</bOutsideBorders>
       <TerrainMakesValids>
         <TerrainMakesValid>
@@ -995,7 +998,7 @@
       <ImprovementPillage/>
       <ImprovementUpgrade/>
       <RouteYieldChanges/>
-      <iVisibilityChange>1</iVisibilityChange>
+      <iVisibilityChange>2</iVisibilityChange>
       <bGraphicalOnly>0</bGraphicalOnly>
     </ImprovementInfo>
     <ImprovementInfo>
@@ -1038,6 +1041,7 @@
       <iUpgradeTime>0</iUpgradeTime>
       <iDefenseModifier>50</iDefenseModifier>
       <iPillageGold>200</iPillageGold>
+      <iPatrolLevel>2</iPatrolLevel>
       <bOutsideBorders>0</bOutsideBorders>
       <TerrainMakesValids/>
       <FeatureMakesValids/>
@@ -1045,7 +1049,7 @@
       <ImprovementPillage/>
       <ImprovementUpgrade/>
       <RouteYieldChanges/>
-      <iVisibilityChange>1</iVisibilityChange>
+      <iVisibilityChange>2</iVisibilityChange>
       <bGraphicalOnly>0</bGraphicalOnly>
     </ImprovementInfo>
 	</ImprovementInfos>

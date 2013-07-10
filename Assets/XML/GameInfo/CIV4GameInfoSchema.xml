@@ -52,6 +52,14 @@
 	<ElementType name="iMinLandDistance" content="textOnly" dt:type="int"/>
 	<ElementType name="iWidthPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="Direction" content="textOnly"/>
+  <ElementType name="bValue" content="textOnly" dt:type="boolean"/>
+  <ElementType name="TradeScreenType" content="eltOnly">
+    <element type="TradeScreen"/>
+    <element type="bValue"/>
+  </ElementType>
+  <ElementType name="TradeScreenTypes" content="eltOnly">
+    <element type="TradeScreenType" minOccurs="0" maxOccurs="*"/>
+  </ElementType>
 	<ElementType name="EuropeInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -60,6 +68,7 @@
 		<element type="iTripLength"/>
 		<element type="iMinLandDistance"/>
 		<element type="iWidthPercent"/>
+    <element type="TradeScreenTypes" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="WorldInfo" content="eltOnly">
 		<element type="Type"/>

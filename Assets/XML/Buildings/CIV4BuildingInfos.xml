@@ -123,7 +123,7 @@
       <iAdvancedStartCost>-1</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
       <iProfessionOutput>6</iProfessionOutput>
-      <iMaxWorkers>3</iMaxWorkers>
+      <iMaxWorkers>2</iMaxWorkers>
       <iMinAreaSize>-1</iMinAreaSize>
       <iConquestProb>100</iConquestProb>
       <iCitiesPrereq>0</iCitiesPrereq>
@@ -156,7 +156,12 @@
       <DomainFreeExperiences/>
       <DomainProductionModifiers/>
       <PrereqBuildingClasses/>
-      <BuildingClassNeededs/>
+      <BuildingClassNeededs>
+        <BuildingClassNeeded>
+          <BuildingClassType>BUILDINGCLASS_MANOR</BuildingClassType>
+          <bNeededInCity>1</bNeededInCity>
+        </BuildingClassNeeded>
+      </BuildingClassNeededs>
       <AutoSellsYields/>
       <HotKey/>
       <bAltDown>0</bAltDown>

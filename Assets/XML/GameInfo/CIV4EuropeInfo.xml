@@ -14,6 +14,12 @@
 			<iTripLength>3</iTripLength>
 			<iMinLandDistance>4</iMinLandDistance>
 			<iWidthPercent>20</iWidthPercent>
+      <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <bValue>1</bValue>
+        </TradeScreenType>
+      </TradeScreenTypes>
 		</EuropeInfo>
 		<EuropeInfo>
 			<Type>EUROPE_WEST</Type>
@@ -23,6 +29,12 @@
 			<iTripLength>3</iTripLength>
 			<iMinLandDistance>4</iMinLandDistance>
 			<iWidthPercent>20</iWidthPercent>
+      <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <bValue>1</bValue>
+        </TradeScreenType>
+      </TradeScreenTypes>
 		</EuropeInfo>
 		<EuropeInfo>
 			<Type>EUROPE_NORTH</Type>
@@ -32,6 +44,12 @@
 			<iTripLength>3</iTripLength>
 			<iMinLandDistance>3</iMinLandDistance>
 			<iWidthPercent>20</iWidthPercent>
+      <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <bValue>1</bValue>
+        </TradeScreenType>
+      </TradeScreenTypes>
 		</EuropeInfo>
 		<EuropeInfo>
 			<Type>EUROPE_SOUTH</Type>
@@ -41,6 +59,12 @@
 			<iTripLength>3</iTripLength>
 			<iMinLandDistance>3</iMinLandDistance>
 			<iWidthPercent>20</iWidthPercent>
+      <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <bValue>1</bValue>
+        </TradeScreenType>
+      </TradeScreenTypes>
 		</EuropeInfo>
 	</EuropeInfos>
 </Civ4EuropeInfo>

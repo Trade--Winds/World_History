@@ -431,7 +431,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 		}
 	}
 
-	UpdateBuildingAffectedCache(); // building affected cache - Nightinggale 
+	UpdateBuildingAffectedCache(); // building affected cache - Nightinggale
 
 	GET_PLAYER(getOwnerINLINE()).AI_invalidateDistanceMap();
 	AI_init();
@@ -7382,7 +7382,7 @@ void CvCity::doYields()
                         if (!isHuman() && !isNative())
                         {
                             ///Testing
-                            FAssert(GET_PLAYER(getOwnerINLINE()).getID() != 0)
+                            //FAssert(GET_PLAYER(getOwnerINLINE()).getID() != 0)
                             bool bDiscovered = true;
                             if (GC.getYieldInfo(eYield).isMustBeDiscovered())
                             {
@@ -7594,8 +7594,8 @@ void CvCity::doYields()
 						// MultipleYieldsProduced Start by Aymerick 22/01/2010**
 						int iStudentOutput = 0;
 						///TKs Med Update 1.1c
-						if (GET_PLAYER(getOwnerINLINE()).getIdeasResearched((CivicTypes) GC.getCache_DEFAULT_FUEDALISM_TECH()))
-						{
+						//if (GET_PLAYER(getOwnerINLINE()).getIdeasResearched((CivicTypes) GC.getCache_DEFAULT_FUEDALISM_TECH()))
+						//{
                             if (GC.getProfessionInfo(eProfession).getYieldsProduced(0) == eYield && GC.getUnitInfo(pLoopUnit->getUnitType()).getKnightDubbingWeight() > 0 && !pLoopUnit->isHasRealPromotion((PromotionTypes)GC.getCache_DEFAULT_KNIGHT_PROMOTION()))
                             // MultipleYieldsProduced End
                             {
@@ -7604,7 +7604,7 @@ void CvCity::doYields()
                                 FAssert(iStudentOutput > 0);
                                 pLoopUnit->setYieldStored(pLoopUnit->getYieldStored() + std::max(iStudentOutput, 1));
                             }
-						}
+						//}
 						///TKe Update
 						if (GC.getProfessionInfo(eProfession).getSpecialBuilding() == (SpecialBuildingTypes)GC.getCache_DEFAULT_SPECIALBUILDING_COURTHOUSE())
                         {
@@ -8298,7 +8298,7 @@ void CvCity::read(FDataStreamBase* pStream)
  		// transport feeder - end - Nightinggale
  	} else {
  		int iNumYields;
- 
+
  		pStream->Read(&iNumYields);
  		for (int iI = 0; iI < iNumYields; iI++)
  		{
@@ -8306,7 +8306,7 @@ void CvCity::read(FDataStreamBase* pStream)
  			pStream->Read(&iIndex);
  			ma_tradeImports.set(true, iIndex);
  		}
-  
+
  		pStream->Read(&iNumYields);
  		for (int iI = 0; iI < iNumYields; iI++)
  		{
@@ -8324,7 +8324,7 @@ void CvCity::read(FDataStreamBase* pStream)
  			ma_tradeMarket.set(true, iIndex);
 		}
 		///Tke
- 
+
  		pStream->Read(&iNumYields);
  		for (int i = 0; i < iNumYields; ++i)
  		{
@@ -10649,7 +10649,7 @@ void CvCity::addImport(YieldTypes eYield, bool bUpdateRoutes)
   	{
   		return;
   	}
-  
+
  	ma_tradeImports.set(true, eYield);
  	// traderoute just-in-time - end - Nightinggale
 
@@ -10809,30 +10809,30 @@ int CvCity::getMaintainLevel(YieldTypes eYield) const
  	return ma_tradeThreshold.get(eYield);
  	// traderoute just-in-time - end - Nightinggale
 }
- 
+
  // transport feeder - start - Nightinggale
- 
+
  bool CvCity::getImportsMaintain(YieldTypes eYield) const
 {
  	return ma_tradeImportsMaintain.get(eYield);
 }
- 
+
  void CvCity::setImportsMaintain(YieldTypes eYield, bool bSetting)
 {
  	ma_tradeImportsMaintain.set(bSetting, eYield);
  	checkImportsMaintain(eYield);
 }
- 
+
  void CvCity::checkImportsMaintain(YieldTypes eYield)
 {
  	FAssert(eYield >= 0);
  	FAssert(eYield < NUM_YIELD_TYPES);
- 
+
  	if (!ma_tradeImportsMaintain.get(eYield)) return;
- 
+
  	int iMaintainLevel = ma_tradeThreshold.get(eYield);
  	int iStoredLevel   = getYieldStored(eYield);
- 
+
  	if (iStoredLevel >= iMaintainLevel)
  	{
  		removeImport(eYield);
@@ -11474,4 +11474,4 @@ void CvCity::UpdateBuildingAffectedCache()
 	m_cache_MaxYieldCapacity[NUM_YIELD_TYPES] = getMaxYieldCapacityUncached(NO_YIELD);
 	// cache getMaxYieldCapacity - end - Nightinggale
 }
-// building affected cache - end - Nightinggale 
+// building affected cache - end - Nightinggale

@@ -39,7 +39,7 @@
         </TradeRouteTripLength>
         <TradeRouteTripLength>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
-          <iTripLength>2</iTripLength>
+          <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
       </TradeRouteTripLengths>
 		</GameSpeedInfo>
@@ -75,7 +75,7 @@
         </TradeRouteTripLength>
         <TradeRouteTripLength>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
-          <iTripLength>2</iTripLength>
+          <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
       </TradeRouteTripLengths>
 		</GameSpeedInfo>
@@ -111,7 +111,7 @@
         </TradeRouteTripLength>
         <TradeRouteTripLength>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
-          <iTripLength>2</iTripLength>
+          <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
       </TradeRouteTripLengths>
 		</GameSpeedInfo>

@@ -8488,6 +8488,7 @@ m_aiYieldIncrease(NULL),
 ///TKs Med
 m_aiYieldPercentIncrease(NULL),
 m_iVisibilityChange(0),
+m_iPatrolLevel(0),
 m_bRequiresCityYields(false),
 m_iCreatesBonus(NO_BONUS),
 m_aiRequiredCityYields(NULL),
@@ -8661,6 +8662,10 @@ int CvImprovementInfo::getVisibilityChange() const
 {
 	return m_iVisibilityChange;
 }
+int CvImprovementInfo::getPatrolLevel() const
+{
+	return m_iPatrolLevel;
+}
 int CvImprovementInfo::getBonusCreated() const
 {
 	return m_iCreatesBonus;
@@ -8786,6 +8791,7 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iWorldSoundscapeScriptId);
 	///Tks Med
 	stream->Read(&m_iVisibilityChange);
+	stream->Read(&m_iPatrolLevel);
 	//Tke
 	// Arrays
 	SAFE_DELETE_ARRAY(m_aiPrereqNatureYield);
@@ -8866,6 +8872,7 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iWorldSoundscapeScriptId);
 	///Tks Med
 	stream->Write(m_iVisibilityChange);
+	stream->Write(m_iPatrolLevel);
 	///Tke
 	// Arrays
 	stream->Write(NUM_YIELD_TYPES, m_aiPrereqNatureYield);
@@ -8910,6 +8917,7 @@ bool CvImprovementInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bRequiresCityYields, "bRequiresCityYields");
 	pXML->SetVariableListTagPair(&m_aiRequiredCityYields, "RequiredCityYields", NUM_YIELD_TYPES, 0);
 	pXML->GetChildXmlValByName(&m_iVisibilityChange, "iVisibilityChange");
+	pXML->GetChildXmlValByName(&m_iPatrolLevel, "iPatrolLevel");
 	///TKe
 	pXML->SetVariableListTagPair(&m_aiRiverSideYieldChange, "RiverSideYieldChanges", NUM_YIELD_TYPES, 0);
 	pXML->SetVariableListTagPair(&m_aiHillsYieldChange, "HillsYieldChanges", NUM_YIELD_TYPES, 0);
@@ -10927,12 +10935,20 @@ CvEuropeInfo::CvEuropeInfo() :
 	m_iCardinalDirection(NO_CARDINALDIRECTION),
 	m_iTripLength(0),
 	m_iMinLandDistance(0),
-	m_iWidthPercent(0)
+	m_iWidthPercent(0),
+	///TKs Med
+	m_aiTradeScreens(NULL)
 {
 }
 CvEuropeInfo::~CvEuropeInfo()
 {
+    SAFE_DELETE_ARRAY(m_aiTradeScreens);
 }
+int CvEuropeInfo::getTradeScreensValid(int i) const
+{
+	return m_aiTradeScreens ? m_aiTradeScreens[i] : 0;
+}
+///Tke
 bool CvEuropeInfo::isStart() const
 {
 	return m_bStart;
@@ -10984,6 +11000,9 @@ bool CvEuropeInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iTripLength, "iTripLength");
 	pXML->GetChildXmlValByName(&m_iMinLandDistance, "iMinLandDistance");
 	pXML->GetChildXmlValByName(&m_iWidthPercent, "iWidthPercent");
+	///Tks Med
+	pXML->SetVariableListTagPair(&m_aiTradeScreens, "TradeScreenTypes", NUM_TRADE_SCREEN_TYPES, 0);
+	///TKe
 
 	return true;
 }

@@ -14721,6 +14721,11 @@ bool CvPlayerAI::AI_doDiploOfferVassalCity(PlayerTypes ePlayer)
 	    return false;
 	}
 
+	if (!isNative())
+	{
+	    return false;
+	}
+
 //	for (int iI = 0; iI < MAX_PLAYERS; iI++)
 //	{
 //	    if (GET_PLAYER((PlayerTypes)iI).getVassalOwner() == ePlayer)

@@ -2957,6 +2957,14 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 	}
 
 	///TKs Med
+	if (isHuman() && m_pUnitInfo->isPreventTraveling() && !m_pUnitInfo->isMechUnit())
+	{
+	    if (pPlot->getOwner() != getOwner())
+	    {
+	        return false;
+	    }
+	}
+
     if (isBarbarian() && pPlot->isCity())
     {
         return false;
@@ -3528,36 +3536,10 @@ bool CvUnit::canAutomate(AutomateTypes eAutomate) const
         }
 		break;
     case AUTOMATE_TRAVEL_SILK_ROAD:
-        {
-            if (GET_PLAYER(getOwnerINLINE()).getNumCities() <= 0 || GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
-            {
-                return false;
-            }
-            if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
-		    {
-		        if (GC.getCache_CHEAT_TRAVEL_ALL() == 0)
-		        {
-                    return false;
-		        }
-		    }
-            if (plot()->isCity())
-            {
-                return false;
-            }
-            if (cargoSpace() == 0)
-            {
-               return false;
-            }
-            if (getDomainType() == DOMAIN_SEA)
-            {
-                return false;
-            }
-            if (m_pUnitInfo->isPreventTraveling())
-            {
-                return false;
-            }
-        //return false;
-        }
+        if (!canAutoCrossOcean(plot(), TRADE_ROUTE_SILK_ROAD))
+		{
+			return false;
+		}
 		break;
     ///TKe
 	case AUTOMATE_FULL:
@@ -4278,6 +4260,18 @@ bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteT
         }
 
 	}
+	else if (eTradeRouteType == TRADE_ROUTE_SILK_ROAD)
+	{
+        if (!GET_PLAYER(getOwner()).getHasTradeRouteType(eTradeRouteType))
+        {
+            return false;
+        }
+        if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_SILK_ROAD, eTradeRouteType))
+        {
+            return false;
+        }
+
+	}
 ///TKe
 	if (!GET_PLAYER(getOwnerINLINE()).canTradeWithEurope())
 	{
@@ -4342,18 +4336,20 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 		    {
 		        return false;
 		    }
-		    if (!pPlot->isEurope())
+		    if (pPlot->isEurope())
             {
-                return false;
+                //EuropeTypes eEurope = (EuropeTypes)pPlot->getEurope();
+                if (GC.getEuropeInfo(pPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SPICE_ROUTE))
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return true;
-            }
+
+            return false;
 		}
 		else if (eNewState == UNIT_TRAVEL_STATE_TO_SILK_ROAD)
 		{
-		    if (getDomainType() != DOMAIN_LAND)
+		    if (getDomainType() != DOMAIN_SEA)
 		    {
 		        return false;
 		    }
@@ -4361,6 +4357,18 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 		    {
 		        return false;
 		    }
+            //EuropeTypes eEurope = (EuropeTypes)pPlot->getEurope();
+		    if (pPlot->isEurope())
+            {
+                if (GC.getEuropeInfo(pPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SILK_ROAD))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+
 		}
 		else if (eNewState == UNIT_TRAVEL_STATE_TO_TRADE_FAIR)
 		{
@@ -4372,6 +4380,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 		    {
 		        return false;
 		    }
+
 		}
 		if (!GET_PLAYER(getOwnerINLINE()).canTradeWithEurope())
 		{
@@ -4409,7 +4418,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 		break;
 	}
 
-	if(isHuman() && !GC.getCivilizationInfo(getCivilizationType()).isWaterStart() && (eTradeRouteType == TRADE_ROUTE_FAIR || eTradeRouteType == TRADE_ROUTE_SILK_ROAD))
+	if(isHuman() && !GC.getCivilizationInfo(getCivilizationType()).isWaterStart() && (eTradeRouteType == TRADE_ROUTE_FAIR))
 	{
 
         if (getDomainType() != DOMAIN_LAND)
@@ -9918,6 +9927,71 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 		{
 			load(false);
 		}
+         ///TK Med Autokill Bandits and Animals
+        pWorkingCity = pNewPlot->getWorkingCity();
+
+        if (isBarbarian() || isAlwaysHostile(pNewPlot))
+        {
+            if (pNewPlot->getImprovementType() != NO_IMPROVEMENT)
+            {
+                if (GC.getImprovementInfo(pNewPlot->getImprovementType()).isActsAsCity())
+                {
+                    bool bKill = true;
+                    if (GC.getImprovementInfo(pNewPlot->getImprovementType()).getPatrolLevel() <= 1)
+                    {
+                        if (!m_pUnitInfo->isAnimal())
+                        {
+                            bKill = false;
+                        }
+                    }
+                    if (bKill)
+                    {
+                        if (m_pUnitInfo->isAnimal())
+                        {
+                            if (pWorkingCity != NULL)
+                            {
+
+                                int iYieldStored = GC.getCache_CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT();
+                                iYieldStored = (GC.getGameINLINE().getSorenRandNum(iYieldStored, "Random City Kill") + 1);
+                                int iCityYieldStore = pWorkingCity->getYieldStored(YIELD_GRAIN) + iYieldStored;
+                                pWorkingCity->setYieldStored(YIELD_GRAIN, iCityYieldStore);
+                                if (pWorkingCity->isHuman())
+                                {
+                                    PlayerTypes eCityOwner = pWorkingCity->getOwnerINLINE();
+                                    CvWString szBuffer;
+                                    szBuffer = gDLL->getText("TXT_KEY_CITY_CAPTURE_ANIMAL", GC.getImprovementInfo(pNewPlot->getImprovementType()).getTextKeyWide(), iYieldStored, GC.getYieldInfo(YIELD_GRAIN).getChar(), pWorkingCity->getNameKey());
+                                    gDLL->getInterfaceIFace()->addMessage(eCityOwner, false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pWorkingCity->getX_INLINE(), pWorkingCity->getY_INLINE());
+                                }
+                            }
+
+
+                        }
+                        if (pNewPlot->getOwner() != NO_PLAYER)
+                        {
+                            if (GET_PLAYER(pNewPlot->getOwner()).isHuman())
+                            {
+                                CvWString szBuffer;
+
+                                if (m_pUnitInfo->isAnimal())
+                                {
+                                    szBuffer = gDLL->getText("TXT_KEY_MISC_ANIMAL_UNIT_DESTROYED_PATROL", getNameOrProfessionKey(), GC.getImprovementInfo(pNewPlot->getImprovementType()).getTextKeyWide());
+                                }
+                                else
+                                {
+                                    szBuffer = gDLL->getText("TXT_KEY_MISC_BANDIT_UNIT_DESTROYED_PATROL", getNameOrProfessionKey(), GC.getImprovementInfo(pNewPlot->getImprovementType()).getTextKeyWide());
+                                }
+                                gDLL->getInterfaceIFace()->addMessage(pNewPlot->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX_INLINE(), pNewPlot->getY_INLINE());
+                            }
+
+                        }
+                        kill(true);
+                        return;
+                    }
+
+                }
+            }
+
+        }
 
 		for (int iDX = -1; iDX <= 1; ++iDX)
 		{
@@ -9926,69 +10000,101 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 				CvPlot* pLoopPlot = ::plotXY(getX_INLINE(), getY_INLINE(), iDX, iDY);
 				if (pLoopPlot != NULL)
 				{
-					for (iI = 0; iI < MAX_TEAMS; iI++)
-					{
-						TeamTypes eLoopTeam = (TeamTypes) iI;
-						if (GET_TEAM(eLoopTeam).isAlive())
-						{
-							if (!isInvisible(eLoopTeam, false) && getVisualOwner(eLoopTeam) == getOwnerINLINE())
-							{
-								if (pLoopPlot->plotCount(PUF_isVisualTeam, eLoopTeam, getTeam(), NO_PLAYER, eLoopTeam, PUF_isVisible, getOwnerINLINE(), -1) > 0)
-								{
-									GET_TEAM(eLoopTeam).meet(getTeam(), true);
-								}
-							}
-						}
-					}
+				    if (isBarbarian() || isAlwaysHostile(pLoopPlot))
+				    {
+				        if (pLoopPlot->getImprovementType() != NO_IMPROVEMENT)
+                        {
+                            if (GC.getImprovementInfo(pLoopPlot->getImprovementType()).isActsAsCity())
+                            {
+                                CvCity* pLoopCity = pLoopPlot->getWorkingCity();
+                                bool bKill = true;
+                                if (GC.getImprovementInfo(pLoopPlot->getImprovementType()).getPatrolLevel() <= 1)
+                                {
+                                    if (!m_pUnitInfo->isAnimal())
+                                    {
+                                        bKill = false;
+                                    }
+                                }
+                                if (bKill)
+                                {
+                                    if (m_pUnitInfo->isAnimal())
+                                    {
+                                        if (pLoopCity != NULL)
+                                        {
 
-					if (pLoopPlot->isOwned() && getVisualOwner(pLoopPlot->getTeam()) == getOwnerINLINE())
-					{
-						if (pLoopPlot->isCity() || !GET_PLAYER(pLoopPlot->getOwnerINLINE()).isAlwaysOpenBorders())
-						{
-							GET_TEAM(pLoopPlot->getTeam()).meet(getTeam(), true);
-						}
-					}
+                                            int iYieldStored = GC.getCache_CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT();
+                                            iYieldStored = (GC.getGameINLINE().getSorenRandNum(iYieldStored, "Random City Kill") + 1);
+                                            int iCityYieldStore = pLoopCity->getYieldStored(YIELD_GRAIN) + iYieldStored;
+                                            pLoopCity->setYieldStored(YIELD_GRAIN, iCityYieldStore);
+                                            if (pLoopCity->isHuman())
+                                            {
+                                                PlayerTypes eCityOwner = pLoopCity->getOwnerINLINE();
+                                                CvWString szBuffer;
+                                                szBuffer = gDLL->getText("TXT_KEY_CITY_CAPTURE_ANIMAL", GC.getImprovementInfo(pLoopPlot->getImprovementType()).getTextKeyWide(), iYieldStored, GC.getYieldInfo(YIELD_GRAIN).getChar(), pLoopCity->getNameKey());
+                                                gDLL->getInterfaceIFace()->addMessage(eCityOwner, false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());
+                                            }
+                                        }
+
+
+                                    }
+                                    if (pLoopPlot->getOwner() != NO_PLAYER)
+                                    {
+                                        if (GET_PLAYER(pLoopPlot->getOwner()).isHuman())
+                                        {
+                                            CvWString szBuffer;
+                                            if (m_pUnitInfo->isAnimal())
+                                            {
+                                                szBuffer = gDLL->getText("TXT_KEY_MISC_ANIMAL_UNIT_DESTROYED_PATROL", getNameOrProfessionKey(), GC.getImprovementInfo(pLoopPlot->getImprovementType()).getTextKeyWide());
+                                            }
+                                            else
+                                            {
+                                                szBuffer = gDLL->getText("TXT_KEY_MISC_BANDIT_UNIT_DESTROYED_PATROL", getNameOrProfessionKey(), GC.getImprovementInfo(pLoopPlot->getImprovementType()).getTextKeyWide());
+                                            }
+                                            gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
+                                        }
+
+                                    }
+                                    kill(true);
+                                    return;
+                                }
+                            }
+                        }
+
+				    }
+				    else
+				    {
+                        for (iI = 0; iI < MAX_TEAMS; iI++)
+                        {
+                            TeamTypes eLoopTeam = (TeamTypes) iI;
+                            if (GET_TEAM(eLoopTeam).isAlive())
+                            {
+                                if (!isInvisible(eLoopTeam, false) && getVisualOwner(eLoopTeam) == getOwnerINLINE())
+                                {
+                                    if (pLoopPlot->plotCount(PUF_isVisualTeam, eLoopTeam, getTeam(), NO_PLAYER, eLoopTeam, PUF_isVisible, getOwnerINLINE(), -1) > 0)
+                                    {
+                                        GET_TEAM(eLoopTeam).meet(getTeam(), true);
+                                    }
+                                }
+                            }
+                        }
+
+                        if (pLoopPlot->isOwned() && getVisualOwner(pLoopPlot->getTeam()) == getOwnerINLINE())
+                        {
+                            if (pLoopPlot->isCity() || !GET_PLAYER(pLoopPlot->getOwnerINLINE()).isAlwaysOpenBorders())
+                            {
+                                GET_TEAM(pLoopPlot->getTeam()).meet(getTeam(), true);
+                            }
+                        }
+				    }
 				}
 			}
 		}
 
 		pNewCity = pNewPlot->getPlotCity();
 
-		pWorkingCity = pNewPlot->getWorkingCity();
-
+		///TKend
 		if (pWorkingCity != NULL)
 		{
-		    ///TK MEd
-		    if (m_pUnitInfo->isAnimal())
-            {
-                if (pNewPlot->getImprovementType() != NO_IMPROVEMENT)
-                {
-                    if (GC.getImprovementInfo(plot()->getImprovementType()).isActsAsCity())
-                    {
-                        //CvCity* pCity = plot()->getWorkingCity();
-                        if (pWorkingCity != NULL)
-                        {
-
-                            int iYieldStored = GC.getCache_CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT();
-                            iYieldStored = (GC.getGameINLINE().getSorenRandNum(iYieldStored, "Random City Kill") + 1);
-                            int iCityYieldStore = pWorkingCity->getYieldStored(YIELD_GRAIN) + iYieldStored;
-                            pWorkingCity->setYieldStored(YIELD_GRAIN, iCityYieldStore);
-                            if (pWorkingCity->isHuman())
-                            {
-                                PlayerTypes eCityOwner = pWorkingCity->getOwnerINLINE();
-                                CvWString szBuffer;
-                                szBuffer = gDLL->getText("TXT_KEY_CITY_CAPTURE_ANIMAL", GC.getImprovementInfo(pNewPlot->getImprovementType()).getTextKeyWide(), iYieldStored, GC.getYieldInfo(YIELD_GRAIN).getChar(), pWorkingCity->getNameKey());
-                                gDLL->getInterfaceIFace()->addMessage(eCityOwner, false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pWorkingCity->getX_INLINE(), pWorkingCity->getY_INLINE());
-                            }
-
-                            kill(true);
-                            return;
-                        }
-
-                    }
-                }
-            }
-		    ///TKend
 			if (canSiege(pWorkingCity->getTeam()))
 			{
 				pWorkingCity->verifyWorkingPlot(pWorkingCity->getCityPlotIndex(pNewPlot));

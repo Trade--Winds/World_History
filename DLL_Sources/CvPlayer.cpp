@@ -16119,7 +16119,7 @@ void CvPlayer::doImmigrant(int iIndex, int iReason)
                 CvCity* pPrimaryCity = getPrimaryCity();
                 CvCity* pImmigationCity = findImmigrationCity(pPrimaryCity, GC.getCache_IMMIGRATION_MAX_CITY_DISTANCE());
 
-                if (pImmigationCity != NULL)
+                if (pImmigationCity != NULL && !GC.getUnitInfo(eBestUnit).isPreventTraveling())
                 {
                      pUnit = initUnit(eBestUnit, (ProfessionTypes) GC.getUnitInfo(eBestUnit).getDefaultProfession(), pImmigationCity->getX_INLINE(), pImmigationCity->getY_INLINE());
                     if (pUnit != NULL)
@@ -16161,6 +16161,7 @@ void CvPlayer::doImmigrant(int iIndex, int iReason)
                         iReason = -1;
                     }
                 }
+                FAssert(pPrimaryCity != NULL);
             }
             else
             {

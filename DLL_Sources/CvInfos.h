@@ -2280,6 +2280,7 @@ public:
 	///TKs Med
 	DllExport int getYieldPercentIncrease(int i) const;
 	DllExport int getVisibilityChange() const;
+	DllExport int getPatrolLevel() const;
 	DllExport int getBonusCreated() const;
 	DllExport bool isRequiresCityYields() const;
 	DllExport int getRequiredCityYields(int i) const;
@@ -2339,6 +2340,7 @@ protected:
 	///TKs Med
 	int* m_aiYieldPercentIncrease;
 	int m_iVisibilityChange;
+	int m_iPatrolLevel;
 	int m_iCreatesBonus;
     bool m_bRequiresCityYields;
 	int* m_aiRequiredCityYields;
@@ -2984,7 +2986,7 @@ public:
 	DllExport int getTripLength() const;
 	DllExport int getMinLandDistance() const;
 	DllExport int getWidthPercent() const;
-
+    DllExport int getTradeScreensValid(int i) const;
 	DllExport bool read(CvXMLLoadUtility* pXML);
 
 protected:
@@ -2993,6 +2995,9 @@ protected:
 	int m_iTripLength;
 	int m_iMinLandDistance;
 	int m_iWidthPercent;
+	///Tks Med
+    int* m_aiTradeScreens;
+	///TKe
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -7071,8 +7071,16 @@ void CvGameTextMgr::setImprovementHelp(CvWStringBuffer &szBuffer, ImprovementTyp
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_DEFENSE_MODIFIER_EXTRA"));
 		///TKs Med
-		szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_WATCH_TOWER_HELP", GC.getCache_MARAUDERS_TOWER_RANGE()));
+		if (info.getPatrolLevel() > 1)
+		{
+            szBuffer.append(NEWLINE);
+            szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_WATCH_TOWER_HELP", GC.getCache_MARAUDERS_TOWER_RANGE()));
+		}
+		else
+		{
+            szBuffer.append(NEWLINE);
+            szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_LODGE_HUNT_HELP", GC.getCache_MARAUDERS_TOWER_RANGE()));
+		}
 		///TKe
 	}
 
