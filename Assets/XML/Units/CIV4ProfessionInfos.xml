@@ -1251,7 +1251,6 @@
       <FreePromotions/>
       <YieldsProduced>
         <YieldType>YIELD_CATTLE</YieldType>
-        <YieldType>YIELD_FOOD</YieldType>
       </YieldsProduced>
       <YieldsConsumed>
         <YieldType>NONE</YieldType>

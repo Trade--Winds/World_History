@@ -9663,6 +9663,9 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                 CivicTypes eSpiceRoute = (CivicTypes)GC.getCache_TRADE_ROUTE_SPICE();
                 CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
                 kPlayer.setHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE, true);
+                CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
+                gDLL->getInterfaceIFace()->addPopup(pInfo, GET_PLAYER(getOwner()).getID());
             }
 
         }

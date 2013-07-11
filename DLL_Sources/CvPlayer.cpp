@@ -2424,6 +2424,7 @@ void CvPlayer::doTurn()
 	gDLL->getEventReporterIFace()->endPlayerTurn( GC.getGameINLINE().getGameTurn(),  getID());
 
 	FAssert(checkPower(false));
+	FAssert(checkPower(false));
 	FAssert(checkPopulation());
 
 }
@@ -8600,7 +8601,7 @@ void CvPlayer::loadUnitFromEurope(CvUnit* pUnit, CvUnit* pTransport)
 			{
 				m_aEuropeUnits.erase(it);
 				addExistingUnit(pUnit);
-				FAssert(pUnit->getUnitTravelState() == UNIT_TRAVEL_STATE_IN_EUROPE);
+				FAssert(pUnit->getUnitTravelState() != NO_UNIT_TRAVEL_STATE);
 				pUnit->addToMap(pTransport->getX_INLINE(), pTransport->getY_INLINE());
 				pUnit->setTransportUnit(pTransport);
 				gDLL->getInterfaceIFace()->setDirty(EuropeScreen_DIRTY_BIT, true);
@@ -10748,11 +10749,25 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
         ModCodeTypes iModdersCode = (ModCodeTypes)kCivicInfo.getModdersCode1();
         if (iModdersCode == SPICE_ROUTE)
         {
-            setHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE, true);
+            if (!getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
+            {
+                CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
+                gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
+                setHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE, true);
+            }
+
         }
         else if (iModdersCode == SILK_ROAD_ROUTE)
         {
-            setHasTradeRouteType(TRADE_ROUTE_SILK_ROAD, true);
+            if (!getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
+            {
+                CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                pInfo->setText(CvWString("ART_DEF_MOVIE_SILK_ROAD"));
+                gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
+                setHasTradeRouteType(TRADE_ROUTE_SILK_ROAD, true);
+            }
+
         }
         else if (iModdersCode == ALLOWS_TRADE_FAIR)
         {
@@ -14703,7 +14718,7 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier)
 	}
 	///TKs Med
 	int iPrice = 0;
-	if (iPriceModifier >= 0)
+	if (iPriceModifier > 1)
 	{
 		iPrice = getEuropeUnitBuyPrice(eUnit) * iPriceModifier / 100;
 	}
@@ -14786,13 +14801,26 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier)
          else if (iPriceModifier == 1)
          {
             CvUnit* pUnit = initUnit(eUnit, (ProfessionTypes) GC.getUnitInfo(eUnit).getDefaultProfession(), INVALID_PLOT_COORD, INVALID_PLOT_COORD);
-            UnitAITypes eUnitAI = pUnit->AI_getUnitAIType();
-            CvUnit* pTransferUnit = getAndRemoveUnit(pUnit->getID());
-            FAssert(pTransferUnit == pUnit);
-            m_aEuropeUnits.push_back(pTransferUnit);
-            pTransferUnit->AI_setUnitAIType(eUnitAI);
-            pTransferUnit->setUnitTravelState(UNIT_TRAVEL_STATE_IN_SPICE_ROUTE, false);
-            gDLL->getInterfaceIFace()->setDirty(EuropeScreen_DIRTY_BIT, true);
+			FAssert(NULL != pUnit);
+			if (NULL != pUnit)
+			{
+				UnitAITypes eUnitAI = pUnit->AI_getUnitAIType();
+				CvUnit* pTransferUnit = getAndRemoveUnit(pUnit->getID());
+				FAssert(pTransferUnit == pUnit);
+				m_aEuropeUnits.push_back(pTransferUnit);
+				pTransferUnit->AI_setUnitAIType(eUnitAI);
+				pTransferUnit->setUnitTravelState(UNIT_TRAVEL_STATE_IN_SPICE_ROUTE, false);
+				gDLL->getInterfaceIFace()->setDirty(EuropeScreen_DIRTY_BIT, true);
+
+				if (NULL != pTransferUnit)
+				{
+					changeGold(-iPrice);
+					GET_TEAM(getTeam()).changeEuropeUnitsPurchased(pUnit->getUnitClassType(), 1);
+					gDLL->getEventReporterIFace()->unitBoughtFromEurope(getID(), pUnit->getID());
+				}
+
+				return pTransferUnit;
+			}
          }
          else
          {
@@ -18420,7 +18448,7 @@ void CvPlayer::changeCensureType(CensureType eCensure, int iValue)
                     changeIdeasResearched(eCivic, -1);
                     processCivics(eCivic, -1);
                     CvWString szMessage = gDLL->getText("TXT_KEY_CENSURE_EXCOMMUNICATION_LIFTED");
-                    gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_CITY_REVOLT", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("WORLDBUILDER_CITY_EDIT")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
+                    gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("WORLDBUILDER_CITY_EDIT")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
                 }
                 break;
             case CENSURE_INTERDICT:
@@ -18429,7 +18457,7 @@ void CvPlayer::changeCensureType(CensureType eCensure, int iValue)
                     changeIdeasResearched(eCivic, -1);
                     processCivics(eCivic, -1);
                     CvWString szMessage = gDLL->getText("TXT_KEY_CENSURE_EXCOMMUNICATION_LIFTED");
-                    gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_CITY_REVOLT", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("WORLDBUILDER_CITY_EDIT")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
+                    gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("WORLDBUILDER_CITY_EDIT")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
                 }
                 break;
             case CENSURE_ANATHEMA:
@@ -18438,7 +18466,7 @@ void CvPlayer::changeCensureType(CensureType eCensure, int iValue)
                     changeIdeasResearched(eCivic, -1);
                     processCivics(eCivic, -1);
                     CvWString szMessage = gDLL->getText("TXT_KEY_CENSURE_EXCOMMUNICATION_LIFTED");
-                    gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_CITY_REVOLT", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("WORLDBUILDER_CITY_EDIT")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
+                    gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("WORLDBUILDER_CITY_EDIT")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
                 }
                 break;
             default:

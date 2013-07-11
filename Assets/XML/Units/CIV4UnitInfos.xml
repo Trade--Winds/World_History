@@ -2442,7 +2442,16 @@
       <iMissionaryRateModifier>0</iMissionaryRateModifier>
       <TerrainImpassables/>
       <FeatureImpassables/>
-      <EvasionBuildings/>
+      <EvasionBuildings>
+        <EvasionBuilding>
+          <BuildingClass>BUILDINGCLASS_TOWNHALL</BuildingClass>
+          <bEvasion>1</bEvasion>
+        </EvasionBuilding>
+        <EvasionBuilding>
+          <BuildingClass>BUILDINGCLASS_OUTPOST</BuildingClass>
+          <bEvasion>1</bEvasion>
+        </EvasionBuilding>
+      </EvasionBuildings>
       <iCombat>0</iCombat>
       <iXPValueAttack>4</iXPValueAttack>
       <iXPValueDefense>2</iXPValueDefense>
@@ -2801,7 +2810,16 @@
       <iMissionaryRateModifier>0</iMissionaryRateModifier>
       <TerrainImpassables/>
       <FeatureImpassables/>
-      <EvasionBuildings/>
+      <EvasionBuildings>
+        <EvasionBuilding>
+          <BuildingClass>BUILDINGCLASS_TOWNHALL</BuildingClass>
+          <bEvasion>1</bEvasion>
+        </EvasionBuilding>
+        <EvasionBuilding>
+          <BuildingClass>BUILDINGCLASS_OUTPOST</BuildingClass>
+          <bEvasion>1</bEvasion>
+        </EvasionBuilding>
+      </EvasionBuildings>
       <iCombat>0</iCombat>
       <iXPValueAttack>4</iXPValueAttack>
       <iXPValueDefense>2</iXPValueDefense>
@@ -8773,7 +8791,16 @@
       <iMissionaryRateModifier>0</iMissionaryRateModifier>
       <TerrainImpassables/>
       <FeatureImpassables/>
-      <EvasionBuildings/>
+      <EvasionBuildings>
+        <EvasionBuilding>
+          <BuildingClass>BUILDINGCLASS_TOWNHALL</BuildingClass>
+          <bEvasion>1</bEvasion>
+        </EvasionBuilding>
+        <EvasionBuilding>
+          <BuildingClass>BUILDINGCLASS_OUTPOST</BuildingClass>
+          <bEvasion>1</bEvasion>
+        </EvasionBuilding>
+      </EvasionBuildings>
       <iCombat>0</iCombat>
       <iXPValueAttack>4</iXPValueAttack>
       <iXPValueDefense>2</iXPValueDefense>
