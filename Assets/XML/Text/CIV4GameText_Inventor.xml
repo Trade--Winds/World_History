@@ -1195,11 +1195,19 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_CONVERT</Tag>
-    <English>Your Trading League, minus %d1_taxrate, has brought in %d2_gold[ICON_GOLD]!</English>
-    <French>Your Trading League, minus %d1_taxrate, has brought in %d2_gold[ICON_GOLD]!</French>
-    <German>Your Trading League, minus %d1_taxrate, has brought in %d2_gold[ICON_GOLD]!</German>
-    <Italian>Your Trading League, minus %d1_taxrate, has brought in %d2_gold[ICON_GOLD]!</Italian>
-    <Spanish>Your Trading League, minus %d1_taxrate, has brought in %d2_gold[ICON_GOLD]!</Spanish>
+    <English>Your Trading League, -%d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</English>
+    <French>Your Trading League, minus %d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</French>
+    <German>Your Trading League, minus %d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</German>
+    <Italian>Your Trading League, minus %d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</Italian>
+    <Spanish>Your Trading League, minus %d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_ESTABLISHED</Tag>
+    <English>You have established a Trading League and received %d1_gold[ICON_GOLD] in initial revenues!</English>
+    <French>You have formed a Trading League and received %d1_gold[ICON_GOLD] in initial revenues!</French>
+    <German>You have formed a Trading League and received %d1_gold[ICON_GOLD] in initial revenues!</German>
+    <Italian>You have formed a Trading League and received %d1_gold[ICON_GOLD] in initial revenues!</Italian>
+    <Spanish>You have formed a Trading League and received %d1_gold[ICON_GOLD] in initial revenues!</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MISC_PLAYER_COMPLETED_RESEARCH_PACT</Tag>

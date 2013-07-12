@@ -336,16 +336,16 @@ class CvImmigrationScreen:
 		# Units waiting on Docks
 		XLocation = 0
 		YLocation = 0
-
-		screen.addScrollPanel("DockList", u"", self.X_IN_PORT + self.IN_PORT_PANE_WIDTH + (self.W_TEXT_MARGIN / 2), self.Y_UPPER_EDGE + self.RECRUIT_PANE_HEIGHT + (self.H_TEXT_MARGIN / 2) + self.Y_DOCKS_OFFSET, self.PANE_WIDTH - (self.W_TEXT_MARGIN * 7 / 2), self.H_DOCK - self.H_TEXT_MARGIN, PanelStyles.PANEL_STYLE_MAIN, false, WidgetTypes.WIDGET_DOCK, -1, -1 )
-		for i in range(player.getNumEuropeUnits()):
-			loopUnit = player.getEuropeUnit(i)
-			screen.addDragableButtonAt("DockList", self.getNextWidgetName(), loopUnit.getFullLengthIcon(), "", XLocation, YLocation, self.CARGO_ICON_SIZE, self.CARGO_ICON_SIZE * 2, WidgetTypes.WIDGET_DOCK, loopUnit.getID(), -1, ButtonStyles.BUTTON_STYLE_LABEL )
-			if ((i + 1) % 5) == 0:
-				XLocation = 0
-				YLocation += (self.CARGO_ICON_SIZE * 2)
-			else:
-				XLocation += self.CARGO_ICON_SIZE
+		if (gc.getLeaderHeadInfo(self.pActivePlayer.getLeaderType()).getTravelCommandType() != 1):
+			screen.addScrollPanel("DockList", u"", self.X_IN_PORT + self.IN_PORT_PANE_WIDTH + (self.W_TEXT_MARGIN / 2), self.Y_UPPER_EDGE + self.RECRUIT_PANE_HEIGHT + (self.H_TEXT_MARGIN / 2) + self.Y_DOCKS_OFFSET, self.PANE_WIDTH - (self.W_TEXT_MARGIN * 7 / 2), self.H_DOCK - self.H_TEXT_MARGIN, PanelStyles.PANEL_STYLE_MAIN, false, WidgetTypes.WIDGET_DOCK, -1, -1 )
+			for i in range(player.getNumEuropeUnits()):
+				loopUnit = player.getEuropeUnit(i)
+				screen.addDragableButtonAt("DockList", self.getNextWidgetName(), loopUnit.getFullLengthIcon(), "", XLocation, YLocation, self.CARGO_ICON_SIZE, self.CARGO_ICON_SIZE * 2, WidgetTypes.WIDGET_DOCK, loopUnit.getID(), -1, ButtonStyles.BUTTON_STYLE_LABEL )
+				if ((i + 1) % 5) == 0:
+					XLocation = 0
+					YLocation += (self.CARGO_ICON_SIZE * 2)
+				else:
+					XLocation += self.CARGO_ICON_SIZE
 
 		# Units to Recruit
 		RecruitPaneWidth = self.XResolution - self.X_RECRUIT_PANE

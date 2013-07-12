@@ -17444,40 +17444,6 @@ void CvPlayer::doIdeas(bool Cheat)
 
     doSetupIdeas(Cheat);
 
-    ///Trade Relations
-    CLLNode<TradeData>* pNode;
-	CvDeal* pLoopDeal;
-	int iLoop;
-
-	for (pLoopDeal = GC.getGameINLINE().firstDeal(&iLoop); pLoopDeal != NULL; pLoopDeal = GC.getGameINLINE().nextDeal(&iLoop))
-	{
-
-		if ((GET_PLAYER(pLoopDeal->getFirstPlayer()).getID() == getID()) ||
-			(GET_PLAYER(pLoopDeal->getSecondPlayer()).getID() == getID()))
-		{
-			for (pNode = pLoopDeal->headFirstTradesNode(); (pNode != NULL); pNode = pLoopDeal->nextFirstTradesNode(pNode))
-			{
-				if (pNode->m_data.m_eItemType == TRADE_OPEN_BORDERS)
-				{
-				    for (int i = 0; i < GC.getNumFatherPointInfos(); ++i)
-                    {
-                        FatherPointTypes ePointType = (FatherPointTypes) i;
-                        if (GC.getFatherPointInfo(ePointType).getEuropeTradeGoldPointPercent() > 0)
-                        {
-                            GET_TEAM(getTeam()).changeFatherPoints(ePointType, GC.getCache_DEAL_TRADE_RELATIONS_POINTS());
-                        }
-                    }
-				}
-			}
-		}
-	}
-
-
-
-
-
-
-
     ///Logging Techs
     if (!isNative() && !isEurope())
 	{
@@ -17513,28 +17479,39 @@ void CvPlayer::doIdeas(bool Cheat)
             iRequiredPoints = (iRequiredPoints * GC.getCache_TRADING_POINTS_MOD_PERCENT()) / 100;
             if (kTradeCivicInfo.getProlificInventorRateChange() > 0)
             {
-                int iGold = GET_TEAM(getTeam()).getFatherPoints(eFatherPoint);
-                iGold -= (iGold * getTaxRate()) / 100;
-                if (iGold > 0)
+                if (getIdeasResearched(eTradeCivic) > 0)
                 {
-                    changeGold(iGold);
-                    CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_CONVERT", getTaxRate(), iGold);
-                    gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
+                    int iGold = GET_TEAM(getTeam()).getFatherPoints(eFatherPoint);
+                    iGold -= (iGold * getTaxRate()) / 100;
+                    if (iGold > 0)
+                    {
+                        GET_TEAM(getTeam()).changeFatherPoints(eFatherPoint, -iCurrrentPoints);
+                        changeGold(iGold);
+                        CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_CONVERT", getTaxRate(), iGold);
+                        gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
+                    }
+                      char szOut[1024];
+                    sprintf(szOut, "######################## Player %d %S has %S with %d points earning %d in gold\n", getID(), getNameKey(), kTradeCivicInfo.getTextKeyWide(), iCurrrentPoints, iGold);
+                    gDLL->messageControlLog(szOut);
 
                 }
                 iRequiredPoints = 0;
-                //GET_TEAM(getTeam()).changeFatherPoints(eFatherPoint, -iRequiredPoints);
                 if (getIdeasResearched(eTradeCivic) == 0)
                 {
+                    GET_TEAM(getTeam()).changeFatherPoints(eFatherPoint, -iCurrrentPoints);
+                    CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_ESTABLISHED", kTradeCivicInfo.getGoldBonus());
+                    gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_YELLOW"));
                     processCivics(eTradeCivic, 1);
                     changeIdeasResearched(eTradeCivic, 1);
                 }
+
             }
-            char szOut[1024];
-            sprintf(szOut, "######################## Player %d %S has trade reaseach of  %S with %d points requireing %d\n", getID(), getNameKey(), kTradeCivicInfo.getTextKeyWide(), iCurrrentPoints, iRequiredPoints);
-            gDLL->messageControlLog(szOut);
+
             if (iRequiredPoints > 0)
             {
+                 char szOut[1024];
+                sprintf(szOut, "######################## Player %d %S has trade reaseach of  %S with %d points requireing %d\n", getID(), getNameKey(), kTradeCivicInfo.getTextKeyWide(), iCurrrentPoints, iRequiredPoints);
+                gDLL->messageControlLog(szOut);
                 if(GET_TEAM(getTeam()).getFatherPoints(eFatherPoint) >= iRequiredPoints)
                 {
                     if (isHuman())
@@ -17605,6 +17582,34 @@ void CvPlayer::doIdeas(bool Cheat)
             //{
               // setPreviousFatherPoints(-1);
             //}
+        }
+
+            ///Trade Relations
+        CLLNode<TradeData>* pNode;
+        CvDeal* pLoopDeal;
+        int iLoop;
+
+        for (pLoopDeal = GC.getGameINLINE().firstDeal(&iLoop); pLoopDeal != NULL; pLoopDeal = GC.getGameINLINE().nextDeal(&iLoop))
+        {
+
+            if ((GET_PLAYER(pLoopDeal->getFirstPlayer()).getID() == getID()) ||
+                (GET_PLAYER(pLoopDeal->getSecondPlayer()).getID() == getID()))
+            {
+                for (pNode = pLoopDeal->headFirstTradesNode(); (pNode != NULL); pNode = pLoopDeal->nextFirstTradesNode(pNode))
+                {
+                    if (pNode->m_data.m_eItemType == TRADE_OPEN_BORDERS)
+                    {
+                        for (int i = 0; i < GC.getNumFatherPointInfos(); ++i)
+                        {
+                            FatherPointTypes ePointType = (FatherPointTypes) i;
+                            if (GC.getFatherPointInfo(ePointType).getEuropeTradeGoldPointPercent() > 0)
+                            {
+                                GET_TEAM(getTeam()).changeFatherPoints(ePointType, GC.getCache_DEAL_TRADE_RELATIONS_POINTS());
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if (getCurrentResearch() != NO_CIVIC)

@@ -2278,16 +2278,28 @@ class CvMainInterface:
 				player = gc.getPlayer(ePlayer)
 				activeTeam = gc.getTeam(player.getTeam())
 				iTradeResearch = 0
+				bShowTradePoints = True 
 				if (player.getCurrentTradeResearch() != -1):
-					iTradeResearch = gc.getCivicInfo(player.getCurrentTradeResearch()).getRequiredFatherPoints(5)
-					iTradeResearch = (iTradeResearch * gc.getDefineINT("TRADING_POINTS_MOD_PERCENT")) / 100
+					if (gc.getCivicInfo(player.getCurrentTradeResearch()).getProlificInventorRateChange() == 0):
+						iTradeResearch = gc.getCivicInfo(player.getCurrentTradeResearch()).getRequiredFatherPoints(5)
+						iTradeResearch = (iTradeResearch * gc.getDefineINT("TRADING_POINTS_MOD_PERCENT")) / 100
+					elif (player.getIdeasResearched(player.getCurrentTradeResearch()) == 0):
+						iTradeResearch = gc.getCivicInfo(player.getCurrentTradeResearch()).getRequiredFatherPoints(5)
+						iTradeResearch = (iTradeResearch * gc.getDefineINT("TRADING_POINTS_MOD_PERCENT")) / 100
+					else:
+						bShowTradePoints = False
 				iCurrentTradePoints = activeTeam.getFatherPoints(5)
-				slash = "/"
-				szTradeText = str(iCurrentTradePoints) + slash + str(iTradeResearch)
-				fontsize = 1
-				if (iTradeResearch >= 1000):
-					fontsize = 0
-				screen.setLabel("TradeText", "Background", self.setFontSize(szTradeText, fontsize), CvUtil.FONT_CENTER_JUSTIFY, 40, yResolution - 230, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+				if (bShowTradePoints):
+					slash = "/"
+					szTradeText = str(iCurrentTradePoints) + slash + str(iTradeResearch)
+					fontsize = 1
+					if (iTradeResearch >= 1000):
+						fontsize = 0
+					screen.setLabel("TradeText", "Background", self.setFontSize(szTradeText, fontsize), CvUtil.FONT_CENTER_JUSTIFY, 40, yResolution - 230, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+				else:
+					fontsize = 1
+					szTradeText = str(iCurrentTradePoints)
+					screen.setLabel("TradeText", "Background", self.setFontSize(szTradeText, fontsize), CvUtil.FONT_CENTER_JUSTIFY, 40, yResolution - 230, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				szText = CyGameTextMgr().getGoldStr(ePlayer)
 				screen.setLabel("GoldText", "Background", self.setFontSize(szText, 1), CvUtil.FONT_CENTER_JUSTIFY, 40, yResolution - 30, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				#TKs Censures and Travel Types

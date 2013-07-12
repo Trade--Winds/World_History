@@ -835,10 +835,10 @@ void CvCity::doTurn()
 			{
 				for (int iI = 0; iI < MAX_PLAYERS; iI++)
                 {
-                    if (GET_PLAYER((PlayerTypes)iI).getTeam() == (TeamTypes) iTeam)
+                    if (!GET_PLAYER((PlayerTypes)iI).isNative() && GET_PLAYER((PlayerTypes)iI).getTeam() == (TeamTypes) iTeam)
                     {
                         FatherPointTypes eTradeType = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
-                        GET_PLAYER(getOwnerINLINE()).changeFatherPoints(eTradeType, GC.getFatherPointInfo(eTradeType).getNativeTradeGoldPointPercent());
+                        GET_PLAYER((PlayerTypes)iI).changeFatherPoints(eTradeType, GC.getFatherPointInfo(eTradeType).getNativeTradeGoldPointPercent());
                     }
                 }
 			}
