@@ -3803,6 +3803,11 @@ bool CvUnit::canLoadUnit(const CvUnit* pTransport, const CvPlot* pPlot, bool bCh
 	    return false;
 	}
 
+	if (getDomainType() == DOMAIN_SEA && pTransport->getDomainType() == DOMAIN_LAND)
+	{
+	    return false;
+	}
+
     ///Tke
 	if (!(pTransport->cargoSpaceAvailable(getSpecialUnitType(), getDomainType())))
 	{
@@ -9662,12 +9667,15 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
         {
             if (pNewPlot->isEurope())
             {
-                CivicTypes eSpiceRoute = (CivicTypes)GC.getCache_TRADE_ROUTE_SPICE();
-                CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
-                kPlayer.setHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE, true);
-                CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
-                pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
-                gDLL->getInterfaceIFace()->addPopup(pInfo, GET_PLAYER(getOwner()).getID());
+                if (GC.getEuropeInfo(pNewPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SPICE_ROUTE))
+                {
+                    CivicTypes eSpiceRoute = (CivicTypes)GC.getCache_TRADE_ROUTE_SPICE();
+                    CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
+                    kPlayer.setHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE, true);
+                    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                    pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
+                    gDLL->getInterfaceIFace()->addPopup(pInfo, GET_PLAYER(getOwner()).getID());
+                }
             }
 
         }

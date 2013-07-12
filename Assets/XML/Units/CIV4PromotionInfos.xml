@@ -3495,9 +3495,9 @@
       <Type>PROMOTION_FIRSTSTRIKE</Type>
       <Description>First Strike I</Description>
       <Sound>AS2D_IF_LEVELUP</Sound>
-      <PromotionPrereq>NONE</PromotionPrereq>
-      <PromotionPrereqOr1>PROMOTION_VETERAN2</PromotionPrereqOr1>
-      <PromotionPrereqOr2>NONE</PromotionPrereqOr2>
+      <PromotionPrereq>PROMOTION_VETERAN2</PromotionPrereq>
+      <PromotionPrereqOr1>NONE</PromotionPrereqOr1>
+      <PromotionPrereqOr2></PromotionPrereqOr2>
       <bLeader>0</bLeader>
       <iFirstStrikesChange>1</iFirstStrikesChange>
       <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
