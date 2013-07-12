@@ -433,6 +433,13 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			szTempBuffer.Format(L" (%d%c)", iValue, gDLL->getSymbolID(GOLD_CHAR));
 			szString.append(szTempBuffer);
 		}
+		///TKs Med
+		if (pUnit->isCargo())
+		{
+		    szString.append(NEWLINE);
+		    setYieldPriceHelp(szString, pUnit->getOwnerINLINE(), pUnit->getYield());
+		}
+		///Tke
 	}
 	eBuild = pUnit->getBuildType();
 
@@ -501,16 +508,16 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
         szString.append(gDLL->getText("TXT_KEY_UNIT_CARGO_YIELD_SPACE", GC.getUnitInfo(pUnit->getUnitType()).getRequiredTransportSize()));
 
     }
-    ///TKe
+
 
 	if (!bOneLine)
 	{
-	    if (pUnit->isHuman() && pUnit->getHomeCity() != NULL)
+	    if (!pUnit->isGoods() && pUnit->getHomeCity() != NULL)
 		{
 			szString.append(NEWLINE);
 			szString.append(gDLL->getText("TXT_KEY_GET_HOME_CITY", pUnit->getHomeCity()->getNameKey()));
 		}
-
+        ///TKe
 		if (pUnit->cargoSpace() > 0)
 		{
 			if (pUnit->getTeam() == GC.getGameINLINE().getActiveTeam())

@@ -16882,7 +16882,9 @@ bool CvPlayer::checkPower(bool bReset)
 	}
 
 	bool bCheck = true;
-	if (iPower != getPower())
+	///Tks Med Assert check
+	int iGetPower = getPower();
+	if (iPower != iGetPower)
 	{
 		if (bReset)
 		{
@@ -16890,7 +16892,7 @@ bool CvPlayer::checkPower(bool bReset)
 		}
 		bCheck = false;
 	}
-
+	///tks
 	if (iAsset != getAssets())
 	{
 		if (bReset)

@@ -1931,7 +1931,7 @@
         <YieldType>YIELD_PLATE_ARMOR</YieldType>
       </YieldsProduced>
       <YieldsConsumed>
-        <YieldType>YIELD_ORE</YieldType>
+        <YieldType>YIELD_TOOLS</YieldType>
         <YieldType>YIELD_FUR</YieldType>
       </YieldsConsumed>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,7</Button>
@@ -1965,7 +1965,7 @@
 				<YieldType>YIELD_WEAPONS</YieldType>
 			</YieldsProduced>
 			<YieldsConsumed>
-				<YieldType>YIELD_TOOLS</YieldType>
+				<YieldType>YIELD_ORE</YieldType>
 			</YieldsConsumed>
 			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,7</Button>
 		</ProfessionInfo>
