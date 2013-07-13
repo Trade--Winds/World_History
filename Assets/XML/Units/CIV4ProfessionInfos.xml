@@ -405,6 +405,7 @@
       <iMovesChange>1</iMovesChange>
       <iWorkRate>0</iWorkRate>
       <iMissionaryRate>0</iMissionaryRate>
+      <iExperenceLevel>2</iExperenceLevel>
       <iPower>150</iPower>
       <iAsset>0</iAsset>
       <CombatGearTypes>
@@ -478,6 +479,7 @@
       <iMovesChange>1</iMovesChange>
       <iWorkRate>0</iWorkRate>
       <iMissionaryRate>0</iMissionaryRate>
+      <iExperenceLevel>2</iExperenceLevel>
       <iPower>150</iPower>
       <iAsset>0</iAsset>
       <CombatGearTypes>
@@ -547,6 +549,7 @@
       <iMovesChange>1</iMovesChange>
       <iWorkRate>0</iWorkRate>
       <iMissionaryRate>0</iMissionaryRate>
+      <iExperenceLevel>2</iExperenceLevel>
       <iPower>150</iPower>
       <iAsset>0</iAsset>
       <CombatGearTypes>
@@ -610,7 +613,7 @@
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_CALVARY</Type>
-      <Description>Calvary</Description>
+      <Description>Horseman</Description>
       <Civilopedia>TXT_KEY_PROFESSION_DRAGOON_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_PROFESSION_DRAGOON_STRATEGY</Strategy>
       <Help/>
@@ -697,11 +700,12 @@
       <iMovesChange>0</iMovesChange>
       <iWorkRate>0</iWorkRate>
       <iMissionaryRate>0</iMissionaryRate>
+      <iExperenceLevel>2</iExperenceLevel>
       <iPower>100</iPower>
       <iAsset>0</iAsset>
       <YieldEquipedNums>
         <YieldEquipedNum>
-          <YieldType>YIELD_WEAPONS</YieldType>
+          <YieldType>YIELD_TOOLS</YieldType>
           <iYieldAmount>50</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
@@ -759,6 +763,7 @@
       <iMovesChange>0</iMovesChange>
       <iWorkRate>0</iWorkRate>
       <iMissionaryRate>0</iMissionaryRate>
+      <iExperenceLevel>2</iExperenceLevel>
       <iPower>100</iPower>
       <iAsset>0</iAsset>
       <YieldEquipedNums>
@@ -880,6 +885,7 @@
       <iMovesChange>0</iMovesChange>
       <iWorkRate>0</iWorkRate>
       <iMissionaryRate>0</iMissionaryRate>
+      <iExperenceLevel>2</iExperenceLevel>
       <iPower>100</iPower>
       <iAsset>0</iAsset>
       <YieldEquipedNums>
@@ -1020,7 +1026,7 @@
       <iAsset>0</iAsset>
       <YieldEquipedNums>
         <YieldEquipedNum>
-          <YieldType>YIELD_WEAPONS</YieldType>
+          <YieldType>YIELD_TOOLS</YieldType>
           <iYieldAmount>50</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
@@ -1074,6 +1080,7 @@
       <iMovesChange>0</iMovesChange>
       <iWorkRate>0</iWorkRate>
       <iMissionaryRate>0</iMissionaryRate>
+      <iExperenceLevel>2</iExperenceLevel>
       <iPower>100</iPower>
       <iAsset>0</iAsset>
       <YieldEquipedNums>
@@ -1140,6 +1147,7 @@
       <iMovesChange>0</iMovesChange>
       <iWorkRate>0</iWorkRate>
       <iMissionaryRate>0</iMissionaryRate>
+      <iExperenceLevel>2</iExperenceLevel>
       <iPower>100</iPower>
       <iAsset>0</iAsset>
       <CombatGearTypes>

@@ -10588,10 +10588,16 @@ void CvUnit::setFortifyTurns(int iNewValue)
 		m_iFortifyTurns = iNewValue;
 		setInfoBarDirty(true);
 	}
+}
+
+
+void CvUnit::changeFortifyTurns(int iChange)
+{
+	setFortifyTurns(getFortifyTurns() + iChange);
 	///TKs Med
 	if (isOnMap() && canTrainUnit())
 	{
-        changeTrainCounter(iNewValue);
+        changeTrainCounter(iChange);
         CvCity* pCity = plot()->getPlotCity();
         int iTrainingTimeMod = 0;
         if (pCity != NULL)
@@ -10630,12 +10636,6 @@ void CvUnit::setFortifyTurns(int iNewValue)
         }
 	}
 	///TKe
-}
-
-
-void CvUnit::changeFortifyTurns(int iChange)
-{
-	setFortifyTurns(getFortifyTurns() + iChange);
 }
 
 
@@ -11282,16 +11282,29 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 	///Tk end
 
 	///TKs Med
-//	if ((ProfessionTypes)GC.getProfessionInfo(eProfession).getUpgradeProfession() == eProfession)
-//	{
-//
-//	}
-	if (isHuman() && GC.getProfessionInfo(eProfession).getRequiredPromotion() != NO_PROMOTION)
+	if (isHuman())
 	{
-         if (!isHasPromotion((PromotionTypes)GC.getProfessionInfo(eProfession).getRequiredPromotion()))
-         {
-             return false;
-         }
+	    if (GC.getProfessionInfo(eProfession).getRequiredPromotion() != NO_PROMOTION)
+        {
+             if (!isHasPromotion((PromotionTypes)GC.getProfessionInfo(eProfession).getRequiredPromotion()))
+             {
+                 return false;
+             }
+        }
+        if (GC.getProfessionInfo(eProfession).getExperenceLevel() != 0)
+        {
+            if (getLevel() < GC.getProfessionInfo(eProfession).getExperenceLevel())
+            {
+                if (!isHasPromotion((PromotionTypes)GC.getCache_DEFAULT_TRAINED_PROMOTION()) && !isHasRealPromotion((PromotionTypes)GC.getCache_DEFAULT_KNIGHT_PROMOTION()))
+                {
+                    if (!isNoBadGoodies())
+                    {
+                        return false;
+                    }
+                }
+
+            }
+        }
 	}
 
 	if (GC.getProfessionInfo(eProfession).getCombatChange() > 2 && m_pUnitInfo->getCasteAttribute() == 2)

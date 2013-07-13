@@ -10886,10 +10886,6 @@
 					<YieldType>YIELD_CATTLE</YieldType>
 					<iYieldMod>100</iYieldMod>
 				</YieldModifier>
-        <YieldModifier>
-          <YieldType>YIELD_FOOD</YieldType>
-          <iYieldMod>50</iYieldMod>
-        </YieldModifier>
 			</YieldModifiers>
 			<YieldChanges/>
 			<BonusYieldChanges/>

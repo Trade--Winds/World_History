@@ -878,6 +878,14 @@
     <Spanish>[ICON_BULLET]Alternate Equipment %d1_Quantity de %F2_Icon</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_PROFESSION_REQUIRES_TRAINING</Tag>
+    <English>[ICON_BULLET][COLOR_UNIT_TEXT]Requires Training[COLOR_REVERT]</English>
+    <French>[ICON_BULLET][COLOR_UNIT_TEXT]Requires Training[COLOR_REVERT]</French>
+    <German>[ICON_BULLET][COLOR_UNIT_TEXT]Requires Training[COLOR_REVERT]</German>
+    <Italian>[ICON_BULLET][COLOR_UNIT_TEXT]Requires Training[COLOR_REVERT]</Italian>
+    <Spanish>[ICON_BULLET][COLOR_UNIT_TEXT]Requires Training[COLOR_REVERT]</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_UNIT_CARGO_YIELD_SPACE</Tag>
     <English>[ICON_BULLET]Requires cargo space of %d1</English>
     <French>[ICON_BULLET]Requires cargo space of %d1</French>

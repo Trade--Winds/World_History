@@ -786,6 +786,7 @@
 	<ElementType name="bCityDefender" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bCanFound" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bUnarmed" content="textOnly" dt:type="boolean"/>
+  <ElementType name="iExperenceLevel" content="textOnly" dt:type="int"/>
 	<ElementType name="iMissionaryRate" content="textOnly" dt:type="int"/>
 	<ElementType name="YieldType" content="textOnly"/>
 	<ElementType name="iYieldAmount" content="textOnly" dt:type="int"/>
@@ -862,7 +863,8 @@
 		<element type="iMovesChange"/>
 		<element type="iWorkRate"/>
 		<element type="iMissionaryRate"/>
-		<element type="iPower"/>
+    <element type="iExperenceLevel" minOccurs="0"/>
+    <element type="iPower"/>
 		<element type="iAsset"/>
     <element type="iTaxCollectRate" minOccurs="0"/>
     <element type="CombatGearTypes" minOccurs="0"/>

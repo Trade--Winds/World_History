@@ -936,14 +936,14 @@ void CvGameTextMgr::setUnitPromotionHelp(CvWStringBuffer &szString, const CvUnit
 		}
 	}
 	///Tks Med
-	PromotionTypes eHomeBoy = (PromotionTypes) GC.getCache_PROMOTION_BUILD_HOME();
-	if (eHomeBoy != NO_PROMOTION)
-	{
-        if (pUnit->isHasPromotion(eHomeBoy))
-        {
-            aPromotions.push_back(eHomeBoy);
-        }
-    }
+//	PromotionTypes eHomeBoy = (PromotionTypes) GC.getCache_PROMOTION_BUILD_HOME();
+//	if (eHomeBoy != NO_PROMOTION)
+//	{
+//        if (pUnit->isHasPromotion(eHomeBoy))
+//        {
+//            aPromotions.push_back(eHomeBoy);
+//        }
+//    }
     ///Tke
 
 	for (uint i = 0; i < aPromotions.size(); ++i)
@@ -1107,11 +1107,11 @@ void CvGameTextMgr::setProfessionHelp(CvWStringBuffer &szBuffer, ProfessionTypes
             szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CAN_ESTABLISH_MISSIONS"));
         }
 ///TKs Med
-//        if (kProfession.canFound())
-//        {
-//            szBuffer.append(NEWLINE);
-//            szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CAN_FOUND"));
-//        }
+        if (kProfession.getExperenceLevel() != 0)
+        {
+            szBuffer.append(NEWLINE);
+            szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_REQUIRES_TRAINING"));
+        }
 ///TKe
         if (kProfession.isNoDefensiveBonus())
         {

@@ -1368,6 +1368,7 @@ CvProfessionInfo::CvProfessionInfo() :
 	m_iUpgradeProfession(NO_PROFESSION),
 	m_iLeadUnit(NO_UNITCLASS),
 	m_iTaxCollectRate(0),
+	m_iExperenceLevel(0),
 	///TKe
 	m_iSpecialBuilding(NO_SPECIALBUILDING),
 	m_iCombatChange(0),
@@ -1470,6 +1471,11 @@ int CvProfessionInfo::getFoundCityType() const
 int CvProfessionInfo::getTaxCollectRate() const
 {
 	return m_iTaxCollectRate;
+}
+
+int CvProfessionInfo::getExperenceLevel() const
+{
+	return m_iExperenceLevel;
 }
 ///TKe
 
@@ -1728,6 +1734,7 @@ void CvProfessionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bScout);
 	///TKs Professions Pedia
 	stream->Read(&m_iTaxCollectRate);
+	stream->Read(&m_iExperenceLevel);
 	stream->Read(&m_ibNativesInvalid);
 	stream->Read(&m_ibEuropeInvalid);
 	stream->Read(&m_ibColonialInvalid);
@@ -1815,6 +1822,7 @@ void CvProfessionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bScout);
 	///TKs Professions Pedia
 	stream->Write(m_iTaxCollectRate);
+	stream->Write(m_iExperenceLevel);
 	stream->Write(m_ibNativesInvalid);
 	stream->Write(m_ibEuropeInvalid);
 	stream->Write(m_ibColonialInvalid);
@@ -1913,6 +1921,7 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 	m_aszExtraXMLforPass3.push_back(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iTaxCollectRate, "iTaxCollectRate");
+	pXML->GetChildXmlValByName(&m_iExperenceLevel, "iExperenceLevel");
 	///tke
 
 	pXML->GetChildXmlValByName(&m_iCombatChange, "iCombatChange");

@@ -349,6 +349,7 @@ public:
     DllExport bool isColonialInvalid() const;
 	DllExport int getArtTagUnitClass() const;
 	DllExport int getTaxCollectRate() const;
+	DllExport int getExperenceLevel() const;
 	///TKe
 	DllExport virtual ~CvProfessionInfo();
 	DllExport int getUnitCombatType() const;
@@ -418,6 +419,7 @@ protected:
 	bool m_ibColonialInvalid;
 	int m_iArtTagUnit;
 	int m_iTaxCollectRate;
+	int m_iExperenceLevel;
 	///TKe
 
 	int m_iYieldProduced;
