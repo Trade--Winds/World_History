@@ -536,6 +536,8 @@ public:
 	int getAltYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const;
 	int getMultiYieldRate(YieldTypes eIndex) const;
 	int getCensureType(CensureType eCensure) const;
+	CvPlot* getStartingTradeRoutePlot(TradeRouteTypes eTradeRoute) const;
+	void setStartingTradeRoutePlot(CvPlot* pNewValue, TradeRouteTypes eTradeRoute);
 	void changeCensureType(CensureType eCensure, int iValue);
 	bool getHasTradeRouteType(TradeRouteTypes eTradeRoute) const;
 	void setHasTradeRouteType(TradeRouteTypes eTradeRoute, bool bValue);
@@ -611,12 +613,12 @@ public:
 	int getYieldSellPrice(YieldTypes eYield, UnitTravelStates eTradeScreen = NO_UNIT_TRAVEL_STATE) const;
 	int getYieldBuyPrice(YieldTypes eYield, UnitTravelStates eTradeScreen = NO_UNIT_TRAVEL_STATE) const;
 	int getTradeScreenPriceMod(YieldTypes eYield, UnitTravelStates eTravelState = NO_UNIT_TRAVEL_STATE, UnitTypes eUnit = NO_UNIT) const;
+	CvUnit* buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteTypes eTradeRoute=NO_TRADE_ROUTES);
+	int getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScreen=TRADE_SCREEN_DEFAULT) const;
 	///TKe
 	void setYieldBuyPrice(YieldTypes eYield, int iPrice, bool bMessage);
 	void sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission);
 	CvUnit* buyYieldUnitFromEurope(YieldTypes eYield, int iAmount, CvUnit* pTransport);
-	int getEuropeUnitBuyPrice(UnitTypes eUnit) const;
-	CvUnit* buyEuropeUnit(UnitTypes eUnit, int iPriceModifier);
 	void buyUnitsFromKing();
 	int getYieldTradedTotal(YieldTypes eYield) const;
 	void setYieldTradedTotal(YieldTypes eYield, int iValue);
@@ -845,6 +847,8 @@ protected:
 	int* m_aiVictoryYieldCount;
 	int* m_aiCensureTypes;
 	///TKs Med
+	int* m_aiTradeRouteStartingPlotX;
+	int* m_aiTradeRouteStartingPlotY;
 	bool* m_abTradeRouteTypes;
 	///Tke
 

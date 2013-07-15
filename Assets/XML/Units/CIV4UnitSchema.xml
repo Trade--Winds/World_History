@@ -189,6 +189,15 @@
 	<ElementType name="iAdvancedStartCost" content="textOnly" dt:type="int"/>
 	<ElementType name="iAdvancedStartCostIncrease" content="textOnly" dt:type="int"/>
 	<ElementType name="iEuropeCost" content="textOnly" dt:type="int"/>
+  <ElementType name="iPricePercent" content="textOnly" dt:type="int"/>
+  <ElementType name="TradeScreen" content="textOnly"/>
+  <ElementType name="TradeScreenType" content="eltOnly">
+    <element type="TradeScreen"/>
+    <element type="iPricePercent"/>
+  </ElementType>
+  <ElementType name="TradeScreenTypes" content="eltOnly">
+    <element type="TradeScreenType" minOccurs="0" maxOccurs="*"/>
+  </ElementType>
 	<ElementType name="iEuropeCostIncrease" content="textOnly" dt:type="int"/>
 	<ElementType name="iImmigrationWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iImmigrationWeightDecay" content="textOnly" dt:type="int"/>
@@ -478,6 +487,7 @@
 		<element type="iAdvancedStartCost"/>
 		<element type="iAdvancedStartCostIncrease"/>
 		<element type="iEuropeCost"/>
+    <element type="TradeScreenTypes" minOccurs="0"/>
 		<element type="iEuropeCostIncrease"/>
 		<element type="iImmigrationWeight"/>
 		<element type="iImmigrationWeightDecay"/>

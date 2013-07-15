@@ -5631,6 +5631,11 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 	if (bCivilopediaText)
 	{
 		// Trait
+		if ((kUnitInfo.getDomainType() == DOMAIN_SEA || kUnitInfo.isMechUnit()) && kUnitInfo.getEuropeCost() > 0)
+        {
+            szBuffer.append(NEWLINE);
+            szBuffer.append(gDLL->getText("TXT_KEY_PURCHASE_UNIT_AFTER_BUILD"));
+        }
 		for (int i = 0; i < GC.getNumTraitInfos(); ++i)
 		{
 			if (kUnitInfo.getProductionTraits((TraitTypes)i) != 0)

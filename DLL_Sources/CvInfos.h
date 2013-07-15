@@ -818,6 +818,7 @@ public:
 	DllExport bool getFreePromotions(int i) const;
 	///TK Viscos Mod
 	DllExport bool getProfessionsNotAllowed(int i) const;
+	DllExport int getTradeScreenPrice(int i) const;
 	///TK end
 	DllExport bool isPrereqOrBuilding(int i) const;
 	DllExport int getLeaderPromotion() const;
@@ -958,8 +959,9 @@ protected:
 	bool* m_abFeatureNative;
 	bool* m_abBonusNative;
 	// < JAnimals Mod End >
-	///TK Viscos Mod
+	///TK  Med Viscos Mod
 	bool* m_abProfessionsNotAllowed;
+	int* m_aiTradeScreenPrice;
 	///TK end
 	bool* m_abFreePromotions;
 	bool* m_abPrereqOrBuilding;

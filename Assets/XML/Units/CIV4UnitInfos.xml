@@ -4866,6 +4866,12 @@
       <iAdvancedStartCost>-1</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
       <iEuropeCost>1500</iEuropeCost>
+      <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <iPricePercent>1000</iPricePercent>
+        </TradeScreenType>
+      </TradeScreenTypes>
       <iEuropeCostIncrease>300</iEuropeCostIncrease>
       <iImmigrationWeight>50</iImmigrationWeight>
       <iImmigrationWeightDecay>25</iImmigrationWeightDecay>
@@ -19807,6 +19813,12 @@
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<iEuropeCost>1000</iEuropeCost>
+      <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <iPricePercent>800</iPricePercent>
+        </TradeScreenType>
+      </TradeScreenTypes>
 			<iEuropeCostIncrease>0</iEuropeCostIncrease>
 			<iImmigrationWeight>0</iImmigrationWeight>
 			<iImmigrationWeightDecay>0</iImmigrationWeightDecay>
@@ -19937,7 +19949,13 @@
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iEuropeCost>2000</iEuropeCost>
+      <iEuropeCost>-1</iEuropeCost>
+      <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <iPricePercent>2000</iPricePercent>
+        </TradeScreenType>
+      </TradeScreenTypes>
 			<iEuropeCostIncrease>0</iEuropeCostIncrease>
 			<iImmigrationWeight>0</iImmigrationWeight>
 			<iImmigrationWeightDecay>0</iImmigrationWeightDecay>
@@ -20064,7 +20082,13 @@
       <iHurryCostModifier>0</iHurryCostModifier>
       <iAdvancedStartCost>100</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <iEuropeCost>3000</iEuropeCost>
+      <iEuropeCost>-1</iEuropeCost>
+      <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <iPricePercent>3000</iPricePercent>
+        </TradeScreenType>
+      </TradeScreenTypes>
       <iEuropeCostIncrease>600</iEuropeCostIncrease>
       <iImmigrationWeight>0</iImmigrationWeight>
       <iImmigrationWeightDecay>0</iImmigrationWeightDecay>
@@ -20198,8 +20222,8 @@
       <iHurryCostModifier>0</iHurryCostModifier>
       <iAdvancedStartCost>100</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <iEuropeCost>3000</iEuropeCost>
-      <iEuropeCostIncrease>600</iEuropeCostIncrease>
+      <iEuropeCost>-1</iEuropeCost>
+      <iEuropeCostIncrease>0</iEuropeCostIncrease>
       <iImmigrationWeight>0</iImmigrationWeight>
       <iImmigrationWeightDecay>0</iImmigrationWeightDecay>
       <iMinAreaSize>20</iMinAreaSize>
@@ -22187,7 +22211,13 @@
       <iHurryCostModifier>0</iHurryCostModifier>
       <iAdvancedStartCost>-1</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <iEuropeCost>100</iEuropeCost>
+      <iEuropeCost>-1</iEuropeCost>
+      <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <iPricePercent>100</iPricePercent>
+        </TradeScreenType>
+      </TradeScreenTypes>
       <iEuropeCostIncrease>50</iEuropeCostIncrease>
       <iImmigrationWeight>0</iImmigrationWeight>
       <iImmigrationWeightDecay>0</iImmigrationWeightDecay>
@@ -22219,6 +22249,10 @@
       <YieldModifiers>
         <YieldModifier>
           <YieldType>YIELD_CLOTH</YieldType>
+          <iYieldMod>-50</iYieldMod>
+        </YieldModifier>
+        <YieldModifier>
+          <YieldType>YIELD_GRAIN</YieldType>
           <iYieldMod>-50</iYieldMod>
         </YieldModifier>
         <YieldModifier>
@@ -22282,64 +22316,7 @@
           <iYieldMod>-75</iYieldMod>
         </YieldModifier>
       </YieldModifiers>
-      <YieldChanges>
-        <YieldChange>
-          <YieldType>YIELD_FOOD</YieldType>
-          <iChange>-1</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_GRAIN</YieldType>
-          <iChange>-1</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_CATTLE</YieldType>
-          <iChange>-1</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_SHEEP</YieldType>
-          <iChange>-1</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_WOOL</YieldType>
-          <iChange>-1</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_SALT</YieldType>
-          <iChange>-1</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_LUMBER</YieldType>
-          <iChange>-2</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_STONE</YieldType>
-          <iChange>-2</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_SILVER</YieldType>
-          <iChange>-2</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_FUR</YieldType>
-          <iChange>-2</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_COTTON</YieldType>
-          <iChange>-1</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_BARLEY</YieldType>
-          <iChange>-1</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_GRAPES</YieldType>
-          <iChange>-1</iChange>
-        </YieldChange>
-        <YieldChange>
-          <YieldType>YIELD_ORE</YieldType>
-          <iChange>-2</iChange>
-        </YieldChange>
-      </YieldChanges>
+      <YieldChanges/>
       <BonusYieldChanges/>
       <bLandYieldChanges>1</bLandYieldChanges>
       <bWaterYieldChanges>1</bWaterYieldChanges>

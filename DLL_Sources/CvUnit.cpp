@@ -4565,6 +4565,15 @@ void CvUnit::crossOcean(UnitTravelStates eNewState)
 	int iTravelTime = 0;
     if (plot()->isEurope() != false)
     {
+        if (eTradeRoute != NO_TRADE_ROUTES)
+        {
+            CvPlot* pStartingTradePlot = GET_PLAYER(getOwnerINLINE()).getStartingTradeRoutePlot(eTradeRoute);
+            if (pStartingTradePlot == NULL)
+            {
+                GET_PLAYER(getOwnerINLINE()).setStartingTradeRoutePlot(plot(), eTradeRoute);
+            }
+        }
+
         iTravelTime = GC.getEuropeInfo(plot()->getEurope()).getTripLength();
     }
     else
@@ -9675,6 +9684,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                     CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
                     pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
                     gDLL->getInterfaceIFace()->addPopup(pInfo, GET_PLAYER(getOwner()).getID());
+                    kPlayer.setStartingTradeRoutePlot(pNewPlot, TRADE_ROUTE_SPICE_ROUTE);
                 }
             }
 

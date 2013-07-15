@@ -1052,7 +1052,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 		if (pPopupReturn->getButtonClicked() < GC.getNumUnitInfos())
 		{
 		    ///TKs Med
-			gDLL->sendPlayerAction(GC.getGameINLINE().getActivePlayer(), PLAYER_ACTION_BUY_EUROPE_UNIT, pPopupReturn->getButtonClicked(), info.getData1(), -1);
+			gDLL->sendPlayerAction(GC.getGameINLINE().getActivePlayer(), PLAYER_ACTION_BUY_EUROPE_UNIT, pPopupReturn->getButtonClicked(), info.getData1(), info.getData3());
 			///TKe
 		}
 		break;
@@ -3114,10 +3114,69 @@ bool CvDLLButtonPopup::launchPurchaseEuropeUnitPopup(CvPopup* pPopup, CvPopupInf
 	for (int iUnitClass = 0; iUnitClass < GC.getNumUnitClassInfos(); ++iUnitClass)
 	{
 		UnitTypes eUnit = (UnitTypes) GC.getCivilizationInfo(kPlayer.getCivilizationType()).getCivilizationUnits(iUnitClass);
-
 		if (NO_UNIT != eUnit)
 		{
-			int iCost = kPlayer.getEuropeUnitBuyPrice(eUnit);
+		    TradeScreenTypes eTradeScreen = TRADE_SCREEN_DEFAULT;
+			TradeRouteTypes eTradeRoute = (TradeRouteTypes)info.getData3();
+            if (eTradeRoute != NO_TRADE_ROUTES)
+            {
+                if (eTradeRoute == TRADE_ROUTE_SPICE_ROUTE)
+                {
+                    eTradeScreen = TRADE_SCREEN_SPICE_ROUTE;
+                }
+                else if (eTradeRoute == TRADE_ROUTE_SILK_ROAD)
+                {
+                    eTradeScreen = TRADE_SCREEN_SILK_ROAD;
+                }
+            }
+			int iCost = kPlayer.getEuropeUnitBuyPrice(eUnit, eTradeScreen);
+//			if (iCost > 0)
+//            {
+//                UnitClassTypes eUnitClass = (UnitClassTypes)GC.getUnitInfo(eUnit).getUnitClassType();
+//                for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+//                {
+//                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+//                    {
+//                        CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
+//                        if (kCivicInfo.getAllowsUnitClasses(eUnitClass) > 0)
+//                        {
+//                            if (kPlayer.getIdeasResearched((CivicTypes) iCivic) == 0)
+//                            {
+//                                iCost = -1;
+//                                break;
+//                            }
+//                        }
+//                        else if (kCivicInfo.getAllowsUnitClasses(eUnitClass) < 0)
+//                        {
+//                            if (kPlayer.getIdeasResearched((CivicTypes) iCivic) > 0)
+//                            {
+//                                iCost = -1;
+//                                break;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            TradeRouteTypes eTradeRoute = (TradeRouteTypes)info.getData3();
+//            int iTradeRoutePrice = 0;
+//            if (eTradeRoute != NO_TRADE_ROUTES)
+//            {
+//                FAssert(info.getData3() >= 0);
+//                FAssert(info.getData3() < NUM_TRADE_ROUTES_TYPES)
+//                if (eTradeRoute == TRADE_ROUTE_SPICE_ROUTE)
+//                {
+//                    iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SPICE_ROUTE);
+//                }
+//                else if (eTradeRoute == TRADE_ROUTE_SILK_ROAD)
+//                {
+//                    iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SILK_ROAD);
+//                }
+//                if (iTradeRoutePrice > 0)
+//                {
+//                    iCost = iTradeRoutePrice;
+//                }
+//            }
+
 			if (iCost >= 0)
 			{
 				CvWString szText = gDLL->getText("TXT_KEY_EUROPE_UNIT_BUY_PRICE", GC.getUnitInfo(eUnit).getTextKeyWide(), iCost);

@@ -870,6 +870,14 @@
     <Spanish>[ICON_BULLET]%d1 to alternate equip [COLOR_UNIT_TEXT]%s2_profession[COLOR_REVERT]</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_PURCHASE_UNIT_AFTER_BUILD</Tag>
+    <English>[ICON_BULLET]Purchasable after building the first one</English>
+    <French>[ICON_BULLET]purchasable after building the first one</French>
+    <German>[ICON_BULLET]purchasable after building the first one</German>
+    <Italian>[ICON_BULLET]purchasable after building the first one</Italian>
+    <Spanish>[ICON_BULLET]purchasable after building the first one</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_YIELD_ALTERNATE_FOR_PROFESSION_PEDIA</Tag>
     <English>[ICON_BULLET]Alternate Equipment %d1_Quantity %F2_Icon</English>
     <French>[ICON_BULLET]Alternate Equipment %d1_Quantity %F2_Icon</French>

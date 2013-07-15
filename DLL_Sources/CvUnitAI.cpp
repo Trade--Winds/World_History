@@ -4687,6 +4687,7 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 			}
 		}
 	}
+
     if (pBestPlot == NULL)
 	{
 	    for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
@@ -4712,6 +4713,11 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
                     }
                 }
             }
+        }
+
+        if (pBestPlot != NULL)
+        {
+            GET_PLAYER(getOwnerINLINE()).setStartingTradeRoutePlot(pBestPlot, eTradeRouteType);
         }
 	}
 

@@ -2876,8 +2876,9 @@ m_aiYieldChange(NULL),
 m_aiYieldCost(NULL),
 m_abFreePromotions(NULL),
 m_abPrereqOrBuilding(NULL),
-///TK Viscos Mod
+///TK Med Viscos Mod
 m_abProfessionsNotAllowed(NULL),
+m_aiTradeScreenPrice(NULL),
 ///Tks Med
 m_bPreventTraveling(false),
 m_bPreventFounding(false),
@@ -2930,8 +2931,9 @@ CvUnitInfo::~CvUnitInfo()
 	SAFE_DELETE_ARRAY(m_aiYieldChange);
 	SAFE_DELETE_ARRAY(m_aiYieldCost);
 	SAFE_DELETE_ARRAY(m_abFreePromotions);
-	///TK Viscos Mod
+	///TK Med Viscos Mod
 	SAFE_DELETE_ARRAY(m_abProfessionsNotAllowed);
+	SAFE_DELETE_ARRAY(m_aiTradeScreenPrice);
 	///TK end
 	SAFE_DELETE_ARRAY(m_abPrereqOrBuilding);
 	SAFE_DELETE_ARRAY(m_paszUnitNames);
@@ -3427,10 +3429,14 @@ bool CvUnitInfo::isEvasionBuilding(int i) const
 	FAssertMsg(i > -1 && i < GC.getNumBuildingClassInfos(), "Index out of bounds");
 	return m_abEvasionBuilding ? m_abEvasionBuilding[i] : false;
 }
-///TK Viscos Mod
+///TK Med Viscos Mod
 bool CvUnitInfo::getProfessionsNotAllowed(int i) const
 {
 	return m_abProfessionsNotAllowed ? m_abProfessionsNotAllowed[i] : false;
+}
+int CvUnitInfo::getTradeScreenPrice(int i) const
+{
+	return m_aiTradeScreenPrice ? m_aiTradeScreenPrice[i] : -1;
 }
 ///Tks Med
 int CvUnitInfo::getConvertsToYield() const
@@ -4131,8 +4137,9 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
 	pXML->SetVariableListTagPair(&m_abFreePromotions, "FreePromotions", GC.getNumPromotionInfos(), false);
-	///TK Viscos Mod
+	///TK Med Viscos Mod
 	pXML->SetVariableListTagPair(&m_abProfessionsNotAllowed, "ProfessionsNotAllowed", GC.getNumProfessionInfos(), false);
+	pXML->SetVariableListTagPair(&m_aiTradeScreenPrice, "TradeScreenTypes", NUM_TRADE_SCREEN_TYPES, -1);
 	///TK end
 	pXML->GetChildXmlValByName(szTextVal, "LeaderPromotion");
 	m_iLeaderPromotion = pXML->FindInInfoClass(szTextVal);

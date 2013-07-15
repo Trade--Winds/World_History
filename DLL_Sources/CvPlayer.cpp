@@ -56,6 +56,8 @@ CvPlayer::CvPlayer()
     m_aiVictoryYieldCount = new int[NUM_YIELD_TYPES];
     ///TKs Med
     m_aiCensureTypes = new int[NUM_CENSURE_TYPES];
+    m_aiTradeRouteStartingPlotX = new int[NUM_TRADE_ROUTES_TYPES];
+    m_aiTradeRouteStartingPlotY = new int[NUM_TRADE_ROUTES_TYPES];
     m_abTradeRouteTypes = new bool[NUM_TRADE_ROUTES_TYPES];
     ///TKe
 	m_abYieldEuropeTradable = new bool[NUM_YIELD_TYPES];
@@ -112,6 +114,8 @@ CvPlayer::~CvPlayer()
 	///TKs Invention Core Mod v 1.0
 	SAFE_DELETE_ARRAY(m_aiVictoryYieldCount);
 	SAFE_DELETE_ARRAY(m_aiCensureTypes);
+	SAFE_DELETE_ARRAY(m_aiTradeRouteStartingPlotX);
+	SAFE_DELETE_ARRAY(m_aiTradeRouteStartingPlotY);
 	SAFE_DELETE_ARRAY(m_abTradeRouteTypes);
 	///TKe
 	SAFE_DELETE_ARRAY(m_abYieldEuropeTradable);
@@ -509,6 +513,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
     for (iI = 0; iI < NUM_CENSURE_TYPES; iI++)
 	{
 	    m_aiCensureTypes[iI] = 0;
+	}
+	for (iI = 0; iI < NUM_TRADE_ROUTES_TYPES; iI++)
+	{
+	    m_aiTradeRouteStartingPlotX[iI] = INVALID_PLOT_COORD;
+	}
+	for (iI = 0; iI < NUM_TRADE_ROUTES_TYPES; iI++)
+	{
+	    m_aiTradeRouteStartingPlotY[iI] = INVALID_PLOT_COORD;
 	}
 	for (iI = 0; iI < NUM_TRADE_ROUTES_TYPES; iI++)
 	{
@@ -11306,6 +11318,8 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	///TKs Invention Core Mod v 1.0
 	pStream->Read(NUM_YIELD_TYPES, m_aiVictoryYieldCount);
 	pStream->Read(NUM_CENSURE_TYPES, m_aiCensureTypes);
+	pStream->Read(NUM_TRADE_ROUTES_TYPES, m_aiTradeRouteStartingPlotX);
+	pStream->Read(NUM_TRADE_ROUTES_TYPES, m_aiTradeRouteStartingPlotY);
 	pStream->Read(NUM_TRADE_ROUTES_TYPES, m_abTradeRouteTypes);
 	///Tke
 	pStream->Read(NUM_YIELD_TYPES, m_aiTaxYieldModifierCount);
@@ -11733,6 +11747,8 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	///TKs Invention Core Mod v 1.0
 	pStream->Write(NUM_YIELD_TYPES, m_aiVictoryYieldCount);
 	pStream->Write(NUM_CENSURE_TYPES, m_aiCensureTypes);
+	pStream->Write(NUM_TRADE_ROUTES_TYPES, m_aiTradeRouteStartingPlotX);
+	pStream->Write(NUM_TRADE_ROUTES_TYPES, m_aiTradeRouteStartingPlotY);
 	pStream->Write(NUM_TRADE_ROUTES_TYPES, m_abTradeRouteTypes);
 	///Tke
 	pStream->Write(NUM_YIELD_TYPES, m_aiTaxYieldModifierCount);
@@ -14600,8 +14616,8 @@ CvUnit* CvPlayer::buyYieldUnitFromEurope(YieldTypes eYield, int iAmount, CvUnit*
 
 	return pUnit;
 }
-
-int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit) const
+///TKs Med
+int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScreenType) const
 {
     ///TKs Invention Core Mod v 1.0
 	CvUnitInfo& kUnit = GC.getUnitInfo(eUnit);
@@ -14628,14 +14644,26 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit) const
         }
     }
 
-//    if (isHuman() && kUnit.getDomainType() == DOMAIN_SEA)
-//	{
-//        if (!GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
-//        {
-//           return -1;
-//        }
-//	}
-    if (!getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE) || kUnit.getDomainType() == DOMAIN_SEA)
+    int iCost = kUnit.getEuropeCost();
+	int iTradeRoutePrice = -1;
+    if (eTradeScreenType != TRADE_SCREEN_DEFAULT)
+    {
+        if (eTradeScreenType == TRADE_SCREEN_SPICE_ROUTE)
+        {
+            iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SPICE_ROUTE);
+        }
+        else if (eTradeScreenType == TRADE_SCREEN_SILK_ROAD)
+        {
+            iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SILK_ROAD);
+        }
+
+        if (iTradeRoutePrice > 0)
+        {
+            iCost = iTradeRoutePrice;
+        }
+    }
+
+    if (iTradeRoutePrice == -1)
     {
         UnitClassTypes eUnitClass;
         eUnitClass = ((UnitClassTypes)kUnit.getUnitClassType());
@@ -14661,12 +14689,16 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit) const
             }
         }
     }
-	///TKe
 
+    if ((kUnit.getDomainType() == DOMAIN_SEA || kUnit.isMechUnit()) && iCost > 0)
+    {
+        if (getUnitClassCount((UnitClassTypes)kUnit.getUnitClassType()) == 0)
+        {
+            return -1;
+        }
+    }
 
-
-	int iCost = kUnit.getEuropeCost();
-
+///TKe
 	bool bNegative = (iCost < 0);
 	iCost = std::abs(iCost);
 
@@ -14704,29 +14736,31 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit) const
 	return iCost;
 }
 ///Tks Med
-CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier)
+CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteTypes eTradeRoute)
 {
 	FAssert(canTradeWithEurope());
 	if (!canTradeWithEurope())
 	{
 		return NULL;
 	}
-
-	if (getEuropeUnitBuyPrice(eUnit) < 0)
+    int iPrice = 0;
+    TradeScreenTypes eTradeScreen = TRADE_SCREEN_DEFAULT;
+    if (eTradeRoute != NO_TRADE_ROUTES)
+    {
+        if (eTradeRoute == TRADE_ROUTE_SPICE_ROUTE)
+        {
+            eTradeScreen = TRADE_SCREEN_SPICE_ROUTE;
+        }
+        else if (eTradeRoute == TRADE_ROUTE_SILK_ROAD)
+        {
+            eTradeScreen = TRADE_SCREEN_SILK_ROAD;
+        }
+    }
+	if (getEuropeUnitBuyPrice(eUnit, eTradeScreen) < 0)
 	{
-		return NULL;
+        return NULL;
 	}
-	///TKs Med
-	int iPrice = 0;
-	if (iPriceModifier > 1)
-	{
-		iPrice = getEuropeUnitBuyPrice(eUnit) * iPriceModifier / 100;
-	}
-	else
-	{
-		iPrice = getEuropeUnitBuyPrice(eUnit);
-	}
-	///TKe
+    iPrice = getEuropeUnitBuyPrice(eUnit, eTradeScreen);
 	if (iPrice > getGold())
 	{
 		m_aszTradeMessages.push_back(gDLL->getText("EUROPE_SCREEN_BUY_UNIT_LACK_FUNDS", GC.getUnitInfo(eUnit).getTextKeyWide(), iPrice));
@@ -14738,35 +14772,116 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier)
 	CvPlot* pStartingPlot = getStartingPlot();
 	if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_SEA && pStartingPlot != NULL)
 	{
-	    if (!pStartingPlot->isEurope())
+	    UnitTravelStates eTravelState = UNIT_TRAVEL_STATE_IN_EUROPE;
+	    if (eTradeRoute != NO_TRADE_ROUTES)
         {
-            CvPlot* pNewPlot = NULL;
-            CvCity* pPortCity = GC.getMapINLINE().findCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), getID(), NO_TEAM, false, true);
-            if (pPortCity == NULL)
+            FAssert(eTradeRoute >= 0)
+            FAssert(eTradeRoute < NUM_TRADE_ROUTES_TYPES);
+            if (eTradeRoute == TRADE_ROUTE_SPICE_ROUTE)
             {
-                pNewPlot = pStartingPlot->findNearbyOceanPlot(0);
+                eTravelState = UNIT_TRAVEL_STATE_IN_SPICE_ROUTE;
             }
-            else
+            else if (eTradeRoute == TRADE_ROUTE_SILK_ROAD)
             {
-                pNewPlot = pPortCity->plot();
+                eTravelState = UNIT_TRAVEL_STATE_IN_SILK_ROAD;
             }
-
-            if (pNewPlot != NULL)
-            {
-                pStartingPlot = pNewPlot;
-            }
+            FAssert(eTravelState != NO_UNIT_TRAVEL_STATE);
         }
 
 		pUnit = initUnit(eUnit, (ProfessionTypes) GC.getUnitInfo(eUnit).getDefaultProfession(), INVALID_PLOT_COORD, INVALID_PLOT_COORD);
         if (pUnit != NULL)
 		{
-
-		    if (GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
+		    if (eTradeRoute != NO_TRADE_ROUTES)
             {
-                pUnit->setUnitTravelState(UNIT_TRAVEL_STATE_IN_EUROPE, false);
+                CvPlot* pStartingTradePlot = getStartingTradeRoutePlot(eTradeRoute);
+                if (!pStartingPlot->isEurope() && pStartingTradePlot == NULL)
+                {
+                    CvPlot* pNewPlot = NULL;
+                    CvCity* pPortCity = GC.getMapINLINE().findCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), getID(), NO_TEAM, false, true);
+                    if (pPortCity == NULL)
+                    {
+                        pNewPlot = pStartingPlot->findNearbyOceanPlot(0);
+                    }
+                    else
+                    {
+                        pNewPlot = pPortCity->plot();
+                    }
+
+                    if (pNewPlot != NULL)
+                    {
+                        pStartingPlot = pNewPlot;
+                    }
+                }
+
+                if (pStartingTradePlot == NULL && pStartingPlot != NULL)
+                {
+                    int iBestValue = 0;
+                    for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+                    {
+                        CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+
+                        if (pUnit->isValidPlot(pLoopPlot) && !pLoopPlot->isVisibleEnemyDefender(pUnit))
+                        {
+                            if (pUnit->canCrossOcean(pLoopPlot, eTravelState, eTradeRoute))
+                            {
+                                int iPathTurns;
+                                if (pUnit->generatePath(pStartingPlot, MOVE_BUST_FOG, true, &iPathTurns))
+                                {
+                                    int iValue = 10000;
+                                    iValue /= 100 + pUnit->getPathCost();
+                                    if (pLoopPlot->isRevealed(getTeam(), false))
+                                    {
+                                        iValue += 1000;
+                                    }
+                                    if (iValue > iBestValue)
+                                    {
+                                        iBestValue = iValue;
+                                        pStartingTradePlot = pLoopPlot;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+                FAssert(pStartingTradePlot != NULL);
+                if (pStartingTradePlot != NULL)
+                {
+                    pUnit->setUnitTravelState(eTravelState, false);
+                    //add unit to map after setting Europe state so that it doesn't bump enemy units
+                    pUnit->addToMap(pStartingTradePlot->getX_INLINE(), pStartingTradePlot->getY_INLINE());
+                }
             }
-			//add unit to map after setting Europe state so that it doesn't bump enemy units
-			pUnit->addToMap(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE());
+		    else if (GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
+            {
+                pUnit->setUnitTravelState(eTravelState, false);
+                //add unit to map after setting Europe state so that it doesn't bump enemy units
+                pUnit->addToMap(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE());
+            }
+            else if (!pStartingPlot->isEurope())
+            {
+                CvPlot* pNewPlot = NULL;
+                CvCity* pPortCity = GC.getMapINLINE().findCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), getID(), NO_TEAM, false, true);
+                if (pPortCity == NULL)
+                {
+                    pNewPlot = pStartingPlot->findNearbyOceanPlot(0);
+                }
+                else
+                {
+                    pNewPlot = pPortCity->plot();
+                }
+
+                if (pNewPlot == NULL)
+                {
+                    pUnit->kill(true);
+                    return NULL;
+                }
+                pStartingPlot = pNewPlot;
+                pUnit->setUnitTravelState(NO_UNIT_TRAVEL_STATE, false);
+                //add unit to map after setting Europe state so that it doesn't bump enemy units
+                pUnit->addToMap(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE());
+                gDLL->getInterfaceIFace()->setDirty(EuropeScreen_DIRTY_BIT, true);
+            }
 		}
 	}
 	else
@@ -14828,7 +14943,7 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier)
          }
 
 	}
-    ///Tke
+
 	FAssert(NULL != pUnit);
 	if (NULL != pUnit)
 	{
@@ -14839,7 +14954,7 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier)
 
 	return pUnit;
 }
-
+///TKe
 void CvPlayer::buyUnitsFromKing()
 {
 	PlayerTypes eParent = getParent();
@@ -15110,7 +15225,9 @@ void CvPlayer::doAction(PlayerActionTypes eAction, int iData1, int iData2, int i
 	switch (eAction)
 	{
 	case PLAYER_ACTION_BUY_EUROPE_UNIT:
-		buyEuropeUnit((UnitTypes) iData1, iData2);
+	///Tks Med
+		buyEuropeUnit((UnitTypes) iData1, iData2, (TradeRouteTypes)iData3);
+		///Tke
 		break;
 	case PLAYER_ACTION_SELL_YIELD_UNIT:
 		sellYieldUnitToEurope(getUnit(iData3), iData2, iData1);
@@ -18412,6 +18529,34 @@ int CvPlayer::getCensureType(CensureType eCensure) const
 {
 	return m_aiCensureTypes[eCensure];
 	//return 0;
+}
+
+CvPlot* CvPlayer::getStartingTradeRoutePlot(TradeRouteTypes eTradeRoute) const
+{
+    FAssertMsg(eTradeRoute != NO_TRADE_ROUTES, "Should have trade route");
+	return GC.getMapINLINE().plotSorenINLINE(m_aiTradeRouteStartingPlotX[eTradeRoute], m_aiTradeRouteStartingPlotY[eTradeRoute]);
+}
+
+void CvPlayer::setStartingTradeRoutePlot(CvPlot* pNewValue, TradeRouteTypes eTradeRoute)
+{
+	CvPlot* pOldStartingPlot;
+
+	pOldStartingPlot = getStartingTradeRoutePlot(eTradeRoute);
+
+	if (pOldStartingPlot != pNewValue)
+	{
+
+		if (pNewValue == NULL)
+		{
+			m_aiTradeRouteStartingPlotX[eTradeRoute] = INVALID_PLOT_COORD;
+			m_aiTradeRouteStartingPlotY[eTradeRoute] = INVALID_PLOT_COORD;
+		}
+		else
+		{
+			m_aiTradeRouteStartingPlotX[eTradeRoute] = pNewValue->getX_INLINE();
+			m_aiTradeRouteStartingPlotY[eTradeRoute] = pNewValue->getY_INLINE();
+		}
+	}
 }
 
 bool CvPlayer::getHasTradeRouteType(TradeRouteTypes eTradeRoute) const

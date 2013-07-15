@@ -438,6 +438,7 @@ class CvSpiceRouteScreen:
 				if (inputClass.getData1() == self.BUY_UNIT_BUTTON_ID) :
 					popupInfo = CyPopupInfo()
 					popupInfo.setData1(1)
+					popupInfo.setData3(TradeRouteTypes.TRADE_ROUTE_SPICE_ROUTE)
 					popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PURCHASE_EUROPE_UNIT)
 					CyInterface().addPopup(popupInfo, gc.getGame().getActivePlayer(), true, false)
 
