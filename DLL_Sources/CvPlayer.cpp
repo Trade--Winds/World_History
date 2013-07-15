@@ -14697,7 +14697,7 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
             return -1;
         }
     }
-
+	
 ///TKe
 	bool bNegative = (iCost < 0);
 	iCost = std::abs(iCost);
