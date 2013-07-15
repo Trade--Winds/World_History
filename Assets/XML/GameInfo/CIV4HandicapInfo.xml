@@ -36,8 +36,8 @@
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIKingUnitThresholdPercent>200</iAIKingUnitThresholdPercent>
 			<!-- JAnimals Mod Start -->
-			<iAIAnimalLandMaxPercent>10</iAIAnimalLandMaxPercent>
-			<iAIAnimalSeaMaxPercent>5</iAIAnimalSeaMaxPercent>
+			<iAIAnimalLandMaxPercent>2</iAIAnimalLandMaxPercent>
+			<iAIAnimalSeaMaxPercent>3</iAIAnimalSeaMaxPercent>
 			<iAIAnimalLandNumTurnsNoSpawn>6</iAIAnimalLandNumTurnsNoSpawn>
 			<iAIAnimalSeaNumTurnsNoSpawn>6</iAIAnimalSeaNumTurnsNoSpawn>
 			<!-- JAnimals Mod End -->
@@ -100,10 +100,10 @@
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIKingUnitThresholdPercent>200</iAIKingUnitThresholdPercent>
 			<!-- JAnimals Mod Start -->
-			<iAIAnimalLandMaxPercent>15</iAIAnimalLandMaxPercent>
-			<iAIAnimalSeaMaxPercent>10</iAIAnimalSeaMaxPercent>
-			<iAIAnimalLandNumTurnsNoSpawn>5</iAIAnimalLandNumTurnsNoSpawn>
-			<iAIAnimalSeaNumTurnsNoSpawn>5</iAIAnimalSeaNumTurnsNoSpawn>
+			<iAIAnimalLandMaxPercent>3</iAIAnimalLandMaxPercent>
+			<iAIAnimalSeaMaxPercent>4</iAIAnimalSeaMaxPercent>
+			<iAIAnimalLandNumTurnsNoSpawn>4</iAIAnimalLandNumTurnsNoSpawn>
+			<iAIAnimalSeaNumTurnsNoSpawn>4</iAIAnimalSeaNumTurnsNoSpawn>
 			<!-- JAnimals Mod End -->
 			<iKingNumUnitMultiplier>104</iKingNumUnitMultiplier>
 			<iKingGoldThresholdPercent>2</iKingGoldThresholdPercent>
@@ -167,9 +167,9 @@
 			<iAIKingUnitThresholdPercent>200</iAIKingUnitThresholdPercent>
 			<!-- JAnimals Mod Start -->
 			<iAIAnimalLandMaxPercent>5</iAIAnimalLandMaxPercent>
-			<iAIAnimalSeaMaxPercent>5</iAIAnimalSeaMaxPercent>
-			<iAIAnimalLandNumTurnsNoSpawn>0</iAIAnimalLandNumTurnsNoSpawn>
-			<iAIAnimalSeaNumTurnsNoSpawn>0</iAIAnimalSeaNumTurnsNoSpawn>
+			<iAIAnimalSeaMaxPercent>6</iAIAnimalSeaMaxPercent>
+			<iAIAnimalLandNumTurnsNoSpawn>2</iAIAnimalLandNumTurnsNoSpawn>
+			<iAIAnimalSeaNumTurnsNoSpawn>2</iAIAnimalSeaNumTurnsNoSpawn>
 			<!-- JAnimals Mod End -->
 			<iKingNumUnitMultiplier>106</iKingNumUnitMultiplier>
 			<iKingGoldThresholdPercent>2</iKingGoldThresholdPercent>
@@ -235,10 +235,10 @@
 			<iAIAdvancedStartPercent>110</iAIAdvancedStartPercent>
 			<iAIKingUnitThresholdPercent>210</iAIKingUnitThresholdPercent>
 			<!-- JAnimals Mod Start -->
-			<iAIAnimalLandMaxPercent>25</iAIAnimalLandMaxPercent>
-			<iAIAnimalSeaMaxPercent>20</iAIAnimalSeaMaxPercent>
-			<iAIAnimalLandNumTurnsNoSpawn>3</iAIAnimalLandNumTurnsNoSpawn>
-			<iAIAnimalSeaNumTurnsNoSpawn>3</iAIAnimalSeaNumTurnsNoSpawn>
+			<iAIAnimalLandMaxPercent>6</iAIAnimalLandMaxPercent>
+			<iAIAnimalSeaMaxPercent>7</iAIAnimalSeaMaxPercent>
+			<iAIAnimalLandNumTurnsNoSpawn>2</iAIAnimalLandNumTurnsNoSpawn>
+			<iAIAnimalSeaNumTurnsNoSpawn>2</iAIAnimalSeaNumTurnsNoSpawn>
 			<!-- JAnimals Mod End -->
 			<iKingNumUnitMultiplier>108</iKingNumUnitMultiplier>
 			<iKingGoldThresholdPercent>2</iKingGoldThresholdPercent>
@@ -301,8 +301,8 @@
 			<iAIAdvancedStartPercent>120</iAIAdvancedStartPercent>
 			<iAIKingUnitThresholdPercent>200</iAIKingUnitThresholdPercent>
 			<!-- JAnimals Mod Start -->
-			<iAIAnimalLandMaxPercent>30</iAIAnimalLandMaxPercent>
-			<iAIAnimalSeaMaxPercent>25</iAIAnimalSeaMaxPercent>
+			<iAIAnimalLandMaxPercent>8</iAIAnimalLandMaxPercent>
+			<iAIAnimalSeaMaxPercent>9</iAIAnimalSeaMaxPercent>
 			<iAIAnimalLandNumTurnsNoSpawn>2</iAIAnimalLandNumTurnsNoSpawn>
 			<iAIAnimalSeaNumTurnsNoSpawn>2</iAIAnimalSeaNumTurnsNoSpawn>
 			<!-- JAnimals Mod End -->
@@ -368,8 +368,8 @@
 			<iAIAdvancedStartPercent>135</iAIAdvancedStartPercent>
 			<iAIKingUnitThresholdPercent>200</iAIKingUnitThresholdPercent>
 			<!-- JAnimals Mod Start -->
-			<iAIAnimalLandMaxPercent>35</iAIAnimalLandMaxPercent>
-			<iAIAnimalSeaMaxPercent>30</iAIAnimalSeaMaxPercent>
+			<iAIAnimalLandMaxPercent>10</iAIAnimalLandMaxPercent>
+			<iAIAnimalSeaMaxPercent>11</iAIAnimalSeaMaxPercent>
 			<iAIAnimalLandNumTurnsNoSpawn>1</iAIAnimalLandNumTurnsNoSpawn>
 			<iAIAnimalSeaNumTurnsNoSpawn>1</iAIAnimalSeaNumTurnsNoSpawn>
 			<!-- JAnimals Mod End -->
@@ -437,8 +437,8 @@
 			<iAIAdvancedStartPercent>150</iAIAdvancedStartPercent>
 			<iAIKingUnitThresholdPercent>200</iAIKingUnitThresholdPercent>
 			<!-- JAnimals Mod Start -->
-			<iAIAnimalLandMaxPercent>40</iAIAnimalLandMaxPercent>
-			<iAIAnimalSeaMaxPercent>35</iAIAnimalSeaMaxPercent>
+			<iAIAnimalLandMaxPercent>10</iAIAnimalLandMaxPercent>
+			<iAIAnimalSeaMaxPercent>11</iAIAnimalSeaMaxPercent>
 			<iAIAnimalLandNumTurnsNoSpawn>0</iAIAnimalLandNumTurnsNoSpawn>
 			<iAIAnimalSeaNumTurnsNoSpawn>0</iAIAnimalSeaNumTurnsNoSpawn>
 			<!-- JAnimals Mod End -->
