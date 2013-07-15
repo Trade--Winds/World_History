@@ -14690,7 +14690,7 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
         }
     }
 
-    if ((kUnit.getDomainType() == DOMAIN_SEA || kUnit.isMechUnit()) && iCost > 0)
+    if ((kUnit.getDomainType() == DOMAIN_SEA || kUnit.isMechUnit()) && kUnit.getEuropeCost() > 0 && iTradeRoutePrice == -1)
     {
         if (getUnitClassCount((UnitClassTypes)kUnit.getUnitClassType()) == 0)
         {
