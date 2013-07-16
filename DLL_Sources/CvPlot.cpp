@@ -2647,7 +2647,10 @@ bool CvPlot::isVisibleToCivTeam(bool bIgnoreNativeTeams) const
 		    {
 		        if (GET_TEAM((TeamTypes)iI).hasNativePlayer())
 		        {
-		            continue;
+		            if (!GET_TEAM((TeamTypes)iI).hasColonialPlayer())
+                    {
+                        continue;
+                    }
 		        }
 		    }
 			if (isVisible(((TeamTypes)iI), false))

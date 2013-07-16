@@ -3713,13 +3713,13 @@
     </CivilizationInfo>
     <!--Barbarian Civs-->
     <CivilizationInfo>
-      <Type>CIVILIZATION_TUPI</Type>
+      <Type>CIVILIZATION_VANDALS</Type>
       <Description>Vandals</Description>
       <ShortDescription>Vandals</ShortDescription>
       <Adjective>Vandal</Adjective>
-      <Civilopedia>TXT_KEY_CIV_TUPI_PEDIA</Civilopedia>
+      <Civilopedia>????</Civilopedia>
       <DefaultPlayerColor>PLAYERCOLOR_DARK_GREEN</DefaultPlayerColor>
-      <ArtDefineTag>ART_DEF_CIVILIZATION_TUPI</ArtDefineTag>
+      <ArtDefineTag>ART_DEF_CIVILIZATION_VANDALS</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_NATIVES_SOUTH</ArtStyleType>
       <bPlayable>0</bPlayable>
       <bAIPlayable>1</bAIPlayable>
@@ -4140,13 +4140,13 @@
       <CivilizationActionSound>AS3D_NATIVE_AMERICA_ORDER</CivilizationActionSound>
     </CivilizationInfo>
     <CivilizationInfo>
-      <Type>CIVILIZATION_ARAWAK</Type>
+      <Type>CIVILIZATION_MALI</Type>
       <Description>Malinese</Description>
       <ShortDescription>Malinese</ShortDescription>
       <Adjective>Malian</Adjective>
-      <Civilopedia>TXT_KEY_CIV_ARAWAK_PEDIA</Civilopedia>
+      <Civilopedia>????</Civilopedia>
       <DefaultPlayerColor>PLAYERCOLOR_LIGHT_BROWN</DefaultPlayerColor>
-      <ArtDefineTag>ART_DEF_CIVILIZATION_ARAWAK</ArtDefineTag>
+      <ArtDefineTag>ART_DEF_CIVILIZATION_MALI</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_NATIVES_EAST</ArtStyleType>
       <UnitArtStyleType>UNIT_ARTSTYLE_TURK</UnitArtStyleType>
       <bPlayable>0</bPlayable>
@@ -4578,13 +4578,13 @@
       <CivilizationActionSound>AS3D_NATIVE_AMERICA_ORDER</CivilizationActionSound>
     </CivilizationInfo>
     <CivilizationInfo>
-      <Type>CIVILIZATION_AZTEC</Type>
+      <Type>CIVILIZATION_MAGYAR</Type>
       <Description>Magyars</Description>
       <ShortDescription>Magyars</ShortDescription>
       <Adjective>Magyarian</Adjective>
       <Civilopedia>????</Civilopedia>
       <DefaultPlayerColor>PLAYERCOLOR_GREEN</DefaultPlayerColor>
-      <ArtDefineTag>ART_DEF_CIVILIZATION_AZTEC</ArtDefineTag>
+      <ArtDefineTag>ART_DEF_CIVILIZATION_MAGYAR</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_NATIVES_SOUTH</ArtStyleType>
       <bPlayable>0</bPlayable>
       <bAIPlayable>1</bAIPlayable>
@@ -5015,13 +5015,13 @@
       <CivilizationActionSound>AS3D_AZTEC_ORDER</CivilizationActionSound>
     </CivilizationInfo>
     <CivilizationInfo>
-      <Type>CIVILIZATION_INCA</Type>
+      <Type>CIVILIZATION_SLAV</Type>
       <Description>Slavs</Description>
       <ShortDescription>Slavs</ShortDescription>
       <Adjective>Slavic</Adjective>
       <Civilopedia>????</Civilopedia>
       <DefaultPlayerColor>PLAYERCOLOR_LIGHT_ORANGE</DefaultPlayerColor>
-      <ArtDefineTag>ART_DEF_CIVILIZATION_INCA</ArtDefineTag>
+      <ArtDefineTag>ART_DEF_CIVILIZATION_SLAV</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_NATIVES_SOUTH</ArtStyleType>
       <bPlayable>0</bPlayable>
       <bAIPlayable>1</bAIPlayable>
@@ -5456,13 +5456,13 @@
       <CivilizationActionSound>AS3D_INCA_ORDER</CivilizationActionSound>
     </CivilizationInfo>
     <CivilizationInfo>
-      <Type>CIVILIZATION_APACHE</Type>
+      <Type>CIVILIZATION_BERBER</Type>
       <Description>Berber</Description>
       <ShortDescription>Berber</ShortDescription>
       <Adjective>Berberic</Adjective>
       <Civilopedia>????</Civilopedia>
       <DefaultPlayerColor>PLAYERCOLOR_PEACH</DefaultPlayerColor>
-      <ArtDefineTag>ART_DEF_CIVILIZATION_APACHE</ArtDefineTag>
+      <ArtDefineTag>ART_DEF_CIVILIZATION_BERBER</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_NATIVES_EAST</ArtStyleType>
       <UnitArtStyleType>UNIT_ARTSTYLE_TURK</UnitArtStyleType>
       <bPlayable>0</bPlayable>
@@ -5912,13 +5912,13 @@
       <CivilizationActionSound>AS3D_NATIVE_AMERICA_ORDER</CivilizationActionSound>
     </CivilizationInfo>
     <CivilizationInfo>
-      <Type>CIVILIZATION_SIOUX</Type>
+      <Type>CIVILIZATION_LOMBARD</Type>
       <Description>Lombards</Description>
       <ShortDescription>Lombards</ShortDescription>
       <Adjective>Lombardian</Adjective>
       <Civilopedia>????</Civilopedia>
       <DefaultPlayerColor>PLAYERCOLOR_GRAY_WARM</DefaultPlayerColor>
-      <ArtDefineTag>ART_DEF_CIVILIZATION_SIOUX</ArtDefineTag>
+      <ArtDefineTag>ART_DEF_CIVILIZATION_LOMBARD</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_NATIVES_EAST</ArtStyleType>
       <bPlayable>0</bPlayable>
       <bAIPlayable>1</bAIPlayable>
@@ -6341,13 +6341,13 @@
       <CivilizationActionSound>AS3D_NATIVE_AMERICA_ORDER</CivilizationActionSound>
     </CivilizationInfo>
     <CivilizationInfo>
-      <Type>CIVILIZATION_CHEROKEE</Type>
+      <Type>CIVILIZATION_NORWEGIAN</Type>
       <Description>Norwegian Vikings</Description>
       <ShortDescription>Norsemen</ShortDescription>
       <Adjective>Norse</Adjective>
       <Civilopedia>????</Civilopedia>
       <DefaultPlayerColor>PLAYERCOLOR_CYAN</DefaultPlayerColor>
-      <ArtDefineTag>ART_DEF_CIVILIZATION_CHEROKEE</ArtDefineTag>
+      <ArtDefineTag>ART_DEF_CIVILIZATION_NORWEGIAN</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_NATIVES_EAST</ArtStyleType>
       <bPlayable>0</bPlayable>
       <bAIPlayable>1</bAIPlayable>
@@ -6770,13 +6770,13 @@
       <CivilizationActionSound>AS3D_NATIVE_AMERICA_ORDER</CivilizationActionSound>
     </CivilizationInfo>
     <CivilizationInfo>
-      <Type>CIVILIZATION_IROQUOIS</Type>
+      <Type>CIVILIZATION_BURGUNDY</Type>
       <Description>Burgundy</Description>
       <ShortDescription>Burgundy</ShortDescription>
       <Adjective>Burgundian</Adjective>
       <Civilopedia>????</Civilopedia>
       <DefaultPlayerColor>PLAYERCOLOR_BLUE</DefaultPlayerColor>
-      <ArtDefineTag>ART_DEF_CIVILIZATION_IROQUOIS</ArtDefineTag>
+      <ArtDefineTag>ART_DEF_CIVILIZATION_BURGUNDY</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_NATIVES_EAST</ArtStyleType>
       <UnitArtStyleType>UNIT_ARTSTYLE_BURGUNDY</UnitArtStyleType>
       <bPlayable>0</bPlayable>
@@ -7251,9 +7251,9 @@
       <Description>Vassal Lord</Description>
       <ShortDescription>Vassal Lord</ShortDescription>
       <Adjective>Vassalage</Adjective>
-      <Civilopedia>TXT_KEY_CIV_BARBARIAN_PEDIA</Civilopedia>
+      <Civilopedia>????</Civilopedia>
       <DefaultPlayerColor>PLAYERCOLOR_GREEN</DefaultPlayerColor>
-      <ArtDefineTag>ART_DEF_CIVILIZATION_AZTEC</ArtDefineTag>
+      <ArtDefineTag>ART_DEF_CIVILIZATION_VASSAL</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_NATIVES_EAST</ArtStyleType>
       <bPlayable>0</bPlayable>
       <bAIPlayable>0</bAIPlayable>

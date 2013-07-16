@@ -14689,7 +14689,7 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
             }
         }
     }
-	
+
     if ((kUnit.getDomainType() == DOMAIN_SEA || kUnit.isMechUnit()) && kUnit.getEuropeCost() > 0 && iTradeRoutePrice == -1)
     {
         if (getUnitClassCount((UnitClassTypes)kUnit.getUnitClassType()) == 0)
@@ -14697,7 +14697,7 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
             return -1;
         }
     }
-	
+
 ///TKe
 	bool bNegative = (iCost < 0);
 	iCost = std::abs(iCost);
@@ -17620,6 +17620,9 @@ void CvPlayer::doIdeas(bool Cheat)
                     gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_YELLOW"));
                     processCivics(eTradeCivic, 1);
                     changeIdeasResearched(eTradeCivic, 1);
+                    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                    pInfo->setText(CvWString("ART_DEF_MOVIE_TRADE_LEAGUE"));
+                    gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
                 }
 
             }

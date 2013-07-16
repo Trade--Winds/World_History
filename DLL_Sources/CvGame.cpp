@@ -5311,10 +5311,8 @@ void CvGame::createAnimalsLand()
 
 	for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
 	{
-        //iNeededAnimals = pLoopArea->getNumTiles();
+
         iNeededAnimals = (pLoopArea->getNumTiles() * GC.getHandicapInfo(getHandicapType()).getAIAnimalLandMaxPercent()) / 100;
-        //iNeededAnimals /= (GC.getNumHandicapInfos() - getHandicapType());
-        //iNeededAnimals /= (GC.getNumWorldInfos() - GC.getMapINLINE().getWorldSize());
         iNeededAnimals = std::min(100, iNeededAnimals);
 
         iNeededAnimals -= pLoopArea->getUnitsPerPlayer(getBarbarianPlayer());
@@ -5328,35 +5326,10 @@ void CvGame::createAnimalsLand()
 				for (iI = 0; iI < iNeededAnimals; iI++)
 				{
 				    ///TKs Med
-				    pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV), pLoopArea->getID(), iStartDist, 100, true);
+				    pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV, RANDPLOT_NOT_CITY), pLoopArea->getID(), iStartDist, 100, true);
 
 					if (pPlot != NULL)
 					{
-					    /*
-					    // May Cause OOS Errors as Active Player is different on each Computer
-					    if (pPlot->isActiveVisible(false))
-					    {
-					        continue
-					    }
-					    */
-//					    ///TKs Med
-//					    bool bContinue = false;
-//                        for (int iI = 0; iI < MAX_TEAMS; iI++)
-//                        {
-//                            CvTeam& kTeam = GET_TEAM((TeamTypes)iI);
-//                            if (kTeam.isAlive() && !kTeam.hasNativePlayer())
-//                            {
-//                                if (pPlot->getVisibilityCount((TeamTypes)iI))
-//                                {
-//                                    break;
-//                                    bContinue = true;
-//                                }
-//                            }
-//                        }
-//                        if (bContinue)
-//                        {
-//                            continue;
-//                        }
 					    ///Tke
 						eBestUnit = NO_UNIT;
 						iBestValue = 0;
