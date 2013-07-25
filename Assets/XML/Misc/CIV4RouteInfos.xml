@@ -23,8 +23,8 @@
       <iValue>2</iValue>
       <iAdvancedStartCost>24</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <iMovement>30</iMovement>
-      <iFlatMovement>30</iFlatMovement>
+      <iMovement>10</iMovement>
+      <iFlatMovement>10</iFlatMovement>
       <Yields/>
       <Button>Art/Interface/Buttons/Builds/Trails.dds</Button>
     </RouteInfo>

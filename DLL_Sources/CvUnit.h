@@ -205,6 +205,7 @@ public:
 	bool found(int iType = -1);
 	bool doFound(bool bBuyLand, int iType = -1);
 	bool doFoundCheckNatives(int iType = -1);
+	CvCity* getEvasionCity(int iWaylayed = -1) const;
 		///Tke
 	bool canJoinCity(const CvPlot* pPlot, bool bTestVisible = false) const;
 	bool canJoinStarvingCity(const CvCity& kCity) const;
@@ -320,7 +321,6 @@ public:
 
 	int withdrawalProbability() const;
 	int getEvasionProbability(const CvUnit& kAttacker) const;
-	CvCity* getEvasionCity() const;
 
 	int cityAttackModifier() const;
 	int cityDefenseModifier() const;
@@ -575,6 +575,9 @@ public:
 	void setTravelPlot();
 	bool doUnitPilgram();
 	CvPlot* findNearestValidMarauderPlot(CvCity* pSpawnCity, CvCity* pVictimCity, bool bNoCitySpawn, bool bMustBeSameArea);
+	int getInvisibleTimer() const;
+	void setInvisibleTimer(int iNewValue);
+	void changeInvisibleTimer(int iChange);
 	///TKe
 	DllExport CvUnit* getCombatUnit() const;
 	void setCombatUnit(CvUnit* pUnit, bool bAttacking = false);
@@ -751,6 +754,7 @@ protected:
 	int m_iExtraChanceFirstStrikes;
 	int m_iCombatBlockParrys;
 	int m_iEscortPromotion;
+	int m_iInvisibleTimer;
 	bool m_bCrushingBlows;
 	bool m_bGlancingBlows;
 	bool m_bFreeBuilding;

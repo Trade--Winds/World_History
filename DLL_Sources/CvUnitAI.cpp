@@ -1200,6 +1200,14 @@ bool CvUnitAI::AI_animalLandPatrol()
 					{
                         iValue = 0;
                         iRand = getUnitInfo().getAnimalPatrolWeight();
+                        int iNoneNativeTerrain = 0;
+                        if (plot()->getTerrainType() != NO_TERRAIN)
+                        {
+                            if (!getUnitInfo().getTerrainNative(plot()->getTerrainType()))
+                            {
+                                iNoneNativeTerrain = 1000;
+                            }
+                        }
                         // Move this Global Define Int to a UnitInfo tag - iAnimalPatrolWeight
                         //iRand = GC.getDefineINT("WILD_ANIMAL_LAND_PATROL_BASE_WEIGHT");
                         if (iRand > 0)
@@ -1227,7 +1235,7 @@ bool CvUnitAI::AI_animalLandPatrol()
                                 if (getUnitInfo().getTerrainNative(pAdjacentPlot->getTerrainType()))
                                 {
                                     iRand = GC.getCache_WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT();
-                                    iValue += (1 + GC.getGameINLINE().getSorenRandNum(iRand, "Wild Land Animal Patrol - Terrain Weight"));
+                                    iValue += (1 + GC.getGameINLINE().getSorenRandNum(iRand, "Wild Land Animal Patrol - Terrain Weight") + iNoneNativeTerrain);
                                 }
                             }
 

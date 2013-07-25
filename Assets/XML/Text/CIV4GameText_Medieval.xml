@@ -22,6 +22,22 @@
     <Spanish></Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_ESTABLISH_TRADEPOST_MESSAGE</Tag>
+    <English>You have established a trading post in %s1_city</English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_DOMESTIC_ADVISOR_STATE_NATIVE</Tag>
+    <English>Nearby Villages</English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_COLLECTED_TAXES</Tag>
     <English>Taxcollectors have gathered %d1[ICON_GOLD] from your Vassalage at %s2_city</English>
     <French></French>
@@ -88,6 +104,22 @@
   <TEXT>
     <Tag>TXT_KEY_MUST_AUTO_SELL</Tag>
     <English>Must sell %F1_yield to locals for the +%d2_num%F3_yield</English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BANDIT_ATTACK_UNIT</Tag>
+    <English>A %s1_name as stolen %d2_gold [ICON_GOLD] from your unit!</English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BANDIT_ATTACK_UNIT_RECOVERED</Tag>
+    <English>You have recovered %d1_gold [ICON_GOLD] in stolen goods from the %s2_name!</English>
     <French></French>
     <German></German>
     <Italian></Italian>

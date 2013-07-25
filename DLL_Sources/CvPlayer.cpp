@@ -1341,6 +1341,14 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade)
 	///TKs Med
 	PlayerTypes eVassalOwner = pOldCity->getVassalOwner();
     int iGiftTimer = pOldCity->AI_getGiftTimer();
+    bool isTradePostBuilt[MAX_TEAMS];
+    for (int iTeam = 0; iTeam < MAX_TEAMS; ++iTeam)
+	{
+        if (pOldCity->isTradePostBuilt((TeamTypes) iTeam))
+        {
+            isTradePostBuilt[(TeamTypes) iTeam];
+        }
+	}
 	///TKe
 
 	while (pUnitNode != NULL)
@@ -1589,7 +1597,9 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade)
         {
             CvPlot* pLoopPlot = plotDirection(pCityPlot->getX_INLINE(), pCityPlot->getY_INLINE(), ((DirectionTypes)iI));
 
-            if (pLoopPlot != NULL && pLoopPlot->getOwner() == eVassalOwner)
+			PlayerTypes ePlotOwner = pLoopPlot->getOwner();
+
+            if (pLoopPlot != NULL && ePlotOwner == eVassalOwner)
             {
                 pWorkingCity = pLoopPlot->getWorkingCity();
 
@@ -1607,6 +1617,14 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade)
         }
     }
     pNewCity->AI_setGiftTimer(iGiftTimer);
+	
+    for (int iTeam = 0; iTeam < MAX_TEAMS; ++iTeam)
+	{
+        if (isTradePostBuilt[(TeamTypes) iTeam])
+        {
+            pNewCity->setTradePostBuilt((TeamTypes) iTeam, true);
+        }
+	}
     ///Tke
 	pNewCity->setPreviousOwner(eOldOwner);
 	pNewCity->setOriginalOwner(eOriginalOwner);

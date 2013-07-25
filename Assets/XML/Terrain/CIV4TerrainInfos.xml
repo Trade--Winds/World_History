@@ -396,12 +396,20 @@
 					<YieldType>YIELD_FOOD</YieldType>
 					<iValue>1</iValue>
 				</YieldIntegerPair>
+        <YieldIntegerPair>
+          <YieldType>YIELD_ORE</YieldType>
+          <iValue>1</iValue>
+        </YieldIntegerPair>
 			</Yields>
 			<RiverYieldIncreases>
 				<YieldIntegerPair>
 					<YieldType>YIELD_FOOD</YieldType>
 					<iValue>1</iValue>
 				</YieldIntegerPair>
+        <YieldIntegerPair>
+          <YieldType>YIELD_ORE</YieldType>
+          <iValue>1</iValue>
+        </YieldIntegerPair>
 			</RiverYieldIncreases>
 			<bWater>0</bWater>
 			<bImpassable>0</bImpassable>

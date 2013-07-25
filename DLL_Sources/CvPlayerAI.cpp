@@ -2633,14 +2633,15 @@ int CvPlayerAI::AI_getPlotDanger(CvPlot* pPlot, int iRange, bool bTestMoves, boo
 
 						if (pLoopUnit->isEnemy(getTeam()))
 						{
-						    ///TKs Med
-						    bool bDangerousBarb = false;
-						    if (pLoopUnit->isBarbarian() && !pLoopUnit->isOnlyDefensive())
+						    //TKs Med
+						    bool bDangerousBarb = true;
+						    //if (pLoopUnit->isBarbarian() && !pLoopUnit->isOnlyDefensive())
+						    if (isHuman() && pLoopUnit->isBarbarian())
 						    {
-						        bDangerousBarb = true;
+						        bDangerousBarb = false;
 						    }
 
-							if (bOffensive || bDangerousBarb || pLoopUnit->canAttack())
+							if (bDangerousBarb && (bOffensive || pLoopUnit->canAttack()))
 							{
 								if (!(pLoopUnit->isInvisible(getTeam(), false)))
 								{

@@ -87,6 +87,7 @@ CvCity::~CvCity()
 
 	uninit();
 
+	///Kailric Fort Mod Start
     //SAFE_DELETE_ARRAY(m_aForts_to_Support);
     ///Kailric Fort Mod end
     ///Tks Med
@@ -170,31 +171,34 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	}
 	pPlot->setOwner(getOwnerINLINE(), bBumpUnits);
 	pPlot->setPlotCity(this);
+    ///TKs Med
+    if (GET_PLAYER(getOwnerINLINE()).getVassalOwner() == NO_PLAYER)
+    {
+        for (int iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
+        {
+            pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
 
-	for (int iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
-	{
-		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
-
-		if (pAdjacentPlot != NULL)
-		{
-		    ///Kailric Fort Mod Start
-//            if (pAdjacentPlot->getImprovementType() != NO_IMPROVEMENT)
-//            {
-//                if (GC.getImprovementInfo(pAdjacentPlot->getImprovementType()).isSpreadCultureControl())
-//                {
-//                    pAdjacentPlot->setupFort(NULL, true, true);
-//                }
-//
-//            }
-            ///Kailric Fort Mod end
-			if (pAdjacentPlot->getCulture(getOwnerINLINE()) < GC.getCache_FREE_CITY_ADJACENT_CULTURE())
-			{
-				pAdjacentPlot->setCulture(getOwnerINLINE(), GC.getCache_FREE_CITY_ADJACENT_CULTURE(), bBumpUnits);
-			}
-			pAdjacentPlot->updateCulture(bBumpUnits);
-		}
-	}
-
+            if (pAdjacentPlot != NULL)
+            {
+                ///Kailric Fort Mod Start
+    //            if (pAdjacentPlot->getImprovementType() != NO_IMPROVEMENT)
+    //            {
+    //                if (GC.getImprovementInfo(pAdjacentPlot->getImprovementType()).isSpreadCultureControl())
+    //                {
+    //                    pAdjacentPlot->setupFort(NULL, true, true);
+    //                }
+    //
+    //            }
+                ///Kailric Fort Mod end
+                if (pAdjacentPlot->getCulture(getOwnerINLINE()) < GC.getCache_FREE_CITY_ADJACENT_CULTURE())
+                {
+                    pAdjacentPlot->setCulture(getOwnerINLINE(), GC.getCache_FREE_CITY_ADJACENT_CULTURE(), bBumpUnits);
+                }
+                pAdjacentPlot->updateCulture(bBumpUnits);
+            }
+        }
+    }
+///Tke
 	CyArgsList argsList;
 	argsList.add(iX);
 	argsList.add(iY);
@@ -826,10 +830,11 @@ void CvCity::doTurn()
 
 	///TKs Med
 	doPilgrams();
+	int iModifier = std::min(75, GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getBuildingClassPrereqModifier());
 	for (int iTeam = 0; iTeam < MAX_TEAMS; ++iTeam)
 	{
-		if (iTeam != getTeam())
-		{
+		//if (iTeam != getTeam())
+		//{
 			if (isTradePostBuilt((TeamTypes) iTeam))
 			{
 				for (int iI = 0; iI < MAX_PLAYERS; iI++)
@@ -837,11 +842,16 @@ void CvCity::doTurn()
                     if (!GET_PLAYER((PlayerTypes)iI).isNative() && GET_PLAYER((PlayerTypes)iI).getTeam() == (TeamTypes) iTeam)
                     {
                         FatherPointTypes eTradeType = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
-                        GET_PLAYER((PlayerTypes)iI).changeFatherPoints(eTradeType, GC.getFatherPointInfo(eTradeType).getNativeTradeGoldPointPercent());
+                        int iTradePoints = 0;
+                        iTradePoints = GC.getFatherPointInfo(eTradeType).getNativeTradeGoldPointPercent() * iModifier / 100;
+                        iTradePoints = GC.getFatherPointInfo(eTradeType).getNativeTradeGoldPointPercent() - iTradePoints;
+                        //iTradePoints = std::min(iTradePoints);
+                        FAssertMsg(iTradePoints >= 0, "Trade Points shold be creater >= 0");
+                        GET_PLAYER((PlayerTypes)iI).changeFatherPoints(eTradeType, iTradePoints);
                     }
                 }
 			}
-		}
+		//}
 	}
 	///TKe
 
@@ -9873,10 +9883,10 @@ bool CvCity::isTradePostBuilt(TeamTypes eTeam) const
 {
 	FAssert(eTeam >= 0 && eTeam < MAX_TEAMS);
 
-	if (eTeam == getTeam())
-	{
-		return false;
-	}
+	//if (eTeam == getTeam() && !isNative())
+	//{
+		//return false;
+	//}
 	return m_abTradePostBuilt[eTeam];
 }
 

@@ -507,7 +507,19 @@ CvPlot* CvMap::syncRandPlot(int iFlags, int iArea, int iMinUnitDistance, int iTi
 				{
 					if (pTestPlot->isOwned())
 					{
-						bValid = false;
+						///Tks Med
+						if (bIgnoreNativeTeams)
+						{
+							if (!GET_PLAYER(pTestPlot->getOwnerINLINE()).isNative())
+							{
+								bValid = false;
+							}
+						}
+						else
+						{
+							bValid = false;
+						}
+						///TKe
 					}
 				}
 			}
@@ -557,7 +569,20 @@ CvPlot* CvMap::syncRandPlot(int iFlags, int iArea, int iMinUnitDistance, int iTi
 					///TKe
 				}
 			}
+            ///TKs Med
+            if (bValid)
+			{
+				if (bIgnoreNativeTeams)
+				{
 
+					if (pTestPlot->isVisibleToWatchingHuman())
+					{
+						bValid = false;
+					}
+
+				}
+			}
+            ///TKe
 			if (bValid)
 			{
 				if (iFlags & RANDPLOT_NOT_CITY)

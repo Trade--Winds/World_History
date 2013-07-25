@@ -5306,7 +5306,7 @@ void CvGame::createAnimalsLand()
 	int iNeededAnimals;
 	int iValue, iBestValue, iRand;
 	int iLoop, iI, iJ;
-	//int iStartDist = 0;//GC.getDefineINT("MIN_ANIMAL_STARTING_DISTANCE");
+	///TKs Med
 	int iStartDist = 0;
 
 	for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
@@ -5325,8 +5325,11 @@ void CvGame::createAnimalsLand()
 			{
 				for (iI = 0; iI < iNeededAnimals; iI++)
 				{
-				    ///TKs Med
-				    pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV, RANDPLOT_NOT_CITY), pLoopArea->getID(), iStartDist, 100, true);
+				    pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_CITY), pLoopArea->getID(), iStartDist, 100, true);
+					//if (pPlot == NULL)
+					//{
+						//pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_CITY | RANDPLOT_UNOWNED), pLoopArea->getID(), iStartDist, 100, true);
+					//}
 
 					if (pPlot != NULL)
 					{
@@ -7418,6 +7421,7 @@ void CvGame::createVassalPlayer(PlayerTypes eVassalOwner, CvCity* pCity)
                 GET_TEAM(eVassalTeam).addTeam(eTeam);
                 GET_PLAYER(eVassalOwner).setMinorVassal(eNewPlayer);
                 GET_PLAYER(eNewPlayer).initFreeState();
+                GET_PLAYER(eNewPlayer).setVassalOwner(eVassalOwner);
 //                for (int iI = 0; iI < MAX_TEAMS; iI++)
 //                {
 //                    if (iI != eTeam && iI != eVassalTeam)
@@ -7440,7 +7444,6 @@ void CvGame::createVassalPlayer(PlayerTypes eVassalOwner, CvCity* pCity)
                     pCity->setVassalOwner(eVassalOwner);
                     pCity->AI_setGiftTimer(0);
                     GET_PLAYER(eNewPlayer).acquireCity(pCity, false, true);
-                    GET_PLAYER(eNewPlayer).setVassalOwner(eVassalOwner);
                 }
             }
         }

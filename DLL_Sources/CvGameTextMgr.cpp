@@ -8717,7 +8717,7 @@ void CvGameTextMgr::buildCityBillboardIconString( CvWStringBuffer& szBuffer, CvC
                 }
             }
 		}
-		else if (bTradeCity)
+		if (bTradeCity)
 		{
             for(int iYield=0;iYield<NUM_YIELD_TYPES;iYield++)
             {
@@ -8776,14 +8776,14 @@ void CvGameTextMgr::buildCityBillboardIconString( CvWStringBuffer& szBuffer, CvC
             }
         }
 
-        if (pCity->getVassalOwner() != NO_PLAYER)
-        {
-            szBuffer.append(CvWString::format(L" %c", gDLL->getSymbolID(STRENGTH_CHAR)));
-        }
-
         if (pCity->isNative() && bTradeCity)
         {
             szBuffer.append(CvWString::format(L" %c", gDLL->getSymbolID(RELIGION_CHAR)));
+        }
+
+        if (pCity->getVassalOwner() != NO_PLAYER)
+        {
+            szBuffer.append(CvWString::format(L" %c", gDLL->getSymbolID(STRENGTH_CHAR)));
         }
 
 	}

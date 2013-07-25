@@ -8,7 +8,7 @@
 	<CivilizationArtInfos>
     <CivilizationArtInfo>
       <Type>ART_DEF_CIVILIZATION_MONGOLS</Type>
-      <Button>,Art/Interface/Buttons/Civilizations/Civics_Civilizations_Religions_Atlas.dds,5,6</Button>
+      <Button>Art/Interface/TeamColor/btn_Mongols.dds</Button>
       <Path>Art/Interface/TeamColor/FlagDECAL_Mongol.dds</Path>
       <bWhiteFlag>0</bWhiteFlag>
       <bInvertFlag>0</bInvertFlag>
@@ -16,7 +16,7 @@
     </CivilizationArtInfo>
     <CivilizationArtInfo>
       <Type>ART_DEF_CIVILIZATION_VIKING</Type>
-      <Button>,Art/Interface/Buttons/Civilizations/Warlords_Atlas_2.dds,1,1</Button>
+      <Button>Art/Interface/TeamColor/btn_Viking.dds</Button>
       <Path>Art/Interface/TeamColor/FlagDECAL_Viking.dds</Path>
       <bWhiteFlag>0</bWhiteFlag>
       <bInvertFlag>0</bInvertFlag>
@@ -24,7 +24,7 @@
     </CivilizationArtInfo>
     <CivilizationArtInfo>
       <Type>ART_DEF_CIVILIZATION_OSTROGOTH</Type>
-      <Button>,Art/Interface/Buttons/Civilizations/Civics_Civilizations_Religions_Atlas.dds,4,6</Button>
+      <Button>Art/Interface/TeamColor/btn_Ostrogoths.dds</Button>
       <Path>Art/Interface/TeamColor/FlagDECAL_Ostrogoth.dds</Path>
       <bWhiteFlag>0</bWhiteFlag>
       <bInvertFlag>0</bInvertFlag>
@@ -32,7 +32,7 @@
     </CivilizationArtInfo>
     <CivilizationArtInfo>
       <Type>ART_DEF_CIVILIZATION_NORMANS</Type>
-      <Button>,Art/Interface/Buttons/Civilizations/Warlords_Atlas_2.dds,7,4</Button>
+      <Button>Art/Interface/TeamColor/btn_Normans.dds</Button>
       <Path>Art/Interface/TeamColor/FlagDECAL_Norman.dds</Path>
       <bWhiteFlag>0</bWhiteFlag>
       <bInvertFlag>0</bInvertFlag>
@@ -56,7 +56,7 @@
     </CivilizationArtInfo>
     <CivilizationArtInfo>
       <Type>ART_DEF_CIVILIZATION_TURK</Type>
-      <Button>,Art/Interface/Buttons/Civilizations/Warlords_Atlas_2.dds,2,1</Button>
+      <Button>Art/Interface/TeamColor/btn_TURK-Seljuk.dds</Button>
       <Path>Art/Interface/TeamColor/FlagDECAL_TURK-Seljuk.dds</Path>
       <bWhiteFlag>0</bWhiteFlag>
       <bInvertFlag>0</bInvertFlag>
@@ -64,7 +64,7 @@
     </CivilizationArtInfo>
     <CivilizationArtInfo>
       <Type>ART_DEF_CIVILIZATION_ANGLO</Type>
-      <Button>,Art/Interface/Buttons/Civilizations/Civics_Civilizations_Religions_Atlas.dds,8,6</Button>
+      <Button>Art/Interface/TeamColor/btn_Saxons.dds</Button>
       <Path>Art/Interface/TeamColor/FlagDECAL_Saxon.dds</Path>
       <bWhiteFlag>0</bWhiteFlag>
       <bInvertFlag>0</bInvertFlag>
@@ -72,7 +72,7 @@
     </CivilizationArtInfo>
     <CivilizationArtInfo>
       <Type>ART_DEF_CIVILIZATION_BYZANTIUM</Type>
-      <Button>,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,2,4</Button>
+      <Button>Art/Interface/TeamColor/btn_Byzantium.dds</Button>
       <Path>Art/Interface/TeamColor/FlagDECAL_Byzantine.dds</Path>
       <bWhiteFlag>0</bWhiteFlag>
       <bInvertFlag>0</bInvertFlag>
@@ -80,7 +80,7 @@
     </CivilizationArtInfo>
     <CivilizationArtInfo>
       <Type>ART_DEF_CIVILIZATION_ARABS</Type>
-      <Button>,Art/Interface/Buttons/Civilizations/Civics_Civilizations_Religions_Atlas.dds,2,5</Button>
+      <Button>Art/Interface/TeamColor/btn_Ayyubid.dds</Button>
       <Path>Art/Interface/TeamColor/FlagDECAL_Abbuyid.dds</Path>
       <bWhiteFlag>0</bWhiteFlag>
       <bInvertFlag>0</bInvertFlag>
@@ -88,7 +88,7 @@
     </CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_ENGLAND</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,11</Button>
+			<Button>Art/Interface/TeamColor/btn_Saxons.dds</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_Saxon.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
@@ -104,7 +104,7 @@
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_FRANCE</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,2,11</Button>
+			<Button>Art/Interface/TeamColor/btn_Franks.dds</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_Franks.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
@@ -120,7 +120,7 @@
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_SPAIN</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,3,11</Button>
+			<Button>Art/Interface/TeamColor/btn_Visigoths.dds</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_Visigoth.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
@@ -152,15 +152,15 @@
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_VANDALS</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,4,1</Button>
-			<Path>Art/Interface/TeamColor/FlagDECAL_Norman.dds</Path>
+			<Button>Art/Interface/TeamColor/btn_Vandals.dds</Button>
+			<Path>Art/Interface/TeamColor/FlagDECAL_Vandals.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
 			<iFontButtonIndex>0</iFontButtonIndex>
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_MALI</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,5,1</Button>
+			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,6,1</Button>
 			<Path>Art/Interface/TeamColor/flagdecal_scimitar.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
@@ -168,7 +168,7 @@
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_MAGYAR</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,2,1</Button>
+			<Button>Art/Interface/TeamColor/btn_Magyars.dds</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_Magyar.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
@@ -176,7 +176,7 @@
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_SLAV</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,1</Button>
+			<Button>Art/Interface/TeamColor/btn_Slavs.dds</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_Slavs.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
@@ -184,7 +184,7 @@
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_BERBER</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,8,1</Button>
+			<Button>Art/Interface/TeamColor/btn_Berber.dds</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_Berber.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
@@ -192,7 +192,7 @@
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_LOMBARD</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,7,1</Button>
+			<Button>Art/Interface/TeamColor/btn_Lombardy.dds</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_Lombardy.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
@@ -200,7 +200,7 @@
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_NORWEGIAN</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,6,1</Button>
+			<Button>Art/Interface/TeamColor/btn_NorwegianVikings.dds</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_NorwegianViking.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>
@@ -208,7 +208,7 @@
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_BURGUNDY</Type>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,3,1</Button>
+			<Button>Art/Interface/TeamColor/btn_Burgundy.dds</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_Burgundy.dds</Path>
 			<bWhiteFlag>0</bWhiteFlag>
 			<bInvertFlag>0</bInvertFlag>

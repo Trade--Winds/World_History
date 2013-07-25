@@ -1035,8 +1035,8 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
                     {
                         pCity->setVassalOwner(eVassalPlayer);
                         pCity->AI_setGiftTimer(0);
-                        GET_PLAYER(eVassalPlayer).acquireCity(pCity, false, true);
                         GET_PLAYER(eVassalPlayer).setVassalOwner(GC.getGameINLINE().getActivePlayer());
+                        GET_PLAYER(eVassalPlayer).acquireCity(pCity, false, true);
                     }
                 }
                 else if (pPopupReturn->getButtonClicked() == 1)

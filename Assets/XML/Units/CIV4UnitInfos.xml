@@ -1296,7 +1296,7 @@
       <iRequiredTransportSize>1</iRequiredTransportSize>
       <iAsset>150</iAsset>
       <iPower>0</iPower>
-      <iNativeLearnTime>5</iNativeLearnTime>
+      <iNativeLearnTime>2</iNativeLearnTime>
       <iStudentWeight>300</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
       <ProfessionMeshGroups>
@@ -2442,16 +2442,7 @@
       <iMissionaryRateModifier>0</iMissionaryRateModifier>
       <TerrainImpassables/>
       <FeatureImpassables/>
-      <EvasionBuildings>
-        <EvasionBuilding>
-          <BuildingClass>BUILDINGCLASS_TOWNHALL</BuildingClass>
-          <bEvasion>1</bEvasion>
-        </EvasionBuilding>
-        <EvasionBuilding>
-          <BuildingClass>BUILDINGCLASS_OUTPOST</BuildingClass>
-          <bEvasion>1</bEvasion>
-        </EvasionBuilding>
-      </EvasionBuildings>
+      <EvasionBuildings/>
       <iCombat>0</iCombat>
       <iXPValueAttack>4</iXPValueAttack>
       <iXPValueDefense>2</iXPValueDefense>
@@ -2810,16 +2801,7 @@
       <iMissionaryRateModifier>0</iMissionaryRateModifier>
       <TerrainImpassables/>
       <FeatureImpassables/>
-      <EvasionBuildings>
-        <EvasionBuilding>
-          <BuildingClass>BUILDINGCLASS_TOWNHALL</BuildingClass>
-          <bEvasion>1</bEvasion>
-        </EvasionBuilding>
-        <EvasionBuilding>
-          <BuildingClass>BUILDINGCLASS_OUTPOST</BuildingClass>
-          <bEvasion>1</bEvasion>
-        </EvasionBuilding>
-      </EvasionBuildings>
+      <EvasionBuildings/>
       <iCombat>0</iCombat>
       <iXPValueAttack>4</iXPValueAttack>
       <iXPValueDefense>2</iXPValueDefense>
@@ -8797,16 +8779,7 @@
       <iMissionaryRateModifier>0</iMissionaryRateModifier>
       <TerrainImpassables/>
       <FeatureImpassables/>
-      <EvasionBuildings>
-        <EvasionBuilding>
-          <BuildingClass>BUILDINGCLASS_TOWNHALL</BuildingClass>
-          <bEvasion>1</bEvasion>
-        </EvasionBuilding>
-        <EvasionBuilding>
-          <BuildingClass>BUILDINGCLASS_OUTPOST</BuildingClass>
-          <bEvasion>1</bEvasion>
-        </EvasionBuilding>
-      </EvasionBuildings>
+      <EvasionBuildings/>
       <iCombat>0</iCombat>
       <iXPValueAttack>4</iXPValueAttack>
       <iXPValueDefense>2</iXPValueDefense>
@@ -8836,7 +8809,7 @@
       <iRequiredTransportSize>1</iRequiredTransportSize>
       <iAsset>200</iAsset>
       <iPower>0</iPower>
-      <iNativeLearnTime>3</iNativeLearnTime>
+      <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
       <ProfessionMeshGroups>
@@ -21477,7 +21450,7 @@
       <bGraphicalOnly>0</bGraphicalOnly>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>0</bOnlyDefensive>
-      <bNoCapture>0</bNoCapture>
+      <bNoCapture>1</bNoCapture>
       <bQuickCombat>0</bQuickCombat>
       <bRivalTerritory>1</bRivalTerritory>
       <bMilitaryProduction>1</bMilitaryProduction>
@@ -22918,6 +22891,10 @@
       <TerrainNatives>
         <TerrainNative>
           <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bTerrainNative>1</bTerrainNative>
+        </TerrainNative>
+        <TerrainNative>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
           <bTerrainNative>1</bTerrainNative>
         </TerrainNative>
       </TerrainNatives>

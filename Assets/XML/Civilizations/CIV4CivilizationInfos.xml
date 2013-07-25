@@ -1714,7 +1714,7 @@
           <FreeUnitProfession>PROFESSION_PIONEER</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_COLONIST</UnitClassType>
+          <UnitClassType>UNITCLASS_VETERAN</UnitClassType>
           <FreeUnitProfession>PROFESSION_INFANTRY1</FreeUnitProfession>
         </FreeUnitClass>
 			</FreeUnitClasses>

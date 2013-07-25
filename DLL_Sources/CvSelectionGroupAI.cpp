@@ -181,6 +181,13 @@ bool CvSelectionGroupAI::AI_update()
 				}
 
 				pHeadUnit->finishMoves();
+				///TKs Med
+				//if (isHuman())
+				//{
+				    //clearMissionQueue(); // XXX ???
+                   // setActivityType(ACTIVITY_AWAKE);
+				//}
+				///TKe
 			}
 			break;
 		}

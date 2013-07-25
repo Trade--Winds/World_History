@@ -349,6 +349,7 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iBadCityDefenderCount = 0;
 	m_iUnarmedCount = 0;
     ///TK Med
+    m_iInvisibleTimer = 0;
     m_iTravelPlotX = INVALID_PLOT_COORD;
 	m_iTravelPlotY = INVALID_PLOT_COORD;
 	m_iCombatFirstStrikes = 0;
@@ -1096,7 +1097,7 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 	int iDefenderFirstStrikeChance = 0;
 	bool bAttackHasBeenHit = false;
 	bool bDefenderHasBeenHit = false;
-
+    bool bEvade = (pDefender->m_pUnitInfo->isFound() && (!pDefender->canAttack() || GC.getProfessionInfo(pDefender->getProfession()).isScout() || GC.getProfessionInfo(pDefender->getProfession()).getWorkRate() > 0));
 	while (true)
 	{
 		iBattleEffect = 0;
@@ -1226,7 +1227,6 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 			            if (GET_PLAYER(pDefender->getOwnerINLINE()).isOption(PLAYEROPTION_MODDER_4) || GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_MODDER_4))
                         {
                             if (pDefender->getUnitInfo().getKnightDubbingWeight() == -1 || pDefender->isHasRealPromotion((PromotionTypes)GC.getCache_DEFAULT_KNIGHT_PROMOTION()))
-
                             {
                                 if (!m_pUnitInfo->isAnimal() && !GET_PLAYER(getOwnerINLINE()).isEurope())
                                 {
@@ -1240,6 +1240,42 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
                                     }
                                 }
                             }
+                        }
+
+                        if ((isAlwaysHostile(pPlot) || isBarbarian()) && !pPlot->isCity(false, pDefender->getTeam()) && bEvade)
+                        {
+                            CvCity* pCity = pDefender->getEvasionCity(1);
+                            FAssert(pCity != NULL);
+                            if (pCity != NULL)
+                            {
+                                if (!m_pUnitInfo->isAnimal())
+                                {
+                                    pDefender->changeTraderCode(3);
+                                }
+                                //pPlot = pDefender->plot();
+                                CLLNode<IDInfo>* pUnitNode = pPlot->headUnitNode();
+								CvUnit*  pLoopUnit;
+                                while (pUnitNode != NULL)
+                                {
+                                    pLoopUnit = ::getUnit(pUnitNode->m_data);
+                                    pUnitNode = pPlot->nextUnitNode(pUnitNode);
+
+                                    if (pLoopUnit->getTransportUnit() == pDefender)
+                                    {
+                                        CvPlayer& kOwner = GET_PLAYER(pDefender->getOwnerINLINE());
+                                        if (kOwner.getParent() != NO_PLAYER && pLoopUnit->getYield() != NO_YIELD )
+                                        {
+                                            CvPlayer& kParent = GET_PLAYER(kOwner.getParent());
+                                            setYieldStored(kParent.getYieldBuyPrice(pLoopUnit->getYield()) * pLoopUnit->getYieldStored() + getYieldStored());
+                                        }
+                                        pLoopUnit->kill(true);
+                                    }
+                                }
+
+                                pDefender->setPostCombatPlot(pCity->getX_INLINE(), pCity->getY_INLINE());
+                                break;
+                            }
+
                         }
 
                         if (GC.getGameINLINE().getSorenRandNum(100, "Evasion") < pDefender->getEvasionProbability(*this))
@@ -1629,7 +1665,7 @@ void CvUnit::updateCombat(bool bQuick)
 
 			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_DESTROYED_ENEMY", getNameOrProfessionKey(), pDefender->getNameOrProfessionKey());
 			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
-			if (pDefender->isBarbarian())
+			if (pDefender->isBarbarian() || pDefender->isAlwaysHostile(pPlot))
 			{
                 for (int iI = 0; iI < MAX_PLAYERS; iI++)
                 {
@@ -1649,6 +1685,21 @@ void CvUnit::updateCombat(bool bQuick)
                             szBuffer = gDLL->getText("TXT_KEY_MISC_UNIT_DESTROYED_BARBARIAN", GC.getCivilizationInfo(getCivilizationType()).getAdjectiveKey(), getNameOrProfessionKey(), pDefender->getNameOrProfessionKey());
                         }
                         gDLL->getInterfaceIFace()->addMessage((PlayerTypes)iI, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+                    }
+                }
+
+                if (pDefender->getYieldStored() > 0)
+                {
+                    UnitTypes eTreasureUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(GC.getCache_TREASURE_UNITCLASS());
+                     if (eTreasureUnit != NO_UNIT)
+                    {
+                        CvUnit* pTreasureUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eTreasureUnit, (ProfessionTypes) GC.getUnitInfo(eTreasureUnit).getDefaultProfession(), INVALID_PLOT_COORD, INVALID_PLOT_COORD);
+                        //CvPlot* pTreasePlot = pPlot;
+                        //if (getPostCombatPlot() != plot())
+                        pTreasureUnit->setYieldStored(pDefender->getYieldStored());
+                        pTreasureUnit->addToMap(pPlot->getX_INLINE(), pPlot->getY_INLINE());
+                        szBuffer = gDLL->getText("TXT_KEY_BANDIT_ATTACK_UNIT_RECOVERED", pDefender->getYieldStored(), pDefender->getNameOrProfessionKey());
+                        gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
                     }
                 }
 			}
@@ -1763,13 +1814,38 @@ void CvUnit::updateCombat(bool bQuick)
 		}
 		else if (bDefenderEscaped && pDefender->getTraderCode() != 1)
 		{
+		    if (pDefender->getTraderCode() == 3)
+		    {
+                int iGoldStolen = pDefender->m_pUnitInfo->getPowerValue();
+                iGoldStolen += pDefender->m_pUnitInfo->getAssetValue();
+                iGoldStolen = GC.getGameINLINE().getSorenRandNum(iGoldStolen + 1, "Bandit Steals Gold");
+                iGoldStolen = (iGoldStolen * 30 / 100) + 10;
+                if (GET_PLAYER(pDefender->getOwnerINLINE()).getGold() >= iGoldStolen)
+                {
+                    GET_PLAYER(pDefender->getOwnerINLINE()).changeGold(-iGoldStolen);
+                    setYieldStored(iGoldStolen + getYieldStored());
+                    CvWString szBuffer = gDLL->getText("TXT_KEY_BANDIT_ATTACK_UNIT",  getNameOrProfessionKey(), getYieldStored());
+    gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitDefeatScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+                }
+                CvCity* pCity = pDefender->plot()->getPlotCity();
+                if (pCity != NULL)
+                {
+                    szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_UNIT_ESCAPED", pDefender->getNameOrProfessionKey(), getNameOrProfessionKey(), pCity->getNameKey());
+                    gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pCity->getX_INLINE(), pCity->getY_INLINE());
+                }
+		    }
+
 			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_ESCAPED", getNameOrProfessionKey(), pDefender->getNameOrProfessionKey());
 			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_THEIR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
-			CvCity* pCity = pDefender->plot()->getPlotCity();
-			if (pCity != NULL)
+
+			if (pDefender->getTraderCode() != 3)
 			{
-				szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_UNIT_ESCAPED", pDefender->getNameOrProfessionKey(), getNameOrProfessionKey(), pCity->getNameKey());
-				gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_OUR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pCity->getX_INLINE(), pCity->getY_INLINE());
+                CvCity* pCity = pDefender->plot()->getPlotCity();
+                if (pCity != NULL)
+                {
+                    szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_UNIT_ESCAPED", pDefender->getNameOrProfessionKey(), getNameOrProfessionKey(), pCity->getNameKey());
+                    gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_OUR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pCity->getX_INLINE(), pCity->getY_INLINE());
+                }
 			}
 
 			bool bAdvance = canAdvance(pPlot, 0);
@@ -2967,10 +3043,10 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 	    }
 	}
 
-    if (isBarbarian() && pPlot->isCity())
-    {
-        return false;
-    }
+    //if (isBarbarian() && pPlot->isCity())
+    //{
+        //return false;
+    //}
 
 	CvArea *pPlotArea = pPlot->area();
 	TeamTypes ePlotTeam = pPlot->getTeam();
@@ -3012,10 +3088,12 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 	case DOMAIN_SEA:
 		if (!pPlot->isWater() && !m_pUnitInfo->isCanMoveAllTerrain())
 		{
-			if (!pPlot->isFriendlyCity(*this, true) || !pPlot->isCoastalLand())
+		    ///TKs Med
+			if (!pPlot->isFriendlyCity(*this, false) || !pPlot->isCoastalLand())
 			{
 				return false;
 			}
+			///Tke
 		}
 		break;
 
@@ -3028,13 +3106,13 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 			}
 		}
 		///TKs Med
-		if (isAlwaysHostile(NULL) && pPlot->isCity())
-		{
-		    if (pPlot->getTeam() == getTeam())
-		    {
-		        return false;
-		    }
-		}
+		//if (isAlwaysHostile(NULL) && pPlot->isCity())
+		//{
+		    //if (pPlot->getTeam() == getTeam())
+		   // {
+		       // return false;
+		   // }
+		//}
 		///TKe
 		break;
 
@@ -8666,7 +8744,7 @@ int CvUnit::getTraderCode() const
 {
 	return m_iTraderCode;
 }
-///TKs Trader Codes = 1 Randsom Knight, 2 = Great General Spent Lead ability
+///TKs Trader Codes = 1 Randsom Knight, 2 = Great General Spent Lead ability, 3 = Peasant Ambushed
 void CvUnit::changeTraderCode(int iChange)
 {
 	//if (iChange > 0)
@@ -8980,7 +9058,7 @@ int CvUnit::getEvasionProbability(const CvUnit& kAttacker) const
 	return 100 * maxMoves() / std::max(1, maxMoves() + kAttacker.maxMoves());
 }
 ///TK Med 1.4c
-CvCity* CvUnit::getEvasionCity() const
+CvCity* CvUnit::getEvasionCity(int iWaylayed) const
 {
 	if (!isOnMap())
 	{
@@ -8998,11 +9076,11 @@ CvCity* CvUnit::getEvasionCity() const
 			int iLoop;
 			for (CvCity* pLoopCity = kPlayer.firstCity(&iLoop); pLoopCity != NULL; pLoopCity = kPlayer.nextCity(&iLoop))
 			{
-				if (pLoopCity->getArea() == getArea() || pLoopCity->plot()->isAdjacentToArea(getArea()) || bRansomingKnight)
+				if (pLoopCity->getArea() == getArea() || pLoopCity->plot()->isAdjacentToArea(getArea()) || bRansomingKnight || iWaylayed >= 0)
 				{
 					if (pLoopCity->plot()->isFriendlyCity(*this, false))
 					{
-					    if (bRansomingKnight)
+					    if (bRansomingKnight || iWaylayed >= 0)
                         {
                             int iDistance = ::plotDistance(getX_INLINE(), getY_INLINE(), pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());
                             if (iDistance < iBestDistance)
@@ -13116,6 +13194,7 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iUnarmedCount);
 	pStream->Read((int*)&m_eUnitTravelState);
     ///TKs Med FS
+	pStream->Read(&m_iInvisibleTimer);
 	pStream->Read(&m_iTravelPlotX);
 	pStream->Read(&m_iTravelPlotY);
 	pStream->Read(&m_iCombatFirstStrikes);
@@ -13237,6 +13316,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iUnarmedCount);
 	pStream->Write(m_eUnitTravelState);
     ///TK FS
+	pStream->Write(m_iInvisibleTimer);
 	pStream->Write(m_iTravelPlotX);
 	pStream->Write(m_iTravelPlotY);
 	pStream->Write(m_iCombatFirstStrikes);
@@ -15219,6 +15299,8 @@ void CvUnit::buildTradingPost(bool bTestVisible)
     pCity->setTradePostBuilt(getTeam(), true);
     BuildingTypes eBuilding = (BuildingTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(GC.getCache_NATIVE_TRADING_TRADEPOST());
     pCity->setHasRealBuilding(eBuilding, true);
+    CvWString szBuffer = gDLL->getText("TXT_KEY_ESTABLISH_TRADEPOST_MESSAGE", pCity->getNameKey());
+    gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BUILD_BANK", MESSAGE_TYPE_MINOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE());
 }
 
 
@@ -15306,7 +15388,28 @@ void CvUnit::callBanners()
 {
 
 }
+int CvUnit::getInvisibleTimer() const
+{
+	return m_iInvisibleTimer;
+}
 
+void CvUnit::setInvisibleTimer(int iNewValue)
+{
+	if (iNewValue != getInvisibleTimer())
+	{
+		m_iInvisibleTimer = iNewValue;
+
+		setInfoBarDirty(true);
+	}
+}
+
+void CvUnit::changeInvisibleTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		setInvisibleTimer(std::max(0, getInvisibleTimer() + iChange));
+	}
+}
 //int CvUnit::getEventTimer() const
 //{
 //	return m_iEventTimer;
