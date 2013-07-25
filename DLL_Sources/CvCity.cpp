@@ -87,7 +87,6 @@ CvCity::~CvCity()
 
 	uninit();
 
-	///Kailric Fort Mod Start
     //SAFE_DELETE_ARRAY(m_aForts_to_Support);
     ///Kailric Fort Mod end
     ///Tks Med
