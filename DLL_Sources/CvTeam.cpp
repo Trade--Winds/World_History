@@ -2871,9 +2871,15 @@ void CvTeam::doRevolution()
 		CvPlayer& kPlayer = GET_PLAYER((PlayerTypes) iPlayer);
 		if (kPlayer.isAlive() && kPlayer.getTeam() == getID())
 		{
-			CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
-			pInfo->setText(CvWString("ART_DEF_MOVIE_REVOLUTION"));
-			gDLL->getInterfaceIFace()->addPopup(pInfo, (PlayerTypes) iPlayer);
+		    if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+            {
+                if (!CvString(CvWString("ART_DEF_MOVIE_REVOLUTION")).empty())
+                {
+                    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                    pInfo->setText(CvWString("ART_DEF_MOVIE_REVOLUTION"));
+                    gDLL->getInterfaceIFace()->addPopup(pInfo, (PlayerTypes) iPlayer);
+                }
+            }
             if (!bHasConstitution)
             {
                 for (int iCivicOption = 0; iCivicOption < GC.getNumCivicOptionInfos(); ++iCivicOption)

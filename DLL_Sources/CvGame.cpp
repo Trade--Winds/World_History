@@ -3015,7 +3015,14 @@ void CvGame::doControl(ControlTypes eControl)
 		{
 		   if (gDLL->getChtLvl() > 0)
 		   {
-                GC.getGameINLINE().setAIAutoPlay(1);
+		       if (GC.getGameINLINE().getAIAutoPlay() > 0)
+		       {
+		           GC.getGameINLINE().setAIAutoPlay(0);
+		       }
+		       else
+		       {
+                    GC.getGameINLINE().setAIAutoPlay(1);
+		       }
 		   }
 		}
 		break;

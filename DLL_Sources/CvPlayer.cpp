@@ -1617,7 +1617,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade)
         }
     }
     pNewCity->AI_setGiftTimer(iGiftTimer);
-	
+
     for (int iTeam = 0; iTeam < MAX_TEAMS; ++iTeam)
 	{
         if (isTradePostBuilt[(TeamTypes) iTeam])
@@ -10781,9 +10781,15 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
         {
             if (!getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
             {
-                CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
-                pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
-                gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
+                if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+                {
+                    if (!CvString(CvWString("ART_DEF_MOVIE_SPICE_ROUTE")).empty())
+                    {
+                        CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                        pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
+                        gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
+                    }
+                }
                 setHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE, true);
             }
 
@@ -10792,15 +10798,30 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
         {
             if (!getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
             {
-                CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
-                pInfo->setText(CvWString("ART_DEF_MOVIE_SILK_ROAD"));
-                gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
+                if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+                {
+                    if (!CvString(CvWString("ART_DEF_MOVIE_SILK_ROAD")).empty())
+                    {
+                        CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                        pInfo->setText(CvWString("ART_DEF_MOVIE_SILK_ROAD"));
+                        gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
+                    }
+                }
                 setHasTradeRouteType(TRADE_ROUTE_SILK_ROAD, true);
             }
 
         }
         else if (iModdersCode == ALLOWS_TRADE_FAIR)
         {
+            if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+            {
+                if (!CvString(CvWString("ART_DEF_MOVIE_TRADE_FAIR")).empty())
+                {
+                    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                    pInfo->setText(CvWString("ART_DEF_MOVIE_TRADE_FAIR"));
+                    gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
+                }
+            }
             setHasTradeRouteType(TRADE_ROUTE_FAIR, true);
         }
 
@@ -12414,16 +12435,31 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 	    ///TKs Med
 	    if (NO_CIVIC != kTrigger.getCivic())
         {
-            for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-            {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
-                {
-                    if (iCivic == kTrigger.getCivic() && getIdeasResearched((CivicTypes) iCivic) <= 0)
+            //for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+           // {
+                //if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+                //{
+                    if (getIdeasResearched((CivicTypes)kTrigger.getCivic()) <= 0)
                     {
-                       return NULL;
+                        bool bFoundRoute = false;
+                        if ((ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1() != NO_MOD_CODE)
+                        {
+                            ModCodeTypes iModdersCode = (ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1();
+                            if (iModdersCode == SPICE_ROUTE)
+                            {
+                                if (getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
+                                {
+                                    bFoundRoute = true;
+                                }
+                            }
+                        }
+                        if (!bFoundRoute)
+                        {
+                            return NULL;
+                        }
                     }
-                }
-            }
+                //}
+            //}
         }
 		///TKe
 		if (kTrigger.getNumBuildings() > 0 && kTrigger.getNumBuildingsRequired() > 0)
@@ -13949,17 +13985,33 @@ int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 			}
 		}
 		///TKs Med
-		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+		if (getIdeasResearched((CivicTypes) kTrigger.getCivic()) > 0)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+            bFoundValid = true;
+        }
+        else if ((ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1() != NO_MOD_CODE)
+        {
+            ModCodeTypes iModdersCode = (ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1();
+            if (iModdersCode == SPICE_ROUTE)
             {
-                if (iCivic == kTrigger.getCivic() && getIdeasResearched((CivicTypes) iCivic) > 0)
+                if (getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
                 {
                     bFoundValid = true;
-                    break;
                 }
             }
         }
+
+//		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+//        {
+//            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+//            {
+//                if (iCivic == kTrigger.getCivic() && getIdeasResearched((CivicTypes) iCivic) > 0)
+//                {
+//                    bFoundValid = true;
+//                    break;
+//                }
+//            }
+//        }
 		///TKe
 
 		if (!bFoundValid)
@@ -17638,9 +17690,15 @@ void CvPlayer::doIdeas(bool Cheat)
                     gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_YELLOW"));
                     processCivics(eTradeCivic, 1);
                     changeIdeasResearched(eTradeCivic, 1);
-                    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
-                    pInfo->setText(CvWString("ART_DEF_MOVIE_TRADE_LEAGUE"));
-                    gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
+                    if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+                    {
+                        if (!CvString(CvWString("ART_DEF_MOVIE_TRADE_LEAGUE")).empty())
+                        {
+                            CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                            pInfo->setText(CvWString("ART_DEF_MOVIE_TRADE_LEAGUE"));
+                            gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
+                        }
+                    }
                 }
 
             }

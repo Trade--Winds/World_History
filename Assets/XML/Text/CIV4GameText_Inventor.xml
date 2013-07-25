@@ -22,6 +22,14 @@
     <Spanish></Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_PLOT_EUROPE</Tag>
+    <English>Access to Trade Route</English>
+    <French>Acc&#232;s &#224; l'Europe</French>
+    <German>Zugang zu Europa</German>
+    <Italian>Accesso all'Europa</Italian>
+    <Spanish>Acceso a Europa</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_BUILDING_YIELD_OVERFLOW_SELL_PERCENT</Tag>
     <English>[ICON_BULLET]Goods over storage capacity are sold at %d1%% of the price on market</English>
     <French>[ICON_BULLET]Les marchandises exc&#233;dant la capacit&#233; de stockage sont vendues &#224; %d1%% de leur prix en market.</French>
@@ -39,7 +47,7 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MEDIEVAL_HINTS_3</Tag>
-    <English>In Cheat Mode press V for AI autoplay 1 turn, Ctrl V for 25 turns, Alt V for 100. Hold Shift to End Autoplay</English>
+    <English>In Cheat Mode press V for AI autoplay 1 turn, Ctrl V for 25 turns, Alt V for 100, Shift Alt V Max turns before Revolution. Press V again to End Autoplay</English>
     <French></French>
     <German></German>
     <Italian></Italian>

@@ -1569,6 +1569,7 @@ void getMissionTypeString(CvWString& szString, MissionTypes eMissionType)
 	case MISSION_FOUND_MONASTERY: szString = L"MISSION_FOUND_MONASTERY"; break;
 	case MISSION_FOUND_OUTPOST: szString = L"MISSION_FOUND_OUTPOST"; break;
 	case MISSION_COLLECT_TAXES: szString = L"MISSION_COLLECT_TAXES"; break;
+	case MISSION_HUNT: szString = L"MISSION_HUNT"; break;
 	///Tke
 	case MISSION_JOIN_CITY: szString = L"MISSION_JOIN_CITY"; break;
 	case MISSION_BUILD: szString = L"MISSION_BUILD"; break;

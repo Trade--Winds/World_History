@@ -2815,6 +2815,13 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 	}
 
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(pTriggeredData->m_eTrigger);
+	/// Begin EmperorFool: Events with Images
+	if (kTrigger.getEventArt())
+	{
+		gDLL->getInterfaceIFace()->popupAddDDS(pPopup, kTrigger.getEventArt());
+	}
+	/// End EmperorFool: Events with Images
+	gDLL->getInterfaceIFace()->popupAddSeparator(pPopup, 10);	/// TAC - Events with Images - koma13
 
 	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, pTriggeredData->m_szText);
 
@@ -3205,8 +3212,11 @@ bool CvDLLButtonPopup::launchFoundingFatherPopup(CvPopup* pPopup, CvPopupInfo &i
         CivicTypes eNewTech = (CivicTypes)info.getData1();
         if (eNewTech != NO_CIVIC)
         {
-            gDLL->getInterfaceIFace()->popupAddDDS(pPopup, GC.getCivicInfo(eNewTech).getCivicPortrait(), 208, 208, "");
-            gDLL->getInterfaceIFace()->popupAddSeparator(pPopup, -48);
+            if (!CvString(GC.getCivicInfo(eNewTech).getCivicPortrait()).empty())
+            {
+                gDLL->getInterfaceIFace()->popupAddDDS(pPopup, GC.getCivicInfo(eNewTech).getCivicPortrait(), 208, 208, "");
+                gDLL->getInterfaceIFace()->popupAddSeparator(pPopup, -48);
+            }
 
             CvWStringBuffer szBody;
             szBody.assign(gDLL->getText("TXT_KEY_TRADE_POINTS_POPUP", GC.getCivicInfo(eNewTech).getTextKeyWide()));

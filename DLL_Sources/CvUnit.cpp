@@ -1760,7 +1760,7 @@ void CvUnit::updateCombat(bool bQuick)
 				{
 				    ///TKs Med
 				    UnitTypes eCaptureUnitType = pDefender->getCaptureUnitType(getCivilizationType());
-					if (!pDefender->canDefend() || eCaptureUnitType != NO_UNIT)
+					if ((!pDefender->canDefend() && eCaptureUnitType != NO_UNIT) || eCaptureUnitType != NO_UNIT)
 					{
 					    if (GC.getUnitInfo(eCaptureUnitType).getDefaultUnitAIType() ==  UNITAI_YIELD || GC.getGameINLINE().getSorenRandNum(100, "Criminal Capture") <= GC.getCache_CHANCE_TO_CAPTURE_CRIMINALS())
 					    {
@@ -7833,6 +7833,7 @@ BuildTypes CvUnit::getBuildType() const
         case MISSION_FOUND_MONASTERY:
         case MISSION_FOUND_OUTPOST:
         case MISSION_COLLECT_TAXES:
+        case MISSION_HUNT:
         //TKe
 		case MISSION_JOIN_CITY:
 		case MISSION_LEAD:
@@ -9759,9 +9760,15 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                     CivicTypes eSpiceRoute = (CivicTypes)GC.getCache_TRADE_ROUTE_SPICE();
                     CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
                     kPlayer.setHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE, true);
-                    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
-                    pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
-                    gDLL->getInterfaceIFace()->addPopup(pInfo, GET_PLAYER(getOwner()).getID());
+                    if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+                    {
+                        if (!CvString(CvWString("ART_DEF_MOVIE_SPICE_ROUTE")).empty())
+                        {
+                            CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
+                            pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
+                            gDLL->getInterfaceIFace()->addPopup(pInfo, GET_PLAYER(getOwner()).getID());
+                        }
+                    }
                     kPlayer.setStartingTradeRoutePlot(pNewPlot, TRADE_ROUTE_SPICE_ROUTE);
                 }
             }
@@ -10843,13 +10850,15 @@ void CvUnit::changeHillsDoubleMoveCount(int iChange)
 int CvUnit::getExtraVisibilityRange() const
 {
     ///TKs Med
-    int iExtra = m_iExtraVisibilityRange;
-    if (isOnMap() && plot()->getImprovementType() != NO_IMPROVEMENT)
-    {
-        iExtra += GC.getImprovementInfo(plot()->getImprovementType()).getVisibilityChange();
-    }
-    ///Tke
-	return iExtra;
+//    int iExtra = m_iExtraVisibilityRange;
+//    if (isOnMap() && plot()->getImprovementType() != NO_IMPROVEMENT)
+//    {
+//        iExtra += GC.getImprovementInfo(plot()->getImprovementType()).getVisibilityChange();
+//    }
+//
+//	return iExtra;
+	return m_iExtraVisibilityRange;
+	///Tke
 }
 
 

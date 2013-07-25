@@ -563,6 +563,7 @@ CvPlot* CvSelectionGroup::lastMissionPlot()
 		case MISSION_FOUND_MONASTERY:
 		case MISSION_FOUND_OUTPOST:
 		case MISSION_COLLECT_TAXES:
+		case MISSION_HUNT:
 		///TKe
 		case MISSION_JOIN_CITY:
 		case MISSION_BUILD:
@@ -737,6 +738,12 @@ bool CvSelectionGroup::canStartMission(int iMission, int iData1, int iData2, CvP
 				return true;
 			}
 			break;
+        case MISSION_HUNT:
+            if (pLoopUnit->canSentry(pPlot))
+			{
+				return true;
+			}
+			break;
 		case MISSION_JOIN_CITY:
 			if (pLoopUnit->canJoinCity(pPlot, bTestVisible))
 			{
@@ -862,6 +869,11 @@ void CvSelectionGroup::startMission()
 			bNotify = true;
 			bDelete = true;
 			break;
+        case MISSION_HUNT:
+            setActivityType(ACTIVITY_HUNT);
+			bNotify = true;
+			bDelete = true;
+			break;
 		case MISSION_BOMBARD:
 		case MISSION_PILLAGE:
 		case MISSION_FOUND:
@@ -910,6 +922,7 @@ void CvSelectionGroup::startMission()
                 case MISSION_FOUND_MONASTERY:
                 case MISSION_FOUND_OUTPOST:
                 case MISSION_COLLECT_TAXES:
+                case MISSION_HUNT:
                 ///TKe
 				case MISSION_JOIN_CITY:
 				case MISSION_BUILD:
@@ -1175,6 +1188,7 @@ void CvSelectionGroup::continueMission(int iSteps)
 						break;
                     ///TKs Med
 					case MISSION_COLLECT_TAXES:
+					case MISSION_HUNT:
 					///TKe
 					case MISSION_SKIP:
 					case MISSION_SLEEP:
@@ -1242,13 +1256,14 @@ void CvSelectionGroup::continueMission(int iSteps)
 					bDone = true;
 				}
 				break;
-
+///TKs Med
 			case MISSION_SKIP:
 			case MISSION_SLEEP:
 			case MISSION_FORTIFY:
 			case MISSION_HEAL:
 			case MISSION_SENTRY:
 			case MISSION_COLLECT_TAXES:
+			case MISSION_HUNT:
 				FAssert(false);
 				break;
 
@@ -1256,7 +1271,6 @@ void CvSelectionGroup::continueMission(int iSteps)
 			case MISSION_LEAD:
 			case MISSION_PILLAGE:
 			case MISSION_FOUND:
-			///TKs Med
             case MISSION_FOUND_MONASTERY:
             case MISSION_FOUND_OUTPOST:
 					//TKe

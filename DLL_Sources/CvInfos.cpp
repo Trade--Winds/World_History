@@ -13849,6 +13849,18 @@ bool CvEventTriggerInfo::isOnUnitTrained() const
 	return bOnUnitTrained;
 }
 
+// Begin EmperorFool: Events with Images
+const TCHAR* CvEventTriggerInfo::getEventArt() const
+{
+	if (m_szEventArt.empty())
+	{
+		return NULL;
+	}
+
+	return m_szEventArt;
+}
+// End EmperorFool: Events with Images
+
 ///Tke
 bool CvEventTriggerInfo::isSinglePlayer() const
 {
@@ -14052,6 +14064,9 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 	}
 	stream->Read(&m_bTutorial);
 	///Tks MEd
+	// Begin EmperorFool: Events with Images
+	stream->ReadString(m_szEventArt);
+	// End EmperorFool: Events with Images
 	stream->Read(&bDoNotAnnounce);
 	stream->Read(&bOnUnitTrained);
 	///Tke
@@ -14166,6 +14181,9 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	}
 	stream->Write(m_bTutorial);
 	///Tks MEd
+	// Begin EmperorFool: Events with Images
+	stream->WriteString(m_szEventArt);
+	// End EmperorFool: Events with Images
 	stream->Write(bDoNotAnnounce);
 	stream->Write(bOnUnitTrained);
 	///Tke
@@ -14485,6 +14503,9 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	}
 	pXML->GetChildXmlValByName(&m_bTutorial, "bTutorial");
 	///Tks Med
+	// Begin EmperorFool: Events with Images
+	pXML->GetChildXmlValByName(m_szEventArt, "EventArt");
+	// End EmperorFool: Events with Images
 	pXML->GetChildXmlValByName(&bDoNotAnnounce, "bDoNotAnnounce");
 	pXML->GetChildXmlValByName(&bOnUnitTrained, "bOnUnitTrained");
 	///Tke

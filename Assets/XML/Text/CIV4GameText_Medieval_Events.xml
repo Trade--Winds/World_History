@@ -14,6 +14,14 @@
     <Spanish></Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_MEDIEVAL_DISCOVER_SPICE_ROUTE</Tag>
+    <English>[BOLD]Spice Route[\BOLD][NEWLINE][TAB]You have discovereed the Spice Route! You can now command your ships to emark on this long and often perilous journey voyaging this ancient trade route.</English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_MEDIEVAL_EVENT_TRIGGER_SPICE_ROUTE</Tag>
     <English>[BOLD]Trading Routes[\BOLD][NEWLINE][TAB]There are three types of Trade Routes you can discover through Trading Points. The first is the Spice Route. Your Ships can embark along the Spice Route and trade when they arrive. Some goods, such as Silk, have different values depending on which Trade Route market you are in.(Note: There is a alternate hidden way to discover the Spice Route as well!!)</English>
     <French></French>

@@ -4163,6 +4163,9 @@ public:
 	DllExport int getNumWorldNews() const;
 	DllExport bool isTutorial() const;
 	///Tks Med
+	// Start EmperorFool: Events with Images
+	DllExport const TCHAR* getEventArt() const;				// Exposed to Python
+	// End EmperorFool: Events with Images
 	DllExport bool isDoNotAnnounce() const;
 	DllExport bool isOnUnitTrained() const;
 	///Tke
@@ -4227,6 +4230,9 @@ private:
 	std::vector<CvWString> m_aszWorldNews;
 	bool m_bTutorial;
 	///TKs Med
+	// Start EmperorFool: Events with Images
+	CvString m_szEventArt;
+	// End EmperorFool: Events with Images
 	bool bDoNotAnnounce;
 	bool bOnUnitTrained;
 	///Tke

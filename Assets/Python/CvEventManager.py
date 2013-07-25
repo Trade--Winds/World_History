@@ -349,16 +349,17 @@ class CvEventManager:
 				player = gc.getPlayer(iPlayer)
 				if (player.isAlive() and player.isHuman()):
 					#TK Med
-					
-					popupInfo = CyPopupInfo()
-					popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_MOVIE)
-					popupInfo.setText(u"ART_DEF_MOVIE_INTRO")
-					popupInfo.addPopup(iPlayer)
-					#TKend
+					if (gc.getDefineINT("DIPLAY_NEW_VIDEOS")):
+						popupInfo = CyPopupInfo()
+						popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_MOVIE)
+						popupInfo.setText(u"ART_DEF_MOVIE_INTRO")
+						popupInfo.addPopup(iPlayer)
 					popupInfo = CyPopupInfo()
 					popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON_SCREEN)
 					popupInfo.setText(u"showDawnOfMan")
 					popupInfo.addPopup(iPlayer)
+					#TKend
+					
 		else:
 			CyInterface().setSoundSelectionReady(true)
 

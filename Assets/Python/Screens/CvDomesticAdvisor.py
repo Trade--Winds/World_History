@@ -140,9 +140,9 @@ class CvDomesticAdvisor:
 		self.BUILDING_STATE           = self.addButton("INTERFACE_CITY_BUILD_BUTTON",          "TXT_KEY_BUILDINGS")
 		self.IMPORTEXPORT_STATE       = self.addButton("INTERFACE_CITY_GOVENOR_BUTTON",        "TXT_KEY_CONCEPT_TRADE_ROUTE")
 		self.CITIZEN_STATE            = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN")
-		self.TOTAL_PRODUCTION_STATE   = self.addButton("INTERFACE_TOTAL_PRODUCTION_BUTTON",    "TXT_KEY_CONCEPT_TOTAL_PRODUCTION")  # total production page - Nightinggale
+		self.TOTAL_PRODUCTION_STATE   = self.addButton("INTERFACE_WAREHOUSE_STORAGE_BUTTON",    "TXT_KEY_CONCEPT_TOTAL_PRODUCTION")  # total production page - Nightinggale
 		self.TRADEROUTE_STATE         = self.addButton("INTERFACE_IMPORT_EXPORT_BUTTON",       "TXT_KEY_DOMESTIC_ADVISOR_STATE_TRADEROUTE")
-		self.NATIVE_STATE             = self.addButton("INTERFACE_NATIVE_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_STATE_NATIVE")
+		self.NATIVE_STATE             = self.addButton("INTERFACE_NATIVE_VILLAGES_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_STATE_NATIVE")
 		
 		self.YieldPages = set([self.PRODUCTION_STATE])
 		self.YieldPages.add(self.WAREHOUSE_STATE)

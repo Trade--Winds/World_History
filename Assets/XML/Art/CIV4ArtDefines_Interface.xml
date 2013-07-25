@@ -871,6 +871,14 @@
 			<Type>INTERFACE_STORES_BUTTON</Type>
 			<Path>Art/Interface/Screens/City_Management/cargo_box.dds</Path>
 		</InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_WAREHOUSE_STORAGE_BUTTON</Type>
+      <Path>Art/Interface/Buttons/Actions/warehousestorage.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_NATIVE_VILLAGES_BUTTON</Type>
+      <Path>Art/Interface/Buttons/Actions/NativeVillages.dds</Path>
+    </InterfaceArtInfo>
 		<InterfaceArtInfo>
 			<Type>INTERFACE_CITY_CITIZEN_BUTTON</Type>
 			<Path>Art/Interface/Screens/City_Management/Dude.dds</Path>

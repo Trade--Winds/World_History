@@ -13,6 +13,7 @@
 	<ElementType name="bQuest" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bTutorial" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bSinglePlayer" content="textOnly" dt:type="boolean"/>
+  <ElementType name="EventArt" content="textOnly"/>
 	<ElementType name="iMinTreasury" content="textOnly" dt:type="int"/>
 	<ElementType name="iGold" content="textOnly" dt:type="int"/>
 	<ElementType name="iRandomGold" content="textOnly" dt:type="int"/>
@@ -238,6 +239,7 @@
 		<element type="PythonCanDoUnit"/>
 		<element type="PythonCallback"/>
     <!--Medieval Events-->
+    <element type="EventArt" minOccurs="0"/>
     <element type="bDoNotAnnounce" minOccurs="0"/>
     <element type="bOnUnitTrained" minOccurs="0"/>
 	</ElementType>

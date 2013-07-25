@@ -11,6 +11,10 @@
     <iDefineIntVal>0</iDefineIntVal>
   </Define>
   <Define>
+    <DefineName>DIPLAY_NEW_VIDEOS</DefineName>
+    <iDefineIntVal>1</iDefineIntVal>
+  </Define>
+  <Define>
     <DefineName>CHEAT_TRAVEL_ALL</DefineName>
     <iDefineIntVal>0</iDefineIntVal>
   </Define>
