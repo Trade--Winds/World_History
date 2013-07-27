@@ -3549,6 +3549,10 @@ bool CvUnit::canAutomate(AutomateTypes eAutomate) const
                 {
                     return false;
                 }
+                if (getDomainType() == DOMAIN_LAND && ePlotCity->getArea() != getArea())
+                {
+                    return false;
+                }
             }
 		}
         if (cargoSpace() == 0 && !m_pUnitInfo->isTreasure())
@@ -3616,10 +3620,25 @@ bool CvUnit::canAutomate(AutomateTypes eAutomate) const
         }
 		break;
     case AUTOMATE_TRAVEL_SILK_ROAD:
-        if (!canAutoCrossOcean(plot(), TRADE_ROUTE_SILK_ROAD))
-		{
-			return false;
-		}
+//        if (!canAutoCrossOcean(plot(), TRADE_ROUTE_SILK_ROAD))
+//		{
+//			return false;
+//		}
+        if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
+        {
+            if (GC.getCache_CHEAT_TRAVEL_ALL() == 0)
+            {
+                return false;
+            }
+        }
+        if (cargoSpace() == 0)
+        {
+           return false;
+        }
+        if (getDomainType() != DOMAIN_LAND)
+        {
+            return false;
+        }
 		break;
     ///TKe
 	case AUTOMATE_FULL:
@@ -4434,7 +4453,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 		}
 		else if (eNewState == UNIT_TRAVEL_STATE_TO_SILK_ROAD)
 		{
-		    if (getDomainType() != DOMAIN_SEA)
+		    if (getDomainType() != DOMAIN_LAND)
 		    {
 		        return false;
 		    }
@@ -4572,6 +4591,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 ///Tke
 void CvUnit::crossOcean(UnitTravelStates eNewState)
 {
+	///TKs
     TradeRouteTypes eTradeRoute = NO_TRADE_ROUTES;
     TradeScreenTypes eTradeScreen = TRADE_SCREEN_DEFAULT;
     switch (eNewState)
@@ -4611,13 +4631,13 @@ void CvUnit::crossOcean(UnitTravelStates eNewState)
         default:
             break;
 	}
+	///TKe MEd
+
 	if (!canCrossOcean(plot(), eNewState, eTradeRoute))
 	{
 		return;
 	}
-	///TKs
 
-	///TKe MEd
 //	if(isHuman() && !GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
 //	{
 //        if (getUnitTravelState() == NO_UNIT_TRAVEL_STATE)

@@ -1297,7 +1297,8 @@ void CvGame::updateColoredPlots()
 		if(eEuropePlayer != NO_PLAYER)
 		{
 			NiColorA color(GC.getColorInfo((ColorTypes)GC.getPlayerColorInfo(GET_PLAYER(eEuropePlayer).getPlayerColor()).getColorTypePrimary()).getColor());
-			NiColorA colorB(GC.getColorInfo((ColorTypes)GC.getPlayerColorInfo(GET_PLAYER(eEuropePlayer).getPlayerColor()).getColorTypeSecondary()).getColor());
+			//NiColorA colorB(GC.getColorInfo((ColorTypes)GC.getPlayerColorInfo(GET_PLAYER(eEuropePlayer).getPlayerColor()).getColorTypeSecondary()).getColor());
+			NiColorA colorB(GC.getColorInfo((ColorTypes)GC.getInfoTypeForString("COLOR_PLAYER_DARK_PURPLE")).getColor());
 			for(int i=0;i<GC.getMapINLINE().numPlotsINLINE();i++)
 			{
 				CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(i);

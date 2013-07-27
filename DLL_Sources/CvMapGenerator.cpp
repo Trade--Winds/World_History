@@ -873,7 +873,7 @@ void CvMapGenerator::addGoodies()
 		}
 	}
 }
-
+///TKs Med Trade Routes
 void CvMapGenerator::addEurope()
 {
 	PROFILE_FUNC();
@@ -889,14 +889,25 @@ void CvMapGenerator::addEurope()
 		gDLL->getPythonIFace()->pythonGetEuropeMinLandDistance(eEurope, &iMinLandDistance);
 
 		//try several times until at least one start europe is found
+		bool bWaterRoute = (iMinLandDistance > 0);
 		bool bAnyEuropeFound = false;
+		bool bCheckDirection = true;
 		for ( ; iMinLandDistance >= 0 && !bAnyEuropeFound; iMinLandDistance--)
 		{
 			for (int i = 0; i < GC.getMapINLINE().numPlotsINLINE(); ++i)
 			{
 				CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE(i);
+				bCheckDirection = true;
+				if (bWaterRoute && !pPlot->isWater())
+				{
+                    bCheckDirection = false;
+				}
+				else if (!bWaterRoute && pPlot->isWater())
+				{
+				    bCheckDirection = false;
+				}
 
-				if (pPlot->isWater() && !pPlot->isEurope())
+				if (bCheckDirection && !pPlot->isEurope())
 				{
 					bool bEurope = false;
 					switch (kEurope.getCardinalDirection())
@@ -909,6 +920,7 @@ void CvMapGenerator::addEurope()
 						break;
 					case CARDINALDIRECTION_NORTH:
 						bEurope = (pPlot->getY_INLINE() > (100 - iWidthPercent) * GC.getMapINLINE().getGridHeightINLINE() / 100);
+						//FAssert(bEurope == false);
 						break;
 					case CARDINALDIRECTION_SOUTH:
 						bEurope = (pPlot->getY_INLINE() < iWidthPercent * GC.getMapINLINE().getGridHeightINLINE() / 100);
@@ -917,20 +929,43 @@ void CvMapGenerator::addEurope()
 						FAssertMsg(false, "Invalid direction");
 						break;
 					}
-
-					for (int i = -iMinLandDistance; i <= iMinLandDistance && bEurope; i++)
+					if (bEurope)
 					{
-						for (int j = -iMinLandDistance; j <= iMinLandDistance && bEurope; j++)
-						{
-							CvPlot* pLoopPlot = ::plotXY(pPlot->getX_INLINE(), pPlot->getY_INLINE(), i, j);
-							if (pLoopPlot != NULL)
-							{
-								if (!pLoopPlot->isWater())
-								{
-									bEurope = false;
-								}
-							}
-						}
+                        if (bWaterRoute)
+                        {
+                            for (int i = -iMinLandDistance; i <= iMinLandDistance && bEurope; i++)
+                            {
+                                for (int j = -iMinLandDistance; j <= iMinLandDistance && bEurope; j++)
+                                {
+                                    CvPlot* pLoopPlot = ::plotXY(pPlot->getX_INLINE(), pPlot->getY_INLINE(), i, j);
+                                    if (pLoopPlot != NULL)
+                                    {
+                                        if (!pLoopPlot->isWater())
+                                        {
+                                            bEurope = false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //if (kEurope.getCardinalDirection() == (CARDINALDIRECTION_NORTH || CARDINALDIRECTION_SOUTH))
+                            if (kEurope.getCardinalDirection() == CARDINALDIRECTION_SOUTH)
+                            {
+                                if (pPlot->getY_INLINE() > 4)
+                                {
+                                    bEurope = false;
+                                }
+                            }
+                            else if (kEurope.getCardinalDirection() == CARDINALDIRECTION_NORTH)
+                            {
+                                if (pPlot->getY_INLINE() < (GC.getMapINLINE().getGridHeightINLINE() - 4))
+                                {
+                                    bEurope = false;
+                                }
+                            }
+                        }
 					}
 
 					if (bEurope)
@@ -938,6 +973,10 @@ void CvMapGenerator::addEurope()
 						if (pPlot->getFeatureType() != NO_FEATURE && GC.getFeatureInfo(pPlot->getFeatureType()).isImpassable())
 						{
 							pPlot->setFeatureType(NO_FEATURE);
+							///TKs Med
+							//pPlot->setTerrainType((TerrainTypes)GC.getDefineINT("TERRAIN_PEAK"));
+							//pPlot->setPlotType(PLOT_PEAK, true, true);
+							///TKe
 						}
 
 						if (pPlot->isImpassable())

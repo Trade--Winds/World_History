@@ -2201,13 +2201,15 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 
 		//Coast
 		tempChar = 'x';
-		EuropeTypes eNearestEurope = pPlot->getNearestEurope();
+		///TKs Med Trade Routes
+		//EuropeTypes eNearestEurope = pPlot->getNearestEurope();
+		EuropeTypes eNearestEurope = pPlot->getEurope();
 		if (eNearestEurope != NO_EUROPE)
 		{
-			szTempBuffer.Format(L"\nOcean: %s", GC.getEuropeInfo(eNearestEurope).getDescription());
+			szTempBuffer.Format(L"\nTrade Route: %s", GC.getEuropeInfo(eNearestEurope).getDescription());
 			szString.append(szTempBuffer);
 		}
-
+        ///TKe
 		if(pPlot->getRouteType() != NO_ROUTE)
 		{
 			szTempBuffer.Format(L"\nRoute: %s", GC.getRouteInfo(pPlot->getRouteType()).getDescription());

@@ -4623,6 +4623,7 @@ bool CvUnitAI::AI_europeAssaultSea()
 bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 {
     UnitTravelStates eTravelState = UNIT_TRAVEL_STATE_TO_EUROPE;
+    bool bLandRoute = false;
     if (eTradeRouteType == TRADE_ROUTE_SPICE_ROUTE)
     {
         eTravelState = UNIT_TRAVEL_STATE_TO_SPICE_ROUTE;
@@ -4630,6 +4631,7 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
     else if (eTradeRouteType == TRADE_ROUTE_SILK_ROAD)
     {
         eTravelState = UNIT_TRAVEL_STATE_TO_SILK_ROAD;
+        bLandRoute = true;
     }
 
 	if (canCrossOcean(plot(), eTravelState, eTradeRouteType))
@@ -4678,6 +4680,13 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 			{
 				if (canCrossOcean(pLoopPlot, eTravelState, eTradeRouteType))
 				{
+				    if (bLandRoute)
+				    {
+				        if (getArea() != pLoopPlot->getArea())
+				        {
+				            continue;
+				        }
+				    }
 					int iPathTurns;
 					if (generatePath(pLoopPlot, MOVE_BUST_FOG, true, &iPathTurns))
 					{
@@ -4696,7 +4705,7 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 		}
 	}
 
-    if (pBestPlot == NULL)
+    if (pBestPlot == NULL && !bLandRoute)
 	{
 	    for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
         {
@@ -4760,6 +4769,17 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 		}
 		return true;
 	}
+	if (eTradeRouteType == TRADE_ROUTE_SILK_ROAD)
+    {
+        if (AI_getUnitAIState() == UNITAI_STATE_SAIL)
+        {
+            AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+        }
+        if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+        {
+            getGroup()->setAutomateType(NO_AUTOMATE);
+        }
+    }
 	return false;
 }
 ///Tke
@@ -14623,11 +14643,11 @@ void CvUnitAI::AI_HuntsmanMove()
 }
 bool CvUnitAI::AI_travelToHomeCity(TradeRouteTypes eTradeRouteType)
 {
-    bool bFair = false;
-    if (eTradeRouteType != NO_TRADE_ROUTES)
-    {
-       bFair = true;
-    }
+//    bool bFair = false;
+//    if (eTradeRouteType != NO_TRADE_ROUTES)
+//    {
+//       bFair = true;
+//    }
 	bool bReturn = true;
 	CvPlot* pPlot = plot();
 	CvCity* pUpgradeCity = getHomeCity();
