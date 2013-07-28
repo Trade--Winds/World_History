@@ -15826,7 +15826,7 @@ void CvPlayer::Update_cache_YieldEquipmentAmount(ProfessionTypes eProfession)
 
 void CvPlayer::Update_cache_YieldEquipmentAmount()
 {
-	if (m_eID <= NO_PLAYER || m_aiProfessionEquipmentModifier == NULL)
+	if (m_eID <= NO_PLAYER || m_aiProfessionEquipmentModifier == NULL || GC.getGameINLINE().getHandicapType() == NO_HANDICAP)
 	{
 		// Some update calls gets triggered during player init. They can safely be ignored.
 		return;
