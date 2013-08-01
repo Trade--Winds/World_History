@@ -1202,6 +1202,30 @@
     <Spanish>Vender: %d1_Price [ICON_GOLD]/ Comprar: %d2_Price [ICON_GOLD]</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_BUY_AND_SELL_YIELD_AMOUNT</Tag>
+    <English>Local (%d1_Amount[ICON_GOLD])- Sell: %d2_Price[ICON_GOLD] / Buy: %d3_Price[ICON_GOLD]</English>
+    <French>Vendre : %d2_Price[ICON_GOLD] / Acheter : %d3_Price[ICON_GOLD]</French>
+    <German>Verkaufen: %d2_Price[ICON_GOLD] / Kaufen: %d3_Price[ICON_GOLD]</German>
+    <Italian>Vendere: %d2_Price[ICON_GOLD] / Comperare: %d3_Price[ICON_GOLD]</Italian>
+    <Spanish>Vender: %d2_Price [ICON_GOLD]/ Comprar: %d3_Price [ICON_GOLD]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUY_AND_SELL_YIELD_SPICE_ROUTE_AMOUNT</Tag>
+    <English>Spice Route (%d1_Amount[ICON_GOLD])- Sell: %d2_Price[ICON_GOLD] / Buy: %d3_Price[ICON_GOLD]</English>
+    <French>Vendre : %d2_Price[ICON_GOLD] / Acheter : %d3_Price[ICON_GOLD]</French>
+    <German>Verkaufen: %d2_Price[ICON_GOLD] / Kaufen: %d3_Price[ICON_GOLD]</German>
+    <Italian>Vendere: %d2_Price[ICON_GOLD] / Comperare: %d3_Price[ICON_GOLD]</Italian>
+    <Spanish>Vender: %d2_Price [ICON_GOLD]/ Comprar: %d3_Price [ICON_GOLD]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUY_AND_SELL_YIELD_SILK_ROAD_AMOUNT</Tag>
+    <English>Silk Road (%d1_Amount[ICON_GOLD])- Sell: %d2_Price[ICON_GOLD] / Buy: %d3_Price[ICON_GOLD]</English>
+    <French>Vendre : %d2_Price[ICON_GOLD] / Acheter : %d3_Price[ICON_GOLD]</French>
+    <German>Verkaufen: %d2_Price[ICON_GOLD] / Kaufen: %d3_Price[ICON_GOLD]</German>
+    <Italian>Vendere: %d2_Price[ICON_GOLD] / Comperare: %d3_Price[ICON_GOLD]</Italian>
+    <Spanish>Vender: %d2_Price [ICON_GOLD]/ Comprar: %d3_Price [ICON_GOLD]</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_CONVERT</Tag>
     <English>Your Trading League, -%d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</English>
     <French>Your Trading League, minus %d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</French>
