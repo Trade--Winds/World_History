@@ -434,7 +434,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			szString.append(szTempBuffer);
 		}
 		///TKs Med
-		if (pUnit->isCargo())
+		if (pUnit->isCargo() && !bShort)
 		{
 		    szString.append(NEWLINE);
 		    setYieldPriceHelp(szString, pUnit->getOwnerINLINE(), pUnit->getYield());
@@ -906,10 +906,15 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			szString.append(pUnit->getUnitInfo().getHelp());
 		}
 
-        if (bShift && (gDLL->getChtLvl() > 0))
+        if (bAlt && (gDLL->getChtLvl() > 0))
         {
-            szTempBuffer.Format(L"\nUnitAI Type = %s.", GC.getUnitAIInfo(pUnit->AI_getUnitAIType()).getDescription());
+            ///Tks Med
+//            szTempBuffer.Format(L"\nUnitAI Type = %s.", pUnit->AI_getUnitAIState());
+//            szString.append(szTempBuffer);
+
+            szTempBuffer.Format(L"\nUnitAI Type = %s(%d).", GC.getUnitAIInfo(pUnit->AI_getUnitAIType()).getDescription(), pUnit->AI_getUnitAIState());
             szString.append(szTempBuffer);
+            ///TKe
             szTempBuffer.Format(L"\nSacrifice Value = %d.", pUnit->AI_sacrificeValue(NULL));
             szString.append(szTempBuffer);
             if (pUnit->getHomeCity() != NULL)
@@ -7848,26 +7853,51 @@ void CvGameTextMgr::buildHintsList(CvWStringBuffer& szBuffer)
 	}
 }
 ///TKs Med
-void CvGameTextMgr::setYieldPriceHelp(CvWStringBuffer &szBuffer, PlayerTypes ePlayer, YieldTypes eYield)
+void CvGameTextMgr::setYieldPriceHelp(CvWStringBuffer &szBuffer, PlayerTypes ePlayer, YieldTypes eYield, int iAmount)
 {
 	CvYieldInfo& info = GC.getYieldInfo(eYield);
 	CvPlayer& kPlayer = GET_PLAYER(ePlayer);
-
 	szBuffer.append(CvWString::format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR("COLOR_HIGHLIGHT_TEXT"), info.getDescription()));
 	if (info.isCargo() && kPlayer.isYieldEuropeTradable(eYield))
 	{
 		CvPlayer& kParent = GET_PLAYER(kPlayer.getParent());
-		szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_BUY_AND_SELL_YIELD", kParent.getYieldBuyPrice(eYield), kParent.getYieldSellPrice(eYield)));
-		if (kPlayer.getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
+		if (iAmount == 0)
 		{
-		    szBuffer.append(NEWLINE);
-            szBuffer.append(gDLL->getText("TXT_KEY_BUY_AND_SELL_YIELD_SPICE_ROUTE", kParent.getYieldBuyPrice(eYield, UNIT_TRAVEL_STATE_IN_SPICE_ROUTE), kParent.getYieldSellPrice(eYield,UNIT_TRAVEL_STATE_IN_SPICE_ROUTE)));
+            szBuffer.append(NEWLINE);
+            szBuffer.append(gDLL->getText("TXT_KEY_BUY_AND_SELL_YIELD", kParent.getYieldBuyPrice(eYield), kParent.getYieldSellPrice(eYield)));
+            if (kPlayer.getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
+            {
+                szBuffer.append(NEWLINE);
+                szBuffer.append(gDLL->getText("TXT_KEY_BUY_AND_SELL_YIELD_SPICE_ROUTE", kParent.getYieldBuyPrice(eYield, UNIT_TRAVEL_STATE_IN_SPICE_ROUTE), kParent.getYieldSellPrice(eYield,UNIT_TRAVEL_STATE_IN_SPICE_ROUTE)));
+            }
+            if (kPlayer.getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
+            {
+                szBuffer.append(NEWLINE);
+                szBuffer.append(gDLL->getText("TXT_KEY_BUY_AND_SELL_YIELD_SILK_ROAD", kParent.getYieldBuyPrice(eYield, UNIT_TRAVEL_STATE_IN_SILK_ROAD), kParent.getYieldSellPrice(eYield, UNIT_TRAVEL_STATE_IN_SILK_ROAD)));
+            }
 		}
-		if (kPlayer.getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
+		else if (iAmount > 0)
 		{
-		    szBuffer.append(NEWLINE);
-            szBuffer.append(gDLL->getText("TXT_KEY_BUY_AND_SELL_YIELD_SILK_ROAD", kParent.getYieldBuyPrice(eYield, UNIT_TRAVEL_STATE_IN_SILK_ROAD), kParent.getYieldSellPrice(eYield, UNIT_TRAVEL_STATE_IN_SILK_ROAD)));
+		    FAssert(iAmount > 0);
+		    int iProfit = 0;
+		    iProfit = kParent.getYieldBuyPrice(eYield) * iAmount;
+		    iProfit -= (iAmount * kPlayer.getTaxRate()) / 100;
+            szBuffer.append(NEWLINE);
+            szBuffer.append(gDLL->getText("TXT_KEY_BUY_AND_SELL_YIELD_AMOUNT", iProfit, kParent.getYieldBuyPrice(eYield), kParent.getYieldSellPrice(eYield)));
+            if (kPlayer.getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
+            {
+                iProfit = kParent.getYieldBuyPrice(eYield) * iAmount;
+                iProfit -= (iProfit * kPlayer.getTaxRate()) / 100;
+                szBuffer.append(NEWLINE);
+                szBuffer.append(gDLL->getText("TXT_KEY_BUY_AND_SELL_YIELD_SPICE_ROUTE_AMOUNT", iProfit, kParent.getYieldBuyPrice(eYield, UNIT_TRAVEL_STATE_IN_SPICE_ROUTE), kParent.getYieldSellPrice(eYield,UNIT_TRAVEL_STATE_IN_SPICE_ROUTE)));
+            }
+            if (kPlayer.getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
+            {
+                iAmount = kParent.getYieldBuyPrice(eYield) * iAmount;
+                iAmount -= (iAmount * kPlayer.getTaxRate()) / 100;
+                szBuffer.append(NEWLINE);
+                szBuffer.append(gDLL->getText("TXT_KEY_BUY_AND_SELL_YIELD_SILK_ROAD_AMOUNT", iProfit, kParent.getYieldBuyPrice(eYield, UNIT_TRAVEL_STATE_IN_SILK_ROAD), kParent.getYieldSellPrice(eYield, UNIT_TRAVEL_STATE_IN_SILK_ROAD)));
+            }
 		}
 	}
 	szBuffer.append(ENDCOLR);

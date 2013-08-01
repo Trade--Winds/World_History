@@ -14,6 +14,14 @@
     <Spanish></Spanish>
   </TEXT>
   <TEXT>
+    <Tag>AI_DIPLO_AI_PEDDLER_TRADING_1</Tag>
+    <English>We have some goods here you may find of value.</English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_VASSAL_ATTITUDE_TOWARDS</Tag>
     <English>Vassal of %s1_leader</English>
     <French>Vassal of %s1_leader</French>

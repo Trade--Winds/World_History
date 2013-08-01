@@ -676,6 +676,74 @@ CvCity* CvMap::findCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTeam, boo
 
     return pBestCity;
 }
+CvCity* CvMap::findTraderCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTeam, bool bSameArea, bool bCoastalOnly, bool bNative, YieldTypes eNativeYield, int iMinAttitude, bool bRandom)
+{
+	int iBestValue = MAX_INT;
+	CvCity* pBestCity = NULL;
+    std::vector<CvCity*> aCitys;
+	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		if (GET_PLAYER((PlayerTypes)iI).isAlive() && (!bNative || GET_PLAYER((PlayerTypes)iI).isNative()))
+		{
+			if ((eOwner == NO_PLAYER) || (iI == eOwner))
+			{
+				if ((eTeam == NO_TEAM) || !atWar(GET_PLAYER((PlayerTypes)iI).getTeam(), eTeam))
+				{
+					int iLoop;
+					for (CvCity* pLoopCity = GET_PLAYER((PlayerTypes)iI).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER((PlayerTypes)iI).nextCity(&iLoop))
+					{
+					    //if ((eTeam == NO_TEAM) || !atWar(GET_PLAYER((PlayerTypes)iI).getTeam(), eTeam))
+					    //{
+                            if (!bSameArea || (pLoopCity->area() == plotINLINE(iX, iY)->area()) || (bCoastalOnly && (pLoopCity->waterArea() == plotINLINE(iX, iY)->area())))
+                            {
+                                if (!bCoastalOnly || pLoopCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+                                {
+                                    //if(!bNative || pLoopCity->isNative())
+                                   //{
+                                        if (eNativeYield == NO_YIELD || (pLoopCity->AI_getDesiredYield() == eNativeYield) || (pLoopCity->isHuman() && pLoopCity->isImport(eNativeYield)))
+                                        {
+                                            if (!bRandom)
+                                            {
+                                                int iValue = plotDistance(iX, iY, pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());
+
+                                                if (iValue < iBestValue)
+                                                {
+                                                    iBestValue = iValue;
+                                                    pBestCity = pLoopCity;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                aCitys.push_back(pLoopCity);
+                                            }
+                                        }
+                                    //}
+                                }
+                            }
+					    //}
+					}
+				}
+			}
+		}
+	}
+    if (bRandom)
+    {
+        int iRandom = aCitys.size();
+
+        if (iRandom >= 1)
+        {
+            iRandom = GC.getGameINLINE().getSorenRandNum(iRandom, "Random Find City");
+            return aCitys[iRandom];
+        }
+        else
+        {
+            return NULL;
+        }
+
+    }
+
+    return pBestCity;
+}
 ///TKe
 CvSelectionGroup* CvMap::findSelectionGroup(int iX, int iY, PlayerTypes eOwner, bool bReadyToSelect)
 {

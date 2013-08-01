@@ -140,7 +140,9 @@ protected:
     void AI_HuntsmanMove();
     bool AI_huntAttack(int iRange, int iLowOddsThreshold, int iHighOddsThreshold, CvPlot* pHintPlot = NULL);
     bool AI_travelToHomeCity(TradeRouteTypes eTradeRouteType=NO_TRADE_ROUTES);
-    ///TKe
+    void AI_transportTraderMove();
+	bool AI_travelToNativeVillage(int iMinAttitude, int iMaxAttitude, int iRange = -1, CvCity* pCity=NULL);
+	///TKe
 	bool AI_travelToEuropeColony(int iMinAttitude, int iMaxAttitude, int iRange = -1);
 	bool AI_guardHomeColony();
 	bool AI_findNewHomeColony();

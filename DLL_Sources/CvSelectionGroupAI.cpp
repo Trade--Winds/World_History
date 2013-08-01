@@ -133,7 +133,7 @@ bool CvSelectionGroupAI::AI_update()
 	PROFILE_FUNC();
 
 	FAssert(getOwnerINLINE() != NO_PLAYER);
-
+    
 	if (!AI_isControlled())
 	{
 		return false;
@@ -244,7 +244,6 @@ bool CvSelectionGroupAI::AI_update()
 				{
 					pLoopUnit = ::getUnit(pEntityNode->m_data);
 					pEntityNode = nextUnitNode(pEntityNode);
-
 					pLoopUnit->AI_europeUpdate();
 				}
 			}
@@ -558,6 +557,7 @@ bool CvSelectionGroupAI::AI_isDeclareWar(const CvPlot* pPlot)
 			case UNITAI_ANIMAL:
             case UNITAI_HUNTSMAN:
             case UNITAI_MARAUDER:
+            case UNITAI_TRADER:
 			///TKe
 				return false;
 				break;

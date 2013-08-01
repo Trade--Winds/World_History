@@ -470,13 +470,29 @@ void CvCityAI::AI_chooseProduction()
 		int iAreaCities = pArea->getCitiesPerPlayer(getOwnerINLINE());
 		if (iAreaCities > 1)
 		{
-			if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_WAGON) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_WAGON)) < (iAreaCities / 2))
+		    ///Tks Med AI Traders
+		    if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRADER) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRADER)) < (iAreaCities / 2))
+			{
+				if (AI_chooseUnit(UNITAI_TRADER))
+				{
+					return;
+				}
+			}
+			else if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA)) == 0)
+			{
+				if (AI_chooseUnit(UNITAI_TRANSPORT_SEA))
+				{
+					return;
+				}
+			}
+			else if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_WAGON) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_WAGON)) < (iAreaCities / 2))
 			{
 				if (AI_chooseUnit(UNITAI_WAGON))
 				{
 					return;
 				}
 			}
+			///Tke
 		}
 	}
 
@@ -488,14 +504,15 @@ void CvCityAI::AI_chooseProduction()
 	if (isNative())
 	{
 	    ///TK Med Barbarian AI
-	    if (kPlayer.AI_totalUnitAIs(UNITAI_PIRATE_SEA) <= kPlayer.getNumCities())
+	    if (kPlayer.AI_totalUnitAIs(UNITAI_PIRATE_SEA) <= kPlayer.getNumCities() / 3)
 	    {
             if (AI_chooseUnit(UNITAI_PIRATE_SEA, false))
             {
                 return;
             }
 	    }
-	    if (kPlayer.AI_totalUnitAIs(UNITAI_MARAUDER) <= (kPlayer.getNumCities() * 2))
+	    ///adjust
+	    if (kPlayer.AI_totalUnitAIs(UNITAI_MARAUDER) <= kPlayer.getNumCities() / 2)
 	    {
             if (AI_chooseUnit(UNITAI_MARAUDER, false))
             {

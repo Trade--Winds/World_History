@@ -4192,7 +4192,7 @@ bool CvUnit::canTradeYield(const CvPlot* pPlot) const
 	{
 	    return false;
 	}
-	if (m_pUnitInfo->isMechUnit())
+	if (isHuman() && m_pUnitInfo->isMechUnit())
 	{
 	    return false;
 	}
@@ -4274,6 +4274,13 @@ void CvUnit::tradeYield()
 		pDiplo->setCity(plot()->getPlotCity()->getIDInfo());
 		gDLL->beginDiplomacy(pDiplo, getOwnerINLINE());
 	}
+	else if(!isHuman() && GET_PLAYER(eOtherPlayer).isHuman()) //AI contacting  human Player
+	{
+		CvDiploParameters* pDiplo = new CvDiploParameters(getOwnerINLINE());
+		pDiplo->setDiploComment((DiploCommentTypes) GC.getInfoTypeForString("AI_DIPLOCOMMENT_AI_PEDDLER_TRADING"));
+		pDiplo->setTransport(getIDInfo());
+		gDLL->beginDiplomacy(pDiplo, eOtherPlayer);
+	}
 	else if(GET_PLAYER(eOtherPlayer).isHuman()) //they're human contacting us
 	{
 		CvDiploParameters* pDiplo = new CvDiploParameters(getOwnerINLINE());
@@ -4337,13 +4344,13 @@ void CvUnit::clearSpecialty()
 	}
 }
 
-bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteType) const
+bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteType, bool bAIForce) const
 {
     ///TKe MEd
 
 	if (eTradeRouteType == TRADE_ROUTE_EUROPE || eTradeRouteType == NO_TRADE_ROUTES)
 	{
-        if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_EUROPE, eTradeRouteType))
+        if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_EUROPE, eTradeRouteType, bAIForce))
         {
             return false;
         }
@@ -4358,7 +4365,7 @@ bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteT
         {
             return false;
         }
-        if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_SPICE_ROUTE, eTradeRouteType))
+        if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_SPICE_ROUTE, eTradeRouteType, bAIForce))
         {
             return false;
         }
@@ -4370,7 +4377,7 @@ bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteT
         {
             return false;
         }
-        if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_SILK_ROAD, eTradeRouteType))
+        if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_SILK_ROAD, eTradeRouteType, bAIForce))
         {
             return false;
         }
@@ -4395,7 +4402,7 @@ bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteT
 	return true;
 }
 ///Tks Med
-bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, TradeRouteTypes eTradeRouteType) const
+bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, TradeRouteTypes eTradeRouteType, bool bAIForce) const
 {
 	if (getTransportUnit() != NULL)
 	{
@@ -4467,6 +4474,24 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
                 if (GC.getEuropeInfo(pPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SILK_ROAD))
                 {
                     return true;
+                }
+            }
+
+            if (!isHuman() && bAIForce)
+            {
+                CvCity* pCity = plot()->getPlotCity();
+                if (pCity != NULL)
+                {
+//                    if (pCity->isNative())
+//                    {
+//                        return false;
+//                    }
+
+                    if (pCity->getOwner() != getOwner())
+                    {
+                        return true;
+                    }
+
                 }
             }
 
@@ -4589,7 +4614,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 	return true;
 }
 ///Tke
-void CvUnit::crossOcean(UnitTravelStates eNewState)
+void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce)
 {
 	///TKs
     TradeRouteTypes eTradeRoute = NO_TRADE_ROUTES;
@@ -4633,7 +4658,7 @@ void CvUnit::crossOcean(UnitTravelStates eNewState)
 	}
 	///TKe MEd
 
-	if (!canCrossOcean(plot(), eNewState, eTradeRoute))
+	if (!bAIForce && !canCrossOcean(plot(), eNewState, eTradeRoute))
 	{
 		return;
 	}
@@ -10328,7 +10353,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
     ///Tks Med
 	if (pNewPlot != NULL)
 	{
-		if (pNewPlot->isGoody(getTeam()) && getProfession() != NO_PROFESSION)
+		if (pNewPlot->isGoody(getTeam()) && (getProfession() != NO_PROFESSION || !isHuman()))
 		{
 			for (int i = 0; i < GC.getNumFatherPointInfos(); ++i)
 			{
@@ -15295,7 +15320,7 @@ bool CvUnit::canBuildTradingPost(bool bTestVisible)
         return false;
     }
 
-    if (canSpeakWithChief(plot()))
+    if (isHuman() && canSpeakWithChief(plot()))
     {
         return false;
     }

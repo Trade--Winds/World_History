@@ -1301,7 +1301,9 @@ void CvDLLWidgetData::parsePlotListHelp(CvWidgetDataStruct &widgetDataStruct, Cv
 
 	if (pUnit != NULL)
 	{
-		GAMETEXT.setUnitHelp(szBuffer, pUnit);
+	    ///TKs Med
+		GAMETEXT.setUnitHelp(szBuffer, pUnit, false, true);
+		///TKe
 
 		if (pUnit->plot()->plotCount(PUF_isUnitType, pUnit->getUnitType(), -1, pUnit->getOwnerINLINE()) > 1)
 		{
@@ -2797,7 +2799,34 @@ void CvDLLWidgetData::parseTradeItem(CvWidgetDataStruct &widgetDataStruct, CvWSt
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_GOLD"));
 			break;
 		case TRADE_YIELD:
-			GAMETEXT.setYieldPriceHelp(szBuffer, GC.getGameINLINE().getActivePlayer(), (YieldTypes) widgetDataStruct.m_iData2);
+            {
+                    ///TKs Med
+                CvUnit* pTransport = ::getUnit(kTransport);
+                int iAmount = 0;
+                if (pTransport != NULL)
+                {
+                    CvPlot* pPlot = pTransport->plot();
+                    CLLNode<IDInfo>* pUnitNode = pPlot->headUnitNode();
+                    while (pUnitNode != NULL)
+                    {
+                        CvUnit* pLoopUnit = ::getUnit(pUnitNode->m_data);
+                        pUnitNode = pPlot->nextUnitNode(pUnitNode);
+
+                        if (pLoopUnit->getTransportUnit() == pTransport)
+                        {
+                            if (pLoopUnit->getYield() == (YieldTypes) widgetDataStruct.m_iData2)
+                            {
+                                iAmount = pLoopUnit->getYieldStored();
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
+                GAMETEXT.setYieldPriceHelp(szBuffer, GC.getGameINLINE().getActivePlayer(), (YieldTypes) widgetDataStruct.m_iData2, iAmount);
+                ///Tke
+            }
 			break;
 		case TRADE_MAPS:
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_MAPS"));

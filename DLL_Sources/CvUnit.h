@@ -141,9 +141,9 @@ public:
 	bool canClearSpecialty() const;
 	void clearSpecialty();
 
-	bool canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteType=NO_TRADE_ROUTES) const;
-	bool canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, TradeRouteTypes eTradeRouteType=NO_TRADE_ROUTES) const;
-	void crossOcean(UnitTravelStates eNewState);
+	bool canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteType=NO_TRADE_ROUTES, bool bAIForce=false) const;
+	bool canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, TradeRouteTypes eTradeRouteType=NO_TRADE_ROUTES, bool bAIForce=false) const;
+	void crossOcean(UnitTravelStates eNewState, bool bAIForce=false);
 	bool canUnload() const;
 	void unload();
 	void unloadStoredAmount(int iAmount);

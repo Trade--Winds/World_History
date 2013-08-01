@@ -2263,6 +2263,20 @@
 				</Response>
 			</Responses>
 		</DiplomacyInfo>
+    <DiplomacyInfo>
+      <Type>AI_DIPLOCOMMENT_AI_PEDDLER_TRADING</Type>
+      <Responses>
+        <Response>
+          <Civilizations/>
+          <Leaders/>
+          <Attitudes/>
+          <DiplomacyPowers/>
+          <DiplomacyText>
+            <Text>AI_DIPLO_AI_PEDDLER_TRADING_1</Text>
+          </DiplomacyText>
+        </Response>
+      </Responses>
+    </DiplomacyInfo>
 		<DiplomacyInfo>
 			<Type>AI_DIPLOCOMMENT_ACCEPT</Type>
 			<Responses>

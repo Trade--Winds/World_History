@@ -966,6 +966,16 @@ void CvPlayerAI::AI_unitUpdate()
 //				char szTKdebug[1024];
 //				sprintf( szTKdebug, "Unit Id = %d\n", iID);
 //				gDLL->messageControlLog(szTKdebug);
+				///TKS Med Testing
+
+				//if (pUnit != NULL)
+				//{
+					//if (pUnit->getID() == 8 && getID() == 0 && pUnit->getUnitTravelState() == UNIT_TRAVEL_STATE_IN_EUROPE)
+					//{
+						//FAssert(false);
+					//}
+				//}
+				///TKe
 
 				if ((pUnit != NULL) && shouldUnitMove(pUnit))
 				{
@@ -1178,6 +1188,7 @@ DomainTypes CvPlayerAI::AI_unitAIDomainType(UnitAITypes eUnitAI)
 	case UNITAI_ANIMAL:
 	case UNITAI_HUNTSMAN:
 	case UNITAI_MARAUDER:
+	case UNITAI_TRADER:
 	///TKe
 		return DOMAIN_LAND;
 		break;
@@ -1214,6 +1225,9 @@ bool CvPlayerAI::AI_unitAIIsCombat(UnitAITypes eUnitAI)
 	case UNITAI_TREASURE:
 	case UNITAI_YIELD:
 	case UNITAI_GENERAL:
+	///TKs Med
+	case UNITAI_TRADER:
+	///TKe
 		return false;
 		break;
 
@@ -1463,10 +1477,10 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 
                         if (pLoopPlot != NULL)
                         {
-                           // if (pLoopPlot->getFeatureType() == (FeatureTypes)GC.getDefineINT("JUNGLE_FEATURE"))
-                           // {
-                             //   iFinalMod = 2;
-                           // }
+                            if (!pLoopPlot->isWater() && pLoopPlot->isEurope())
+                            {
+                                return 0;
+                            }
                             if (pLoopPlot->getImprovementType() != NO_IMPROVEMENT)
                             {
                                 if (GC.getImprovementInfo(pLoopPlot->getImprovementType()).isGoody())
@@ -4713,6 +4727,9 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		case UNITAI_SCOUT:
 			break;
 		case UNITAI_WAGON:
+		///TKs Med
+		case UNITAI_TRADER:
+		///TKe
 			break;
 		case UNITAI_TREASURE:
 			break;
@@ -4828,12 +4845,14 @@ int CvPlayerAI::AI_unitGoldValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* p
 			break;
 
 		case UNITAI_WAGON:
+		///Tks Med
+		case UNITAI_TRADER:
 			if (kUnitInfo.getCargoSpace() > 0)
 			{
 				bValid = true;
 			}
 			break;
-
+        ///TKe
 		case UNITAI_TREASURE:
 			break;
 
@@ -4945,12 +4964,14 @@ int CvPlayerAI::AI_unitGoldValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* p
 		break;
 
 	case UNITAI_WAGON:
+	///TKs Med
+	case UNITAI_TRADER:
 		iTempValue = iCargoValue + iDefenseCombatValue / 2;
 		iTempValue *= 1 + kUnitInfo.getMoves();
 		iTempValue /= 2;
 		iValue += iTempValue;
 		break;
-
+    ///Tke
 	case UNITAI_TREASURE:
 		break;
 
@@ -8139,6 +8160,7 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 //        case YIELD_COAL:
             //break;
         ///TKe
+        case YIELD_GRAIN:///NEW*
 			return false;
 			break;
         ///Discoverys Bonus
@@ -8148,7 +8170,6 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
         ///Food Goods
 	    case YIELD_CATTLE:///NEW*
 	    case YIELD_SHEEP:///NEW*
-        case YIELD_GRAIN:///NEW*
         case YIELD_WOOL:///NEW*
         case YIELD_SALT:///NEW*
         ///Food Goods^
@@ -8314,7 +8335,83 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 
 	return bFinal;
 }
+///TKs Med
+bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) const
+{
+    CvCity* pNativeCity;
+    if (pTransport->plot()->getPlotCity() == NULL)
+    {
+        return false;
+    }
+    pNativeCity = pTransport->plot()->getPlotCity();
+	if (!GC.getYieldInfo(eYield).isCargo())
+	{
+		return false;
+	}
 
+	if (GC.getYieldInfo(eYield).getNativeSellPrice() < 1)
+	{
+		return false;
+	}
+
+	if (GET_PLAYER(pNativeCity->getOwnerINLINE()).getTradeYieldAmount(eYield, pTransport) <= 0)
+    {
+        return false;
+    }
+
+	bool bBuy = false;
+
+	switch (eYield)
+	{
+	    case YIELD_SALT:
+	    case YIELD_SPICES:
+	    case YIELD_TOOLS:
+			bBuy = true;
+			break;
+		case YIELD_FOOD:
+	    case YIELD_CATTLE:///NEW*
+	    case YIELD_SHEEP:///NEW*
+        case YIELD_GRAIN:///NEW*
+        case YIELD_WOOL:///NEW*
+        case YIELD_STONE:///NEW*
+		case YIELD_LUMBER:
+		case YIELD_SILVER:
+		case YIELD_COTTON:
+		case YIELD_FUR:
+		case YIELD_BARLEY:
+		case YIELD_GRAPES:
+		case YIELD_ORE:
+		case YIELD_CLOTH:
+		case YIELD_COATS:
+		case YIELD_ALE:
+		case YIELD_WINE:
+        case YIELD_LEATHER_ARMOR:///NEW*
+        case YIELD_SCALE_ARMOR:///NEW*
+        case YIELD_MAIL_ARMOR:///NEW*
+        case YIELD_PLATE_ARMOR:///NEW*
+        ///Armor^
+		case YIELD_WEAPONS:
+		case YIELD_HORSES:
+		case YIELD_TRADE_GOODS:
+			bBuy = false;
+			break;
+		///TKs Invention Core Mod v 1.0
+        case YIELD_IDEAS:
+        ///TKe
+		case YIELD_HAMMERS:
+		case YIELD_BELLS:
+		case YIELD_CROSSES:
+        case YIELD_GOLD:///NEW*
+			bBuy = false;
+			FAssertMsg(false, "Selling intangibles?");
+			break;
+		default:
+			FAssert(false);
+	}
+
+	return bBuy;
+}
+///tke
 bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 {
 	if (!GC.getYieldInfo(eYield).isCargo())
@@ -9823,6 +9920,9 @@ int CvPlayerAI::AI_professionValue(ProfessionTypes eProfession, UnitAITypes eUni
 		case UNITAI_TREASURE:
 		case UNITAI_YIELD:
 		case UNITAI_GENERAL:
+		///Tks Med
+		case UNITAI_TRADER:
+		///Tke
 			break;
 
 		case UNITAI_DEFENSIVE:
@@ -10114,6 +10214,7 @@ int CvPlayerAI::AI_unitAIValueMultipler(UnitAITypes eUnitAI)
 		///TKs Med Animal
 		case UNITAI_ANIMAL:
 		case UNITAI_HUNTSMAN:
+		case UNITAI_TRADER:
 		///TKe
 		case UNITAI_YIELD:
 		case UNITAI_GENERAL:

@@ -151,7 +151,9 @@ class CvDiplomacy:
 		elif (self.isComment(eComment, "AI_DIPLOCOMMENT_REJECT_PINKY")):
 			player = gc.getPlayer(gc.getGame().getActivePlayer())
 			if (gc.getLeaderHeadInfo(player.getLeaderType()).getVictoryType() == 1):
-				self.addUserComment("USER_DIPLOCOMMENT_REJECT_PINKY", -1, -1)
+				eYield = player.getHighestTradedYield()
+				iCityId = player.getHighestStoredYieldCityId(eYield)
+				self.addUserComment("USER_DIPLOCOMMENT_REJECT_PINKY", eYield, iCityId)
 			else:
 				eYield = player.getHighestTradedYield()
 				iCityId = player.getHighestStoredYieldCityId(eYield)
@@ -291,6 +293,7 @@ class CvDiplomacy:
 					self.isComment(eComment, "AI_DIPLOCOMMENT_TRY_THIS_DEAL") or
 					self.isComment(eComment, "AI_DIPLOCOMMENT_NO_DEAL") or
 					self.isComment(eComment, "AI_DIPLOCOMMENT_REJECT_ASK") or
+					self.isComment(eComment, "AI_DIPLOCOMMENT_AI_PEDDLER_TRADING") or
 					self.isComment(eComment, "AI_DIPLOCOMMENT_REJECT_DEMAND")):
 
 			# If no one is currently offering anything

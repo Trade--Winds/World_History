@@ -1348,6 +1348,63 @@
       <Button>,Art/Interface/Buttons/Promotions/Promotions_Atlas.dds,8,10</Button>
     </PromotionInfo>
     <PromotionInfo>
+      <Type>PROMOTION_PEDLER1</Type>
+      <Description>Peddler</Description>
+      <Sound>AS2D_IF_LEVELUP</Sound>
+      <PromotionPrereq>PROMOTION_EXPLORER1</PromotionPrereq>
+      <PromotionPrereqOr1>NONE</PromotionPrereqOr1>
+      <PromotionPrereqOr2>NONE</PromotionPrereqOr2>
+      <bLeader>0</bLeader>
+      <bBlitz>0</bBlitz>
+      <bAmphib>0</bAmphib>
+      <bRiver>0</bRiver>
+      <bEnemyRoute>0</bEnemyRoute>
+      <bAlwaysHeal>0</bAlwaysHeal>
+      <bHillsDoubleMove>0</bHillsDoubleMove>
+      <iVisibilityChange>0</iVisibilityChange>
+      <iMovesChange>0</iMovesChange>
+      <iMoveDiscountChange>0</iMoveDiscountChange>
+      <iWithdrawalChange>0</iWithdrawalChange>
+      <iCargoChange>1</iCargoChange>
+      <iBombardRateChange>0</iBombardRateChange>
+      <iEnemyHealChange>0</iEnemyHealChange>
+      <iNeutralHealChange>0</iNeutralHealChange>
+      <iFriendlyHealChange>0</iFriendlyHealChange>
+      <iSameTileHealChange>0</iSameTileHealChange>
+      <iAdjacentTileHealChange>0</iAdjacentTileHealChange>
+      <iCombatPercent>0</iCombatPercent>
+      <iCityAttack>0</iCityAttack>
+      <iCityDefense>0</iCityDefense>
+      <iHillsAttack>0</iHillsAttack>
+      <iHillsDefense>0</iHillsDefense>
+      <iPillageChange>0</iPillageChange>
+      <iUpgradeDiscount>0</iUpgradeDiscount>
+      <iExperiencePercent>0</iExperiencePercent>
+      <TerrainAttacks/>
+      <TerrainDefenses/>
+      <FeatureAttacks/>
+      <FeatureDefenses/>
+      <UnitClassAttackMods/>
+      <UnitClassDefenseMods/>
+      <UnitCombatMods/>
+      <DomainMods/>
+      <TerrainDoubleMoves/>
+      <FeatureDoubleMoves/>
+      <UnitCombats>
+        <UnitCombat>
+          <UnitCombatType>NONECOMBAT_PEDLER</UnitCombatType>
+          <bUnitCombat>1</bUnitCombat>
+        </UnitCombat>
+      </UnitCombats>
+      <HotKey/>
+      <bAltDown>0</bAltDown>
+      <bShiftDown>0</bShiftDown>
+      <bCtrlDown>0</bCtrlDown>
+      <bGraphicalOnly>0</bGraphicalOnly>
+      <iHotKeyPriority>0</iHotKeyPriority>
+      <Button>,Art/Interface/Buttons/Promotions/Promotions_Atlas.dds,3,7</Button>
+    </PromotionInfo>
+    <PromotionInfo>
       <Type>PROMOTION_VETERAN1</Type>
       <Description>Drill I</Description>
       <Sound>AS2D_IF_LEVELUP</Sound>
@@ -3554,7 +3611,7 @@
       <Type>PROMOTION_FIRSTSTRIKE2</Type>
       <Description>First Strike II</Description>
       <Sound>AS2D_IF_LEVELUP</Sound>
-      <PromotionPrereq>PROMOTION_FIRSTSTRIKE</PromotionPrereq>
+      <PromotionPrereq>PROMOTION_VETERAN2</PromotionPrereq>
       <PromotionPrereqOr1>NONE</PromotionPrereqOr1>
       <PromotionPrereqOr2>NONE</PromotionPrereqOr2>
       <bLeader>0</bLeader>
@@ -4569,7 +4626,7 @@
       <bCtrlDown>0</bCtrlDown>
       <bGraphicalOnly>1</bGraphicalOnly>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <Button>,Art/Interface/Buttons/Promotions/Promotions_Atlas.dds,1,9</Button>
+      <Button>,Art/Interface/Buttons/Promotions/Promotions_Atlas.dds,3,7</Button>
     </PromotionInfo>
     <PromotionInfo>
       <Type>PROMOTION_TRADING_PERK1</Type>

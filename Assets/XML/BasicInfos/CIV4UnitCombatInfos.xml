@@ -79,7 +79,7 @@
     <UnitCombatInfo>
       <Type>NONECOMBAT_PEDLER</Type>
       <Description>Tradesmen</Description>
-      <Button>,Art/Interface/Buttons/Promotions/Promotions_Atlas.dds,4,7</Button>
+      <Button>,Art/Interface/Buttons/Promotions/Promotions_Atlas.dds,3,7</Button>
     </UnitCombatInfo>
     <UnitCombatInfo>
       <Type>NONECOMBAT_TREASURE</Type>

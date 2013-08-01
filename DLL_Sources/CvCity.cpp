@@ -904,9 +904,12 @@ bool CvCity::isCitySelected() const
 ///Tks Med
 bool CvCity::canBeSelected() const
 {
-	if ((getTeam() == GC.getGameINLINE().getActiveTeam()) && !isNative())
+	if ((getTeam() == GC.getGameINLINE().getActiveTeam()))
 	{
-		return true;
+	    if (isNative() && isHuman())
+	    {
+            return true;
+	    }
 	}
 
 	if (getID() == GC.getGameINLINE().getActivePlayer())

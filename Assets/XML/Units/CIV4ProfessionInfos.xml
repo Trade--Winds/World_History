@@ -220,7 +220,7 @@
       <bNativesInvalid>1</bNativesInvalid>
       <bEuropeInvalid>1</bEuropeInvalid>
       <Combat>NONECOMBAT_PEDLER</Combat>
-      <DefaultUnitAI>UNITAI_COLONIST</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_TRADER</DefaultUnitAI>
       <SpecialBuilding>NONE</SpecialBuilding>
       <bWorkPlot>0</bWorkPlot>
       <bCitizen>0</bCitizen>
@@ -265,7 +265,7 @@
       <bNativesInvalid>1</bNativesInvalid>
       <bEuropeInvalid>1</bEuropeInvalid>
       <Combat>NONECOMBAT_PEDLER</Combat>
-      <DefaultUnitAI>UNITAI_COLONIST</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_TRADER</DefaultUnitAI>
       <SpecialBuilding>NONE</SpecialBuilding>
       <UpgradeProfession>PROFESSION_MERCHANT</UpgradeProfession>
       <bWorkPlot>0</bWorkPlot>

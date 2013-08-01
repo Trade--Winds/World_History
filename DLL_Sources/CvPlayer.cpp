@@ -2453,7 +2453,7 @@ void CvPlayer::doTurn()
 
 	gDLL->getEventReporterIFace()->endPlayerTurn( GC.getGameINLINE().getGameTurn(),  getID());
 
-	FAssert(checkPower(false));
+//	FAssert(checkPower(false));
 	FAssert(checkPower(false));
 	FAssert(checkPopulation());
 
@@ -3183,6 +3183,11 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
             {
                 if (AI_getAttitude(ePlayer, false) <= ATTITUDE_ANNOYED)
                 {
+                    YieldTypes eYield = (YieldTypes) iData1;
+					if (eYield != NO_YIELD)
+					{
+						kPlayer.setYieldTradedTotal(eYield, 0);
+					}
                     int iBaseCensure = 0;
                     if (AI_getAttitude(ePlayer, false) == ATTITUDE_ANNOYED)
                     {
@@ -4745,6 +4750,10 @@ bool CvPlayer::canFound(int iX, int iY, bool bTestVisible, int iCityType) const
 				return false;
 			}
 		}
+	}
+	if (pPlot->isEurope())
+	{
+		return false;
 	}
 	if (iCityType > -1)
 	{
@@ -15826,6 +15835,7 @@ void CvPlayer::Update_cache_YieldEquipmentAmount(ProfessionTypes eProfession)
 
 void CvPlayer::Update_cache_YieldEquipmentAmount()
 {
+	///TKs Nightinggale fix
 	if (m_eID <= NO_PLAYER || m_aiProfessionEquipmentModifier == NULL || GC.getGameINLINE().getHandicapType() == NO_HANDICAP)
 	{
 		// Some update calls gets triggered during player init. They can safely be ignored.
@@ -16441,12 +16451,20 @@ const wchar* CvPlayer::getTradeMessage(int i) const
 {
 	return m_aszTradeMessages[i].GetCString();
 }
-
+///TKs Med
 void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& ourList, const IDInfo& kTransport) const
 {
 	TradeData item;
 	int iLoop;
-
+    bool bAITrader = false;
+    CvUnit* pTransport = ::getUnit(kTransport);
+    if (pTransport != NULL)
+    {
+        if (!pTransport->isHuman())
+        {
+            bAITrader = true;
+        }
+    }
 	//	Gold
 	setTradeItem(&item, TRADE_GOLD, 0, &kTransport);
 	if (canTradeItem(eOtherPlayer, item))
@@ -16463,7 +16481,7 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 
 	//	Open Borders
 	setTradeItem(&item, TRADE_OPEN_BORDERS, 0, &kTransport);
-	if (canTradeItem(eOtherPlayer, item))
+	if (canTradeItem(eOtherPlayer, item) && !bAITrader)
 	{
 		ourList.insertAtEnd(item);
 	}
@@ -16487,14 +16505,14 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 
 	//	Defensive Pact
 	setTradeItem(&item, TRADE_DEFENSIVE_PACT, 0, &kTransport);
-	if (canTradeItem(eOtherPlayer, item))
+	if (canTradeItem(eOtherPlayer, item) && !bAITrader)
 	{
 		ourList.insertAtEnd(item);
 	}
 
 	//	Permanent Alliance
 	setTradeItem(&item, TRADE_PERMANENT_ALLIANCE, 0, &kTransport);
-	if (canTradeItem(eOtherPlayer, item))
+	if (canTradeItem(eOtherPlayer, item) && !bAITrader)
 	{
 		ourList.insertAtEnd(item);
 	}
@@ -16589,19 +16607,22 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
         ///TKe
 
 		case TRADE_CITIES:
-			for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
-			{
-				setTradeItem(&item, TRADE_CITIES, pLoopCity->getID(), &kTransport);
-				if (canTradeItem(eOtherPlayer, item))
-				{
-					bFoundItemUs = true;
-					ourList.insertAtEnd(item);
-				}
-			}
+            if (!bAITrader)
+            {
+                for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+                {
+                    setTradeItem(&item, TRADE_CITIES, pLoopCity->getID(), &kTransport);
+                    if (canTradeItem(eOtherPlayer, item))
+                    {
+                        bFoundItemUs = true;
+                        ourList.insertAtEnd(item);
+                    }
+                }
+            }
 			break;
 
 		case TRADE_PEACE:
-			if (!isHuman())
+			if (!isHuman() && !bAITrader)
 			{
 				for (int j = 0; j < MAX_TEAMS; j++)
 				{
@@ -16622,7 +16643,7 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 			break;
 
 		case TRADE_WAR:
-			if (!isHuman())
+			if (!isHuman() && !bAITrader)
 			{
 				for (int j = 0; j < MAX_TEAMS; j++)
 				{
@@ -16643,7 +16664,7 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 			break;
 
 		case TRADE_EMBARGO:
-			if (!isHuman())
+			if (!isHuman() && !bAITrader)
 			{
 				for (int j = 0; j < MAX_TEAMS; j++)
 				{
@@ -18640,7 +18661,7 @@ void CvPlayer::setStartingTradeRoutePlot(CvPlot* pNewValue, TradeRouteTypes eTra
 
 bool CvPlayer::getHasTradeRouteType(TradeRouteTypes eTradeRoute) const
 {
-    if (GC.getCache_CHEAT_TRAVEL_ALL())
+    if (GC.getCache_CHEAT_TRAVEL_ALL() || !isHuman())
     {
         return true;
     }

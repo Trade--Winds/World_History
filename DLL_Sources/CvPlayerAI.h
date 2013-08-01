@@ -31,7 +31,11 @@ public:
 	static void initStatics();
 	static void freeStatics();
 	DllExport static bool areStaticsInitialized();
-
+	///TKs Med
+	///TKs Med
+	bool AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport=NULL) const;
+	//tkend
+	//TKe
 	void AI_init();
 	void AI_uninit();
 	void AI_reset();
@@ -423,10 +427,6 @@ protected:
 
 	mutable int* m_aiCloseBordersAttitudeCache;
 	mutable int* m_aiStolenPlotsAttitudeCache;
-	///TKs Med
-	//mutable int* m_aiInsultedAttitudeCache;
-	//tkend
-
 
 	bool* m_abFirstContact;
 
@@ -455,10 +455,6 @@ protected:
 	bool AI_doDiploDemandTribute(PlayerTypes ePlayer);
 	bool AI_doDiploKissPinky(PlayerTypes ePlayer);
 	bool AI_doDiploOpenBorders(PlayerTypes ePlayer);
-	///TKs Med
-//	int AI_getInsultedAttitude(PlayerTypes ePlayer);
-//    void AI_changeInsultedAttitude(PlayerTypes ePlayer, int Change);
-	//tkend
 	///TKs Invention Core Mod v 1.0
 	bool AI_doDiploOfferVassalCity(PlayerTypes ePlayer);
 	bool AI_doDiploTradeResearch(PlayerTypes ePlayer);

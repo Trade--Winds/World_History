@@ -8693,8 +8693,8 @@
       <Capture>NONE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
-      <DefaultUnitAI>UNITAI_COLONIST</DefaultUnitAI>
-      <DefaultProfession>PROFESSION_COLONIST</DefaultProfession>
+      <DefaultUnitAI>UNITAI_TRADER</DefaultUnitAI>
+      <DefaultProfession>PROFESSION_PEDLER</DefaultProfession>
       <bNativesInvalid>1</bNativesInvalid>
       <bEuropeInvalid>1</bEuropeInvalid>
       <Invisible>NONE</Invisible>
@@ -8725,6 +8725,10 @@
       <UnitAIs>
         <UnitAI>
           <UnitAIType>UNITAI_COLONIST</UnitAIType>
+          <bUnitAI>1</bUnitAI>
+        </UnitAI>
+        <UnitAI>
+          <UnitAIType>UNITAI_TRADER</UnitAIType>
           <bUnitAI>1</bUnitAI>
         </UnitAI>
       </UnitAIs>
@@ -20844,6 +20848,10 @@
       <UnitAIs>
         <UnitAI>
           <UnitAIType>UNITAI_WAGON</UnitAIType>
+          <bUnitAI>1</bUnitAI>
+        </UnitAI>
+        <UnitAI>
+          <UnitAIType>UNITAI_TRADER</UnitAIType>
           <bUnitAI>1</bUnitAI>
         </UnitAI>
       </UnitAIs>

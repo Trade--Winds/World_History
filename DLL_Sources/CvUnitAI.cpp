@@ -98,13 +98,26 @@ bool CvUnitAI::AI_update()
 	{
 		return false;
 	}
-
+///Tks Med
 	if (getUnitTravelState() != NO_UNIT_TRAVEL_STATE)
 	{
 		AI_europeUpdate();
 		return false;
 	}
-
+//	else if (UNITAI_TRADER == AI_getUnitAIType())
+//    {
+//        if (getUnitTravelState() == UNIT_TRAVEL_STATE_IN_EUROPE)
+//        {
+//            if (AI_getUnitAIState() != UNITAI_STATE_RETURN_HOME)
+//            {
+//                AI_europe();
+//                AI_setUnitAIState(UNITAI_STATE_RETURN_HOME);
+//                //crossOcean(UNIT_TRAVEL_STATE_FROM_EUROPE);
+//            //AI_transportTraderMove();
+//            }
+//        }
+//    }
+///Tke
 	int iOldMovePriority = AI_getMovePriority();
 
 	CvPlayerAI& kOwner = GET_PLAYER(getOwnerINLINE());
@@ -345,10 +358,14 @@ bool CvUnitAI::AI_update()
 					FAssert(false);
 					break;
 				}
+				break;
             ///TK Med
+            case UNITAI_TRADER:
+				AI_transportTraderMove();
+				break;
             case UNITAI_MARAUDER:
                 AI_MarauderMove();
-            ///TKe
+
 				break;
 
 
@@ -358,8 +375,9 @@ bool CvUnitAI::AI_update()
                 ///Tke
 			}
 		}
-	}
 
+	}
+///TKe
 	if (isDead() || isDelayedDeath() || getGroup() == NULL)
 	{
 		return true;
@@ -389,7 +407,11 @@ bool CvUnitAI::AI_europeUpdate()
 
 	if (getDomainType() == DOMAIN_LAND)
 	{
-		return false;//XXX maybe units should load onto ships...
+	    ///TKs MEd
+	    if (UNITAI_TRADER != AI_getUnitAIType())
+	    {
+            return false;//XXX maybe units should load onto ships...
+        }
 	}
 
 	if (getUnitTravelTimer() > 0)
@@ -439,10 +461,12 @@ bool CvUnitAI::AI_europeUpdate()
 		case UNITAI_COUNTER:
 		///TK Med
 		case UNITAI_MARAUDER:
-		///TKe
+
 		    break;
 
 		case UNITAI_TRANSPORT_SEA:
+		case UNITAI_TRADER:
+		///TKe
 			AI_europe();
 		    break;
 
@@ -643,9 +667,11 @@ int CvUnitAI::AI_groupFirstVal()
 		break;
 
 	case UNITAI_WAGON:
+	///Tks Med
+	case UNITAI_TRADER:
 		return 25;
 		break;
-
+    ///TKe
 	case UNITAI_TREASURE:
 		return 26;
 		break;
@@ -3040,6 +3066,237 @@ void CvUnitAI::AI_transportMoveRoutes()
 	getGroup()->pushMission(MISSION_SKIP);
 	return;
 }
+///TKs Trade Routes
+void CvUnitAI::AI_transportTraderMove()
+{
+
+//	if (AI_breakAutomation())
+//	{
+//		return;
+//	}
+
+	if (getDamage() > 0)
+	{
+		getGroup()->pushMission(MISSION_HEAL);
+		return;
+	}
+
+	 CvCity* pCity = NULL;
+	//bool bHome = false;
+    if (plot()->getPlotCity() != NULL)
+    {
+        if (canBuildTradingPost(false))
+		{
+			buildTradingPost(false);
+		}
+        ///Native Trade
+        if (AI_tradeWithCity())
+        {
+            //AI_setUnitAIState(NO_UNITAI_STATE);
+            return;
+        }
+        if (plot()->getOwner() == getOwner())
+        {
+            pCity = plot()->getPlotCity();
+            //bHome = true;
+        }
+    }
+    if (AI_getUnitAIState() == UNITAI_STATE_PURCHASED)
+	{
+	    if (!hasCargo())
+	    {
+	        AI_setUnitAIState(UNITAI_STATE_RETURN_HOME);
+	    }
+	    else
+	    {
+	        AI_setUnitAIState(UNITAI_STATE_ADVANCING);
+	    }
+	}
+
+    if (pCity != NULL)
+    {
+       if (AI_collectGoods())
+       {
+           AI_setUnitAIState(UNITAI_STATE_SAIL);
+       }
+       else if (hasCargo() && (AI_getUnitAIState() == NO_UNITAI_STATE || AI_getUnitAIState() == UNITAI_STATE_RETURN_HOME || AI_getUnitAIState() == UNITAI_STATE_DEFAULT))
+       {
+           AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+           unloadAll();
+       }
+    }
+
+
+
+    int iNativeSaleGoods = 0;
+    CvCity* pTraderCity;
+	if (hasCargo() && AI_getUnitAIState() != UNITAI_STATE_RETURN_HOME && AI_getUnitAIState() != UNITAI_STATE_ADVANCING)
+	{
+		CLLNode<IDInfo>* pUnitNode;
+		CvUnit* pLoopUnit;
+		CvPlot* pPlot;
+		int iCount;
+
+		iCount = 0;
+
+		pPlot = plot();
+
+		pUnitNode = pPlot->headUnitNode();
+
+		while (pUnitNode != NULL)
+		{
+			pLoopUnit = ::getUnit(pUnitNode->m_data);
+			pUnitNode = pPlot->nextUnitNode(pUnitNode);
+
+			if (pLoopUnit->getTransportUnit() == this)
+			{
+				if (pLoopUnit->getYield() != NO_YIELD)
+				{
+				    FAssert(pLoopUnit->getYieldStored() > 0);
+				    if (pLoopUnit->AI_getUnitAIState() == UNITAI_STATE_SELL_TO_NATIVES)
+					{
+						iNativeSaleGoods++;
+					}
+				    //if (iNativeSaleGoods == 0)
+				    //{
+                    pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, NO_TEAM, true, false, false, pLoopUnit->getYield());
+                    if (pTraderCity != NULL)
+                    {
+                        AI_setUnitAIState(UNITAI_STATE_SELL_TO_NATIVES);
+                        break;
+                    }
+				   // }
+
+				}
+			}
+		}
+	}
+
+	if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
+	{
+		if (AI_sailToEurope())
+		{
+            return;
+		}
+
+		if (AI_exploreRange(10))
+        {
+            return;
+        }
+        ///Last Resort if no land Europe tiles
+        //if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 8))
+        //{
+                CvCity* DestinationCity = getHomeCity();
+
+
+                if (DestinationCity != NULL)
+                {
+                    if (DestinationCity->getOwner() != getOwnerINLINE())
+                    {
+                       if (plot()->getPlotCity() == DestinationCity)
+                        {
+                            //if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
+                            //{
+                            AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+                            //}
+                            setHomeCity(NULL);
+                            crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE, true);
+                            return;
+                        }
+                        if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 0, DestinationCity))
+                        {
+                            if (plot()->getPlotCity() == DestinationCity)
+                            {
+                                //if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
+                                //{
+                                    AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+                                //}
+                                setHomeCity(NULL);
+                                crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE, true);
+
+                            }
+                            return;
+                        }
+                    }
+
+                }
+                else
+                {
+                    pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, getTeam(), true, false, true, NO_YIELD, -1, true);
+                    if (pTraderCity != NULL)
+                    {
+                        setHomeCity(pTraderCity);
+                        if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 0, pTraderCity))
+                        {
+                            if (plot()->getPlotCity() == pTraderCity)
+                            {
+                                //if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
+                                //{
+                                    AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+                                //}
+                                setHomeCity(NULL);
+                                crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE, true);
+
+                            }
+                            return;
+                        }
+                    }
+                }
+
+
+
+        if (AI_exploreRange(20))
+        {
+            return;
+        }
+	}
+
+    if (iNativeSaleGoods > 0)
+    {
+        if (pTraderCity != NULL)
+        {
+            if (AI_travelToNativeVillage(ATTITUDE_FRIENDLY, ATTITUDE_FRIENDLY, 0, pTraderCity))
+            {
+                return;
+            }
+        }
+        else if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 8))
+        {
+            return;
+        }
+    }
+
+    if (AI_getUnitAIState() == UNITAI_STATE_SELL_TO_NATIVES)
+    {
+        if (pTraderCity != NULL)
+        {
+            if (plot()->getPlotCity() == pTraderCity && GET_PLAYER(plot()->getOwner()).isHuman())
+            {
+                tradeYield();
+                AI_setUnitAIState(UNITAI_STATE_PURCHASED);
+                finishMoves();
+                return;
+            }
+            else if (plot()->getPlotCity() != pTraderCity)
+            {
+                if (AI_travelToNativeVillage(ATTITUDE_FRIENDLY, ATTITUDE_FRIENDLY, 0, pTraderCity))
+                {
+                    return;
+                }
+            }
+        }
+    }
+
+
+	if (AI_retreatToCity())
+	{
+		return;
+	}
+
+	getGroup()->pushMission(MISSION_SKIP);
+	return;
+
+}
 
 void CvUnitAI::AI_transportMoveFull()
 {
@@ -3082,7 +3339,7 @@ void CvUnitAI::AI_transportMoveFull()
 	return;
 
 }
-
+///TKe
 void CvUnitAI::AI_imperialShipMove()
 {
 
@@ -3570,10 +3827,10 @@ void CvUnitAI::AI_transportSeaMove()
 		}
 		else
 		{
-		if (AI_travelToPort(15, 4))
-		{
-			return;
-		}
+            if (AI_travelToPort(15, 4))
+            {
+                return;
+            }
 		}
 
 		if (hasCargo() || (kOwner.getNumEuropeUnits() > 0))
@@ -4177,7 +4434,88 @@ bool CvUnitAI::AI_getTributeColony(int iMinAttitude, int iMaxAttitude, int iRang
 
 	return false;
 }
+bool CvUnitAI::AI_travelToNativeVillage(int iMinAttitude, int iMaxAttitude, int iRange, CvCity* pCity)
+{
+	int iX, iY;
+	if (iRange == -1)
+	{
+		iRange = 5;
+	}
 
+	CvPlot* pBestPlot = NULL;
+	int iBestValue = 0;
+
+	CvPlayer& kOwner = GET_PLAYER(getOwner());
+    if (pCity == NULL)
+    {
+        for (iX = -iRange; iX <= iRange; iX++)
+        {
+            for (iY = -iRange; iY <= iRange; iY++)
+            {
+                //Should this always be centered on the home city?
+                CvPlot* pLoopPlot = plotXY(getX_INLINE(), getY_INLINE(), iX, iY);
+
+                if (NULL != pLoopPlot)
+                {
+                    if (pLoopPlot->isCity())
+                    {
+                        CvPlayer& kLoopPlayer = GET_PLAYER(pLoopPlot->getOwner());
+
+                        if (kLoopPlayer.isNative() || pCity != NULL)
+                        {
+                            int iAttitude = kOwner.AI_getAttitude(kLoopPlayer.getID());
+                            if (pCity != NULL || (iAttitude >= iMinAttitude && iAttitude <= iMaxAttitude))
+                            {
+                                int iPathTurns;
+
+                                if (generatePath(pLoopPlot, 0, true, &iPathTurns))
+                                {
+                                    int iValue = 5000;
+                                    iValue += GC.getGame().getSorenRandNum(10000, "AI target colony");
+
+                                    iValue /= 3 + iPathTurns;
+
+                                    if (iValue > iBestValue)
+                                    {
+                                        iBestValue = iValue;
+                                        pBestPlot = pLoopPlot;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        int iNativeCityPathTurns;
+        CvPlot* pThisTurnPlot = NULL;
+        bool bCanPathToNativeCity = generatePath(pCity->plot(), 0, true, &iNativeCityPathTurns);
+        if (bCanPathToNativeCity)
+        {
+            pThisTurnPlot = getPathEndTurnPlot();
+        }
+
+        if (NULL != pThisTurnPlot)
+        {
+            FAssert(!atPlot(pCity->plot()));
+            getGroup()->pushMission(MISSION_MOVE_TO, pThisTurnPlot->getX_INLINE(), pThisTurnPlot->getY_INLINE());
+        }
+        return true;
+
+    }
+
+	if (pBestPlot != NULL)
+	{
+		FAssert(!atPlot(pBestPlot));
+		getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
+		return true;
+	}
+
+	return false;
+}
 ///TKe
 
 bool CvUnitAI::AI_travelToEuropeColony(int iMinAttitude, int iMaxAttitude, int iRange)
@@ -4545,11 +4883,15 @@ bool CvUnitAI::AI_europe()
 	}
 
 	AI_europeBuyYields();
+	bool bForce = false;
+    if (!plot()->isEurope())
+    {
+        bForce = true;
+    }
+	//FAssert(plot()->isEurope());
+	//FAssert(canCrossOcean(plot(), UNIT_TRAVEL_STATE_FROM_EUROPE));
 
-	FAssert(plot()->isEurope());
-	FAssert(canCrossOcean(plot(), UNIT_TRAVEL_STATE_FROM_EUROPE));
-
-	crossOcean(UNIT_TRAVEL_STATE_FROM_EUROPE);
+	crossOcean(UNIT_TRAVEL_STATE_FROM_EUROPE, bForce);
 	finishMoves();
 	return true;
 }
@@ -4633,6 +4975,17 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
         eTravelState = UNIT_TRAVEL_STATE_TO_SILK_ROAD;
         bLandRoute = true;
     }
+	else if (eTradeRouteType == NO_TRADE_ROUTES)
+    {
+        eTradeRouteType = TRADE_ROUTE_EUROPE;
+		bLandRoute = (getDomainType() == DOMAIN_LAND);
+
+    }
+//    bool bAIForce = false;
+//    if (!isHuman())
+//    {
+//
+//    }
 
 	if (canCrossOcean(plot(), eTravelState, eTradeRouteType))
 	{
@@ -4649,12 +5002,13 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
             crossOcean(UNIT_TRAVEL_STATE_TO_SILK_ROAD);
         }
 
-		if (AI_getUnitAIState() == UNITAI_STATE_SAIL)
-		{
+		//if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
+		//{
 			AI_setUnitAIState(UNITAI_STATE_DEFAULT);
-		}
+		//}
 
-		if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+		//if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+		if (getGroup()->isAutomated())
 		{
 			getGroup()->setAutomateType(NO_AUTOMATE);
 		}
@@ -4737,6 +5091,33 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
             GET_PLAYER(getOwnerINLINE()).setStartingTradeRoutePlot(pBestPlot, eTradeRouteType);
         }
 	}
+	else if (!isHuman() && pBestPlot == NULL && bLandRoute)
+    {
+        for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+        {
+            CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+
+            if (AI_plotValid(pLoopPlot) && !pLoopPlot->isVisibleEnemyDefender(this))
+            {
+                if (canCrossOcean(pLoopPlot, eTravelState, eTradeRouteType, true))
+                {
+                    int iPathTurns;
+                    if (generatePath(pLoopPlot, MOVE_BUST_FOG, true, &iPathTurns))
+                    {
+                        int iValue = 10000;
+                        iValue /= 100 + getPathCost();
+
+                        if (iValue > iBestValue)
+                        {
+                            iBestValue = iValue;
+                            pBestPlot = getPathEndTurnPlot();
+                            pBestMissionPlot = pLoopPlot;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 	if (pBestPlot != NULL)
 	{
@@ -4757,11 +5138,12 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
                 {
                     crossOcean(UNIT_TRAVEL_STATE_TO_SILK_ROAD);
                 }
-				if (AI_getUnitAIState() == UNITAI_STATE_SAIL)
-				{
+				//if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
+				//{
 					AI_setUnitAIState(UNITAI_STATE_DEFAULT);
-				}
-				if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+				//}
+				//if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+				if (getGroup()->isAutomated())
 				{
 					getGroup()->setAutomateType(NO_AUTOMATE);
 				}
@@ -4771,11 +5153,12 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 	}
 	if (eTradeRouteType == TRADE_ROUTE_SILK_ROAD)
     {
-        if (AI_getUnitAIState() == UNITAI_STATE_SAIL)
-        {
+        //if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
+        //{
             AI_setUnitAIState(UNITAI_STATE_DEFAULT);
-        }
-        if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+        //}
+        //if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+        if (getGroup()->isAutomated())
         {
             getGroup()->setAutomateType(NO_AUTOMATE);
         }
@@ -5419,10 +5802,12 @@ void CvUnitAI::AI_doInitialMovePriority()
 	}
 	else if (getUnitTravelState() == UNIT_TRAVEL_STATE_IN_EUROPE)
 	{
-		if (getDomainType() == DOMAIN_SEA)
+	    ///Tks Med
+		if (getDomainType() == DOMAIN_SEA || UNITAI_TRADER == AI_getUnitAIType())
 		{
 			iMovePriority = MOVE_PRIORITY_MIN;
 		}
+		///Tke
 	}
 
 	AI_setMovePriority(iMovePriority);
@@ -5499,13 +5884,52 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 			iValue /= (100 - withdrawalProbability());
 		}
 	}
+	///TKs Med
 	if (kPromotion.getCargoChange() != 0)
 	{
-		if (eUnitAI == UNITAI_TRANSPORT_SEA || eUnitAI == UNITAI_WAGON)
+		if (eUnitAI == UNITAI_TRANSPORT_SEA || eUnitAI == UNITAI_WAGON || eUnitAI == UNITAI_TRADER)
 		{
 			iValue += kPromotion.getCargoChange() * 50;
 		}
 	}
+
+	if (kPromotion.isNoBadGoodies())
+	{
+		if (eUnitAI == UNITAI_HUNTSMAN || eUnitAI == UNITAI_SCOUT || eUnitAI == UNITAI_TRADER)
+		{
+			iValue += 200;
+		}
+	}
+	if (kPromotion.getEscortUnitClass() != NO_UNITCLASS)
+	{
+		if (eUnitAI == UNITAI_HUNTSMAN || eUnitAI == UNITAI_SCOUT || eUnitAI == UNITAI_TRADER)
+		{
+			iValue += 200;
+		}
+	}
+
+	if (kPromotion.getFirstStrikesChange() != 0)
+	{
+		if (eUnitAI == UNITAI_OFFENSIVE)
+		{
+			iValue += kPromotion.getFirstStrikesChange() * 50;
+		}
+	}
+	if (kPromotion.getChanceFirstStrikesChange() != 0)
+	{
+		if (eUnitAI == UNITAI_OFFENSIVE)
+		{
+			iValue += kPromotion.getChanceFirstStrikesChange() * 50;
+		}
+	}
+	if (kPromotion.isImmuneToFirstStrikes())
+	{
+		if (eUnitAI == UNITAI_OFFENSIVE || eUnitAI == UNITAI_COUNTER || eUnitAI == UNITAI_DEFENSIVE)
+		{
+			iValue += 100;
+		}
+	}
+	///Tke
 	if (kPromotion.getBombardRateChange() != 0)
 	{
 		if ((eUnitAI == UNITAI_COMBAT_SEA) || (eUnitAI == UNITAI_OFFENSIVE))
@@ -11614,7 +12038,7 @@ bool CvUnitAI::AI_yieldNativeDestination(int iMaxPath)
 	}
 	return false;
 }
-
+///Tks Med Trader
 bool CvUnitAI::AI_tradeWithCity()
 {
 	bool bSaleMade = false;
@@ -11641,7 +12065,7 @@ bool CvUnitAI::AI_tradeWithCity()
 						YieldTypes eYield = pLoopUnit->getYield();
 						if (pLoopUnit->isGoods())
 						{
-							if (pLoopUnit->AI_getUnitAIState() == UNITAI_STATE_SELL_TO_NATIVES)
+							if (pLoopUnit->AI_getUnitAIState() == UNITAI_STATE_SELL_TO_NATIVES || (AI_getUnitAIState() == UNITAI_STATE_SELL_TO_NATIVES && pPlotCity->AI_getDesiredYield() == eYield))
 							{
 								apUnits.push_back(pLoopUnit);
 							}
@@ -11666,13 +12090,81 @@ bool CvUnitAI::AI_tradeWithCity()
 
 					GC.getGameINLINE().implementDeal(getOwnerINLINE(), pPlotCity->getOwnerINLINE(), &ourList, &theirList);
 					bSaleMade = true;
+					if (bSaleMade)
+                    {
+                        AI_setUnitAIState(UNITAI_STATE_RETURN_HOME);
+                    }
 				}
+				///TKS Med Buy from CIty
+				std::vector<YieldTypes> apYields;
+				CvPlayerAI& kOwnerPlayer = GET_PLAYER(getOwnerINLINE());
+				for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+                {
+                    if (kOwnerPlayer.AI_shouldBuyFromNative((YieldTypes)iYield, this))
+                    {
+                        apYields.push_back((YieldTypes)iYield);
+                    }
+
+                }
+
+				for (uint i = 0; i < apYields.size(); ++i)
+				{
+					//int iGold = std::min(kPlotPlayer.AI_maxGoldTrade(getOwnerINLINE()), kPlotPlayer.AI_yieldTradeVal(apUnits[i]->getYield(), getIDInfo(), getOwnerINLINE()));
+					if (isFull())
+					{
+					    break;
+					}
+
+                    int iGold = 20;
+					CLinkList<TradeData> theirList;
+
+					CLinkList<TradeData> ourList;
+
+					TradeData item;
+					setTradeItem(&item, TRADE_GOLD, iGold, &getIDInfo());
+					ourList.insertAtEnd(item);
+
+					setTradeItem(&item, TRADE_YIELD, apYields[i], &getIDInfo());
+					theirList.insertAtEnd(item);
+					//int iAmount = pPlotCity->getYieldStored(eYield);
+					//iAmount = std::max(iAmount, 100)
+					int iAmount = GET_PLAYER(pPlotCity->getOwnerINLINE()).getTradeYieldAmount(apYields[i], this);
+                    CvYieldInfo& kYield = GC.getYieldInfo(apYields[i]);
+                    UnitTypes eUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(kYield.getUnitClass());
+                    FAssert(NO_UNIT != eUnit);
+                    if (NO_UNIT == eUnit)
+                    {
+                        continue;
+                    }
+
+                    CvUnit* pUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, (ProfessionTypes) GC.getUnitInfo(eUnit).getDefaultProfession(), INVALID_PLOT_COORD, INVALID_PLOT_COORD, NO_UNITAI, NO_DIRECTION, iAmount);
+                    FAssert(NULL != pUnit);
+                    if (NULL != pUnit)
+                    {
+
+                        //pUnit->setUnitTravelState(pTransport->getUnitTravelState(), false);
+                        UnitAITypes eUnitAI = pUnit->AI_getUnitAIType();
+                        pUnit->removeFromMap(); //needs to match addToMap
+                        pUnit->addToMap(getX_INLINE(), getY_INLINE());
+                        pUnit->AI_setUnitAIType(eUnitAI);
+
+                        //unit possibly killed after joining other cargo
+                        if (!pUnit->setTransportUnit(this))
+                        {
+                            pUnit = NULL;
+                        }
+                    }
+					GC.getGameINLINE().implementDeal(pPlotCity->getOwnerINLINE(), getOwnerINLINE(), &theirList, &ourList);
+
+					//bSaleMade = true;
+				}
+				//TKe
 			}
 		}
 	}
 	return bSaleMade;
 }
-
+///Tke
 
 // Returns true if a mission was pushed...
 bool CvUnitAI::AI_settlerSeaFerry()
