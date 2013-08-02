@@ -906,7 +906,7 @@ bool CvCity::canBeSelected() const
 {
 	if ((getTeam() == GC.getGameINLINE().getActiveTeam()))
 	{
-	    if (isNative() && isHuman())
+	    if ((isNative() && isHuman()) || isHuman())
 	    {
             return true;
 	    }
