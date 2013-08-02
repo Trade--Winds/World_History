@@ -11090,14 +11090,32 @@ BuildingTypes CvCity::getBestFreeBuilding()
                 {
                     continue;
                 }
-                int iPlotValue = 0;
+				int iBaseYield = plot()->calculateNatureYield(eYield, getTeam(), true);
+				int iPlotValue = 0;
+				if (iBaseYield > 0)
+                {
+                    eCityYield = eYield;
+                    iPlotValue = 1;
+					if (eCityYield != NO_YIELD)
+					{
+						BuildingTypes eLoopYieldBuilding = getFreeYieldBuilding(eCityYield);
+						if (eLoopYieldBuilding != NO_BUILDING)
+						{
+							iBestValue = iCityPlotValue;
+							eBestYieldBuilding = eLoopYieldBuilding;
+							break;
+						}
+					}
+                }
 
                 for (int j = 0; j < NUM_CITY_PLOTS; ++j)
                 {
                     CvPlot* pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), j);
                     if (pLoopPlot != NULL)
                     {
-                            int iBaseYield = pLoopPlot->calculateNatureYield(eYield, getTeam(), true);
+							
+
+                            iBaseYield = pLoopPlot->calculateNatureYield(eYield, getTeam(), true);
                             if (iBaseYield > 0)
                             {
                                 iPlotValue += iBaseYield;
@@ -11113,16 +11131,9 @@ BuildingTypes CvCity::getBestFreeBuilding()
                                 iPlotValue += GC.getBonusInfo(pLoopPlot->getBonusType()).getYieldChange(eYield);
                             }
 
-                            if (pLoopPlot->isCity() && eCityYield == NO_YIELD)
-                            {
-                                iCityPlotValue = iPlotValue * 2;
-                                eCityYield = eYield;
-                                iPlotValue = iPlotValue * 2;
-                            }
-
                     }
                 }
-
+				
                 if (iPlotValue == 0)
                 {
                     continue;
@@ -11130,7 +11141,8 @@ BuildingTypes CvCity::getBestFreeBuilding()
 
 
                 //iValue = 25 + 125 * iPlotValue / NUM_CITY_PLOTS;
-                iValue = iPlotValue;
+
+				iValue = iPlotValue;
                 if (iValue > iBestValue)
                 {
                     BuildingTypes eLoopYieldBuilding = getFreeYieldBuilding(eYield);
@@ -11141,15 +11153,6 @@ BuildingTypes CvCity::getBestFreeBuilding()
                     }
 
 
-                }
-                else if (iValue == iBestValue && iValue > 0 && eCityYield != NO_YIELD)
-                {
-                    BuildingTypes eLoopYieldBuilding = getFreeYieldBuilding(eCityYield);
-                    if (eLoopYieldBuilding != NO_BUILDING)
-                    {
-                        iBestValue = iCityPlotValue;
-                        eBestYieldBuilding = eLoopYieldBuilding;
-                    }
                 }
 
             }
