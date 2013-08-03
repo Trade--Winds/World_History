@@ -2637,6 +2637,7 @@ void CvUnitAI::AI_defensiveBraveMove()
 				{
 					return;
 				}
+				//TKs Med Trader Code
 				 ///TKs Invention Core Mod v 1.0
 				int iGiftTimer = pCity->AI_getGiftTimer();
 
@@ -3179,7 +3180,7 @@ void CvUnitAI::AI_transportTraderMove()
             return;
 		}
 
-		if (AI_exploreRange(10))
+		if (AI_exploreRange(20))
         {
             return;
         }
@@ -3245,7 +3246,7 @@ void CvUnitAI::AI_transportTraderMove()
 
 
 
-        if (AI_exploreRange(20))
+        if (AI_patrol())
         {
             return;
         }
@@ -8757,6 +8758,7 @@ bool CvUnitAI::AI_bravePatrol()
 }
 
 // Returns true if a mission was pushed...
+///TKs Med
 bool CvUnitAI::AI_patrol()
 {
 	PROFILE_FUNC();
@@ -8769,6 +8771,11 @@ bool CvUnitAI::AI_patrol()
 
 	iBestValue = 0;
 	pBestPlot = NULL;
+	bool bMarauder = false;
+	if (AI_getUnitAIState() == UNITAI_STATE_MARAUDER_WANDER)
+    {
+        bMarauder = true;
+    }
 
 	for (iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
 	{
@@ -8778,7 +8785,7 @@ bool CvUnitAI::AI_patrol()
 		{
 			if (AI_plotValid(pAdjacentPlot))
 			{
-				if (!(pAdjacentPlot->isVisibleEnemyUnit(this)))
+				if (!(pAdjacentPlot->isVisibleEnemyUnit(this)) || bMarauder)
 				{
 					if (generatePath(pAdjacentPlot, 0, true))
 					{
@@ -8816,6 +8823,7 @@ bool CvUnitAI::AI_patrol()
 	return false;
 }
 
+///Tke
 
 // Returns true if a mission was pushed...
 bool CvUnitAI::AI_defend()
@@ -14689,19 +14697,6 @@ void CvUnitAI::AI_MarauderMove()
 		return;
 	}
 
-//	if (isHurt())
-//	{
-//		if (AI_heal())
-//		{
-//			return;
-//		}
-//
-////		if (AI_retreatToCity())
-////		{
-////			return;
-////		}
-//	}
-
 	if (AI_shouldRun())
 	{
 		AI_setUnitAIState(UNITAI_STATE_RETREATING);
@@ -14720,18 +14715,22 @@ void CvUnitAI::AI_MarauderMove()
 	    return;
 	}
 
+    if (AI_getUnitAIState() == UNITAI_STATE_MARAUDER_WANDER)
+    {
+        AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+    }
+
 	if (AI_continueMission(0, MISSIONAI_PIRACY, 0))
 	{
 		return;
 	}
 
-    //if (AI_maraud(6))
     if (AI_maraudTowardsVictimCity())
     {
         return;
     }
-
-    if (AI_explore(false))
+    AI_setUnitAIState(UNITAI_STATE_MARAUDER_WANDER);
+    if (AI_patrol())
     {
         return;
     }
