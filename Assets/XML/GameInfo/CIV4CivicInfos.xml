@@ -3136,7 +3136,7 @@
       <iGoldBonus>0</iGoldBonus>
       <iFreeTechs>0</iFreeTechs>
       <!--Modder Options 1 = Faster Chop Trees-->
-      <iModdersCode1>FASTER_CHOP_TREES</iModdersCode1>
+      <iModdersCode1>MODER_CODE_FASTER_CHOP_TREES</iModdersCode1>
       <iKingTreasureTransportMod>0</iKingTreasureTransportMod>
       <IndustrializationVictory/>
     </CivicInfo>
@@ -4880,7 +4880,7 @@
       <iGoldBonus>0</iGoldBonus>
       <iFreeTechs>0</iFreeTechs>
       <!--100 = Trade Options-->
-      <iModdersCode1>TRADING_POST</iModdersCode1>
+      <iModdersCode1>MODER_CODE_TRADING_POST</iModdersCode1>
       <iKingTreasureTransportMod>0</iKingTreasureTransportMod>
       <IndustrializationVictory/>
     </CivicInfo>
@@ -5192,7 +5192,7 @@
       <iGoldBonus>0</iGoldBonus>
       <iFreeTechs>0</iFreeTechs>
       <!--100 = Trade Options; 101 = Spice Route-->
-      <iModdersCode1>SPICE_ROUTE</iModdersCode1>
+      <iModdersCode1>MODER_CODE_SPICE_ROUTE</iModdersCode1>
       <iKingTreasureTransportMod>0</iKingTreasureTransportMod>
       <IndustrializationVictory/>
     </CivicInfo>
@@ -5504,7 +5504,7 @@
       <iGoldBonus>0</iGoldBonus>
       <iFreeTechs>0</iFreeTechs>
       <!--100 = Trade Options; 102 = Silk Road-->
-      <iModdersCode1>SILK_ROAD_ROUTE</iModdersCode1>
+      <iModdersCode1>MODER_CODE_SILK_ROAD_ROUTE</iModdersCode1>
       <iKingTreasureTransportMod>0</iKingTreasureTransportMod>
       <IndustrializationVictory/>
     </CivicInfo>
@@ -5585,7 +5585,7 @@
       <iGoldBonusForFirstToResearch>0</iGoldBonusForFirstToResearch>
       <iGoldBonus>0</iGoldBonus>
       <iFreeTechs>0</iFreeTechs>
-      <iModdersCode1>ALLOWS_TRADE_FAIR</iModdersCode1>
+      <iModdersCode1>MODER_CODE_ALLOWS_TRADE_FAIR</iModdersCode1>
       <iKingTreasureTransportMod>0</iKingTreasureTransportMod>
       <IndustrializationVictory/>
     </CivicInfo>

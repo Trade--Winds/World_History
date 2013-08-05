@@ -343,6 +343,10 @@ bool CvXMLLoadUtility::SetPostGlobalsGlobalDefines()
 		idx = FindInInfoClass(szVal);
 		GC.getDefinesVarSystem()->SetValue("CIVICOPTION_INVENTIONS", idx);
 
+		SetGlobalDefine("DEFAULT_NATIVE_TRADE_PROFESSION", szVal);
+		idx = FindInInfoClass(szVal);
+		GC.getDefinesVarSystem()->SetValue("DEFAULT_NATIVE_TRADE_PROFESSION", idx);
+
 		SetGlobalDefine("PROFESSION_INVENTOR", szVal);
 		idx = FindInInfoClass(szVal);
 		GC.getDefinesVarSystem()->SetValue("PROFESSION_INVENTOR", idx);

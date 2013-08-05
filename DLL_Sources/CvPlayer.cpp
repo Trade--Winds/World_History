@@ -2480,8 +2480,8 @@ void CvPlayer::doTurnUnits()
 		pLoopSelectionGroup->doTurn();
 	}
 
-
-	if (!isHuman() && getParent() != NO_PLAYER)
+    bool bWaterStart = GC.getCivilizationInfo(getCivilizationType()).isWaterStart();
+	if (bWaterStart && !isHuman() && getParent() != NO_PLAYER)
 	{
 		CvPlayer& kEurope = GET_PLAYER(getParent());
 		if (kEurope.isAlive() && kEurope.isEurope() && !::atWar(getTeam(), kEurope.getTeam()))
@@ -2549,7 +2549,7 @@ void CvPlayer::doTurnUnits()
 					}
 				}
             ///Tks Med
-				if (!bHasShip && (GC.getCivilizationInfo(getCivilizationType()).isWaterStart() || !isHuman()))
+				if (!bHasShip)
 				{
 					buyEuropeUnit(eCheapestShip, 0);
                         //change taxrate
@@ -5101,21 +5101,21 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 	}
 	///Tks Med
 	ModCodeTypes eCanBuild = (ModCodeTypes)GC.getBuildingInfo(eBuilding).getWhoCanBuildTypes();
-	if (isNative() && eCanBuild != NATIVES_ONLY)
+	if (isNative() && eCanBuild != MODER_CODE_NATIVES_ONLY)
 	{
-	    if (eCanBuild == NATIVES_VIKING_AGE)
+	    if (eCanBuild == MODER_CODE_NATIVES_VIKING_AGE)
 	    {
 	        if (getCurrentEra() == (EraTypes)GC.getCache_DEFAULT_VIKING_ERA())
 	        {
 	            return false;
 	        }
 	    }
-	    else if (eCanBuild != ANYONE)
+	    else if (eCanBuild != MODER_CODE_ANYONE)
 	    {
             return false;
 	    }
 	}
-	else if (!isNative() && eCanBuild == NATIVES_ONLY)
+	else if (!isNative() && eCanBuild == MODER_CODE_NATIVES_ONLY)
 	{
 	    return false;
 	}
@@ -10786,7 +10786,7 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
     if ((ModCodeTypes)kCivicInfo.getModdersCode1() != NO_MOD_CODE)
     {
         ModCodeTypes iModdersCode = (ModCodeTypes)kCivicInfo.getModdersCode1();
-        if (iModdersCode == SPICE_ROUTE)
+        if (iModdersCode == MODER_CODE_SPICE_ROUTE)
         {
             if (!getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
             {
@@ -10803,7 +10803,7 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
             }
 
         }
-        else if (iModdersCode == SILK_ROAD_ROUTE)
+        else if (iModdersCode == MODER_CODE_SILK_ROAD_ROUTE)
         {
             if (!getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
             {
@@ -10820,7 +10820,7 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
             }
 
         }
-        else if (iModdersCode == ALLOWS_TRADE_FAIR)
+        else if (iModdersCode == MODER_CODE_ALLOWS_TRADE_FAIR)
         {
             if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
             {
@@ -12454,7 +12454,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
                         if ((ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1() != NO_MOD_CODE)
                         {
                             ModCodeTypes iModdersCode = (ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1();
-                            if (iModdersCode == SPICE_ROUTE)
+                            if (iModdersCode == MODER_CODE_SPICE_ROUTE)
                             {
                                 if (getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
                                 {
@@ -14001,7 +14001,7 @@ int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
         else if ((ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1() != NO_MOD_CODE)
         {
             ModCodeTypes iModdersCode = (ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1();
-            if (iModdersCode == SPICE_ROUTE)
+            if (iModdersCode == MODER_CODE_SPICE_ROUTE)
             {
                 if (getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
                 {
@@ -14725,58 +14725,61 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
 
     int iCost = kUnit.getEuropeCost();
 	int iTradeRoutePrice = -1;
-    if (eTradeScreenType != TRADE_SCREEN_DEFAULT)
-    {
-        if (eTradeScreenType == TRADE_SCREEN_SPICE_ROUTE)
-        {
-            iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SPICE_ROUTE);
-        }
-        else if (eTradeScreenType == TRADE_SCREEN_SILK_ROAD)
-        {
-            iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SILK_ROAD);
-        }
+	if (isHuman())
+	{
+		if (eTradeScreenType != TRADE_SCREEN_DEFAULT)
+		{
+			if (eTradeScreenType == TRADE_SCREEN_SPICE_ROUTE)
+			{
+				iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SPICE_ROUTE);
+			}
+			else if (eTradeScreenType == TRADE_SCREEN_SILK_ROAD)
+			{
+				iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SILK_ROAD);
+			}
 
-        if (iTradeRoutePrice > 0)
-        {
-            iCost = iTradeRoutePrice;
-        }
-    }
+			if (iTradeRoutePrice > 0)
+			{
+				iCost = iTradeRoutePrice;
+			}
+		}
 
-    if (iTradeRoutePrice == -1)
-    {
-        UnitClassTypes eUnitClass;
-        eUnitClass = ((UnitClassTypes)kUnit.getUnitClassType());
-        for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-        {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
-            {
-                CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-                if (kCivicInfo.getAllowsUnitClasses(eUnitClass) > 0)
-                {
-                    if (getIdeasResearched((CivicTypes) iCivic) == 0)
-                    {
-                        return -1;
-                    }
-                }
-                else if (kCivicInfo.getAllowsUnitClasses(eUnitClass) < 0)
-                {
-                    if (getIdeasResearched((CivicTypes) iCivic) > 0)
-                    {
-                        return -1;
-                    }
-                }
-            }
-        }
-    }
+		if (iTradeRoutePrice == -1)
+		{
+			UnitClassTypes eUnitClass;
+			eUnitClass = ((UnitClassTypes)kUnit.getUnitClassType());
+			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+			{
+				if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+				{
+					CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
+					if (kCivicInfo.getAllowsUnitClasses(eUnitClass) > 0)
+					{
+						if (getIdeasResearched((CivicTypes) iCivic) == 0)
+						{
+							return -1;
+						}
+					}
+					else if (kCivicInfo.getAllowsUnitClasses(eUnitClass) < 0)
+					{
+						if (getIdeasResearched((CivicTypes) iCivic) > 0)
+						{
+							return -1;
+						}
+					}
+				}
+			}
+		}
 
-    if ((kUnit.getDomainType() == DOMAIN_SEA || kUnit.isMechUnit()) && kUnit.getEuropeCost() > 0 && iTradeRoutePrice == -1)
-    {
-        if (getUnitClassCount((UnitClassTypes)kUnit.getUnitClassType()) == 0)
-        {
-            return -1;
-        }
-    }
+		if ((kUnit.getDomainType() == DOMAIN_SEA || kUnit.isMechUnit()) && kUnit.getEuropeCost() > 0 && iTradeRoutePrice == -1)
+		{
+			if (getUnitClassCount((UnitClassTypes)kUnit.getUnitClassType()) == 0)
+			{
+				return -1;
+			}
+		}
 
+	}
 ///TKe
 	bool bNegative = (iCost < 0);
 	iCost = std::abs(iCost);
@@ -14835,11 +14838,20 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteT
             eTradeScreen = TRADE_SCREEN_SILK_ROAD;
         }
     }
+
 	if (getEuropeUnitBuyPrice(eUnit, eTradeScreen) < 0)
 	{
         return NULL;
 	}
-    iPrice = getEuropeUnitBuyPrice(eUnit, eTradeScreen);
+
+	if (!isHuman())
+	{
+		iPrice = getEuropeUnitBuyPrice(eUnit) * iPriceModifier / 100;
+	}
+	else
+	{
+		iPrice = getEuropeUnitBuyPrice(eUnit, eTradeScreen);
+	}
 	if (iPrice > getGold())
 	{
 		m_aszTradeMessages.push_back(gDLL->getText("EUROPE_SCREEN_BUY_UNIT_LACK_FUNDS", GC.getUnitInfo(eUnit).getTextKeyWide(), iPrice));
@@ -14931,7 +14943,7 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteT
                     pUnit->addToMap(pStartingTradePlot->getX_INLINE(), pStartingTradePlot->getY_INLINE());
                 }
             }
-		    else if (GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
+		    else if (pStartingPlot->isEurope())
             {
                 pUnit->setUnitTravelState(eTravelState, false);
                 //add unit to map after setting Europe state so that it doesn't bump enemy units
@@ -14939,27 +14951,40 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteT
             }
             else if (!pStartingPlot->isEurope())
             {
-                CvPlot* pNewPlot = NULL;
-                CvCity* pPortCity = GC.getMapINLINE().findCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), getID(), NO_TEAM, false, true);
-                if (pPortCity == NULL)
-                {
-                    pNewPlot = pStartingPlot->findNearbyOceanPlot(0);
-                }
-                else
-                {
-                    pNewPlot = pPortCity->plot();
-                }
-
-                if (pNewPlot == NULL)
-                {
-                    pUnit->kill(true);
-                    return NULL;
-                }
-                pStartingPlot = pNewPlot;
-                pUnit->setUnitTravelState(NO_UNIT_TRAVEL_STATE, false);
-                //add unit to map after setting Europe state so that it doesn't bump enemy units
-                pUnit->addToMap(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE());
-                gDLL->getInterfaceIFace()->setDirty(EuropeScreen_DIRTY_BIT, true);
+                pUnit = initEuropeUnit(eUnit);
+//                CvPlot* pStartingTradePlot = NULL;
+//                int iBestValue = 0;
+//                for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+//                {
+//                    CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+//
+//                    if (pUnit->isValidPlot(pLoopPlot) && !pLoopPlot->isVisibleEnemyDefender(pUnit))
+//                    {
+//                        if (pUnit->canCrossOcean(pLoopPlot, eTravelState, eTradeRoute))
+//                        {
+//                            int iPathTurns;
+//                            if (pUnit->generatePath(pStartingPlot, MOVE_BUST_FOG, true, &iPathTurns))
+//                            {
+//                                int iValue = 10000;
+//                                iValue /= 100 + pUnit->getPathCost();
+//                                if (pLoopPlot->isRevealed(getTeam(), false))
+//                                {
+//                                    iValue += 1000;
+//                                }
+//                                if (iValue > iBestValue)
+//                                {
+//                                    iBestValue = iValue;
+//                                    pStartingTradePlot = pLoopPlot;
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//                pStartingPlot = pStartingTradePlot;
+//                pUnit->setUnitTravelState(NO_UNIT_TRAVEL_STATE, false);
+//                //add unit to map after setting Europe state so that it doesn't bump enemy units
+//                pUnit->addToMap(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE());
+//                gDLL->getInterfaceIFace()->setDirty(EuropeScreen_DIRTY_BIT, true);
             }
 		}
 	}
@@ -16939,14 +16964,16 @@ int CvPlayer::getMaxGoldTrade(PlayerTypes eOtherPlayer, const IDInfo& kTransport
 	{
 		return pTradeCity->AI_maxGoldTrade(eOtherPlayer);
 	}
-	else if (!isNative())
+	///TKs Med
+	//else if (!isNative())
+	else
 	{
 		return AI_maxGoldTrade(eOtherPlayer);
 	}
 
 	return 0;
 }
-
+///TKe
 void CvPlayer::changeProfessionEurope(int iUnitId, ProfessionTypes eProfession)
 {
 	FAssert(getParent() != NO_PLAYER);
@@ -17666,7 +17693,7 @@ void CvPlayer::doIdeas(bool Cheat)
                     szString = GC.getCivicInfo(getCurrentResearch()).getDescription();
                 }
                 char szOut[1024];
-                sprintf(szOut, "######################## Player %d %S Researching %d with %d Research Collected\n", getID(), getNameKey(), getCurrentResearch(), getIdeasStored());
+                sprintf(szOut, "######################## Player %d %S Researching %S with %d Research Collected\n", getID(), getNameKey(), GC.getCivicInfo(getCurrentResearch()).getDescription(), getIdeasStored());
                 gDLL->messageControlLog(szOut);
             }
         }

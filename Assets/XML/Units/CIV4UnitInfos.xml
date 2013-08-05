@@ -7,6 +7,7 @@
 <Civ4UnitInfos xmlns="x-schema:CIV4UnitSchema.xml">
   <!--Caste System: 0 = Normal; 1 = NoBuilingsWorked; 2 = NoneMilitary; 3 = Squire; 4 = Craftsman/Nobleman; 5 = AI Units Only; 6 = no learn natives;-->
   <!--Caste System: 7 = Escort(Leader)-->
+  <!--Caste System: 0 = Normal; 1 = NoBuilingsWorked; 2 = NoneMilitary; 3 = Squire; 4 = Craftsman/Nobleman; 5 = AI Units Only; 6 = no learn natives; 7 = None Animal Barbarian-->
 	<UnitInfos>
     <UnitInfo>
       <Type>UNIT_COLONIST</Type>
@@ -4077,7 +4078,7 @@
       <DefaultProfession>PROFESSION_MISSIONARY</DefaultProfession>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
-      <Description>Benedictine Monk</Description>
+      <Description>Benedict Monk</Description>
       <Civilopedia>TXT_KEY_UNIT_MISSIONARY_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_CHRISTIAN_MISSIONARY_STRATEGY</Strategy>
       <bGraphicalOnly>0</bGraphicalOnly>
@@ -4496,10 +4497,10 @@
       <iHurryCostModifier>0</iHurryCostModifier>
       <iAdvancedStartCost>-1</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <iEuropeCost>-2000</iEuropeCost>
-      <iEuropeCostIncrease>0</iEuropeCostIncrease>
+      <iEuropeCost>2000</iEuropeCost>
+      <iEuropeCostIncrease>100</iEuropeCostIncrease>
       <iImmigrationWeight>200</iImmigrationWeight>
-      <iImmigrationWeightDecay>25</iImmigrationWeightDecay>
+      <iImmigrationWeightDecay>50</iImmigrationWeightDecay>
       <iMinAreaSize>-1</iMinAreaSize>
       <iMoves>1</iMoves>
       <bCapturesCargo>0</bCapturesCargo>
@@ -6928,7 +6929,6 @@
       <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
-      <!--Caste System: 0 = Normal; 1 = NoBuilingsWorked; 2 = NoneMilitary; 3 = Squire; 4 = Craftsman/Nobleman; 5 = AI Units Only; 6 = no learn natives; 7 = None Animal Barbarian-->
       <KnightDubbingWeight>1000</KnightDubbingWeight>
       <iCasteAttribute>3</iCasteAttribute>
       <EducationUnitClass>UNITCLASS_NOBLEMAN</EducationUnitClass>
@@ -7266,7 +7266,6 @@
       <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
-      <!--Caste System: 0 = Normal; 1 = NoBuilingsWorked; 2 = NoneMilitary; 3 = Squire-->
       <KnightDubbingWeight>1000</KnightDubbingWeight>
       <iCasteAttribute>3</iCasteAttribute>
       <EducationUnitClass>UNITCLASS_NOBLEMAN</EducationUnitClass>

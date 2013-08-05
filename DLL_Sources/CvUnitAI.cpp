@@ -2637,7 +2637,7 @@ void CvUnitAI::AI_defensiveBraveMove()
 				{
 					return;
 				}
-				//TKs Med Trader Code
+				///TKs Med Trader Code
 				 ///TKs Invention Core Mod v 1.0
 				int iGiftTimer = pCity->AI_getGiftTimer();
 
@@ -2652,6 +2652,38 @@ void CvUnitAI::AI_defensiveBraveMove()
 						//FAssert(iGiftTimer <= 0);
 					}
 				}
+                ///TKs Med Native Traders
+                if (iGiftTimer <= GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getPersonalityType()).getContactDelay(CONTACT_YIELD_GIFT) / 2)
+                {
+                    if (area()->getNumAIUnits(getOwnerINLINE(), UNITAI_TRADER) < (area()->getCitiesPerPlayer(getOwnerINLINE()) / 2))
+                   // if (area()->getNumAIUnits(getOwnerINLINE(), UNITAI_TRADER) == 0)
+                    {
+                        int iRand = GC.getGame().getSorenRandNum(GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getPersonalityType()).getContactRand(CONTACT_YIELD_GIFT), "AI native trade");
+                        //iRand += std::max(0, 40 - GC.getGameINLINE().getGameTurn());
+                        if (iRand > 5 && AI_getUnitAIState() != UNITAI_STATE_SELL_TO_NATIVES)
+                        {
+                            for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+                            {
+                                if (pCity->getYieldStored((YieldTypes)iYield) > 20)
+                                {
+                                    CvCity* pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, NO_TEAM, true, false, false, (YieldTypes)iYield, 6);
+                                    if (pTraderCity != NULL)
+                                    {
+                                            //FAssert(false);
+                                            setProfession((ProfessionTypes)GC.getDefineINT("DEFAULT_NATIVE_TRADE_PROFESSION"));
+                                            //int iAmount = GC.getGame().getSorenRandNum(pCity->getYieldStored((YieldTypes)iYield) + 1, "AI native bear gifts");
+                                            int iAmount = GC.getGame().getSorenRandNum(pCity->getYieldStored((YieldTypes)iYield) + 1, "AI native bear gifts");
+                                            iAmount = std::min(iAmount, 100);
+                                            loadYieldAmount((YieldTypes)iYield, iAmount, false);
+                                            AI_setUnitAIState(UNITAI_STATE_SELL_TO_NATIVES);
+                                            return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
 
 
 
@@ -3070,11 +3102,123 @@ void CvUnitAI::AI_transportMoveRoutes()
 ///TKs Trade Routes
 void CvUnitAI::AI_transportTraderMove()
 {
+	if (isCargo())
+	{
+		getGroup()->pushMission(MISSION_SKIP);
+		return;
+	}
 
-//	if (AI_breakAutomation())
-//	{
-//		return;
-//	}
+	CvUnit* pUnit = GET_PLAYER(getOwnerINLINE()).getEuropeUnitById(getID());
+	if (pUnit != NULL)
+    {
+        getGroup()->pushMission(MISSION_SKIP);
+        return;
+    }
+
+    if (isNative())
+    {
+        ///FAssert(false);
+        if (AI_continueMission(0, MISSIONAI_GUARD_TRADE_NET, 0))
+        {
+            return;
+        }
+        if (plot()->getPlotCity() != NULL)
+        {
+            if (getGroup()->AI_getMissionAIPlot() == plot())
+            {
+                tradeYield();
+                AI_setUnitAIState(UNITAI_STATE_RETURN_HOME);
+                finishMoves();
+                return;
+            }
+        }
+
+        if (AI_getUnitAIState() == UNITAI_STATE_SELL_TO_NATIVES)
+        {
+
+            //FAssert(false);
+            CLLNode<IDInfo>* pUnitNode;
+            CvUnit* pLoopUnit;
+            CvPlot* pPlot;
+            pPlot = plot();
+            pUnitNode = pPlot->headUnitNode();
+
+            while (pUnitNode != NULL)
+            {
+                pLoopUnit = ::getUnit(pUnitNode->m_data);
+                pUnitNode = pPlot->nextUnitNode(pUnitNode);
+
+                if (pLoopUnit->getTransportUnit() == this)
+                {
+                    if (pLoopUnit->getYield() != NO_YIELD)
+                    {
+                        FAssert(pLoopUnit->getYieldStored() > 0);
+
+                        CvCity* pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, NO_TEAM, true, false, false, pLoopUnit->getYield(), 10);
+                        if (pTraderCity != NULL)
+                        {
+                            if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 0, pTraderCity))
+                            {
+                                if (plot()->getPlotCity() == pTraderCity)
+                                {
+                                    if (!GET_PLAYER(plot()->getOwner()).isHuman())
+									{
+										AI_tradeWithCity();
+									}
+									else
+									{
+										tradeYield();
+									}
+                                    AI_setUnitAIState(UNITAI_STATE_RETURN_HOME);
+                                    finishMoves();
+
+                                }
+
+                                 return;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+
+            if (AI_getUnitAIState() == UNITAI_STATE_RETURN_HOME)
+            {
+
+                if (getHomeCity() != NULL)
+                {
+                    if (plot()->getPlotCity() == getHomeCity())
+                    {
+                        //FAssert(false);
+                        unloadAll();
+                        setProfession((ProfessionTypes)GC.getUnitInfo(getUnitType()).getDefaultProfession());
+                        return;
+                    }
+                    if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 0, getHomeCity()))
+                    {
+                        if (plot()->getPlotCity() == getHomeCity())
+                        {
+                            //FAssert(false);
+                            unloadAll();
+                            setProfession((ProfessionTypes)GC.getUnitInfo(getUnitType()).getDefaultProfession());
+                        }
+                        return;
+                    }
+                }
+
+            }
+
+
+        getGroup()->pushMission(MISSION_SKIP);
+        return;
+    }
+
+    if (AI_continueMission(0, MISSIONAI_GUARD_TRADE_NET, 0))
+    {
+        return;
+    }
 
 	if (getDamage() > 0)
 	{
@@ -3130,15 +3274,12 @@ void CvUnitAI::AI_transportTraderMove()
 
 
     int iNativeSaleGoods = 0;
-    CvCity* pTraderCity;
+    CvCity* pTraderCity = NULL;
 	if (hasCargo() && AI_getUnitAIState() != UNITAI_STATE_RETURN_HOME && AI_getUnitAIState() != UNITAI_STATE_ADVANCING)
 	{
 		CLLNode<IDInfo>* pUnitNode;
 		CvUnit* pLoopUnit;
 		CvPlot* pPlot;
-		int iCount;
-
-		iCount = 0;
 
 		pPlot = plot();
 
@@ -3185,64 +3326,28 @@ void CvUnitAI::AI_transportTraderMove()
             return;
         }
         ///Last Resort if no land Europe tiles
-        //if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 8))
-        //{
-                CvCity* DestinationCity = getHomeCity();
-
-
-                if (DestinationCity != NULL)
+                //else
+                //{
+        pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, getTeam(), true, false, true, NO_YIELD, -1, true);
+        if (pTraderCity != NULL)
+        {
+            //setHomeCity(pTraderCity);
+            if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 0, pTraderCity))
+            {
+                if (plot()->getPlotCity() == pTraderCity)
                 {
-                    if (DestinationCity->getOwner() != getOwnerINLINE())
-                    {
-                       if (plot()->getPlotCity() == DestinationCity)
-                        {
-                            //if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
-                            //{
-                            AI_setUnitAIState(UNITAI_STATE_DEFAULT);
-                            //}
-                            setHomeCity(NULL);
-                            crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE, true);
-                            return;
-                        }
-                        if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 0, DestinationCity))
-                        {
-                            if (plot()->getPlotCity() == DestinationCity)
-                            {
-                                //if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
-                                //{
-                                    AI_setUnitAIState(UNITAI_STATE_DEFAULT);
-                                //}
-                                setHomeCity(NULL);
-                                crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE, true);
-
-                            }
-                            return;
-                        }
-                    }
+                    //if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
+                    //{
+                        AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+                    //}
+                    //setHomeCity(NULL);
+                    crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE, true);
 
                 }
-                else
-                {
-                    pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, getTeam(), true, false, true, NO_YIELD, -1, true);
-                    if (pTraderCity != NULL)
-                    {
-                        setHomeCity(pTraderCity);
-                        if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 0, pTraderCity))
-                        {
-                            if (plot()->getPlotCity() == pTraderCity)
-                            {
-                                //if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
-                                //{
-                                    AI_setUnitAIState(UNITAI_STATE_DEFAULT);
-                                //}
-                                setHomeCity(NULL);
-                                crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE, true);
-
-                            }
-                            return;
-                        }
-                    }
-                }
+                return;
+            }
+        }
+               // }
 
 
 
@@ -3271,9 +3376,17 @@ void CvUnitAI::AI_transportTraderMove()
     {
         if (pTraderCity != NULL)
         {
-            if (plot()->getPlotCity() == pTraderCity && GET_PLAYER(plot()->getOwner()).isHuman())
+            if (plot()->getPlotCity() == pTraderCity)
             {
-                tradeYield();
+                //FAssert(GET_PLAYER(plot()->getOwner()).isHuman());
+				if (!GET_PLAYER(plot()->getOwner()).isHuman())
+				{
+					AI_tradeWithCity();
+				}
+				else
+				{
+					tradeYield();
+				}
                 AI_setUnitAIState(UNITAI_STATE_PURCHASED);
                 finishMoves();
                 return;
@@ -3298,6 +3411,8 @@ void CvUnitAI::AI_transportTraderMove()
 	return;
 
 }
+
+///TKe
 
 void CvUnitAI::AI_transportMoveFull()
 {
@@ -4444,6 +4559,7 @@ bool CvUnitAI::AI_travelToNativeVillage(int iMinAttitude, int iMaxAttitude, int 
 	}
 
 	CvPlot* pBestPlot = NULL;
+	CvPlot* pBestMissionPlot = NULL;
 	int iBestValue = 0;
 
 	CvPlayer& kOwner = GET_PLAYER(getOwner());
@@ -4479,7 +4595,9 @@ bool CvUnitAI::AI_travelToNativeVillage(int iMinAttitude, int iMaxAttitude, int 
                                     if (iValue > iBestValue)
                                     {
                                         iBestValue = iValue;
-                                        pBestPlot = pLoopPlot;
+                                        //pBestPlot = pLoopPlot;
+                                        pBestPlot = getPathEndTurnPlot();
+                                        pBestMissionPlot = pLoopPlot;
                                     }
                                 }
                             }
@@ -4489,20 +4607,21 @@ bool CvUnitAI::AI_travelToNativeVillage(int iMinAttitude, int iMaxAttitude, int 
             }
         }
     }
-    else
+    else if (!atPlot(pCity->plot()))
     {
         int iNativeCityPathTurns;
-        CvPlot* pThisTurnPlot = NULL;
+        //CvPlot* pThisTurnPlot = NULL;
         bool bCanPathToNativeCity = generatePath(pCity->plot(), 0, true, &iNativeCityPathTurns);
         if (bCanPathToNativeCity)
         {
-            pThisTurnPlot = getPathEndTurnPlot();
+            pBestPlot = getPathEndTurnPlot();
         }
 
-        if (NULL != pThisTurnPlot)
+        if (NULL != pBestPlot)
         {
-            FAssert(!atPlot(pCity->plot()));
-            getGroup()->pushMission(MISSION_MOVE_TO, pThisTurnPlot->getX_INLINE(), pThisTurnPlot->getY_INLINE());
+            //FAssert(!atPlot(pCity->plot()));
+            getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), MOVE_BUST_FOG, false, false, MISSIONAI_GUARD_TRADE_NET, pCity->plot());
+            //getGroup()->pushMission(MISSION_MOVE_TO, pBestMissionPlot->getX_INLINE(), pBestMissionPlot->getY_INLINE());
         }
         return true;
 
@@ -4511,7 +4630,8 @@ bool CvUnitAI::AI_travelToNativeVillage(int iMinAttitude, int iMaxAttitude, int 
 	if (pBestPlot != NULL)
 	{
 		FAssert(!atPlot(pBestPlot));
-		getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
+		getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), MOVE_BUST_FOG, false, false, MISSIONAI_GUARD_TRADE_NET, pBestMissionPlot);
+		//getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 		return true;
 	}
 
@@ -14800,7 +14920,11 @@ bool CvUnitAI::AI_maraudTowardsVictimCity()
 
 	if (pBestPlot != NULL)
 	{
-		FAssert(!atPlot(pBestPlot));
+		if (atPlot(pBestPlot))
+		{
+			return false;
+		}
+		//FAssert(!atPlot(pBestPlot));
 		getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), 0, false, false, MISSIONAI_PIRACY, pBestMissionPlot);
 		return true;
 	}

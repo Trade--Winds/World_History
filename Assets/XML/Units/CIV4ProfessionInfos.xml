@@ -262,7 +262,7 @@
       <Civilopedia>???</Civilopedia>
       <Strategy>???</Strategy>
       <Help/>
-      <bNativesInvalid>1</bNativesInvalid>
+      <bNativesInvalid>0</bNativesInvalid>
       <bEuropeInvalid>1</bEuropeInvalid>
       <Combat>NONECOMBAT_PEDLER</Combat>
       <DefaultUnitAI>UNITAI_TRADER</DefaultUnitAI>

@@ -685,7 +685,7 @@ CvCity* CvMap::findTraderCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTea
 	{
 		if (GET_PLAYER((PlayerTypes)iI).isAlive() && (!bNative || GET_PLAYER((PlayerTypes)iI).isNative()))
 		{
-			if ((eOwner == NO_PLAYER) || (iI == eOwner))
+			if ((eOwner == NO_PLAYER) || (eOwner != NO_PLAYER && (GET_PLAYER(eOwner).isNative() != GET_PLAYER((PlayerTypes)iI).isNative())))
 			{
 				if ((eTeam == NO_TEAM) || !atWar(GET_PLAYER((PlayerTypes)iI).getTeam(), eTeam))
 				{
@@ -700,21 +700,25 @@ CvCity* CvMap::findTraderCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTea
                                 {
                                     //if(!bNative || pLoopCity->isNative())
                                    //{
-                                        if (eNativeYield == NO_YIELD || (pLoopCity->AI_getDesiredYield() == eNativeYield) || (pLoopCity->isHuman() && pLoopCity->isImport(eNativeYield)))
+                                        if (eNativeYield == NO_YIELD || (iMinAttitude <= 0 && pLoopCity->AI_getDesiredYield() == eNativeYield) || (pLoopCity->isHuman() && pLoopCity->isImport(eNativeYield)))
                                         {
-                                            if (!bRandom)
+                                            int iValue = plotDistance(iX, iY, pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());
+                                            if ((iValue <= iMinAttitude) || iMinAttitude <= 0)
                                             {
-                                                int iValue = plotDistance(iX, iY, pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());
 
-                                                if (iValue < iBestValue)
+                                                if (!bRandom)
                                                 {
-                                                    iBestValue = iValue;
-                                                    pBestCity = pLoopCity;
+
+                                                    if (iValue < iBestValue)
+                                                    {
+                                                        iBestValue = iValue;
+                                                        pBestCity = pLoopCity;
+                                                    }
                                                 }
-                                            }
-                                            else
-                                            {
-                                                aCitys.push_back(pLoopCity);
+                                                else
+                                                {
+                                                    aCitys.push_back(pLoopCity);
+                                                }
                                             }
                                         }
                                     //}

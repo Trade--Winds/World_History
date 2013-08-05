@@ -147,6 +147,10 @@
     <DefineTextVal>ERA_DISCOVERY</DefineTextVal>
   </Define>
   <Define>
+    <DefineName>DEFAULT_NATIVE_TRADE_PROFESSION</DefineName>
+    <DefineTextVal>PROFESSION_PEDLER</DefineTextVal>
+  </Define>
+  <Define>
     <DefineName>BUILDINGCLASS_TRAVEL_TO_FAIR</DefineName>
     <DefineTextVal>BUILDINGCLASS_THE_FAIR</DefineTextVal>
   </Define>

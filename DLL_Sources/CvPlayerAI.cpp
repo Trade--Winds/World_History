@@ -4339,6 +4339,28 @@ int CvPlayerAI::AI_yieldTradeVal(YieldTypes eYield, const IDInfo& kTransport, Pl
 			int iLowPricePercent = std::max(25, 100 - ((100 * std::max(0, iTotalStored - iAmount)) / std::max(1, iMaxStored)));
 
 			iValue += (iAmount * iSellPrice * (iHighPricePercent + iLowPricePercent)) / 200;
+			///TKe Med
+			if (iValue < 0)
+            {
+                iValue = 0;
+                CvCity* pCity = pTransport->plot()->getPlotCity();
+                if (pCity != NULL)
+                {
+                    if (ePlayer != pCity->getOwnerINLINE())
+                    {
+                        if (AI_isYieldFinalProduct(eYield))
+                        {
+                            iValue += GET_PLAYER(pCity->getOwnerINLINE()).getSellToEuropeProfit(eYield, iAmount) * 95 / 100;
+                        }
+                        else
+                        {
+                            iValue += GET_PLAYER(pCity->getOwnerINLINE()).AI_yieldValue(eYield, true, iAmount);
+                        }
+                    }
+                }
+            }
+			///TKe
+
 		}
 		else
 		{

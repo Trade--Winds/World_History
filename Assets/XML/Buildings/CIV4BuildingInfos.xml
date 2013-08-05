@@ -311,7 +311,7 @@
       <DomainProductionModifiers/>
       <PrereqBuildingClasses/>
       <BuildingClassNeededs/>
-      <iModdersCode1>TRADING_POST</iModdersCode1>
+      <iModdersCode1>MODER_CODE_TRADING_POST</iModdersCode1>
       <AutoSellsYields>
         <AutoSellsYield>
           <YieldType>YIELD_CLOTH</YieldType>
@@ -453,7 +453,7 @@
           <bNeededInCity>1</bNeededInCity>
         </BuildingClassNeeded>
       </BuildingClassNeededs>
-      <iModdersCode1>TRADING_POST</iModdersCode1>
+      <iModdersCode1>MODER_CODE_TRADING_POST</iModdersCode1>
       <iIncreasesCityPopulation>3</iIncreasesCityPopulation>
       <AutoSellsYields>
         <AutoSellsYield>
@@ -595,7 +595,7 @@
           <bNeededInCity>1</bNeededInCity>
         </BuildingClassNeeded>
       </BuildingClassNeededs>
-      <iModdersCode1>TRADING_POST</iModdersCode1>
+      <iModdersCode1>MODER_CODE_TRADING_POST</iModdersCode1>
       <AutoSellsYields>
         <AutoSellsYield>
           <YieldType>YIELD_LUMBER</YieldType>
@@ -1973,7 +1973,7 @@
       <PrereqBuildingClasses/>
       <BuildingClassNeededs/>
       <!-- iModdersCode1 0 = Only None Natives; 1 = Natives Only; 3 = Anyone; 11 = Only Natives During Viking Age; 100 = Allows Trade Fairs-->
-      <iModdersCode1>ONLY_NONE_NATIVES</iModdersCode1>
+      <iModdersCode1>MODER_CODE_ONLY_NONE_NATIVES</iModdersCode1>
       <HotKey/>
       <bAltDown>0</bAltDown>
       <bShiftDown>0</bShiftDown>
@@ -2067,7 +2067,7 @@
       <PrereqBuildingClasses/>
       <BuildingClassNeededs/>
       <!-- iModdersCode1 0 = Only None Natives; 1 = Natives Only -->
-      <iModdersCode1>ONLY_NONE_NATIVES</iModdersCode1>
+      <iModdersCode1>MODER_CODE_ONLY_NONE_NATIVES</iModdersCode1>
       <HotKey/>
       <bAltDown>0</bAltDown>
       <bShiftDown>0</bShiftDown>
@@ -3892,7 +3892,7 @@
       <PrereqBuildingClasses/>
       <BuildingClassNeededs/>
       <!-- iModdersCode1 0 = Only None Natives; 1 = Natives Only; 3 = Anyone; 11 = Only Natives During Viking Age -->
-      <iModdersCode1>NATIVES_VIKING_AGE</iModdersCode1>
+      <iModdersCode1>MODER_CODE_NATIVES_VIKING_AGE</iModdersCode1>
       <HotKey/>
       <bAltDown>0</bAltDown>
       <bShiftDown>0</bShiftDown>
@@ -5643,7 +5643,7 @@
 			<DomainProductionModifiers/>
 			<PrereqBuildingClasses/>
 			<BuildingClassNeededs/>
-      <iModdersCode1>NATIVES_ONLY</iModdersCode1>
+      <iModdersCode1>MODER_CODE_NATIVES_ONLY</iModdersCode1>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
 			<bShiftDown>0</bShiftDown>
@@ -5798,7 +5798,7 @@
       <DomainProductionModifiers/>
       <PrereqBuildingClasses/>
       <BuildingClassNeededs/>
-      <iModdersCode1>NATIVES_ONLY</iModdersCode1>
+      <iModdersCode1>MODER_CODE_NATIVES_ONLY</iModdersCode1>
       <HotKey/>
       <bAltDown>0</bAltDown>
       <bShiftDown>0</bShiftDown>
@@ -7642,7 +7642,7 @@
           <bNeededInCity>1</bNeededInCity>
         </BuildingClassNeeded>
       </BuildingClassNeededs>
-      <iModdersCode1>ALLOWS_TRADE_FAIR</iModdersCode1>
+      <iModdersCode1>MODER_CODE_ALLOWS_TRADE_FAIR</iModdersCode1>
       <AutoSellsYields>
         <AutoSellsYield>
           <YieldType>YIELD_LUMBER</YieldType>

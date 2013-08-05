@@ -82,21 +82,21 @@
 	</AutomateTypes>
   <ModCodeTypes>
     <ModCodeType>NO_MOD_CODE</ModCodeType>
-    <ModCodeType>FASTER_CHOP_TREES</ModCodeType>
-    <ModCodeType>SPICE_ROUTE</ModCodeType>
-    <ModCodeType>SILK_ROAD_ROUTE</ModCodeType>
-    <ModCodeType>TRADING_POST</ModCodeType>
-    <ModCodeType>ONLY_NONE_NATIVES</ModCodeType>
-    <ModCodeType>NATIVES_ONLY</ModCodeType>
-    <ModCodeType>ANYONE</ModCodeType>
-    <ModCodeType>NATIVES_VIKING_AGE</ModCodeType>
-    <ModCodeType>ALLOWS_TRADE_FAIR</ModCodeType>
-    <ModCodeType>CANNOT_WORK_BUILDINGS</ModCodeType>
-    <ModCodeType>NONE_MILITARY</ModCodeType>
-    <ModCodeType>UNIT_SQUIRE</ModCodeType>
-    <ModCodeType>UNIT_CRAFTMEN_NOBLES</ModCodeType>
-    <ModCodeType>UNIT_AI_ONLY</ModCodeType>
-    <ModCodeType>CANNOT_LEARN_NATIVE</ModCodeType>
+    <ModCodeType>MODER_CODE_FASTER_CHOP_TREES</ModCodeType>
+    <ModCodeType>MODER_CODE_SPICE_ROUTE</ModCodeType>
+    <ModCodeType>MODER_CODE_SILK_ROAD_ROUTE</ModCodeType>
+    <ModCodeType>MODER_CODE_TRADING_POST</ModCodeType>
+    <ModCodeType>MODER_CODE_ONLY_NONE_NATIVES</ModCodeType>
+    <ModCodeType>MODER_CODE_NATIVES_ONLY</ModCodeType>
+    <ModCodeType>MODER_CODE_ANYONE</ModCodeType>
+    <ModCodeType>MODER_CODE_NATIVES_VIKING_AGE</ModCodeType>
+    <ModCodeType>MODER_CODE_ALLOWS_TRADE_FAIR</ModCodeType>
+    <ModCodeType>MODER_CODE_CANNOT_WORK_BUILDINGS</ModCodeType>
+    <ModCodeType>MODER_CODE_NONE_MILITARY</ModCodeType>
+    <ModCodeType>MODER_CODE_SQUIRE</ModCodeType>
+    <ModCodeType>MODER_CODE_CRAFTMEN_NOBLES</ModCodeType>
+    <ModCodeType>MODER_CODE_AI_ONLY</ModCodeType>
+    <ModCodeType>MODER_CODE_CANNOT_LEARN_NATIVE</ModCodeType>
   </ModCodeTypes>
   <MedCityTypes>
     <MedCityType>CITYTYPE_COMMERCE</MedCityType>

@@ -4569,7 +4569,7 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	if (iModdersCode != NO_MOD_CODE)
 	{
 
-	    if (iModdersCode == SPICE_ROUTE || iModdersCode == SILK_ROAD_ROUTE)
+	    if (iModdersCode == MODER_CODE_SPICE_ROUTE || iModdersCode == MODER_CODE_SILK_ROAD_ROUTE)
 	    {
 	        szHelpText.append(NEWLINE);
             szHelpText.append(gDLL->getText("TXT_KEY_NEW_TRADE_ROUTE", kCivicInfo.getDescription()));
@@ -5026,12 +5026,12 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	   szHelpText.append(gDLL->getText("TXT_KEY_RESEARCH_CENTER_FOOD_PLOT", kCivicInfo.getCenterPlotFoodBonus()));
 	}
 
-    if ((ModCodeTypes)kCivicInfo.getModdersCode1() == TRADING_POST)
+    if ((ModCodeTypes)kCivicInfo.getModdersCode1() == MODER_CODE_TRADING_POST)
     {
         szHelpText.append(NEWLINE);
         szHelpText.append(gDLL->getText("TXT_KEY_ALLOWS_ESTABLISH_TRADEPOST"));
     }
-    if ((ModCodeTypes)kCivicInfo.getModdersCode1() == ALLOWS_TRADE_FAIR)
+    if ((ModCodeTypes)kCivicInfo.getModdersCode1() == MODER_CODE_ALLOWS_TRADE_FAIR)
     {
         szHelpText.append(NEWLINE);
         szHelpText.append(gDLL->getText("TXT_KEY_ALLOWS_THE_TRADE_FAIR"));
@@ -6215,7 +6215,7 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
             szBuffer.append(NEWLINE);
             szBuffer.append(gDLL->getText("TXT_KEY_ARMORSMITH_BUILDING_CLICK_HELP"));
         }
-        if ((ModCodeTypes)kBuilding.getWhoCanBuildTypes() == TRADING_POST || (ModCodeTypes)kBuilding.getWhoCanBuildTypes() == ALLOWS_TRADE_FAIR)
+        if ((ModCodeTypes)kBuilding.getWhoCanBuildTypes() == MODER_CODE_TRADING_POST || (ModCodeTypes)kBuilding.getWhoCanBuildTypes() == MODER_CODE_ALLOWS_TRADE_FAIR)
         {
             szBuffer.append(NEWLINE);
             szBuffer.append(gDLL->getText("TXT_KEY_CLICK_MARKET_SELECT"));
@@ -6234,7 +6234,7 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
             }
         }
     }
-    if ((ModCodeTypes)kBuilding.getWhoCanBuildTypes() == ALLOWS_TRADE_FAIR)
+    if ((ModCodeTypes)kBuilding.getWhoCanBuildTypes() == MODER_CODE_ALLOWS_TRADE_FAIR)
     {
         szBuffer.append(NEWLINE);
         szBuffer.append(gDLL->getText("TXT_KEY_CLICK_TRADE_FAIR_DEPART"));
