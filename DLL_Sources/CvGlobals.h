@@ -121,6 +121,8 @@ class CvGlobals
 	friend class CvXMLLoadUtility;
 public:
 
+	int XMLlength; // XML length check -  Nightinggale
+
 	// singleton accessor
 	DllExport inline static CvGlobals& getInstance();
 
