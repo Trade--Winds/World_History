@@ -7,16 +7,6 @@
 <Civ4EffectInfos xmlns="x-schema:CIV4MiscSchema.xml">
 	<EffectInfos>
 		<!-- Interface:-->
-    <EffectInfo>
-      <Type>EFFECT_MALISPEAR</Type>
-      <Description>Mali Spear</Description>
-      <fScale>1.0</fScale>
-      <fUpdateRate>1.0</fUpdateRate>
-      <Path>Art/Units/Skirmisher/MaliSkirmisherSpear.nif</Path>
-      <bIsProjectile>1</bIsProjectile>
-      <fSpeed>500.0</fSpeed>
-      <fArcValue>0.0</fArcValue>
-    </EffectInfo>
 		<EffectInfo>
 			<Type>EFFECT_FOOTSTEP_ON</Type>
 			<Description>EFFECT_FOOTSTEP_ON</Description>
@@ -169,16 +159,6 @@
       <fScale>1.0</fScale>
       <fUpdateRate>1.0</fUpdateRate>
       <Path>Art/Units/Unique/Arabia/CamelArcher/ArabiaCamelArcherArrow.nif</Path>
-      <bIsProjectile>1</bIsProjectile>
-      <fSpeed>500.0</fSpeed>
-      <fArcValue>0.0</fArcValue>
-    </EffectInfo>
-    <EffectInfo>
-      <Type>EFFECT_HORSEARCHERARROW</Type>
-      <Description>HorseArcherArrow</Description>
-      <fScale>1.0</fScale>
-      <fUpdateRate>1.0</fUpdateRate>
-      <Path>Art/Units/HorseArcher/HorseArcherArrow.nif</Path>
       <bIsProjectile>1</bIsProjectile>
       <fSpeed>500.0</fSpeed>
       <fArcValue>0.0</fArcValue>
