@@ -937,6 +937,10 @@ void CvUnit::doTurn()
      ///TKs Invention Core Mod v 1.0
 	if (isOnMap())
 	{
+	    if (isAlwaysHostile(plot()))
+        {
+            FAssert(m_pUnitInfo->getDefaultUnitAIType() == AI_getUnitAIType());
+        }
 	    if (getEscortPromotion() != NO_PROMOTION)
 	    {
 	        CvCity* pPlotCity = plot()->getPlotCity();

@@ -11567,8 +11567,12 @@ void CvPlayerAI::AI_doNativeArmy(TeamTypes eTeam)
 			}
 		}
 		else if (eAreaAI == AREAAI_NEUTRAL)
-		{
-			pLoopUnit->AI_setUnitAIType(UNITAI_DEFENSIVE);
+		{		    ///TKs Med
+		    if (!pLoopUnit->isAlwaysHostile(pLoopUnit->plot()))
+            {
+                pLoopUnit->AI_setUnitAIType(UNITAI_DEFENSIVE);
+            }
+            ///TKe
 		}
 	}
 

@@ -14817,18 +14817,13 @@ void CvUnitAI::AI_MarauderMove()
 		return;
 	}
 
-	if (AI_shouldRun())
-	{
-		AI_setUnitAIState(UNITAI_STATE_RETREATING);
-	}
-
-	if (AI_getUnitAIState() == UNITAI_STATE_RETREATING)
-	{
-		if (AI_safety())
-        {
-            return;
-        }
-	}
+//	if (AI_shouldRun())
+//	{
+//		if (AI_safety())
+//        {
+//            return;
+//        }
+//	}
 
 	if (AI_pillageRange(0))
 	{

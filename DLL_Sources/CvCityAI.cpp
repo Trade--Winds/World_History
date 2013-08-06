@@ -471,16 +471,16 @@ void CvCityAI::AI_chooseProduction()
 		if (iAreaCities > 1)
 		{
 		    ///Tks Med AI Traders
-		    if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRADER) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRADER)) < (iAreaCities / 2))
+		    if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA)) == 0)
 			{
-				if (AI_chooseUnit(UNITAI_TRADER))
+				if (AI_chooseUnit(UNITAI_TRANSPORT_SEA))
 				{
 					return;
 				}
 			}
-			else if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA)) == 0)
+		    else if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRADER) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRADER)) < (iAreaCities / 2))
 			{
-				if (AI_chooseUnit(UNITAI_TRANSPORT_SEA))
+				if (AI_chooseUnit(UNITAI_TRADER))
 				{
 					return;
 				}
@@ -944,6 +944,20 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 	}
 
 	///TKs Med Barbarian AI
+	if (!GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
+    {
+        if (kBuildingInfo.isWater())
+        {
+            CvArea* pArea = area();
+            int iAreaCities = pArea->getCitiesPerPlayer(getOwnerINLINE());
+            if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA)) == 0)
+			{
+				iValue += 10000;
+			}
+        }
+    }
+
+
 	if (isNative())
 	{
 	    for (int i = 0; i < NUM_YIELD_TYPES; ++i)
@@ -1033,14 +1047,14 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 								///Tks Testing
 								if (GC.isEquipmentType(eYieldProduced, EQUIPMENT_ARMOR_HORSES))
 								{
-									//if (kOwner.isNative())
-									//{
-										//iTempValue *= 10;
-									//}
-									//else
-									//{
+									if (kOwner.isNative())
+									{
+										iTempValue *= 10;
+									}
+									else
+									{
 										iTempValue /= 10;
-									//}
+									}
 								}
 								///TKe
 

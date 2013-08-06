@@ -17691,10 +17691,10 @@ void CvPlayer::doIdeas(bool Cheat)
                 {
                     FAssert(getCurrentResearch() < GC.getNumCivicInfos());
                     szString = GC.getCivicInfo(getCurrentResearch()).getDescription();
+					char szOut[1024];
+					sprintf(szOut, "######################## Player %d %S Researching %S with %d Research Collected\n", getID(), getNameKey(), GC.getCivicInfo(getCurrentResearch()).getDescription(), getIdeasStored());
+					gDLL->messageControlLog(szOut);
                 }
-                char szOut[1024];
-                sprintf(szOut, "######################## Player %d %S Researching %S with %d Research Collected\n", getID(), getNameKey(), GC.getCivicInfo(getCurrentResearch()).getDescription(), getIdeasStored());
-                gDLL->messageControlLog(szOut);
             }
         }
 	}
