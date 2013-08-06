@@ -225,6 +225,7 @@ bool CvInfoBase::read(CvXMLLoadUtility* pXML)
 	// BUTTON
 	pXML->GetChildXmlValByName(m_szButton, "Button");
 
+	GC.XMLlength++; // XML length check - Nightinggale
 	return true;
 }
 
