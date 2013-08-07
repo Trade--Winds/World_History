@@ -15818,6 +15818,7 @@ void CvPlayer::setProfessionEquipmentModifier(ProfessionTypes eProfession, int i
 
 		FAssert(getProfessionEquipmentModifier(eProfession) >= -100);
 		Update_cache_YieldEquipmentAmount(eProfession); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
+		checkPower(true); // bugfix: update power and assert cache - Nightinggale 
 	}
 }
 
