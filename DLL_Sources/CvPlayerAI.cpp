@@ -4750,6 +4750,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 			break;
 		case UNITAI_WAGON:
 		///TKs Med
+        case UNITAI_MARAUDER:
 		case UNITAI_TRADER:
 		///TKe
 			break;
@@ -4780,9 +4781,6 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		case UNITAI_COMBAT_SEA:
 			break;
 		case UNITAI_PIRATE_SEA:
-		///TK Med
-        case UNITAI_MARAUDER:
-        ///TKe
 			if (kUnitInfo.isHiddenNationality())
 			{
 				if ((kUnitInfo.getCombat() > 0) && kUnitInfo.getMoves() > 0)
@@ -4982,6 +4980,7 @@ int CvPlayerAI::AI_unitGoldValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* p
 	case UNITAI_SCOUT:
 	///TKs Med
     case UNITAI_HUNTSMAN:
+    case UNITAI_MARAUDER:
     ///TKe
 		break;
 
@@ -5037,9 +5036,6 @@ int CvPlayerAI::AI_unitGoldValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* p
 		break;
 
 	case UNITAI_ASSAULT_SEA:
-	///TKs Med
-    case UNITAI_MARAUDER:
-    ///TKe
 		iTempValue = iDefenseCombatValue + iCargoValue;
 		iTempValue *= 4 + kUnitInfo.getMoves();
 		iTempValue /= 7;

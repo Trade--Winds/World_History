@@ -14780,6 +14780,10 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
 		}
 
 	}
+	else
+    {
+        iCost = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_EUROPE);
+    }
 ///TKe
 	bool bNegative = (iCost < 0);
 	iCost = std::abs(iCost);
@@ -15818,7 +15822,7 @@ void CvPlayer::setProfessionEquipmentModifier(ProfessionTypes eProfession, int i
 
 		FAssert(getProfessionEquipmentModifier(eProfession) >= -100);
 		Update_cache_YieldEquipmentAmount(eProfession); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
-		checkPower(true); // bugfix: update power and assert cache - Nightinggale 
+		checkPower(true); // bugfix: update power and assert cache - Nightinggale
 	}
 }
 

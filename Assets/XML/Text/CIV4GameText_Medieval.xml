@@ -14,6 +14,26 @@
     <Spanish></Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_BUILDING_DRYDOCK</Tag>
+    <English>Sea Port</English>
+    <French>
+      <Text>Cale s&#232;che:Cales s&#232;ches</Text>
+      <Gender>Female</Gender>
+      <Plural>0:1</Plural>
+    </French>
+    <German>Trockendock</German>
+    <Italian>
+      <Text>Bacino di carenaggio</Text>
+      <Gender>Male</Gender>
+      <Plural>0</Plural>
+    </Italian>
+    <Spanish>
+      <Text>Dique seco:Diques secos</Text>
+      <Gender>Male</Gender>
+      <Plural>0:1</Plural>
+    </Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_ESTABLISH_TRADEPOST_GOLD</Tag>
     <English>Establishing a Tradepost cost %d1 [ICON_GOLD]</English>
     <French></French>

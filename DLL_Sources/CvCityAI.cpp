@@ -21,7 +21,9 @@
 
 #define BUILDINGFOCUS_NO_RECURSION			(1 << 31)
 #define BUILDINGFOCUS_BUILD_ANYTHING		(1 << 30)
-
+///TKs Med
+#define BUILDINGFOCUS_BUILD_PORT		(1 << 29)
+///TKe
 #define YIELD_DISCOUNT_TURNS 			10
 
 // Public Functions...
@@ -471,7 +473,7 @@ void CvCityAI::AI_chooseProduction()
 		if (iAreaCities > 1)
 		{
 		    ///Tks Med AI Traders
-		    if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRANSPORT_SEA)) == 0)
+		    if (GET_PLAYER(getOwnerINLINE()).AI_totalUnitAIs(UNITAI_TRANSPORT_SEA) == 0)
 			{
 				if (AI_chooseUnit(UNITAI_TRANSPORT_SEA))
 				{
@@ -488,6 +490,18 @@ void CvCityAI::AI_chooseProduction()
 			else if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_WAGON) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_WAGON)) < (iAreaCities / 2))
 			{
 				if (AI_chooseUnit(UNITAI_WAGON))
+				{
+					return;
+				}
+			}
+			else if (GET_PLAYER(getOwnerINLINE()).AI_totalUnitAIs(UNITAI_TRANSPORT_SEA) < iAreaCities + 1)
+			{
+			    if (AI_chooseBuilding(BUILDINGFOCUS_BUILD_PORT, MAX_INT, 8))
+                {
+                    return;
+                }
+
+				if (AI_chooseUnit(UNITAI_TRANSPORT_SEA))
 				{
 					return;
 				}
@@ -610,7 +624,7 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, UnitAITypes* peBestUnitAI, bool bPi
 	return eBestUnit;
 }
 
-
+///TKs Med
 UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync) const
 {
 	UnitTypes eLoopUnit;
@@ -625,6 +639,11 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync) const
 	FAssertMsg(eUnitAI != NO_UNITAI, "UnitAI is not assigned a valid value");
 
 	iBestOriginalValue = 0;
+	bool bBestTransport = false;
+	if (eUnitAI == UNITAI_TRANSPORT_SEA)
+    {
+        bBestTransport = true;
+    }
 
 	for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
 	{
@@ -663,6 +682,19 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync) const
 				if (canTrain(eLoopUnit))
 					{
 						iValue = GET_PLAYER(getOwnerINLINE()).AI_unitValue(eLoopUnit, eUnitAI, area());
+						int iClassCount = GET_PLAYER(getOwnerINLINE()).getUnitClassCountPlusMaking((UnitClassTypes)GC.getUnitInfo(eLoopUnit).getUnitClassType());
+						if (bBestTransport && GC.getUnitInfo(eLoopUnit).getDomainType() == DOMAIN_SEA && GC.getUnitInfo(eLoopUnit).getCargoSpace())
+                        {
+
+                             if (iClassCount < 1)
+                             {
+                                 iValue *= 2;
+                             }
+                             else
+                             {
+                                 iValue /= 2;
+                             }
+                        }
 
 						if (iValue > ((iBestOriginalValue * 2) / 3))
 						{
@@ -730,7 +762,7 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync) const
 
 
 							iValue *= (GET_PLAYER(getOwnerINLINE()).getNumCities() * 2);
-							iValue /= (GET_PLAYER(getOwnerINLINE()).getUnitClassCountPlusMaking((UnitClassTypes)iI) + GET_PLAYER(getOwnerINLINE()).getNumCities() + 1);
+							iValue /= (iClassCount + 1);
 
 							FAssert((MAX_INT / 1000) > iValue);
 							iValue *= 1000;
@@ -752,7 +784,7 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync) const
 
 	return eBestUnit;
 }
-
+///Tke
 
 BuildingTypes CvCityAI::AI_bestBuilding(int iFocusFlags, int iMaxTurns, bool bAsync) const
 {
@@ -944,7 +976,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 	}
 
 	///TKs Med Barbarian AI
-	if (!GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
+	if (!GC.getCivilizationInfo(getCivilizationType()).isWaterStart() || iFocusFlags == BUILDINGFOCUS_BUILD_PORT)
     {
         if (kBuildingInfo.isWater())
         {
@@ -954,7 +986,21 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 			{
 				iValue += 10000;
 			}
+			if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_ASSAULT_SEA) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_ASSAULT_SEA)) == 0)
+			{
+				iValue += 10000;
+			}
+			if (iFocusFlags == BUILDINGFOCUS_BUILD_PORT)
+            {
+                return iValue;
+            }
         }
+
+		if (iFocusFlags == BUILDINGFOCUS_BUILD_PORT)
+        {
+            return 0;
+        }
+
     }
 
 

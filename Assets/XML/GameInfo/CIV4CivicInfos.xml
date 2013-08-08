@@ -631,7 +631,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>100</iAIWeight>
+      <iAIWeight>300</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -781,7 +781,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>0</iAIWeight>
+      <iAIWeight>200</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -864,7 +864,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>0</iAIWeight>
+      <iAIWeight>300</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -1015,7 +1015,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>100</iAIWeight>
+      <iAIWeight>300</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -1093,7 +1093,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>100</iAIWeight>
+      <iAIWeight>300</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -2351,7 +2351,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>100</iAIWeight>
+      <iAIWeight>200</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -2433,7 +2433,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>100</iAIWeight>
+      <iAIWeight>300</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -2469,10 +2469,6 @@
       <AllowsBuildingTypes>
         <AllowsBuildingType>
           <BuildingType>BUILDINGCLASS_CANAL</BuildingType>
-          <iChange>1</iChange>
-        </AllowsBuildingType>
-        <AllowsBuildingType>
-          <BuildingType>BUILDINGCLASS_DRYDOCK</BuildingType>
           <iChange>1</iChange>
         </AllowsBuildingType>
         <AllowsBuildingType>
@@ -3224,7 +3220,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>100</iAIWeight>
+      <iAIWeight>200</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -3320,7 +3316,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>100</iAIWeight>
+      <iAIWeight>200</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -3404,7 +3400,7 @@
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
       <Button>Art/Buttons/Tech_Categorys/NativeCat.dds</Button>
-      <iAIWeight>100</iAIWeight>
+      <iAIWeight>300</iAIWeight>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iFreeExperience>0</iFreeExperience>
@@ -3431,7 +3427,7 @@
       <iX_Location>3</iX_Location>
       <iY_Location>12</iY_Location>
       <RequiredInvention>INVENTION_HUNTING</RequiredInvention>
-      <RequiredInvention2>HORSESHOES</RequiredInvention2>
+      <RequiredInvention2>CODE_OF_LAWS</RequiredInvention2>
       <RequiredInventionOr/>
       <RequiredUnitType/>
       <RequiredYields/>
@@ -5084,6 +5080,10 @@
       <AllowsBuildingTypes>
         <AllowsBuildingType>
           <BuildingType>BUILDINGCLASS_MARKET</BuildingType>
+          <iChange>1</iChange>
+        </AllowsBuildingType>
+        <AllowsBuildingType>
+          <BuildingType>BUILDINGCLASS_DRYDOCK</BuildingType>
           <iChange>1</iChange>
         </AllowsBuildingType>
       </AllowsBuildingTypes>

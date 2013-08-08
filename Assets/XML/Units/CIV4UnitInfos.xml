@@ -19928,6 +19928,10 @@
       <iEuropeCost>-1</iEuropeCost>
       <TradeScreenTypes>
         <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_EUROPE</TradeScreen>
+          <iPricePercent>2000</iPricePercent>
+        </TradeScreenType>
+        <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
           <iPricePercent>2000</iPricePercent>
         </TradeScreenType>
@@ -20060,6 +20064,10 @@
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
       <iEuropeCost>-1</iEuropeCost>
       <TradeScreenTypes>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_EUROPE</TradeScreen>
+          <iPricePercent>3000</iPricePercent>
+        </TradeScreenType>
         <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
           <iPricePercent>3000</iPricePercent>
