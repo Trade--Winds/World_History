@@ -1,5 +1,5 @@
 #pragma once
-// DynamicArray.h
+// JustInTimeArray.h
 
 #include "CvDLLEntity.h"
 #include "CvGlobals.h"
@@ -11,19 +11,33 @@
  *  This is useful for arrays where say only human players will use them. AI players will then not allocate the memory at all.
  *  The length of the array is hardcoded into the class, eliminating the risk of assuming wrong length.
  *
+ *  There is one other major difference between arrays and JustInTimeArrays.
+ *    Normal arrays have fixed sized (compiletime) when placed in classes or they are pointers to arrays,
+ *     in which case they leak memory unless SAFE_DELETE_ARRAY() is used and they need to be allocated
+ *    JustInTimeArrays have the good part of both. Length is set at runtime, yet they can still be added as a variable
+ *      to classes, in which case allocation and freeing of memory is automatic and can't leak. 
+ *
+ *   IMPORTANT:
+ *    An array of JustInTimeArrays fail to activate constructor/deconstructor. reset() and init() must be used here
+ *     Failure to do so will leak memory and/or fail to set length.
+ *
+ *
  *  Usage:
  *   get() reads data from array. 0 or false is returned when read from an unallocated array.
  *   set() writes data to array. Allocates if needed.
  *   hasContent() and isEmpty() tells if the array is allocated.
  *     They also frees the array if it only contains 0/false.
- *   IsAllocated() returns true if the array is allocated but doesn't check contents (faster than hasContent())
+ *   isAllocated() returns true if the array is allocated but doesn't check contents (faster than hasContent())
  *   read()/write() used for savegames. The bool tells if the data should be read/written.
  *      This allows one-line statements when saving, which includes the if sentence.
  *   reset() frees the array
+ *   length() is the length of the array
+ *   init() does the same as the constructor and should be used when the constructor isn't called, like in an array of JustInTimeArrays
  *
  *  Adding new types:
- *   As complex as it may look, adding a new type is easy.
- *   Copy class YieldArray, call it something else and change length.
+ *   Copy class YieldArray and change:
+ *    2 * YieldArray (function and constructor) into a suitable name
+*     2 * NUM_YIELD_TYPES into whatever length you need.
  *
  *  The reason why the class function definitions are inside the declaration is to avoid compiler errors regarding templates.
  */
@@ -32,11 +46,13 @@ template<class T> class JustInTimeArray
 {
 private:
 	T* tArray;
+	int m_iLength;
 
 public:
-	JustInTimeArray()
+	JustInTimeArray(int iLength)
 	{
 		tArray = NULL;
+		m_iLength = iLength;
 	}
 
 	~JustInTimeArray()
@@ -53,25 +69,32 @@ public:
 	{
 		return tArray != NULL;
 	}
-
-	// used when constructor isn't called, like in an array
-	inline void init()
+	
+	inline int length()
 	{
-		tArray = NULL;
+		return m_iLength;
 	}
 
 protected:
-	inline T zParentGet(int iLength, int iIndex) const
+	// used when constructor isn't called, like in an array
+	void init(int iLength)
+	{
+		tArray = NULL;
+		m_iLength = iLength;
+	}
+
+public:
+	inline T get(int iIndex) const
 	{
 		FAssert(iIndex >= 0);
-		FAssert(iIndex < iLength);
+		FAssert(iIndex < m_iLength);
 		return tArray ? tArray[iIndex] : 0;
 	}
 
-	inline void zParentSet(int iLength, T value, int iIndex)
+	inline void set(T value, int iIndex)
 	{
 		FAssert(iIndex >= 0);
-		FAssert(iIndex < iLength);
+		FAssert(iIndex < m_iLength);
 
 		if (tArray == NULL)
 		{
@@ -80,8 +103,8 @@ protected:
 				// no need to allocate memory to assign a default (false) value
 				return;
 			}
-			tArray = new T[iLength];
-			for (int iIterator = 0; iIterator < iLength; ++iIterator)
+			tArray = new T[m_iLength];
+			for (int iIterator = 0; iIterator < m_iLength; ++iIterator)
 			{
 				tArray[iIterator] = 0;
 			}
@@ -89,13 +112,13 @@ protected:
 		tArray[iIndex] = value;
 	}
 
-	bool zParentHasContent(int iLength, bool bRelease)
+	bool hasContent(bool bRelease = true)
 	{
 		if (tArray == NULL)
 		{
 			return false;
 		}
-		for (int iIterator = 0; iIterator < iLength; ++iIterator)
+		for (int iIterator = 0; iIterator < m_iLength; ++iIterator)
 		{
 			if (tArray[iIterator])
 			{
@@ -110,29 +133,29 @@ protected:
 		}
 		return false;
 	};
-	inline bool zParentIsEmpty(int iLength, bool bRelease)
+	inline bool isEmpty(bool bRelease = true)
 	{
-		return !ParentHasContent(iLength, bRelease);
+		return hasContent(bRelease);
 	}
 
-	void zParentRead( int iLength, FDataStreamBase* pStream, bool bRead)
+	void read(FDataStreamBase* pStream, bool bRead)
 	{
 		if (bRead)
 		{
 			if (tArray == NULL)
 			{
-				tArray = new T[iLength];
+				tArray = new T[m_iLength];
 			}
-			pStream->Read(iLength, tArray);
+			pStream->Read(m_iLength, tArray);
 		}
 	}
 
-	void zParentWrite(int iLength, FDataStreamBase* pStream, bool bWrite)
+	void write(FDataStreamBase* pStream, bool bWrite)
 	{
 		if (bWrite)
 		{
 			FAssert(tArray != NULL);
-			pStream->Write(iLength, tArray);
+			pStream->Write(m_iLength, tArray);
 		}
 	}
 };
@@ -142,32 +165,14 @@ template<class T>
 class YieldArray: public JustInTimeArray<T>
 {
 public:
-	enum {length = NUM_YIELD_TYPES};
-
-	inline T get(int iIndex) const             {return zParentGet(length, iIndex);}
-	inline void set(T value, int iIndex)       {zParentSet(length, value, iIndex);}
-	inline bool hasContent(bool bRelease = true)              {return zParentHasContent(length, bRelease);}
-	inline bool isEmpty(bool bRelease = true)                 {return !zParentHasContent(length, bRelease);}
-	inline void read(FDataStreamBase* pStream, bool bRead)    {zParentRead(length, pStream, bRead);}
-	inline void write(FDataStreamBase* pStream, bool bWrite)  {zParentWrite(length, pStream, bWrite);}
+	YieldArray() : JustInTimeArray<T>(NUM_YIELD_TYPES){};
+	void init() {  JustInTimeArray<T>::init(NUM_YIELD_TYPES);}
 };
 
 template<class T>
 class UnitArray: public JustInTimeArray<T>
 {
 public:
-	int length;
-
-	UnitArray()
-	{
-		length = GC.getNumUnitInfos();
-		FAssertMsg(length > 0, "Array length is set before XML is read")
-	}
-
-	inline T get(int iIndex) const                            {return zParentGet(length, iIndex);}
-	inline void set(T value, int iIndex)                      {zParentSet(length, value, iIndex);}
-	inline bool hasContent(bool bRelease = true)              {return zParentHasContent(length, bRelease);}
-	inline bool isEmpty(bool bRelease = true)                 {return !zParentHasContent(length, bRelease);}
-	inline void read(FDataStreamBase* pStream, bool bRead)    {zParentRead(length, pStream, bRead);}
-	inline void write(FDataStreamBase* pStream, bool bWrite)  {zParentWrite(length, pStream, bWrite);}
+    UnitArray() : JustInTimeArray<T>(GC.getNumUnitInfos()){};
+	void init() { JustInTimeArray<T>::init(GC.getNumUnitInfos());}
 };
