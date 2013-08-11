@@ -7454,7 +7454,21 @@ void CvGameTextMgr::getTradeString(CvWStringBuffer& szBuffer, const TradeData& t
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_DEFENSIVE_PACT"));
 		break;
 	case TRADE_PERMANENT_ALLIANCE:
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_ALLIANCE"));
+	    ///TKs Med
+//	    if (ePlayer1 != NO_PLAYER && GET_PLAYER(ePlayer1).isHuman())
+//        {
+//            szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_VASSAL_LORD"));
+//        }
+        if (GET_PLAYER(ePlayer1).isHuman())
+        {
+            szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_VASSAL_LORD"));
+        }
+        else
+        {
+            szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_ALLIANCE"));
+        }
+	    ///Tke
+
 		break;
 	case TRADE_PEACE_TREATY:
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PEACE_TREATY", GC.getCache_PEACE_TREATY_LENGTH()));
@@ -7802,7 +7816,7 @@ void CvGameTextMgr::parseLeaderLineHelp(CvWStringBuffer &szBuffer, PlayerTypes e
 
 	if (thisTeam.getID() == otherTeam.getID())
 	{
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_ALLIANCE"));
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_ALLIANCE_HELD"));
 		szBuffer.append(NEWLINE);
 	}
 	else if (thisTeam.isAtWar(otherTeam.getID()))

@@ -16787,7 +16787,16 @@ bool CvPlayer::getItemTradeString(PlayerTypes eOtherPlayer, bool bOffer, bool bS
 		szString = gDLL->getText("TXT_KEY_TRADE_DEFENSIVE_PACT_STRING");
 		break;
 	case TRADE_PERMANENT_ALLIANCE:
-		szString = gDLL->getText("TXT_KEY_TRADE_PERMANENT_ALLIANCE_STRING");
+	    ///TKs Med
+        if (isHuman())
+        {
+            szString = gDLL->getText("TXT_KEY_TRADE_PERMANENT_OVERLORD_STRING");
+        }
+        else
+        {
+            szString = gDLL->getText("TXT_KEY_TRADE_PERMANENT_ALLIANCE_STRING");
+        }
+	    ///TKe
 		break;
 	case TRADE_PEACE_TREATY:
 		szString = gDLL->getText("TXT_KEY_TRADE_PEACE_TREATY_STRING", GC.getCache_PEACE_TREATY_LENGTH());

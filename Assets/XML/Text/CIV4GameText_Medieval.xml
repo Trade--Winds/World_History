@@ -194,6 +194,22 @@
     <Spanish>Alianza permanente</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_MISC_PERMANENT_ALLIANCE_HELD</Tag>
+    <English>Vassalage</English>
+    <French>Vassalage</French>
+    <German>Vassalage</German>
+    <Italian>Vassalage</Italian>
+    <Spanish>Vassalage</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MISC_PERMANENT_VASSAL_LORD</Tag>
+    <English>Become Overlord</English>
+    <French>Alliance permanente</French>
+    <German>Allianz</German>
+    <Italian>Alleanza permanente</Italian>
+    <Spanish>Alianza permanente</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_DENIAL_DENIAL_CULTURE_YOU</Tag>
     <English>"We are not impressed with your culture."</English>
     <French>"We are not impressed with your culture."</French>
@@ -245,6 +261,30 @@
     </Italian>
     <Spanish>
       <Text>Alianza permanente</Text>
+      <Gender>Female</Gender>
+      <Plural>0</Plural>
+    </Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRADE_PERMANENT_OVERLORD_STRING</Tag>
+    <English>Become Overlord</English>
+    <French>
+      <Text>Become Overlord</Text>
+      <Gender>Female</Gender>
+      <Plural>0</Plural>
+    </French>
+    <German>
+      <Text>Become Overlord</Text>
+      <Gender>Male</Gender>
+      <Plural>0</Plural>
+    </German>
+    <Italian>
+      <Text>Become Overlord</Text>
+      <Gender>Female</Gender>
+      <Plural>0</Plural>
+    </Italian>
+    <Spanish>
+      <Text>Become Overlord</Text>
       <Gender>Female</Gender>
       <Plural>0</Plural>
     </Spanish>
