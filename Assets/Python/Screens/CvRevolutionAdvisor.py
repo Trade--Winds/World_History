@@ -70,7 +70,7 @@ class CvRevolutionAdvisor:
 		self.X_ROYAL_UNITS = self.XResolution * 58 / 100
 		self.X_COLONIAL_UNITS = self.XResolution  * 3 / 20
 		
-		self.BAR_SIDE_MARGIN = self.YResolution / 15
+		self.BAR_SIDE_MARGIN = self.YResolution / 9
 		self.BAR_END_ICON_SIZE = self.YResolution / 13
 		self.ICON_BUTTON_SIZE = self.YResolution / 14
 		
@@ -146,8 +146,21 @@ class CvRevolutionAdvisor:
 			iMail += city.getYieldStored(gc.getInfoTypeForString("YIELD_MAIL_ARMOR"))
 			iPlate += city.getYieldStored(gc.getInfoTypeForString("YIELD_PLATE_ARMOR"))
 			(city, iter) = self.player.nextCity(iter, true)
+		iNobles = 0
+		for iLoopPlayer in range(gc.getMAX_PLAYERS()):
+			loopPlayer = gc.getPlayer(iLoopPlayer)	
+			if loopPlayer.getTeam() == self.player.getTeam():
+				iNobles += loopPlayer.getUnitClassCount(gc.getDefineINT("DEFAULT_NOBLEMAN_CLASS"))
 		yMod1 = 1
 		yMod2 = 9
+		eNoble = gc.getCivilizationInfo(self.player.getCivilizationType()).getCivilizationUnits(gc.getDefineINT("DEFAULT_NOBLEMAN_CLASS"))
+		UnitInfo = gc.getUnitInfo(eNoble)
+		iUnitArtStyle = gc.getCivilizationInfo(self.player.getCivilizationType()).getUnitArtStyleType()
+		screen.addDDSGFC( "NobleIcon", UnitInfo.getUnitArtStylesArtInfo(0, 0, iUnitArtStyle).getButton(), self.ICON_BUTTON_SIZE / 4, (self.YResolution * (yMod1) / yMod2), self.ICON_BUTTON_SIZE, self.ICON_BUTTON_SIZE, WidgetTypes.WIDGET_GENERAL, -1, -1)
+		NobleText = str(iNobles)
+		NobleText = localText.changeTextColor(NobleText, gc.getInfoTypeForString("COLOR_FONT_GOLD"))
+		screen.setLabel( "Noble Count", "Background", u"<font=4>" + NobleText + "</font>", CvUtil.FONT_CENTER_JUSTIFY, self.ICON_BUTTON_SIZE * 3 / 4, (self.YResolution * (yMod1) / yMod2) + self.ICON_BUTTON_SIZE, 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+
 		screen.addDDSGFC( "HorseIcon", gc.getYieldInfo(gc.getInfoTypeForString("YIELD_HORSES")).getIcon(), self.ICON_BUTTON_SIZE / 4, (self.YResolution * (yMod1 + 1) / yMod2), self.ICON_BUTTON_SIZE, self.ICON_BUTTON_SIZE, WidgetTypes.WIDGET_GENERAL, -1, -1)
 		HorseText = str(iHorses)
 		HorseText = localText.changeTextColor(HorseText, gc.getInfoTypeForString("COLOR_FONT_GOLD"))
@@ -416,93 +429,6 @@ class CvRevolutionAdvisor:
 		#
 		
 
-		
-	def drawColonialTroops(self):
-		screen = self.getScreen()
-
-		YMultiplier = int(self.ICON_BUTTON_SIZE * 1.3)
-		#print str(YMultiplier)
-		
-		RebelText = localText.getText("INTERFACE_COLONIAL_FORCES", ())
-		RebelText = localText.changeTextColor(RebelText, gc.getInfoTypeForString("COLOR_FONT_GOLD"))
-		screen.setLabel( "Colonial Troops", "Background", u"<font=4>" + RebelText + "</font>", CvUtil.FONT_LEFT_JUSTIFY, self.X_COLONIAL_UNITS, self.Y_UNITS_LISTS + (YMultiplier * 0), 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-	
-		Troops, VeteranTroops, Dragoons, VeteranDragoons, Cannons, Ships = 0, 0, 0, 0, 0, 0
-		
-		for iLoopPlayer in range(gc.getMAX_PLAYERS()):
-			loopPlayer = gc.getPlayer(iLoopPlayer)
-			if loopPlayer.getTeam() == self.player.getTeam():
-			
-				(unit, iter) = loopPlayer.firstUnit()
-				while(unit):
-					Profession = unit.getProfession()
-					UnitType = unit.getUnitType()
-					if isSoldier(Profession):
-						Troops += 1
-						if isVeteran(UnitType):
-							VeteranTroops += 1
-					if isDragoon(Profession):
-						Dragoons += 1
-						if isVeteran(UnitType):
-							VeteranDragoons += 1
-					if isCannon(UnitType):
-						Cannons += 1
-					if isWarship(UnitType):
-						Ships += 1				
-					(unit, iter) = loopPlayer.nextUnit(iter)
-
-				for i in range(loopPlayer.getNumEuropeUnits()):
-					unit = loopPlayer.getEuropeUnit(i)
-					Profession = unit.getProfession()
-					UnitType = unit.getUnitType()
-					if isSoldier(Profession):
-						Troops += 1
-						if isVeteran(UnitType):
-							VeteranTroops += 1
-					if isDragoon(Profession):
-						Dragoons += 1
-						if isVeteran(UnitType):
-							VeteranDragoons += 1
-					if isCannon(UnitType):
-						Cannons += 1
-					if isWarship(UnitType):
-						Ships += 1				
-
-		if VeteranTroops > 0:
-			screen.addDDSGFC("Rebel Troop Icon", CyArtFileMgr().getUnitArtInfo("ART_DEF_UNIT_VETERAN").getButton(), self.X_COLONIAL_UNITS, self.Y_UNITS_LISTS + (YMultiplier * 1), self.ICON_BUTTON_SIZE, self.ICON_BUTTON_SIZE, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		else:
-			screen.addDDSGFC("Rebel Troop Icon", CyArtFileMgr().getUnitArtInfo("ART_DEF_UNIT_PROFESSION_SOLDIER").getButton(), self.X_COLONIAL_UNITS, self.Y_UNITS_LISTS + (YMultiplier * 1), self.ICON_BUTTON_SIZE, self.ICON_BUTTON_SIZE, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-			
-		TroopText = localText.getText("INTERFACE_REVOLUTION_SCREEN_SOLDIERS", (Troops, ))
-		TroopText = localText.changeTextColor(TroopText, gc.getInfoTypeForString("COLOR_BROWN_TEXT"))
-		screen.setLabel( "Rebel Troop Count", "Background", u"<font=3>" + TroopText + "</font>", CvUtil.FONT_LEFT_JUSTIFY, self.X_COLONIAL_UNITS + (self.ICON_BUTTON_SIZE * 5 / 4), self.Y_UNITS_LISTS + (YMultiplier * 1), 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		szVeteranString = localText.getText("INTERFACE_REVOLUTION_SCREEN_VETERAN_MILITIA", (VeteranTroops, Troops - VeteranTroops))
-		szVeteranString = localText.changeTextColor(szVeteranString, gc.getInfoTypeForString("COLOR_BROWN_TEXT"))
-		screen.setLabel( "Rebel Veteran Troop Count", "Background", u"<font=3>" + szVeteranString + "</font>", CvUtil.FONT_LEFT_JUSTIFY, self.X_COLONIAL_UNITS + (self.ICON_BUTTON_SIZE * 5 / 4), self.Y_UNITS_LISTS + int(YMultiplier * 1.4), 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		
-		if VeteranDragoons > 0:
-			screen.addDDSGFC("Rebel Draggon Icon", CyArtFileMgr().getUnitArtInfo("ART_DEF_UNIT_PROFESSION_UNIT_VETERAN_DRAGOON").getButton(), self.X_COLONIAL_UNITS, self.Y_UNITS_LISTS + (YMultiplier * 2), self.ICON_BUTTON_SIZE, self.ICON_BUTTON_SIZE, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		else:
-			screen.addDDSGFC("Rebel Draggon Icon", CyArtFileMgr().getUnitArtInfo("ART_DEF_UNIT_PROFESSION_DRAGOON").getButton(), self.X_COLONIAL_UNITS, self.Y_UNITS_LISTS + (YMultiplier * 2), self.ICON_BUTTON_SIZE, self.ICON_BUTTON_SIZE, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-
-		GoonText = localText.getText("INTERFACE_REVOLUTION_SCREEN_DRAGOONS", (Dragoons, ))
-		GoonText = localText.changeTextColor(GoonText, gc.getInfoTypeForString("COLOR_BROWN_TEXT"))
-		screen.setLabel( "Rebel Dragoon Count", "Background", u"<font=3>" + GoonText + "</font>", CvUtil.FONT_LEFT_JUSTIFY, self.X_COLONIAL_UNITS + (self.ICON_BUTTON_SIZE * 5 / 4), self.Y_UNITS_LISTS + (YMultiplier * 2), 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		szVeteranDragoonString = localText.getText("INTERFACE_REVOLUTION_SCREEN_VETERAN_MILITIA", (VeteranDragoons, Dragoons - VeteranDragoons))
-		szVeteranDragoonString = localText.changeTextColor(szVeteranDragoonString, gc.getInfoTypeForString("COLOR_BROWN_TEXT"))
-		screen.setLabel( "Rebel Veteran Dragoon Count", "Background", u"<font=3>" + szVeteranDragoonString + "</font>", CvUtil.FONT_LEFT_JUSTIFY, self.X_COLONIAL_UNITS + (self.ICON_BUTTON_SIZE * 5 / 4), self.Y_UNITS_LISTS + int(YMultiplier * 2.4), 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		
-		screen.addDDSGFC("Rebel Cannon Icon", CyArtFileMgr().getUnitArtInfo("ART_DEF_UNIT_CANNON").getButton(), self.X_COLONIAL_UNITS, self.Y_UNITS_LISTS + (YMultiplier * 3), self.ICON_BUTTON_SIZE, self.ICON_BUTTON_SIZE, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-
-		CannonText = localText.getText("INTERFACE_REVOLUTION_SCREEN_CANNONS", (Cannons, ))
-		CannonText = localText.changeTextColor(CannonText, gc.getInfoTypeForString("COLOR_BROWN_TEXT"))
-		screen.setLabel( "Rebel Cannon Count", "Background", u"<font=3>" + CannonText + "</font>", CvUtil.FONT_LEFT_JUSTIFY, self.X_COLONIAL_UNITS + (self.ICON_BUTTON_SIZE * 5 / 4), self.Y_UNITS_LISTS + (YMultiplier * 3), 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		
-		screen.addDDSGFC("Rebel Ship Icon", CyArtFileMgr().getUnitArtInfo("ART_DEF_UNIT_SHIP_OF_THE_LINE").getButton(), self.X_COLONIAL_UNITS, self.Y_UNITS_LISTS + (YMultiplier * 4), self.ICON_BUTTON_SIZE, self.ICON_BUTTON_SIZE, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		ShipText = localText.getText("INTERFACE_WARSHIPS", (Ships,))
-		ShipText = localText.changeTextColor(ShipText, gc.getInfoTypeForString("COLOR_BROWN_TEXT"))
-		screen.setLabel( "Rebel Ship Count", "Background", u"<font=3>" + ShipText + "</font>", CvUtil.FONT_LEFT_JUSTIFY, self.X_COLONIAL_UNITS + (self.ICON_BUTTON_SIZE * 5 / 4), self.Y_UNITS_LISTS + (YMultiplier * 4), 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-	
 	def drawPlayerTroops(self):
 		screen = self.getScreen()
 
@@ -523,10 +449,11 @@ class CvRevolutionAdvisor:
 		X_Mod_Cout = 0
 		Y_Mod = 1
 		iIconSize = self.ICON_BUTTON_SIZE
+		iNobles = 0
 		for iLoopPlayer in range(gc.getMAX_PLAYERS()):
 			loopPlayer = gc.getPlayer(iLoopPlayer)
-			if loopPlayer.getTeam() == self.player.getTeam():
 			
+			if loopPlayer.getTeam() == self.player.getTeam():
 				(unit, iter) = loopPlayer.firstUnit()
 				while(unit):
 					Profession = unit.getProfession()
@@ -688,6 +615,11 @@ def isDragoon(eProfession):
 	if (gc.getProfessionInfo(eProfession).isUnarmed()):
 		return false
 	return (getProfessionYieldsRequired(eProfession) > 2)
+def isKnight(UnitType):
+	unit = gc.getUnitInfo(UnitType)
+	if (unit.getFreePromotions(gc.getDefineINT("DEFAULT_KNIGHT_PROMOTION"))):
+		return true
+	return false
 
 def isCannon(eUnit):
 	unit = gc.getUnitInfo(eUnit)
