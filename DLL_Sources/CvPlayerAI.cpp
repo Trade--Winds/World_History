@@ -9933,14 +9933,21 @@ int CvPlayerAI::AI_professionValue(ProfessionTypes eProfession, UnitAITypes eUni
 				iValue += 50 * kProfession.getMovesChange();
 			}
 			break;
-
+        ///Tks Med
+		case UNITAI_TRADER:
+			{
+			    if (kProfession.getDefaultUnitAIType() != eUnitAI)
+                {
+                    return 0;
+                }
+				iValue += 100 * kProfession.getMovesChange();
+			}
+			break;
+        ///Tke
 		case UNITAI_WAGON:
 		case UNITAI_TREASURE:
 		case UNITAI_YIELD:
 		case UNITAI_GENERAL:
-		///Tks Med
-		case UNITAI_TRADER:
-		///Tke
 			break;
 
 		case UNITAI_DEFENSIVE:

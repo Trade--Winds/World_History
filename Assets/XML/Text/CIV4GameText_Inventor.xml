@@ -1227,11 +1227,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_CONVERT</Tag>
-    <English>Your Trading League, -%d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</English>
-    <French>Your Trading League, minus %d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</French>
-    <German>Your Trading League, minus %d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</German>
-    <Italian>Your Trading League, minus %d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</Italian>
-    <Spanish>Your Trading League, minus %d1_taxrate% Tithe Rate, has brought in %d2_gold[ICON_GOLD]</Spanish>
+    <English>Your Trading League has brought in %d1_gold[ICON_GOLD](-%d2_taxrate% Tithe Rate)</English>
+    <French>Your Trading League has brought in %d1_gold[ICON_GOLD](-%d2_taxrate% Tithe Rate)</French>
+    <German>Your Trading League has brought in %d1_gold[ICON_GOLD](-%d2_taxrate% Tithe Rate)</German>
+    <Italian>Your Trading League has brought in %d1_gold[ICON_GOLD](-%d2_taxrate% Tithe Rate)</Italian>
+    <Spanish>Your Trading League has brought in %d1_gold[ICON_GOLD](-%d2_taxrate% Tithe Rate)</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_ESTABLISHED</Tag>

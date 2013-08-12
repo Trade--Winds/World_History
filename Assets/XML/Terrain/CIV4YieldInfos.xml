@@ -94,7 +94,7 @@
     <YieldInfo>
       <Type>YIELD_CATTLE</Type>
       <Description>Cattle</Description>
-      <Civilopedia>TXT_KEY_YIELD_FOOD_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BONUS_COW_PEDIA</Civilopedia>
       <bCargo>1</bCargo>
       <iBuyPriceLow>5</iBuyPriceLow>
       <iBuyPriceHigh>7</iBuyPriceHigh>
@@ -136,7 +136,7 @@
     <YieldInfo>
       <Type>YIELD_SHEEP</Type>
       <Description>Sheep</Description>
-      <Civilopedia>TXT_KEY_YIELD_FOOD_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BONUS_SHEEP_PEDIA</Civilopedia>
       <bCargo>1</bCargo>
       <iBuyPriceLow>4</iBuyPriceLow>
       <iBuyPriceHigh>6</iBuyPriceHigh>
@@ -178,7 +178,7 @@
     <YieldInfo>
       <Type>YIELD_WOOL</Type>
       <Description>Wool</Description>
-      <Civilopedia>TXT_KEY_YIELD_FOOD_PEDIA</Civilopedia>
+      <Civilopedia>????</Civilopedia>
       <bCargo>1</bCargo>
       <iBuyPriceLow>4</iBuyPriceLow>
       <iBuyPriceHigh>6</iBuyPriceHigh>
@@ -349,7 +349,7 @@
     <YieldInfo>
       <Type>YIELD_SALT</Type>
       <Description>Silk</Description>
-      <Civilopedia>TXT_KEY_YIELD_FOOD_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BONUS_SILK_PEDIA</Civilopedia>
       <bCargo>1</bCargo>
       <iBuyPriceLow>11</iBuyPriceLow>
       <iBuyPriceHigh>11</iBuyPriceHigh>
@@ -392,7 +392,7 @@
     <YieldInfo>
       <Type>YIELD_SPICES</Type>
       <Description>Spices</Description>
-      <Civilopedia>TXT_KEY_YIELD_SILVER_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BONUS_SPICES_PEDIA</Civilopedia>
       <bCargo>1</bCargo>
       <iBuyPriceLow>8</iBuyPriceLow>
       <iBuyPriceHigh>8</iBuyPriceHigh>
@@ -563,7 +563,7 @@
 		<YieldInfo>
 			<Type>YIELD_GRAPES</Type>
 			<Description>Grapes</Description>
-			<Civilopedia>????</Civilopedia>
+			<Civilopedia>TXT_KEY_BONUS_WINE_PEDIA</Civilopedia>
 			<bCargo>1</bCargo>
 			<iBuyPriceLow>3</iBuyPriceLow>
 			<iBuyPriceHigh>5</iBuyPriceHigh>
@@ -773,7 +773,7 @@
 		<YieldInfo>
 			<Type>YIELD_WINE</Type>
 			<Description>Wine</Description>
-			<Civilopedia>????</Civilopedia>
+			<Civilopedia>TXT_KEY_BONUS_WINE_PEDIA</Civilopedia>
 			<bCargo>1</bCargo>
 			<iBuyPriceLow>8</iBuyPriceLow>
 			<iBuyPriceHigh>12</iBuyPriceHigh>
@@ -1166,7 +1166,7 @@
 		<YieldInfo>
 			<Type>YIELD_BELLS</Type>
 			<Description>Fealty</Description>
-			<Civilopedia>TXT_KEY_YIELD_BELLS_PEDIA</Civilopedia>
+			<Civilopedia>????</Civilopedia>
 			<bCargo>0</bCargo>
 			<iBuyPriceLow>0</iBuyPriceLow>
 			<iBuyPriceHigh>0</iBuyPriceHigh>
@@ -1262,7 +1262,7 @@
     <YieldInfo>
       <Type>YIELD_IDEAS</Type>
       <Description>Research</Description>
-      <Civilopedia>TXT_KEY_YIELD_EDUCATION_PEDIA</Civilopedia>
+      <Civilopedia>????</Civilopedia>
       <bCargo>0</bCargo>
       <iBuyPriceLow>0</iBuyPriceLow>
       <iBuyPriceHigh>0</iBuyPriceHigh>
@@ -1294,7 +1294,7 @@
     <YieldInfo>
       <Type>YIELD_CULTURE</Type>
       <Description>Prosperity</Description>
-      <Civilopedia>TXT_KEY_YIELD_BELLS_PEDIA</Civilopedia>
+      <Civilopedia>????</Civilopedia>
       <bCargo>0</bCargo>
       <iBuyPriceLow>0</iBuyPriceLow>
       <iBuyPriceHigh>0</iBuyPriceHigh>

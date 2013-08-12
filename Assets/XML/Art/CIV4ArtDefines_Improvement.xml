@@ -27,11 +27,11 @@
     <ImprovementArtInfo>
       <Type>ART_DEF_IMPROVEMENT_WATCH_TOWER</Type>
       <bExtraAnimations>0</bExtraAnimations>
-      <fScale>0.8</fScale>
-      <fInterfaceScale>1.0</fInterfaceScale>
-      <NIF>Art/Structures/Improvements/tower/tower.nif</NIF>
+      <fScale>0.5</fScale>
+      <fInterfaceScale>0.8</fInterfaceScale>
+      <NIF>Art/Structures/Improvements/RomanTower/RomanTower.nif</NIF>
       <KFM/>
-      <Button>,Art/Interface/Buttons/Civilizations/Warlords_Atlas_1.dds,1,5</Button>
+      <Button>Art/Structures/Improvements/RomanTower/btn_RomanTower.dds</Button>
     </ImprovementArtInfo>
     <ImprovementArtInfo>
       <Type>ART_DEF_IMPROVEMENT_LODGE_TOWER</Type>

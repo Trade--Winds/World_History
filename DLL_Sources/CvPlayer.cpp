@@ -17736,7 +17736,7 @@ void CvPlayer::doIdeas(bool Cheat)
                     {
                         GET_TEAM(getTeam()).changeFatherPoints(eFatherPoint, -iCurrrentPoints);
                         changeGold(iGold);
-                        CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_CONVERT", getTaxRate(), iGold);
+                        CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_PLAYER_TRADE_LEAGUE_CONVERT", iGold, getTaxRate());
                         gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"));
                     }
                       char szOut[1024];

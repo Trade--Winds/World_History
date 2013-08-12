@@ -3122,14 +3122,18 @@ void CvUnitAI::AI_transportTraderMove()
         {
             return;
         }
-        if (plot()->getPlotCity() != NULL)
+        if (AI_getUnitAIState() != UNITAI_STATE_RETURN_HOME)
         {
-            if (getGroup()->AI_getMissionAIPlot() == plot())
+           if (plot()->getPlotCity() != NULL)
             {
-                tradeYield();
-                AI_setUnitAIState(UNITAI_STATE_RETURN_HOME);
-                finishMoves();
-                return;
+                if (getGroup()->AI_getMissionAIPlot() == plot())
+                {
+                    tradeYield();
+                    AI_setUnitAIState(UNITAI_STATE_RETURN_HOME);
+                    finishMoves();
+                    //getGroup()->clearMissionQueue();
+                    return;
+                }
             }
         }
 
@@ -3227,7 +3231,6 @@ void CvUnitAI::AI_transportTraderMove()
 	}
 
 	 CvCity* pCity = NULL;
-	//bool bHome = false;
     if (plot()->getPlotCity() != NULL)
     {
         if (canBuildTradingPost(false))
@@ -3237,13 +3240,15 @@ void CvUnitAI::AI_transportTraderMove()
         ///Native Trade
         if (AI_tradeWithCity())
         {
-            //AI_setUnitAIState(NO_UNITAI_STATE);
             return;
         }
         if (plot()->getOwner() == getOwner())
         {
             pCity = plot()->getPlotCity();
-            //bHome = true;
+            if (!isHuman())
+            {
+                AI_upgradeProfession();
+            }
         }
     }
     if (AI_getUnitAIState() == UNITAI_STATE_PURCHASED)

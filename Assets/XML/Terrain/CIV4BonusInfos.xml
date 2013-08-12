@@ -11,7 +11,7 @@
     <BonusInfo>
       <Type>BONUS_CATTLE</Type>
       <Description>Cattle</Description>
-      <Civilopedia>TXT_KEY_BONUS_DEER_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BONUS_COW_PEDIA</Civilopedia>
       <ArtDefineTag>ART_DEF_BONUS_COW</ArtDefineTag>
       <BuildingType>BUILDING_BONUS_DEER</BuildingType>
       <YieldChanges>
@@ -58,7 +58,7 @@
     <BonusInfo>
       <Type>BONUS_SHEEP</Type>
       <Description>Sheep</Description>
-      <Civilopedia>TXT_KEY_BONUS_DEER_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BONUS_SHEEP_PEDIA</Civilopedia>
       <ArtDefineTag>ART_DEF_BONUS_SHEEP</ArtDefineTag>
       <BuildingType>BUILDING_BONUS_DEER</BuildingType>
       <YieldChanges>
@@ -109,7 +109,7 @@
     <BonusInfo>
       <Type>BONUS_HORSE</Type>
       <Description>Horses</Description>
-      <Civilopedia>????</Civilopedia>
+      <Civilopedia>TXT_KEY_BONUS_HORSE_PEDIA</Civilopedia>
       <ArtDefineTag>ART_DEF_BONUS_HORSE</ArtDefineTag>
       <BuildingType>BUILDING_BONUS_DEER</BuildingType>
       <YieldChanges>
@@ -632,7 +632,7 @@
 		<BonusInfo>
 			<Type>BONUS_GRAPES</Type>
 			<Description>Grapes</Description>
-			<Civilopedia>TXT_KEY_YIELD_WINE_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_BONUS_WINE_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_BONUS_WINE</ArtDefineTag>
 			<BuildingType>BUILDING_BONUS_TOBACCO</BuildingType>
 			<YieldChanges>
@@ -760,7 +760,7 @@
     <BonusInfo>
       <Type>BONUS_STONE</Type>
       <Description>Granite</Description>
-      <Civilopedia>TXT_KEY_BONUS_IRON_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BONUS_STONE_PEDIA</Civilopedia>
       <ArtDefineTag>ART_DEF_BONUS_STONE</ArtDefineTag>
       <BuildingType>BUILDING_BONUS_IRON</BuildingType>
       <YieldChanges>
