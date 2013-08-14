@@ -1650,7 +1650,7 @@ void getUnitAIString(CvWString& szString, UnitAITypes eUnitAI)
 	case UNITAI_COMBAT_SEA: szString = L"combat sea"; break;
 	case UNITAI_PIRATE_SEA: szString = L"pirate sea"; break;
 	///TKs Med
-	case UNITAI_TRADER: szString = L"pirate sea"; break;
+	case UNITAI_TRADER: szString = L"trader"; break;
 	///Tke
 	default: szString = CvWString::format(L"unknown(%d)", eUnitAI); break;
 	}

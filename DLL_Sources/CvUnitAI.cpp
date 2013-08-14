@@ -3306,7 +3306,7 @@ void CvUnitAI::AI_transportTraderMove()
 					}
 				    //if (iNativeSaleGoods == 0)
 				    //{
-                    pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, NO_TEAM, true, false, false, pLoopUnit->getYield());
+                    pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, getTeam(), true, false, false, pLoopUnit->getYield());
                     if (pTraderCity != NULL)
                     {
                         AI_setUnitAIState(UNITAI_STATE_SELL_TO_NATIVES);

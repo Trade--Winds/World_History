@@ -687,7 +687,7 @@ CvCity* CvMap::findTraderCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTea
 		{
 			if ((eOwner == NO_PLAYER) || (eOwner != NO_PLAYER && (GET_PLAYER(eOwner).isNative() != GET_PLAYER((PlayerTypes)iI).isNative())))
 			{
-				if ((eTeam == NO_TEAM) || !atWar(GET_PLAYER((PlayerTypes)iI).getTeam(), eTeam))
+				if ((eTeam == NO_TEAM) || GET_TEAM(GET_PLAYER((PlayerTypes)iI).getTeam()).isOpenBorders(eTeam))
 				{
 					int iLoop;
 					for (CvCity* pLoopCity = GET_PLAYER((PlayerTypes)iI).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER((PlayerTypes)iI).nextCity(&iLoop))

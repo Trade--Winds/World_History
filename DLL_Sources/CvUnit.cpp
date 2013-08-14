@@ -1011,7 +1011,11 @@ void CvUnit::doTurn()
     ///TKe
 	FAssertMsg(!isDead(), "isDead did not return false as expected");
 	FAssert(getGroup() != NULL || GET_PLAYER(getOwnerINLINE()).getPopulationUnitCity(getID()) != NULL);
-
+	//if (isNative())
+   // {
+    //    FAssert(getGroup() != NULL);
+    //}
+   // int iID = getID();
 	testPromotionReady();
 ///Tks Med
     if (isOnMap())
@@ -1035,21 +1039,23 @@ void CvUnit::doTurn()
                 changeFortifyTurns(1);
             }
         }
-    }
 
-    bool bGuarding = (getImmobileTimer() > 0);
-	changeImmobileTimer(-1);
-	if (isBarbarian() && !isOnlyDefensive())
-    {
-        if (!bGuarding && getImmobileTimer() == 0 && plot()->getImprovementType() != NO_IMPROVEMENT)
+        bool bGuarding = (getImmobileTimer() > 0);
+        changeImmobileTimer(-1);
+        if (isBarbarian() && !isOnlyDefensive())
         {
-            if (GC.getImprovementInfo(plot()->getImprovementType()).isGoody())
+            if (!bGuarding && getImmobileTimer() == 0 && plot()->getImprovementType() != NO_IMPROVEMENT)
             {
-                int iRand = GC.getGameINLINE().getSorenRandNum(GC.getCache_ANIMAL_BANDITS_GUARD_GOODY_TIMER(), "ANIMAL_BANDITS_GUARD_GOODY_TIMER");
-                changeImmobileTimer(iRand);
+                if (GC.getImprovementInfo(plot()->getImprovementType()).isGoody())
+                {
+                    int iRand = GC.getGameINLINE().getSorenRandNum(GC.getCache_ANIMAL_BANDITS_GUARD_GOODY_TIMER(), "ANIMAL_BANDITS_GUARD_GOODY_TIMER");
+                    changeImmobileTimer(iRand);
+                }
             }
         }
     }
+
+
 	doUnitTravelTimer();
 
 	setMadeAttack(false);
@@ -12057,8 +12063,10 @@ bool CvUnit::isPromotionReady() const
 
 void CvUnit::setPromotionReady(bool bNewValue)
 {
-	if (isPromotionReady() != bNewValue)
+    ///TKs Med
+	if (isPromotionReady() != bNewValue && getGroup() != NULL)
 	{
+	    ///TKe
 		m_bPromotionReady = bNewValue;
 
 		if (m_bPromotionReady)
