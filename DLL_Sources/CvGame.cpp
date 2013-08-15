@@ -7227,11 +7227,12 @@ void CvGame::setFatherTeam(FatherTypes eFather, TeamTypes eTeam)
 				for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
 				{
 					CvPlayer& kPlayer = GET_PLAYER((PlayerTypes) iPlayer);
-
-					if (kPlayer.isAlive() && kPlayer.getTeam() == eTeam)
+                    ///TKs Med
+					if (kPlayer.isAlive() && kPlayer.getTeam() == eTeam && !kPlayer.isNative())
 					{
 						kPlayer.processFatherOnce(eFather);
 					}
+					///TKe
 				}
 
 				CvWString szBuffer;

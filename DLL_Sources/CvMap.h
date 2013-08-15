@@ -108,7 +108,7 @@ public:
     ///TKs Med
 	CvPlot* syncRandPlot(int iFlags = 0, int iArea = -1, int iMinUnitDistance = -1, int iTimeout = 100, bool bIgnoreNativeTeams = false);
 	DllExport CvCity* findCity(int iX, int iY, PlayerTypes eOwner = NO_PLAYER, TeamTypes eTeam = NO_TEAM, bool bSameArea = true, bool bCoastalOnly = false, TeamTypes eTeamAtWarWith = NO_TEAM, DirectionTypes eDirection = NO_DIRECTION, CvCity* pSkipCity = NULL, bool bRandom = false);
-	DllExport CvCity* findTraderCity(int iX, int iY, PlayerTypes eOwner = NO_PLAYER, TeamTypes eTeam=NO_TEAM, bool bSameArea=true, bool bCoastalOnly=false, bool bNative=false, YieldTypes eNativeYield=NO_YIELD, int iMinAttitude = -1, bool bRandom=false);
+	DllExport CvCity* findTraderCity(int iX, int iY, PlayerTypes eOwner = NO_PLAYER, TeamTypes eTeam=NO_TEAM, bool bSameArea=true, bool bCoastalOnly=false, bool bNative=false, YieldTypes eNativeYield=NO_YIELD, int iMinAttitude = -1, CvUnit* pUnit=NULL, bool bRandom=false);
     ///TKe
 	DllExport CvSelectionGroup* findSelectionGroup(int iX, int iY, PlayerTypes eOwner = NO_PLAYER, bool bReadyToSelect = false);
 

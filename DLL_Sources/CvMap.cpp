@@ -676,10 +676,19 @@ CvCity* CvMap::findCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTeam, boo
 
     return pBestCity;
 }
-CvCity* CvMap::findTraderCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTeam, bool bSameArea, bool bCoastalOnly, bool bNative, YieldTypes eNativeYield, int iMinAttitude, bool bRandom)
+CvCity* CvMap::findTraderCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTeam, bool bSameArea, bool bCoastalOnly, bool bNative, YieldTypes eNativeYield, int iMinAttitude, CvUnit* pUnit, bool bRandom)
 {
 	int iBestValue = MAX_INT;
 	CvCity* pBestCity = NULL;
+	CvCity* pHomeCity = NULL;
+	if (pUnit != NULL)
+    {
+        pHomeCity = pUnit->getHomeCity();
+        if (pHomeCity == NULL)
+        {
+            return NULL;
+        }
+    }
     std::vector<CvCity*> aCitys;
 	for (int iI = 0; iI < MAX_PLAYERS; iI++)
 	{
@@ -692,8 +701,9 @@ CvCity* CvMap::findTraderCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTea
 					int iLoop;
 					for (CvCity* pLoopCity = GET_PLAYER((PlayerTypes)iI).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER((PlayerTypes)iI).nextCity(&iLoop))
 					{
-					    //if ((eTeam == NO_TEAM) || !atWar(GET_PLAYER((PlayerTypes)iI).getTeam(), eTeam))
-					    //{
+					    int iNativeCityPathTurns;
+					    if (pUnit == NULL || pUnit->generatePath(pLoopCity->plot(), 0, true, &iNativeCityPathTurns))
+					    {
                             if (!bSameArea || (pLoopCity->area() == plotINLINE(iX, iY)->area()) || (bCoastalOnly && (pLoopCity->waterArea() == plotINLINE(iX, iY)->area())))
                             {
                                 if (!bCoastalOnly || pLoopCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
@@ -724,7 +734,7 @@ CvCity* CvMap::findTraderCity(int iX, int iY, PlayerTypes eOwner, TeamTypes eTea
                                     //}
                                 }
                             }
-					    //}
+					    }
 					}
 				}
 			}

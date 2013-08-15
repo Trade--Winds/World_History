@@ -20200,7 +20200,11 @@
       <YieldCosts>
         <YieldCost>
           <YieldType>YIELD_FOOD</YieldType>
-          <iCost>30</iCost>
+          <iCost>80</iCost>
+        </YieldCost>
+        <YieldCost>
+          <YieldType>YIELD_HAMMERS</YieldType>
+          <iCost>10</iCost>
         </YieldCost>
       </YieldCosts>
       <iHurryCostModifier>0</iHurryCostModifier>
@@ -21497,7 +21501,11 @@
       <YieldCosts>
         <YieldCost>
           <YieldType>YIELD_FOOD</YieldType>
-          <iCost>30</iCost>
+          <iCost>80</iCost>
+        </YieldCost>
+        <YieldCost>
+          <YieldType>YIELD_HAMMERS</YieldType>
+          <iCost>10</iCost>
         </YieldCost>
       </YieldCosts>
       <iHurryCostModifier>0</iHurryCostModifier>

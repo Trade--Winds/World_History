@@ -2666,7 +2666,7 @@ void CvUnitAI::AI_defensiveBraveMove()
                             {
                                 if (pCity->getYieldStored((YieldTypes)iYield) > 20)
                                 {
-                                    CvCity* pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, NO_TEAM, true, false, false, (YieldTypes)iYield, 6);
+                                    CvCity* pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, NO_TEAM, true, false, false, (YieldTypes)iYield, 6, this);
                                     if (pTraderCity != NULL)
                                     {
                                             //FAssert(false);
@@ -3158,7 +3158,7 @@ void CvUnitAI::AI_transportTraderMove()
                     {
                         FAssert(pLoopUnit->getYieldStored() > 0);
 
-                        CvCity* pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, NO_TEAM, true, false, false, pLoopUnit->getYield(), 10);
+                        CvCity* pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, NO_TEAM, true, false, false, pLoopUnit->getYield(), 10, this);
                         if (pTraderCity != NULL)
                         {
                             if (AI_travelToNativeVillage(ATTITUDE_CAUTIOUS, ATTITUDE_FRIENDLY, 0, pTraderCity))
@@ -3306,7 +3306,7 @@ void CvUnitAI::AI_transportTraderMove()
 					}
 				    //if (iNativeSaleGoods == 0)
 				    //{
-                    pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, getTeam(), true, false, false, pLoopUnit->getYield());
+                    pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, getTeam(), true, false, false, pLoopUnit->getYield(), 0, this);
                     if (pTraderCity != NULL)
                     {
                         AI_setUnitAIState(UNITAI_STATE_SELL_TO_NATIVES);
@@ -3333,7 +3333,7 @@ void CvUnitAI::AI_transportTraderMove()
         ///Last Resort if no land Europe tiles
                 //else
                 //{
-        pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, getTeam(), true, false, true, NO_YIELD, -1, true);
+        pTraderCity = GC.getMapINLINE().findTraderCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, getTeam(), true, false, true, NO_YIELD, -1, this, true);
         if (pTraderCity != NULL)
         {
             //setHomeCity(pTraderCity);
