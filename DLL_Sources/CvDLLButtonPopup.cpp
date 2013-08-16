@@ -1232,7 +1232,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 			CvUnit* pUnit = GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getUnit(info.getData2());
 			if (pUnit != NULL)
 			{
-				if (pUnit->getUnitTravelState() == UNIT_TRAVEL_STATE_IN_EUROPE)
+				if (pUnit->getUnitTravelState() != NO_UNIT_TRAVEL_STATE)
 				{
 					gDLL->sendPlayerAction(GC.getGameINLINE().getActivePlayer(), (PlayerActionTypes)info.getData3(), info.getData1(), pPopupReturn->getCurrentSpinBoxValue(0), info.getData2());
 				}
@@ -3539,8 +3539,11 @@ bool CvDLLButtonPopup::launchSelectYieldAmountPopup(CvPopup* pPopup, CvPopupInfo
 		return false;
 	}
 
-	if (pUnit->getUnitTravelState() != UNIT_TRAVEL_STATE_IN_EUROPE)
+	if (pUnit->getUnitTravelState() == NO_UNIT_TRAVEL_STATE)
 	{
+	    ///TKs Med
+	   // return false;
+	    ///TKe
 		FAssert(pUnit->getUnitTravelState() == NO_UNIT_TRAVEL_STATE);
 		if (!pUnit->canDoCommand((CommandTypes) info.getData3(), info.getData1(), -1))
 		{

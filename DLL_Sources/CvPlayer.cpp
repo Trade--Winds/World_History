@@ -14598,10 +14598,10 @@ CvUnit* CvPlayer::buyYieldUnitFromEurope(YieldTypes eYield, int iAmount, CvUnit*
 	}
 
 	///TKs Invention Core Mod v 1.0
-	if (eYield == YIELD_CLOTH && GC.getGameINLINE().isIndustrialVictoryAll())
-    {
-        return NULL;
-    }
+//	if (eYield == YIELD_CLOTH && GC.getGameINLINE().isIndustrialVictoryAll())
+//    {
+//        return NULL;
+//    }
 	///TKe
 
 	FAssert(pTransport != NULL);

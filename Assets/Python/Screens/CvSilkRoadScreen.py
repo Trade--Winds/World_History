@@ -243,24 +243,24 @@ class CvSilkRoadScreen:
 			if (YieldOnBoard):
 				screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", gc.getActionInfo(gc.getInfoTypeForString("COMMAND_CHOOSE_TRADE_ROUTES")).getButton(), ShipPanelWidth - (self.CARGO_ICON_SIZE * 2 / 2), yLocation_InPort + self.SHIP_ICON_SIZE + (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SELL_ALL, unit.getID())
 
-			if (not unit.isFull() and player.getNumEuropeUnits() > 0):
-				screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", gc.getActionInfo(gc.getInfoTypeForString("COMMAND_LOAD")).getButton(), ShipPanelWidth - (self.CARGO_ICON_SIZE * 2 / 2), yLocation_InPort + self.SHIP_ICON_SIZE - (self.CARGO_ICON_SIZE * 3 / 8), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.LOAD_ALL, unit.getID())
+			#if (not unit.isFull() and player.getNumEuropeUnits() > 0):
+				#screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", gc.getActionInfo(gc.getInfoTypeForString("COMMAND_LOAD")).getButton(), ShipPanelWidth - (self.CARGO_ICON_SIZE * 2 / 2), yLocation_InPort + self.SHIP_ICON_SIZE - (self.CARGO_ICON_SIZE * 3 / 8), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.LOAD_ALL, unit.getID())
 			#TKs Med in port
 			UnitInfo = gc.getUnitInfo(unit.getUnitType())
 			iProfession = unit.getProfession()
 			if unit.getDomainType() == DomainTypes.DOMAIN_LAND:
 				screen.addDragableButtonAt("LoadingList", self.getNextWidgetName(), UnitInfo.getArtInfo(0, iProfession).getFullLengthIcon(), "", self.RECRUIT_PANE_HEIGHT  * 2 / 3, yLocation_InPort + self.RECRUIT_PANE_HEIGHT - 20, self.RECRUIT_PANE_HEIGHT  * 1 / 3, self.RECRUIT_PANE_HEIGHT * 2 / 3, WidgetTypes.WIDGET_SHIP_CARGO, unit.getID(), -1, ButtonStyles.BUTTON_STYLE_LABEL)
-			else:
-				screen.addDragableButtonAt("LoadingList", self.getNextWidgetName(), unit.getFullLengthIcon(), "", 0, yLocation_InPort, self.SHIP_ICON_SIZE * 2, self.SHIP_ICON_SIZE * 2, WidgetTypes.WIDGET_SHIP_CARGO, unit.getID(), -1, ButtonStyles.BUTTON_STYLE_LABEL)
+			#else:
+				#screen.addDragableButtonAt("LoadingList", self.getNextWidgetName(), unit.getFullLengthIcon(), "", 0, yLocation_InPort, self.SHIP_ICON_SIZE * 2, self.SHIP_ICON_SIZE * 2, WidgetTypes.WIDGET_SHIP_CARGO, unit.getID(), -1, ButtonStyles.BUTTON_STYLE_LABEL)
 			#Tke
 #			screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE_SAIL").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE * 2) - (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD, unit.getID())
 			if (unit.canSailEurope(self.EUROPE_EAST)):
-				if gc.getCivilizationInfo(player.getCivilizationType()).isWaterStart():
-					screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_PORT").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE * 2) - (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD, unit.getID())
-				else:
-					screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_FAIR").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE * 2) - (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD, unit.getID())
-			if (unit.canSailEurope(self.EUROPE_WEST) and gc.getCivilizationInfo(player.getCivilizationType()).isWaterStart()):
-				screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_PORT").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE / 2), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD_WEST, unit.getID())
+				#if gc.getCivilizationInfo(player.getCivilizationType()).isWaterStart():
+					#screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_PORT").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE * 2) - (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD, unit.getID())
+				#else:
+				screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_FAIR").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE * 2) - (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD, unit.getID())
+			#if (unit.canSailEurope(self.EUROPE_WEST) and gc.getCivilizationInfo(player.getCivilizationType()).isWaterStart()):
+				#screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_PORT").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE / 2), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD_WEST, unit.getID())
 			yLocation_InPort -= ShipPanelHight + (ShipPanelHight / 3)
 
 		ShipPanelHight = self.YResolution / 12
