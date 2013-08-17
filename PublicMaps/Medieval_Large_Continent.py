@@ -21,7 +21,7 @@ def getWrapY():
 def generatePlotTypes():
 	NiTextOut("Setting Plot Types (Python Fractal) ...")
 	fractal_world = FractalWorld( 4, 4 )
-	fractal_world.initFractal(continent_grain = 3, rift_grain = 4, has_center_rift = False, polar = True)
+	fractal_world.initFractal(continent_grain = 3, rift_grain = 4, has_center_rift = False, polar = False)
 	retVal = fractal_world.generatePlotTypes(50)
 	#sinkEasternShore(fractal_world, 5)
 	return retVal

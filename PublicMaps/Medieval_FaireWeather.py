@@ -3523,9 +3523,8 @@ def europeMatch(x,y):
     if em.europeMap[i] == 1:
         return True
     return False
-
-def afterGeneration():
-    #Tks
+#Tks
+def afterGeneration():   
     gc = CyGlobalContext()
     mmap = gc.getMap()
     terrainTundra = gc.getInfoTypeForString("TERRAIN_TUNDRA")
