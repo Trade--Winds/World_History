@@ -690,23 +690,36 @@ void CvUnit::kill(bool bDelay, CvUnit* pAttacker)
 				eCaptureProfession = (ProfessionTypes) GC.getUnitInfo(eCaptureUnitType).getDefaultProfession();
 			}
 			CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, eCaptureProfession, pPlot->getX_INLINE(), pPlot->getY_INLINE(), NO_UNITAI, NO_DIRECTION, iYieldStored);
-
 			if (pkCapturedUnit != NULL)
 			{
 				bool bAlive = true;
 				if (pAttacker != NULL && pAttacker->getUnitInfo().isCapturesCargo())
 				{
-					pkCapturedUnit->setXY(pAttacker->getX_INLINE(), pAttacker->getY_INLINE());
+				    if (pkCapturedUnit->getDomainType() == DOMAIN_LAND && pAttacker->getDomainType() == DOMAIN_SEA)
+                    {
+                        pkCapturedUnit->setXY(pAttacker->getX_INLINE(), pAttacker->getY_INLINE());
+                        pkCapturedUnit->setTransportUnit(pAttacker);
+                        if(pkCapturedUnit->getTransportUnit() == NULL) //failed to load
+                        {
+                            bAlive = false;
+                            pkCapturedUnit->kill(false);
+                        }
+                    }
+                    else
+                    {
+                        pkCapturedUnit->setXY(pAttacker->getX_INLINE(), pAttacker->getY_INLINE());
 
-					if(pkCapturedUnit->getTransportUnit() == NULL) //failed to load
-					{
-						bAlive = false;
-						pkCapturedUnit->kill(false);
-					}
+                        if(pkCapturedUnit->getTransportUnit() == NULL) //failed to load
+                        {
+                            bAlive = false;
+                            pkCapturedUnit->kill(false);
+                        }
+                    }
 				}
 				///TKs Med
 				else if (pAttacker != NULL)
 				{
+
                     YieldTypes eCapturedYield = (YieldTypes)pkCapturedUnit->getYield();
                     if (eCapturedYield != NO_YIELD)
                     {
@@ -755,6 +768,16 @@ void CvUnit::kill(bool bDelay, CvUnit* pAttacker)
                             pkCapturedUnit->kill(false);
                         }
 
+                    }
+                    else if (pkCapturedUnit->getDomainType() == DOMAIN_LAND && pAttacker->getDomainType() == DOMAIN_SEA)
+                    {
+                        pkCapturedUnit->setXY(pAttacker->getX_INLINE(), pAttacker->getY_INLINE());
+                        pkCapturedUnit->setTransportUnit(pAttacker);
+                        if(pkCapturedUnit->getTransportUnit() == NULL) //failed to load
+                        {
+                            bAlive = false;
+                            pkCapturedUnit->kill(false);
+                        }
                     }
 				}
 				else if (pkCapturedUnit->getYield() != NO_YIELD)
@@ -1770,9 +1793,27 @@ void CvUnit::updateCombat(bool bQuick)
 				{
 				    ///TKs Med
 				    UnitTypes eCaptureUnitType = pDefender->getCaptureUnitType(getCivilizationType());
-					if ((!pDefender->canDefend() && eCaptureUnitType != NO_UNIT) || eCaptureUnitType != NO_UNIT)
+					if (!pDefender->canDefend() || eCaptureUnitType != NO_UNIT)
 					{
-					    if (GC.getUnitInfo(eCaptureUnitType).getDefaultUnitAIType() ==  UNITAI_YIELD || GC.getGameINLINE().getSorenRandNum(100, "Criminal Capture") <= GC.getCache_CHANCE_TO_CAPTURE_CRIMINALS())
+					    if (pDefender->canDefend())
+                        {
+                            if (getDomainType() == DOMAIN_SEA)
+                            {
+                                if (cargoSpace() > 0 && !isFull())
+                                {
+                                    if (GC.getGameINLINE().getSorenRandNum(100, "Criminal Capture") <= GC.getCache_CHANCE_TO_CAPTURE_CRIMINALS())
+                                    {
+                                        pDefender->setCapturingPlayer(getOwnerINLINE());
+                                    }
+                                }
+                            }
+                            else if (GC.getGameINLINE().getSorenRandNum(100, "Criminal Capture") <= GC.getCache_CHANCE_TO_CAPTURE_CRIMINALS())
+                            {
+                                pDefender->setCapturingPlayer(getOwnerINLINE());
+                            }
+
+                        }
+					    else
 					    {
                             pDefender->setCapturingPlayer(getOwnerINLINE());
 					    }
