@@ -126,6 +126,7 @@
     <None Include="interfaceDirtyBits.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="JustInTimeArray.h" />
     <ClInclude Include="CvArea.h" />
     <ClInclude Include="CvArtFileMgr.h" />
     <ClInclude Include="CvCity.h" />

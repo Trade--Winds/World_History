@@ -1,3 +1,6 @@
+#### Civilization 4 SDK Makefile 2.1 ####
+####  Copyright 2013 Nightinggale    ####
+#########################################
 #### Civilization 4 SDK Makefile 2.0 ####
 ####  Copyright 2013 Nightinggale    ####
 #########################################
@@ -6,15 +9,18 @@
 #########################################
 
 #### Paths ####
-TOOLKIT=C:\Program Files (x86)\Microsoft Visual C++ Toolkit 2003
-PSDK=C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A
+#
+# Note: $(PROGRAMFILES) converts to "C:\Program Files", "C:\Program Files (x86)" or whatever fits your system.
+# run "nmake.exe /P" in cmd.exe to see what it is on your system
+TOOLKIT=$(PROGRAMFILES)\Microsoft Visual C++ Toolkit 2003
+PSDK=$(PROGRAMFILES)\Microsoft SDKs\Windows\v7.0A
 ## Uncomment to have newly compiled dlls copied to your mod's Assets directory
 YOURMOD=..
 
 ## Civ install path
 ## Path to the directory where boost and python is stored
 ## Overwritten by enviroment variable CIV4_LIB_INSTALL_PATH
-#CIV4_PATH=C:\Program Files (x86)\2K Games\Firaxis Games\Sid Meier's Civilization IV Colonization\CvGameCoreDLL
+#CIV4_PATH=$(PROGRAMFILES)\2K Games\Firaxis Games\Sid Meier's Civilization IV Colonization\CvGameCoreDLL
 
 #### Tools ####
 CC="$(TOOLKIT)\bin\cl.exe"
@@ -42,7 +48,10 @@ Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /D
 #### You shouldn't need to modify anything beyond this point ####
 #################################################################
 
-## Enrironmental path overwrite
+TEMP_FILE_DIR = temp_files
+TEMP_TARGET_FILES = $(TEMP_FILE_DIR)\$(TARGET)
+
+## Environmental path overwrite
 !IFDEF CIV4_LIB_INSTALL_PATH
 CIV4_PATH=$(CIV4_LIB_INSTALL_PATH)
 !ENDIF
@@ -53,23 +62,24 @@ FD=$(FASTDEP_FULL_PATH)
 
 #### Target Files ####
 Target_BIN=$(TARGET)\CvGameCoreDLL.dll
+Target_BIN_TEMP=$(TEMP_TARGET_FILES)\CvGameCoreDLL.dll
 
 !IF [IF NOT EXIST CvGameCoreDLL.rc EXIT 1] == 0
-Target_RESOURCE=$(TARGET)\CvGameCoreDLL.res
+Target_RESOURCE=$(TEMP_TARGET_FILES)\CvGameCoreDLL.res
 !ENDIF
 
-Target_STATICLIB=$(TARGET)\CvGameCoreDLL.lib
+Target_STATICLIB=$(TEMP_TARGET_FILES)\CvGameCoreDLL.lib
 
-Target_LIBDEF=$(TARGET)\CvGameCoreDLL.def
+Target_LIBDEF=$(TEMP_TARGET_FILES)\CvGameCoreDLL.def
 
-Target_PCH=$(TARGET)\CvGameCoreDLL.pch
+Target_PCH=$(TEMP_TARGET_FILES)\CvGameCoreDLL.pch
 
-Target_PDB=$(TARGET)\CvGameCoreDLL.pdb
+Target_PDB=$(TEMP_TARGET_FILES)\CvGameCoreDLL.pdb
 
-Target_OTHER=$(TARGET)\CvGameCoreDLL.exp
+Target_OTHER=$(TEMP_TARGET_FILES)\CvGameCoreDLL.exp
 
 #### CFLAGS ####
-GLOBAL_CFLAGS=/GR /Gy /W3 /EHsc /Gd /Gm- /Yu"CvGameCoreDLL.h" /Fp"$(Target_PCH)"
+GLOBAL_CFLAGS=/GR /Gy /W3 /EHsc /Gd /Gm- /Yu"CvGameCoreDLL.h" /Fp"$(Target_PCH)" /Fd"$(Target_PDB)"
 Debug_CFLAGS=/MD /Zi /Od /RTC1 $(Debug_DEFINES) $(GLOBAL_CFLAGS)
 Release_CFLAGS= /MD /O2 /Oy /Oi /G7 $(Release_DEFINES) $(GLOBAL_CFLAGS)
 
@@ -98,7 +108,7 @@ LIBS = $(PROJECT_LIBS) $(GLOBAL_LIBS)
     [FOR %i IN (*.cpp) DO @ECHO. "%i" \>> sources.mk] == 0 && \
     [ECHO.>> sources.mk] == 0 && \
 	[ECHO OBJS= \>> sources.mk] == 0 && \
-    [FOR /F "delims=." %i IN ('dir /b *.cpp') DO @ECHO. $(TARGET)\%i.obj \>> sources.mk] == 0 && \
+    [FOR /F "delims=." %i IN ('dir /b *.cpp') DO @ECHO. $(TEMP_TARGET_FILES)\%i.obj \>> sources.mk] == 0 && \
     [ECHO.>> sources.mk] == 0
 !INCLUDE sources.mk
 !IF [DEL sources.mk]
@@ -143,10 +153,14 @@ all: Precompile build
 dll: all
 
 clean:
-	@FOR %i IN ($(Target_BIN) $(Target_STATICLIB) $(Target_LIBDEF) \
-		$(TARGET)\*.obj $(TARGET)\*.@ $(Target_RESOURCE) \
+	@FOR %i IN ($(Target_BIN) $(Target_BIN_TEMP) $(Target_STATICLIB) $(Target_LIBDEF) \
+		$(TEMP_TARGET_FILES)\*.obj $(TEMP_TARGET_FILES)\*.@ $(Target_RESOURCE) \
 		$(Target_PCH) $(Target_PDB) $(Target_OTHER)) DO @IF EXIST "%i" DEL "%i"
 
+$(Target_BIN): $(Target_BIN_TEMP)
+	@-COPY "$(Target_BIN_TEMP)" "$(Target_BIN)"
+
+		
 build: $(Target_BIN)
 !IFDEF YOURMOD
 	-COPY "$(Target_BIN)" "$(YOURMOD)\Assets\."
@@ -155,40 +169,42 @@ build: $(Target_BIN)
 precompile: Make_Dir Target_unfinished $(Target_PCH)
 
 Make_Dir:
+	-@IF NOT EXIST "$(TEMP_TARGET_FILES)\." MKDIR "$(TEMP_TARGET_FILES)"
 	-@IF NOT EXIST "$(TARGET)\." MKDIR "$(TARGET)"
 
 Target_unfinished:
-	@ECHO.>$(TARGET)\unfinished.@
-	@FOR /F "delims=@" %i IN ('dir /b $(TARGET)\*.@') DO \
-		@IF EXIST "$(TARGET)\%i" DEL "$(TARGET)\%i"
-	@FOR /F %i IN ('dir /b $(TARGET)\*.@') DO \
-		@IF EXIST "$(TARGET)\%i" DEL "$(TARGET)\%i"
+	@ECHO.>$(TEMP_TARGET_FILES)\unfinished.@
+	@FOR /F "delims=@" %i IN ('dir /b $(TEMP_TARGET_FILES)\*.@') DO \
+		@IF EXIST "$(TEMP_TARGET_FILES)\%i" DEL "$(TEMP_TARGET_FILES)\%i"
+	@FOR /F %i IN ('dir /b $(TEMP_TARGET_FILES)\*.@') DO \
+		@IF EXIST "$(TEMP_TARGET_FILES)\%i" DEL "$(TEMP_TARGET_FILES)\%i"
 
-$(Target_BIN): $(OBJS) $(Target_RESOURCE)
-	$(LD) /out:$(Target_BIN) $(LDFLAGS) $(LIBS) $(OBJS) $(Target_RESOURCE)
+$(Target_BIN_TEMP): $(OBJS) $(Target_RESOURCE)
+	@ECHO.Linking DLL
+	@$(LD) /out:$(Target_BIN_TEMP) $(LDFLAGS) $(LIBS) $(OBJS) $(Target_RESOURCE)
 
-.cpp{$(TARGET)}.obj:
+.cpp{$(TEMP_TARGET_FILES)}.obj:
 	@ECHO.>"$*.obj.@"
-    $(CPP) /nologo $(CFLAGS) $(INCS) /Fo$*.obj /c $<
+    @$(CPP) /nologo $(CFLAGS) $(INCS) /Fo$*.obj /c $<
 	@DEL "$*.obj.@"
 
-$(Target_PCH) $(TARGET)\_precompile.obj:
+$(Target_PCH) $(TEMP_TARGET_FILES)\_precompile.obj:
 	@ECHO.>"$(Target_PCH).@"
-	@ECHO.>"$(TARGET)\_precompile.obj.@"
-    $(CPP) /nologo $(CFLAGS) $(INCS) /YcCvGameCoreDLL.h /Fo"$(TARGET)\_precompile.obj" /c _precompile.cpp
+	@ECHO.>"$(TEMP_TARGET_FILES)\_precompile.obj.@"
+    @$(CPP) /nologo $(CFLAGS) $(INCS) /YcCvGameCoreDLL.h /Fo"$(TEMP_TARGET_FILES)\_precompile.obj" /c _precompile.cpp
 	@DEL "$(Target_PCH).@"
-	@DEL "$(TARGET)\_precompile.obj.@"
+	@DEL "$(TEMP_TARGET_FILES)\_precompile.obj.@"
 
-.rc{$(TARGET)}.res:
+.rc{$(TEMP_TARGET_FILES)}.res:
 	@ECHO.>"$*.res.@"
 	$(RC) /Fo$@ $(INCS) $<
 	@DEL "$*.res.@"
 
 !IFDEF BLACKLIST
-$(TARGET)\$(BLACKLIST).obj: $(BLACKLIST).cpp
+$(TEMP_TARGET_FILES)\$(BLACKLIST).obj: $(BLACKLIST).cpp
 	@ECHO.>"$*.obj.@"
 	@ECHO.>"$*-dummy.cpp"
-	$(CPP) /nologo /DFASSERT_ENABLE $(Release_CFLAGS) $(Release_INCS) /Y- /Fo$@ /c "$*-dummy.cpp"
+	@$(CPP) /nologo $(Release_CFLAGS) $(Release_INCS) /Y- /Fo$@ /c "$*-dummy.cpp"
 	@DEL "$*-dummy.cpp"
 	@DEL "$*.obj.@"
 
@@ -203,9 +219,11 @@ $(TARGET)\$(BLACKLIST).obj: $(BLACKLIST).cpp
 !IFDEF _NMAKE_VER
 
 !IF [IF NOT EXIST $(FD) EXIT 1] == 0
-!IF [$(FD) --objectextension=pch -q -O $(TARGET) CvGameCoreDLL.cpp > depends] != 0 || \
-    [$(FD) --objectextension=obj -q -O $(TARGET) $(SOURCES) >> depends] != 0
+!IF [$(FD) --objectextension=pch -q -O $(TARGET) CvGameCoreDLL.cpp > $(TARGET)\depends] != 0 || \
+    [$(FD) --objectextension=obj -q -O $(TARGET) $(SOURCES) >> $(TARGET)\depends] != 0
 !MESSAGE Error running fastdep.
+!MESSAGE $(TARGET)-fast causes this issue if $(TARGET) or $(TARGET)-fast has never been compiled before.
+!MESSAGE It is safe to ignore this error in that case, but only in that case!
 !ENDIF
 !ELSE
 !IF [ECHO "fastdep.exe" NOT FOUND! && \
