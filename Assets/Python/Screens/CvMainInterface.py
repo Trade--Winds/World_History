@@ -873,59 +873,152 @@ class CvMainInterface:
 		RESOURCE_TABLE_COLUMN_WIDTH = int((xResolution - (STACK_BAR_HEIGHT * 2)) / len(TableYields))
 		ArtPath = ""
 
+# VET DynamicYieldsIcon - 1/15 - start
+		xDelta = 0
+		ixDelta = 0
+		iDelta = 0
+		iK1 = 1
+		iK2 = 1
+		iK3 = 1
+		iMax = (xResolution * 2) / (yResolution * 33)
+		iNum = len(TableYields)
+		if iNum > iMax:
+			if iNum % 2 == 1:
+				iNum += 1
+			iNum /= 2
+			#RWL, ray
+			#RESOURCE_TABLE_COLUMN_WIDTH = (xResolution - STACK_BAR_HEIGHT * 2) / iNum
+			RESOURCE_TABLE_COLUMN_WIDTH = (xResolution - STACK_BAR_HEIGHT) / iNum
+			iK2 = 2
+			iK3 = 3
+			if len(TableYields) % 2 == 1:
+				ixDelta = RESOURCE_TABLE_COLUMN_WIDTH / 2
+		self.iIconWidth = RESOURCE_TABLE_COLUMN_WIDTH
+		if iK2 == 2:
+			iMax = yResolution / 20
+			if RESOURCE_TABLE_COLUMN_WIDTH > iMax:
+				self.iIconWidth = iMax
+# VET DynamicYieldsIcon - 1/15 - end
+
 		for iYield in range(iYieldsOnTable):
 			
 			iActualYield = TableYields[iYield]
 			szName = "BonusPane" + str(iYield)
-			screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+# VET DynamicYieldsIcon - 2/15 - start
+			if iYield >= iNum:
+				xDelta = ixDelta
+				iDelta = iNum
+				iK1 = 2
+			#screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			iX = STACK_BAR_HEIGHT + ((iYield - iDelta) * RESOURCE_TABLE_COLUMN_WIDTH) + xDelta
+			iY = yResolution - BOTTOM_CENTER_HUD_HEIGHT / iK1
+			screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, iX, iY, RESOURCE_TABLE_COLUMN_WIDTH, (BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT) / iK2, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+
+			#if (iYield == 0):
+			if (iYield - iDelta) == 0:
+# VET DynamicYieldsIcon - 2/15 - end
+				screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
 			if (iYield == 0):
 				ArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_BOX_START").getPath()
-			elif (iYield == (len(TableYields) - 1)):
+# VET DynamicYieldsIcon - 3/15 - start
+			#RWL, ray
+			#elif (iYield == (len(TableYields) - 1)):
+			elif (iYield - iDelta) == (len(TableYields) / 2 - 1):
+# VET DynamicYieldsIcon - 3/15 - end
 				ArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_BOX_END").getPath()
 			else:
 				#pHeadSelectedCity = CyInterface().getHeadSelectedCity()
 				ArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_BOX_MID").getPath()
 				#if (CyInterface().isCityScreenUp()):
 					#if not (pHeadSelectedCity.isNative()):
-				DiscoverArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_DISCOVERY_MID").getPath()
-				szDiscoverName = szName + "Discover"
-				screen.addDrawControl(szDiscoverName, DiscoverArtPath, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT + STACK_BAR_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2), WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -2, -1)
-				self.appendtoHideState(screen, szDiscoverName, HIDE_TYPE_CITY, HIDE_LEVEL_NORMAL)
-				#screen.hide(szDiscoverName)	
-			screen.addDrawControl(szName, ArtPath, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT + STACK_BAR_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2), WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1)
+			DiscoverArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_DISCOVERY_MID").getPath()
+			szDiscoverName = szName + "Discover"
+# VET DynamicYieldsIcon - 1/1 M:C - start
+			# Nightinggale
+			#screen.addDrawControl(szDiscoverName, DiscoverArtPath, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT + STACK_BAR_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2), WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -2, -1)
+			screen.addDrawControl(szDiscoverName, DiscoverArtPath, iX, iY, RESOURCE_TABLE_COLUMN_WIDTH, (BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2)) * iK2 / iK3 + 2, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -2, -1)
+# VET DynamicYieldsIcon - 1/1 M:C - end
+			self.appendtoHideState(screen, szDiscoverName, HIDE_TYPE_CITY, HIDE_LEVEL_NORMAL)
+			#screen.hide(szDiscoverName)	
+# VET DynamicYieldsIcon - 4/15 - start
+			#screen.addDrawControl(szName, ArtPath, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT + STACK_BAR_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2), WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1)
+			iX = STACK_BAR_HEIGHT + ((iYield - iDelta) * RESOURCE_TABLE_COLUMN_WIDTH) + xDelta
+			iY = yResolution - BOTTOM_CENTER_HUD_HEIGHT / iK1
+			screen.addDrawControl(szName, ArtPath, iX, iY, RESOURCE_TABLE_COLUMN_WIDTH, (BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2)) * iK2 / iK3 + 2, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1)
+# VET DynamicYieldsIcon - 4/15 - end			
 			self.appendtoHideState(screen, szName, HIDE_TYPE_CITY, HIDE_LEVEL_NORMAL)
 
 			szName = "BonusPanePos" + str(iYield)
-			screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
-			if (iYield == 0):
+# VET DynamicYieldsIcon - 5/15 - start
+			#screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			iX = STACK_BAR_HEIGHT + ((iYield - iDelta) * RESOURCE_TABLE_COLUMN_WIDTH) + xDelta
+			iY = yResolution - BOTTOM_CENTER_HUD_HEIGHT / iK1
+			screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, iX, iY, RESOURCE_TABLE_COLUMN_WIDTH, (BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT) / iK2, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+
+			#if (iYield == 0):
+			if (iYield - iDelta) == 0:
+# VET DynamicYieldsIcon - 5/15 - end
 				ArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_BOX_POS_START").getPath()
-			elif (iYield == (len(TableYields) - 1)):
+# VET DynamicYieldsIcon - 6/15 - start
+			#elif (iYield == (len(TableYields) - 1)):
+			elif (iYield - iDelta) == (len(TableYields) - 1):
+# VET DynamicYieldsIcon - 6/15 - end
 				ArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_BOX_POS_END").getPath()
 			else:
 				ArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_BOX_POS_MID").getPath()
-			screen.addDrawControl(szName, ArtPath, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT + STACK_BAR_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2), WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+# VET DynamicYieldsIcon - 7/15 - start
+			#screen.addDrawControl(szName, ArtPath, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT + STACK_BAR_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2), WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			iX = STACK_BAR_HEIGHT + ((iYield - iDelta) * RESOURCE_TABLE_COLUMN_WIDTH) + xDelta
+			iY = yResolution - BOTTOM_CENTER_HUD_HEIGHT / iK1
+			screen.addDrawControl(szName, ArtPath, iX, iY, RESOURCE_TABLE_COLUMN_WIDTH, (BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2)) * iK2 / iK3 + 2, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+# VET DynamicYieldsIcon - 7/15 - end
 			self.appendtoHideState(screen, szName, HIDE_TYPE_CITY, HIDE_LEVEL_NORMAL)
-
+			
 			szName = "BonusPaneNeg" + str(iYield)
-			screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
-			if (iYield == 0):
+# VET DynamicYieldsIcon - 8/15 - start
+			#screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			iX = STACK_BAR_HEIGHT + ((iYield - iDelta) * RESOURCE_TABLE_COLUMN_WIDTH) + xDelta
+			iY = yResolution - BOTTOM_CENTER_HUD_HEIGHT / iK1
+			screen.attachPanelAt("ResourceTable", szName, u"", u"", True, True, PanelStyles.PANEL_STYLE_STANDARD, iX, iY, RESOURCE_TABLE_COLUMN_WIDTH, (BOTTOM_CENTER_HUD_HEIGHT - STACK_BAR_HEIGHT) / iK2, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			#if (iYield == 0):
+			if (iYield - iDelta) == 0:
+# VET DynamicYieldsIcon - 8/15 - end
 				ArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_BOX_NEG_START").getPath()
-			elif (iYield == (len(TableYields) - 1)):
+# VET DynamicYieldsIcon - 9/15 - start
+			#elif (iYield == (len(TableYields) - 1)):
+			elif (iYield - iDelta) == (len(TableYields) - 1):
+# VET DynamicYieldsIcon - 9/15 - end
 				ArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_BOX_NEG_END").getPath()
 			else:
 				ArtPath = ArtFileMgr.getInterfaceArtInfo("INTERFACE_BOX_NEG_MID").getPath()
-			screen.addDrawControl(szName, ArtPath, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT + STACK_BAR_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2), WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+# VET DynamicYieldsIcon - 10/15 - start
+			#screen.addDrawControl(szName, ArtPath, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT + STACK_BAR_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2), WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			iX = STACK_BAR_HEIGHT + ((iYield - iDelta) * RESOURCE_TABLE_COLUMN_WIDTH) + xDelta
+			iY = yResolution - BOTTOM_CENTER_HUD_HEIGHT / iK1
+			screen.addDrawControl(szName, ArtPath, iX, iY, RESOURCE_TABLE_COLUMN_WIDTH, (BOTTOM_CENTER_HUD_HEIGHT - (STACK_BAR_HEIGHT * 3 / 2)) * iK2 / iK3 + 2, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+# VET DynamicYieldsIcon - 10/15 - end
 			self.appendtoHideState(screen, szName, HIDE_TYPE_CITY, HIDE_LEVEL_NORMAL)
+# VET DynamicYieldsIcon - 11/15 - start
+			#screen.setLabel("YieldStoredlabel" + str(iYield), "ResourceTable", "", CvUtil.FONT_CENTER_JUSTIFY, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2), yResolution - (STACK_BAR_HEIGHT * 3), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			#screen.setLabel("YieldNetlabel" + str(iYield), "ResourceTable", "", CvUtil.FONT_CENTER_JUSTIFY, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2), yResolution - (STACK_BAR_HEIGHT * 2), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			
 
-			screen.setLabel("YieldStoredlabel" + str(iYield), "ResourceTable", "", CvUtil.FONT_CENTER_JUSTIFY, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2), yResolution - (STACK_BAR_HEIGHT * 3), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
-			screen.setLabel("YieldNetlabel" + str(iYield), "ResourceTable", "", CvUtil.FONT_CENTER_JUSTIFY, STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2), yResolution - (STACK_BAR_HEIGHT * 2), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
 
-			screen.addDragableButton("YieldIcon" + str(iYield), gc.getYieldInfo(iActualYield).getIcon(), "", STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, RESOURCE_TABLE_COLUMN_WIDTH, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iActualYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
-			self.appendtoHideState(screen, "YieldIcon" + str(iYield), HIDE_TYPE_CITY, HIDE_LEVEL_NORMAL)
-				#TK end
-		screen.addScrollPanel("CityReciveCargo", u"", 0, yResolution - BOTTOM_CENTER_HUD_HEIGHT, xResolution, BOTTOM_CENTER_HUD_HEIGHT, PanelStyles.PANEL_STYLE_MAIN, false, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			#RWL
+			iX = STACK_BAR_HEIGHT + ((iYield - iDelta) * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2) + xDelta
+
+			iY = yResolution - (STACK_BAR_HEIGHT * 3) / iK1
+			screen.setLabel("YieldStoredlabel" + str(iYield), "ResourceTable", "", CvUtil.FONT_CENTER_JUSTIFY, iX, iY, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+			iY = yResolution - (STACK_BAR_HEIGHT * 2) / iK1
+			screen.setLabel("YieldNetlabel" + str(iYield), "ResourceTable", "", CvUtil.FONT_CENTER_JUSTIFY, iX, iY, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+
+			#screen.addDragableButton("YieldIcon" + str(iYield), gc.getYieldInfo(iYield).getIcon(), "", STACK_BAR_HEIGHT + (iYield * RESOURCE_TABLE_COLUMN_WIDTH), yResolution - BOTTOM_CENTER_HUD_HEIGHT, RESOURCE_TABLE_COLUMN_WIDTH, RESOURCE_TABLE_COLUMN_WIDTH, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+			iX = STACK_BAR_HEIGHT + ((iYield - iDelta) * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH - self.iIconWidth) / 2 + xDelta
+			iY = yResolution - BOTTOM_CENTER_HUD_HEIGHT / iK1
+
+			screen.addDragableButton("YieldIcon" + str(iYield), gc.getYieldInfo(iYield).getIcon(), "", iX, iY, self.iIconWidth, self.iIconWidth, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+# VET DynamicYieldsIcon - 11/15 - end
 		self.appendtoHideState(screen, "CityReciveCargo", HIDE_TYPE_CITY, HIDE_LEVEL_NORMAL)
-
 		for iYield in TableYields:
 			screen.moveToFront("YieldIcon" + str(iYield))
 
@@ -2726,9 +2819,38 @@ class CvMainInterface:
 			if gc.getYieldInfo(iYield).isCargo():
 				TableYields.append(iYield)
 				iYieldsOnTable = iYieldsOnTable + 1
+				
+# VET DynamicYieldsIcon - 12/15 - start
+		xDelta = 0
+		ixDelta = 0 
+		iDelta = 0
+		yDelta = CyInterface().determineWidth(self.setFontSize(u"0", 0)) * 3 / 2
+		iK1 = 2
+		iMax = (xResolution * 2) / (yResolution * 33) 
+		iNum = len(TableYields) 
+		if iNum > iMax:
+			if iNum % 2 == 1:
+				iNum += 1
+			iNum /= 2
+			#RWL
+			#RESOURCE_TABLE_COLUMN_WIDTH = (xResolution - STACK_BAR_HEIGHT * 2) / iNum
+			RESOURCE_TABLE_COLUMN_WIDTH = (xResolution - STACK_BAR_HEIGHT) / iNum
+			iK1 = 1
+			if len(TableYields) % 2 == 1:
+				ixDelta = RESOURCE_TABLE_COLUMN_WIDTH / 2
+# VET DynamicYieldsIcon - 12/15 - end
+
 		if pCity != None:
 			for index in range(iYieldsOnTable):
 				i = TableYields[index]
+
+# VET DynamicYieldsIcon - 13/15 - start
+				if index >= iNum:
+					xDelta = ixDelta
+					iDelta = iNum
+					iK1 = 2
+# VET DynamicYieldsIcon - 13/15 - end				
+				
 				#TKs Med
 				if not gc.getPlayer(pCity.getOwner()).canUnitBeTraded(i, UnitTravelStates.NO_UNIT_TRAVEL_STATE, UnitTypes.NO_UNIT):
 					continue
@@ -2749,10 +2871,21 @@ class CvMainInterface:
 					szRate = u"<color=255,255,0>" + szRate + u"</color>"
 
 				szStorageLabel = "YieldStoredlabel" + str(i)
-				screen.setLabel(szStorageLabel, "", self.setFontSize(szStored, 1), CvUtil.FONT_CENTER_JUSTIFY, STACK_BAR_HEIGHT + (index * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2), yResolution - (STACK_BAR_HEIGHT * 3), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+# VET DynamicYieldsIcon - 14/15 - start
+				#szStored = self.setFontSize(szStored, 0)
+				#szRate = self.setFontSize(szRate, 0)
+				#screen.setLabel(szStorageLabel, "", self.setFontSize(szStored, 1), CvUtil.FONT_CENTER_JUSTIFY, STACK_BAR_HEIGHT + (i * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2), yResolution - (STACK_BAR_HEIGHT * 3), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+				iX = STACK_BAR_HEIGHT + ((index - iDelta) * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2) + xDelta
+				iY = yResolution - BOTTOM_CENTER_HUD_HEIGHT / iK1 + self.iIconWidth - 13
+				screen.setLabel(szStorageLabel, "", self.setFontSize(szStored, 0), CvUtil.FONT_CENTER_JUSTIFY, iX, iY, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+# VET DynamicYieldsIcon - 14/15 - start
 				ResourceHideList.append(szStorageLabel)
 				szRateLabel = "YieldNetlabel" + str(i)
-				screen.setLabel(szRateLabel, "", self.setFontSize(szRate, 1), CvUtil.FONT_CENTER_JUSTIFY, STACK_BAR_HEIGHT + (index * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2), yResolution - (STACK_BAR_HEIGHT * 2), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+# VET DynamicYieldsIcon - 15/15 - start
+				#screen.setLabel(szRateLabel, "", self.setFontSize(szRate, 1), CvUtil.FONT_CENTER_JUSTIFY, STACK_BAR_HEIGHT + (i * RESOURCE_TABLE_COLUMN_WIDTH) + (RESOURCE_TABLE_COLUMN_WIDTH / 2), yResolution - (STACK_BAR_HEIGHT * 2), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+				iY += yDelta
+				screen.setLabel(szRateLabel, "", self.setFontSize(szRate, 0), CvUtil.FONT_CENTER_JUSTIFY, iX, iY, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_RECEIVE_MOVE_CARGO_TO_CITY, -1, -1 )
+# VET DynamicYieldsIcon - 15/15 - start				
 				ResourceHideList.append(szRateLabel)
 				#Tke
 				screen.registerHideList(ResourceHideList, len(ResourceHideList), RESOURCE_TABLE_HIDE)
