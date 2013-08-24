@@ -6705,7 +6705,12 @@
       <UnitClassDefenseMods/>
       <UnitCombatMods/>
       <DomainMods/>
-      <YieldModifiers/>
+      <YieldModifiers>
+        <YieldModifier>
+          <YieldType>YIELD_BELLS</YieldType>
+          <iYieldMod>50</iYieldMod>
+        </YieldModifier>
+      </YieldModifiers>
       <YieldChanges/>
       <BonusYieldChanges/>
       <bLandYieldChanges>1</bLandYieldChanges>
@@ -7042,7 +7047,12 @@
       <UnitClassDefenseMods/>
       <UnitCombatMods/>
       <DomainMods/>
-      <YieldModifiers/>
+      <YieldModifiers>
+        <YieldModifier>
+          <YieldType>YIELD_BELLS</YieldType>
+          <iYieldMod>50</iYieldMod>
+        </YieldModifier>
+      </YieldModifiers>
       <YieldChanges/>
       <BonusYieldChanges/>
       <bLandYieldChanges>1</bLandYieldChanges>

@@ -5488,6 +5488,7 @@ void CvCity::calculateNetYields(int aiYields[NUM_YIELD_TYPES], int* aiProducedYi
     }
 	if (!isOccupation())
 	{
+	    ///TKs Setsup Avaliable Yields
 		std::vector<int> aiYieldsAvailable;
 		for (uint i = 0; i < m_aPopulationUnits.size(); ++i)
 		{
@@ -5522,16 +5523,6 @@ void CvCity::calculateNetYields(int aiYields[NUM_YIELD_TYPES], int* aiProducedYi
 				if (aiYieldsAvailable[iUnitIndex] > 0)
 				{
 					CvProfessionInfo& kProfession = GC.getProfessionInfo(pUnit->getProfession());
-//                    /TKs Med
-//                    YieldTypes eYieldProduced = (YieldTypes) kProfession.getYieldsProduced(0);
-//                    if (eSpecialBuilding != NO_SPECIALBUILDING)
-//                    {
-//                        if (kProfession.getSpecialBuilding() != eSpecialBuilding)
-//                        {
-//                            continue;
-//                        }
-//                    }
-//                    /TKe
 
 					bool bFoundMulti = false;
 					bool bMultiProduced = false;
@@ -5563,27 +5554,11 @@ void CvCity::calculateNetYields(int aiYields[NUM_YIELD_TYPES], int* aiProducedYi
                                         if (iNextYieldStored < 0)
                                         {
                                             bProfessionDeficit = true;
-
-                                            //if (eYieldConsumed != eNextYieldConsumed)
-                                            //{
-                                                //if (iDeficitYield == 0)
-                                                //{
-                                                //    iDeficitYield = iNextYieldStored;
-                                                //}
-                                               // iYieldStored = iNextYieldStored;
-
-                                            //}
                                         }
                                     }
                                 }
                             }
 
-
-
-                            //if (iYieldStored > 0 && iDeficitYield != 0)
-                            //{
-                             //   iYieldStored = iDeficitYield;
-                            //}
 
                             if (iYieldStored < 0)
                             {
@@ -7648,6 +7623,10 @@ void CvCity::doYields()
 					{
 					    //bool bisPage = (pLoopUnit->getUnitClassType() == (UnitClassTypes)GC.getDefineINT("DEFAULT_NOBLE_GROWTH_UNIT_CLASS"));
 					    bool bisPage = (UnitClassTypes)GC.getUnitInfo(pLoopUnit->getUnitType()).getLaborForceUnitClass() != NO_UNITCLASS;
+					    if (!isHuman() && !bisPage && GC.getUnitInfo(pLoopUnit->getUnitType()).getKnightDubbingWeight() > 0 && !pLoopUnit->isHasRealPromotion((PromotionTypes)GC.getCache_DEFAULT_KNIGHT_PROMOTION()))
+                        {
+                            bisPage = true;
+                        }
 						// MultipleYieldsProduced Start by Aymerick 22/01/2010**
 						if (GC.getProfessionInfo(eProfession).getYieldsProduced(0) == eYield || bisPage)
 						// MultipleYieldsProduced End
@@ -11113,7 +11092,7 @@ BuildingTypes CvCity::getBestFreeBuilding()
                     CvPlot* pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), j);
                     if (pLoopPlot != NULL)
                     {
-							
+
 
                             iBaseYield = pLoopPlot->calculateNatureYield(eYield, getTeam(), true);
                             if (iBaseYield > 0)
@@ -11133,7 +11112,7 @@ BuildingTypes CvCity::getBestFreeBuilding()
 
                     }
                 }
-				
+
                 if (iPlotValue == 0)
                 {
                     continue;

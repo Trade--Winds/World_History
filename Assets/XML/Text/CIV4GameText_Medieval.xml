@@ -1131,7 +1131,7 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MISC_BANDIT_UNIT_DESTROYED_PATROL</Tag>
-    <English>A %s1_UnitName has be killed by your %s2_lodge patrol!</English>
+    <English>A %s1_UnitName has been killed by your %s2_lodge patrol!</English>
     <French></French>
     <German></German>
     <Italian></Italian>

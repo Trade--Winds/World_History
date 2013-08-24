@@ -1069,6 +1069,14 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 										iTempValue /= 100;
 									}
 								}
+								if (getPopulation() >= 2)
+								{
+                                    if (eYieldProduced == YIELD_GRAIN)
+                                    {
+                                        iTempValue *= 100 + 20 * (getPopulation() - 2);
+                                        iTempValue /= 100;
+                                    }
+								}
 
 								if (eYieldConsumed != NO_YIELD)
 								{
@@ -1097,10 +1105,10 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 									{
 										iTempValue *= 10;
 									}
-									else
-									{
-										iTempValue /= 10;
-									}
+//									else
+//									{
+//										iTempValue /= 10;
+//									}
 								}
 								///TKe
 
@@ -1119,7 +1127,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 									iTempValue /= 100;
 								}
                                 ///TKs Med
-								if (GC.isEquipmentType(eYieldProduced, EQUIPMENT_ANY) || eYieldProduced == YIELD_TOOLS || eYieldProduced == YIELD_FOOD)
+								if (GC.isEquipmentType(eYieldProduced, EQUIPMENT_ANY) || eYieldProduced == YIELD_TOOLS || eYieldProduced == YIELD_FOOD || eYieldProduced == YIELD_GRAIN)
 								{
 									bIsMilitary = true;
 								}
@@ -1198,7 +1206,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 			if (iAdded != 0)
 			{
 			    ///TKs
-				if (GC.isEquipmentType(eLoopYield, EQUIPMENT_ANY) || eLoopYield == YIELD_TOOLS || eLoopYield == YIELD_FOOD)
+				if (GC.isEquipmentType(eLoopYield, EQUIPMENT_ANY) || eLoopYield == YIELD_TOOLS || eLoopYield == YIELD_FOOD || eLoopYield == YIELD_GRAIN)
 				{
 					bIsMilitary = true;
 				}
@@ -3328,15 +3336,15 @@ int CvCityAI::AI_professionValue(ProfessionTypes eProfession, const CvUnit* pUni
 		}
 	}
     ///TKs Med
-	if (eYieldConsumedType != NO_YIELD && eYieldConsumedType != YIELD_FOOD)
+	if (eYieldConsumedType != NO_YIELD && eYieldConsumedType != YIELD_FOOD && eYieldConsumedType != YIELD_GRAIN)
 	{
 		if (getYieldStored(eYieldConsumedType) > getMaxYieldCapacity(eYieldConsumedType))
 		{
 			iInputValue /= 5;
 		}
 	}
-    ///TKe
-	if ((eYieldProducedType != YIELD_FOOD) && GC.getYieldInfo(eYieldProducedType).isCargo())
+
+	if ((eYieldProducedType != YIELD_FOOD && eYieldProducedType != YIELD_GRAIN) && GC.getYieldInfo(eYieldProducedType).isCargo())
 	{
 		int iNeededYield = AI_getNeededYield(eYieldProducedType) - iNetYield;
 
@@ -3351,7 +3359,6 @@ int CvCityAI::AI_professionValue(ProfessionTypes eProfession, const CvUnit* pUni
 			iNeededYield = std::min(iNeededYield, iYieldOutput);
             ///TKs Med
 			int iExtraValue = iNeededYield * (50 + 100 * (getMaxYieldCapacity(eYieldProducedType) - getYieldStored(eYieldProducedType)) / getMaxYieldCapacity(eYieldProducedType));
-			///TKs
 			iExtraValue *= AI_getYieldOutputWeight(eYieldProducedType);
 			iExtraValue /= 100;
 			iOutputValue += iExtraValue;
@@ -3362,7 +3369,6 @@ int CvCityAI::AI_professionValue(ProfessionTypes eProfession, const CvUnit* pUni
 		{
 		    ///TKs Med
 			int iSpareCapacity = std::max(0, getMaxYieldCapacity(eYieldProducedType) - (getYieldStored(eYieldProducedType) + iNetYield));
-            ///TKe
 			int iExcess = getYieldStored(eYieldProducedType) + (iNetYield + iYieldOutput) - getMaxYieldCapacity();
 			int iLoss = 0;
 			if (iExcess > 0)
@@ -3409,11 +3415,11 @@ int CvCityAI::AI_professionValue(ProfessionTypes eProfession, const CvUnit* pUni
 		}
 	}
 
-	if (eYieldProducedType == YIELD_FOOD)
+	if (eYieldProducedType == YIELD_FOOD || eYieldProducedType == YIELD_GRAIN)
 	{
 		int iBaseFood = iNetYield;
 
-		int iDifference = (iBaseFood + getYieldStored(YIELD_FOOD));
+		int iDifference = (iBaseFood + getYieldStored(eYieldProducedType));
 
 		if (iDifference < 0)
 		{
@@ -3452,7 +3458,7 @@ int CvCityAI::AI_professionValue(ProfessionTypes eProfession, const CvUnit* pUni
 
 	return std::max(1, iNetValue);
 }
-
+///TKs
 int CvCityAI::AI_professionBasicOutput(ProfessionTypes eProfession, UnitTypes eUnit, const CvPlot* pPlot) const
 {
 	FAssert(NO_PROFESSION != eProfession);
@@ -5555,11 +5561,13 @@ void CvCityAI::AI_educateStudent(int iUnitId)
 					// MultipleYieldsProduced End
 					if (eYieldProducedType != NO_YIELD)
 					{
-						if (eYieldProducedType == YIELD_FOOD)
+					    ///TKs Med
+						if (eYieldProducedType == YIELD_FOOD || eYieldProducedType == YIELD_GRAIN)
 						{
 							iValue *= 200;
 							iValue /= 100;
 						}
+						///TKe
 					}
 				}
 			}

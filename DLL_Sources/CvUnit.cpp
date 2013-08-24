@@ -1793,9 +1793,16 @@ void CvUnit::updateCombat(bool bQuick)
 				{
 				    ///TKs Med
 				    UnitTypes eCaptureUnitType = pDefender->getCaptureUnitType(getCivilizationType());
-					if (!pDefender->canDefend() || eCaptureUnitType != NO_UNIT)
+					if (eCaptureUnitType != NO_UNIT)
 					{
-					    if (pDefender->canDefend())
+                        if (GC.getUnitInfo(eCaptureUnitType).getDefaultUnitAIType() == UNITAI_YIELD)
+                        {
+                            if (cargoSpace() > 0)
+                            {
+                                pDefender->setCapturingPlayer(getOwnerINLINE());
+                            }
+                        }
+                        else if (pDefender->canDefend())
                         {
                             if (getDomainType() == DOMAIN_SEA)
                             {
@@ -1813,10 +1820,10 @@ void CvUnit::updateCombat(bool bQuick)
                             }
 
                         }
-					    else
-					    {
-                            pDefender->setCapturingPlayer(getOwnerINLINE());
-					    }
+					}
+					else if (!pDefender->canDefend())
+					{
+                        pDefender->setCapturingPlayer(getOwnerINLINE());
 					}
 					///TKe
 				}
@@ -9870,15 +9877,27 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
             }
 
         }
-        ///TKe
+
 		if (pTransportUnit != NULL)
 		{
 			if (!(pTransportUnit->atPlot(pNewPlot)))
 			{
 				setTransportUnit(NULL);
 			}
+			if (!isHuman())
+            {
+                if (isGoods())
+                {
+                    if (pNewPlot->isWater() && pTransportUnit->getDomainType() != DOMAIN_SEA)
+                    {
+                        FAssertMsg(false, "Goods transported over water by none Sea Vessel" );
+                        kill(true);
+                        return;
+                    }
+                }
+            }
 		}
-
+        ///TKe
 		if (canFight() && isOnMap())
 		{
 			oldUnits.clear();

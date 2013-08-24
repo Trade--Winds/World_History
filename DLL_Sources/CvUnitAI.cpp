@@ -104,19 +104,6 @@ bool CvUnitAI::AI_update()
 		AI_europeUpdate();
 		return false;
 	}
-//	else if (UNITAI_TRADER == AI_getUnitAIType())
-//    {
-//        if (getUnitTravelState() == UNIT_TRAVEL_STATE_IN_EUROPE)
-//        {
-//            if (AI_getUnitAIState() != UNITAI_STATE_RETURN_HOME)
-//            {
-//                AI_europe();
-//                AI_setUnitAIState(UNITAI_STATE_RETURN_HOME);
-//                //crossOcean(UNIT_TRAVEL_STATE_FROM_EUROPE);
-//            //AI_transportTraderMove();
-//            }
-//        }
-//    }
 ///Tke
 	int iOldMovePriority = AI_getMovePriority();
 
@@ -406,14 +393,16 @@ bool CvUnitAI::AI_europeUpdate()
 	PROFILE_FUNC();
 
 	if (getDomainType() == DOMAIN_LAND)
-	{
-	    ///TKs MEd
+	{   ///TKs MEd
 	    if (UNITAI_TRADER != AI_getUnitAIType())
 	    {
-            return false;//XXX maybe units should load onto ships...
+            return false;
+        }
+        if (getUnitTravelTimer() == 0 && getUnitTravelState() != UNIT_TRAVEL_STATE_IN_EUROPE)
+	    {
+            return false;
         }
 	}
-
 	if (getUnitTravelTimer() > 0)
 	{
 		return false;
@@ -3104,6 +3093,14 @@ void CvUnitAI::AI_transportTraderMove()
 {
 	if (isCargo())
 	{
+	    if (plot()->getPlotCity() != NULL)
+        {
+            if (plot()->getOwner() == getOwner() || GET_PLAYER(plot()->getOwner()).isNative())
+            {
+                unload();
+            }
+        }
+
 		getGroup()->pushMission(MISSION_SKIP);
 		return;
 	}

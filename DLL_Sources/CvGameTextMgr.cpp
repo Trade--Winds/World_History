@@ -2163,6 +2163,12 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		szTempBuffer.Format(L"\n(%d, %d) (Oc: %d  / Crumbs: %d)", pPlot->getX_INLINE(), pPlot->getY_INLINE(), pPlot->getDistanceToOcean(), pPlot->getCrumbs());
 		szString.append(szTempBuffer);
 	}
+	///TKs Med
+//	if ((gDLL->getChtLvl() > 0) && (bCtrl))
+//	{
+//		szTempBuffer.Format(L"\n AI Strategy: %d)", );
+//		szString.append(szTempBuffer);
+//	}
 
 	if (bShift && !bAlt && (gDLL->getChtLvl() > 0))
 	{

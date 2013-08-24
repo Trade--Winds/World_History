@@ -5119,6 +5119,10 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 	{
 	    return false;
 	}
+	else if (eCanBuild == MODER_CODE_AI_ONLY && !isHuman())
+	{
+	    return false;
+	}
 	///Tke
 
 	///TKs Invention Core Mod v 1.0 B&Y
@@ -15530,9 +15534,15 @@ bool CvPlayer::checkIndependence() const
     ///TKs Med Update 1.1f
 	if (!isInRevolution())
     {
-        int iMaxTurns = GC.getGameINLINE().getMaxTurns();
+        CvGame& kGame = GC.getGameINLINE();
+        int iMaxTurns = kGame.getMaxTurns();
+//        if (kGame.isMaxTurnsExtended())
+//        {
+//            int iRevolutionTurns = GC.getGameSpeedInfo(kGame.getGameSpeedType()).getRevolutionTurns();
+//            iMaxTurns -= iRevolutionTurns;
+//        }
 
-        if (iMaxTurns > 0 && GC.getGameINLINE().getElapsedGameTurns() >= iMaxTurns)
+        if (iMaxTurns > 0 && kGame.getElapsedGameTurns() >= iMaxTurns)
         {
 
             if (isHuman())
@@ -15540,7 +15550,7 @@ bool CvPlayer::checkIndependence() const
                 GET_TEAM(getTeam()).doRevolution();
                 bValid = false;
             }
-            else if (gDLL->getChtLvl() > 0 && GC.getGameINLINE().getAIAutoPlay() > 0)
+            else if (gDLL->getChtLvl() > 0 && kGame.getAIAutoPlay() > 0)
             {
                 GET_TEAM(getTeam()).doRevolution();
                 bValid = false;
@@ -15549,7 +15559,7 @@ bool CvPlayer::checkIndependence() const
             {
                 PlayerTypes ePowerPlayer = NO_PLAYER;
                 int iHighestPower = 0;
-                if (GC.getGameINLINE().getAIAutoPlay() <= 0)
+                if (kGame.getAIAutoPlay() <= 0)
                 {
                     for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
                     {

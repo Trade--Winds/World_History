@@ -5069,6 +5069,12 @@ int CvPlot::calculatePotentialYield(YieldTypes eYield, PlayerTypes ePlayer, Impr
 				if (iYield > 0 || !GC.getYieldInfo(eYield).isCargo())
 				{
 					iYield += GC.getYieldInfo(eYield).getCityChange();
+					///TKs AI HandyCap
+					if (!pCity->isHuman())
+                    {
+                       iYield += 2;
+                    }
+					///TKe
 					iYield += GET_PLAYER(pCity->getOwnerINLINE()).getCityExtraYield(eYield);
 				}
 

@@ -4737,6 +4737,9 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		switch (eUnitAI)
 		{
 		case UNITAI_UNKNOWN:
+        ///TKs Med
+        case UNITAI_ANIMAL:
+        ///TKe
 			break;
 		case UNITAI_COLONIST:
 			break;
@@ -4746,10 +4749,11 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 			break;
 		case UNITAI_MISSIONARY:
 			break;
+        ///TKs Med
 		case UNITAI_SCOUT:
+        case UNITAI_HUNTSMAN:
 			break;
 		case UNITAI_WAGON:
-		///TKs Med
         case UNITAI_MARAUDER:
 		case UNITAI_TRADER:
 		///TKe
@@ -4765,10 +4769,6 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		case UNITAI_OFFENSIVE:
 			break;
 		case UNITAI_COUNTER:
-		///TKs Med
-        //case UNITAI_ANIMAL:
-        //case UNITAI_HUNTSMAN:
-        ///TKe
 			break;
 		case UNITAI_TRANSPORT_SEA:
 			break;
@@ -6113,8 +6113,8 @@ void CvPlayerAI::AI_doTradeRoutes()
 	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
 	{
 		YieldTypes eLoopYield = (YieldTypes)iYield;
-
-		if (GC.getYieldInfo(eLoopYield).isCargo() && (eLoopYield != YIELD_FOOD))
+///TKs Med
+		if (GC.getYieldInfo(eLoopYield).isCargo() && (eLoopYield != YIELD_FOOD && eLoopYield != YIELD_GRAIN))
 		{
 			if (AI_isYieldFinalProduct(eLoopYield))
 			{
@@ -6124,7 +6124,7 @@ void CvPlayerAI::AI_doTradeRoutes()
 			{
 				yield_dests[eLoopYield] = NULL;
 			}
-			///TKs
+
 			else if (GC.isEquipmentType(eLoopYield, EQUIPMENT_ANY))
 			{
 				yield_dests[eLoopYield] = NULL;
@@ -6142,7 +6142,7 @@ void CvPlayerAI::AI_doTradeRoutes()
 					for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); ++iProfession)
 					{
 						CvProfessionInfo& kLoopProfession = GC.getProfessionInfo((ProfessionTypes)iProfession);
-						if (kLoopProfession.getYieldsConsumed(0, getID()) == eLoopYield)
+						if (kLoopProfession.getYieldsConsumed(0, getID()) == eLoopYield || kLoopProfession.getYieldsConsumed(1, getID()) == eLoopYield)
 						{
 							int iValue = pLoopCity->getProfessionOutput((ProfessionTypes)iProfession, NULL);
 							if (iValue > 0)
@@ -6183,8 +6183,6 @@ void CvPlayerAI::AI_doTradeRoutes()
 		{
 		    YieldTypes eLoopYield = (YieldTypes)iYield;
 		    int iCapacity = pLoopCity->getMaxYieldCapacity(eLoopYield);
-		    ///Tke
-
 			bool bAvailable = (aiYields[eLoopYield] > 0) || (pLoopCity->getYieldStored(eLoopYield) > 0);
 			bool bShouldImport = false;
 			bool bShouldExport = false;
@@ -6192,20 +6190,52 @@ void CvPlayerAI::AI_doTradeRoutes()
 			{
 				if (eLoopYield == YIELD_FOOD)
 				{
-					int iThreshold = pLoopCity->growthThreshold() / (2 + std::max(0, aiYields[YIELD_FOOD]));
-
-					pLoopCity->setMaintainLevel(YIELD_FOOD, iThreshold);
-
-					if (aiYields[YIELD_FOOD] > 0)
-					{
-						bShouldExport = true;
-						pLoopCity->AI_setAvoidGrowth(false);
-					}
-					else
-					{
-						bShouldImport = true;
-						pLoopCity->AI_setAvoidGrowth(true);
-					}
+					int iThreshold = pLoopCity->growthThreshold() / (2 + std::max(0, aiYields[eLoopYield]));
+                    pLoopCity->setMaintainLevel(eLoopYield, iThreshold);
+                    if (aiYields[eLoopYield] > 0)
+                    {
+                        bShouldExport = true;
+                        pLoopCity->AI_setAvoidGrowth(false);
+                    }
+                    else
+                    {
+                        bShouldImport = true;
+                        pLoopCity->AI_setAvoidGrowth(true);
+                    }
+				}
+				else if (eLoopYield == YIELD_GRAIN)
+				{
+					int iThreshold = pLoopCity->growthThreshold();
+                    if (pLoopCity->canProduceYield(YIELD_GRAIN))
+                    {
+                        pLoopCity->setMaintainLevel(eLoopYield, iThreshold);
+                        bShouldExport = false;
+                        bShouldImport = true;
+                        //pLoopCity->AI_setEmphasize(YIELD_GRAIN, true);
+                    }
+                    else
+                    {
+                        bShouldImport = false;
+                        bShouldExport = true;
+                        //pLoopCity->AI_setEmphasize(YIELD_GRAIN, false);
+                    }
+				}
+				else if (eLoopYield == YIELD_SPICES || eLoopYield == YIELD_CATTLE)
+				{
+					int iThreshold = pLoopCity->growthThreshold() * 50 / 100;
+                    if (pLoopCity->canProduceYield(YIELD_GRAIN))
+                    {
+                        pLoopCity->setMaintainLevel(eLoopYield, iThreshold);
+                        bShouldExport = false;
+                        bShouldImport = true;
+                        //pLoopCity->AI_setEmphasize(YIELD_GRAIN, true);
+                    }
+                    else
+                    {
+                        bShouldImport = false;
+                        bShouldExport = true;
+                        //pLoopCity->AI_setEmphasize(YIELD_GRAIN, false);
+                    }
 				}
 				else
 				{
@@ -8267,27 +8297,10 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 	    ///TK ME start
 		case YIELD_FOOD:
 		case YIELD_LUMBER:
+        case YIELD_GRAIN:///NEW*
 			bFinal = false;
 			break;
         ///Food Goods
-	    case YIELD_CATTLE:///NEW*
-	    case YIELD_SHEEP:///NEW*
-        case YIELD_GRAIN:///NEW*
-        case YIELD_WOOL:///NEW*
-        case YIELD_SALT:///NEW*
-        ///Food Goods^
-		///Building Material
-        case YIELD_STONE:///NEW*
-        ///Building Material^
-         ///Bonus Resources
-//        case YIELD_IVORY:///NEW*
-        case YIELD_SPICES:///NEW*
-        ///Bonus Resources^
-         ///Discoverys Bonus
-//        case YIELD_SILK:///NEW*
-//        case YIELD_PORCELAIN:///NEW*
-        ///Discoverys^
-        case YIELD_FUR:
 		case YIELD_SILVER:
 			bFinal = true;
 			break;
@@ -8298,6 +8311,13 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 		case YIELD_BARLEY:
 		case YIELD_GRAPES:
 		case YIELD_ORE:
+        case YIELD_CATTLE:///NEW*
+        case YIELD_SPICES:///NEW*
+        case YIELD_SHEEP:///NEW*
+        case YIELD_WOOL:///NEW*
+        case YIELD_SALT:///NEW*
+        case YIELD_STONE:///NEW*
+        case YIELD_FUR:
 		///TKs Invention Core Mod v 1.0
 //        case YIELD_COAL:
         ///TKe
@@ -8381,15 +8401,15 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
 
 	switch (eYield)
 	{
-	    case YIELD_SALT:
 	    case YIELD_SPICES:
 	    case YIELD_TOOLS:
+        case YIELD_GRAIN:///NEW*
+        case YIELD_CATTLE:///NEW*
 			bBuy = true;
 			break;
+        case YIELD_SALT:
 		case YIELD_FOOD:
-	    case YIELD_CATTLE:///NEW*
 	    case YIELD_SHEEP:///NEW*
-        case YIELD_GRAIN:///NEW*
         case YIELD_WOOL:///NEW*
         case YIELD_STONE:///NEW*
 		case YIELD_LUMBER:
@@ -8442,30 +8462,12 @@ bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 	switch (eYield)
 	{
 		case YIELD_FOOD:
-		///TKs Invention Core Mod v 1.0
-//        case YIELD_COAL:
-        ///TKe
-        ///Food Goods
 	    case YIELD_CATTLE:///NEW*
 	    case YIELD_SHEEP:///NEW*
         case YIELD_GRAIN:///NEW*
         case YIELD_WOOL:///NEW*
         case YIELD_SALT:///NEW*
-        ///Food Goods^
-         ///Building Material
         case YIELD_STONE:///NEW*
-        ///Building Material^
-        ///Bonus Resources
-//        case YIELD_IVORY:///NEW*
-        case YIELD_SPICES:///NEW*
-        ///Bonus Resources^
-         ///Trade Goods
-//        case YIELD_LEATHER:///NEW*
-        ///Trade Goods^
-        ///Discoverys Bonus
-//        case YIELD_SILK:///NEW*
-//        case YIELD_PORCELAIN:///NEW*
-        ///Discoverys^
 		case YIELD_LUMBER:
 		case YIELD_SILVER:
 		case YIELD_COTTON:
@@ -8489,6 +8491,7 @@ bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 		case YIELD_WEAPONS:
 		case YIELD_HORSES:
 		case YIELD_TRADE_GOODS:
+        case YIELD_SPICES:///NEW*
 			bBuy = true;
 			break;
 		///TKs Invention Core Mod v 1.0
@@ -8555,8 +8558,10 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 	if (bProduce)
 	{
 		int iWeaponsMultiplier = 100;
+		int iNoblesMultiplier = 100;
 		if (AI_isStrategy(STRATEGY_REVOLUTION_PREPARING))
 		{
+		    iNoblesMultiplier += 50;
 			iWeaponsMultiplier += 50;
 		}
 
@@ -8564,17 +8569,20 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 		if (AI_isStrategy(STRATEGY_REVOLUTION_DECLARING))
 		{
 			iGoodsMultiplier -= 15;
+			iNoblesMultiplier += 25;
 			iWeaponsMultiplier += 25;
 		}
 		else if (AI_isStrategy(STRATEGY_CASH_FOCUS))
 		{
 			iGoodsMultiplier += 50;
+			iNoblesMultiplier -= 25;
 		}
 
 		if (AI_isStrategy(STRATEGY_REVOLUTION))
 		{
 			iGoodsMultiplier -= 15;
 			iWeaponsMultiplier += 50;
+			iNoblesMultiplier += 25;
 		}
 
 		switch (eYield)
@@ -8582,32 +8590,12 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 			case YIELD_FOOD:
 				break;
 			case YIELD_LUMBER:
-			///TK ME start
-			 ///Building Material
             case YIELD_STONE:///NEW*
-            ///Building Material^
-             ///Food Goods
-            case YIELD_CATTLE:///NEW*
-            case YIELD_GRAIN:///NEW*
-            case YIELD_SPICES:///NEW*
-            ///Food Goods^
-				///TKs Invention Core Mod v 1.0
-//			case YIELD_COAL:
-			///TKe
 				iValue *= 100;
 				iValue /= iGoodsMultiplier;
 				break;
             ///Bonus Resources
             case YIELD_SALT:///NEW*
-//            case YIELD_IVORY:///NEW*
-            ///Bonus Resources^
-            ///Trade Goods
-//            case YIELD_LEATHER:///NEW*
-            ///Trade Goods^
-             ///Discoverys Bonus
-//            case YIELD_SILK:///NEW*
-//            case YIELD_PORCELAIN:///NEW*
-            ///Discoverys^
 			case YIELD_SILVER:
 			case YIELD_COTTON:
 			case YIELD_FUR:
@@ -8650,9 +8638,21 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
                    iValue = 0;
                 }
 				break;
+            case YIELD_CATTLE:///NEW*
+            case YIELD_GRAIN:///NEW*
+            case YIELD_SPICES:///NEW*
+				//if (AI_isStrategy(STRATEGY_REVOLUTION_PREPARING) || AI_isStrategy(STRATEGY_BUILDUP))
+				{
+					iValue *= iNoblesMultiplier;
+					iValue /= 100;
+					if (AI_isStrategy(STRATEGY_REVOLUTION_DECLARING))
+					{
+						iValue *= iNoblesMultiplier;
+						iValue /= 100;
+					}
+				}
+				break;
             ///TKe
-
-
 			case YIELD_HAMMERS:
 				if (AI_isStrategy(STRATEGY_REVOLUTION_PREPARING))
 				{
@@ -8717,32 +8717,15 @@ void CvPlayerAI::AI_updateYieldValues()
 		switch (eYield)
 		{
 			case YIELD_FOOD:
+            case YIELD_GRAIN:///NEW*
 				iValue += (kParent.getYieldSellPrice(eYield) + kParent.getYieldBuyPrice(eYield)) / 2;
 				break;
 			case YIELD_LUMBER:
-			///Building Material
             case YIELD_STONE:///NEW*
-            ///Building Material^
-			///TKs Invention Core Mod v 1.0
-//            case YIELD_COAL:
-            ///TKe
 				iValue += (kParent.getYieldSellPrice(eYield) + kParent.getYieldBuyPrice(eYield)) / 2;
 				break;
             ///Bonus Resources
-//            case YIELD_IVORY:///NEW*
-            case YIELD_SPICES:///NEW*
-            ///Bonus Resources^
-            ///Trade Goods
-//            case YIELD_LEATHER:///NEW*
-            ///Trade Goods^
-            ///Discoverys Bonus
-//            case YIELD_SILK:///NEW*
-//            case YIELD_PORCELAIN:///NEW*
-            ///Discoverys^
-            ///Food Goods
-            case YIELD_CATTLE:///NEW*
             case YIELD_SHEEP:///NEW*
-            case YIELD_GRAIN:///NEW*
             case YIELD_WOOL:///NEW*
             case YIELD_SALT:///NEW*
             ///Food Goods^
@@ -8771,6 +8754,8 @@ void CvPlayerAI::AI_updateYieldValues()
             case YIELD_MAIL_ARMOR:///NEW*
             case YIELD_PLATE_ARMOR:///NEW*
             ///Armor^
+            case YIELD_SPICES:///NEW*
+            case YIELD_CATTLE:///NEW*
 				iValue += kParent.getYieldSellPrice(eYield);
 				break;
 
@@ -8868,7 +8853,7 @@ int CvPlayerAI::AI_transferYieldValue(const IDInfo target, YieldTypes eYield, in
 	{
 		int iStored = pCity->getYieldStored(eYield);
 		///TKs Med
-		int iMaxCapacity = (eYield == YIELD_FOOD) ? pCity->growthThreshold() : pCity->getMaxYieldCapacity(eYield);
+		int iMaxCapacity = (eYield == YIELD_FOOD || eYield == YIELD_GRAIN) ? pCity->growthThreshold() : pCity->getMaxYieldCapacity(eYield);
 		///Tke
 		int iMaintainLevel = pCity->getMaintainLevel(eYield);
 		FAssert(iMaxCapacity > 0);
@@ -8879,7 +8864,7 @@ int CvPlayerAI::AI_transferYieldValue(const IDInfo target, YieldTypes eYield, in
 			{
 				iValue = std::min(iSurplus, -iAmount);
                 ///TKs Med
-				int iMaxCapacity = (eYield == YIELD_FOOD) ? pCity->growthThreshold() : iMaxCapacity = pCity->getMaxYieldCapacity(eYield);
+				int iMaxCapacity = (eYield == YIELD_FOOD || eYield == YIELD_GRAIN) ? pCity->growthThreshold() : iMaxCapacity = pCity->getMaxYieldCapacity(eYield);
 				///TKe
 				FAssert(iMaxCapacity > 0);
 				iValue *= 50 + ((100 * iStored) / std::max(1, iMaxCapacity));
@@ -9024,8 +9009,8 @@ void CvPlayerAI::AI_manageEconomy()
 						iWeight += GC.getUnitInfo(eUnit).getYieldModifier(eLoopYield);
 					}
 				}
-
-				if (eLoopYield == YIELD_FOOD)
+///Tks Med
+				if (eLoopYield == YIELD_FOOD || eLoopYield == YIELD_GRAIN)
 				{
 					iWeight += bAtWar ? 20 : 0;
 				}
@@ -9034,7 +9019,6 @@ void CvPlayerAI::AI_manageEconomy()
 					iWeight *= 20 + GC.getGame().getSorenRandNum(80, "AI Native Yield Value Randomization 3");
 					iWeight /= 100;
 				}
-				///Tks Med
 				else if (GC.isEquipmentType(eLoopYield, EQUIPMENT_ARMOR_HORSES))
 				{
 					iWeight += bAtWar ? 20 : 0;
@@ -14267,6 +14251,14 @@ void CvPlayerAI::AI_updateNextBuyProfession()
 									iValue *= 100 + kUnitInfo.getYieldModifier(YIELD_BELLS) / (2 + iExisting);
 									iValue /= 100;
 								}
+								///TKs Med
+								//else if (AI_isStrategy(STRATEGY_BUILDUP) || AI_isStrategy(STRATEGY_REVOLUTION_PREPARING))
+                                else
+								{
+									iValue *= 100 + kUnitInfo.getYieldModifier(YIELD_GRAIN) / (2 + iExisting);
+									iValue /= 100;
+								}
+								///TKe
 							}
 
 							for (int i = 0; i < NUM_YIELD_TYPES; ++i)
