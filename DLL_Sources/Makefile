@@ -1,4 +1,4 @@
-#### Civilization 4 SDK Makefile 2.1 ####
+#### Civilization 4 SDK Makefile 2.2 ####
 ####  Copyright 2013 Nightinggale    ####
 #########################################
 #### Civilization 4 SDK Makefile 2.0 ####
@@ -7,6 +7,22 @@
 #### Civilization 4 SDK Makefile 1.0 ####
 ####  Copyright 2010 Danny Daemonic  ####
 #########################################
+
+## User setup
+##
+## Any setting here can be overwritten by assigning a new value to the variables in Makefile.settings
+##  Makefile.settings is made automatically if it is missing whenever the project is build or cleaned
+##
+## Not touching the makefile itself can be beneficial if the makefile is committed to svn/git
+## Makefile.settings can also accept CUSTOM_CFLAGS and CUSTOM_LDFLAGS if you want to ADD additional flags
+##   the custom flags will not overwrite any flags the makefile sets itself
+##   An example could be you want to define ENABLE_MY_DEBUG_OUTPUT in C+, then you write
+##     CUSTOM_CFLAGS -DENABLE_MY_DEBUG_OUTPUT
+##     in Makefile.settings and it will be defined for you without the risk of committing active debug output to other people
+##
+##     You can write whatever you want after -D and it will work like you write #DEFINE in C++
+## 
+
 
 #### Paths ####
 #
@@ -20,7 +36,7 @@ YOURMOD=..
 ## Civ install path
 ## Path to the directory where boost and python is stored
 ## Overwritten by enviroment variable CIV4_LIB_INSTALL_PATH
-#CIV4_PATH=$(PROGRAMFILES)\2K Games\Firaxis Games\Sid Meier's Civilization IV Colonization\CvGameCoreDLL
+CIV4_PATH=$(PROGRAMFILES)\2K Games\Firaxis Games\Sid Meier's Civilization IV Colonization\CvGameCoreDLL
 
 #### Tools ####
 CC="$(TOOLKIT)\bin\cl.exe"
@@ -49,6 +65,15 @@ Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /D
 #################################################################
 
 TEMP_FILE_DIR = temp_files
+CUSTOM_CFLAGS  =
+CUSTOM_LDFLAGS =
+
+!IF [IF NOT EXIST Makefile.settings EXIT 1] != 0
+!IF [ECHO CUSTOM_CFLAGS = > Makefile.settings]
+!ENDIF
+!ENDIF
+include Makefile.settings
+
 TEMP_TARGET_FILES = $(TEMP_FILE_DIR)\$(TARGET)
 
 ## Environmental path overwrite
@@ -79,24 +104,34 @@ Target_PDB=$(TEMP_TARGET_FILES)\CvGameCoreDLL.pdb
 Target_OTHER=$(TEMP_TARGET_FILES)\CvGameCoreDLL.exp
 
 #### CFLAGS ####
-GLOBAL_CFLAGS=/GR /Gy /W3 /EHsc /Gd /Gm- /Yu"CvGameCoreDLL.h" /Fp"$(Target_PCH)" /Fd"$(Target_PDB)"
+GLOBAL_CFLAGS=/GR /Gy /W3 /EHsc /Gd /Gm- /Yu"CvGameCoreDLL.h" /Fp"$(Target_PCH)" /Fd"$(Target_PDB)" $(CUSTOM_CFLAGS)
 Debug_CFLAGS=/MD /Zi /Od /RTC1 $(Debug_DEFINES) $(GLOBAL_CFLAGS)
 Release_CFLAGS= /MD /O2 /Oy /Oi /G7 $(Release_DEFINES) $(GLOBAL_CFLAGS)
 
 #### LDFLAGS ####
-GLOBAL_LDFLAGS=/DLL /NOLOGO /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /PDB:"$(Target_PDB)"
+GLOBAL_LDFLAGS=/DLL /NOLOGO /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /PDB:"$(Target_PDB)" $(CUSTOM_LDFLAGS)
 Debug_LDFLAGS=/INCREMENTAL /DEBUG /IMPLIB:"$(Target_STATICLIB)" $(GLOBAL_LDFLAGS)
 Release_LDFLAGS=/INCREMENTAL:NO /OPT:REF /OPT:ICF $(GLOBAL_LDFLAGS)
 
 #### INCLUDES ####
 GLOBAL_INCS=/I"$(TOOLKIT)/include" /I"$(PSDK)/Include" /I"$(PSDK)/Include/mfc"
-!IFDEF CIV4_PATH
-PROJECT_INCS=/I"$(CIV4_PATH)/Boost-1.32.0/include" /I"$(CIV4_PATH)/Python24/include"
-PROJECT_LIBS=/LIBPATH:"$(CIV4_PATH)"/Python24/libs /LIBPATH:"$(CIV4_PATH)"/boost-1.32.0/libs/ boost_python-vc71-mt-1_32.lib
-!ELSE
-PROJECT_INCS=/IBoost-1.32.0/include /IPython24/include
-PROJECT_LIBS=/LIBPATH:Python24/libs /LIBPATH:boost-1.32.0/libs/ boost_python-vc71-mt-1_32.lib
+
+#### boost and python ####
+
+BOOST_LIB_PATH =
+!IF [IF NOT EXIST "$(BOOST_LIB_PATH)Boost-1.32.0\libs\boost_python-vc71-mt-gd-1_32.lib" EXIT 1] != 0
+BOOST_LIB_PATH=$(CIV4_PATH)/
+!IF [IF NOT EXIST "$(BOOST_LIB_PATH)Boost-1.32.0\libs\boost_python-vc71-mt-gd-1_32.lib" EXIT 1] != 0
+BOOST_LIB_PATH=$(CIV4_LIB_INSTALL_PATH)/
+!IF [IF NOT EXIST "$(BOOST_LIB_PATH)Boost-1.32.0\libs\boost_python-vc71-mt-gd-1_32.lib" EXIT 1] != 0
+!MESSAGE FATAL ERROR: Failed to locate boost and python
 !ENDIF
+!ENDIF
+!ENDIF
+
+PROJECT_INCS=/I"$(BOOST_LIB_PATH)Boost-1.32.0/include" /I"$(BOOST_LIB_PATH)Python24/include"
+PROJECT_LIBS=/LIBPATH:"$(BOOST_LIB_PATH)Python24/libs" /LIBPATH:"$(BOOST_LIB_PATH)boost-1.32.0/libs/" boost_python-vc71-mt-1_32.lib
+
 INCS = $(PROJECT_INCS) $(GLOBAL_INCS)
 
 #### LIBS ####
