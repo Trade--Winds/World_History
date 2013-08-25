@@ -103,6 +103,11 @@ Target_PDB=$(TEMP_TARGET_FILES)\CvGameCoreDLL.pdb
 
 Target_OTHER=$(TEMP_TARGET_FILES)\CvGameCoreDLL.exp
 
+!IFDEF IGNORE_CUSTOM
+CUSTOM_CFLAGS  =
+CUSTOM_LDFLAGS =
+!ENDIF
+
 #### CFLAGS ####
 GLOBAL_CFLAGS=/GR /Gy /W3 /EHsc /Gd /Gm- /Yu"CvGameCoreDLL.h" /Fp"$(Target_PCH)" /Fd"$(Target_PDB)" $(CUSTOM_CFLAGS)
 Debug_CFLAGS=/MD /Zi /Od /RTC1 $(Debug_DEFINES) $(GLOBAL_CFLAGS)
