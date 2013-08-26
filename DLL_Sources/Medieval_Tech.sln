@@ -7,6 +7,7 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Assert|Win32 = Assert|Win32
 		Assert-fast|Win32 = Assert-fast|Win32
+		Assert-upload|Win32 = Assert-upload|Win32
 		Debug|Win32 = Debug|Win32
 		Profile|Win32 = Profile|Win32
 		Release|Win32 = Release|Win32
@@ -17,6 +18,8 @@ Global
 		{3021AF0E-699D-4232-86F6-FC374A0C9957}.Assert|Win32.Build.0 = Assert|Win32
 		{3021AF0E-699D-4232-86F6-FC374A0C9957}.Assert-fast|Win32.ActiveCfg = Assert-fast|Win32
 		{3021AF0E-699D-4232-86F6-FC374A0C9957}.Assert-fast|Win32.Build.0 = Assert-fast|Win32
+		{3021AF0E-699D-4232-86F6-FC374A0C9957}.Assert-upload|Win32.ActiveCfg = Assert-upload|Win32
+		{3021AF0E-699D-4232-86F6-FC374A0C9957}.Assert-upload|Win32.Build.0 = Assert-upload|Win32
 		{3021AF0E-699D-4232-86F6-FC374A0C9957}.Debug|Win32.ActiveCfg = Debug|Win32
 		{3021AF0E-699D-4232-86F6-FC374A0C9957}.Debug|Win32.Build.0 = Debug|Win32
 		{3021AF0E-699D-4232-86F6-FC374A0C9957}.Profile|Win32.ActiveCfg = Profile|Win32
