@@ -14056,7 +14056,7 @@ bool CvUnit::verifyStackValid()
 
 	return true;
 }
-
+///Tks Med
 void CvUnit::setYieldStored(int iYieldAmount)
 {
 	int iChange = (iYieldAmount - getYieldStored());
@@ -14104,6 +14104,11 @@ void CvUnit::setYieldStored(int iYieldAmount)
 					    if (m_pUnitInfo->getKnightDubbingWeight() > 0 && !isHasRealPromotion((PromotionTypes)GC.getCache_DEFAULT_KNIGHT_PROMOTION()))
 					    {
 					        ///TKe Update
+					        if (pCity->getPopulation() == 1)
+                            {
+                                m_iYieldStored = iYieldAmount + iChange;
+                                return;
+                            }
                             setHasRealPromotion((PromotionTypes)GC.getCache_DEFAULT_KNIGHT_PROMOTION(), true);
 //                            setHasRealPromotion(((PromotionTypes)GC.getDefineINT("DEFAULT_UNTRAINED_PROMOTION")), false);
                             //setHasRealPromotion(((PromotionTypes)GC.getDefineINT("DEFAULT_TRAINED_PROMOTION")), true);
@@ -14128,6 +14133,11 @@ void CvUnit::setYieldStored(int iYieldAmount)
 					    }
 					    else if (m_pUnitInfo->getEducationUnitClass() != NO_UNITCLASS)
 					    {
+					        if (pCity->getPopulation() == 1)
+                            {
+                                m_iYieldStored = iYieldAmount + iChange;
+                                return;
+                            }
 					        UnitTypes eEduUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits((UnitClassTypes)m_pUnitInfo->getEducationUnitClass());
 					        if (eEduUnit != NO_UNIT)
 					        {

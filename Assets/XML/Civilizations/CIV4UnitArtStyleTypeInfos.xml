@@ -219,6 +219,9 @@
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_TRADER_PEDLER</ArtDefineTag>
           </UnitMeshGroup>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_CAMEL_SOLO</ArtDefineTag>
+          </UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_SLAVE</UnitType>
@@ -307,6 +310,9 @@
           <ProfessionType>PROFESSION_MERCHANT</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_TRADER_PEDLER</ArtDefineTag>
+          </UnitMeshGroup>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_CAMEL_SOLO</ArtDefineTag>
           </UnitMeshGroup>
         </StyleUnit>
         <!--Dog Escort Unit-->
@@ -671,6 +677,9 @@
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_TRADER_PEDLER</ArtDefineTag>
           </UnitMeshGroup>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_CAMEL_SOLO</ArtDefineTag>
+          </UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
@@ -1032,6 +1041,9 @@
           <ProfessionType>PROFESSION_MERCHANT</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_TRADER_PEDLER</ArtDefineTag>
+          </UnitMeshGroup>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_CAMEL_SOLO</ArtDefineTag>
           </UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
@@ -1401,6 +1413,9 @@
           <ProfessionType>PROFESSION_MERCHANT</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_TRADER_PEDLER</ArtDefineTag>
+          </UnitMeshGroup>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_CAMEL_SOLO</ArtDefineTag>
           </UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
