@@ -2011,7 +2011,7 @@
           <UnitType>UNIT_MAN_O_WAR</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <UnitType>UNIT_ARTILLERY</UnitType>
         </Unit>
         <Unit>
@@ -2056,19 +2056,19 @@
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
@@ -2181,7 +2181,7 @@
 					<UnitType>UNIT_MAN_O_WAR</UnitType>
 				</Unit>
 				<Unit>
-					<UnitClassType>UNITCLASS_CANNON</UnitClassType>
+					<UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
 					<UnitType>UNIT_ARTILLERY</UnitType>
 				</Unit>
 				<Unit>
@@ -2226,19 +2226,19 @@
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
@@ -2351,7 +2351,7 @@
 					<UnitType>UNIT_MAN_O_WAR</UnitType>
 				</Unit>
 				<Unit>
-					<UnitClassType>UNITCLASS_CANNON</UnitClassType>
+					<UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
 					<UnitType>UNIT_ARTILLERY</UnitType>
 				</Unit>
 				<Unit>
@@ -2400,19 +2400,19 @@
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
@@ -2525,7 +2525,7 @@
           <UnitType>UNIT_MAN_O_WAR</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <UnitType>UNIT_ARTILLERY</UnitType>
         </Unit>
         <Unit>
@@ -2574,19 +2574,19 @@
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
@@ -2699,7 +2699,7 @@
 					<UnitType>UNIT_MAN_O_WAR</UnitType>
 				</Unit>
 				<Unit>
-					<UnitClassType>UNITCLASS_CANNON</UnitClassType>
+					<UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
 					<UnitType>UNIT_ARTILLERY</UnitType>
 				</Unit>
 				<Unit>
@@ -2748,19 +2748,19 @@
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
@@ -2873,7 +2873,7 @@
 					<UnitType>UNIT_MAN_O_WAR</UnitType>
 				</Unit>
 				<Unit>
-					<UnitClassType>UNITCLASS_CANNON</UnitClassType>
+					<UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
 					<UnitType>UNIT_ARTILLERY</UnitType>
 				</Unit>
 				<Unit>
@@ -2922,19 +2922,19 @@
 					<FreeUnitProfession>NONE</FreeUnitProfession>
 				</FreeUnitClass>
 				<FreeUnitClass>
-					<UnitClassType>UNITCLASS_CANNON</UnitClassType>
+					<UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
 					<FreeUnitProfession>NONE</FreeUnitProfession>
 				</FreeUnitClass>
 				<FreeUnitClass>
-					<UnitClassType>UNITCLASS_CANNON</UnitClassType>
+					<UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
 					<FreeUnitProfession>NONE</FreeUnitProfession>
 				</FreeUnitClass>
 				<FreeUnitClass>
-					<UnitClassType>UNITCLASS_CANNON</UnitClassType>
+					<UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
 					<FreeUnitProfession>NONE</FreeUnitProfession>
 				</FreeUnitClass>
 				<FreeUnitClass>
-					<UnitClassType>UNITCLASS_CANNON</UnitClassType>
+					<UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
 					<FreeUnitProfession>NONE</FreeUnitProfession>
 				</FreeUnitClass>
 				<FreeUnitClass>
@@ -3047,7 +3047,7 @@
           <UnitType>UNIT_MAN_O_WAR</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <UnitType>UNIT_ARTILLERY</UnitType>
         </Unit>
         <Unit>
@@ -3096,19 +3096,19 @@
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
@@ -3221,7 +3221,7 @@
           <UnitType>UNIT_MAN_O_WAR</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <UnitType>UNIT_ARTILLERY</UnitType>
         </Unit>
         <Unit>
@@ -3270,19 +3270,19 @@
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
@@ -3395,7 +3395,7 @@
           <UnitType>UNIT_MAN_O_WAR</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <UnitType>UNIT_ARTILLERY</UnitType>
         </Unit>
         <Unit>
@@ -3444,19 +3444,19 @@
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
@@ -3569,7 +3569,7 @@
           <UnitType>UNIT_MAN_O_WAR</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <UnitType>UNIT_ARTILLERY</UnitType>
         </Unit>
         <Unit>
@@ -3618,19 +3618,19 @@
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
-          <UnitClassType>UNITCLASS_CANNON</UnitClassType>
+          <UnitClassType>UNITCLASS_TREBUCHET</UnitClassType>
           <FreeUnitProfession>NONE</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>

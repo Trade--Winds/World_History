@@ -19142,7 +19142,7 @@
       <DefaultUnitAI>UNITAI_OFFENSIVE</DefaultUnitAI>
       <DefaultProfession>NONE</DefaultProfession>
       <bNativesInvalid>1</bNativesInvalid>
-      <bEuropeInvalid>1</bEuropeInvalid>
+      <bEuropeInvalid>0</bEuropeInvalid>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>Trebuchet</Description>

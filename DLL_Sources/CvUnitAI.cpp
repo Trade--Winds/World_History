@@ -348,7 +348,14 @@ bool CvUnitAI::AI_update()
 				break;
             ///TK Med
             case UNITAI_TRADER:
-				AI_transportTraderMove();
+				if (kOwner.AI_isKing())
+				{
+					AI_colonistMove();
+				}
+				else
+				{
+					AI_transportTraderMove();
+				}
 				break;
             case UNITAI_MARAUDER:
                 AI_MarauderMove();

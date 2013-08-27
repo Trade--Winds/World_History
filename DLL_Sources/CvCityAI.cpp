@@ -473,35 +473,45 @@ void CvCityAI::AI_chooseProduction()
 		if (iAreaCities > 1)
 		{
 		    ///Tks Med AI Traders
-		    if (GET_PLAYER(getOwnerINLINE()).AI_totalUnitAIs(UNITAI_TRANSPORT_SEA) == 0)
+			if (!GET_PLAYER(getOwnerINLINE()).AI_isKing())
 			{
-				if (AI_chooseUnit(UNITAI_TRANSPORT_SEA))
+				if (GET_PLAYER(getOwnerINLINE()).AI_totalUnitAIs(UNITAI_TRANSPORT_SEA) == 0)
 				{
-					return;
+					if (AI_chooseUnit(UNITAI_TRANSPORT_SEA))
+					{
+						return;
+					}
 				}
-			}
-		    else if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRADER) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRADER)) < (iAreaCities / 2))
-			{
-				if (AI_chooseUnit(UNITAI_TRADER))
+				else if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_TRADER) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_TRADER)) < (iAreaCities / 2))
 				{
-					return;
+					if (AI_chooseUnit(UNITAI_TRADER))
+					{
+						return;
+					}
+				}
+				else if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_WAGON) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_WAGON)) < (iAreaCities / 2))
+				{
+					if (AI_chooseUnit(UNITAI_WAGON))
+					{
+						return;
+					}
+				}
+				else if (GET_PLAYER(getOwnerINLINE()).AI_totalUnitAIs(UNITAI_TRANSPORT_SEA) < iAreaCities + 1)
+				{
+					if (AI_chooseBuilding(BUILDINGFOCUS_BUILD_PORT, MAX_INT, 8))
+					{
+						return;
+					}
+
+					if (AI_chooseUnit(UNITAI_TRANSPORT_SEA))
+					{
+						return;
+					}
 				}
 			}
 			else if ((pArea->getNumAIUnits(getOwnerINLINE(), UNITAI_WAGON) + pArea->getNumTrainAIUnits(getOwnerINLINE(), UNITAI_WAGON)) < (iAreaCities / 2))
 			{
 				if (AI_chooseUnit(UNITAI_WAGON))
-				{
-					return;
-				}
-			}
-			else if (GET_PLAYER(getOwnerINLINE()).AI_totalUnitAIs(UNITAI_TRANSPORT_SEA) < iAreaCities + 1)
-			{
-			    if (AI_chooseBuilding(BUILDINGFOCUS_BUILD_PORT, MAX_INT, 8))
-                {
-                    return;
-                }
-
-				if (AI_chooseUnit(UNITAI_TRANSPORT_SEA))
 				{
 					return;
 				}

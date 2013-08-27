@@ -9920,7 +9920,7 @@ int CvPlayerAI::AI_professionValue(ProfessionTypes eProfession, UnitAITypes eUni
         ///Tks Med
 		case UNITAI_TRADER:
 			{
-			    if (kProfession.getDefaultUnitAIType() != eUnitAI)
+			    if (kProfession.getDefaultUnitAIType() != eUnitAI || AI_isKing())
                 {
                     return 0;
                 }

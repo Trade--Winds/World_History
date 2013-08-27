@@ -962,7 +962,7 @@ void CvUnit::doTurn()
 	{
 	    if (isAlwaysHostile(plot()))
         {
-            FAssert(m_pUnitInfo->getDefaultUnitAIType() == AI_getUnitAIType());
+            //FAssert(m_pUnitInfo->getDefaultUnitAIType() == AI_getUnitAIType());
         }
 	    if (getEscortPromotion() != NO_PROMOTION)
 	    {

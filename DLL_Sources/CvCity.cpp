@@ -11175,8 +11175,8 @@ BuildingTypes CvCity::getFreeYieldBuilding(YieldTypes eYield) const
                     for (int iBuilding = 0; iBuilding < GC.getNumBuildingInfos(); ++iBuilding)
                     {
                         BuildingTypes eBuilding = (BuildingTypes) iBuilding;
-
-                        if (GC.getBuildingInfo(eBuilding).getSpecialBuildingType() == eSpecialBuilding)
+						BuildingClassTypes eBuildingClass = ((BuildingClassTypes)(GC.getBuildingInfo(eBuilding).getBuildingClassType()));
+                        if (GC.getBuildingInfo(eBuilding).getSpecialBuildingType() == eSpecialBuilding && ((BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(eBuildingClass))) == eBuilding)
                         {
                             if(canConstruct(eBuilding, true, false, true))
                             {
