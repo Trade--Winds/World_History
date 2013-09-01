@@ -735,6 +735,10 @@ public:
 
 	void deleteInfoArrays();
 
+	// XML enum check - start - Nightinggale
+	void CheckEnumYields() const;
+	// XML enum check - end - Nightinggale
+
 	// cache XML - start - Nightinggale
 	void setXMLCache();
 
