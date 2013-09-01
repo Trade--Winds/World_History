@@ -8198,6 +8198,11 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 		return false;
 	}
 
+	if (YieldIsBonusResource(eYield))
+	{
+		return true;
+	}
+
 	switch (eYield)
 	{
 		case YIELD_FOOD:
@@ -8219,21 +8224,21 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 	    case YIELD_CATTLE:///NEW*
 	    case YIELD_SHEEP:///NEW*
         case YIELD_WOOL:///NEW*
-        case YIELD_SALT:///NEW*
+        //case YIELD_SALT:///NEW*
         ///Food Goods^
 //        case YIELD_LEATHER:///NEW*
 //        case YIELD_IVORY:///NEW*
         case YIELD_SPICES:///NEW*
-		case YIELD_SILVER:
-		case YIELD_COTTON:
-		case YIELD_FUR:
-		case YIELD_BARLEY:
-		case YIELD_GRAPES:
-		case YIELD_ORE:
-		case YIELD_CLOTH:
-		case YIELD_COATS:
-		case YIELD_ALE:
-		case YIELD_WINE:
+		//case YIELD_SILVER:
+		//case YIELD_COTTON:
+		//case YIELD_FUR:
+		//case YIELD_BARLEY:
+		//case YIELD_GRAPES:
+		//case YIELD_ORE:
+		//case YIELD_CLOTH:
+		//case YIELD_COATS:
+		//case YIELD_ALE:
+		//case YIELD_WINE:
 			return true;
 			break;
 
@@ -8290,6 +8295,27 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 		return false;
 	}
 
+	
+	if (YieldIsRawMaterial(eYield))
+	{
+		{
+			int iLoop;
+			CvCity* pLoopCity = NULL;
+			for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				if (pLoopCity->AI_getNeededYield(eYield) > 0)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	if (YieldIsBonusResource(eYield))
+	{
+		return true;
+	}
+
 	bool bFinal = true;
 
 	switch (eYield)
@@ -8301,27 +8327,27 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 			bFinal = false;
 			break;
         ///Food Goods
-		case YIELD_SILVER:
-			bFinal = true;
-			break;
+		//case YIELD_SILVER:
+		//	bFinal = true;
+		//	break;
         ///Trade Goods
 //        case YIELD_LEATHER:///NEW*
         ///Trade Goods^
-		case YIELD_COTTON:
-		case YIELD_BARLEY:
-		case YIELD_GRAPES:
-		case YIELD_ORE:
-        case YIELD_CATTLE:///NEW*
-        case YIELD_SPICES:///NEW*
-        case YIELD_SHEEP:///NEW*
-        case YIELD_WOOL:///NEW*
-        case YIELD_SALT:///NEW*
-        case YIELD_STONE:///NEW*
-        case YIELD_FUR:
+		//case YIELD_COTTON:
+		//case YIELD_BARLEY:
+		//case YIELD_GRAPES:
+		//case YIELD_ORE:
+        //case YIELD_CATTLE:///NEW*
+        //case YIELD_SPICES:///NEW*
+        //case YIELD_SHEEP:///NEW*
+        //case YIELD_WOOL:///NEW*
+        //case YIELD_SALT:///NEW*
+        //case YIELD_STONE:///NEW*
+        //case YIELD_FUR:
 		///TKs Invention Core Mod v 1.0
 //        case YIELD_COAL:
         ///TKe
-			{
+		/*	{
 				int iLoop;
 				CvCity* pLoopCity = NULL;
 				for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
@@ -8334,13 +8360,13 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 				}
 			}
 			break;
-
-		case YIELD_CLOTH:
-		case YIELD_COATS:
-		case YIELD_ALE:
-		case YIELD_WINE:
-			bFinal = true;
-			break;
+			*/
+		//case YIELD_CLOTH:
+		//case YIELD_COATS:
+		//case YIELD_ALE:
+		//case YIELD_WINE:
+		//	bFinal = true;
+		//	break;
 
 		case YIELD_TOOLS:
 		case YIELD_WEAPONS:
@@ -8397,6 +8423,11 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
         return false;
     }
 
+	if (YieldIsBonusResource(eYield))
+	{
+		return false;
+	}
+
 	bool bBuy = false;
 
 	switch (eYield)
@@ -8407,22 +8438,22 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
         case YIELD_CATTLE:///NEW*
 			bBuy = true;
 			break;
-        case YIELD_SALT:
+        //case YIELD_SALT:
 		case YIELD_FOOD:
 	    case YIELD_SHEEP:///NEW*
         case YIELD_WOOL:///NEW*
         case YIELD_STONE:///NEW*
 		case YIELD_LUMBER:
-		case YIELD_SILVER:
-		case YIELD_COTTON:
-		case YIELD_FUR:
-		case YIELD_BARLEY:
-		case YIELD_GRAPES:
-		case YIELD_ORE:
-		case YIELD_CLOTH:
-		case YIELD_COATS:
-		case YIELD_ALE:
-		case YIELD_WINE:
+		//case YIELD_SILVER:
+		//case YIELD_COTTON:
+		//case YIELD_FUR:
+		//case YIELD_BARLEY:
+		//case YIELD_GRAPES:
+		//case YIELD_ORE:
+		//case YIELD_CLOTH:
+		//case YIELD_COATS:
+		//case YIELD_ALE:
+		//case YIELD_WINE:
         case YIELD_LEATHER_ARMOR:///NEW*
         case YIELD_SCALE_ARMOR:///NEW*
         case YIELD_MAIL_ARMOR:///NEW*
@@ -8457,6 +8488,11 @@ bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 		return false;
 	}
 
+	if (YieldIsBonusResource(eYield))
+	{
+		return false;
+	}
+
 	bool bBuy = false;
 
 	switch (eYield)
@@ -8466,19 +8502,19 @@ bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 	    case YIELD_SHEEP:///NEW*
         case YIELD_GRAIN:///NEW*
         case YIELD_WOOL:///NEW*
-        case YIELD_SALT:///NEW*
+       // case YIELD_SALT:///NEW*
         case YIELD_STONE:///NEW*
 		case YIELD_LUMBER:
-		case YIELD_SILVER:
-		case YIELD_COTTON:
-		case YIELD_FUR:
-		case YIELD_BARLEY:
-		case YIELD_GRAPES:
-		case YIELD_ORE:
-		case YIELD_CLOTH:
-		case YIELD_COATS:
-		case YIELD_ALE:
-		case YIELD_WINE:
+		//case YIELD_SILVER:
+		//case YIELD_COTTON:
+		//case YIELD_FUR:
+		//case YIELD_BARLEY:
+		//case YIELD_GRAPES:
+		//case YIELD_ORE:
+		//case YIELD_CLOTH:
+		//case YIELD_COATS:
+		//case YIELD_ALE:
+		//case YIELD_WINE:
 			bBuy = false;
 			break;
          ///Armor
@@ -8585,6 +8621,11 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 			iNoblesMultiplier += 25;
 		}
 
+		if (YieldIsBonusResource(eYield))
+		{
+			iValue *= iGoodsMultiplier;
+			iValue /= 100;
+		} else {
 		switch (eYield)
 		{
 			case YIELD_FOOD:
@@ -8593,21 +8634,6 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
             case YIELD_STONE:///NEW*
 				iValue *= 100;
 				iValue /= iGoodsMultiplier;
-				break;
-            ///Bonus Resources
-            case YIELD_SALT:///NEW*
-			case YIELD_SILVER:
-			case YIELD_COTTON:
-			case YIELD_FUR:
-			case YIELD_BARLEY:
-			case YIELD_GRAPES:
-			case YIELD_ORE:
-			case YIELD_CLOTH:
-			case YIELD_COATS:
-			case YIELD_ALE:
-			case YIELD_WINE:
-				iValue *= iGoodsMultiplier;
-				iValue /= 100;
 				break;
 
 			case YIELD_TOOLS:
@@ -8687,6 +8713,7 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 			default:
 			break;
 		}
+		}
 	}
 
 	iValue *= iAmount;
@@ -8714,6 +8741,11 @@ void CvPlayerAI::AI_updateYieldValues()
 	{
 		YieldTypes eYield = (YieldTypes)i;
 		int iValue = 0;
+
+		if (YieldIsBonusResource(eYield))
+		{
+			iValue = kParent.getYieldBuyPrice(eYield);
+		} else {
 		switch (eYield)
 		{
 			case YIELD_FOOD:
@@ -8727,21 +8759,21 @@ void CvPlayerAI::AI_updateYieldValues()
             ///Bonus Resources
             case YIELD_SHEEP:///NEW*
             case YIELD_WOOL:///NEW*
-            case YIELD_SALT:///NEW*
+          //  case YIELD_SALT:///NEW*
             ///Food Goods^
-			case YIELD_SILVER:
-			case YIELD_COTTON:
-			case YIELD_FUR:
-			case YIELD_BARLEY:
-			case YIELD_GRAPES:
-			case YIELD_ORE:
-			case YIELD_CLOTH:
-				iValue += kParent.getYieldBuyPrice(eYield);
-				break;
+		//	case YIELD_SILVER:
+			//case YIELD_COTTON:
+			//case YIELD_FUR:
+			//case YIELD_BARLEY:
+			//case YIELD_GRAPES:
+			//case YIELD_ORE:
+			//case YIELD_CLOTH:
+			//	iValue += kParent.getYieldBuyPrice(eYield);
+			//	break;
 
-			case YIELD_COATS:
-			case YIELD_ALE:
-			case YIELD_WINE:
+			//case YIELD_COATS:
+			//case YIELD_ALE:
+			//case YIELD_WINE:
 				iValue += kParent.getYieldBuyPrice(eYield);
 				break;
 
@@ -8775,7 +8807,7 @@ void CvPlayerAI::AI_updateYieldValues()
 			default:
 				FAssert(false);
 		}
-
+		}
 		m_aiYieldValuesTimes100[i] = 100 * iValue;
 	}
 	int iCrossValue = m_aiYieldValuesTimes100[YIELD_FOOD] * getGrowthThreshold(1) / (50 + immigrationThreshold() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent() / 100);

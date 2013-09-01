@@ -3841,8 +3841,10 @@ int CvCityAI::AI_calculateAlarm(PlayerTypes eIndex) const
 
 int CvCityAI::AI_estimateYieldValue(YieldTypes eYield, int iAmount) const
 {
+	FAssert(eYield > NO_YIELD && eYield < NUM_YIELD_TYPES);
 	int iValue = iAmount * GET_PLAYER(getOwnerINLINE()).AI_yieldValue(eYield);
 
+#if 0
 	switch (eYield)
 	{
 	    ///TK ME start
@@ -3908,7 +3910,7 @@ int CvCityAI::AI_estimateYieldValue(YieldTypes eYield, int iAmount) const
 		default:
 			FAssert(false);
 	}
-
+#endif
 	return iValue;
 }
 
