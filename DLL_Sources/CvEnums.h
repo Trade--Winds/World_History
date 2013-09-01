@@ -1190,7 +1190,7 @@ enum DllExport DomainTypes
 	DOMAIN_SEA,
 	DOMAIN_LAND,
 	DOMAIN_IMMOBILE,
-	DOMAIN_AIR,
+	//DOMAIN_AIR, // why was this added without any mentioning in XML ???
 
 #ifdef _USRDLL
 	NUM_DOMAIN_TYPES

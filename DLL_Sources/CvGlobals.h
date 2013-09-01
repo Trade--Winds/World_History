@@ -736,7 +736,21 @@ public:
 	void deleteInfoArrays();
 
 	// XML enum check - start - Nightinggale
-	void CheckEnumYields() const;
+	void CheckEnumInterfaceModeTypes() const;
+	void CheckEnumWorldSizeTypes() const;
+	void CheckEnumYieldTypes() const;
+	void CheckEnumGameOptionTypes() const;
+	void CheckEnumPlayerOptionTypes() const;
+	void CheckEnumGraphicOptionTypes() const;
+	void CheckEnumForceControlTypes() const;
+	void CheckEnumDenialTypes() const;
+	void CheckEnumDomainTypes() const;
+	void CheckEnumUnitAITypes() const;
+	void CheckEnumMissionTypes() const;
+	void CheckEnumCommandTypes() const;
+	void CheckEnumControlTypes() const;
+	void CheckEnumMemoryTypes() const;
+	void CheckEnumAttitudeTypes() const;
 	// XML enum check - end - Nightinggale
 
 	// cache XML - start - Nightinggale
