@@ -3402,7 +3402,6 @@ void CvGlobals::CheckEnumDomainTypes() const
 	FAssertMsg(!strcmp(GC.getDomainInfo(DOMAIN_SEA).getType(), "DOMAIN_SEA"), CvString::format("XML error. Found %s instead of DOMAIN_SEA at index %d", GC.getDomainInfo(DOMAIN_SEA).getType(), DOMAIN_SEA).c_str());
 	FAssertMsg(!strcmp(GC.getDomainInfo(DOMAIN_LAND).getType(), "DOMAIN_LAND"), CvString::format("XML error. Found %s instead of DOMAIN_LAND at index %d", GC.getDomainInfo(DOMAIN_LAND).getType(), DOMAIN_LAND).c_str());
 	FAssertMsg(!strcmp(GC.getDomainInfo(DOMAIN_IMMOBILE).getType(), "DOMAIN_IMMOBILE"), CvString::format("XML error. Found %s instead of DOMAIN_IMMOBILE at index %d", GC.getDomainInfo(DOMAIN_IMMOBILE).getType(), DOMAIN_IMMOBILE).c_str());
-	FAssertMsg(!strcmp(GC.getDomainInfo(DOMAIN_AIR).getType(), "DOMAIN_AIR"), CvString::format("XML error. Found %s instead of DOMAIN_AIR at index %d", GC.getDomainInfo(DOMAIN_AIR).getType(), DOMAIN_AIR).c_str());
 
 	FAssertMsg(GC.getDomainInfo().size() == NUM_DOMAIN_TYPES, CvString::format("XML error. Expected %d types, but found %d", NUM_DOMAIN_TYPES, GC.getDomainInfo().size()));
 }
@@ -3622,6 +3621,7 @@ void CvGlobals::CheckEnumMemoryTypes() const
 }
 
 void CvGlobals::CheckEnumAttitudeTypes() const
+{
 	FAssertMsg(!strcmp(GC.getAttitudeInfo(ATTITUDE_FURIOUS).getType(), "ATTITUDE_FURIOUS"), CvString::format("XML error. Found %s instead of ATTITUDE_FURIOUS at index %d", GC.getAttitudeInfo(ATTITUDE_FURIOUS).getType(), ATTITUDE_FURIOUS).c_str());
 	FAssertMsg(!strcmp(GC.getAttitudeInfo(ATTITUDE_ANNOYED).getType(), "ATTITUDE_ANNOYED"), CvString::format("XML error. Found %s instead of ATTITUDE_ANNOYED at index %d", GC.getAttitudeInfo(ATTITUDE_ANNOYED).getType(), ATTITUDE_ANNOYED).c_str());
 	FAssertMsg(!strcmp(GC.getAttitudeInfo(ATTITUDE_CAUTIOUS).getType(), "ATTITUDE_CAUTIOUS"), CvString::format("XML error. Found %s instead of ATTITUDE_CAUTIOUS at index %d", GC.getAttitudeInfo(ATTITUDE_CAUTIOUS).getType(), ATTITUDE_CAUTIOUS).c_str());
