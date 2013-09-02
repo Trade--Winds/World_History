@@ -63,45 +63,12 @@ enum DllExport YieldTypes
 
 static inline bool YieldIsBonusResource(YieldTypes eYield)
 {
-	switch (eYield)
-	{
-		///Bonus Resources
-		case YIELD_SALT:
-		case YIELD_SILVER:
-		case YIELD_COTTON:
-		case YIELD_FUR:
-		case YIELD_BARLEY:
-		case YIELD_GRAPES:
-		case YIELD_ORE:
-		case YIELD_CLOTH:
-		case YIELD_COATS:
-		case YIELD_ALE:
-		case YIELD_WINE:
-			return true;
-		default:
-			return false;
-	}
+	return eYield >= YIELD_SILVER && eYield <= YIELD_WINE && eYield != YIELD_SPICES;
 }
 
 static inline bool YieldIsRawMaterial(YieldTypes eYield)
 {
-	switch (eYield)
-	{
-		case YIELD_COTTON:
-		case YIELD_BARLEY:
-		case YIELD_GRAPES:
-		case YIELD_ORE:
-        case YIELD_CATTLE:
-        case YIELD_SPICES:
-        case YIELD_SHEEP:
-        case YIELD_WOOL:
-        case YIELD_SALT:
-        case YIELD_STONE:
-        case YIELD_FUR:
-			return true;
-		default:
-			return false;
-	}
+	return (eYield >= YIELD_SALT && eYield <= YIELD_ORE) || (eYield <= YIELD_STONE && eYield >= YIELD_CATTLE && eYield != YIELD_LUMBER);
 }
 
 #endif	// YIELDS_H
