@@ -82,6 +82,14 @@ public:
 	void build();
 };
 
+class Check_YieldGroup_AI_Buy_From_Europe: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_AI_Buy_From_Europe() { func_name = "YieldGroup_AI_Buy_From_Europe"; }
+	bool function(YieldTypes eYield) {return YieldGroup_AI_Buy_From_Europe(eYield);}
+	void build();
+};
+
 class Check_YieldGroup_AI_Raw_Material: public BaseCheckYieldGroup
 {
 public:
@@ -125,6 +133,20 @@ void Check_YieldGroup_AI_Buy_From_Natives::build()
 	YieldVector.push_back(YIELD_CATTLE);
 }
 
+// AI attemps to buy from Europe (Europe as in vanilla functionality)
+void Check_YieldGroup_AI_Buy_From_Europe::build()
+{
+	YieldVector.push_back(YIELD_LEATHER_ARMOR);
+	YieldVector.push_back(YIELD_SCALE_ARMOR);
+	YieldVector.push_back(YIELD_MAIL_ARMOR);
+	YieldVector.push_back(YIELD_PLATE_ARMOR);
+	YieldVector.push_back(YIELD_TOOLS);
+	YieldVector.push_back(YIELD_WEAPONS);
+	YieldVector.push_back(YIELD_HORSES);
+	YieldVector.push_back(YIELD_TRADE_GOODS);
+	YieldVector.push_back(YIELD_SPICES);
+}
+
 // AI sells unless they are needed
 // Used for production building input like ore, cotton etc.
 void Check_YieldGroup_AI_Raw_Material::build()
@@ -152,6 +174,8 @@ static void CheckYieldGroupFunctions()
 	AI_Sell.check();
 	Check_YieldGroup_AI_Buy_From_Natives AI_Buy_From_Natives;
 	AI_Buy_From_Natives.check();
+	Check_YieldGroup_AI_Buy_From_Europe AI_Buy_From_Europe;
+	AI_Buy_From_Europe.check();
 	Check_YieldGroup_AI_Raw_Material AI_Raw_Material;
 	AI_Raw_Material.check();
 #endif

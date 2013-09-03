@@ -8507,28 +8507,37 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
 ///tke
 bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 {
+	if (!YieldGroup_AI_Buy_From_Europe(eYield))
+	{
+		return false;
+	}
+
 	if (!GC.getYieldInfo(eYield).isCargo())
 	{
 		return false;
 	}
 
-	if (YieldIsBonusResource(eYield))
+	if (YieldGroup_Virtual(eYield))
 	{
+		FAssertMsg(false, "Selling intangibles?");
 		return false;
 	}
 
+	return true;
+
+#if 0
 	bool bBuy = false;
 
 	switch (eYield)
 	{
-		case YIELD_FOOD:
-	    case YIELD_CATTLE:///NEW*
-	    case YIELD_SHEEP:///NEW*
-        case YIELD_GRAIN:///NEW*
-        case YIELD_WOOL:///NEW*
+		//case YIELD_FOOD:
+	    //case YIELD_CATTLE:///NEW*
+	    //case YIELD_SHEEP:///NEW*
+        //case YIELD_GRAIN:///NEW*
+        //case YIELD_WOOL:///NEW*
        // case YIELD_SALT:///NEW*
-        case YIELD_STONE:///NEW*
-		case YIELD_LUMBER:
+        //case YIELD_STONE:///NEW*
+		//case YIELD_LUMBER:
 		//case YIELD_SILVER:
 		//case YIELD_COTTON:
 		//case YIELD_FUR:
@@ -8542,25 +8551,25 @@ bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 			bBuy = false;
 			break;
          ///Armor
-        case YIELD_LEATHER_ARMOR:///NEW*
-        case YIELD_SCALE_ARMOR:///NEW*
-        case YIELD_MAIL_ARMOR:///NEW*
-        case YIELD_PLATE_ARMOR:///NEW*
+        //case YIELD_LEATHER_ARMOR:///NEW*
+        //case YIELD_SCALE_ARMOR:///NEW*
+        //case YIELD_MAIL_ARMOR:///NEW*
+        //case YIELD_PLATE_ARMOR:///NEW*
         ///Armor^
-		case YIELD_TOOLS:
-		case YIELD_WEAPONS:
-		case YIELD_HORSES:
-		case YIELD_TRADE_GOODS:
-        case YIELD_SPICES:///NEW*
+		//case YIELD_TOOLS:
+		//case YIELD_WEAPONS:
+		//case YIELD_HORSES:
+		//case YIELD_TRADE_GOODS:
+        //case YIELD_SPICES:///NEW*
 			bBuy = true;
 			break;
 		///TKs Invention Core Mod v 1.0
-        case YIELD_IDEAS:
+        //case YIELD_IDEAS:
         ///TKe
-		case YIELD_HAMMERS:
-		case YIELD_BELLS:
-		case YIELD_CROSSES:
-        case YIELD_GOLD:///NEW*
+		//case YIELD_HAMMERS:
+		//case YIELD_BELLS:
+		//case YIELD_CROSSES:
+        //case YIELD_GOLD:///NEW*
 			bBuy = false;
 			FAssertMsg(false, "Selling intangibles?");
 			break;
@@ -8569,6 +8578,7 @@ bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 	}
 
 	return bBuy;
+#endif
 }
 ///TKs Invention Core Mod v 1.0
 int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)

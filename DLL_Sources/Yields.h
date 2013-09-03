@@ -79,6 +79,11 @@ static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)
 	return eYield == YIELD_SPICES || eYield == YIELD_TOOLS || eYield ==  YIELD_GRAIN || eYield == YIELD_CATTLE;
 }
 
+static inline bool YieldGroup_AI_Buy_From_Europe(YieldTypes eYield)
+{
+	return (eYield >= YIELD_TOOLS && eYield <= YIELD_TRADE_GOODS) || eYield == YIELD_SPICES;
+}
+
 static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 {
 	return (eYield >= YIELD_SALT && eYield <= YIELD_ORE) || (eYield <= YIELD_STONE && eYield >= YIELD_CATTLE && eYield != YIELD_LUMBER);
