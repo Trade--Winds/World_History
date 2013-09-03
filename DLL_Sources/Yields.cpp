@@ -74,6 +74,14 @@ public:
 	void build();
 };
 
+class Check_YieldGroup_AI_Buy_From_Natives: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_AI_Buy_From_Natives() { func_name = "YieldGroup_AI_Buy_From_Natives"; }
+	bool function(YieldTypes eYield) {return YieldGroup_AI_Buy_From_Natives(eYield);}
+	void build();
+};
+
 class Check_YieldGroup_AI_Raw_Material: public BaseCheckYieldGroup
 {
 public:
@@ -97,6 +105,7 @@ void CheckYieldIsBonusResource::build()
 	YieldVector.push_back(YIELD_WINE);
 }
 
+// AI sells unconditionally unless they are raw materials as well
 void Check_YieldGroup_AI_Sell::build()
 {
 	YieldVector.push_back(YIELD_SILVER);
@@ -107,6 +116,17 @@ void Check_YieldGroup_AI_Sell::build()
 	YieldVector.push_back(YIELD_TRADE_GOODS);
 }
 
+// AI attemps to buy from natives as needed (or whenever offered?)
+void Check_YieldGroup_AI_Buy_From_Natives::build()
+{
+	YieldVector.push_back(YIELD_SPICES);
+	YieldVector.push_back(YIELD_TOOLS);
+	YieldVector.push_back(YIELD_GRAIN);
+	YieldVector.push_back(YIELD_CATTLE);
+}
+
+// AI sells unless they are needed
+// Used for production building input like ore, cotton etc.
 void Check_YieldGroup_AI_Raw_Material::build()
 {
 	YieldVector.push_back(YIELD_COTTON);
@@ -130,6 +150,8 @@ static void CheckYieldGroupFunctions()
 	a.check();
 	Check_YieldGroup_AI_Sell AI_Sell;
 	AI_Sell.check();
+	Check_YieldGroup_AI_Buy_From_Natives AI_Buy_From_Natives;
+	AI_Buy_From_Natives.check();
 	Check_YieldGroup_AI_Raw_Material AI_Raw_Material;
 	AI_Raw_Material.check();
 #endif

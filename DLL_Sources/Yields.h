@@ -69,14 +69,16 @@ static inline bool YieldIsBonusResource(YieldTypes eYield)
 	return eYield >= YIELD_SILVER && eYield <= YIELD_WINE && eYield != YIELD_SPICES;
 }
 
-// AI sells unconditionally unless they are raw materials as well
 static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
 {
 	return (eYield >= YIELD_CLOTH && eYield <= YIELD_WINE) || eYield == YIELD_SILVER || eYield == YIELD_TRADE_GOODS;
 }
 
-// AI sells unless they are needed
-// Used for production building input like ore, cotton etc.
+static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)
+{
+	return eYield == YIELD_SPICES || eYield == YIELD_TOOLS || eYield ==  YIELD_GRAIN || eYield == YIELD_CATTLE;
+}
+
 static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 {
 	return (eYield >= YIELD_SALT && eYield <= YIELD_ORE) || (eYield <= YIELD_STONE && eYield >= YIELD_CATTLE && eYield != YIELD_LUMBER);

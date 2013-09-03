@@ -8290,11 +8290,23 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 
 bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 {
+	if (!YieldGroup_AI_Sell(eYield) && !YieldGroup_AI_Raw_Material(eYield))
+	{
+		// only those two groups can provide a true return.
+		// No need to check anything unless eYield is part of at least one of them.
+		return false;
+	}
+
 	if (!GC.getYieldInfo(eYield).isCargo())
 	{
 		return false;
 	}
 
+	if (YieldGroup_Virtual(eYield))
+	{
+		FAssertMsg(false, "Selling intangibles?");
+		return false;
+	}
 	
 	if (YieldGroup_AI_Raw_Material(eYield))
 	{
@@ -8311,16 +8323,10 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 		}
 		return true;
 	}
-	if (YieldGroup_AI_Sell(eYield))
-	{
-		return true;
-	}
 
-	if (YieldGroup_Virtual(eYield))
-	{
-		FAssertMsg(false, "Selling intangibles?");
-	}
-	return false;
+	// eYield is in YieldGroup_AI_Sell.
+	return true;
+
 
 #if 0
 	bool bFinal = true;
@@ -8410,12 +8416,17 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 ///TKs Med
 bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) const
 {
-    CvCity* pNativeCity;
-    if (pTransport->plot()->getPlotCity() == NULL)
+	if (!YieldGroup_AI_Buy_From_Natives(eYield))
+	{
+		return false;
+	}
+
+    CvCity* pNativeCity = pTransport->plot()->getPlotCity();
+    if (pNativeCity == NULL)
     {
         return false;
     }
-    pNativeCity = pTransport->plot()->getPlotCity();
+    
 	if (!GC.getYieldInfo(eYield).isCargo())
 	{
 		return false;
@@ -8431,27 +8442,31 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
         return false;
     }
 
-	if (YieldIsBonusResource(eYield))
+	if (YieldGroup_Virtual(eYield))
 	{
+		FAssertMsg(false, "Selling intangibles?");
 		return false;
 	}
 
+	return true;
+
+#if 0
 	bool bBuy = false;
 
 	switch (eYield)
 	{
-	    case YIELD_SPICES:
-	    case YIELD_TOOLS:
-        case YIELD_GRAIN:///NEW*
-        case YIELD_CATTLE:///NEW*
+	    //case YIELD_SPICES:
+	    //case YIELD_TOOLS:
+        //case YIELD_GRAIN:///NEW*
+        //case YIELD_CATTLE:///NEW*
 			bBuy = true;
 			break;
         //case YIELD_SALT:
-		case YIELD_FOOD:
-	    case YIELD_SHEEP:///NEW*
-        case YIELD_WOOL:///NEW*
-        case YIELD_STONE:///NEW*
-		case YIELD_LUMBER:
+		//case YIELD_FOOD:
+	    //case YIELD_SHEEP:///NEW*
+        //case YIELD_WOOL:///NEW*
+        //case YIELD_STONE:///NEW*
+		//case YIELD_LUMBER:
 		//case YIELD_SILVER:
 		//case YIELD_COTTON:
 		//case YIELD_FUR:
@@ -8462,23 +8477,23 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
 		//case YIELD_COATS:
 		//case YIELD_ALE:
 		//case YIELD_WINE:
-        case YIELD_LEATHER_ARMOR:///NEW*
-        case YIELD_SCALE_ARMOR:///NEW*
-        case YIELD_MAIL_ARMOR:///NEW*
-        case YIELD_PLATE_ARMOR:///NEW*
+        //case YIELD_LEATHER_ARMOR:///NEW*
+        //case YIELD_SCALE_ARMOR:///NEW*
+        //case YIELD_MAIL_ARMOR:///NEW*
+        //case YIELD_PLATE_ARMOR:///NEW*
         ///Armor^
-		case YIELD_WEAPONS:
-		case YIELD_HORSES:
-		case YIELD_TRADE_GOODS:
+		//case YIELD_WEAPONS:
+		//case YIELD_HORSES:
+		//case YIELD_TRADE_GOODS:
 			bBuy = false;
 			break;
 		///TKs Invention Core Mod v 1.0
-        case YIELD_IDEAS:
+        //case YIELD_IDEAS:
         ///TKe
-		case YIELD_HAMMERS:
-		case YIELD_BELLS:
-		case YIELD_CROSSES:
-        case YIELD_GOLD:///NEW*
+		//case YIELD_HAMMERS:
+		//case YIELD_BELLS:
+		//case YIELD_CROSSES:
+        //case YIELD_GOLD:///NEW*
 			bBuy = false;
 			FAssertMsg(false, "Selling intangibles?");
 			break;
@@ -8487,6 +8502,7 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
 	}
 
 	return bBuy;
+#endif
 }
 ///tke
 bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
