@@ -74,6 +74,11 @@ static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
 	return (eYield >= YIELD_CLOTH && eYield <= YIELD_WINE) || eYield == YIELD_SILVER || eYield == YIELD_TRADE_GOODS;
 }
 
+static inline bool YieldGroup_AI_Sell_To_Europe(YieldTypes eYield)
+{
+	return (eYield >= YIELD_SILVER && eYield <= YIELD_WINE) || (eYield >= YIELD_CATTLE && eYield <= YIELD_WOOL);
+}
+
 static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)
 {
 	return eYield == YIELD_SPICES || eYield == YIELD_TOOLS || eYield ==  YIELD_GRAIN || eYield == YIELD_CATTLE;

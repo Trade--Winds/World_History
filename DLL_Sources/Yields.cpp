@@ -74,6 +74,14 @@ public:
 	void build();
 };
 
+class Check_YieldGroup_AI_Sell_To_Europe: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_AI_Sell_To_Europe() { func_name = "YieldGroup_AI_Sell_To_Europe"; }
+	bool function(YieldTypes eYield) {return YieldGroup_AI_Sell_To_Europe(eYield);}
+	void build();
+};
+
 class Check_YieldGroup_AI_Buy_From_Natives: public BaseCheckYieldGroup
 {
 public:
@@ -113,7 +121,7 @@ void CheckYieldIsBonusResource::build()
 	YieldVector.push_back(YIELD_WINE);
 }
 
-// AI sells unconditionally unless they are raw materials as well
+// AI sells unconditionally to natives and Europe unless they are raw materials as well
 void Check_YieldGroup_AI_Sell::build()
 {
 	YieldVector.push_back(YIELD_SILVER);
@@ -122,6 +130,27 @@ void Check_YieldGroup_AI_Sell::build()
 	YieldVector.push_back(YIELD_ALE);
 	YieldVector.push_back(YIELD_WINE);
 	YieldVector.push_back(YIELD_TRADE_GOODS);
+}
+
+// AI sells these in Europe
+// AI can also sell unneeded raw materials even if they aren't listed here
+void Check_YieldGroup_AI_Sell_To_Europe::build()
+{
+	YieldVector.push_back(YIELD_SALT);
+	YieldVector.push_back(YIELD_SILVER);
+	YieldVector.push_back(YIELD_COTTON);
+	YieldVector.push_back(YIELD_FUR);
+	YieldVector.push_back(YIELD_BARLEY);
+	YieldVector.push_back(YIELD_GRAPES);
+	YieldVector.push_back(YIELD_ORE);
+	YieldVector.push_back(YIELD_CLOTH);
+	YieldVector.push_back(YIELD_COATS);
+	YieldVector.push_back(YIELD_ALE);
+	YieldVector.push_back(YIELD_WINE);
+	YieldVector.push_back(YIELD_CATTLE);
+	YieldVector.push_back(YIELD_SHEEP);
+	YieldVector.push_back(YIELD_WOOL);
+	YieldVector.push_back(YIELD_SPICES);
 }
 
 // AI attemps to buy from natives as needed (or whenever offered?)
@@ -172,6 +201,8 @@ static void CheckYieldGroupFunctions()
 	a.check();
 	Check_YieldGroup_AI_Sell AI_Sell;
 	AI_Sell.check();
+	Check_YieldGroup_AI_Sell_To_Europe AI_Sell_To_Europe;
+	AI_Sell_To_Europe.check();
 	Check_YieldGroup_AI_Buy_From_Natives AI_Buy_From_Natives;
 	AI_Buy_From_Natives.check();
 	Check_YieldGroup_AI_Buy_From_Europe AI_Buy_From_Europe;

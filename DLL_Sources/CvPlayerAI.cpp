@@ -8198,22 +8198,20 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 		return false;
 	}
 
-	if (YieldIsBonusResource(eYield))
-	{
-		return true;
-	}
+	return YieldGroup_AI_Sell_To_Europe(eYield) || (isNative() && (eYield == YIELD_TOOLS || eYield ==  YIELD_HORSES));
 
+#if 0
 	switch (eYield)
 	{
-		case YIELD_FOOD:
-		case YIELD_LUMBER:
+		//case YIELD_FOOD:
+		//case YIELD_LUMBER:
 		///TK ME start
-		case YIELD_STONE:///NEW*
+		//case YIELD_STONE:///NEW*
 		///TKs Invention Core Mod v 1.0
 //        case YIELD_COAL:
             //break;
         ///TKe
-        case YIELD_GRAIN:///NEW*
+        //case YIELD_GRAIN:///NEW*
 			return false;
 			break;
         ///Discoverys Bonus
@@ -8221,14 +8219,14 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 //        case YIELD_PORCELAIN:///NEW*
         ///Discoverys^
         ///Food Goods
-	    case YIELD_CATTLE:///NEW*
-	    case YIELD_SHEEP:///NEW*
-        case YIELD_WOOL:///NEW*
+	    //case YIELD_CATTLE:///NEW*
+	    //case YIELD_SHEEP:///NEW*
+        //case YIELD_WOOL:///NEW*
         //case YIELD_SALT:///NEW*
         ///Food Goods^
 //        case YIELD_LEATHER:///NEW*
 //        case YIELD_IVORY:///NEW*
-        case YIELD_SPICES:///NEW*
+        //case YIELD_SPICES:///NEW*
 		//case YIELD_SILVER:
 		//case YIELD_COTTON:
 		//case YIELD_FUR:
@@ -8242,7 +8240,7 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 			return true;
 			break;
 
-		case YIELD_TOOLS:
+		//case YIELD_TOOLS:
 		{
 		    if (isNative())
 		    {
@@ -8250,7 +8248,7 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 		    }
 		    break;
 		}
-		case YIELD_HORSES:
+		//case YIELD_HORSES:
 		{
 		    if (isNative())
 		    {
@@ -8259,14 +8257,14 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 		    break;
 		}
 
-		case YIELD_WEAPONS:
+		//case YIELD_WEAPONS:
 		 ///Armor
-        case YIELD_LEATHER_ARMOR:///NEW*
-        case YIELD_SCALE_ARMOR:///NEW*
-        case YIELD_MAIL_ARMOR:///NEW*
-        case YIELD_PLATE_ARMOR:///NEW*
+        //case YIELD_LEATHER_ARMOR:///NEW*
+        //case YIELD_SCALE_ARMOR:///NEW*
+        //case YIELD_MAIL_ARMOR:///NEW*
+        //case YIELD_PLATE_ARMOR:///NEW*
         ///Armor^
-		case YIELD_TRADE_GOODS:
+		//case YIELD_TRADE_GOODS:
 			return false;
 			break;
         ///TK ME end
@@ -8285,7 +8283,7 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 
 	return false;
 
-
+#endif
 }
 
 bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
