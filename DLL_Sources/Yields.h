@@ -3,7 +3,10 @@
 #ifndef YIELDS_H
 #define YIELDS_H
 
+//
 // Yields.h
+// Written by Nightinggale
+//
 
 #include "CvDefines.h"
 
@@ -66,9 +69,25 @@ static inline bool YieldIsBonusResource(YieldTypes eYield)
 	return eYield >= YIELD_SILVER && eYield <= YIELD_WINE && eYield != YIELD_SPICES;
 }
 
-static inline bool YieldIsRawMaterial(YieldTypes eYield)
+// AI sells unconditionally unless they are raw materials as well
+static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
+{
+	return (eYield >= YIELD_CLOTH && eYield <= YIELD_WINE) || eYield == YIELD_SILVER || eYield == YIELD_TRADE_GOODS;
+}
+
+// AI sells unless they are needed
+// Used for production building input like ore, cotton etc.
+static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 {
 	return (eYield >= YIELD_SALT && eYield <= YIELD_ORE) || (eYield <= YIELD_STONE && eYield >= YIELD_CATTLE && eYield != YIELD_LUMBER);
+}
+
+// virtual means it can't be loaded into a ship, meaning it's yields like crosses and bells.
+// Invert the output from this group and you will only get yields, which can be loaded into ships.
+static inline bool YieldGroup_Virtual(YieldTypes eYield)
+{
+	// Vanilla assumes hammers to be the first virtual yield. This is deeply hardcoded in C++ as well as python.
+	return eYield >= YIELD_HAMMERS;
 }
 
 #endif	// YIELDS_H

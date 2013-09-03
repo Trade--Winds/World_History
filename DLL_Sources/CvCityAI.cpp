@@ -3849,18 +3849,18 @@ int CvCityAI::AI_estimateYieldValue(YieldTypes eYield, int iAmount) const
 	{
 	    ///TK ME start
 	    ///Food Goods
-	    case YIELD_CATTLE:///NEW*
-	    case YIELD_SHEEP:///NEW*
-        case YIELD_GRAIN:///NEW*
-        case YIELD_WOOL:///NEW*
-        case YIELD_SALT:///NEW*
+	    //case YIELD_CATTLE:///NEW*
+	    //case YIELD_SHEEP:///NEW*
+        //case YIELD_GRAIN:///NEW*
+        //case YIELD_WOOL:///NEW*
+        //case YIELD_SALT:///NEW*
         ///Food Goods^
         ///Building Material
-		case YIELD_STONE:///NEW*
+		//case YIELD_STONE:///NEW*
         ///Building Material^
         ///Bonus Resources
 //		case YIELD_IVORY:///NEW*
-		case YIELD_SPICES:///NEW*
+		//case YIELD_SPICES:///NEW*
         ///Bonus Resources^
         ///Trade Goods
 //        case YIELD_LEATHER:///NEW*
@@ -3870,42 +3870,42 @@ int CvCityAI::AI_estimateYieldValue(YieldTypes eYield, int iAmount) const
 //		case YIELD_PORCELAIN:///NEW*
         ///Discoverys^
         ///Armor
-		case YIELD_LEATHER_ARMOR:///NEW*
-		case YIELD_SCALE_ARMOR:///NEW*
-		case YIELD_MAIL_ARMOR:///NEW*
-		case YIELD_PLATE_ARMOR:///NEW*
+		//case YIELD_LEATHER_ARMOR:///NEW*
+		//case YIELD_SCALE_ARMOR:///NEW*
+		//case YIELD_MAIL_ARMOR:///NEW*
+		//case YIELD_PLATE_ARMOR:///NEW*
         ///Armor^
 
 	    ///TKe
-		case YIELD_FOOD:
-		case YIELD_LUMBER:
-		case YIELD_SILVER:
-		case YIELD_COTTON:
-		case YIELD_FUR:
-		case YIELD_BARLEY:
-		case YIELD_GRAPES:
-		case YIELD_ORE:
-		case YIELD_CLOTH:
-		case YIELD_COATS:
-		case YIELD_ALE:
-		case YIELD_WINE:
-		case YIELD_TOOLS:
-		case YIELD_WEAPONS:
-		case YIELD_HORSES:
-		case YIELD_TRADE_GOODS:
-		case YIELD_HAMMERS:
+		//case YIELD_FOOD:
+		//case YIELD_LUMBER:
+		//case YIELD_SILVER:
+		//case YIELD_COTTON:
+		//case YIELD_FUR:
+		//case YIELD_BARLEY:
+		//case YIELD_GRAPES:
+		//case YIELD_ORE:
+		//case YIELD_CLOTH:
+		//case YIELD_COATS:
+		//case YIELD_ALE:
+		//case YIELD_WINE:
+		//case YIELD_TOOLS:
+		//case YIELD_WEAPONS:
+		//case YIELD_HORSES:
+		//case YIELD_TRADE_GOODS:
+		//case YIELD_HAMMERS:
 		 ///TKs Invention Core Mod v 1.0
 		//case YIELD_COAL:
-		case YIELD_IDEAS:
-		case YIELD_CULTURE:
+		//case YIELD_IDEAS:
+		//case YIELD_CULTURE:
             break;
 		///TKe
-		case YIELD_BELLS:
+		//case YIELD_BELLS:
 			break;
-		case YIELD_CROSSES:
+		//case YIELD_CROSSES:
 			break;
-		case YIELD_EDUCATION:
-		case YIELD_GOLD:///NEW*
+		//case YIELD_EDUCATION:
+		//case YIELD_GOLD:///NEW*
 			break;
 		default:
 			FAssert(false);

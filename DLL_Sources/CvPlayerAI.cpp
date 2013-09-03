@@ -8296,7 +8296,7 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 	}
 
 	
-	if (YieldIsRawMaterial(eYield))
+	if (YieldGroup_AI_Raw_Material(eYield))
 	{
 		{
 			int iLoop;
@@ -8311,19 +8311,26 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 		}
 		return true;
 	}
-	if (YieldIsBonusResource(eYield))
+	if (YieldGroup_AI_Sell(eYield))
 	{
 		return true;
 	}
 
+	if (YieldGroup_Virtual(eYield))
+	{
+		FAssertMsg(false, "Selling intangibles?");
+	}
+	return false;
+
+#if 0
 	bool bFinal = true;
 
 	switch (eYield)
 	{
 	    ///TK ME start
-		case YIELD_FOOD:
-		case YIELD_LUMBER:
-        case YIELD_GRAIN:///NEW*
+		//case YIELD_FOOD:
+		//case YIELD_LUMBER:
+        //case YIELD_GRAIN:///NEW*
 			bFinal = false;
 			break;
         ///Food Goods
@@ -8368,28 +8375,28 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 		//	bFinal = true;
 		//	break;
 
-		case YIELD_TOOLS:
-		case YIELD_WEAPONS:
-		case YIELD_HORSES:
+		//case YIELD_TOOLS:
+		//case YIELD_WEAPONS:
+		//case YIELD_HORSES:
 		///Armor
-		case YIELD_LEATHER_ARMOR:///NEW*
-		case YIELD_SCALE_ARMOR:///NEW*
-		case YIELD_MAIL_ARMOR:///NEW*
-		case YIELD_PLATE_ARMOR:///NEW*
+		//case YIELD_LEATHER_ARMOR:///NEW*
+		//case YIELD_SCALE_ARMOR:///NEW*
+		//case YIELD_MAIL_ARMOR:///NEW*
+		//case YIELD_PLATE_ARMOR:///NEW*
         ///Armor^
 			bFinal = false;
 			break;
 
-		case YIELD_TRADE_GOODS:
+		//case YIELD_TRADE_GOODS:
 			bFinal = true;
 			break;
 		///TKs Invention Core Mod v 1.0
-        case YIELD_IDEAS:
+        //case YIELD_IDEAS:
         ///TKe
-		case YIELD_HAMMERS:
-		case YIELD_BELLS:
-		case YIELD_CROSSES:
-        case YIELD_GOLD:///NEW*
+		//case YIELD_HAMMERS:
+		//case YIELD_BELLS:
+		//case YIELD_CROSSES:
+        //case YIELD_GOLD:///NEW*
 			bFinal = false;
 			FAssertMsg(false, "Selling intangibles?");
 			break;
@@ -8398,6 +8405,7 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 	}
 
 	return bFinal;
+#endif
 }
 ///TKs Med
 bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) const

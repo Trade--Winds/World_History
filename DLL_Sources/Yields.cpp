@@ -66,11 +66,19 @@ public:
 	void build();
 };
 
-class CheckYieldIsRawMaterial: public BaseCheckYieldGroup
+class Check_YieldGroup_AI_Sell: public BaseCheckYieldGroup
 {
 public:
-	CheckYieldIsRawMaterial() { func_name = "YieldIsRawMaterial"; }
-	bool function(YieldTypes eYield) {return YieldIsRawMaterial(eYield);}
+	Check_YieldGroup_AI_Sell() { func_name = "YieldGroup_AI_Sell"; }
+	bool function(YieldTypes eYield) {return YieldGroup_AI_Sell(eYield);}
+	void build();
+};
+
+class Check_YieldGroup_AI_Raw_Material: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_AI_Raw_Material() { func_name = "YieldGroup_AI_Raw_Material"; }
+	bool function(YieldTypes eYield) {return YieldGroup_AI_Raw_Material(eYield);}
 	void build();
 };
 
@@ -89,7 +97,17 @@ void CheckYieldIsBonusResource::build()
 	YieldVector.push_back(YIELD_WINE);
 }
 
-void CheckYieldIsRawMaterial::build()
+void Check_YieldGroup_AI_Sell::build()
+{
+	YieldVector.push_back(YIELD_SILVER);
+	YieldVector.push_back(YIELD_CLOTH);
+	YieldVector.push_back(YIELD_COATS);
+	YieldVector.push_back(YIELD_ALE);
+	YieldVector.push_back(YIELD_WINE);
+	YieldVector.push_back(YIELD_TRADE_GOODS);
+}
+
+void Check_YieldGroup_AI_Raw_Material::build()
 {
 	YieldVector.push_back(YIELD_COTTON);
 	YieldVector.push_back(YIELD_BARLEY);
@@ -110,8 +128,10 @@ static void CheckYieldGroupFunctions()
 #ifdef FASSERT_ENABLE
 	CheckYieldIsBonusResource a;
 	a.check();
-	CheckYieldIsRawMaterial b;
-	b.check();
+	Check_YieldGroup_AI_Sell AI_Sell;
+	AI_Sell.check();
+	Check_YieldGroup_AI_Raw_Material AI_Raw_Material;
+	AI_Raw_Material.check();
 #endif
 }
 
