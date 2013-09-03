@@ -8653,7 +8653,17 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 			iNoblesMultiplier += 25;
 		}
 
-		if (YieldIsBonusResource(eYield))
+
+		if (eYield == YIELD_CATTLE || eYield == YIELD_GRAIN || eYield == YIELD_SPICES)
+		{
+			iValue *= iNoblesMultiplier;
+			iValue /= 100;
+			if (AI_isStrategy(STRATEGY_REVOLUTION_DECLARING))
+			{
+				iValue *= iNoblesMultiplier;
+				iValue /= 100;
+			}
+		} else if (YieldGroup_AI_Sell_To_Europe(eYield))
 		{
 			iValue *= iGoodsMultiplier;
 			iValue /= 100;
@@ -8696,9 +8706,9 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
                    iValue = 0;
                 }
 				break;
-            case YIELD_CATTLE:///NEW*
-            case YIELD_GRAIN:///NEW*
-            case YIELD_SPICES:///NEW*
+            //case YIELD_CATTLE:///NEW*
+            //case YIELD_GRAIN:///NEW*
+            //case YIELD_SPICES:///NEW*
 				//if (AI_isStrategy(STRATEGY_REVOLUTION_PREPARING) || AI_isStrategy(STRATEGY_BUILDUP))
 				{
 					iValue *= iNoblesMultiplier;
