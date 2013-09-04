@@ -64,11 +64,6 @@ enum DllExport YieldTypes
 #endif
 };
 
-static inline bool YieldIsBonusResource(YieldTypes eYield)
-{
-	return eYield >= YIELD_SILVER && eYield <= YIELD_WINE && eYield != YIELD_SPICES;
-}
-
 static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
 {
 	return (eYield >= YIELD_CLOTH && eYield <= YIELD_WINE) || eYield == YIELD_SILVER || eYield == YIELD_TRADE_GOODS;

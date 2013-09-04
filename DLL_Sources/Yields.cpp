@@ -58,14 +58,6 @@ void BaseCheckYieldGroup::check()
 	}
 }
 
-class CheckYieldIsBonusResource: public BaseCheckYieldGroup
-{
-public:
-	CheckYieldIsBonusResource() { func_name = "YieldIsBonusResource"; }
-	bool function(YieldTypes eYield) {return YieldIsBonusResource(eYield);}
-	void build();
-};
-
 class Check_YieldGroup_AI_Sell: public BaseCheckYieldGroup
 {
 public:
@@ -105,21 +97,6 @@ public:
 	bool function(YieldTypes eYield) {return YieldGroup_AI_Raw_Material(eYield);}
 	void build();
 };
-
-void CheckYieldIsBonusResource::build()
-{
-	YieldVector.push_back(YIELD_SALT);
-	YieldVector.push_back(YIELD_SILVER);
-	YieldVector.push_back(YIELD_COTTON);
-	YieldVector.push_back(YIELD_FUR);
-	YieldVector.push_back(YIELD_BARLEY);
-	YieldVector.push_back(YIELD_GRAPES);
-	YieldVector.push_back(YIELD_ORE);
-	YieldVector.push_back(YIELD_CLOTH);
-	YieldVector.push_back(YIELD_COATS);
-	YieldVector.push_back(YIELD_ALE);
-	YieldVector.push_back(YIELD_WINE);
-}
 
 // AI sells unconditionally to natives and Europe unless they are raw materials as well
 void Check_YieldGroup_AI_Sell::build()
@@ -197,8 +174,6 @@ void Check_YieldGroup_AI_Raw_Material::build()
 static void CheckYieldGroupFunctions()
 {
 #ifdef FASSERT_ENABLE
-	CheckYieldIsBonusResource a;
-	a.check();
 	Check_YieldGroup_AI_Sell AI_Sell;
 	AI_Sell.check();
 	Check_YieldGroup_AI_Sell_To_Europe AI_Sell_To_Europe;

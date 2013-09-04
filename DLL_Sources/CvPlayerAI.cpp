@@ -8784,26 +8784,36 @@ void CvPlayerAI::AI_updateYieldValues()
 		YieldTypes eYield = (YieldTypes)i;
 		int iValue = 0;
 
-		if (YieldIsBonusResource(eYield))
+		if (YieldGroup_AI_Buy_From_Europe(eYield))
 		{
-			iValue = kParent.getYieldBuyPrice(eYield);
-		} else {
+			iValue += kParent.getYieldSellPrice(eYield);
+		} else if (	YieldGroup_AI_Sell_To_Europe(eYield))
+		{	
+			iValue += kParent.getYieldBuyPrice(eYield);
+		} else if (eYield == YIELD_FOOD || eYield == YIELD_GRAIN || eYield == YIELD_LUMBER || eYield == YIELD_STONE)
+		{
+			iValue += (kParent.getYieldSellPrice(eYield) + kParent.getYieldBuyPrice(eYield)) / 2;
+		} else if (!YieldGroup_Virtual(eYield))
+		{
+			FAssertMsg(false, CvString::format("No rule to set price for %s", GC.getYieldInfo(eYield).getType()));
+		}
+#if 0
 		switch (eYield)
 		{
-			case YIELD_FOOD:
-            case YIELD_GRAIN:///NEW*
+			//case YIELD_FOOD:
+            //case YIELD_GRAIN:///NEW*
 				iValue += (kParent.getYieldSellPrice(eYield) + kParent.getYieldBuyPrice(eYield)) / 2;
 				break;
-			case YIELD_LUMBER:
-            case YIELD_STONE:///NEW*
+			//case YIELD_LUMBER:
+            //case YIELD_STONE:///NEW*
 				iValue += (kParent.getYieldSellPrice(eYield) + kParent.getYieldBuyPrice(eYield)) / 2;
 				break;
             ///Bonus Resources
-            case YIELD_SHEEP:///NEW*
-            case YIELD_WOOL:///NEW*
-          //  case YIELD_SALT:///NEW*
+            //case YIELD_SHEEP:///NEW*
+            //case YIELD_WOOL:///NEW*
+            //case YIELD_SALT:///NEW*
             ///Food Goods^
-		//	case YIELD_SILVER:
+			//case YIELD_SILVER:
 			//case YIELD_COTTON:
 			//case YIELD_FUR:
 			//case YIELD_BARLEY:
@@ -8819,21 +8829,21 @@ void CvPlayerAI::AI_updateYieldValues()
 				iValue += kParent.getYieldBuyPrice(eYield);
 				break;
 
-			case YIELD_TOOLS:
-			case YIELD_WEAPONS:
-			case YIELD_HORSES:
+			//case YIELD_TOOLS:
+			//case YIELD_WEAPONS:
+			//case YIELD_HORSES:
 			///Armor
-            case YIELD_LEATHER_ARMOR:///NEW*
-            case YIELD_SCALE_ARMOR:///NEW*
-            case YIELD_MAIL_ARMOR:///NEW*
-            case YIELD_PLATE_ARMOR:///NEW*
+            //case YIELD_LEATHER_ARMOR:///NEW*
+            //case YIELD_SCALE_ARMOR:///NEW*
+            //case YIELD_MAIL_ARMOR:///NEW*
+            //case YIELD_PLATE_ARMOR:///NEW*
             ///Armor^
-            case YIELD_SPICES:///NEW*
-            case YIELD_CATTLE:///NEW*
+            //case YIELD_SPICES:///NEW*
+            //case YIELD_CATTLE:///NEW*
 				iValue += kParent.getYieldSellPrice(eYield);
 				break;
 
-			case YIELD_TRADE_GOODS:
+			//case YIELD_TRADE_GOODS:
 				iValue += kParent.getYieldSellPrice(eYield);
 				break;
 			///TKs Invention Core Mod v 1.0
@@ -8849,7 +8859,7 @@ void CvPlayerAI::AI_updateYieldValues()
 			default:
 				FAssert(false);
 		}
-		}
+#endif
 		m_aiYieldValuesTimes100[i] = 100 * iValue;
 	}
 	int iCrossValue = m_aiYieldValuesTimes100[YIELD_FOOD] * getGrowthThreshold(1) / (50 + immigrationThreshold() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent() / 100);
