@@ -46,12 +46,30 @@ void BaseCheckYieldGroup::check()
 	}
 }
 
+void BaseCheckYieldGroup::checkSingleXMLType(YieldTypes eYield, const char* XMLname)
+{
+	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
+	XMLnameChecked[eYield] = true;
+	FAssertMsg(!strcmp(GC.getYieldInfo(eYield).getType(), XMLname), CvString::format("XML error. Found %s instead of %s at index %d", GC.getYieldInfo(eYield).getType(), XMLname, eYield).c_str());
+}
+
 void CvGlobals::CheckEnumYieldTypes() const
 {
 #ifdef FASSERT_ENABLE
 	BaseCheckYieldGroup BaseGroup;
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+	{
+		BaseGroup.XMLnameChecked[iYield] = false;
+	}
+	
 	BaseGroup.checkXML();
 	FAssertMsg(GC.getYieldInfo().size() == NUM_YIELD_TYPES, CvString::format("XML error. Expected %d types, but found %d", NUM_YIELD_TYPES, GC.getYieldInfo().size()));
+
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+	{
+		YieldTypes eYield = (YieldTypes)iYield;
+		FAssertMsg(BaseGroup.XMLnameChecked[iYield], CvString::format("Yield %s not checked for consistency between enum and XML", GC.getYieldInfo(eYield).getType()).c_str());
+	}
 
 	Check_YieldGroup_AI_Sell AI_Sell;
 	AI_Sell.check();

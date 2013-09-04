@@ -78,40 +78,43 @@ void Check_YieldGroup_AI_Raw_Material::build()
 	YieldVector.push_back(YIELD_FUR);
 }
 
+// check YieldTypes vs XML yield names
 void BaseCheckYieldGroup::checkXML()
 {
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_FOOD).getType(), "YIELD_FOOD"), CvString::format("XML error. Found %s instead of YIELD_FOOD at index %d", GC.getYieldInfo(YIELD_FOOD).getType(), YIELD_FOOD).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_GRAIN).getType(), "YIELD_GRAIN"), CvString::format("XML error. Found %s instead of YIELD_GRAIN at index %d", GC.getYieldInfo(YIELD_GRAIN).getType(), YIELD_GRAIN).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_CATTLE).getType(), "YIELD_CATTLE"), CvString::format("XML error. Found %s instead of YIELD_CATTLE at index %d", GC.getYieldInfo(YIELD_CATTLE).getType(), YIELD_CATTLE).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_SHEEP).getType(), "YIELD_SHEEP"), CvString::format("XML error. Found %s instead of YIELD_SHEEP at index %d", GC.getYieldInfo(YIELD_SHEEP).getType(), YIELD_SHEEP).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_WOOL).getType(), "YIELD_WOOL"), CvString::format("XML error. Found %s instead of YIELD_WOOL at index %d", GC.getYieldInfo(YIELD_WOOL).getType(), YIELD_WOOL).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_LUMBER).getType(), "YIELD_LUMBER"), CvString::format("XML error. Found %s instead of YIELD_LUMBER at index %d", GC.getYieldInfo(YIELD_LUMBER).getType(), YIELD_LUMBER).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_STONE).getType(), "YIELD_STONE"), CvString::format("XML error. Found %s instead of YIELD_STONE at index %d", GC.getYieldInfo(YIELD_STONE).getType(), YIELD_STONE).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_SILVER).getType(), "YIELD_SILVER"), CvString::format("XML error. Found %s instead of YIELD_SILVER at index %d", GC.getYieldInfo(YIELD_SILVER).getType(), YIELD_SILVER).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_SALT).getType(), "YIELD_SALT"), CvString::format("XML error. Found %s instead of YIELD_SALT at index %d", GC.getYieldInfo(YIELD_SALT).getType(), YIELD_SALT).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_SPICES).getType(), "YIELD_SPICES"), CvString::format("XML error. Found %s instead of YIELD_SPICES at index %d", GC.getYieldInfo(YIELD_SPICES).getType(), YIELD_SPICES).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_FUR).getType(), "YIELD_FUR"), CvString::format("XML error. Found %s instead of YIELD_FUR at index %d", GC.getYieldInfo(YIELD_FUR).getType(), YIELD_FUR).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_COTTON).getType(), "YIELD_COTTON"), CvString::format("XML error. Found %s instead of YIELD_COTTON at index %d", GC.getYieldInfo(YIELD_COTTON).getType(), YIELD_COTTON).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_BARLEY).getType(), "YIELD_BARLEY"), CvString::format("XML error. Found %s instead of YIELD_BARLEY at index %d", GC.getYieldInfo(YIELD_BARLEY).getType(), YIELD_BARLEY).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_GRAPES).getType(), "YIELD_GRAPES"), CvString::format("XML error. Found %s instead of YIELD_GRAPES at index %d", GC.getYieldInfo(YIELD_GRAPES).getType(), YIELD_GRAPES).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_ORE).getType(), "YIELD_ORE"), CvString::format("XML error. Found %s instead of YIELD_ORE at index %d", GC.getYieldInfo(YIELD_ORE).getType(), YIELD_ORE).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_CLOTH).getType(), "YIELD_CLOTH"), CvString::format("XML error. Found %s instead of YIELD_CLOTH at index %d", GC.getYieldInfo(YIELD_CLOTH).getType(), YIELD_CLOTH).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_COATS).getType(), "YIELD_COATS"), CvString::format("XML error. Found %s instead of YIELD_COATS at index %d", GC.getYieldInfo(YIELD_COATS).getType(), YIELD_COATS).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_ALE).getType(), "YIELD_ALE"), CvString::format("XML error. Found %s instead of YIELD_ALE at index %d", GC.getYieldInfo(YIELD_ALE).getType(), YIELD_ALE).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_WINE).getType(), "YIELD_WINE"), CvString::format("XML error. Found %s instead of YIELD_WINE at index %d", GC.getYieldInfo(YIELD_WINE).getType(), YIELD_WINE).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_TOOLS).getType(), "YIELD_TOOLS"), CvString::format("XML error. Found %s instead of YIELD_TOOLS at index %d", GC.getYieldInfo(YIELD_TOOLS).getType(), YIELD_TOOLS).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_WEAPONS).getType(), "YIELD_WEAPONS"), CvString::format("XML error. Found %s instead of YIELD_WEAPONS at index %d", GC.getYieldInfo(YIELD_WEAPONS).getType(), YIELD_WEAPONS).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_HORSES).getType(), "YIELD_HORSES"), CvString::format("XML error. Found %s instead of YIELD_HORSES at index %d", GC.getYieldInfo(YIELD_HORSES).getType(), YIELD_HORSES).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_LEATHER_ARMOR).getType(), "YIELD_LEATHER_ARMOR"), CvString::format("XML error. Found %s instead of YIELD_LEATHER_ARMOR at index %d", GC.getYieldInfo(YIELD_LEATHER_ARMOR).getType(), YIELD_LEATHER_ARMOR).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_SCALE_ARMOR).getType(), "YIELD_SCALE_ARMOR"), CvString::format("XML error. Found %s instead of YIELD_SCALE_ARMOR at index %d", GC.getYieldInfo(YIELD_SCALE_ARMOR).getType(), YIELD_SCALE_ARMOR).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_MAIL_ARMOR).getType(), "YIELD_MAIL_ARMOR"), CvString::format("XML error. Found %s instead of YIELD_MAIL_ARMOR at index %d", GC.getYieldInfo(YIELD_MAIL_ARMOR).getType(), YIELD_MAIL_ARMOR).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_PLATE_ARMOR).getType(), "YIELD_PLATE_ARMOR"), CvString::format("XML error. Found %s instead of YIELD_PLATE_ARMOR at index %d", GC.getYieldInfo(YIELD_PLATE_ARMOR).getType(), YIELD_PLATE_ARMOR).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_TRADE_GOODS).getType(), "YIELD_TRADE_GOODS"), CvString::format("XML error. Found %s instead of YIELD_TRADE_GOODS at index %d", GC.getYieldInfo(YIELD_TRADE_GOODS).getType(), YIELD_TRADE_GOODS).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_HAMMERS).getType(), "YIELD_HAMMERS"), CvString::format("XML error. Found %s instead of YIELD_HAMMERS at index %d", GC.getYieldInfo(YIELD_HAMMERS).getType(), YIELD_HAMMERS).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_BELLS).getType(), "YIELD_BELLS"), CvString::format("XML error. Found %s instead of YIELD_BELLS at index %d", GC.getYieldInfo(YIELD_BELLS).getType(), YIELD_BELLS).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_CROSSES).getType(), "YIELD_CROSSES"), CvString::format("XML error. Found %s instead of YIELD_CROSSES at index %d", GC.getYieldInfo(YIELD_CROSSES).getType(), YIELD_CROSSES).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_EDUCATION).getType(), "YIELD_EDUCATION"), CvString::format("XML error. Found %s instead of YIELD_EDUCATION at index %d", GC.getYieldInfo(YIELD_EDUCATION).getType(), YIELD_EDUCATION).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_IDEAS).getType(), "YIELD_IDEAS"), CvString::format("XML error. Found %s instead of YIELD_IDEAS at index %d", GC.getYieldInfo(YIELD_IDEAS).getType(), YIELD_IDEAS).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_CULTURE).getType(), "YIELD_CULTURE"), CvString::format("XML error. Found %s instead of YIELD_CULTURE at index %d", GC.getYieldInfo(YIELD_CULTURE).getType(), YIELD_CULTURE).c_str());
-	FAssertMsg(!strcmp(GC.getYieldInfo(YIELD_GOLD).getType(), "YIELD_GOLD"), CvString::format("XML error. Found %s instead of YIELD_GOLD at index %d", GC.getYieldInfo(YIELD_GOLD).getType(), YIELD_GOLD).c_str());
+	// first argument is YieldTypes enum value while the second is the name in XML
+	checkSingleXMLType(YIELD_FOOD,               "YIELD_FOOD");
+	checkSingleXMLType(YIELD_GRAIN,              "YIELD_GRAIN");
+	checkSingleXMLType(YIELD_CATTLE,             "YIELD_CATTLE");
+	checkSingleXMLType(YIELD_SHEEP,              "YIELD_SHEEP");
+	checkSingleXMLType(YIELD_WOOL,               "YIELD_WOOL");
+	checkSingleXMLType(YIELD_LUMBER,             "YIELD_LUMBER");
+	checkSingleXMLType(YIELD_STONE,              "YIELD_STONE");
+	checkSingleXMLType(YIELD_SILVER,             "YIELD_SILVER");
+	checkSingleXMLType(YIELD_SALT,               "YIELD_SALT");
+	checkSingleXMLType(YIELD_SPICES,             "YIELD_SPICES");
+	checkSingleXMLType(YIELD_FUR,                "YIELD_FUR");
+	checkSingleXMLType(YIELD_COTTON,             "YIELD_COTTON");
+	checkSingleXMLType(YIELD_BARLEY,             "YIELD_BARLEY");
+	checkSingleXMLType(YIELD_GRAPES,             "YIELD_GRAPES");
+	checkSingleXMLType(YIELD_ORE,                "YIELD_ORE");
+	checkSingleXMLType(YIELD_CLOTH,              "YIELD_CLOTH");
+	checkSingleXMLType(YIELD_COATS,              "YIELD_COATS");
+	checkSingleXMLType(YIELD_ALE,                "YIELD_ALE");
+	checkSingleXMLType(YIELD_WINE,               "YIELD_WINE");
+	checkSingleXMLType(YIELD_TOOLS,              "YIELD_TOOLS");
+	checkSingleXMLType(YIELD_WEAPONS,            "YIELD_WEAPONS");
+	checkSingleXMLType(YIELD_HORSES,             "YIELD_HORSES");
+	checkSingleXMLType(YIELD_LEATHER_ARMOR,      "YIELD_LEATHER_ARMOR");
+	checkSingleXMLType(YIELD_SCALE_ARMOR,        "YIELD_SCALE_ARMOR");
+	checkSingleXMLType(YIELD_MAIL_ARMOR,         "YIELD_MAIL_ARMOR");
+	checkSingleXMLType(YIELD_PLATE_ARMOR,        "YIELD_PLATE_ARMOR");
+	checkSingleXMLType(YIELD_TRADE_GOODS,        "YIELD_TRADE_GOODS");
+	checkSingleXMLType(YIELD_HAMMERS,            "YIELD_HAMMERS");
+	checkSingleXMLType(YIELD_BELLS,              "YIELD_BELLS");
+	checkSingleXMLType(YIELD_CROSSES,            "YIELD_CROSSES");
+	checkSingleXMLType(YIELD_EDUCATION,          "YIELD_EDUCATION");
+	checkSingleXMLType(YIELD_IDEAS,              "YIELD_IDEAS");
+	checkSingleXMLType(YIELD_CULTURE,            "YIELD_CULTURE");
+	checkSingleXMLType(YIELD_GOLD,               "YIELD_GOLD");
+
 }
