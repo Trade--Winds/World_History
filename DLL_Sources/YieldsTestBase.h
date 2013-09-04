@@ -8,10 +8,15 @@
 class BaseCheckYieldGroup
 {
 public:
-	BaseCheckYieldGroup() { func_name = "error"; }
+	BaseCheckYieldGroup()
+	{
+		func_name = "error";
+		bAllowVirtual = false;
+	}
 
 	bool XMLnameChecked[NUM_YIELD_TYPES];
 protected:
+	bool bAllowVirtual;
 	char *func_name;
 	std::vector<YieldTypes> YieldVector;
 

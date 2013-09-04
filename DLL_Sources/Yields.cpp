@@ -39,6 +39,7 @@ void BaseCheckYieldGroup::check()
 		YieldTypes eYield = (YieldTypes)i;
 		if (checklist[i])
 		{
+			FAssertMsg(bAllowVirtual || !YieldGroup_Virtual(eYield), CvString::format("Virtual yield %s used in %s even though this group doesn't allow virtual yields", GC.getYieldInfo(eYield).getType(), func_name).c_str());
 			FAssertMsg(this->function(eYield), CvString::format("Yield %s missing in %s", GC.getYieldInfo(eYield).getType(), func_name).c_str());
 		} else {
 			FAssertMsg(!this->function(eYield), CvString::format("Yield %s is a false positive in %s", GC.getYieldInfo(eYield).getType(), func_name).c_str());
@@ -69,6 +70,12 @@ void CvGlobals::CheckEnumYieldTypes() const
 	{
 		YieldTypes eYield = (YieldTypes)iYield;
 		FAssertMsg(BaseGroup.XMLnameChecked[iYield], CvString::format("Yield %s not checked for consistency between enum and XML", GC.getYieldInfo(eYield).getType()).c_str());
+		if (YieldGroup_Virtual(eYield))
+		{
+			FAssertMsg(!GC.getYieldInfo(eYield).isCargo(), CvString::format("Virtual yield %s has bCargo set in XML", GC.getYieldInfo(eYield).getType()).c_str());
+		} else {
+			FAssertMsg(GC.getYieldInfo(eYield).isCargo(), CvString::format("Non-virtual yield %s has bCargo unset in XML", GC.getYieldInfo(eYield).getType()).c_str());
+		}
 	}
 
 	Check_YieldGroup_AI_Sell AI_Sell;

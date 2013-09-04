@@ -8191,6 +8191,8 @@ void CvPlayerAI::AI_nativeYieldGift(CvUnit* pUnit)
 	}
 }
 
+#if 0
+// function is inlined and moved to header
 bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 {
 	if (!GC.getYieldInfo(eYield).isCargo())
@@ -8285,6 +8287,7 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 
 #endif
 }
+#endif
 
 bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 {
@@ -8295,6 +8298,7 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 		return false;
 	}
 
+	/*
 	if (!GC.getYieldInfo(eYield).isCargo())
 	{
 		return false;
@@ -8305,6 +8309,7 @@ bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 		FAssertMsg(false, "Selling intangibles?");
 		return false;
 	}
+	*/
 	
 	if (YieldGroup_AI_Raw_Material(eYield))
 	{
@@ -8425,10 +8430,12 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
         return false;
     }
     
+	/*
 	if (!GC.getYieldInfo(eYield).isCargo())
 	{
 		return false;
 	}
+	*/
 
 	if (GC.getYieldInfo(eYield).getNativeSellPrice() < 1)
 	{
@@ -8440,11 +8447,13 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
         return false;
     }
 
+	/*
 	if (YieldGroup_Virtual(eYield))
 	{
 		FAssertMsg(false, "Selling intangibles?");
 		return false;
 	}
+	*/
 
 	return true;
 
@@ -8503,6 +8512,8 @@ bool CvPlayerAI::AI_shouldBuyFromNative(YieldTypes eYield, CvUnit* pTransport) c
 #endif
 }
 ///tke
+#if 0
+// function is inlined and moved to header
 bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 {
 	if (!YieldGroup_AI_Buy_From_Europe(eYield))
@@ -8578,6 +8589,7 @@ bool CvPlayerAI::AI_shouldBuyFromEurope(YieldTypes eYield) const
 	return bBuy;
 #endif
 }
+#endif
 ///TKs Invention Core Mod v 1.0
 int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 {
