@@ -31,6 +31,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Yields_Medieval_Tech.cpp" />
     <ClCompile Include="Yields.cpp" />
     <ClCompile Include="CvArea.cpp" />
     <ClCompile Include="CvArtFileMgr.cpp" />
@@ -131,6 +132,8 @@
     <None Include="interfaceDirtyBits.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="YieldsTestBase.h" />
+    <ClInclude Include="Yields_Medieval_Tech.h" />
     <ClInclude Include="Yields.h" />
     <ClInclude Include="JustInTimeArray.h" />
     <ClInclude Include="CvArea.h" />
