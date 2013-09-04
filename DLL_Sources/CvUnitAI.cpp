@@ -4783,6 +4783,20 @@ bool CvUnitAI::AI_europeBuyNativeYields()
 		yields.push_back(YIELD_HORSES);
 	}
 	///Tks Med
+	int iArmorCounter = 1;
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+	{
+		YieldTypes eYield = (YieldTypes)iYield;
+		if (YieldGroup_Heavy_Armor(eYield))
+		{
+			iArmorCounter++;
+			if (GC.getGameINLINE().getSorenRandNum(iArmorCounter, "AI buy heavy armor") == 0)
+			{
+				yields.push_back(eYield);
+			}
+		}
+	}
+#if 0
 	if (kOwner.isYieldEuropeTradable(YIELD_SCALE_ARMOR))
 	{
         if (GC.getGameINLINE().getSorenRandNum(2, "AI buy scale armor") == 0)
@@ -4806,6 +4820,7 @@ bool CvUnitAI::AI_europeBuyNativeYields()
             yields.push_back(YIELD_PLATE_ARMOR);
         }
 	}
+#endif
 	///TKe
 
 	GC.getGameINLINE().getSorenRand().shuffleArray(yields, NULL);

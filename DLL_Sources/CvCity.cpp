@@ -10900,7 +10900,7 @@ bool CvCity::isEquipmentType(YieldTypes eEquipment, int iType) const
 {
     if (iType == 0)
     {
-        if (eEquipment == YIELD_LEATHER_ARMOR || eEquipment == YIELD_SCALE_ARMOR || eEquipment == YIELD_MAIL_ARMOR || eEquipment == YIELD_PLATE_ARMOR)
+        if (YieldGroup_Armor(eEquipment))
         {
             return true;
         }
@@ -10912,21 +10912,21 @@ bool CvCity::isEquipmentType(YieldTypes eEquipment, int iType) const
     }
     else if (iType == 1)
     {
-        if (eEquipment == YIELD_SCALE_ARMOR || eEquipment == YIELD_MAIL_ARMOR || eEquipment == YIELD_PLATE_ARMOR)
+        if (YieldGroup_Heavy_Armor(eEquipment))
         {
             return true;
         }
     }
     else if (iType == 2)
     {
-        if (eEquipment == YIELD_LEATHER_ARMOR || eEquipment == YIELD_SCALE_ARMOR || eEquipment == YIELD_MAIL_ARMOR || eEquipment == YIELD_PLATE_ARMOR)
+        if (YieldGroup_Armor(eEquipment))
         {
             return true;
         }
     }
     else if (iType == 3)
     {
-        if (eEquipment == YIELD_LEATHER_ARMOR || eEquipment == YIELD_SCALE_ARMOR || eEquipment == YIELD_MAIL_ARMOR || eEquipment == YIELD_PLATE_ARMOR)
+        if (YieldGroup_Armor(eEquipment))
         {
             return true;
         }

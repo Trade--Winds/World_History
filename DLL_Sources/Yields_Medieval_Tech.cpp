@@ -99,6 +99,29 @@ void Check_YieldGroup_City_Billboard_Offset_Fix::build()
 	YieldVector.push_back(YIELD_TOOLS);
 }
 
+// yield is either light or heavy armor (not both)
+void Check_YieldGroup_Armor::build()
+{
+	YieldVector.push_back(YIELD_LEATHER_ARMOR);
+	YieldVector.push_back(YIELD_SCALE_ARMOR);
+	YieldVector.push_back(YIELD_MAIL_ARMOR);
+	YieldVector.push_back(YIELD_PLATE_ARMOR);
+}
+
+// yield is light armor
+void Check_YieldGroup_Light_Armor::build()
+{
+	YieldVector.push_back(YIELD_LEATHER_ARMOR);
+}
+
+// yield is heavy armor
+void Check_YieldGroup_Heavy_Armor::build()
+{
+	YieldVector.push_back(YIELD_SCALE_ARMOR);
+	YieldVector.push_back(YIELD_MAIL_ARMOR);
+	YieldVector.push_back(YIELD_PLATE_ARMOR);
+}
+
 // check YieldTypes vs XML yield names
 void BaseCheckYieldGroup::checkXML()
 {

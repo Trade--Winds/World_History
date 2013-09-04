@@ -1927,7 +1927,7 @@ bool CvGlobals::isEquipmentType(YieldTypes eEquipment, UnitEquipmentTypes eType)
 {
     if (eType == EQUIPMENT_ANY)
     {
-        if (eEquipment == YIELD_LEATHER_ARMOR || eEquipment == YIELD_SCALE_ARMOR || eEquipment == YIELD_MAIL_ARMOR || eEquipment == YIELD_PLATE_ARMOR)
+        if (YieldGroup_Armor(eEquipment))
         //if (eEquipment == YIELD_LEATHER_ARMOR || eEquipment == YIELD_SCALE_ARMOR)
         {
             return true;
@@ -1940,7 +1940,7 @@ bool CvGlobals::isEquipmentType(YieldTypes eEquipment, UnitEquipmentTypes eType)
     }
     else if (eType == EQUIPMENT_HEAVY_ARMOR)
     {
-        if (eEquipment == YIELD_SCALE_ARMOR || eEquipment == YIELD_MAIL_ARMOR || eEquipment == YIELD_PLATE_ARMOR)
+        if (YieldGroup_Heavy_Armor(eEquipment))
         //if (eEquipment == YIELD_SCALE_ARMOR)
         {
             return true;
@@ -1948,7 +1948,7 @@ bool CvGlobals::isEquipmentType(YieldTypes eEquipment, UnitEquipmentTypes eType)
     }
     else if (eType == EQUIPMENT_ANY_ARMOR)
     {
-        if (eEquipment == YIELD_LEATHER_ARMOR || eEquipment == YIELD_SCALE_ARMOR || eEquipment == YIELD_MAIL_ARMOR || eEquipment == YIELD_PLATE_ARMOR)
+        if (YieldGroup_Armor(eEquipment))
         //if (eEquipment == YIELD_LEATHER_ARMOR || eEquipment == YIELD_SCALE_ARMOR)
         {
             return true;
@@ -1956,7 +1956,7 @@ bool CvGlobals::isEquipmentType(YieldTypes eEquipment, UnitEquipmentTypes eType)
     }
     else if (eType == EQUIPMENT_ARMOR_HORSES)
     {
-        if (eEquipment == YIELD_LEATHER_ARMOR || eEquipment == YIELD_SCALE_ARMOR || eEquipment == YIELD_MAIL_ARMOR || eEquipment == YIELD_PLATE_ARMOR)
+        if (YieldGroup_Armor(eEquipment))
         //if (eEquipment == YIELD_LEATHER_ARMOR || eEquipment == YIELD_SCALE_ARMOR || eEquipment == YIELD_MAIL_ARMOR || eEquipment == YIELD_PLATE_ARMOR)
         {
             return true;

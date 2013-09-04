@@ -92,5 +92,25 @@ void CvGlobals::CheckEnumYieldTypes() const
 	City_Billboard.check();
 	Check_YieldGroup_City_Billboard_Offset_Fix City_Billboard_Offset_Fix;
 	City_Billboard_Offset_Fix.check();
+	Check_YieldGroup_Armor Armor;
+	Armor.check();
+	Check_YieldGroup_Light_Armor Light_Armor;
+	Light_Armor.check();
+	Check_YieldGroup_Heavy_Armor Heavy_Armor;
+	Heavy_Armor.check();
+
+	// check armor groups
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+	{
+		YieldTypes eYield = (YieldTypes)iYield;
+		if (YieldGroup_Armor(eYield))
+		{
+			FAssertMsg(YieldGroup_Light_Armor(eYield) || YieldGroup_Heavy_Armor(eYield), CvString::format("%s is armor, but neither light or heavy armor", GC.getYieldInfo(eYield).getType()).c_str());
+			FAssertMsg(!(YieldGroup_Light_Armor(eYield) && YieldGroup_Heavy_Armor(eYield)), CvString::format("%s is both light and heavy armor", GC.getYieldInfo(eYield).getType()).c_str());
+		} else {
+			FAssertMsg(!YieldGroup_Light_Armor(eYield), CvString::format("%s is light armor, but not armor", GC.getYieldInfo(eYield).getType()).c_str());
+			FAssertMsg(!YieldGroup_Heavy_Armor(eYield), CvString::format("%s is heavy armor, but not armor", GC.getYieldInfo(eYield).getType()).c_str());
+		}
+	}
 #endif
 }

@@ -83,3 +83,27 @@ public:
 	bool function(YieldTypes eYield) {return YieldGroup_City_Billboard_Offset_Fix(eYield);}
 	void build();
 };
+
+class Check_YieldGroup_Armor: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_Armor() { func_name = "YieldGroup_Armor"; }
+	bool function(YieldTypes eYield) {return YieldGroup_Armor(eYield);}
+	void build();
+};
+
+class Check_YieldGroup_Light_Armor: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_Light_Armor() { func_name = "YieldGroup_Light_Armor"; }
+	bool function(YieldTypes eYield) {return YieldGroup_Light_Armor(eYield);}
+	void build();
+};
+
+class Check_YieldGroup_Heavy_Armor: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_Heavy_Armor() { func_name = "YieldGroup_Heavy_Armor"; }
+	bool function(YieldTypes eYield) {return YieldGroup_Heavy_Armor(eYield);}
+	void build();
+};

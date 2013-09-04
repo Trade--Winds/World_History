@@ -8679,6 +8679,10 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 		{
 			iValue *= iGoodsMultiplier;
 			iValue /= 100;
+		} else if (YieldGroup_Armor(eYield) || eYield == YIELD_WEAPONS || eYield == YIELD_HORSES)
+		{
+			iValue *= iWeaponsMultiplier;
+			iValue /= 100;
 		} else {
 		switch (eYield)
 		{
@@ -8693,13 +8697,13 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 			case YIELD_TOOLS:
 				break;
              ///Armor
-            case YIELD_LEATHER_ARMOR:///NEW*
-            case YIELD_SCALE_ARMOR:///NEW*
-            case YIELD_MAIL_ARMOR:///NEW*
-            case YIELD_PLATE_ARMOR:///NEW*
+            //case YIELD_LEATHER_ARMOR:///NEW*
+            //case YIELD_SCALE_ARMOR:///NEW*
+            //case YIELD_MAIL_ARMOR:///NEW*
+            //case YIELD_PLATE_ARMOR:///NEW*
             ///Armor^
-			case YIELD_WEAPONS:
-			case YIELD_HORSES:
+			//case YIELD_WEAPONS:
+			//case YIELD_HORSES:
 				iValue *= iWeaponsMultiplier;
 				iValue /= 100;
 				break;

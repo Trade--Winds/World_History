@@ -97,4 +97,19 @@ static inline bool YieldGroup_City_Billboard_Offset_Fix(YieldTypes eYield)
 	return eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_SALT || eYield == YIELD_TOOLS;
 }
 
+static inline bool YieldGroup_Armor(YieldTypes eYield)
+{
+	return eYield >= YIELD_LEATHER_ARMOR && eYield <= YIELD_PLATE_ARMOR;
+}
+
+static inline bool YieldGroup_Light_Armor(YieldTypes eYield)
+{
+	return eYield == YIELD_LEATHER_ARMOR;
+}
+
+static inline bool YieldGroup_Heavy_Armor(YieldTypes eYield)
+{
+	return eYield >= YIELD_SCALE_ARMOR && eYield <= YIELD_PLATE_ARMOR;
+}
+
 #endif	// YIELDS_MEDIEVAL_TECH_H
