@@ -67,3 +67,19 @@ public:
 	bool function(YieldTypes eYield) {return YieldGroup_AI_Raw_Material(eYield);}
 	void build();
 };
+
+class Check_YieldGroup_City_Billboard: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_City_Billboard() { func_name = "YieldGroup_City_Billboard"; }
+	bool function(YieldTypes eYield) {return YieldGroup_City_Billboard(eYield);}
+	void build();
+};
+
+class Check_YieldGroup_City_Billboard_Offset_Fix: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_City_Billboard_Offset_Fix() { func_name = "YieldGroup_City_Billboard_Offset_Fix"; }
+	bool function(YieldTypes eYield) {return YieldGroup_City_Billboard_Offset_Fix(eYield);}
+	void build();
+};

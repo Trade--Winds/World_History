@@ -87,4 +87,14 @@ static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 	return (eYield >= YIELD_SALT && eYield <= YIELD_ORE) || (eYield <= YIELD_STONE && eYield >= YIELD_CATTLE && eYield != YIELD_LUMBER);
 }
 
+static inline bool YieldGroup_City_Billboard(YieldTypes eYield)
+{
+	return eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_CATTLE || eYield == YIELD_SHEEP || eYield == YIELD_SALT || eYield == YIELD_TOOLS;
+}
+
+static inline bool YieldGroup_City_Billboard_Offset_Fix(YieldTypes eYield)
+{
+	return eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_SALT || eYield == YIELD_TOOLS;
+}
+
 #endif	// YIELDS_MEDIEVAL_TECH_H

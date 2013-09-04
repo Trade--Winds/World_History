@@ -78,6 +78,27 @@ void Check_YieldGroup_AI_Raw_Material::build()
 	YieldVector.push_back(YIELD_FUR);
 }
 
+// Yields to show up on city billboards
+void Check_YieldGroup_City_Billboard::build()
+{
+	YieldVector.push_back(YIELD_SPICES);
+	YieldVector.push_back(YIELD_HORSES);
+	YieldVector.push_back(YIELD_CATTLE);
+	YieldVector.push_back(YIELD_SHEEP);
+	YieldVector.push_back(YIELD_SALT);
+	YieldVector.push_back(YIELD_TOOLS);
+}
+
+// yields, which are affected by an off by one offset error when displaying billboard icons
+// TODO: find the real culprint of this bug instead of working around it.
+void Check_YieldGroup_City_Billboard_Offset_Fix::build()
+{
+	YieldVector.push_back(YIELD_SPICES);
+	YieldVector.push_back(YIELD_HORSES);
+	YieldVector.push_back(YIELD_SALT);
+	YieldVector.push_back(YIELD_TOOLS);
+}
+
 // check YieldTypes vs XML yield names
 void BaseCheckYieldGroup::checkXML()
 {

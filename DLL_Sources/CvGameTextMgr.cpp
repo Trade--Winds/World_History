@@ -8774,13 +8774,13 @@ void CvGameTextMgr::buildCityBillboardIconString( CvWStringBuffer& szBuffer, CvC
             for(int iYield=0;iYield<NUM_YIELD_TYPES;iYield++)
             {
                 YieldTypes eYield = (YieldTypes) iYield;
-                if (pCity->getYieldStored(eYield) > 0 && (eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_CATTLE || eYield == YIELD_SHEEP || eYield == YIELD_SALT || eYield == YIELD_TOOLS))
+                if (YieldGroup_City_Billboard(eYield) && pCity->getYieldStored(eYield) > 0)
                 {
                     if (aYieldShown[iYield] == 0)
                     {
                         aYieldShown[iYield] = 1;
                         YieldTypes eFixedYield = (YieldTypes) iYield;
-                        if (eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_SALT || eYield == YIELD_TOOLS)
+                        if (YieldGroup_City_Billboard_Offset_Fix(eYield))
                         {
                             iYield -= 1;
                            eFixedYield = (YieldTypes) iYield;
