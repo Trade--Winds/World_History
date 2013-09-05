@@ -1,12 +1,12 @@
 //
-// Yields_Medieval_Tech.cpp
+// Yields_Colonization_2071.cpp
 // Written by Nightinggale
 //
 #include "CvGameCoreDLL.h"
 #include "CvGlobals.h"
 #include "YieldsTestBase.h"
 
-#ifdef MEDIEVAL_TECH
+#ifdef COLONIZATION_2071
 
 // AI sells unconditionally to natives and Europe unless they are raw materials as well
 void Check_YieldGroup_AI_Sell::build()
@@ -164,4 +164,4 @@ void BaseCheckYieldGroup::checkXML()
 	checkSingleXMLType(YIELD_GOLD,               "YIELD_GOLD");
 
 }
-#endif // MEDIEVAL_TECH
+#endif // COLONIZATION_2071

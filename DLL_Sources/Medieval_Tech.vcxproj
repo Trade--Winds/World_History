@@ -13,6 +13,10 @@
       <Configuration>Assert</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Colonization 2071|Win32">
+      <Configuration>Colonization 2071</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -31,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Yields_Colonization_2071.cpp" />
     <ClCompile Include="Yields_Medieval_Tech.cpp" />
     <ClCompile Include="Yields.cpp" />
     <ClCompile Include="CvArea.cpp" />
@@ -133,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="YieldsTestBase.h" />
+    <ClInclude Include="Yields_Colonization_2071.h" />
     <ClInclude Include="Yields_Medieval_Tech.h" />
     <ClInclude Include="Yields.h" />
     <ClInclude Include="JustInTimeArray.h" />
@@ -263,6 +269,11 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Colonization 2071|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Assert-upload|Win32'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -287,6 +298,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Assert-fast|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Colonization 2071|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Assert-upload|Win32'" Label="PropertySheets">
@@ -362,6 +376,19 @@ bin\jom build</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>set TARGET=Assert
 nmake clean</NMakeCleanCommandLine>
     <AdditionalOptions>/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE /DFASSERT_ENABLE</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Colonization 2071|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>set TARGET=Assert
+nmake precompile
+bin\jom build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set TARGET=Assert
+nmake clean
+nmake precompile
+bin\jom build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set TARGET=Assert
+nmake clean</NMakeCleanCommandLine>
+    <AdditionalOptions>/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE /DFASSERT_ENABLE /DCOLONIZATION_2071</AdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Assert-upload|Win32'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>

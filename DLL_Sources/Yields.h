@@ -11,6 +11,7 @@
 #include "CvDefines.h"
 
 #include "Yields_Medieval_Tech.h"
+#include "Yields_Colonization_2071.h"
 
 // virtual means it can't be loaded into a ship, meaning it's yields like crosses and bells.
 // Invert the output from this group and you will only get yields, which can be loaded into ships.

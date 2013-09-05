@@ -1,14 +1,14 @@
 #pragma once
 
-#ifndef YIELDS_MEDIEVAL_TECH_H
-#define YIELDS_MEDIEVAL_TECH_H
+#ifndef YIELDS_COLONIZATION_2071_H
+#define YIELDS_COLONIZATION_2071_H
 
 //
-// Yields_Medieval_Tech.h
+// Yields_Colonization_2071.h
 // Written by Nightinggale
 //
 
-#ifdef MEDIEVAL_TECH
+#ifdef COLONIZATION_2071
 
 // keep this enum in sync with python::enum_<YieldTypes>("YieldTypes") in CyEnumsInterface.cpp
 
@@ -116,6 +116,6 @@ static inline bool YieldGroup_Heavy_Armor(YieldTypes eYield)
 	return eYield >= YIELD_SCALE_ARMOR && eYield <= YIELD_PLATE_ARMOR;
 }
 
-#endif // MEDIEVAL_TECH
+#endif // COLONIZATION_2071
 
 #endif	// YIELDS_MEDIEVAL_TECH_H

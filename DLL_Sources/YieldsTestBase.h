@@ -3,6 +3,9 @@
 // Written by Nightinggale
 //
 
+#ifndef YIELDS_TEST_BASE_H
+#define YIELDS_TEST_BASE_H
+
 #include "Yields.h"
 
 class BaseCheckYieldGroup
@@ -107,3 +110,5 @@ public:
 	bool function(YieldTypes eYield) {return YieldGroup_Heavy_Armor(eYield);}
 	void build();
 };
+
+#endif // YIELDS_TEST_BASE_H
