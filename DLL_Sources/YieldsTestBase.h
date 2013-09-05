@@ -71,6 +71,14 @@ public:
 	void build();
 };
 
+class Check_YieldGroup_AI_Native_Product: public BaseCheckYieldGroup
+{
+public:
+	Check_YieldGroup_AI_Native_Product() { func_name = "YieldGroup_AI_Native_Product"; }
+	bool function(YieldTypes eYield) {return YieldGroup_AI_Native_Product(eYield);}
+	void build();
+};
+
 class Check_YieldGroup_City_Billboard: public BaseCheckYieldGroup
 {
 public:

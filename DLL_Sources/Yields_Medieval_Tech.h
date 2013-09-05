@@ -94,6 +94,11 @@ static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 	return (eYield >= YIELD_SALT && eYield <= YIELD_ORE) || (eYield <= YIELD_STONE && eYield >= YIELD_CATTLE && eYield != YIELD_LUMBER);
 }
 
+static inline bool YieldGroup_AI_Native_Product(YieldTypes eYield)
+{
+	return eYield <= YIELD_WOOL && eYield >= YIELD_CATTLE;
+}
+
 static inline bool YieldGroup_City_Billboard(YieldTypes eYield)
 {
 	return eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_CATTLE || eYield == YIELD_SHEEP || eYield == YIELD_SALT || eYield == YIELD_TOOLS;

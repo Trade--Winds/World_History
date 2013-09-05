@@ -9727,7 +9727,7 @@ void CvCity::ejectTeachUnits()
 bool CvCity::canProduceYield(YieldTypes eYield)
 {
     ///Tks Med
-    if (GC.getYieldInfo(eYield).isNativeTrade() || eYield == YIELD_WOOL || eYield == YIELD_CATTLE || eYield == YIELD_SHEEP)
+    if (YieldGroup_AI_Native_Product(eYield) || GC.getYieldInfo(eYield).isNativeTrade())
     {
         if (isNative())
         {
@@ -10156,6 +10156,7 @@ UnitClassTypes CvCity::bestTeachUnitClass()
 						}
 						///Tks Med
 						YieldTypes eBonus = NO_YIELD;
+#ifdef USE_NOBLE_CLASS
 						if (kIdealProfession.getNumYieldsProduced() > 1)
 						{
                             if (eWantedYield == YIELD_CATTLE)
@@ -10169,6 +10170,7 @@ UnitClassTypes CvCity::bestTeachUnitClass()
                                 eBonus = YIELD_SHEEP;
                             }
 						}
+#endif
 						///TKe
 						// MultipleYieldsConsumed End
 						if (eWantedYield == NO_YIELD)

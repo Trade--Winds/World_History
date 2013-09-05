@@ -88,6 +88,8 @@ void CvGlobals::CheckEnumYieldTypes() const
 	AI_Buy_From_Europe.check();
 	Check_YieldGroup_AI_Raw_Material AI_Raw_Material;
 	AI_Raw_Material.check();
+	Check_YieldGroup_AI_Native_Product AI_Native_Product;
+	AI_Native_Product.check();
 	Check_YieldGroup_City_Billboard City_Billboard;
 	City_Billboard.check();
 	Check_YieldGroup_City_Billboard_Offset_Fix City_Billboard_Offset_Fix;

@@ -44,6 +44,14 @@ void Check_YieldGroup_AI_Raw_Material::build()
 	YieldVector.push_back(YIELD_STONE);
 }
 
+// Set yields the natives will produce
+// Natives will also produce yields, which has bIsNativeTrade set in XML
+// Other code might give natives the ability to produce even more yields.
+//   They can produce yields, which is accepted by any one of the options.
+void Check_YieldGroup_AI_Native_Product::build()
+{
+}
+
 // Yields to show up on city billboards
 void Check_YieldGroup_City_Billboard::build()
 {
@@ -80,9 +88,9 @@ void BaseCheckYieldGroup::checkXML()
 	// first argument is YieldTypes enum value while the second is the name in XML
 	checkSingleXMLType(YIELD_FOOD,               "YIELD_FOOD");
 	//checkSingleXMLType(YIELD_GRAIN,              "YIELD_GRAIN");
-	checkSingleXMLType(YIELD_CATTLE,             "YIELD_CATTLE");
-	checkSingleXMLType(YIELD_SHEEP,              "YIELD_SHEEP");
-	checkSingleXMLType(YIELD_WOOL,               "YIELD_WOOL");
+	//checkSingleXMLType(YIELD_CATTLE,             "YIELD_CATTLE");
+	//checkSingleXMLType(YIELD_SHEEP,              "YIELD_SHEEP");
+	//checkSingleXMLType(YIELD_WOOL,               "YIELD_WOOL");
 	checkSingleXMLType(YIELD_LUMBER,             "YIELD_LUMBER");
 	checkSingleXMLType(YIELD_STONE,              "YIELD_STONE");
 	//checkSingleXMLType(YIELD_SILVER,             "YIELD_SILVER");

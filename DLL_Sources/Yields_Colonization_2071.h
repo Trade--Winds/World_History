@@ -19,9 +19,9 @@ enum DllExport YieldTypes
 	YIELD_FOOD,///0
 	///TKs ME
 	//YIELD_GRAIN,///1NEW*
-	YIELD_CATTLE,///2/NEW*
-	YIELD_SHEEP,///3/NEW*
-	YIELD_WOOL,///4NEW*
+	//YIELD_CATTLE,///2/NEW*
+	//YIELD_SHEEP,///3/NEW*
+	//YIELD_WOOL,///4NEW*
 	//YIELD_SALT,///5NEW*
 	YIELD_LUMBER,///6
 	YIELD_STONE,///7NEW*
@@ -91,6 +91,11 @@ static inline bool YieldGroup_AI_Buy_From_Europe(YieldTypes eYield)
 static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 {
 	return eYield == YIELD_ORE || eYield == YIELD_STONE;
+}
+
+static inline bool YieldGroup_AI_Native_Product(YieldTypes eYield)
+{
+	return false;
 }
 
 static inline bool YieldGroup_City_Billboard(YieldTypes eYield)

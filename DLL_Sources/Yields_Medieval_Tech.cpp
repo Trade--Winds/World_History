@@ -80,6 +80,17 @@ void Check_YieldGroup_AI_Raw_Material::build()
 	YieldVector.push_back(YIELD_FUR);
 }
 
+// Set yields the natives will produce
+// Natives will also produce yields, which has bIsNativeTrade set in XML
+// Other code might give natives the ability to produce even more yields.
+//   They can produce yields, which is accepted by any one of the options.
+void Check_YieldGroup_AI_Native_Product::build()
+{
+	YieldVector.push_back(YIELD_WOOL);
+	YieldVector.push_back(YIELD_CATTLE);
+	YieldVector.push_back(YIELD_SHEEP);
+}
+
 // Yields to show up on city billboards
 void Check_YieldGroup_City_Billboard::build()
 {
