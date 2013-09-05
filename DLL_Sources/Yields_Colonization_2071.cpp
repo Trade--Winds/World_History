@@ -86,32 +86,31 @@ void Check_YieldGroup_Heavy_Armor::build()
 void BaseCheckYieldGroup::checkXML()
 {
 	// first argument is YieldTypes enum value while the second is the name in XML
-	checkSingleXMLType(YIELD_FOOD,               "YIELD_FOOD");
-	//checkSingleXMLType(YIELD_GRAIN,              "YIELD_GRAIN");
-	//checkSingleXMLType(YIELD_CATTLE,             "YIELD_CATTLE");
-	//checkSingleXMLType(YIELD_SHEEP,              "YIELD_SHEEP");
-	//checkSingleXMLType(YIELD_WOOL,               "YIELD_WOOL");
-	checkSingleXMLType(YIELD_LUMBER,             "YIELD_LUMBER");
-	checkSingleXMLType(YIELD_STONE,              "YIELD_STONE");
-	//checkSingleXMLType(YIELD_SILVER,             "YIELD_SILVER");
-	//checkSingleXMLType(YIELD_SALT,               "YIELD_SALT");
-	//checkSingleXMLType(YIELD_SPICES,             "YIELD_SPICES");
-	//checkSingleXMLType(YIELD_FUR,                "YIELD_FUR");
-	//checkSingleXMLType(YIELD_COTTON,             "YIELD_COTTON");
-	//checkSingleXMLType(YIELD_BARLEY,             "YIELD_BARLEY");
-	//checkSingleXMLType(YIELD_GRAPES,             "YIELD_GRAPES");
-	checkSingleXMLType(YIELD_ORE,                "YIELD_ORE");
-	//checkSingleXMLType(YIELD_CLOTH,              "YIELD_CLOTH");
-	//checkSingleXMLType(YIELD_COATS,              "YIELD_COATS");
-	//checkSingleXMLType(YIELD_ALE,                "YIELD_ALE");
-	//checkSingleXMLType(YIELD_WINE,               "YIELD_WINE");
+	checkSingleXMLType(YIELD_NUTRIENTS,          "YIELD_NUTRIENTS");
+	checkSingleXMLType(YIELD_BIOPOLYMERS,        "YIELD_BIOPOLYMERS");
+	checkSingleXMLType(YIELD_SILICATES,          "YIELD_SILICATES");
+	checkSingleXMLType(YIELD_BASE_METALS,        "YIELD_BASE_METALS");
+	checkSingleXMLType(YIELD_PRECIOUS_METALS,    "YIELD_PRECIOUS_METALS");
+	checkSingleXMLType(YIELD_ISOTOPES,           "YIELD_ISOTOPES");
+	checkSingleXMLType(YIELD_URANIUM,            "YIELD_URANIUM");
+	checkSingleXMLType(YIELD_RARE_EARTHS,        "YIELD_RARE_EARTHS");
+	checkSingleXMLType(YIELD_CRYSTALLOIDS,       "YIELD_CRYSTALLOIDS");
+	checkSingleXMLType(YIELD_TISSUE_SAMPLES,     "YIELD_TISSUE_SAMPLES");
+	checkSingleXMLType(YIELD_YIELD_NUCLEIC_ACIDS,"YIELD_YIELD_NUCLEIC_ACIDS");
+	checkSingleXMLType(YIELD_AMINO_ACIDS,        "YIELD_AMINO_ACIDS");
+	checkSingleXMLType(YIELD_MICROBES,           "YIELD_MICROBES");
+	checkSingleXMLType(YIELD_PROGENITOR_ARTIFACTS,"YIELD_PROGENITOR_ARTIFACTS");
+	checkSingleXMLType(YIELD_ALIEN_SPECIMENS,    "YIELD_ALIEN_SPECIMENS");
+	checkSingleXMLType(YIELD_ENCRYPTED_DATA,     "YIELD_ENCRYPTED_DATA");
+	checkSingleXMLType(YIELD_OPIATES,            "YIELD_OPIATES");
+	checkSingleXMLType(YIELD_XENOTOXINS,         "YIELD_XENOTOXINS");
+	checkSingleXMLType(YIELD_BOTANICALS,         "YIELD_BOTANICALS");
+	checkSingleXMLType(YIELD_HYDROCARBONS,       "YIELD_HYDROCARBONS");
+	checkSingleXMLType(YIELD_HALOGENS,           "YIELD_HALOGENS");
+	checkSingleXMLType(YIELD_CORE_SAMPLES,       "YIELD_CORE_SAMPLES");
 	checkSingleXMLType(YIELD_TOOLS,              "YIELD_TOOLS");
 	checkSingleXMLType(YIELD_WEAPONS,            "YIELD_WEAPONS");
 	checkSingleXMLType(YIELD_HORSES,             "YIELD_HORSES");
-	//checkSingleXMLType(YIELD_LEATHER_ARMOR,      "YIELD_LEATHER_ARMOR");
-	//checkSingleXMLType(YIELD_SCALE_ARMOR,        "YIELD_SCALE_ARMOR");
-	//checkSingleXMLType(YIELD_MAIL_ARMOR,         "YIELD_MAIL_ARMOR");
-	//checkSingleXMLType(YIELD_PLATE_ARMOR,        "YIELD_PLATE_ARMOR");
 	checkSingleXMLType(YIELD_TRADE_GOODS,        "YIELD_TRADE_GOODS");
 	checkSingleXMLType(YIELD_HAMMERS,            "YIELD_HAMMERS");
 	checkSingleXMLType(YIELD_BELLS,              "YIELD_BELLS");
@@ -120,6 +119,5 @@ void BaseCheckYieldGroup::checkXML()
 	checkSingleXMLType(YIELD_IDEAS,              "YIELD_IDEAS");
 	checkSingleXMLType(YIELD_CULTURE,            "YIELD_CULTURE");
 	checkSingleXMLType(YIELD_GOLD,               "YIELD_GOLD");
-
 }
 #endif // COLONIZATION_2071
