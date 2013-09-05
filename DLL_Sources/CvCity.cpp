@@ -7346,7 +7346,9 @@ void CvCity::doYields()
                     }
                     ///TKe
                     break;
+#ifdef MEDIEVAL_TECH
                 case YIELD_LEATHER_ARMOR:
+#endif
                 case YIELD_HORSES:
                     if (GC.getCache_AI_CHEAT_AUTO_BUY() > 0 && GET_TEAM(getTeam()).getAtWarCount() == 0)
                     {
@@ -7364,6 +7366,7 @@ void CvCity::doYields()
                     }
                     ///TKe
                     break;
+#ifdef MEDIEVAL_TECH
                 case YIELD_SCALE_ARMOR:
                 case YIELD_MAIL_ARMOR:
                  case YIELD_PLATE_ARMOR:
@@ -7424,6 +7427,7 @@ void CvCity::doYields()
 
                     break;
                 case YIELD_COTTON:
+#endif
 #ifdef USE_NOBLE_CLASS
                 case YIELD_GRAIN:
 #endif
