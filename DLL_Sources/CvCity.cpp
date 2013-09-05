@@ -7313,7 +7313,7 @@ void CvCity::doYields()
         {
             switch (eYield)
             {
-
+#ifdef USE_NOBLE_CLASS
                 case YIELD_SPICES:
 
                     //if (!isHuman() && !isNative() && GET_PLAYER(getOwnerINLINE()).getParent() != NO_PLAYER)
@@ -7329,6 +7329,7 @@ void CvCity::doYields()
                     }
 
                     break;
+#endif
                 case YIELD_WEAPONS:
                     if (GC.getCache_AI_CHEAT_AUTO_BUY() > 0 && GET_TEAM(getTeam()).getAtWarCount() == 0)
                     {

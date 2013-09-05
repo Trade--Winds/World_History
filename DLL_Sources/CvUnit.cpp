@@ -2617,6 +2617,7 @@ bool CvUnit::canDoCommand(CommandTypes eCommand, int iData1, int iData2, bool bT
 //			    }
 //			}
 			break;
+#ifdef USE_NOBLE_CLASS
         case COMMAND_HOLD_FEAST:
             if (!canMove())
             {
@@ -2647,6 +2648,7 @@ bool CvUnit::canDoCommand(CommandTypes eCommand, int iData1, int iData2, bool bT
                 }
             }
             break;
+#endif
 
 	default:
 		FAssert(false);
@@ -2894,6 +2896,7 @@ void CvUnit::doCommand(CommandTypes eCommand, int iData1, int iData2)
         case COMMAND_CONVERT_UNIT:
 			doKingTransport();
 			break;
+#ifdef USE_NOBLE_CLASS
         case COMMAND_HOLD_FEAST:
 			{
 				CvCity* ePlotCity = plot()->getPlotCity();
@@ -2910,6 +2913,7 @@ void CvUnit::doCommand(CommandTypes eCommand, int iData1, int iData2)
 				}
 			}
             break;
+#endif
         ///Tke
 
 		default:

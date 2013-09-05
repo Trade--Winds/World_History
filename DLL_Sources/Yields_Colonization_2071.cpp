@@ -87,7 +87,7 @@ void BaseCheckYieldGroup::checkXML()
 	checkSingleXMLType(YIELD_STONE,              "YIELD_STONE");
 	//checkSingleXMLType(YIELD_SILVER,             "YIELD_SILVER");
 	//checkSingleXMLType(YIELD_SALT,               "YIELD_SALT");
-	checkSingleXMLType(YIELD_SPICES,             "YIELD_SPICES");
+	//checkSingleXMLType(YIELD_SPICES,             "YIELD_SPICES");
 	//checkSingleXMLType(YIELD_FUR,                "YIELD_FUR");
 	//checkSingleXMLType(YIELD_COTTON,             "YIELD_COTTON");
 	//checkSingleXMLType(YIELD_BARLEY,             "YIELD_BARLEY");
@@ -95,8 +95,8 @@ void BaseCheckYieldGroup::checkXML()
 	checkSingleXMLType(YIELD_ORE,                "YIELD_ORE");
 	//checkSingleXMLType(YIELD_CLOTH,              "YIELD_CLOTH");
 	//checkSingleXMLType(YIELD_COATS,              "YIELD_COATS");
-	checkSingleXMLType(YIELD_ALE,                "YIELD_ALE");
-	checkSingleXMLType(YIELD_WINE,               "YIELD_WINE");
+	//checkSingleXMLType(YIELD_ALE,                "YIELD_ALE");
+	//checkSingleXMLType(YIELD_WINE,               "YIELD_WINE");
 	checkSingleXMLType(YIELD_TOOLS,              "YIELD_TOOLS");
 	checkSingleXMLType(YIELD_WEAPONS,            "YIELD_WEAPONS");
 	checkSingleXMLType(YIELD_HORSES,             "YIELD_HORSES");
