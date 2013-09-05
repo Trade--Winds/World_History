@@ -18,7 +18,7 @@ enum DllExport YieldTypes
 
 	YIELD_FOOD,///0
 	///TKs ME
-	YIELD_GRAIN,///1NEW*
+	//YIELD_GRAIN,///1NEW*
 	YIELD_CATTLE,///2/NEW*
 	YIELD_SHEEP,///3/NEW*
 	YIELD_WOOL,///4NEW*
@@ -62,58 +62,65 @@ enum DllExport YieldTypes
 	///TKe
 
 #ifdef _USRDLL
-	NUM_YIELD_TYPES
+	NUM_YIELD_TYPES,
 #endif
+
+	YIELD_FROM_ANIMALS = NO_YIELD,
 };
 
 static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
 {
-	return (eYield >= YIELD_CLOTH && eYield <= YIELD_WINE) || eYield == YIELD_SILVER || eYield == YIELD_TRADE_GOODS;
+	return eYield == YIELD_TRADE_GOODS;
 }
 
 static inline bool YieldGroup_AI_Sell_To_Europe(YieldTypes eYield)
 {
-	return (eYield >= YIELD_SILVER && eYield <= YIELD_WINE) || (eYield >= YIELD_CATTLE && eYield <= YIELD_WOOL);
+	return eYield == YIELD_ORE;
 }
 
 static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)
 {
-	return eYield == YIELD_SPICES || eYield == YIELD_TOOLS || eYield ==  YIELD_GRAIN || eYield == YIELD_CATTLE;
+	return eYield == YIELD_TOOLS;
 }
 
 static inline bool YieldGroup_AI_Buy_From_Europe(YieldTypes eYield)
 {
-	return (eYield >= YIELD_TOOLS && eYield <= YIELD_TRADE_GOODS) || eYield == YIELD_SPICES;
+	return eYield >= YIELD_TOOLS && eYield <= YIELD_TRADE_GOODS;
 }
 
 static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 {
-	return (eYield >= YIELD_SALT && eYield <= YIELD_ORE) || (eYield <= YIELD_STONE && eYield >= YIELD_CATTLE && eYield != YIELD_LUMBER);
+	return eYield == YIELD_ORE || eYield == YIELD_STONE;
 }
 
 static inline bool YieldGroup_City_Billboard(YieldTypes eYield)
 {
-	return eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_CATTLE || eYield == YIELD_SHEEP || eYield == YIELD_SALT || eYield == YIELD_TOOLS;
+	return eYield == YIELD_HORSES || eYield == YIELD_TOOLS;
 }
 
 static inline bool YieldGroup_City_Billboard_Offset_Fix(YieldTypes eYield)
 {
-	return eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_SALT || eYield == YIELD_TOOLS;
+	return eYield == YIELD_HORSES || eYield == YIELD_TOOLS;
 }
 
 static inline bool YieldGroup_Armor(YieldTypes eYield)
 {
-	return eYield >= YIELD_LEATHER_ARMOR && eYield <= YIELD_PLATE_ARMOR;
+	return false;
 }
 
 static inline bool YieldGroup_Light_Armor(YieldTypes eYield)
 {
-	return eYield == YIELD_LEATHER_ARMOR;
+	return false;
 }
 
 static inline bool YieldGroup_Heavy_Armor(YieldTypes eYield)
 {
-	return eYield >= YIELD_SCALE_ARMOR && eYield <= YIELD_PLATE_ARMOR;
+	return false;
+}
+
+static inline bool YieldGroup_Luxury_Food(YieldTypes eYield)
+{
+	return false;
 }
 
 #endif // COLONIZATION_2071

@@ -7671,17 +7671,17 @@ UnitTypes CvUnit::getCaptureUnitType(CivilizationTypes eCivilization) const
 	}
 
 	///TKs Med
-	 if (eCaptureUnit != NO_UNIT)
+	 if (YIELD_FROM_ANIMALS != NO_YIELD && eCaptureUnit != NO_UNIT)
 	 {
 	    //YieldTypes eCapturedYield = (YieldTypes)m_pUnitInfo->getYield();
-	    if (GC.getYieldInfo(YIELD_GRAIN).getUnitClass() == m_pUnitInfo->getUnitCaptureClassType())
+	    if (GC.getYieldInfo(YIELD_FROM_ANIMALS).getUnitClass() == m_pUnitInfo->getUnitCaptureClassType())
 	    {
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
                 if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-                    if (kCivicInfo.getAllowsYields(YIELD_GRAIN) > 0)
+                    if (kCivicInfo.getAllowsYields(YIELD_FROM_ANIMALS) > 0)
                     {
                         if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getIdeasResearched((CivicTypes) iCivic) == 0)
                         {
@@ -10169,20 +10169,20 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                     }
                     if (bKill)
                     {
-                        if (m_pUnitInfo->isAnimal())
+                        if (YIELD_FROM_ANIMALS != NO_YIELD && m_pUnitInfo->isAnimal())
                         {
                             if (pWorkingCity != NULL)
                             {
 
                                 int iYieldStored = GC.getCache_CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT();
                                 iYieldStored = (GC.getGameINLINE().getSorenRandNum(iYieldStored, "Random City Kill") + 1);
-                                int iCityYieldStore = pWorkingCity->getYieldStored(YIELD_GRAIN) + iYieldStored;
-                                pWorkingCity->setYieldStored(YIELD_GRAIN, iCityYieldStore);
+                                int iCityYieldStore = pWorkingCity->getYieldStored(YIELD_FROM_ANIMALS) + iYieldStored;
+                                pWorkingCity->setYieldStored(YIELD_FROM_ANIMALS, iCityYieldStore);
                                 if (pWorkingCity->isHuman())
                                 {
                                     PlayerTypes eCityOwner = pWorkingCity->getOwnerINLINE();
                                     CvWString szBuffer;
-                                    szBuffer = gDLL->getText("TXT_KEY_CITY_CAPTURE_ANIMAL", GC.getImprovementInfo(pNewPlot->getImprovementType()).getTextKeyWide(), iYieldStored, GC.getYieldInfo(YIELD_GRAIN).getChar(), pWorkingCity->getNameKey());
+                                    szBuffer = gDLL->getText("TXT_KEY_CITY_CAPTURE_ANIMAL", GC.getImprovementInfo(pNewPlot->getImprovementType()).getTextKeyWide(), iYieldStored, GC.getYieldInfo(YIELD_FROM_ANIMALS).getChar(), pWorkingCity->getNameKey());
                                     gDLL->getInterfaceIFace()->addMessage(eCityOwner, false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pWorkingCity->getX_INLINE(), pWorkingCity->getY_INLINE());
                                 }
                             }
@@ -10240,20 +10240,20 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                                 }
                                 if (bKill)
                                 {
-                                    if (m_pUnitInfo->isAnimal())
+                                    if (YIELD_FROM_ANIMALS != NO_YIELD && m_pUnitInfo->isAnimal())
                                     {
                                         if (pLoopCity != NULL)
                                         {
 
                                             int iYieldStored = GC.getCache_CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT();
                                             iYieldStored = (GC.getGameINLINE().getSorenRandNum(iYieldStored, "Random City Kill") + 1);
-                                            int iCityYieldStore = pLoopCity->getYieldStored(YIELD_GRAIN) + iYieldStored;
-                                            pLoopCity->setYieldStored(YIELD_GRAIN, iCityYieldStore);
+                                            int iCityYieldStore = pLoopCity->getYieldStored(YIELD_FROM_ANIMALS) + iYieldStored;
+                                            pLoopCity->setYieldStored(YIELD_FROM_ANIMALS, iCityYieldStore);
                                             if (pLoopCity->isHuman())
                                             {
                                                 PlayerTypes eCityOwner = pLoopCity->getOwnerINLINE();
                                                 CvWString szBuffer;
-                                                szBuffer = gDLL->getText("TXT_KEY_CITY_CAPTURE_ANIMAL", GC.getImprovementInfo(pLoopPlot->getImprovementType()).getTextKeyWide(), iYieldStored, GC.getYieldInfo(YIELD_GRAIN).getChar(), pLoopCity->getNameKey());
+                                                szBuffer = gDLL->getText("TXT_KEY_CITY_CAPTURE_ANIMAL", GC.getImprovementInfo(pLoopPlot->getImprovementType()).getTextKeyWide(), iYieldStored, GC.getYieldInfo(YIELD_FROM_ANIMALS).getChar(), pLoopCity->getNameKey());
                                                 gDLL->getInterfaceIFace()->addMessage(eCityOwner, false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());
                                             }
                                         }

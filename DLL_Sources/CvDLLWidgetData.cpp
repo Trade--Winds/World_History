@@ -2898,8 +2898,11 @@ void CvDLLWidgetData::parsePopulationHelp(CvWidgetDataStruct &widgetDataStruct, 
 	{
 	    ///TKs Med
 		//szBuffer.assign(gDLL->getText("TXT_KEY_MISC_FOOD_THRESHOLD", pHeadSelectedCity->getFood(), pHeadSelectedCity->growthThreshold()));
-
+#ifdef USE_NOBLE_CLASS
 		szBuffer.assign(gDLL->getText("TXT_KEY_MISC_LUXURY_FOOD_THRESHOLD", pHeadSelectedCity->getFood(), pHeadSelectedCity->growthThreshold(), pHeadSelectedCity->getYieldStored(YIELD_GRAIN), GC.getCache_BASE_CITY_LUXURY_FOOD_THRESHOLD_MOD(), GC.getYieldInfo(YIELD_GRAIN).getChar()));
+#else
+		szBuffer.assign(gDLL->getText("TXT_KEY_MISC_FOOD_THRESHOLD", pHeadSelectedCity->getFood(), pHeadSelectedCity->growthThreshold()));
+#endif
 		///Tke
 	}
 }

@@ -62,8 +62,11 @@ enum DllExport YieldTypes
 	///TKe
 
 #ifdef _USRDLL
-	NUM_YIELD_TYPES
+	NUM_YIELD_TYPES,
 #endif
+
+	// Setup for which yields to have certain hardcoded functions
+	YIELD_FROM_ANIMALS = YIELD_GRAIN,
 };
 
 static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
@@ -114,6 +117,11 @@ static inline bool YieldGroup_Light_Armor(YieldTypes eYield)
 static inline bool YieldGroup_Heavy_Armor(YieldTypes eYield)
 {
 	return eYield >= YIELD_SCALE_ARMOR && eYield <= YIELD_PLATE_ARMOR;
+}
+
+static inline bool YieldGroup_Luxury_Food(YieldTypes eYield)
+{
+	return eYield == YIELD_GRAIN;
 }
 
 #endif // MEDIEVAL_TECH

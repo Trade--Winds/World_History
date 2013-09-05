@@ -7196,6 +7196,7 @@ void CvCity::doGrowth()
     ///TKs Med
     bool bNotMaxed = true;
 
+#ifdef USE_NOBLE_CLASS
     //bool bRationsGrowth = false;
     if (!isNative() && getYieldStored(YIELD_GRAIN) >= GC.getCache_BASE_CITY_LUXURY_FOOD_THRESHOLD_MOD() && bNotMaxed)
     {
@@ -7217,6 +7218,7 @@ void CvCity::doGrowth()
             }
 		}
     }
+#endif
 
 
 
@@ -7422,8 +7424,11 @@ void CvCity::doYields()
 
                     break;
                 case YIELD_COTTON:
+#ifdef USE_NOBLE_CLASS
                 case YIELD_GRAIN:
+#endif
                 case YIELD_STONE:
+					// TODO make a yield group of yields, which must be discovered
                     //if (!isHuman() && !isNative() && GET_PLAYER(getOwnerINLINE()).getParent() != NO_PLAYER)
                     {
                         bool bDiscovered = true;
@@ -7696,7 +7701,7 @@ void CvCity::doYields()
                         gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BUILD_BANK", MESSAGE_TYPE_MINOR_EVENT, GC.getYieldInfo(eYield).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
                     }
 				}
-				else if (iExcess > 0 && eYield != YIELD_GRAIN)
+				else if (iExcess > 0 && !YieldGroup_Luxury_Food(eYield))
 				{
 				    int iLoss = std::max(GC.getCache_CITY_YIELD_DECAY_PERCENT() * iExcess / 100, GC.getCache_MIN_CITY_YIELD_DECAY());
                     iLoss = std::min(iLoss, iExcess);
@@ -7740,7 +7745,7 @@ void CvCity::doYields()
                         }
 					}
 				}
-				else if (aiYields[eYield] > -iExcess && eYield != YIELD_GRAIN)
+				else if (aiYields[eYield] > -iExcess && !YieldGroup_Luxury_Food(eYield))
 				{
 					CvWString szBuffer = gDLL->getText("TXT_KEY_RUNNING_OUT_OF_SPACE",GC.getYieldInfo(eYield).getChar(), getNameKey());
 					gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DEAL_CANCELLED", MESSAGE_TYPE_MINOR_EVENT, GC.getYieldInfo(eYield).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
@@ -11063,7 +11068,7 @@ BuildingTypes CvCity::getBestFreeBuilding()
             int iCityPlotValue = 0;
             YieldTypes eCityYield = NO_YIELD;
             YieldTypes eYield = (YieldTypes)iI;
-            if (GC.getYieldInfo(eYield).isCargo() && eYield != YIELD_ORE && eYield != YIELD_GRAIN && eYield != YIELD_LUMBER && eYield != YIELD_FOOD)
+            if (GC.getYieldInfo(eYield).isCargo() && eYield != YIELD_ORE && !YieldGroup_Luxury_Food(eYield) && eYield != YIELD_LUMBER && eYield != YIELD_FOOD)
             {
                 if (GET_PLAYER(getOwner()).getYieldBuyPrice(eYield) <= 0)
                 {

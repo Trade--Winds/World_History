@@ -6114,7 +6114,7 @@ void CvPlayerAI::AI_doTradeRoutes()
 	{
 		YieldTypes eLoopYield = (YieldTypes)iYield;
 ///TKs Med
-		if (GC.getYieldInfo(eLoopYield).isCargo() && (eLoopYield != YIELD_FOOD && eLoopYield != YIELD_GRAIN))
+		if (GC.getYieldInfo(eLoopYield).isCargo() && eLoopYield != YIELD_FOOD && !YieldGroup_Luxury_Food(eLoopYield))
 		{
 			if (AI_isYieldFinalProduct(eLoopYield))
 			{
@@ -6203,6 +6203,7 @@ void CvPlayerAI::AI_doTradeRoutes()
                         pLoopCity->AI_setAvoidGrowth(true);
                     }
 				}
+#ifdef USE_NOBLE_CLASS
 				else if (eLoopYield == YIELD_GRAIN)
 				{
 					int iThreshold = pLoopCity->growthThreshold();
@@ -6237,6 +6238,7 @@ void CvPlayerAI::AI_doTradeRoutes()
                         //pLoopCity->AI_setEmphasize(YIELD_GRAIN, false);
                     }
 				}
+#endif
 				else
 				{
 					if ((AI_isYieldFinalProduct(eLoopYield)) || AI_isYieldForSale(eLoopYield))
@@ -8665,7 +8667,7 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 			iNoblesMultiplier += 25;
 		}
 
-
+#ifdef USE_NOBLE_CLASS
 		if (eYield == YIELD_CATTLE || eYield == YIELD_GRAIN || eYield == YIELD_SPICES)
 		{
 			iValue *= iNoblesMultiplier;
@@ -8675,7 +8677,9 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
 				iValue *= iNoblesMultiplier;
 				iValue /= 100;
 			}
-		} else if (YieldGroup_AI_Sell_To_Europe(eYield))
+		} else 
+#endif	
+		if (YieldGroup_AI_Sell_To_Europe(eYield))
 		{
 			iValue *= iGoodsMultiplier;
 			iValue /= 100;
@@ -8806,7 +8810,7 @@ void CvPlayerAI::AI_updateYieldValues()
 		} else if (	YieldGroup_AI_Sell_To_Europe(eYield))
 		{	
 			iValue += kParent.getYieldBuyPrice(eYield);
-		} else if (eYield == YIELD_FOOD || eYield == YIELD_GRAIN || eYield == YIELD_LUMBER || eYield == YIELD_STONE)
+		} else if (eYield == YIELD_FOOD || YieldGroup_Luxury_Food(eYield) || eYield == YIELD_LUMBER || eYield == YIELD_STONE)
 		{
 			iValue += (kParent.getYieldSellPrice(eYield) + kParent.getYieldBuyPrice(eYield)) / 2;
 		} else if (!YieldGroup_Virtual(eYield))
@@ -8953,7 +8957,7 @@ int CvPlayerAI::AI_transferYieldValue(const IDInfo target, YieldTypes eYield, in
 	{
 		int iStored = pCity->getYieldStored(eYield);
 		///TKs Med
-		int iMaxCapacity = (eYield == YIELD_FOOD || eYield == YIELD_GRAIN) ? pCity->growthThreshold() : pCity->getMaxYieldCapacity(eYield);
+		int iMaxCapacity = (eYield == YIELD_FOOD || YieldGroup_Luxury_Food(eYield)) ? pCity->growthThreshold() : pCity->getMaxYieldCapacity(eYield);
 		///Tke
 		int iMaintainLevel = pCity->getMaintainLevel(eYield);
 		FAssert(iMaxCapacity > 0);
@@ -8964,7 +8968,7 @@ int CvPlayerAI::AI_transferYieldValue(const IDInfo target, YieldTypes eYield, in
 			{
 				iValue = std::min(iSurplus, -iAmount);
                 ///TKs Med
-				int iMaxCapacity = (eYield == YIELD_FOOD || eYield == YIELD_GRAIN) ? pCity->growthThreshold() : iMaxCapacity = pCity->getMaxYieldCapacity(eYield);
+				int iMaxCapacity = (eYield == YIELD_FOOD || YieldGroup_Luxury_Food(eYield)) ? pCity->growthThreshold() : iMaxCapacity = pCity->getMaxYieldCapacity(eYield);
 				///TKe
 				FAssert(iMaxCapacity > 0);
 				iValue *= 50 + ((100 * iStored) / std::max(1, iMaxCapacity));
@@ -9110,7 +9114,7 @@ void CvPlayerAI::AI_manageEconomy()
 					}
 				}
 ///Tks Med
-				if (eLoopYield == YIELD_FOOD || eLoopYield == YIELD_GRAIN)
+				if (eLoopYield == YIELD_FOOD || YieldGroup_Luxury_Food(eLoopYield))
 				{
 					iWeight += bAtWar ? 20 : 0;
 				}
@@ -14353,11 +14357,13 @@ void CvPlayerAI::AI_updateNextBuyProfession()
 								}
 								///TKs Med
 								//else if (AI_isStrategy(STRATEGY_BUILDUP) || AI_isStrategy(STRATEGY_REVOLUTION_PREPARING))
+#ifdef USE_NOBLE_CLASS
                                 else
 								{
 									iValue *= 100 + kUnitInfo.getYieldModifier(YIELD_GRAIN) / (2 + iExisting);
 									iValue /= 100;
 								}
+#endif
 								///TKe
 							}
 
