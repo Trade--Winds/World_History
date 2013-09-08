@@ -7675,6 +7675,12 @@ UnitTypes CvUnit::getCaptureUnitType(CivilizationTypes eCivilization) const
 	}
 
 	///TKs Med
+	if (!GET_PLAYER(GC.getGameINLINE().getActivePlayer()).canUseYield(YIELD_FROM_ANIMALS))
+	{
+		return NO_UNIT;
+	}
+#if 0
+	// this section is replaced by a simple check to see if the player can use the yield in question
 	 if (YIELD_FROM_ANIMALS != NO_YIELD && eCaptureUnit != NO_UNIT)
 	 {
 	    //YieldTypes eCapturedYield = (YieldTypes)m_pUnitInfo->getYield();
@@ -7696,6 +7702,7 @@ UnitTypes CvUnit::getCaptureUnitType(CivilizationTypes eCivilization) const
             }
 	    }
 	 }
+#endif
 	///TKe
 
 	CvUnitInfo& kUnitInfo = GC.getUnitInfo(eCaptureUnit);
@@ -10173,7 +10180,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                     }
                     if (bKill)
                     {
-                        if (YIELD_FROM_ANIMALS != NO_YIELD && m_pUnitInfo->isAnimal())
+                        if (m_pUnitInfo->isAnimal() && pNewPlot->getOwner() != NO_PLAYER && GET_PLAYER(pNewPlot->getOwner()).canUseYield(YIELD_FROM_ANIMALS))
                         {
                             if (pWorkingCity != NULL)
                             {
@@ -10244,9 +10251,11 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                                 }
                                 if (bKill)
                                 {
-                                    if (YIELD_FROM_ANIMALS != NO_YIELD && m_pUnitInfo->isAnimal())
+                                    if (m_pUnitInfo->isAnimal() && pLoopCity != NULL)
                                     {
-                                        if (pLoopCity != NULL)
+										PlayerTypes eCityOwner = pLoopCity->getOwnerINLINE();
+
+										if (eCityOwner != NO_PLAYER && GET_PLAYER(eCityOwner).canUseYield(YIELD_FROM_ANIMALS))
                                         {
 
                                             int iYieldStored = GC.getCache_CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT();
@@ -10255,7 +10264,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                                             pLoopCity->setYieldStored(YIELD_FROM_ANIMALS, iCityYieldStore);
                                             if (pLoopCity->isHuman())
                                             {
-                                                PlayerTypes eCityOwner = pLoopCity->getOwnerINLINE();
+                                                //PlayerTypes eCityOwner = pLoopCity->getOwnerINLINE();
                                                 CvWString szBuffer;
                                                 szBuffer = gDLL->getText("TXT_KEY_CITY_CAPTURE_ANIMAL", GC.getImprovementInfo(pLoopPlot->getImprovementType()).getTextKeyWide(), iYieldStored, GC.getYieldInfo(YIELD_FROM_ANIMALS).getChar(), pLoopCity->getNameKey());
                                                 gDLL->getInterfaceIFace()->addMessage(eCityOwner, false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());

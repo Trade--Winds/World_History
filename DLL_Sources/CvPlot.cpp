@@ -4763,22 +4763,34 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 //		    {
 //		        return 0;
 //		    }
+			
+			// invention effect cache - start - Nightinggale
+			CvPlayerAI& kPlayer = GET_PLAYER(GET_TEAM(eTeam).getLeaderID());
+			if (!kPlayer.canUseYield(eYield))
+			{
+				return 0;
+			}
+			// invention effect cache - end - Nightinggale
+
 			BonusTypes eBonus = getBonusType();
+
+			// TODO get rid of invention loop in high performance function
+
 			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 			{
 				if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
 				{
 					CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-					if (GET_TEAM(eTeam).isHuman())
-					{
-						if (eYield != NO_YIELD && kCivicInfo.getAllowsYields(eYield) > 0)
-						{
-							if (GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).getIdeasResearched((CivicTypes) iCivic) == 0)
-							{
-								return 0;
-							}
-						}
-					}
+					//if (GET_TEAM(eTeam).isHuman())
+					//{
+						//if (eYield != NO_YIELD && kCivicInfo.getAllowsYields(eYield) > 0)
+						//{
+						//	if (GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).getIdeasResearched((CivicTypes) iCivic) == 0)
+						//	{
+						//		return 0;
+						//	}
+						//}
+					//}
 
 					if (eBonus != NO_BONUS && kCivicInfo.getAllowsBonuses(eBonus) > 0)
 					{

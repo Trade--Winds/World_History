@@ -4024,23 +4024,24 @@ bool CvDLLButtonPopup::launchArmorsmithPopup(CvPopup* pPopup, CvPopupInfo &info)
         CvYieldInfo& kYield = GC.getYieldInfo(eArmor);
         if (GC.getYieldInfo(eArmor).isArmor())
         {
-            for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-            {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
-                {
-                    CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-                    if (kCivicInfo.getAllowsYields(eArmor) > 0)
-                    {
-                        if (kPlayer.getIdeasResearched((CivicTypes) iCivic) != 0)
+            //for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+            //{
+             //   if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+             //   {
+             //       CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
+             //       if (kCivicInfo.getAllowsYields(eArmor) > 0)
+             //       {
+             //           if (kPlayer.getIdeasResearched((CivicTypes) iCivic) != 0)
+			if (kPlayer.canUseYield(eArmor))
                         {
                             szRequires = CvWString::format(L"%s", GC.getYieldInfo(eArmor).getDescription());
                             gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, szRequires, kYield.getButton(), iI, WIDGET_GENERAL);
                             bFoundArmor = true;
                         }
-                    }
+              //      }
 
-                }
-            }
+              //  }
+            //}
 
 //            if (kPlayer.isYieldEuropeTradable(eArmor))
 //            {

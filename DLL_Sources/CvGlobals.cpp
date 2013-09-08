@@ -3906,5 +3906,7 @@ void CvGlobals::setXMLCache()
 	m_cache_WILD_ANIMAL_SEA_PATROL_BASE_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_PATROL_BASE_WEIGHT");
 	m_cache_WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT");
 	m_cache_WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT");
+
+	// TODO set content of CvYieldInfo::isMustBeDiscovered() based on civics rather than XML yield info
 }
 // cache XML - end - Nightinggale

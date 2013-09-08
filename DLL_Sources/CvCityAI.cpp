@@ -4009,6 +4009,7 @@ void CvCityAI::AI_assignDesiredYield()
 			YieldTypes eYield = (YieldTypes) i;
 			int iValue = GC.getYieldInfo(eYield).getNativeBuyPrice();
 			///TKs Med
+			// TODO figure out if it is a bug that the function allows yields not invented by the city owner as long as they are invented by somebody else
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
@@ -4046,6 +4047,11 @@ void CvCityAI::AI_assignDesiredYield()
 		{
 		    YieldTypes eYield = (YieldTypes) i;
 		    int iValue = 0;
+#if 0
+			// loop to possibly assign 0 to iValue, which it is already and it will be overwritten once the loop is over
+			// No need for this loop
+
+			// TODO reject uninvented yields for "European" AI players
 		    for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
@@ -4058,6 +4064,7 @@ void CvCityAI::AI_assignDesiredYield()
                     }
                 }
             }
+#endif
 
             iValue = GET_PLAYER(getOwnerINLINE()).AI_yieldValue(eYield);
             if (AI_getNeededYield(eYield) > 0)

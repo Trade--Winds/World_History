@@ -937,6 +937,18 @@ protected:
 	virtual void read(FDataStreamBase* pStream);
 	virtual void write(FDataStreamBase* pStream);
 	void doUpdateCacheOnTurn();
+
+// invention effect cache - start - Nightinggale
+public:
+	bool canUseYield(YieldTypes eYield) const;
+
+protected:
+	bool canUseYieldUncached(YieldTypes eYield) const;
+	bool m_abCanUseYield[NUM_YIELD_TYPES];
+
+
+	void updateInventionEffectCache();
+// invention effect cache - end - Nightinggale
 };
 
 // cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
@@ -968,5 +980,14 @@ inline bool CvPlayer::hasContentsYieldEquipmentAmountSecure(ProfessionTypes ePro
 	return eProfession > NO_PROFESSION ? hasContentsYieldEquipmentAmount(eProfession) : false;
 }
 // cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
+
+// invention effect cache - start - Nightinggale
+inline bool CvPlayer::canUseYield(YieldTypes eYield) const
+{
+	FAssert(eYield < NUM_YIELD_TYPES);
+	FAssert(eYield == NO_YIELD || m_abCanUseYield[eYield] == canUseYieldUncached(eYield));
+	return eYield >= 0 ? m_abCanUseYield[eYield] : false;
+}
+// invention effect cache - end - Nightinggale
 
 #endif

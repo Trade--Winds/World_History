@@ -7308,6 +7308,19 @@ void CvCity::doYields()
 	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
 	{
 		YieldTypes eYield = (YieldTypes) iYield;
+
+		// invention effect cache - start - Nightinggale
+		if (!GET_PLAYER(getOwnerINLINE()).canUseYield(eYield))
+		{	
+			// don't use yields, which aren't invented
+			if (getYieldStored(eYield) > 0)
+			{
+				setYieldStored(eYield, 0);
+			}
+			continue;
+		}
+		// invention effect cache - end - Nightinggale
+
 		  ///TKs MED AI Handicap
         if (!isHuman() && !isNative() && GET_PLAYER(getOwnerINLINE()).getParent() != NO_PLAYER)
         {
@@ -7377,6 +7390,7 @@ void CvCity::doYields()
                             ///Testing
                             //FAssert(GET_PLAYER(getOwnerINLINE()).getID() != 0)
                             bool bDiscovered = true;
+							/*
                             if (GC.getYieldInfo(eYield).isMustBeDiscovered())
                             {
                                 bDiscovered = false;
@@ -7402,6 +7416,7 @@ void CvCity::doYields()
                                 }
                             }
                             else
+							*/
                             {
                                 iArmorWeight = GC.getYieldInfo(eYield).getAIBaseValue();
                                 if (iArmorWeight > iBestArmorWeight)
@@ -7427,41 +7442,7 @@ void CvCity::doYields()
                         }
 
                     break;
-                case YIELD_COTTON:
 #endif
-#ifdef USE_NOBLE_CLASS
-                case YIELD_GRAIN:
-#endif
-                case YIELD_STONE:
-					// TODO make a yield group of yields, which must be discovered
-                    //if (!isHuman() && !isNative() && GET_PLAYER(getOwnerINLINE()).getParent() != NO_PLAYER)
-                    {
-                        bool bDiscovered = true;
-                        if (GC.getYieldInfo(eYield).isMustBeDiscovered())
-                        {
-                            bDiscovered = false;
-                            for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-                            {
-                                CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes)iCivic);
-                                if (kCivicInfo.getAllowsYields(eYield) > 0)
-                                {
-                                    if (GET_PLAYER(getOwnerINLINE()).getIdeasResearched((CivicTypes) iCivic) > 0)
-                                    {
-                                        bDiscovered = true;
-                                        break;
-                                    }
-                                }
-                            }
-                            if (!bDiscovered)
-                            {
-                                if (getYieldStored(eYield) > 0)
-                                {
-                                    setYieldStored(eYield, 0);
-                                }
-                            }
-                        }
-                    }
-                    break;
                 default:
                 break;
             }

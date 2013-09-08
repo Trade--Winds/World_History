@@ -306,6 +306,7 @@ void CvPlayer::init(PlayerTypes eID)
 	AI_init();
 
 	Update_cache_YieldEquipmentAmount(); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
+	this->updateInventionEffectCache(); // invention effect cache - Nightinggale
 }
 
 
@@ -5128,6 +5129,7 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 	///TKs Invention Core Mod v 1.0 B&Y
 	//if (isHuman())
 	//{
+		// TODO cache which buildings this loop allows. Even though it calculates a lot the output is fixed as long as the player doesn't get new inventions
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {	CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
             if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
@@ -7662,21 +7664,25 @@ bool CvPlayer::isYieldEuropeTradable(YieldTypes eYield) const
 	///TKs Invention Core Mod v 1.0
 	if (isHuman() && !getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
     {
-        for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-        {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
-            {
-                CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-                if (eYield != NO_YIELD && kCivicInfo.getAllowsYields(eYield) > 0)
-                {
-                    if (getIdeasResearched((CivicTypes) iCivic) == 0)
-                    {
-                        return false;
-                    }
-                }
-
-            }
-        }
+        //for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+        //{
+        //    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+        //    {
+        //        CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
+        //        if (eYield != NO_YIELD && kCivicInfo.getAllowsYields(eYield) > 0)
+        //        {
+        //            if (getIdeasResearched((CivicTypes) iCivic) == 0)
+        //            {
+        //                return false;
+        //            }
+        //        }
+		//
+        //    }
+        //}
+		if (!this->canUseYield(eYield))
+		{
+			return false;
+		}
     }
 	///TKe
 
@@ -7810,6 +7816,7 @@ bool CvPlayer::isBuildingFree(BuildingTypes eIndex)	const
     ///TKs Invention Core Mod v 1.0 B&Y
     if (isHuman())
 	{
+		// TODO get rid of building loop by caching which buildings are allowed with current inventions
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {	CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
             if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
@@ -11712,6 +11719,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	///TKe
 
 	Update_cache_YieldEquipmentAmount(); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
+	this->updateInventionEffectCache(); // invention effect cache - Nightinggale
 }
 
 //
@@ -18073,7 +18081,7 @@ void CvPlayer::changeIdeasResearched(CivicTypes eIndex, int iChange)
 	if (eIndex != NO_CIVIC)
 	{
 		m_aiIdeasResearched[eIndex] += iChange;
-
+		this->updateInventionEffectCache(); // invention effect cache - Nightinggale
 	}
 }
 
@@ -18524,6 +18532,7 @@ bool CvPlayer::canUnitBeTraded(YieldTypes eYield, UnitTravelStates eTravelState,
     {
         if (!getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
         {
+			/*
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
                 if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
@@ -18539,6 +18548,13 @@ bool CvPlayer::canUnitBeTraded(YieldTypes eYield, UnitTravelStates eTravelState,
 
                 }
             }
+			*/
+			// invention effect cache - start - Nightinggale
+			if (!this->canUseYield(eYield))
+			{
+				return false;
+			}
+			// invention effect cache - end - Nightinggale
         }
     }
 
@@ -18949,3 +18965,45 @@ bool CvPlayer::canMakeVassalDemand(PlayerTypes eVassal)
     return true;
 }
 ///TKe
+
+// invention effect cache - start - Nightinggale
+bool CvPlayer::canUseYieldUncached(YieldTypes eYield) const
+{
+	if (this->isNative() && YieldGroup_AI_Native_Product(eYield))
+	{
+		// natives are always allowed to have native yields even without their inventions.
+		return true;
+	}
+
+	int iCurrent = 0;
+	int iMax = 0;
+
+	for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+    {
+        CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes)iCivic);
+		int iCivicWeight = kCivicInfo.getAllowsYields(eYield);
+        if (iCivicWeight > 0)
+        {
+			iMax += iCivicWeight;
+        }
+		if (iCivicWeight != 0 && getIdeasResearched((CivicTypes) iCivic) > 0)
+		{
+			iCurrent += iCivicWeight;
+		}
+    }
+
+	if (iMax == 0)
+	{
+		iCurrent++;
+	}
+	return iCurrent > 0;
+}
+
+void CvPlayer::updateInventionEffectCache()
+{
+	for (int i = 0; i < NUM_YIELD_TYPES; i++)
+	{
+		m_abCanUseYield[i] = canUseYieldUncached((YieldTypes)i);
+	}
+}
+// invention effect cache - end - Nightinggale
