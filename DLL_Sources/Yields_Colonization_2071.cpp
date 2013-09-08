@@ -30,10 +30,10 @@ void Check_YieldGroup_AI_Buy_From_Natives::build()
 // AI attemps to buy from Europe (Europe as in vanilla functionality)
 void Check_YieldGroup_AI_Buy_From_Europe::build()
 {
-	YieldVector.push_back(YIELD_TOOLS);
-	YieldVector.push_back(YIELD_WEAPONS);
-	YieldVector.push_back(YIELD_HORSES);
-	YieldVector.push_back(YIELD_TRADE_GOODS);
+	//YieldVector.push_back(YIELD_TOOLS);
+	//YieldVector.push_back(YIELD_WEAPONS);
+	//YieldVector.push_back(YIELD_HORSES);
+	//YieldVector.push_back(YIELD_TRADE_GOODS);
 }
 
 // AI sells unless they are needed
@@ -87,31 +87,32 @@ void BaseCheckYieldGroup::checkXML()
 {
 	// first argument is YieldTypes enum value while the second is the name in XML
 	checkSingleXMLType(YIELD_NUTRIENTS,          "YIELD_NUTRIENTS");
+	checkSingleXMLType(YIELD_BIONICS,            "YIELD_BIONICS");
+	checkSingleXMLType(YIELD_MICROBES,           "YIELD_MICROBES");
+	checkSingleXMLType(YIELD_HARD_CURRENCY,      "YIELD_HARD_CURRENCY");
+	checkSingleXMLType(YIELD_CRYSTALLOIDS,       "YIELD_CRYSTALLOIDS");
 	checkSingleXMLType(YIELD_BIOPOLYMERS,        "YIELD_BIOPOLYMERS");
 	checkSingleXMLType(YIELD_SILICATES,          "YIELD_SILICATES");
-	checkSingleXMLType(YIELD_BASE_METALS,        "YIELD_BASE_METALS");
 	checkSingleXMLType(YIELD_PRECIOUS_METALS,    "YIELD_PRECIOUS_METALS");
+	checkSingleXMLType(YIELD_ELECTROLYTES,       "YIELD_ELECTROLYTES");
+	checkSingleXMLType(YIELD_ICE,                "YIELD_ICE");
 	checkSingleXMLType(YIELD_ISOTOPES,           "YIELD_ISOTOPES");
 	checkSingleXMLType(YIELD_URANIUM,            "YIELD_URANIUM");
+	checkSingleXMLType(YIELD_PLUTONIUM,          "YIELD_PLUTONIUM");
 	checkSingleXMLType(YIELD_RARE_EARTHS,        "YIELD_RARE_EARTHS");
-	checkSingleXMLType(YIELD_CRYSTALLOIDS,       "YIELD_CRYSTALLOIDS");
+	checkSingleXMLType(YIELD_BASE_METALS,        "YIELD_BASE_METALS");
 	checkSingleXMLType(YIELD_TISSUE_SAMPLES,     "YIELD_TISSUE_SAMPLES");
-	checkSingleXMLType(YIELD_YIELD_NUCLEIC_ACIDS,"YIELD_YIELD_NUCLEIC_ACIDS");
+	checkSingleXMLType(YIELD_NUCLEIC_ACIDS,      "YIELD_NUCLEIC_ACIDS");
 	checkSingleXMLType(YIELD_AMINO_ACIDS,        "YIELD_AMINO_ACIDS");
-	checkSingleXMLType(YIELD_MICROBES,           "YIELD_MICROBES");
-	checkSingleXMLType(YIELD_PROGENITOR_ARTIFACTS,"YIELD_PROGENITOR_ARTIFACTS");
-	checkSingleXMLType(YIELD_ALIEN_SPECIMENS,    "YIELD_ALIEN_SPECIMENS");
-	checkSingleXMLType(YIELD_ENCRYPTED_DATA,     "YIELD_ENCRYPTED_DATA");
 	checkSingleXMLType(YIELD_OPIATES,            "YIELD_OPIATES");
-	checkSingleXMLType(YIELD_XENOTOXINS,         "YIELD_XENOTOXINS");
-	checkSingleXMLType(YIELD_BOTANICALS,         "YIELD_BOTANICALS");
-	checkSingleXMLType(YIELD_HYDROCARBONS,       "YIELD_HYDROCARBONS");
-	checkSingleXMLType(YIELD_HALOGENS,           "YIELD_HALOGENS");
-	checkSingleXMLType(YIELD_CORE_SAMPLES,       "YIELD_CORE_SAMPLES");
 	checkSingleXMLType(YIELD_TOOLS,              "YIELD_TOOLS");
 	checkSingleXMLType(YIELD_WEAPONS,            "YIELD_WEAPONS");
-	checkSingleXMLType(YIELD_HORSES,             "YIELD_HORSES");
-	checkSingleXMLType(YIELD_TRADE_GOODS,        "YIELD_TRADE_GOODS");
+	checkSingleXMLType(YIELD_ROBOTICS,           "YIELD_ROBOTICS");
+	checkSingleXMLType(YIELD_XENOTOXINS,         "YIELD_XENOTOXINS");
+	checkSingleXMLType(YIELD_PEPTIDES,           "YIELD_PEPTIDES");
+	checkSingleXMLType(YIELD_BOTANICALS,         "YIELD_BOTANICALS");
+	checkSingleXMLType(YIELD_HYDROCARBONS,       "YIELD_HYDROCARBONS");
+	checkSingleXMLType(YIELD_EARTH_GOODS,        "YIELD_EARTH_GOODS");
 	checkSingleXMLType(YIELD_HAMMERS,            "YIELD_HAMMERS");
 	checkSingleXMLType(YIELD_BELLS,              "YIELD_BELLS");
 	checkSingleXMLType(YIELD_CROSSES,            "YIELD_CROSSES");
