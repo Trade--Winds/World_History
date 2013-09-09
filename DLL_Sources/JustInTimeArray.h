@@ -75,15 +75,14 @@ public:
 		return m_iLength;
 	}
 
-protected:
 	// used when constructor isn't called, like in an array
+	// can also be used if constructor is called before XML is read as getNum..Infos() functions will be incorrect in that case.
 	void init(int iLength)
 	{
 		tArray = NULL;
 		m_iLength = iLength;
 	}
 
-public:
 	inline T get(int iIndex) const
 	{
 		FAssert(iIndex >= 0);
@@ -175,4 +174,13 @@ class UnitArray: public JustInTimeArray<T>
 public:
     UnitArray() : JustInTimeArray<T>(GC.getNumUnitInfos()){};
 	void init() { JustInTimeArray<T>::init(GC.getNumUnitInfos());}
+};
+
+
+template<class T>
+class BonusArray: public JustInTimeArray<T>
+{
+public:
+    BonusArray() : JustInTimeArray<T>(GC.getNumBonusInfos()){};
+	void init() { JustInTimeArray<T>::init(GC.getNumBonusInfos());}
 };

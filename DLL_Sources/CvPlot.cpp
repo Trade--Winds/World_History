@@ -4741,7 +4741,9 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 	}
 
 	///TKs Invention Core Mod v 1.0
-	bool bZeroBonus = false;
+	BonusTypes eBonus = getBonusType();
+	bool bCanUseBonus = eBonus != NO_BONUS;
+
 	if (eTeam != NO_TEAM && GC.getGameINLINE().isFinalInitialized())
     {
         if (GET_TEAM(eTeam).hasColonialPlayer() && GC.getYieldInfo(eYield).isNativeTrade())
@@ -4770,12 +4772,16 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 			{
 				return 0;
 			}
+
+			bCanUseBonus = kPlayer.canUseBonus(getBonusType());
+			if (eYield == YIELD_FOOD && isCity())
+			{
+				iYield += kPlayer.getCityPlotFoodBonus();
+			}
 			// invention effect cache - end - Nightinggale
 
+#if 0
 			BonusTypes eBonus = getBonusType();
-
-			// TODO get rid of invention loop in high performance function
-
 			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 			{
 				if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
@@ -4803,6 +4809,7 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 					}
 				}
 			}
+#endif
 		}
 
     }
@@ -4832,12 +4839,11 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 		iYield += GC.getYieldInfo(eYield).getLakeChange();
 	}
 
-	BonusTypes eBonus = getBonusType();
 	FeatureTypes eFeature = bIgnoreFeature ? NO_FEATURE : getFeatureType();
 	///TKs Invention Core Mod v 1.0
 	if (eFeature == NO_FEATURE)
 	{
-		if (!bZeroBonus && eBonus != NO_BONUS && GC.getBonusInfo(eBonus).isTerrain(getTerrainType()))
+		if (bCanUseBonus && GC.getBonusInfo(eBonus).isTerrain(getTerrainType()))
 		{
 			iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
 //			///Tks Med
@@ -4855,7 +4861,7 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 	{
 		iYield += GC.getFeatureInfo(eFeature).getYieldChange(eYield);
 
-		if (!bZeroBonus && eBonus != NO_BONUS && GC.getBonusInfo(eBonus).isFeature(eFeature) && GC.getBonusInfo(eBonus).isFeatureTerrain(getTerrainType()))
+		if (bCanUseBonus && GC.getBonusInfo(eBonus).isFeature(eFeature) && GC.getBonusInfo(eBonus).isFeatureTerrain(getTerrainType()))
 		{
 			iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
 		}

@@ -386,6 +386,10 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	// Uninit class
 	uninit();
 
+	// just-in-time array constructor might run before XML is read.
+	// init here to ensure length is set correctly.
+	m_abBannedBonus.init();
+
 	m_iStartingX = INVALID_PLOT_COORD;
 	m_iStartingY = INVALID_PLOT_COORD;
 	///TKs ME
@@ -19004,6 +19008,54 @@ void CvPlayer::updateInventionEffectCache()
 	for (int i = 0; i < NUM_YIELD_TYPES; i++)
 	{
 		m_abCanUseYield[i] = canUseYieldUncached((YieldTypes)i);
+	}
+
+
+	// cache plot bonus
+	for (int i = 0; i < GC.getNumBonusInfos(); i++)
+	{
+		BonusTypes eBonus = (BonusTypes)i;
+		int iMax = 0;
+		int iCurrent = 0;
+
+		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+		{
+			CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
+			if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+			{
+				int iBonus = kCivicInfo.getAllowsBonuses(eBonus);
+				if (iBonus > 0)
+				{
+					iMax += iBonus;
+				}
+
+				if (this->getIdeasResearched((CivicTypes) iCivic) > 0)
+				{
+					iCurrent += iBonus;
+				}
+			}
+		}
+		if (iMax == 0)
+		{
+			iCurrent++;
+		}
+		// TODO mark map dirty if new value is different from old value
+		this->m_abBannedBonus.set(iCurrent <= 0, eBonus);
+	}
+	this->m_abBannedBonus.hasContent(); // release memory if possible
+
+	// city plot food bonus
+	this->m_iCityPlotFoodBonus = 0;
+	for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+	{
+		CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
+		if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+		{
+			if (this->getIdeasResearched((CivicTypes) iCivic) > 0)
+			{
+				this->m_iCityPlotFoodBonus += kCivicInfo.getCenterPlotFoodBonus();
+			}
+		}
 	}
 }
 // invention effect cache - end - Nightinggale
