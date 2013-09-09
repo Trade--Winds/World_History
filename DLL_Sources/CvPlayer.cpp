@@ -18971,45 +18971,42 @@ bool CvPlayer::canMakeVassalDemand(PlayerTypes eVassal)
 ///TKe
 
 // invention effect cache - start - Nightinggale
-bool CvPlayer::canUseYieldUncached(YieldTypes eYield) const
-{
-	if (this->isNative() && YieldGroup_AI_Native_Product(eYield))
-	{
-		// natives are always allowed to have native yields even without their inventions.
-		return true;
-	}
-
-	int iCurrent = 0;
-	int iMax = 0;
-
-	for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-    {
-        CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes)iCivic);
-		int iCivicWeight = kCivicInfo.getAllowsYields(eYield);
-        if (iCivicWeight > 0)
-        {
-			iMax += iCivicWeight;
-        }
-		if (iCivicWeight != 0 && getIdeasResearched((CivicTypes) iCivic) > 0)
-		{
-			iCurrent += iCivicWeight;
-		}
-    }
-
-	if (iMax == 0)
-	{
-		iCurrent++;
-	}
-	return iCurrent > 0;
-}
-
 void CvPlayer::updateInventionEffectCache()
 {
 	for (int i = 0; i < NUM_YIELD_TYPES; i++)
 	{
-		m_abCanUseYield[i] = canUseYieldUncached((YieldTypes)i);
-	}
+		YieldTypes eYield = (YieldTypes)i;
 
+		int iCurrent = 0;
+		int iMax = 0;
+
+		if (this->isNative() && YieldGroup_AI_Native_Product(eYield))
+		{
+			// natives are always allowed to have native yields even without their inventions.
+			iCurrent = 1;
+		} else {
+			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+			{
+				CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes)iCivic);
+				int iCivicWeight = kCivicInfo.getAllowsYields(eYield);
+				if (iCivicWeight > 0)
+				{
+					iMax += iCivicWeight;
+				}
+				if (iCivicWeight != 0 && getIdeasResearched((CivicTypes) iCivic) > 0)
+				{
+					iCurrent += iCivicWeight;
+				}
+			}
+
+			if (iMax == 0)
+			{
+				iCurrent++;
+			}
+		}
+		this->m_abBannedYields.set(iCurrent <= 0, eYield);
+	}
+	this->m_abBannedYields.hasContent(); // free memory if possible
 
 	// cache plot bonus
 	for (int i = 0; i < GC.getNumBonusInfos(); i++)
