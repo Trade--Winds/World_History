@@ -9784,6 +9784,21 @@ bool CvYieldInfo::isNativeTrade() const
 {
 	return m_bIsNativeTrade;
 }
+
+// discoverable yield detection - start - Nightinggale
+void CvYieldInfo::setMustBeDiscovered()
+{
+	for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+	{
+		CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes)iCivic);
+		if (kCivicInfo.getAllowsYields(this->m_YieldType) > 0)
+		{
+			m_bIsMustBeDiscovered = true;
+			return;
+		}
+	}
+}
+// discoverable yield detection - end - Nightinggale
 ///Tke
 
 bool CvYieldInfo::read(CvXMLLoadUtility* pXML)
@@ -9793,6 +9808,10 @@ bool CvYieldInfo::read(CvXMLLoadUtility* pXML)
 	{
 		return false;
 	}
+	// make the yield aware of it's own YieldType
+	static int YieldType = 0;
+	this->m_YieldType = (YieldTypes)YieldType++;
+
 	pXML->GetChildXmlValByName(&m_iBuyPriceLow, "iBuyPriceLow");
 	pXML->GetChildXmlValByName(&m_iBuyPriceHigh, "iBuyPriceHigh");
 	pXML->GetChildXmlValByName(&m_iSellPriceDifference, "iSellPriceDifference");
@@ -9826,7 +9845,7 @@ bool CvYieldInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bIsArmor, "bIsArmor");
 	pXML->GetChildXmlValByName(&m_bIsMilitary, "bIsMilitary");
 	pXML->GetChildXmlValByName(&m_bIsNativeTrade, "bIsNativeTrade");
-	pXML->GetChildXmlValByName(&m_bIsMustBeDiscovered, "bIsMustBeDiscovered");
+	//pXML->GetChildXmlValByName(&m_bIsMustBeDiscovered, "bIsMustBeDiscovered");
 	pXML->SetVariableListTagPair(&m_aiTradeScreenPrice, "TradeScreenTypes", NUM_TRADE_SCREEN_TYPES, 0);
 	///Tke
 	pXML->GetChildXmlValByName(m_szIcon, "Icon");

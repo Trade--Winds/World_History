@@ -2579,12 +2579,16 @@ public:
 	DllExport bool isMilitary() const;
 	DllExport bool isNativeTrade() const;
 	DllExport int getTradeScreenPrice(int i) const;
+
+	void setMustBeDiscovered(); // discoverable yield detection - Nightinggale
 	///Tke
 
 
 	DllExport bool read(CvXMLLoadUtility* pXML);
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 protected:
+	YieldTypes m_YieldType;
+
 	int m_iChar;
 	CvString m_szIcon;
 	CvString m_szHightlightIcon;

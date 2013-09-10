@@ -983,6 +983,14 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 		GC.getDefinesVarSystem()->SetValue(szType, i);
 	}
 
+	// discoverable yield detection - start - Nightinggale
+	// compile output cache for CvYieldInfo::isMustBeDiscovered()
+	for (int i = 0; i < NUM_YIELD_TYPES; i++)
+	{
+		GC.getYieldInfo((YieldTypes)i).setMustBeDiscovered();
+	}
+	// discoverable yield detection - end - Nightinggale
+
 	UpdateProgressCB("GlobalOther");
 
 	DestroyFXml();
