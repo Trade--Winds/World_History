@@ -9614,7 +9614,7 @@ m_iTextureIndex(-1),
 m_iWaterTextureIndex(-1),
 m_iPowerValue(0),
 m_iAssetValue(0),
-m_bCargo(false),
+//m_bCargo(false),
 ///TKs Med
 m_bIsMilitary(false),
 m_bIsNativeTrade(false),
@@ -9754,7 +9754,8 @@ int CvYieldInfo::getAssetValue() const
 }
 bool CvYieldInfo::isCargo() const
 {
-	return m_bCargo;
+	//return m_bCargo;
+	return !YieldGroup_Virtual(this->m_YieldType);
 }
 ///TKs Med
 int CvYieldInfo::getLatitudeModifiers() const
@@ -9838,7 +9839,7 @@ bool CvYieldInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iWaterTextureIndex, "iWaterTextureIndex");
 	pXML->GetChildXmlValByName(&m_iPowerValue, "iPower");
 	pXML->GetChildXmlValByName(&m_iAssetValue, "iAsset");
-	pXML->GetChildXmlValByName(&m_bCargo, "bCargo");
+	//pXML->GetChildXmlValByName(&m_bCargo, "bCargo");
 	///TKs Med
 	pXML->GetChildXmlValByName(&m_iLatitudeModifiers, "iLatitudeModifiers");
 	pXML->GetChildXmlValByName(&m_iLatitude, "iLatitude");

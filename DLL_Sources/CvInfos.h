@@ -2616,7 +2616,7 @@ protected:
 	int m_iPowerValue;
 	int m_iAssetValue;
 
-	bool m_bCargo;
+	//bool m_bCargo;
 	///Tks Med
 	bool m_bIsMustBeDiscovered;
 	bool m_bIsMilitary;
