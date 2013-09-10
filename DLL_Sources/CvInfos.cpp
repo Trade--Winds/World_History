@@ -9619,7 +9619,7 @@ m_bCargo(false),
 m_bIsMilitary(false),
 m_bIsNativeTrade(false),
 m_bIsMustBeDiscovered(false),
-m_bIsArmor(false),
+//m_bIsArmor(false),
 m_iLatitude(0),
 m_iLatitudeModifiers(0),
 m_aiTradeScreenPrice(NULL)
@@ -9769,7 +9769,8 @@ int CvYieldInfo::getLatitude() const
 
 bool CvYieldInfo::isArmor() const
 {
-	return m_bIsArmor;
+	//return m_bIsArmor;
+	return YieldGroup_Armor(this->m_YieldType);
 }
 bool CvYieldInfo::isMustBeDiscovered() const
 {
@@ -9842,7 +9843,7 @@ bool CvYieldInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iLatitudeModifiers, "iLatitudeModifiers");
 	pXML->GetChildXmlValByName(&m_iLatitude, "iLatitude");
 
-	pXML->GetChildXmlValByName(&m_bIsArmor, "bIsArmor");
+	//pXML->GetChildXmlValByName(&m_bIsArmor, "bIsArmor");
 	pXML->GetChildXmlValByName(&m_bIsMilitary, "bIsMilitary");
 	pXML->GetChildXmlValByName(&m_bIsNativeTrade, "bIsNativeTrade");
 	//pXML->GetChildXmlValByName(&m_bIsMustBeDiscovered, "bIsMustBeDiscovered");

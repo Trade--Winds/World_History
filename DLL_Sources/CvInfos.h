@@ -2621,7 +2621,7 @@ protected:
 	bool m_bIsMustBeDiscovered;
 	bool m_bIsMilitary;
 	bool m_bIsNativeTrade;
-	bool m_bIsArmor;
+	//bool m_bIsArmor;
 	int m_iLatitude;
 	int m_iLatitudeModifiers;
 	int* m_aiTradeScreenPrice;
