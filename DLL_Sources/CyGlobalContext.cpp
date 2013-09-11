@@ -466,3 +466,23 @@ CvTurnTimerInfo* CyGlobalContext::getTurnTimerInfo(int i) const
 {
 	return &(GC.getTurnTimerInfo((TurnTimerTypes) i));
 }
+
+// python MOD selection - start - Nightinggale
+bool CyGlobalContext::isMedievalConquest() const
+{
+#ifdef MEDIEVAL_TECH
+	return true;
+#else
+	return false;
+#endif
+}
+
+bool CyGlobalContext::isColonization2071() const
+{
+#ifdef COLONIZATION_2071
+	return true;
+#else
+	return false;
+#endif
+}
+// python MOD selection - end - Nightinggale
