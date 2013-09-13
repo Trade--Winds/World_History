@@ -195,6 +195,7 @@
   <ElementType name="iIncreasesCityPopulation" content="textOnly" dt:type="int"/>
   <ElementType name="iRazedCityGoldIncrease" content="textOnly" dt:type="int"/>
   <ElementType name="iTrainingTimeMod" content="textOnly" dt:type="int"/>
+  <ElementType name="iTeachLevel" content="textOnly" dt:type="int"/>
   <ElementType name="iDetectsMarauders" content="textOnly" dt:type="int"/>
 	<ElementType name="HotKey" content="textOnly"/>
 	<ElementType name="bAltDown" content="textOnly" dt:type="boolean"/>
@@ -278,6 +279,7 @@
     <element type="iIncreasesCityPopulation" minOccurs="0"/>
     <element type="iRazedCityGoldIncrease" minOccurs="0"/>
     <element type="iTrainingTimeMod" minOccurs="0"/>
+	<element type="iTeachLevel" minOccurs="0"/>
     <element type="iDetectsMarauders" minOccurs="0"/>
     <element type="MaxYieldModifiers" minOccurs="0"/>
     <element type="ImmigrationUnits" minOccurs="0"/>

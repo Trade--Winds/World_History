@@ -1646,6 +1646,12 @@ protected:
 	int m_cache_WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT;
 	// cache XML - end - Nightinggale
 
+	// EDU remake - start - Nightinggale
+public:
+	float getEducationCost(int iTeachLevel) const;
+protected:
+	float m_aiEducationCost[NUM_TEACH_LEVELS];
+	// EDU remake - start - Nightinggale
 	
 	// DLL interface
 	CvDLLUtilityIFaceBase* m_pDLL;
@@ -3595,4 +3601,12 @@ inline int CvGlobals::getCache_WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT() const
 }
 // cache XML - end - Nightinggale
 
+
+// EDU remake - start - Nightinggale
+inline float CvGlobals::getEducationCost(int iTeachLevel) const
+{
+	FAssert(iTeachLevel > 0 && iTeachLevel <= NUM_TEACH_LEVELS);
+	return m_aiEducationCost[iTeachLevel - 1];
+}
+// EDU remake - start - Nightinggale
 #endif

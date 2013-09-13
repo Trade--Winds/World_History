@@ -970,7 +970,22 @@ protected:
 	CvString m_szArtDefineButton;
 	std::vector<CvUnitMeshGroups> m_aProfessionGroups;
 	std::vector<int> m_aiSeeInvisibleTypes;
+
+	// EDU remake - start - Nightinggale
+public:
+	int getTeachLevel() const;
+	int getTeachLevelPython() const;
+protected:
+	int m_iTeachLevel;
+	// EDU remake - end - Nightinggale
 };
+
+// EDU remake - start - Nightinggale
+inline int CvUnitInfo::getTeachLevel() const
+{
+	return m_iTeachLevel;
+}
+// EDU remake - start - Nightinggale
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -1499,7 +1514,21 @@ protected:
 	int* m_aiPrereqNumOfBuildingClass;
 	int* m_aiYieldCost;
 	bool* m_abBuildingClassNeededInCity;
+	// EDU remake - start - Nightinggale
+public:
+	int getTeachLevel() const;
+	int getTeachLevelPython() const;
+protected:
+	int m_iTeachLevel;
+	// EDU remake - end - Nightinggale
 };
+
+// EDU remake - start - Nightinggale
+inline int CvBuildingInfo::getTeachLevel() const
+{
+	return m_iTeachLevel;
+}
+// EDU remake - start - Nightinggale
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //

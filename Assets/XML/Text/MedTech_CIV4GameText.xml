@@ -553,4 +553,38 @@
 			<Plural>0:1</Plural>
 		</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SCHOOL_BUILDING_NEEDED</Tag>
+		<English>[ICON_BULLET]Can be trained in [COLOR_BUILDING_TEXT][LINK=literal]%s1_building[\LINK][COLOR_REVERT]</English>
+		<French>[ICON_BULLET]Can be trained in [COLOR_BUILDING_TEXT][LINK=literal]%s1_building[\LINK][COLOR_REVERT]</French>
+		<German>[ICON_BULLET]Ausbildung m&#246;glich in [COLOR_BUILDING_TEXT][LINK=literal]%s1_building[\LINK][COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET]Can be trained in [COLOR_BUILDING_TEXT][LINK=literal]%s1_building[\LINK][COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET]Can be trained in [COLOR_BUILDING_TEXT][LINK=literal]%s1_building[\LINK][COLOR_REVERT]</Spanish>
+	</TEXT>
+	<!-- Pedia - Unit source - Start Nightinggale -->
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MIGRATES</Tag>
+		<English>[ICON_BULLET]Migrates from Europe</English>
+		<French>[ICON_BULLET]Migrates from Europe</French>
+		<German>[ICON_BULLET]Migriert aus Europa</German>
+		<Italian>[ICON_BULLET]Migrates from Europe</Italian>
+		<Spanish>[ICON_BULLET]Migrates from Europe</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BUYABLE_IN_EUROPE</Tag>
+		<English>[ICON_BULLET]Buyable in Europe</English>
+		<French>[ICON_BULLET]Buyable in Europe</French>
+		<German>[ICON_BULLET]Kaufbar in Europa</German>
+		<Italian>[ICON_BULLET]Buyable in Europe</Italian>
+		<Spanish>[ICON_BULLET]Buyable in Europe</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_TAUGHT_BY_NATIVES</Tag>
+		<English>[ICON_BULLET]Trained by Natives</English>
+		<French>[ICON_BULLET]Trained by Natives</French>
+		<German>[ICON_BULLET]Ausbildbar durch Ureinwohner</German>
+		<Italian>[ICON_BULLET]Trained by Natives</Italian>
+		<Spanish>[ICON_BULLET]Trained by Natives</Spanish>
+	</TEXT>
+	<!-- Pedia - Unit source - End Nightinggale -->
 </Civ4GameText>

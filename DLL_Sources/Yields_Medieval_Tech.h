@@ -129,6 +129,12 @@ static inline bool YieldGroup_Luxury_Food(YieldTypes eYield)
 	return eYield == YIELD_GRAIN;
 }
 
+// MOD specific global defines
+
+// number of education levels
+// vanilla has 3 (schoolhouse, college, university)
+#define NUM_TEACH_LEVELS 3
+
 #endif // MEDIEVAL_TECH
 
 #endif	// YIELDS_MEDIEVAL_TECH_H

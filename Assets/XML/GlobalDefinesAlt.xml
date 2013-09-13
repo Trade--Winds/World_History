@@ -707,4 +707,24 @@
     <DefineName>CONTACT_YIELD_GIFT_ENCOMEIDA_TIMER</DefineName>
     <iDefineIntVal>10</iDefineIntVal>
   </Define>
+  <Define>
+	<DefineName>EDUCATION_THRESHOLD_INCREASE</DefineName>
+	<iDefineIntVal>0</iDefineIntVal>
+  </Define>
+  <Define>
+	<DefineName>EDUCATION_THRESHOLD</DefineName>
+	<iDefineIntVal>60</iDefineIntVal>
+  </Define>
+  <Define>
+    <DefineName>EDUCATION_COST_LEVEL_1</DefineName>
+    <fDefineFloatVal>0</fDefineFloatVal>
+  </Define>
+  <Define>
+    <DefineName>EDUCATION_COST_LEVEL_2</DefineName>
+    <fDefineFloatVal>0.3</fDefineFloatVal>
+  </Define>
+  <Define>
+    <DefineName>EDUCATION_COST_LEVEL_3</DefineName>
+    <fDefineFloatVal>0.9</fDefineFloatVal>
+  </Define>
 </Civ4Defines>

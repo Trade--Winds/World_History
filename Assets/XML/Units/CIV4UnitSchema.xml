@@ -108,6 +108,7 @@
 	<ElementType name="iNativeLearnTime" content="textOnly" dt:type="int"/>
 	<ElementType name="iStudentWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iTeacherWeight" content="textOnly" dt:type="int"/>
+	<ElementType name="iTeachLevel" content="textOnly" dt:type="int"/>
 	<!-- JAnimals Mod Start -->
 	<ElementType name="iAnimalPatrolWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iAnimalAttackWeight" content="textOnly" dt:type="int"/>
@@ -537,6 +538,7 @@
 		<element type="iNativeLearnTime"/>
 		<element type="iStudentWeight"/>
 		<element type="iTeacherWeight"/>
+		<element type="iTeachLevel" minOccurs="0"/>
 		<!-- JAnimals Mod Start -->
 		<element type="iAnimalPatrolWeight" minOccurs="0"/>
 		<element type="iAnimalAttackWeight" minOccurs="0"/>

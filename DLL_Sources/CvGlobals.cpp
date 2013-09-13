@@ -3907,6 +3907,11 @@ void CvGlobals::setXMLCache()
 	m_cache_WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT");
 	m_cache_WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT");
 
-	// TODO set content of CvYieldInfo::isMustBeDiscovered() based on civics rather than XML yield info
+	// EDU remake - start - Nightinggale
+	for (int i = 0; i < NUM_TEACH_LEVELS; i++)
+	{
+		this->m_aiEducationCost[i] = getDefineFLOAT(CvString::format("EDUCATION_COST_LEVEL_%d", i+1).c_str());
+	}
+	// EDU remake - start - Nightinggale
 }
 // cache XML - end - Nightinggale

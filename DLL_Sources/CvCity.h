@@ -745,7 +745,14 @@ protected:
 	// cache getMaxYieldCapacity - end - Nightinggale
 public:
 	void UpdateBuildingAffectedCache();
-	// building affected cache - end - Nightinggale 
+	// building affected cache - end - Nightinggale
+
+	// EDU remake - start - Nightinggale
+public:
+	int getTeachLevel() const;
+protected:
+	int m_iTeachLevel;
+	// EDU remake - end - Nightinggale
 };
 
 // cache getMaxYieldCapacity - start - Nightinggale
@@ -756,5 +763,12 @@ inline int CvCity::getMaxYieldCapacity(YieldTypes eYield) const
 	return m_cache_MaxYieldCapacity[eYield == NO_YIELD ? NUM_YIELD_TYPES : eYield];
 };
 // cache getMaxYieldCapacity - end - Nightinggale 
+
+// EDU remake - start - Nightinggale
+inline int CvCity::getTeachLevel() const
+{
+	return m_iTeachLevel;
+}
+// EDU remake - start - Nightinggale
 
 #endif

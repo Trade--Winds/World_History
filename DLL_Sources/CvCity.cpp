@@ -7867,6 +7867,29 @@ void CvCity::doPlotCulture(bool bUpdate, PlayerTypes ePlayer, int iCultureRate)
 ///TKe
 void CvCity::doSpecialists()
 {
+	// EDU remake - start - Nightinggale
+	int iTeachLevel = this->getTeachLevel();
+	if (iTeachLevel > 0)
+	{
+		for (uint i = 0; i < m_aPopulationUnits.size(); ++i)
+		{
+			UnitTypes eUnit =  m_aPopulationUnits[i]->getUnitType();
+
+			CvUnitInfo &kUnit = GC.getUnitInfo(eUnit);
+			///TKs Invention Core Mod v 1.0
+			if (kUnit.getNumUnitNames() > 0)
+			{
+			    continue;
+			}
+			///TKe
+			if (kUnit.getTeachLevel() <= iTeachLevel)
+			{
+				m_aiSpecialistWeights[eUnit] = 1;
+			}
+		}
+	}
+	// EDU remake - end - Nightinggale
+#if 0
 	std::set<UnitTypes> setExisting;
 	if (calculateNetYield(YIELD_EDUCATION) > 0)
 	{
@@ -7886,6 +7909,7 @@ void CvCity::doSpecialists()
 			}
 		}
 	}
+#endif
 }
 
 
@@ -10455,7 +10479,8 @@ int CvCity::getSpecialistTuition(UnitTypes eUnit) const
 	{
 		return -1;
 	}
-
+// EDU remake - start - Nightinggale
+#if 0
 	int* pMaxElement = std::max_element(m_aiSpecialistWeights, m_aiSpecialistWeights + GC.getNumUnitInfos());
 	int iBestWeight = *pMaxElement;
 	if (iBestWeight <= 0)
@@ -10477,6 +10502,34 @@ int CvCity::getSpecialistTuition(UnitTypes eUnit) const
 	iPrice /= iBestWeight;
 
 	return iPrice;
+#endif
+	int iUnitTeachLevel = GC.getUnitInfo(eUnit).getTeachLevel();
+
+	FAssert(iUnitTeachLevel > 0);
+
+	if (iUnitTeachLevel < 1 || iUnitTeachLevel > NUM_TEACH_LEVELS || iUnitTeachLevel > this->getTeachLevel())
+	{
+		return -1;
+	}
+
+	// the rest of the function is a lightly modified version of the RaR function of the same name
+	double fPrice = double(GC.getCache_EDUCATION_BASE_TUITION());
+	double fMulti = GC.getEducationCost(iUnitTeachLevel);
+
+	// Ausbildungskosten mit Ausbildungsstufen-Multiplikator anpassen
+	fPrice *= fMulti;
+
+	if (fPrice > 0.0)
+	{
+		// Ausbildungskosten an Geschwindigkeit anpassen
+		fPrice *= float(GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent());
+		fPrice /= 100;
+
+		// durch 10 Teilbar machen und korrekt runden
+		return int((fPrice / 10) + 0.5) * 10;
+	}
+	return 0;
+// EDU remake - end - Nightinggale
 }
 
 bool CvCity::isExport(YieldTypes eYield) const
@@ -11460,5 +11513,27 @@ void CvCity::UpdateBuildingAffectedCache()
 	}
 	m_cache_MaxYieldCapacity[NUM_YIELD_TYPES] = getMaxYieldCapacityUncached(NO_YIELD);
 	// cache getMaxYieldCapacity - end - Nightinggale
+
+	// EDU remake - start - Nightinggale
+	// copy of CvCity::NBMOD_SetCityTeachLevelCache from RaR, complete with German comments
+	{
+		int iMaxTeachLevel = 0;
+
+		// alle möglichen Gebäude durchgehen
+		for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+		{
+			// abfragen ob dieses gebäude in der Stadt vorkommt
+			if (isHasBuilding((BuildingTypes)iI))
+			{
+				if (GC.getBuildingInfo((BuildingTypes)iI).getTeachLevel() > iMaxTeachLevel)
+				{
+					iMaxTeachLevel = GC.getBuildingInfo((BuildingTypes)iI).getTeachLevel();
+				}
+			}
+		}
+		this->m_iTeachLevel = iMaxTeachLevel;
+	}
+	// EDU remake - end - Nightinggale
 }
 // building affected cache - end - Nightinggale
+

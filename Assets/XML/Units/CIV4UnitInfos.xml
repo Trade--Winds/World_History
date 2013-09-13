@@ -6,8 +6,11 @@
 <!-- Unit Infos -->
 <Civ4UnitInfos xmlns="x-schema:CIV4UnitSchema.xml">
   <!--Caste System: 0 = Normal; 1 = NoBuilingsWorked; 2 = NoneMilitary; 3 = Squire; 4 = Craftsman/Nobleman; 5 = AI Units Only; 6 = no learn natives;-->
+
   <!--Caste System: 7 = Escort(Leader)-->
+
   <!--Caste System: 0 = Normal; 1 = NoBuilingsWorked; 2 = NoneMilitary; 3 = Squire; 4 = Craftsman/Nobleman; 5 = AI Units Only; 6 = no learn natives; 7 = None Animal Barbarian-->
+
 	<UnitInfos>
     <UnitInfo>
       <Type>UNIT_COLONIST</Type>
@@ -133,6 +136,7 @@
       <iNativeLearnTime>3</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -478,6 +482,7 @@
       <iNativeLearnTime>3</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -886,6 +891,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>500</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -1300,6 +1306,7 @@
       <iNativeLearnTime>2</iNativeLearnTime>
       <iStudentWeight>300</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -1704,6 +1711,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>100</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -2137,6 +2145,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>100</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -2480,6 +2489,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>3</iTeacherWeight>
+      <iTeachLevel>1</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -2834,6 +2844,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>3</iTeacherWeight>
+      <iTeachLevel>1</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -3172,6 +3183,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>3</iTeacherWeight>
+      <iTeachLevel>1</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -3514,6 +3526,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>3</iTeacherWeight>
+      <iTeachLevel>1</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -3856,6 +3869,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>3</iTeacherWeight>
+      <iTeachLevel>1</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -4203,6 +4217,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>3</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -4550,6 +4565,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>3</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -4903,6 +4919,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>3</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -5285,6 +5302,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>3</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -5645,6 +5663,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>3</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -6005,6 +6024,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>3</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -6354,6 +6374,7 @@
       <iNativeLearnTime>4</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -6725,6 +6746,7 @@
       <iNativeLearnTime>3</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -7067,6 +7089,7 @@
       <iNativeLearnTime>3</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -7412,6 +7435,7 @@
       <iNativeLearnTime>3</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -7769,6 +7793,7 @@
       <iNativeLearnTime>3</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -8129,6 +8154,7 @@
       <iNativeLearnTime>3</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>3</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -8477,6 +8503,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>3</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -8825,6 +8852,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -9181,6 +9209,7 @@
       <iNativeLearnTime>3</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -9511,6 +9540,7 @@
       <iNativeLearnTime>3</iNativeLearnTime>
       <iStudentWeight>1000</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -9857,6 +9887,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>4</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -10203,6 +10234,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>4</iTeacherWeight>
+      <iTeachLevel>1</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -10547,6 +10579,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>4</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -10893,6 +10926,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>4</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -11242,6 +11276,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>4</iTeacherWeight>
+      <iTeachLevel>1</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -11587,6 +11622,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>4</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -11927,6 +11963,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>4</iTeacherWeight>
+      <iTeachLevel>1</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -12267,6 +12304,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>4</iTeacherWeight>
+      <iTeachLevel>1</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -12611,6 +12649,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>4</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -12950,6 +12989,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>4</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -13304,6 +13344,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>4</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -13649,6 +13690,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -13997,6 +14039,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -14360,6 +14403,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>3</iTeacherWeight>
+			<iTeachLevel>2</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -14723,6 +14767,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>2</iTeacherWeight>
+			<iTeachLevel>2</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -15087,6 +15132,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -15433,6 +15479,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>3</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -15776,6 +15823,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>3</iTeacherWeight>
+			<iTeachLevel>2</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -16124,6 +16172,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>3</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -16470,6 +16519,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>3</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -16815,6 +16865,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>2</iTeacherWeight>
+			<iTeachLevel>2</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -17163,6 +17214,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -17510,6 +17562,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>2</iTeacherWeight>
+      <iTeachLevel>2</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -17857,6 +17910,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>3</iTeacherWeight>
+			<iTeachLevel>1</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -18176,6 +18230,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -18371,6 +18426,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -18567,6 +18623,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -18788,6 +18845,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>2</iTeacherWeight>
+			<iTeachLevel>3</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -19108,6 +19166,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -19237,6 +19296,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -19364,6 +19424,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -19522,6 +19583,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -19714,6 +19776,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -19848,6 +19911,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -19989,6 +20053,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -20126,6 +20191,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -20264,6 +20330,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -20400,6 +20467,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -20540,6 +20608,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -20681,6 +20750,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -20806,6 +20876,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -20935,6 +21006,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -21059,6 +21131,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -21183,6 +21256,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -21303,6 +21377,7 @@
       <iNativeLearnTime>0</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -21431,6 +21506,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -21565,6 +21641,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -21728,6 +21805,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -21854,6 +21932,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -21999,6 +22078,7 @@
 			<iNativeLearnTime>-1</iNativeLearnTime>
 			<iStudentWeight>0</iStudentWeight>
 			<iTeacherWeight>0</iTeacherWeight>
+			<iTeachLevel>0</iTeachLevel>
 			<ProfessionMeshGroups>
 				<UnitMeshGroups>
 					<ProfessionType>NONE</ProfessionType>
@@ -22143,6 +22223,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -22336,6 +22417,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>100</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -22685,6 +22767,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>50</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -22832,6 +22915,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -22965,6 +23049,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -23098,6 +23183,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -23221,6 +23307,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>0</iAnimalPatrolWeight>
       <iAnimalAttackWeight>0</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -23345,6 +23432,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -23469,6 +23557,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -23600,6 +23689,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -23732,6 +23822,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -23856,6 +23947,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -23979,6 +24071,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -24120,6 +24213,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>50</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -24261,6 +24355,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>0</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -24398,6 +24493,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -24521,6 +24617,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <iAnimalPatrolWeight>10000</iAnimalPatrolWeight>
       <iAnimalAttackWeight>100</iAnimalAttackWeight>
       <ProfessionMeshGroups>
@@ -24645,6 +24742,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>3</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -24774,6 +24872,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -24892,6 +24991,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -25010,6 +25110,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -25128,6 +25229,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -25246,6 +25348,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -25364,6 +25467,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -25482,6 +25586,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -25600,6 +25705,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -25718,6 +25824,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -25836,6 +25943,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -25954,6 +26062,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -26072,6 +26181,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -26190,6 +26300,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -26308,6 +26419,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -26426,6 +26538,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -26544,6 +26657,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -26662,6 +26776,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -26780,6 +26895,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -26898,6 +27014,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -27016,6 +27133,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -27134,6 +27252,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -27252,6 +27371,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -27370,6 +27490,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -27488,6 +27609,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -27606,6 +27728,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -27724,6 +27847,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -27842,6 +27966,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -27960,6 +28085,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>
@@ -28078,6 +28204,7 @@
       <iNativeLearnTime>-1</iNativeLearnTime>
       <iStudentWeight>0</iStudentWeight>
       <iTeacherWeight>0</iTeacherWeight>
+      <iTeachLevel>0</iTeachLevel>
       <ProfessionMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>NONE</ProfessionType>

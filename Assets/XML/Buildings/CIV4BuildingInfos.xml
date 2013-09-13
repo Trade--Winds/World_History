@@ -6803,6 +6803,7 @@
 			<DomainProductionModifiers/>
 			<PrereqBuildingClasses/>
 			<BuildingClassNeededs/>
+			<iTeachLevel>1</iTeachLevel>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
 			<bShiftDown>0</bShiftDown>
@@ -6880,6 +6881,7 @@
 					<bNeededInCity>1</bNeededInCity>
 				</BuildingClassNeeded>
 			</BuildingClassNeededs>
+			<iTeachLevel>2</iTeachLevel>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
 			<bShiftDown>0</bShiftDown>
@@ -6970,6 +6972,7 @@
 					<bNeededInCity>1</bNeededInCity>
 				</BuildingClassNeeded>
 			</BuildingClassNeededs>
+			<iTeachLevel>3</iTeachLevel>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
 			<bShiftDown>0</bShiftDown>
