@@ -2090,24 +2090,14 @@ bool CvDLLButtonPopup::launchEducationPopup(CvPopup* pPopup, CvPopupInfo &info)
 	UnitTypes eLastUnit = NO_UNIT;
 	for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
 	{
-
+		UnitTypes eUnit = (UnitTypes)iI;
 		CvUnitInfo& kUnit = GC.getUnitInfo((UnitTypes) iI);
+
 		///TK Update 1.1
-        int eUnitClass = kUnit.getUnitClassType();
-        for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-        {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
-            {
-                CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-                if (kCivicInfo.getAllowsUnitClasses(eUnitClass) > 0)
-                {
-                    if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getIdeasResearched((CivicTypes) iCivic) <= 0)
-                    {
-                        continue;
-                    }
-                }
-            }
-        }
+		if (!kPlayer.canUseUnit(eUnit))
+		{
+			continue;
+		}
         //TK end Update
 		int iPrice = pCity->getSpecialistTuition((UnitTypes) iI);
 		if (iPrice >= 0 && iPrice <= kPlayer.getGold())

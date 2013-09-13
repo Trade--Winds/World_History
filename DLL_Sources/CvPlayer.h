@@ -941,11 +941,13 @@ protected:
 // invention effect cache - start - Nightinggale
 public:
 	bool canUseYield(YieldTypes eYield) const;
+	bool canUseUnit(UnitTypes eUnit) const;
 	bool canUseBonus(BonusTypes eBonus) const;
 	int getCityPlotFoodBonus() const;
 
 protected:
 	YieldArray<bool> m_abBannedYields;
+	UnitArray<bool> m_abBannedUnits;
 	BonusArray<bool> m_abBannedBonus;
 	int m_iCityPlotFoodBonus;
 
@@ -988,6 +990,12 @@ inline bool CvPlayer::canUseYield(YieldTypes eYield) const
 {
 	FAssert(eYield < NUM_YIELD_TYPES);
 	return eYield >= 0 ? !this->m_abBannedYields.get(eYield) : false;
+}
+
+inline bool CvPlayer::canUseUnit(UnitTypes eUnit) const
+{
+	FAssert(eUnit < GC.getNumUnitInfos());
+	return eUnit >= 0 ? !this->m_abBannedUnits.get(eUnit) : false;
 }
 
 inline bool CvPlayer::canUseBonus(BonusTypes eBonus) const

@@ -5042,6 +5042,12 @@ bool CvUnit::canLearn() const
 		return false;
 	}
 	///TKs Invention Core Mod v 1.0
+	CvPlayerAI& kPlayer = GET_PLAYER(getOwner());
+	if (!kPlayer.canUseUnit((UnitTypes)GC.getCivilizationInfo(kPlayer.getCivilizationType()).getCivilizationUnits(eUnitType)))
+	{
+		return false;
+	}
+#if 0
     for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
     {
 
@@ -5055,6 +5061,7 @@ bool CvUnit::canLearn() const
         }
 
     }
+#endif
     ///TKe
 	if (isCargo() && !canUnload())
 	{

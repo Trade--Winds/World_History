@@ -388,6 +388,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 
 	// just-in-time array constructor might run before XML is read.
 	// init here to ensure length is set correctly.
+	m_abBannedUnits.init();
 	m_abBannedBonus.init();
 
 	m_iStartingX = INVALID_PLOT_COORD;
@@ -5022,6 +5023,11 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 	///TKs Invention Core Mod v 1.0
 	if (!isNative() && !isEurope())
 	{
+		if (!this->canUseUnit(eUnit))
+		{
+			return false;
+		}
+#if 0
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
             if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
@@ -5043,6 +5049,7 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
                 }
             }
         }
+#endif
 	}
 	///TKe
 
@@ -14762,6 +14769,11 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
 
 		if (iTradeRoutePrice == -1)
 		{
+			if (!this->canUseUnit(eUnit))
+			{
+				return -1;
+			}
+#if 0
 			UnitClassTypes eUnitClass;
 			eUnitClass = ((UnitClassTypes)kUnit.getUnitClassType());
 			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
@@ -14785,6 +14797,7 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
 					}
 				}
 			}
+#endif
 		}
 
 		if ((kUnit.getDomainType() == DOMAIN_SEA || kUnit.isMechUnit()) && kUnit.getEuropeCost() > 0 && iTradeRoutePrice == -1)
@@ -16219,6 +16232,8 @@ UnitTypes CvPlayer::pickBestImmigrant()
 	{
 		UnitTypes eUnit = (UnitTypes) GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(iUnitClass);
 		///Inventor ///TKs Invention Core Mod v 1.0
+		bool bAllowed = this->canUseUnit(eUnit);
+#if 0
 		bool bAllowed = true;
 		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 		{
@@ -16242,6 +16257,7 @@ UnitTypes CvPlayer::pickBestImmigrant()
 				}
 			}
 		}
+#endif
         ///Tks Med
 		if (eUnit != NO_UNIT && GC.getUnitInfo(eUnit).getPrereqBuilding() != NO_BUILDINGCLASS)
 		{
@@ -19040,6 +19056,35 @@ void CvPlayer::updateInventionEffectCache()
 		this->m_abBannedBonus.set(iCurrent <= 0, eBonus);
 	}
 	this->m_abBannedBonus.hasContent(); // release memory if possible
+
+	// cache allowed units
+	for (int iUnit = 0; iUnit < GC.getNumUnitInfos(); iUnit++)
+	{
+		int iCurrent = 0;
+		int iMax = 0;
+
+		CvUnitInfo& kUnit = GC.getUnitInfo((UnitTypes) iUnit);
+        int eUnitClass = kUnit.getUnitClassType();
+        for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+        {
+			CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes)iCivic);
+			int iCivicWeight = kCivicInfo.getAllowsUnitClasses(eUnitClass);
+			if (iCivicWeight > 0)
+			{
+				iMax += iCivicWeight;
+			}
+			if (iCivicWeight != 0 && getIdeasResearched((CivicTypes) iCivic) > 0)
+			{
+				iCurrent += iCivicWeight;
+			}
+        }
+		if (iMax == 0)
+		{
+			iCurrent++;
+		}
+		this->m_abBannedUnits.set(iCurrent <= 0, iUnit);
+	}
+	this->m_abBannedUnits.hasContent(); // release memory if possible
 
 	// city plot food bonus
 	this->m_iCityPlotFoodBonus = 0;
