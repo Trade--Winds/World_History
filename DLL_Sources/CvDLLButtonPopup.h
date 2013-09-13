@@ -82,7 +82,9 @@ private:
     ///Tks Return Home
 	bool launchReturnHome(CvPopup* pPopup, CvPopupInfo &info);
 	///TKe
-
+	// Teacher List - start - Nightinggale
+	bool launchTeacherListPopup(CvPopup* pPopup, CvPopupInfo &info);
+	// Teacher List - end - Nightinggale
 };
 
 #endif

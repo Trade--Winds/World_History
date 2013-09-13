@@ -479,6 +479,10 @@ void CvCity::uninit()
  	// transport feeder - start - Nightinggale
  	ma_tradeImportsMaintain.reset();
  	// transport feeder - end - Nightinggale
+	// Teacher List - start - Nightinggale
+	ma_OrderedStudents.reset();
+	ma_OrderedStudentsRepeat.reset();
+	// Teacher List - end - Nightinggale
 }
 
 // FUNCTION: reset()
@@ -1146,6 +1150,12 @@ void CvCity::doTask(TaskTypes eTask, int iData1, int iData2, bool bOption, bool 
 		doCheat(bAlt, bShift, bCtrl);
 		break;
 
+	// Teacher List - start - Nightinggale
+	case TASK_CHANGE_ORDERED_STUDENTS:
+		setOrderedStudents((UnitTypes)iData1, iData2, bOption, bAlt, bShift);
+		break;
+
+	// Teacher List - end - Nightinggale
 	default:
 		FAssertMsg(false, "eTask failed to match a valid option");
 		break;
@@ -8153,6 +8163,10 @@ enum
 	// transport feeder - start - Nightinggale
 	SAVE_BIT_IMPORT_FEEDER               = 1 << 4,
 	// transport feeder - end - Nightinggale
+	// Teacher List - start - Nightinggale
+	SAVE_BIT_ORDERED_STUDENTS            = 1 << 5,
+	SAVE_BIT_ORDERED_STUDENTS_REPEAT     = 1 << 6,
+	// Teacher List - end - Nightinggale
 };
 
 // Private Functions...
@@ -8343,6 +8357,11 @@ void CvCity::read(FDataStreamBase* pStream)
   	}
  	// traderoute just-in-time - end - Nightinggale
 
+	// Teacher List - start - Nightinggale
+	ma_OrderedStudents.read(      pStream, arrayBitmap & SAVE_BIT_ORDERED_STUDENTS);
+	ma_OrderedStudentsRepeat.read(pStream, arrayBitmap & SAVE_BIT_ORDERED_STUDENTS_REPEAT);
+	// Teacher List - end - Nightinggale
+
 	m_orderQueue.Read(pStream);
 
 	pStream->Read(&m_iPopulationRank);
@@ -8391,6 +8410,10 @@ void CvCity::write(FDataStreamBase* pStream)
 	// transport feeder - start - Nightinggale
 	arrayBitmap |= ma_tradeImportsMaintain.hasContent()       ? SAVE_BIT_IMPORT_FEEDER : 0;
 	// transport feeder - end - Nightinggale
+	// Teacher List - start - Nightinggale
+	arrayBitmap |= ma_OrderedStudents.hasContent()            ? SAVE_BIT_ORDERED_STUDENTS : 0;
+	arrayBitmap |= ma_OrderedStudentsRepeat.hasContent()      ? SAVE_BIT_ORDERED_STUDENTS_REPEAT : 0;
+	// Teacher List - end - Nightinggale
 	pStream->Write(arrayBitmap);
 	// just-in-time yield arrays - end - Nightinggale
 
@@ -8497,6 +8520,11 @@ void CvCity::write(FDataStreamBase* pStream)
 	// transport feeder - start - Nightinggale
 	ma_tradeImportsMaintain.write(pStream, arrayBitmap & SAVE_BIT_IMPORT_FEEDER);
 	// transport feeder - end - Nightinggale
+
+	// Teacher List - start - Nightinggale
+	ma_OrderedStudents.write(      pStream, arrayBitmap & SAVE_BIT_ORDERED_STUDENTS);
+	ma_OrderedStudentsRepeat.write(pStream, arrayBitmap & SAVE_BIT_ORDERED_STUDENTS_REPEAT);
+	// Teacher List - end - Nightinggale
 
 	m_orderQueue.Write(pStream);
 
@@ -10470,6 +10498,14 @@ bool CvCity::educateStudent(int iUnitId, UnitTypes eUnit)
 		gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_CULTUREEXPANDS", MESSAGE_TYPE_MINOR_EVENT, GC.getYieldInfo(YIELD_EDUCATION).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
 	}
 
+	// Teacher List - start - Nightinggale
+	int OrderedStudents = getOrderedStudents(eUnit);
+	if (OrderedStudents > 0)
+	{
+		setOrderedStudents(eUnit, OrderedStudents - 1, getOrderedStudentsRepeat(eUnit));
+	}
+	// Teacher List - end - Nightinggale
+
 	return true;
 }
 
@@ -11537,3 +11573,67 @@ void CvCity::UpdateBuildingAffectedCache()
 }
 // building affected cache - end - Nightinggale
 
+// Teacher List - start - Nightinggale
+void CvCity::setOrderedStudents(UnitTypes eUnit, int iCount, bool bRepeat, bool bUpdateRepeat, bool bClearAll)
+{
+	if (bClearAll)
+	{
+		ma_OrderedStudents.reset();
+		ma_OrderedStudentsRepeat.reset();
+	} else {
+		if (!(eUnit >= 0 && eUnit < GC.getNumUnitInfos() && iCount >= 0))
+		{
+			FAssert(eUnit >= 0);
+			FAssert(eUnit < GC.getNumUnitInfos());
+			FAssert(iCount < 0);
+			return;
+		}
+	
+		ma_OrderedStudents.set(iCount, eUnit);
+		ma_OrderedStudentsRepeat.set(bRepeat, eUnit);
+		if (bUpdateRepeat && iCount == 0)
+		{
+			checkOrderedStudentsForRepeats(eUnit);
+		}
+	}
+	if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
+	{
+		gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+	}
+}
+
+void CvCity::checkOrderedStudentsForRepeats(UnitTypes eUnit)
+{
+	FAssert(eUnit >= 0);
+	FAssert(eUnit < GC.getNumUnitInfos());
+
+	if (ma_OrderedStudentsRepeat.isAllocated() && ma_OrderedStudents.isEmpty(false))
+	{
+		for (int iUnit = 0; iUnit < ma_OrderedStudentsRepeat.length(); iUnit++)
+		{
+			if (ma_OrderedStudentsRepeat.get(iUnit))
+			{
+				ma_OrderedStudents.set(1, iUnit);
+			}
+		}
+		if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
+		{
+			gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+		}
+	}
+}
+
+int CvCity::getOrderedStudents(UnitTypes eUnit)
+{
+	FAssert(eUnit >= 0);
+	FAssert(eUnit < GC.getNumUnitInfos());
+	return ma_OrderedStudents.get(eUnit);
+}
+
+bool CvCity::getOrderedStudentsRepeat(UnitTypes eUnit)
+{
+	FAssert(eUnit >= 0);
+	FAssert(eUnit < GC.getNumUnitInfos());
+	return ma_OrderedStudentsRepeat.get(eUnit);
+}
+// Teacher List - end - Nightinggale

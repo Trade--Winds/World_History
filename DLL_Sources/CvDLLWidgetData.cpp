@@ -130,6 +130,11 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_YIELD_IMPORT_EXPORT:
 		parseImportExportHelp(widgetDataStruct, szBuffer);
 		break;
+	// Teacher List - start - Nightinggale
+	case WIDGET_TEACHER_LIST:
+		szBuffer.append(gDLL->getText("TXT_KEY_EDIT_TEACHER_LIST"));
+		break;
+	// Teacher List - end - Nightinggale
     ///TKs Invention Core Mod v 1.0
 	case WIDGET_INVENTORS_HOUSE:
 		parseInventorsHouseHelp(widgetDataStruct, szBuffer);
@@ -223,6 +228,12 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_HELP_SELECTED:
 		parseSelectedHelp(widgetDataStruct, szBuffer);
 		break;
+
+	// Teacher List - start - Nightinggale
+	case WIDGET_HELP_TEACHER_UNIT:
+		parseCityUnitHelp(widgetDataStruct, szBuffer);
+		break;
+	// Teacher List - end - Nightinggale
 
 	case WIDGET_PEDIA_JUMP_TO_UNIT:
 		parseUnitHelp(widgetDataStruct, szBuffer);
@@ -645,6 +656,11 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 	case WIDGET_GOTO_CITY:
 		doGoToCity(widgetDataStruct);
 		break;
+	// Teacher List - start - Nightinggale
+	case WIDGET_TEACHER_LIST:
+		doTeacherList(widgetDataStruct);
+		break;
+	// Teacher List - end - Nightinggale
 
 	}
 
@@ -3241,6 +3257,15 @@ void CvDLLWidgetData::parseCivicHelp(CvWidgetDataStruct &widgetDataStruct, CvWSt
 	//}
 }
 ///TKe
+
+// Teacher List - start - Nightinggale
+void CvDLLWidgetData::parseCityUnitHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	UnitTypes eUnit = (UnitTypes) widgetDataStruct.m_iData1;
+	GAMETEXT.setUnitHelp(szBuffer, eUnit, false, true);	
+}
+// Teacher List - end - Nightinggale
+
 void CvDLLWidgetData::parseCivilizationHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {
 	if (widgetDataStruct.m_iData2 != 0)
@@ -3879,6 +3904,18 @@ void CvDLLWidgetData::doYieldImportExport(const CvWidgetDataStruct& widgetDataSt
 		gDLL->getInterfaceIFace()->addPopup(pInfo, NO_PLAYER, true);
 	}
 }
+
+// Teacher List - start - Nightinggale
+void CvDLLWidgetData::doTeacherList(const CvWidgetDataStruct& widgetDataStruct)
+{
+	CvCity* pHeadSelectedCity = gDLL->getInterfaceIFace()->getHeadSelectedCity();
+	if (pHeadSelectedCity != NULL && pHeadSelectedCity->getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
+	{
+		CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_TEACHER_LIST, gDLL->getInterfaceIFace()->getHeadSelectedCity()->getID());
+		gDLL->getInterfaceIFace()->addPopup(pInfo, NO_PLAYER, true);
+	}
+}
+// Teacher List - end - Nightinggale
 
 void CvDLLWidgetData::doAssignTradeRoute(const CvWidgetDataStruct& widgetDataStruct)
 {

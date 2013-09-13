@@ -154,6 +154,11 @@ protected:
 	EmphasizeTypes getNextEmphasis(CvCity* pCity, YieldTypes eYield);
 	void doAssignCitizenToPlot(CvCity* pCity, int iPlotIndex, int iUnitId);
 
+	// Teacher List - start - Nightinggale
+	void parseCityUnitHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
+	void doTeacherList(const CvWidgetDataStruct& widgetDataStruct);
+	// Teacher List - end - Nightinggale
+
 	static CvDLLWidgetData* m_pInst;
 
 };

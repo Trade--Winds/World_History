@@ -587,4 +587,78 @@
 		<Spanish>[ICON_BULLET]Trained by Natives</Spanish>
 	</TEXT>
 	<!-- Pedia - Unit source - End Nightinggale -->
+	<TEXT>
+		<Tag>TXT_KEY_EDIT_TEACHER_LIST</Tag>
+		<English>Teacher List Popup Screen</English>
+		<French>Teacher List Popup Screen</French>
+		<German>Teacher List Popup Screen</German>
+		<Italian>Teacher List Popup Screen</Italian>
+		<Spanish>Teacher List Popup Screen</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EDIT_TEACHER_LIST_POPUP_TEXT</Tag>
+		<English>%s1_city can train the following units.
+Select how many units you want to be trained of each profession.</English>
+		<French>%s1_city can train the following units.
+Select how many units you want to be trained of each profession.</French>
+		<German>%s1_city can train the following units.
+Select how many units you want to be trained of each profession.</German>
+		<Italian>%s1_city can train the following units.
+Select how many units you want to be trained of each profession.</Italian>
+		<Spanish>%s1_city can train the following units.
+Select how many units you want to be trained of each profession.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EDIT_TEACHER_LIST_POPUP_NO_SCHOOL_TEXT</Tag>
+		<English>%s1_city has no proper education system.</English>
+		<French>%s1_city has no proper education system.</French>
+		<German>%s1_city has no proper education system.</German>
+		<Italian>%s1_city has no proper education system.</Italian>
+		<Spanish>%s1_city has no proper education system.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EDIT_TEACHER_LIST_POPUP_RESET_ALL_TEXT</Tag>
+		<English>Reset All</English>
+		<French>Reset All</French>
+		<German>Reset All</German>
+		<Italian>Reset All</Italian>
+		<Spanish>Reset All</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EDIT_TEACHER_LIST_POPUP_RESET_ALL_HELP</Tag>
+		<English>Clear all repeats and set all units to 0.</English>
+		<French>Clear all repeats and set all units to 0.</French>
+		<German>Clear all repeats and set all units to 0.</German>
+		<Italian>Clear all repeats and set all units to 0.</Italian>
+		<Spanish>Clear all repeats and set all units to 0.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EDIT_TEACHER_LIST_POPUP_REPEAT_TEXT</Tag>
+		<English>Repeat</English>
+		<French>Repeat</French>
+		<German>Repeat</German>
+		<Italian>Repeat</Italian>
+		<Spanish>Repeat</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EDIT_TEACHER_LIST_POPUP_REPEAT_HELP</Tag>
+		<English>Orders a new unit automatically whenever no unit is trained.
+Multiple repeating units is possible and an equal number will be trained of each.</English>
+		<French>Orders a new unit automatically whenever no unit is trained.
+Multiple repeating units is possible and an equal number will be trained of each.</French>
+		<German>Orders a new unit automatically whenever no unit is trained.
+Multiple repeating units is possible and an equal number will be trained of each.</German>
+		<Italian>Orders a new unit automatically whenever no unit is trained.
+Multiple repeating units is possible and an equal number will be trained of each.</Italian>
+		<Spanish>Orders a new unit automatically whenever no unit is trained.
+Multiple repeating units is possible and an equal number will be trained of each.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EDIT_TEACHER_LIST_NO_TEACHER</Tag>
+		<English>%s1_unit: no teacher</English>
+		<French>%s1_unit : no teacher</French>
+		<German>%s1_unit: no teacher</German>
+		<Italian>%s1_unit: no teacher</Italian>
+		<Spanish>%s1_unit: no teacher</Spanish>
+	</TEXT>
 </Civ4GameText>

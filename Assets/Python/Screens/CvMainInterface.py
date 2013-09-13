@@ -1798,6 +1798,9 @@ class CvMainInterface:
 		screen.hide("ExportTradeRouteText")
 		screen.hide("ImportButton")
 		screen.hide("ExportButton")
+		# teacher list - start - Nightinggale
+		screen.hide("TeacherListButton")
+		# teacher list - end - Nightinggale
 		screen.hide("ImportLabel")
 		screen.hide("ExportLabel")
 		screen.hide("CityBuildQueue")
@@ -1926,6 +1929,10 @@ class CvMainInterface:
 							szImportText += localText.getText("TXT_KEY_COLOR_REVERT", ())
 						# transport feeder - end - Nightinggale
 						screen.setTableText("ImportTradeRouteText", 0, iImportRow, szImportText, "", WidgetTypes.WIDGET_YIELD_IMPORT_EXPORT, true, -1, CvUtil.FONT_LEFT_JUSTIFY )
+
+				# teacher list - start - Nightinggale
+				screen.setImageButton("TeacherListButton", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TEACHER_LIST").getPath(), xResolution - (MAP_EDGE_MARGIN_WIDTH * 2) - 2 * CITY_MULTI_TAB_SIZE, CITY_TITLE_BAR_HEIGHT + CITY_VIEW_BOX_HEIGHT_AND_WIDTH - (MAP_EDGE_MARGIN_WIDTH * 2) + (STACK_BAR_HEIGHT * 3 / 2) + (MAP_EDGE_MARGIN_WIDTH / 2)-(CITY_MULTI_TAB_SIZE / 2), CITY_MULTI_TAB_SIZE, CITY_MULTI_TAB_SIZE, WidgetTypes.WIDGET_TEACHER_LIST, -1, -1)
+				# teacher list - end - Nightinggale
 
 		# BUILDING MANGMENT PANEL
 			elif BUILDING_MANAGMENT_PANEL_UP:

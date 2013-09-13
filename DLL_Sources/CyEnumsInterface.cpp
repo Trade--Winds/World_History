@@ -299,6 +299,9 @@ void CyEnumsPythonInterface()
 		.value("WIDGET_ARMORSMITH", WIDGET_ARMORSMITH)
 		.value("WIDGET_MARKET", WIDGET_MARKET)
 		///TKe
+		// Teacher List - start - Nightinggale
+		.value("WIDGET_TEACHER_LIST", WIDGET_TEACHER_LIST)
+		// Teacher List - end - Nightinggale
 		.value("NUM_WIDGET_TYPES", NUM_WIDGET_TYPES)
 		;
 	python::enum_<ButtonPopupTypes>("ButtonPopupTypes")

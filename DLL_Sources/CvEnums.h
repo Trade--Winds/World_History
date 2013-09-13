@@ -492,6 +492,10 @@ enum DllExport WidgetTypes
     WIDGET_MARKET,
 	//TKe
 	///TKe
+	// Teacher List - start - Nightinggale
+	WIDGET_TEACHER_LIST,
+	WIDGET_HELP_TEACHER_UNIT,
+	// Teacher List - end - Nightinggale
 
 #ifdef _USRDLL
 	NUM_WIDGET_TYPES
@@ -553,7 +557,9 @@ enum DllExport ButtonPopupTypes
 	///Tks Return Home
 	BUTTONPOPUP_RETURN_HOME,
 	///Tke
-
+	// Teacher List - start - Nightinggale
+	BUTTONPOPUP_TEACHER_LIST,
+	// Teacher List - end - Nightinggale
 
 #ifdef _USRDLL
 	NUM_BUTTONPOPUP_TYPES
@@ -987,6 +993,9 @@ enum DllExport TaskTypes
 	TASK_PUSH_TRAIN_UNIT,
 	TASK_PUSH_CONSTRUCT_BUILDING,
 	TASK_CHEAT,
+	// Teacher List - start - Nightinggale
+	TASK_CHANGE_ORDERED_STUDENTS,
+	// Teacher List - end - Nightinggale
 
 #ifdef _USRDLL
 	NUM_TASK_TYPES

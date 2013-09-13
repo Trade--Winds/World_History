@@ -753,6 +753,18 @@ public:
 protected:
 	int m_iTeachLevel;
 	// EDU remake - end - Nightinggale
+
+	// Teacher List - start - Nightinggale
+public:
+	int getOrderedStudents(UnitTypes eUnit);
+	bool getOrderedStudentsRepeat(UnitTypes eUnit);
+protected:
+	void checkOrderedStudentsForRepeats(UnitTypes eUnit);
+	void setOrderedStudents(UnitTypes eUnit, int iCount, bool bRepeat, bool bUpdateRepeat = true, bool bClearAll = false);
+
+	UnitArray<int> ma_OrderedStudents;
+	UnitArray<bool> ma_OrderedStudentsRepeat;
+	// Teacher List - end - Nightinggale
 };
 
 // cache getMaxYieldCapacity - start - Nightinggale

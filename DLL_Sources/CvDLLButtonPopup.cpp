@@ -1336,6 +1336,61 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
         break;
         ///TKe
 
+	// Teacher List - start - Nightinggale
+	case BUTTONPOPUP_TEACHER_LIST:
+		{
+			CvPlayer& kPlayer = GET_PLAYER(GC.getGameINLINE().getActivePlayer());
+			CvCity* pCity = kPlayer.getCity(info.getData1());
+			if (pCity != NULL)
+			{
+				if (pPopupReturn->getCheckboxBitfield(1) & 0x01)
+				{
+					// Reset checkbox is set
+					for (int iUnit = 0; iUnit < GC.getNumUnitInfos(); iUnit++)
+					{
+						UnitTypes eUnit = (UnitTypes)iUnit;
+						if (pCity->getOrderedStudents(eUnit) > 0 || pCity->getOrderedStudentsRepeat(eUnit))
+						{
+							gDLL->sendDoTask(info.getData1(), TASK_CHANGE_ORDERED_STUDENTS, 0, 0, false, false, true, false);
+							break;
+						}
+					}
+					break;
+				} else {
+					// Send doTasks though a pipeline like cache.
+					// This way the last DoTask is in the cache when the loop is done.
+					// This is because the last DoTask needs to be found as it needs bAlt to be set
+					//  in order to call CvCity::checkOrderedStudentsForRepeats()
+					UnitTypes eUnitCached = NO_UNIT;
+					bool bRepeatCached = false;
+					int iLevelCached = 0;
+					for (int iUnit = 0; iUnit < GC.getNumUnitInfos(); iUnit++)
+					{
+						UnitTypes eUnit = (UnitTypes)iUnit;
+						int iLevel = pPopupReturn->getSpinnerWidgetValue(iUnit);
+						bool bRepeat = (pPopupReturn->getCheckboxBitfield(iUnit) & 0x01);
+
+						if (iLevel >= 0 && ( iLevel != pCity->getOrderedStudents(eUnit) || bRepeat != pCity->getOrderedStudentsRepeat(eUnit)))
+						{
+							if (eUnitCached != NO_UNIT)
+							{
+								gDLL->sendDoTask(info.getData1(), TASK_CHANGE_ORDERED_STUDENTS, eUnitCached, iLevelCached, bRepeatCached, false, false, false);
+							}
+							eUnitCached = eUnit;
+							iLevelCached = iLevel;
+							bRepeatCached = bRepeat;
+						}
+					}
+					if (eUnitCached != NO_UNIT)
+					{
+						gDLL->sendDoTask(info.getData1(), TASK_CHANGE_ORDERED_STUDENTS, eUnitCached, iLevelCached, bRepeatCached, true, false, false);
+					}
+				}
+			}
+		}
+		break;
+	// Teacher List - end - Nightinggale
+
 	default:
 		FAssert(false);
 		break;
@@ -1670,6 +1725,11 @@ bool CvDLLButtonPopup::launchButtonPopup(CvPopup* pPopup, CvPopupInfo &info)
         bLaunched = launchReturnHome(pPopup, info);
         break;
     ///TKe
+	// Teacher List - start - Nightinggale
+	case BUTTONPOPUP_TEACHER_LIST:
+		bLaunched = launchTeacherListPopup(pPopup, info);
+		break;
+	// Teacher List - end - Nightinggale
 	default:
 		FAssert(false);
 		break;
@@ -2088,6 +2148,9 @@ bool CvDLLButtonPopup::launchEducationPopup(CvPopup* pPopup, CvPopupInfo &info)
 
 	int iNumUnits = 0;
 	UnitTypes eLastUnit = NO_UNIT;
+	// Teacher List - start - Nightinggale
+	std::vector<UnitTypes> ordered_units;
+	// Teacher List - end - Nightinggale
 	for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
 	{
 		UnitTypes eUnit = (UnitTypes)iI;
@@ -2110,8 +2173,31 @@ bool CvDLLButtonPopup::launchEducationPopup(CvPopup* pPopup, CvPopupInfo &info)
 			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, szText, kUnit.getButton(), iI, WIDGET_GENERAL, -1, -1, true, POPUP_LAYOUT_STRETCH, DLL_FONT_LEFT_JUSTIFY);
 			++iNumUnits;
 			eLastUnit = (UnitTypes) iI;
+			// Teacher List - start - Nightinggale
+			for(int count = 0; count <	pCity->getOrderedStudents(eLastUnit); count++)
+			{
+				ordered_units.push_back(eLastUnit);
+			}
+			// Teacher List - end - Nightinggale
 		}
 	}
+
+	// Teacher List - start - Nightinggale
+	if (!ordered_units.empty())
+	{
+		// Train the unit into
+		int random_num = ordered_units.size();
+		if (random_num == 1)
+		{
+			// The vector contains only one unit. The "random" unit has to be the first.
+			random_num = 0;
+		} else {
+			random_num = GC.getGameINLINE().getSorenRandNum(random_num, "Pick unit for training");
+		}
+		gDLL->sendDoTask(info.getData1(), TASK_EDUCATE, info.getData2(), ordered_units[random_num], false, false, false, false);
+		return false;
+	}
+	// Teacher List - end - Nightinggale
 
 	if (iNumUnits <= 1)
 	{
@@ -4071,3 +4157,62 @@ bool CvDLLButtonPopup::launchNoblesJoinPopup(CvPopup* pPopup, CvPopupInfo &info)
 }
 
 ///TKe
+
+// Teacher List - start - Nightinggale
+bool CvDLLButtonPopup::launchTeacherListPopup(CvPopup* pPopup, CvPopupInfo &info)
+{
+	PlayerTypes ePlayer = GC.getGameINLINE().getActivePlayer();
+	if (ePlayer == NO_PLAYER)
+	{
+		return false;
+	}
+
+	CvPlayer& kPlayer = GET_PLAYER(ePlayer);
+	CvCity* pCity = kPlayer.getCity(info.getData1());
+	if (pCity == NULL)
+	{
+		return false;
+	}
+
+	if (pCity->getTeachLevel())
+	{
+		gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_EDIT_TEACHER_LIST_POPUP_TEXT", pCity->getNameKey()));
+		gDLL->getInterfaceIFace()->popupStartHLayout(pPopup, 0);
+		gDLL->getInterfaceIFace()->popupCreateCheckBoxes(pPopup, 1, 1, WIDGET_GENERAL, POPUP_LAYOUT_TOP);
+		gDLL->getInterfaceIFace()->popupSetCheckBoxText(pPopup, 0, gDLL->getText("TXT_KEY_EDIT_TEACHER_LIST_POPUP_RESET_ALL_TEXT"), 1, gDLL->getText("TXT_KEY_EDIT_TEACHER_LIST_POPUP_RESET_ALL_HELP"));
+		gDLL->getInterfaceIFace()->popupEndLayout(pPopup);
+		for (int iUnitClass = 0; iUnitClass < GC.getNumUnitClassInfos(); iUnitClass++)
+		{
+			UnitTypes eUnit = (UnitTypes) GC.getCivilizationInfo(kPlayer.getCivilizationType()).getCivilizationUnits(iUnitClass);
+			if (eUnit == NO_UNIT) continue; // Unitclass not used by civ
+
+			CvUnitInfo& kUnit = GC.getUnitInfo(eUnit);
+
+			if (kUnit.getTeachLevel() < 1 || kUnit.getTeachLevel() > pCity->getTeachLevel()) continue;
+
+			int iPrice = pCity->getSpecialistTuition(eUnit);
+
+			gDLL->getInterfaceIFace()->popupStartHLayout(pPopup, 0);
+			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, L"", kUnit.getButton(), -1, WIDGET_HELP_TEACHER_UNIT, eUnit);
+			if (iPrice >= 0)
+			{
+				gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, CvWString::format(L" %d%c", iPrice, gDLL->getSymbolID(GOLD_CHAR)));
+				gDLL->getInterfaceIFace()->popupCreateCheckBoxes(pPopup, 1, eUnit, WIDGET_GENERAL, POPUP_LAYOUT_TOP);
+				gDLL->getInterfaceIFace()->popupSetCheckBoxText(pPopup, 0, gDLL->getText("TXT_KEY_EDIT_TEACHER_LIST_POPUP_REPEAT_TEXT"), eUnit, gDLL->getText("TXT_KEY_EDIT_TEACHER_LIST_POPUP_REPEAT_HELP"));
+				gDLL->getInterfaceIFace()->popupSetCheckBoxState(pPopup, 0, pCity->getOrderedStudentsRepeat(eUnit), eUnit);
+				gDLL->getInterfaceIFace()->popupCreateSpinBox(pPopup, eUnit, L"", pCity->getOrderedStudents(eUnit), 1, 50, 0);
+			} else {
+				gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_EDIT_TEACHER_LIST_NO_TEACHER", kUnit.getDescription()));
+			}
+			gDLL->getInterfaceIFace()->popupEndLayout(pPopup);
+		}
+	} else {
+		// Colony has no school
+		gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_EDIT_TEACHER_LIST_POPUP_NO_SCHOOL_TEXT", pCity->getNameKey()));
+	}
+	gDLL->getInterfaceIFace()->popupLaunch(pPopup, true, POPUPSTATE_IMMEDIATE);
+
+	return true;
+}
+// Teacher List - end - Nightinggale
+

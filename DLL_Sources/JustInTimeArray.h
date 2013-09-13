@@ -134,7 +134,7 @@ public:
 	};
 	inline bool isEmpty(bool bRelease = true)
 	{
-		return hasContent(bRelease);
+		return !hasContent(bRelease);
 	}
 
 	void read(FDataStreamBase* pStream, bool bRead)
