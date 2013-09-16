@@ -17,32 +17,54 @@ enum DllExport YieldTypes
 	NO_YIELD = -1,
 
 	YIELD_NUTRIENTS,
-	YIELD_BIONICS,
-	YIELD_MICROBES,
-	YIELD_HARD_CURRENCY,
-	YIELD_CRYSTALLOIDS,
 	YIELD_BIOPOLYMERS,
 	YIELD_SILICATES,
-	YIELD_PRECIOUS_METALS,
-	YIELD_ELECTROLYTES,
-	YIELD_ICE,
-	YIELD_ISOTOPES,
-	YIELD_URANIUM,
-	YIELD_PLUTONIUM,
-	YIELD_RARE_EARTHS,
 	YIELD_BASE_METALS,
-	YIELD_TISSUE_SAMPLES,
+	YIELD_PRECIOUS_METALS,
+	YIELD_BIONICS,
+	YIELD_HARD_CURRENCY,
+	YIELD_ELECTROLYTES,
+	YIELD_ACTINIDES,
+	YIELD_ISOTOPES,
+	YIELD_RARE_EARTHS,
+	YIELD_CRYSTALLOIDS,
 	YIELD_NUCLEIC_ACIDS,
 	YIELD_AMINO_ACIDS,
+	YIELD_TISSUE_SAMPLES,
+	YIELD_MICROBES,
+	YIELD_DATACORES,
+	YIELD_ARTIFACTS,
+	YIELD_ALIEN_SPECIMENS,
 	YIELD_OPIATES,
+	YIELD_XENOTOXINS,
+	YIELD_BOTANICALS,
+	YIELD_HYDROCARBONS,
+	YIELD_CLATHRATES,
+	YIELD_CORE_SAMPLES,
 	YIELD_TOOLS,
 	YIELD_WEAPONS,
 	YIELD_ROBOTICS,
-	YIELD_XENOTOXINS,
-	YIELD_PEPTIDES,
-	YIELD_BOTANICALS,
-	YIELD_HYDROCARBONS,
+	YIELD_PHOTONICS,
+	YIELD_PLASTEEL,
+	YIELD_DURALLOY,
+	YIELD_CRYSTALLOY,
+	YIELD_NUCLEONICS,
+	YIELD_FUSION_CORES,
+	YIELD_SEMICONDUCTORS,
+	YIELD_PLASMIDS,
+	YIELD_ENZYMES,
+	YIELD_STEM_CELLS,
+	YIELD_STATE_SECRETS,
+	YIELD_PROGENITOR_TECH,
+	YIELD_ALIEN_RELICS,
+	YIELD_NARCOTICS,
+	YIELD_BIOWEAPONS,
+	YIELD_PHARMACEUTICALS,
+	YIELD_PETROCHEMICALS,
+	YIELD_COLLOIDS,
+	YIELD_CATALYSTS,
 	YIELD_EARTH_GOODS,
+	YIELD_CONTRABAND,
 	
 	// virtual yields
 	YIELD_HAMMERS,
@@ -51,6 +73,7 @@ enum DllExport YieldTypes
 	YIELD_EDUCATION,
 	YIELD_IDEAS,
 	YIELD_CULTURE,
+	YIELD_ENERGY,
     YIELD_GOLD,
 
 #ifdef _USRDLL
@@ -73,12 +96,12 @@ enum DllExport YieldTypes
 
 static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
 {
-	return eYield == YIELD_TRADE_GOODS;
+	return eYield == YIELD_EARTH_GOODS || eYield == YIELD_CONTRABAND;
 }
 
 static inline bool YieldGroup_AI_Sell_To_Europe(YieldTypes eYield)
 {
-	return eYield == YIELD_ORE;
+	return eYield == YIELD_STATE_SECRETS;
 }
 
 static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)
@@ -88,7 +111,7 @@ static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)
 
 static inline bool YieldGroup_AI_Buy_From_Europe(YieldTypes eYield)
 {
-	return false; //eYield >= YIELD_TOOLS && eYield <= YIELD_TRADE_GOODS;
+	return eYield == YIELD_TOOLS || eYield == YIELD_EARTH_GOODS || eYield == YIELD_CONTRABAND;
 }
 
 static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
@@ -103,27 +126,27 @@ static inline bool YieldGroup_AI_Native_Product(YieldTypes eYield)
 
 static inline bool YieldGroup_City_Billboard(YieldTypes eYield)
 {
-	return eYield == YIELD_HORSES || eYield == YIELD_TOOLS;
+	return false; //eYield == YIELD_HORSES || eYield == YIELD_TOOLS;
 }
 
 static inline bool YieldGroup_City_Billboard_Offset_Fix(YieldTypes eYield)
 {
-	return eYield == YIELD_HORSES || eYield == YIELD_TOOLS;
+	return false; //eYield == YIELD_HORSES || eYield == YIELD_TOOLS;
 }
 
 static inline bool YieldGroup_Armor(YieldTypes eYield)
 {
-	return false;
+	return eYield == YIELD_PLASTEEL || eYield == YIELD_DURALLOY || eYield == YIELD_CRYSTALLOY;
 }
 
 static inline bool YieldGroup_Light_Armor(YieldTypes eYield)
 {
-	return false;
+	return eYield == YIELD_PLASTEEL;
 }
 
 static inline bool YieldGroup_Heavy_Armor(YieldTypes eYield)
 {
-	return false;
+	return eYield == YIELD_CRYSTALLOY;
 }
 
 static inline bool YieldGroup_Luxury_Food(YieldTypes eYield)
