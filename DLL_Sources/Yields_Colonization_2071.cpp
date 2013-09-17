@@ -114,7 +114,6 @@ void BaseCheckYieldGroup::checkXML()
 	checkSingleXMLType(YIELD_HYDROCARBONS,       "YIELD_HYDROCARBONS");
 	checkSingleXMLType(YIELD_CLATHRATES,         "YIELD_CLATHRATES");
 	checkSingleXMLType(YIELD_CORE_SAMPLES,       "YIELD_CORE_SAMPLES");
-
 	checkSingleXMLType(YIELD_TOOLS,              "YIELD_TOOLS");
 	checkSingleXMLType(YIELD_WEAPONS,            "YIELD_WEAPONS");
 	checkSingleXMLType(YIELD_ROBOTICS,           "YIELD_ROBOTICS");
@@ -122,12 +121,16 @@ void BaseCheckYieldGroup::checkXML()
 	checkSingleXMLType(YIELD_PLASTEEL,           "YIELD_PLASTEEL");
 	checkSingleXMLType(YIELD_DURALLOY,           "YIELD_DURALLOY");
 	checkSingleXMLType(YIELD_CRYSTALLOY,         "YIELD_CRYSTALLOY");
-	
 	checkSingleXMLType(YIELD_NUCLEONICS,         "YIELD_NUCLEONICS");
 	checkSingleXMLType(YIELD_FUSION_CORES,       "YIELD_FUSION_CORES");
 	checkSingleXMLType(YIELD_SEMICONDUCTORS,     "YIELD_SEMICONDUCTORS");
 	checkSingleXMLType(YIELD_PLASMIDS,           "YIELD_PLASMIDS");
 	checkSingleXMLType(YIELD_ENZYMES,            "YIELD_ENZYMES");
+	checkSingleXMLType(YIELD_STEM_CELLS,         "YIELD_STEM_CELLS");
+	checkSingleXMLType(YIELD_STATE_SECRETS,      "YIELD_STATE_SECRETS");
+	checkSingleXMLType(YIELD_PROGENITOR_TECH,    "YIELD_PROGENITOR_TECH");
+	checkSingleXMLType(YIELD_ALIEN_RELICS,       "YIELD_ALIEN_RELICS");
+	checkSingleXMLType(YIELD_NARCOTICS,          "YIELD_NARCOTICS");
 	checkSingleXMLType(YIELD_BIOWEAPONS,         "YIELD_BIOWEAPONS");
 	checkSingleXMLType(YIELD_PHARMACEUTICALS,    "YIELD_PHARMACEUTICALS");
 	checkSingleXMLType(YIELD_PETROCHEMICALS,     "YIELD_PETROCHEMICALS");
