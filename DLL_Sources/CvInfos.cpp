@@ -6303,6 +6303,8 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	FAssertMsg(m_iTeachLevel <= NUM_TEACH_LEVELS, CvString::format("%s has teach level %d, but max is %d", this->getType(), this->getTeachLevel(), NUM_TEACH_LEVELS).c_str());
 	FAssertMsg(m_iTeachLevel >= 0, CvString::format("%s has a negative teach level", this->getType()).c_str());
 	// EDU remake - end - Nightinggale
+
+	this->m_aiYieldDemand.read(pXML, "YieldDemands"); // domestic yield demand - Nightinggale
 	return true;
 }
 

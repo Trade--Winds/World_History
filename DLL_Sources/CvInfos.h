@@ -1521,6 +1521,13 @@ public:
 protected:
 	int m_iTeachLevel;
 	// EDU remake - end - Nightinggale
+
+	// domestic yield demand - start - Nightinggale
+public:
+	int getYieldDemand(YieldTypes eYield) const;
+protected:
+	YieldArray<int> m_aiYieldDemand;
+	// domestic yield demand - end - Nightinggale
 };
 
 // EDU remake - start - Nightinggale
@@ -1529,6 +1536,13 @@ inline int CvBuildingInfo::getTeachLevel() const
 	return m_iTeachLevel;
 }
 // EDU remake - start - Nightinggale
+
+// domestic yield demand - start - Nightinggale
+int inline CvBuildingInfo::getYieldDemand(YieldTypes eYield) const
+{
+	return m_aiYieldDemand.get(eYield);
+}
+// domestic yield demand - end - Nightinggale
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //

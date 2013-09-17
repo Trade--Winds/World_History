@@ -11550,26 +11550,35 @@ void CvCity::UpdateBuildingAffectedCache()
 	m_cache_MaxYieldCapacity[NUM_YIELD_TYPES] = getMaxYieldCapacityUncached(NO_YIELD);
 	// cache getMaxYieldCapacity - end - Nightinggale
 
-	// EDU remake - start - Nightinggale
-	// copy of CvCity::NBMOD_SetCityTeachLevelCache from RaR, complete with German comments
-	{
-		int iMaxTeachLevel = 0;
+	this->m_aiBuildingYieldDemands.reset(); // domestic yield demand - Nightinggale
 
-		// alle möglichen Gebäude durchgehen
+	{
+		int iMaxTeachLevel = 0; // EDU remake - Nightinggale
+
 		for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 		{
-			// abfragen ob dieses gebäude in der Stadt vorkommt
 			if (isHasBuilding((BuildingTypes)iI))
 			{
-				if (GC.getBuildingInfo((BuildingTypes)iI).getTeachLevel() > iMaxTeachLevel)
+				CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
+
+				// EDU remake - start - Nightinggale
+				// majorly influenced by CvCity::NBMOD_SetCityTeachLevelCache from RaR
+				if (kBuilding.getTeachLevel() > iMaxTeachLevel)
 				{
-					iMaxTeachLevel = GC.getBuildingInfo((BuildingTypes)iI).getTeachLevel();
+					iMaxTeachLevel = kBuilding.getTeachLevel();
 				}
+				// EDU remake - end - Nightinggale
+
+				// domestic yield demand - start - Nightinggale
+				for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+				{
+					m_aiBuildingYieldDemands.set(m_aiBuildingYieldDemands.get(iI) + kBuilding.getYieldDemand((YieldTypes)iI), iI);
+				}
+				// domestic yield demand - end - Nightinggale
 			}
 		}
-		this->m_iTeachLevel = iMaxTeachLevel;
+		this->m_iTeachLevel = iMaxTeachLevel; // EDU remake - Nightinggale
 	}
-	// EDU remake - end - Nightinggale
 }
 // building affected cache - end - Nightinggale
 

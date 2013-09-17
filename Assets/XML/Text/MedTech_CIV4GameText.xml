@@ -661,4 +661,12 @@ Multiple repeating units is possible and an equal number will be trained of each
 		<Italian>%s1_unit: no teacher</Italian>
 		<Spanish>%s1_unit: no teacher</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_YIELD_DEMAND</Tag>
+		<English>Demands %F2</English>
+		<French>%d1%F2 par citoyen</French>
+		<German>%d1%F2 pro B&#252;rger</German>
+		<Italian>%d1%F2 per cittadino</Italian>
+		<Spanish>%d1%F2 por ciudadano</Spanish>
+	</TEXT>
 </Civ4GameText>

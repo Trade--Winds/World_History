@@ -157,6 +157,13 @@ public:
 			pStream->Write(m_iLength, tArray);
 		}
 	}
+
+	void read(CvXMLLoadUtility* pXML, const char* sTag)
+	{
+		FAssert(this->m_iLength > 0);
+		pXML->SetVariableListTagPair(&tArray, sTag, this->m_iLength, 0);
+		this->hasContent(); // release array if possible
+	}
 };
 
 

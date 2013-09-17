@@ -765,6 +765,13 @@ protected:
 	UnitArray<int> ma_OrderedStudents;
 	UnitArray<bool> ma_OrderedStudentsRepeat;
 	// Teacher List - end - Nightinggale
+
+	// domestic yield demand - start - Nightinggale
+public:
+	int getBuildingYieldDemand(YieldTypes eYield) const;
+protected:
+	YieldArray<int> m_aiBuildingYieldDemands;
+	// domestic yield demand - end - Nightinggale
 };
 
 // cache getMaxYieldCapacity - start - Nightinggale
@@ -782,5 +789,12 @@ inline int CvCity::getTeachLevel() const
 	return m_iTeachLevel;
 }
 // EDU remake - start - Nightinggale
+
+// domestic yield demand - start - Nightinggale
+inline int CvCity::getBuildingYieldDemand(YieldTypes eYield) const
+{
+	return m_aiBuildingYieldDemands.get(eYield);
+}
+// domestic yield demand - end - Nightinggale
 
 #endif

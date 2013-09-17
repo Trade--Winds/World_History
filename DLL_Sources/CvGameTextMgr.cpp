@@ -6279,6 +6279,19 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
 
 
     ///TKe
+
+	// domestic yield demand - start - Nightinggale
+	// based heavily on Androrc Domestic Market
+	for (iI = 0; iI < NUM_YIELD_TYPES; ++iI)
+	{
+		if(kBuilding.getYieldDemand((YieldTypes) iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getSymbolID(BULLET_CHAR));
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_YIELD_DEMAND", kBuilding.getYieldDemand((YieldTypes) iI), GC.getYieldInfo((YieldTypes) iI).getChar()));
+		}
+	}
+	// domestic yield demand - end - Nightinggale
 	// test for unique building
 	BuildingClassTypes eBuildingClass = (BuildingClassTypes)kBuilding.getBuildingClassType();
 	BuildingTypes eDefaultBuilding = (BuildingTypes)GC.getBuildingClassInfo(eBuildingClass).getDefaultBuildingIndex();
