@@ -1391,6 +1391,37 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 		break;
 	// Teacher List - end - Nightinggale
 
+	// R&R, Robert Surcouf, Custom House Popup-Screen START
+	case BUTTONPOPUP_CUSTOM_HOUSE:
+		{
+			CvPlayer& kPlayer = GET_PLAYER(GC.getGameINLINE().getActivePlayer());
+			CvCity* pCity = kPlayer.getCity(info.getData1());
+			if (pCity != NULL)
+			{
+				for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+				{
+					YieldTypes eYield = (YieldTypes) iYield;
+					if (GC.getYieldInfo((YieldTypes) iYield).isCargo())
+					{
+						bool bNeverSell = (pPopupReturn->getCheckboxBitfield(iYield) & 0x01);
+						int iLevel = pPopupReturn->getSpinnerWidgetValue(iYield);
+						
+						if (bNeverSell != pCity->isCustomHouseNeverSell(eYield) || iLevel != pCity->getCustomHouseSellThreshold(eYield))
+						{
+							gDLL->sendDoTask(info.getData1(), TASK_CHANGE_CUSTOM_HOUSE_SETTINGS, iYield, iLevel, bNeverSell, false, false, false);
+						}
+					}
+				}
+			}
+		}
+		break;
+	
+	case BUTTONPOPUP_DOMESTIC_MARKET:
+		{
+		}
+		break;
+	// R&R, Robert Surcouf, Custom House Popup-Screen END
+
 	default:
 		FAssert(false);
 		break;
@@ -1730,6 +1761,14 @@ bool CvDLLButtonPopup::launchButtonPopup(CvPopup* pPopup, CvPopupInfo &info)
 		bLaunched = launchTeacherListPopup(pPopup, info);
 		break;
 	// Teacher List - end - Nightinggale
+	// R&R, Robert Surcouf, Custom House Popup-Screen START
+	case BUTTONPOPUP_CUSTOM_HOUSE:
+		bLaunched = launchCustomHousePopup(pPopup, info);
+		break;
+	case BUTTONPOPUP_DOMESTIC_MARKET:
+		bLaunched = launchDomesticMarketPopup(pPopup, info);
+		break;
+	// R&R, Robert Surcouf, Custom House Popup-Screen END
 	default:
 		FAssert(false);
 		break;
@@ -4216,3 +4255,98 @@ bool CvDLLButtonPopup::launchTeacherListPopup(CvPopup* pPopup, CvPopupInfo &info
 }
 // Teacher List - end - Nightinggale
 
+// R&R, Robert Surcouf, Custom House Popup-Screen START
+bool CvDLLButtonPopup::launchCustomHousePopup(CvPopup* pPopup, CvPopupInfo &info)
+{
+	PlayerTypes ePlayer = GC.getGameINLINE().getActivePlayer();
+	if (ePlayer == NO_PLAYER)
+	{
+		return false;
+	}
+
+	CvPlayer& kPlayer = GET_PLAYER(ePlayer);
+
+	CvCity* pCity = kPlayer.getCity(info.getData1());
+	if (pCity == NULL)
+	{
+		return false;
+	}
+
+	// R&R, ray, finishing Custom House Screen
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_CUSTOM_HOUSE_POPUP_TEXT", pCity->getNameKey()));
+
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+	{
+		YieldTypes eYield = (YieldTypes) iYield;
+
+		if (YieldGroup_Cargo(eYield))
+		{
+			CvYieldInfo& kYield = GC.getYieldInfo(eYield);
+			// R&R, ray, finishing Custom House Screen
+			gDLL->getInterfaceIFace()->popupStartHLayout(pPopup, 0);
+			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, L"", kYield.getButton(), -1, WIDGET_HELP_YIELD, iYield);
+			gDLL->getInterfaceIFace()->popupCreateCheckBoxes(pPopup, 1, iYield, WIDGET_GENERAL, POPUP_LAYOUT_TOP);
+			gDLL->getInterfaceIFace()->popupSetCheckBoxText(pPopup, 0, gDLL->getText("TXT_KEY_POPUP_NEVER_SELL"), iYield);
+			// R&R, ray, finishing Custom House Screen
+			gDLL->getInterfaceIFace()->popupSetCheckBoxState(pPopup, 0, pCity->isCustomHouseNeverSell(eYield), iYield);
+			gDLL->getInterfaceIFace()->popupCreateSpinBox(pPopup, iYield, L"", pCity->getCustomHouseSellThreshold(eYield), 10, 999, 0);
+			gDLL->getInterfaceIFace()->popupEndLayout(pPopup);
+		}
+	}
+
+	gDLL->getInterfaceIFace()->popupLaunch(pPopup, true, POPUPSTATE_IMMEDIATE);
+
+	return true;
+}
+bool CvDLLButtonPopup::launchDomesticMarketPopup(CvPopup* pPopup, CvPopupInfo &info)
+{
+	PlayerTypes ePlayer = GC.getGameINLINE().getActivePlayer();
+	if (ePlayer == NO_PLAYER)
+	{
+		return false;
+	}
+
+	CvPlayer& kPlayer = GET_PLAYER(ePlayer);
+
+	CvCity* pCity = kPlayer.getCity(info.getData1());
+	if (pCity == NULL)
+	{
+		return false;
+	}
+
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_DOMESTIC_MARKET_POPUP", pCity->getNameKey()));
+	
+	gDLL->getInterfaceIFace()->popupStartHLayout(pPopup, 0);
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_EU_TRADE_LOG_1"));
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_STORED"));
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_DOMESTIC_PRICE"));
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_DOMESTIC_DEMAND"));
+	gDLL->getInterfaceIFace()->popupEndLayout(pPopup);
+	
+	// R&R, ray, adjustment to displayed yield list of Domestic Market Screen
+	int startYield = GC.getDefineINT("DOMESTIC_MARKET_SCREEN_START_YIELD_ID");
+	for (int iYield = startYield; iYield < NUM_YIELD_TYPES; ++iYield)
+	{
+		YieldTypes eYield = (YieldTypes) iYield;
+		CvYieldInfo& kYield = GC.getYieldInfo(eYield);
+		if (kYield.isCargo())
+		{
+			gDLL->getInterfaceIFace()->popupStartHLayout(pPopup, 0);
+			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, L"", kYield.getButton(), -1, WIDGET_HELP_YIELD, iYield);
+			//gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, "9", 0, -1, WIDGET_GENERAL, MAX_INT);
+			gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldStored((YieldTypes) iYield)));
+			gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldBuyPrice((YieldTypes) iYield)));
+			gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldDemand((YieldTypes) iYield)));
+			//gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldStored((YieldTypes) iYield)), 0, -1, WIDGET_GENERAL, MAX_INT); 
+			//gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldBuyPrice((YieldTypes) iYield)), 0, -1, WIDGET_GENERAL, MAX_INT); 
+			//gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldDemand((YieldTypes) iYield)), 0, -1, WIDGET_GENERAL, MAX_INT); 
+			gDLL->getInterfaceIFace()->popupEndLayout(pPopup);
+			//gDLL->getInterfaceIFace()->popupAddSeparator(pPopup);
+		}
+	}
+
+	gDLL->getInterfaceIFace()->popupLaunch(pPopup, true, POPUPSTATE_IMMEDIATE);
+
+	return true;
+}
+// R&R, Robert Surcouf, Custom House Popup-Screen END

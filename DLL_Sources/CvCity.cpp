@@ -434,6 +434,8 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 		}
 	}
 
+	this->initPrices(); // R&R, Androrc, Domestic Market
+
 	UpdateBuildingAffectedCache(); // building affected cache - Nightinggale
 
 	GET_PLAYER(getOwnerINLINE()).AI_invalidateDistanceMap();
@@ -660,6 +662,11 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aBuildingYieldChange.clear();
 	}
 
+	// R&R, ray, finishing Custom House Screen
+	ma_aiCustomHouseSellThreshold.reset();
+	ma_aiCustomHouseNeverSell.reset();
+	// R&R, ray, finishing Custom House Screen END
+
 	if (!bConstructorCall)
 	{
 		AI_reset();
@@ -827,6 +834,8 @@ void CvCity::doTurn()
 	doPlotCulture(false, getOwnerINLINE(), getCultureRate());
 
 	doProduction(bAllowNoProduction);
+
+	doPrices(); // R&R, Androrc Domestic Market
 
 	doDecay();
 
@@ -1156,6 +1165,13 @@ void CvCity::doTask(TaskTypes eTask, int iData1, int iData2, bool bOption, bool 
 		break;
 
 	// Teacher List - end - Nightinggale
+
+	// custom house - network fix - start - Nightinggale
+	case TASK_CHANGE_CUSTOM_HOUSE_SETTINGS:
+		setCustomHouseNeverSell((YieldTypes)iData1, bOption);
+		setCustomHouseSellThreshold((YieldTypes)iData1, iData2);
+		break;
+	// custom house - network fix - end - Nightinggale
 	default:
 		FAssertMsg(false, "eTask failed to match a valid option");
 		break;
@@ -7315,6 +7331,8 @@ void CvCity::doYields()
     int iArmorWeight = 0;
     int iBestArmorWeight = 0;
 
+	int iTotalProfitFromDomesticMarket = 0; // custom house - Nightinggale
+
 	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
 	{
 		YieldTypes eYield = (YieldTypes) iYield;
@@ -7655,6 +7673,32 @@ void CvCity::doYields()
 
 			if (GC.getYieldInfo(eYield).isCargo())
 			{
+				// custom house - start - Nightinggale
+				if (!this->isCustomHouseNeverSell(eYield))
+				{
+					int iDemand = getYieldDemand(eYield);
+					if (iDemand > 0)
+					{
+						int iStored = getYieldStored(eYield);
+						int iThreshold = getCustomHouseSellThreshold(eYield);
+						if (iStored > iThreshold)
+						{
+							int iAmount = std::min(iDemand, iStored - iThreshold);
+							int iProfit = iAmount * this->getYieldBuyPrice(eYield);
+
+							changeYieldStored(eYield, -iAmount);
+							GET_PLAYER(getOwnerINLINE()).changeGold(iProfit);
+
+							iTotalProfitFromDomesticMarket += iProfit;
+
+//							CvWString szBuffer = gDLL->getText("TXT_KEY_GOODS_DOMESTIC_SOLD", iAmount, GC.getYieldInfo(eYield).getChar(), getNameKey(), iProfit);
+							//CvWString szBuffer = gDLL->getText("TXT_KEY_GOODS_DOMESTIC_SOLD", getNameKey(), iTotalProfitFromDomesticMarket);
+							//gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BUILD_BANK", MESSAGE_TYPE_MINOR_EVENT, GC.getYieldInfo(eYield).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
+						}
+					}
+				}
+				// custom house - end - Nightinggale
+
 			    ///TKs Med
 				int iExcess = getYieldStored(eYield) - getMaxYieldCapacity(eYield);
 				///Tke
@@ -7765,7 +7809,13 @@ void CvCity::doYields()
        setSelectedArmor(eSelectedArmor);
     }
 
-
+	// custom house - start - Nightinggale
+	if (iTotalProfitFromDomesticMarket != 0)
+	{
+		CvWString szBuffer = gDLL->getText("TXT_KEY_GOODS_DOMESTIC_SOLD", getNameKey(), iTotalProfitFromDomesticMarket);
+		gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, NULL, MESSAGE_TYPE_MINOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
+	}
+	// custom house - end - Nightinggale
 }
 ///TKe
 void CvCity::doCulture()
@@ -8167,6 +8217,10 @@ enum
 	SAVE_BIT_ORDERED_STUDENTS            = 1 << 5,
 	SAVE_BIT_ORDERED_STUDENTS_REPEAT     = 1 << 6,
 	// Teacher List - end - Nightinggale
+	// R&R, ray, finishing Custom House Screen
+	SAVE_BIT_CUSTOM_HOUSE_SELL_THRESHOLD = 1 << 7,
+	SAVE_BIT_CUSTOM_HOUSE_NEVER_SELL     = 1 << 8,
+	// R&R, ray, finishing Custom House Screen END
 };
 
 // Private Functions...
@@ -8357,6 +8411,12 @@ void CvCity::read(FDataStreamBase* pStream)
   	}
  	// traderoute just-in-time - end - Nightinggale
 
+	// R&R, ray, finishing Custom House Screen
+	ma_aiCustomHouseSellThreshold.read(pStream, arrayBitmap & SAVE_BIT_CUSTOM_HOUSE_SELL_THRESHOLD);
+	ma_aiCustomHouseNeverSell.read(    pStream, arrayBitmap & SAVE_BIT_CUSTOM_HOUSE_NEVER_SELL);
+	m_aiYieldBuyPrice.read(pStream, uiFlag > 3);
+	// R&R, ray, finishing Custom House Screen END
+
 	// Teacher List - start - Nightinggale
 	ma_OrderedStudents.read(      pStream, arrayBitmap & SAVE_BIT_ORDERED_STUDENTS);
 	ma_OrderedStudentsRepeat.read(pStream, arrayBitmap & SAVE_BIT_ORDERED_STUDENTS_REPEAT);
@@ -8389,12 +8449,19 @@ void CvCity::read(FDataStreamBase* pStream)
 		m_aBuildingYieldChange.push_back(kChange);
 	}
 
+	// domestic market - start - Nightinggale
+	if (uiFlag < 4)
+	{
+		this->initPrices();
+	}
+	// domestic market - end - Nightinggale
+
 	UpdateBuildingAffectedCache(); // building affected cache - Nightinggale
 }
 
 void CvCity::write(FDataStreamBase* pStream)
 {
-	uint uiFlag=3;
+	uint uiFlag=4;
 	pStream->Write(uiFlag);		// flag for expansion
 
 	// just-in-time yield arrays - start - Nightinggale
@@ -8414,6 +8481,10 @@ void CvCity::write(FDataStreamBase* pStream)
 	arrayBitmap |= ma_OrderedStudents.hasContent()            ? SAVE_BIT_ORDERED_STUDENTS : 0;
 	arrayBitmap |= ma_OrderedStudentsRepeat.hasContent()      ? SAVE_BIT_ORDERED_STUDENTS_REPEAT : 0;
 	// Teacher List - end - Nightinggale
+	// R&R, ray, finishing Custom House Screen
+	arrayBitmap |= ma_aiCustomHouseSellThreshold.hasContent() ? SAVE_BIT_CUSTOM_HOUSE_SELL_THRESHOLD : 0;
+	arrayBitmap |= ma_aiCustomHouseNeverSell.hasContent()     ? SAVE_BIT_CUSTOM_HOUSE_NEVER_SELL : 0;
+	// R&R, ray, finishing Custom House Screen END
 	pStream->Write(arrayBitmap);
 	// just-in-time yield arrays - end - Nightinggale
 
@@ -8520,6 +8591,12 @@ void CvCity::write(FDataStreamBase* pStream)
 	// transport feeder - start - Nightinggale
 	ma_tradeImportsMaintain.write(pStream, arrayBitmap & SAVE_BIT_IMPORT_FEEDER);
 	// transport feeder - end - Nightinggale
+
+	// R&R, ray, finishing Custom House Screen
+	ma_aiCustomHouseSellThreshold.write(pStream, arrayBitmap & SAVE_BIT_CUSTOM_HOUSE_SELL_THRESHOLD);
+	ma_aiCustomHouseNeverSell.write    (pStream, arrayBitmap & SAVE_BIT_CUSTOM_HOUSE_NEVER_SELL);
+	m_aiYieldBuyPrice.write(pStream, true);
+	// R&R, ray, finishing Custom House Screen END
 
 	// Teacher List - start - Nightinggale
 	ma_OrderedStudents.write(      pStream, arrayBitmap & SAVE_BIT_ORDERED_STUDENTS);
@@ -11572,7 +11649,8 @@ void CvCity::UpdateBuildingAffectedCache()
 				// domestic yield demand - start - Nightinggale
 				for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
 				{
-					m_aiBuildingYieldDemands.set(m_aiBuildingYieldDemands.get(iI) + kBuilding.getYieldDemand((YieldTypes)iI), iI);
+					YieldTypes eYield = (YieldTypes) iYield;
+					m_aiBuildingYieldDemands.set(m_aiBuildingYieldDemands.get(eYield) + kBuilding.getYieldDemand(eYield), iYield);
 				}
 				// domestic yield demand - end - Nightinggale
 			}
@@ -11646,3 +11724,82 @@ bool CvCity::getOrderedStudentsRepeat(UnitTypes eUnit)
 	return ma_OrderedStudentsRepeat.get(eUnit);
 }
 // Teacher List - end - Nightinggale
+
+// R&R, ray, finishing Custom House Screen
+void CvCity::setCustomHouseSellThreshold(YieldTypes eYield, int iCustomHouseSellThreshold)
+{
+	FAssert(eYield >= 0);
+	FAssert(eYield < NUM_YIELD_TYPES);
+
+	if (iCustomHouseSellThreshold != getCustomHouseSellThreshold(eYield))
+	{
+		ma_aiCustomHouseSellThreshold.set(iCustomHouseSellThreshold, eYield);
+		if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
+		{
+			gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+		}
+	}
+}
+
+int CvCity::getCustomHouseSellThreshold(YieldTypes eYield) const
+{
+	return ma_aiCustomHouseSellThreshold.get(eYield);
+}
+
+void CvCity::setCustomHouseNeverSell(YieldTypes eYield, bool bNeverSell)
+{
+	if (isCustomHouseNeverSell(eYield) != bNeverSell)
+	{
+		ma_aiCustomHouseNeverSell.set(bNeverSell, eYield);
+
+		if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
+		{
+			gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+		}
+	}
+}
+
+bool CvCity::isCustomHouseNeverSell(YieldTypes eYield) const
+{
+	return ma_aiCustomHouseNeverSell.get(eYield);
+}
+// R&R, ray, finishing Custom House Screen END
+
+// R&R, ray, adjustment Domestic Markets
+// modified by Nightinggale
+void CvCity::doPrices()
+{
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+	{
+		YieldTypes eYield = (YieldTypes) iYield;
+
+		if (YieldGroup_Cargo(eYield))
+		{
+			CvYieldInfo& kYield = GC.getYieldInfo(eYield);
+
+			int iBaseThreshold = kYield.getPriceChangeThreshold() * GC.getHandicapInfo(getHandicapType()).getEuropePriceThresholdMultiplier() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent() / 10000;
+			int iNewPrice = kYield.getBuyPriceLow() + GC.getGameINLINE().getSorenRandNum(kYield.getBuyPriceHigh() - kYield.getBuyPriceLow() + 1, "Price selection");
+			iNewPrice += getYieldStored(eYield) / std::max(1, iBaseThreshold);
+
+			if (GC.getGameINLINE().getSorenRandNum(100, "Price correction") < kYield.getPriceCorrectionPercent() * std::abs(iNewPrice - getYieldBuyPrice(eYield)))
+			{
+				iNewPrice = std::min(iNewPrice, getYieldBuyPrice(eYield) + 1);
+				iNewPrice = std::max(iNewPrice, getYieldBuyPrice(eYield) - 1);
+				setYieldBuyPrice(eYield, iNewPrice);
+			}
+		}
+	}
+}
+
+void CvCity::initPrices()
+{
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+	{
+		YieldTypes eYield = (YieldTypes) iYield;
+		CvYieldInfo& kYield = GC.getYieldInfo(eYield);
+		FAssert(kYield.getBuyPriceHigh() >= kYield.getBuyPriceLow());
+		int iBuyPrice = kYield.getBuyPriceLow() + GC.getGameINLINE().getSorenRandNum(kYield.getBuyPriceHigh() - kYield.getBuyPriceLow() + 1, "Yield Price");
+		setYieldBuyPrice(eYield, iBuyPrice);
+	}
+}
+//Androrc End

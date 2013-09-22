@@ -496,6 +496,10 @@ enum DllExport WidgetTypes
 	WIDGET_TEACHER_LIST,
 	WIDGET_HELP_TEACHER_UNIT,
 	// Teacher List - end - Nightinggale
+	// R&R, Robert Surcouf, Custom House Popup-Screen START
+	WIDGET_CUSTOM_HOUSE,
+	WIDGET_DOMESTIC_MARKET,
+	// R&R, Robert Surcouf, Custom House Popup-Screen END
 
 #ifdef _USRDLL
 	NUM_WIDGET_TYPES
@@ -560,6 +564,10 @@ enum DllExport ButtonPopupTypes
 	// Teacher List - start - Nightinggale
 	BUTTONPOPUP_TEACHER_LIST,
 	// Teacher List - end - Nightinggale
+	// R&R, Robert Surcouf, Custom House Popup-Screen START
+	BUTTONPOPUP_CUSTOM_HOUSE,
+	BUTTONPOPUP_DOMESTIC_MARKET,
+	// R&R, Robert Surcouf, Custom House Popup-Screen END
 
 #ifdef _USRDLL
 	NUM_BUTTONPOPUP_TYPES
@@ -996,7 +1004,9 @@ enum DllExport TaskTypes
 	// Teacher List - start - Nightinggale
 	TASK_CHANGE_ORDERED_STUDENTS,
 	// Teacher List - end - Nightinggale
-
+	// custom house - network fix - start - Nightinggale
+	TASK_CHANGE_CUSTOM_HOUSE_SETTINGS,
+	// custom house - network fix - end - Nightinggale
 #ifdef _USRDLL
 	NUM_TASK_TYPES
 #endif

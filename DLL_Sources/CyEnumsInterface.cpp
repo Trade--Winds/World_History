@@ -302,6 +302,10 @@ void CyEnumsPythonInterface()
 		// Teacher List - start - Nightinggale
 		.value("WIDGET_TEACHER_LIST", WIDGET_TEACHER_LIST)
 		// Teacher List - end - Nightinggale
+		// R&R, Robert Surcouf, Custom House Popup-Screen START
+		.value("WIDGET_CUSTOM_HOUSE", WIDGET_CUSTOM_HOUSE)
+		.value("WIDGET_DOMESTIC_MARKET", WIDGET_DOMESTIC_MARKET)
+		// R&R, Robert Surcouf, Custom House Popup-Screen END
 		.value("NUM_WIDGET_TYPES", NUM_WIDGET_TYPES)
 		;
 	python::enum_<ButtonPopupTypes>("ButtonPopupTypes")
@@ -346,6 +350,9 @@ void CyEnumsPythonInterface()
 		.value("BUTTONPOPUP_SELECT_YIELD_AMOUNT", BUTTONPOPUP_SELECT_YIELD_AMOUNT)
 		.value("BUTTONPOPUP_EUROPE_UNIT", BUTTONPOPUP_EUROPE_UNIT)
 		.value("BUTTONPOPUP_TALK_NATIVES", BUTTONPOPUP_TALK_NATIVES)
+		// R&R, Robert Surcouf, Custom House Popup-Screen START
+		.value("BUTTONPOPUP_CUSTOM_HOUSE", BUTTONPOPUP_CUSTOM_HOUSE)
+		// R&R, Robert Surcouf, Custom House Popup-Screen END
 		.value("NUM_BUTTONPOPUP_TYPES", NUM_BUTTONPOPUP_TYPES)
 		;
 	python::enum_<ClimateTypes>("ClimateTypes")

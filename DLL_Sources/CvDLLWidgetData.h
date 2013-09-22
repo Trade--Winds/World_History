@@ -158,6 +158,10 @@ protected:
 	void parseCityUnitHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
 	void doTeacherList(const CvWidgetDataStruct& widgetDataStruct);
 	// Teacher List - end - Nightinggale
+	// R&R, Robert Surcouf, Custom House Popup-Screen START
+	void doCustomHouse(const CvWidgetDataStruct& widgetDataStruct);
+	void doDomesticMarket(const CvWidgetDataStruct& widgetDataStruct);
+	// R&R, Robert Surcouf, Custom House Popup-Screen END
 
 	static CvDLLWidgetData* m_pInst;
 

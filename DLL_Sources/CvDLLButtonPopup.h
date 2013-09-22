@@ -85,6 +85,10 @@ private:
 	// Teacher List - start - Nightinggale
 	bool launchTeacherListPopup(CvPopup* pPopup, CvPopupInfo &info);
 	// Teacher List - end - Nightinggale
+	// R&R, Robert Surcouf, Custom House Popup-Screen START
+	bool launchCustomHousePopup(CvPopup* pPopup, CvPopupInfo &info);
+	bool launchDomesticMarketPopup(CvPopup* pPopup, CvPopupInfo &info);
+	// R&R, Robert Surcouf, Custom House Popup-Screen END
 };
 
 #endif

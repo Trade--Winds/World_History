@@ -669,4 +669,68 @@ Multiple repeating units is possible and an equal number will be trained of each
 		<Italian>%d1%F2 per cittadino</Italian>
 		<Spanish>%d1%F2 por ciudadano</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CUSTOM_HOUSE_POPUP_TEXT</Tag>
+		<English>Select goods that will be sold by Custom House, and select mimimum amount of a specific yield to enable Custom House to sell such yield in city %s1_city</English>
+		<French>S&#233;lectionner les biens que le Poste de Douane va vendre, ainsi que le seuil de marchandises qui d&#233;clenche la vente de celle-ci pour la colonie suivante: %s1_city</French>
+		<German>W&#228;hle G&#252;ter, die auf dem heimischen Markt verkauft werden sollen, sowie eine Mindestschwelle ab der das Zollhaus in %s1_city verkaufen soll.</German>
+		<Italian>Select goods that will be sold by Custom House, and select mimimum amount of a specific yield to enable Custom House to sell such yield in city %s1_city</Italian>
+		<Spanish>Select goods that will be sold by Custom House, and select mimimum amount of a specific yield to enable Custom House to sell such yield in city %s1_city</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_POPUP_NEVER_SELL</Tag>
+		<English>Never Sell</English>
+		<French>Ne jamais Vendre</French>
+		<German>Nicht verkaufen</German>
+		<Italian>Never Sell</Italian>
+		<Spanish>Never Sell</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DOMESTIC_DEMAND</Tag>
+		<English>Demand</English>
+		<French>Demande</French>
+		<German>Bedarf</German>
+		<Italian>Demand</Italian>
+		<Spanish>Demand</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DOMESTIC_PRICE</Tag>
+		<English>Price</English>
+		<French>Prix</French>
+		<German>Preis</German>
+		<Italian>Price</Italian>
+		<Spanish>Price</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DOMESTIC_MARKET_POPUP</Tag>
+		<English>Domestic Market (%s1_city)</English>
+		<French>March&#233; int&#233;rieur (%s1_city)</French>
+		<German>Heimischer Markt (%s1_city)</German>
+		<Italian>Domestic Market (%s1_city)</Italian>
+		<Spanish>Domestic Market (%s1_city)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_STORED</Tag>
+		<English>Stored</English>
+		<French>En stock</French>
+		<German>Lager</German>
+		<Italian>Stored</Italian>
+		<Spanish>Stored</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_NUMBER</Tag>
+		<English>%d1</English>
+		<French>%d1</French>
+		<German>%d1</German>
+		<Italian>%d1</Italian>
+		<Spanish>%d1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODS_DOMESTIC_SOLD</Tag>
+		<English>On the domestic market of %s1_city goods for %d2[ICON_GOLD] have been sold.</English>
+		<French>On the domestic market of %s1_city goods for %d2[ICON_GOLD] have been sold.</French>
+		<German>Auf dem Markt von %s1_city wurden G&#252;ter f&#252;r %d2[ICON_GOLD] verkauft.</German>
+		<Italian>On the domestic market of %s1_city goods for %d2[ICON_GOLD] have been sold.</Italian>
+		<Spanish>On the domestic market of %s1_city goods for %d2[ICON_GOLD] have been sold.</Spanish>
+	</TEXT>
 </Civ4GameText>

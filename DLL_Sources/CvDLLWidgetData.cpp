@@ -135,6 +135,14 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 		szBuffer.append(gDLL->getText("TXT_KEY_EDIT_TEACHER_LIST"));
 		break;
 	// Teacher List - end - Nightinggale
+	// R&R, Robert Surcouf, Custom House Popup-Screen START
+	case WIDGET_CUSTOM_HOUSE:
+		szBuffer.append(gDLL->getText("TXT_KEY_EDIT_CUSTOM_HOUSE"));
+		break;
+	case WIDGET_DOMESTIC_MARKET:
+		szBuffer.append(gDLL->getText("TXT_KEY_DOMESTIC_MARKET"));
+		break;
+	// R&R, Robert Surcouf, Custom House Popup-Screen END
     ///TKs Invention Core Mod v 1.0
 	case WIDGET_INVENTORS_HOUSE:
 		parseInventorsHouseHelp(widgetDataStruct, szBuffer);
@@ -661,7 +669,14 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 		doTeacherList(widgetDataStruct);
 		break;
 	// Teacher List - end - Nightinggale
-
+	// R&R, Robert Surcouf, Custom House Popup-Screen START
+	case WIDGET_CUSTOM_HOUSE:
+		doCustomHouse(widgetDataStruct);
+		break;
+	case WIDGET_DOMESTIC_MARKET:
+		doDomesticMarket(widgetDataStruct);
+		break;
+	// R&R, Robert Surcouf, Custom House Popup-Screen END
 	}
 
 	return bHandled;
@@ -4110,3 +4125,25 @@ void CvDLLWidgetData::doTaxAdvisor(const CvWidgetDataStruct& widgetDataStruct)
 //TKe
 
 ///TKe
+
+// R&R, Robert Surcouf, Custom House Popup-Screen START
+void CvDLLWidgetData::doCustomHouse(const CvWidgetDataStruct& widgetDataStruct)
+{
+	CvCity* pHeadSelectedCity = gDLL->getInterfaceIFace()->getHeadSelectedCity();
+	if (pHeadSelectedCity != NULL && pHeadSelectedCity->getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
+	{
+		CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CUSTOM_HOUSE, gDLL->getInterfaceIFace()->getHeadSelectedCity()->getID());
+		gDLL->getInterfaceIFace()->addPopup(pInfo, NO_PLAYER, true);
+	}
+}
+
+void CvDLLWidgetData::doDomesticMarket(const CvWidgetDataStruct& widgetDataStruct)
+{
+	CvCity* pHeadSelectedCity = gDLL->getInterfaceIFace()->getHeadSelectedCity();
+	if (pHeadSelectedCity != NULL && pHeadSelectedCity->getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
+	{
+		CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_DOMESTIC_MARKET, gDLL->getInterfaceIFace()->getHeadSelectedCity()->getID());
+		gDLL->getInterfaceIFace()->addPopup(pInfo, NO_PLAYER, true);
+	}
+}
+// R&R, Robert Surcouf, Custom House Popup-Screen END
