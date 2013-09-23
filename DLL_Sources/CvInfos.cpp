@@ -4169,6 +4169,8 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	}
 	// EDU remake - end - Nightinggale
 
+	this->m_aiYieldDemand.read(pXML, "YieldDemands"); // domestic yield demand - Nightinggale
+
 	updateArtDefineButton();
 	return true;
 }

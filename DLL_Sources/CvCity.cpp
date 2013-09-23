@@ -904,6 +904,29 @@ void CvCity::doTurn()
 		m_aPopulationUnits[i]->doTurn();
 	}
 
+// domestic yield demand - start - Nightinggale
+#ifdef FASSERT_ENABLE
+	{
+		// check that unit yield demand cache is the same as the actual demand
+		YieldArray<int> aiTest;
+
+		for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+		{
+			YieldTypes eYield = (YieldTypes) iYield;
+			aiTest.set(this->getUnitYieldDemand(eYield), eYield);
+		}
+
+		setUnitYieldDemand();
+
+		for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+		{
+			YieldTypes eYield = (YieldTypes) iYield;
+			FAssertMsg(getUnitYieldDemand(eYield) == aiTest.get(eYield), CvString::format("%s %s cache: %d real: %d", GC.getYieldInfo(eYield).getType() , this->getName(), aiTest.get(eYield), getUnitYieldDemand(eYield)).c_str());
+		}
+	}
+#endif
+// domestic yield demand - end - Nightinggale
+
 	// ONEVENT - Do turn
 	gDLL->getEventReporterIFace()->cityDoTurn(this, getOwnerINLINE());
 }
@@ -8456,7 +8479,9 @@ void CvCity::read(FDataStreamBase* pStream)
 	}
 	// domestic market - end - Nightinggale
 
+	// set cache
 	UpdateBuildingAffectedCache(); // building affected cache - Nightinggale
+	this->setUnitYieldDemand(); // // domestic yield demand - Nightinggale
 }
 
 void CvCity::write(FDataStreamBase* pStream)
@@ -9619,6 +9644,8 @@ void CvCity::addPopulationUnit(CvUnit* pUnit, ProfessionTypes eProfession)
 	CvUnit* pTransferUnit = GET_PLAYER(pUnit->getOwnerINLINE()).getAndRemoveUnit(pUnit->getID());
 	FAssert(pTransferUnit == pUnit);
 
+	this->setUnitYieldDemand(pUnit->getUnitType()); // // domestic yield demand - Nightinggale
+
 	int iOldPopulation = getPopulation();
 	m_aPopulationUnits.push_back(pTransferUnit);
 	area()->changePower(getOwnerINLINE(), pTransferUnit->getPower());
@@ -9649,6 +9676,8 @@ bool CvCity::removePopulationUnit(CvUnit* pUnit, bool bDelete, ProfessionTypes e
 	}
 
 	pUnit->setColonistLocked(false);
+
+	this->setUnitYieldDemand(pUnit->getUnitType(), true); // // domestic yield demand - Nightinggale
 
 	//remove unit from worked plots
 	CvPlot* pWorkedPlot = getPlotWorkedByUnit(pUnit);
@@ -11764,6 +11793,42 @@ bool CvCity::isCustomHouseNeverSell(YieldTypes eYield) const
 	return ma_aiCustomHouseNeverSell.get(eYield);
 }
 // R&R, ray, finishing Custom House Screen END
+
+// domestic yield demand - start - Nightinggale
+void CvCity::setUnitYieldDemand()
+{
+	m_aiUnitYieldDemands.reset();
+	
+	for (uint i = 0; i < m_aPopulationUnits.size(); ++i)
+	{
+		CvUnit* pLoopUnit = m_aPopulationUnits[i];
+		setUnitYieldDemand(pLoopUnit->getUnitType());
+	}
+}
+
+void CvCity::setUnitYieldDemand(UnitTypes eUnit, const bool bRemove)
+{
+	CvUnitInfo& kUnitInfo = GC.getUnitInfo(eUnit);
+
+	if (kUnitInfo.demandsYields())
+	{
+		for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
+		{
+			YieldTypes eYield = (YieldTypes) iYield;
+			int iDemand = kUnitInfo.getYieldDemand(eYield);
+		
+			if (iDemand != 0)
+			{
+				if (bRemove)
+				{
+					iDemand = -iDemand;
+				}
+				m_aiUnitYieldDemands.set(m_aiUnitYieldDemands.get(eYield) + iDemand, eYield);
+			}
+		}
+	}
+}
+// domestic yield demand - end - Nightinggale
 
 // R&R, ray, adjustment Domestic Markets
 // modified by Nightinggale
