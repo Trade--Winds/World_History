@@ -703,7 +703,7 @@ Multiple repeating units is possible and an equal number will be trained of each
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_DOMESTIC_MARKET_POPUP</Tag>
-		<English>Domestic Market (%s1_city)</English>
+		<English>Domestic Market (%s1_city) %d2/%d3</English>
 		<French>March&#233; int&#233;rieur (%s1_city)</French>
 		<German>Heimischer Markt (%s1_city)</German>
 		<Italian>Domestic Market (%s1_city)</Italian>

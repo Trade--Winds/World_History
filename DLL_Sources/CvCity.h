@@ -774,6 +774,7 @@ public:
 	int getYieldBuyPrice(YieldTypes eYield) const;
 	int getYieldDemand(YieldTypes eYield) const;
 	//Androrc End
+	int getMarketCap() const;
 protected:
 	void doPrices(); // R&R, Androrc, Domestic Market
 	void initPrices();
@@ -784,6 +785,8 @@ protected:
 
 	YieldArray<int> m_aiBuildingYieldDemands; // nosave cache
 	YieldArray<int> m_aiUnitYieldDemands; // nosave cache
+	int m_iMarketCap; // nosave cache
+
 	YieldArray<int> m_aiYieldBuyPrice;
 	// domestic yield demand - end - Nightinggale
 
@@ -829,6 +832,11 @@ inline int CvCity::getUnitYieldDemand(YieldTypes eYield) const
 inline int CvCity::getYieldDemand(YieldTypes eYield) const
 {
 	return (getBuildingYieldDemand(eYield) + getUnitYieldDemand(eYield)) / 100;
+}
+
+inline int CvCity::getMarketCap() const
+{
+	return m_iMarketCap;
 }
 // domestic yield demand - end - Nightinggale
 

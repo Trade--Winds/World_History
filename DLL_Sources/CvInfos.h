@@ -1545,8 +1545,10 @@ protected:
 	// domestic yield demand - start - Nightinggale
 public:
 	int getYieldDemand(YieldTypes eYield) const;
+	int getMarketCap() const;
 protected:
 	YieldArray<int> m_aiYieldDemand;
+	int m_iMarketCap;
 	// domestic yield demand - end - Nightinggale
 };
 
@@ -1561,6 +1563,11 @@ inline int CvBuildingInfo::getTeachLevel() const
 int inline CvBuildingInfo::getYieldDemand(YieldTypes eYield) const
 {
 	return m_aiYieldDemand.get(eYield);
+}
+
+int inline CvBuildingInfo::getMarketCap() const
+{
+	return m_iMarketCap;
 }
 // domestic yield demand - end - Nightinggale
 

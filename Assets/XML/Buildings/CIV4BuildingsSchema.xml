@@ -132,6 +132,7 @@
 	<ElementType name="YieldDemands" content="eltOnly">
 		<element type="YieldDemand" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="iMarketCap" content="textOnly" dt:type="int"/>
 	<ElementType name="ConstructSound" content="textOnly"/>
 	<ElementType name="iProductonModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="UnitCombatType" content="textOnly"/>
@@ -291,6 +292,7 @@
     <element type="iDetectsMarauders" minOccurs="0"/>
     <element type="MaxYieldModifiers" minOccurs="0"/>
 	<element type="YieldDemands" minOccurs="0"/>
+	<element type="iMarketCap" minOccurs="0"/>
     <element type="ImmigrationUnits" minOccurs="0"/>
     <element type="AutoSellsYields" minOccurs="0"/>
     <element type="AutoSellYieldChange" minOccurs="0"/>

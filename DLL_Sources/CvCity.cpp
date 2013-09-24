@@ -7354,7 +7354,10 @@ void CvCity::doYields()
     int iArmorWeight = 0;
     int iBestArmorWeight = 0;
 
-	int iTotalProfitFromDomesticMarket = 0; // custom house - Nightinggale
+	// custom house - start - Nightinggale
+	int iTotalProfitFromDomesticMarket = 0;
+	int iMarketCap = this->getMarketCap();
+	// custom house - end - Nightinggale
 
 	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
 	{
@@ -7697,7 +7700,7 @@ void CvCity::doYields()
 			if (GC.getYieldInfo(eYield).isCargo())
 			{
 				// custom house - start - Nightinggale
-				if (!this->isCustomHouseNeverSell(eYield))
+				if (iMarketCap > 0 && !this->isCustomHouseNeverSell(eYield))
 				{
 					int iDemand = getYieldDemand(eYield);
 					if (iDemand > 0)
@@ -7706,17 +7709,16 @@ void CvCity::doYields()
 						int iThreshold = getCustomHouseSellThreshold(eYield);
 						if (iStored > iThreshold)
 						{
-							int iAmount = std::min(iDemand, iStored - iThreshold);
+							int iAmount = std::min(std::min(iMarketCap, iDemand), iStored - iThreshold);
+
 							int iProfit = iAmount * this->getYieldBuyPrice(eYield);
 
-							changeYieldStored(eYield, -iAmount);
-							GET_PLAYER(getOwnerINLINE()).changeGold(iProfit);
-
-							iTotalProfitFromDomesticMarket += iProfit;
-
-//							CvWString szBuffer = gDLL->getText("TXT_KEY_GOODS_DOMESTIC_SOLD", iAmount, GC.getYieldInfo(eYield).getChar(), getNameKey(), iProfit);
-							//CvWString szBuffer = gDLL->getText("TXT_KEY_GOODS_DOMESTIC_SOLD", getNameKey(), iTotalProfitFromDomesticMarket);
-							//gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BUILD_BANK", MESSAGE_TYPE_MINOR_EVENT, GC.getYieldInfo(eYield).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
+							if (iProfit > 0)
+							{
+								iMarketCap -= iAmount;
+								changeYieldStored(eYield, -iAmount);
+								iTotalProfitFromDomesticMarket += iProfit;
+							}
 						}
 					}
 				}
@@ -7835,6 +7837,7 @@ void CvCity::doYields()
 	// custom house - start - Nightinggale
 	if (iTotalProfitFromDomesticMarket != 0)
 	{
+		GET_PLAYER(getOwnerINLINE()).changeGold(iTotalProfitFromDomesticMarket);
 		CvWString szBuffer = gDLL->getText("TXT_KEY_GOODS_DOMESTIC_SOLD", getNameKey(), iTotalProfitFromDomesticMarket);
 		gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, NULL, MESSAGE_TYPE_MINOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
 	}
@@ -11658,6 +11661,8 @@ void CvCity::UpdateBuildingAffectedCache()
 
 	this->m_aiBuildingYieldDemands.reset(); // domestic yield demand - Nightinggale
 
+	this->m_iMarketCap = GC.getDefineINT("NO_MARKED_SALES_CAP");
+
 	{
 		int iMaxTeachLevel = 0; // EDU remake - Nightinggale
 
@@ -11681,6 +11686,7 @@ void CvCity::UpdateBuildingAffectedCache()
 					YieldTypes eYield = (YieldTypes) iYield;
 					m_aiBuildingYieldDemands.set(m_aiBuildingYieldDemands.get(eYield) + kBuilding.getYieldDemand(eYield), iYield);
 				}
+				this->m_iMarketCap += kBuilding.getMarketCap();
 				// domestic yield demand - end - Nightinggale
 			}
 		}

@@ -4314,7 +4314,14 @@ bool CvDLLButtonPopup::launchDomesticMarketPopup(CvPopup* pPopup, CvPopupInfo &i
 		return false;
 	}
 
-	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_DOMESTIC_MARKET_POPUP", pCity->getNameKey()));
+	int iTotalDemand = 0;
+	for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+	{
+		iTotalDemand += pCity->getYieldDemand((YieldTypes) iYield);
+	}
+
+
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_DOMESTIC_MARKET_POPUP", pCity->getNameKey(), iTotalDemand, pCity->getMarketCap()));
 	
 	gDLL->getInterfaceIFace()->popupStartHLayout(pPopup, 0);
 	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_EU_TRADE_LOG_1"));
