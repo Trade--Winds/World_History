@@ -1440,7 +1440,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 	    {
 	        iFinalMod = 10;
 	    }
-	    if (!isNative() && GC.getCache_NO_STARTING_PLOTS_IN_JUNGLE() >= 1)
+	    if (!isNative() && GC.getXMLval(XML_NO_STARTING_PLOTS_IN_JUNGLE) >= 1)
 	    {
 	        bool bReduceNoZones = false;
 	        for (int iWorld=0; iWorld<NUM_WORLDSIZE_TYPES; iWorld++)
@@ -1467,7 +1467,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
             }
             if (!bReduceNoZones)
             {
-                int iSearchRange = GC.getCache_NO_STARTING_PLOTS_IN_JUNGLE();
+                int iSearchRange = GC.getXMLval(XML_NO_STARTING_PLOTS_IN_JUNGLE);
                 int iDX, iDY;
                 for (iDX = -(iSearchRange); iDX <= iSearchRange; iDX++)
                 {
@@ -3421,7 +3421,7 @@ int CvPlayerAI::AI_dealVal(PlayerTypes ePlayer, const CLinkList<TradeData>* pLis
         ///TKs Invention Core Mod v 1.0
         case TRADE_RESEARCH:
         {
-            iValue += GC.getCache_TK_RESEARCH_TRADE_VALUE() + GC.getCivicInfo((CivicTypes)pNode->m_data.m_iData1).getAIWeight();
+            iValue += GC.getXMLval(XML_TK_RESEARCH_TRADE_VALUE) + GC.getCivicInfo((CivicTypes)pNode->m_data.m_iData1).getAIWeight();
 
 //            if (getCurrentResearch() != NO_CIVIC)
 //            {
@@ -3448,7 +3448,7 @@ int CvPlayerAI::AI_dealVal(PlayerTypes ePlayer, const CLinkList<TradeData>* pLis
         }
 			break;
         case TRADE_IDEAS:
-            iValue += GC.getCache_TK_RESEARCH_TRADE_VALUE() + GC.getCivicInfo((CivicTypes)pNode->m_data.m_iData1).getCostToResearch() * 5;
+            iValue += GC.getXMLval(XML_TK_RESEARCH_TRADE_VALUE) + GC.getCivicInfo((CivicTypes)pNode->m_data.m_iData1).getCostToResearch() * 5;
 			break;
         ///TKe
 		case TRADE_CITIES:
@@ -3635,7 +3635,7 @@ int CvPlayerAI::AI_militaryHelp(PlayerTypes ePlayer, int& iNumUnits, UnitTypes& 
 	iNumUnits = 1;
 	eProfession = (ProfessionTypes) GC.getUnitInfo(eUnit).getDefaultProfession();
 
-	return kPlayer.getEuropeUnitBuyPrice(eUnit) * GC.getCache_KING_BUY_UNIT_PRICE_MODIFIER() / 100;
+	return kPlayer.getEuropeUnitBuyPrice(eUnit) * GC.getXMLval(XML_KING_BUY_UNIT_PRICE_MODIFIER) / 100;
 }
 
 bool CvPlayerAI::AI_counterPropose(PlayerTypes ePlayer, const CLinkList<TradeData>* pTheirList, const CLinkList<TradeData>* pOurList, CLinkList<TradeData>* pTheirInventory, CLinkList<TradeData>* pOurInventory, CLinkList<TradeData>* pTheirCounter, CLinkList<TradeData>* pOurCounter, const IDInfo& kTransport)
@@ -3754,7 +3754,7 @@ bool CvPlayerAI::AI_counterPropose(PlayerTypes ePlayer, const CLinkList<TradeDat
 					if (GET_PLAYER(ePlayer).getTradeDenial(getID(), pNode->m_data) == NO_DENIAL)
 					{
 					    //int iOurValue = GET_PLAYER(ePlayer).AI_dealVal(getID(), pOurList, false, iChange);
-						iWeight = GC.getCivicInfo((CivicTypes)pNode->m_data.m_iData1).getAIWeight() + GC.getCache_TK_RESEARCH_TRADE_VALUE();
+						iWeight = GC.getCivicInfo((CivicTypes)pNode->m_data.m_iData1).getAIWeight() + GC.getXMLval(XML_TK_RESEARCH_TRADE_VALUE);
 
 						if (iWeight > 0)
 						{
@@ -4014,7 +4014,7 @@ int CvPlayerAI::AI_maxGoldTrade(PlayerTypes ePlayer) const
 
 		iMaxGold = std::min(iMaxGold, getGold());
 
-		iMaxGold -= (iMaxGold % GC.getCache_DIPLOMACY_VALUE_REMAINDER());
+		iMaxGold -= (iMaxGold % GC.getXMLval(XML_DIPLOMACY_VALUE_REMAINDER));
 	}
 
 	return std::max(0, iMaxGold);
@@ -4045,11 +4045,11 @@ int CvPlayerAI::AI_cityTradeVal(CvCity* pCity, PlayerTypes eOwner)
 		iValue /= 2;
 	}
 
-	iValue -= (iValue % GC.getCache_DIPLOMACY_VALUE_REMAINDER());
+	iValue -= (iValue % GC.getXMLval(XML_DIPLOMACY_VALUE_REMAINDER));
 
 	if (isHuman())
 	{
-		return std::max(iValue, GC.getCache_DIPLOMACY_VALUE_REMAINDER());
+		return std::max(iValue, GC.getXMLval(XML_DIPLOMACY_VALUE_REMAINDER));
 	}
 	else
 	{
@@ -4190,11 +4190,11 @@ int CvPlayerAI::AI_stopTradingTradeVal(TeamTypes eTradeTeam, PlayerTypes ePlayer
 		}
 	}
 
-	iValue -= (iValue % GC.getCache_DIPLOMACY_VALUE_REMAINDER());
+	iValue -= (iValue % GC.getXMLval(XML_DIPLOMACY_VALUE_REMAINDER));
 
 	if (isHuman())
 	{
-		return std::max(iValue, GC.getCache_DIPLOMACY_VALUE_REMAINDER());
+		return std::max(iValue, GC.getXMLval(XML_DIPLOMACY_VALUE_REMAINDER));
 	}
 	else
 	{
@@ -6599,7 +6599,7 @@ bool CvPlayerAI::AI_doDiploCancelDeals(PlayerTypes ePlayer)
 	{
 		if (pLoopDeal->isCancelable(getID()))
 		{
-			if ((GC.getGameINLINE().getGameTurn() - pLoopDeal->getInitialGameTurn()) >= (GC.getCache_PEACE_TREATY_LENGTH() * 2))
+			if ((GC.getGameINLINE().getGameTurn() - pLoopDeal->getInitialGameTurn()) >= (GC.getXMLval(XML_PEACE_TREATY_LENGTH) * 2))
 			{
 				bool bCancelDeal = false;
 
@@ -7130,7 +7130,7 @@ bool CvPlayerAI::AI_doDiploDemandTribute(PlayerTypes ePlayer)
 
 	TradeData item;
 	int iReceiveGold = std::min(std::max(0, (kPlayer.getGold() - 50)), kPlayer.AI_goldTarget());
-	iReceiveGold -= (iReceiveGold % GC.getCache_DIPLOMACY_VALUE_REMAINDER());
+	iReceiveGold -= (iReceiveGold % GC.getXMLval(XML_DIPLOMACY_VALUE_REMAINDER));
 	if (iReceiveGold > 50)
 	{
 		setTradeItem(&item, TRADE_GOLD, iReceiveGold, NULL);
@@ -7210,7 +7210,7 @@ bool CvPlayerAI::AI_doDiploKissPinky(PlayerTypes ePlayer)
                 int iMaxGoldPercent = GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAIDeclareWarProb() * kPlayer.AI_maxGoldTrade(getID()) / 100;
                 int iReceiveGold = iMaxGoldPercent * GC.getGameINLINE().getSorenRandNum(100, "Ask for tithe gold percent") / 100;
 
-                iReceiveGold -= (iReceiveGold % GC.getCache_DIPLOMACY_VALUE_REMAINDER());
+                iReceiveGold -= (iReceiveGold % GC.getXMLval(XML_DIPLOMACY_VALUE_REMAINDER));
                 //iReceiveGold += iMaxGoldPercent * 50 / 100;
                 if (iReceiveGold <= 0)
                 {
@@ -7241,7 +7241,7 @@ bool CvPlayerAI::AI_doDiploKissPinky(PlayerTypes ePlayer)
 
 	int iMaxGoldPercent = GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAIDeclareWarProb() * kPlayer.AI_maxGoldTrade(getID()) / 100;
 	int iReceiveGold = iMaxGoldPercent * GC.getGameINLINE().getSorenRandNum(100, "Ask for pinky gold percent") / 100;
-	iReceiveGold -= (iReceiveGold % GC.getCache_DIPLOMACY_VALUE_REMAINDER());
+	iReceiveGold -= (iReceiveGold % GC.getXMLval(XML_DIPLOMACY_VALUE_REMAINDER));
 	if (iReceiveGold <= 0)
 	{
 		return false;
@@ -7418,7 +7418,7 @@ bool CvPlayerAI::AI_doDiploTradeResearch(PlayerTypes ePlayer)
 
     if (isNative())
     {
-        int iGold = GC.getCache_TK_RESEARCH_TRADE_VALUE() + GC.getCivicInfo((CivicTypes)iCivic).getAIWeight();
+        int iGold = GC.getXMLval(XML_TK_RESEARCH_TRADE_VALUE) + GC.getCivicInfo((CivicTypes)iCivic).getAIWeight();
         setTradeItem(&thereitem, TRADE_GOLD, iGold, NULL);
         if (!kPlayer.canTradeItem(getID(), thereitem, true))
         {
@@ -8719,7 +8719,7 @@ int CvPlayerAI::AI_yieldValue(YieldTypes eYield, bool bProduce, int iAmount)
                 if (getCurrentResearch() != NO_CIVIC)
                 {
                     iValue *= iGoodsMultiplier;
-                    iValue /= GC.getCache_TK_IDEAS_CITY_VALUE();
+                    iValue /= GC.getXMLval(XML_TK_IDEAS_CITY_VALUE);
                 }
                 else
                 {
@@ -13507,7 +13507,7 @@ void CvPlayerAI::AI_doAdvancedStart(bool bNoExit)
 						{
 							CvPlot* pPlot = GC.getMapINLINE().plotByIndex(iPlotLoop);
 
-							if (plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE()) <= GC.getCache_ADVANCED_START_SIGHT_RANGE())
+							if (plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE()) <= GC.getXMLval(XML_ADVANCED_START_SIGHT_RANGE))
 							{
 								pPlot->setRevealed(getTeam(), true, false, NO_TEAM);
 							}

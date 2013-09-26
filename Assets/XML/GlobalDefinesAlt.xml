@@ -519,7 +519,7 @@
     <iDefineIntVal>2</iDefineIntVal>
   </Define>
   <Define>
-    <DefineName> FOUND_MONASTERY_NUMBER</DefineName>
+    <DefineName>FOUND_MONASTERY_NUMBER</DefineName>
     <iDefineIntVal>1</iDefineIntVal>
   </Define>
   <Define>

@@ -752,11 +752,11 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 //            char szTKdebug[1024];
 //            sprintf( szTKdebug, "Civics selected = %d\n", iCivicSelected);
 //            gDLL->messageControlLog(szTKdebug);
-            FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
+            FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-                if (((kPlayer.canDoCivics((CivicTypes) iCivic) && eCurrentResearch != (CivicTypes)iCivic) && (GC.getCivicInfo((CivicTypes)iCivic).getRequiredFatherPoints(eFatherPoint) <= 0) && kCivicInfo.getInventionCategory() != GC.getCache_MEDIEVAL_CENSURE()) || info.getData3() == 1)
+                if (((kPlayer.canDoCivics((CivicTypes) iCivic) && eCurrentResearch != (CivicTypes)iCivic) && (GC.getCivicInfo((CivicTypes)iCivic).getRequiredFatherPoints(eFatherPoint) <= 0) && kCivicInfo.getInventionCategory() != GC.getXMLval(XML_MEDIEVAL_CENSURE)) || info.getData3() == 1)
                 {
                     //if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).canDoCivics((CivicTypes) iCivic) && eCurrentResearch != (CivicTypes)iCivic)
                     //{
@@ -814,7 +814,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
                                     CivicTypes eNewTech = NO_CIVIC;
                                     for (int iLoopCivic = 0; iLoopCivic < GC.getNumCivicInfos(); ++iLoopCivic)
                                     {
-                                        if (GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+                                        if (GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
                                         {
                                             if (GC.getCivicInfo((CivicTypes)iLoopCivic).getRequiredFatherPoints(eFatherPoint) > 0)
                                             {
@@ -996,7 +996,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
             }
             else if (pPopupReturn->getButtonClicked() == 1)
             {
-                int iRansomPrice = GC.getCache_KNIGHT_RANSOM_MOD() * pRansomeUnit->getLevel();
+                int iRansomPrice = GC.getXMLval(XML_KNIGHT_RANSOM_MOD) * pRansomeUnit->getLevel();
 
                 kPlayer.changeGold(-iRansomPrice);
                 kKillerPlayer.changeGold(iRansomPrice);
@@ -1194,11 +1194,11 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 							///Tks Med
 							PromotionTypes ePromotion = (PromotionTypes)iPromotion;
 							bool bConverted = false;
-                            if (ePromotion == (PromotionTypes)GC.getCache_DEFAULT_KNIGHT_PROMOTION())
+                            if (ePromotion == (PromotionTypes)GC.getXMLval(XML_DEFAULT_KNIGHT_PROMOTION))
                             {
                                 if (GC.getUnitInfo(ploopUnit->getUnitType()).getCasteAttribute() == 3)
                                 {
-                                    UnitTypes eUnit = (UnitTypes)GC.getCivilizationInfo(ploopUnit->getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getCache_DEFAULT_NOBLEMAN_CLASS());
+                                    UnitTypes eUnit = (UnitTypes)GC.getCivilizationInfo(ploopUnit->getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getXMLval(XML_DEFAULT_NOBLEMAN_CLASS));
                                     if (eUnit != NO_UNIT)
                                     {
                                         CvUnit* pLearnUnit = GET_PLAYER(ploopUnit->getOwnerINLINE()).initUnit(eUnit, NO_PROFESSION, ploopUnit->getX_INLINE(), ploopUnit->getY_INLINE(),ploopUnit-> AI_getUnitAIType());
@@ -1271,7 +1271,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
                 bool bTreasureOnlyCoastal = false;
                 if (GC.getUnitInfo(pUnit->getUnitType()).isTreasure())
                 {
-                    if (GC.getCache_TREASURE_UNITS_ONLY_SELECT_COASTAL())
+                    if (GC.getXMLval(XML_TREASURE_UNITS_ONLY_SELECT_COASTAL))
                     {
                         bTreasureOnlyCoastal = true;
                     }
@@ -1452,7 +1452,7 @@ bool CvDLLButtonPopup::launchReturnHome(CvPopup* pPopup, CvPopupInfo &info)
     bool bTreasureOnlyCoastal = false;
     if (GC.getUnitInfo(pUnit->getUnitType()).isTreasure())
     {
-        if (GC.getCache_TREASURE_UNITS_ONLY_SELECT_COASTAL())
+        if (GC.getXMLval(XML_TREASURE_UNITS_ONLY_SELECT_COASTAL))
         {
             bTreasureOnlyCoastal = true;
         }
@@ -2264,7 +2264,7 @@ bool CvDLLButtonPopup::launchRazeCityPopup(CvPopup* pPopup, CvPopupInfo &info)
 		return (false);
 	}
 
-	if (0 != GC.getCache_PLAYER_ALWAYS_RAZES_CITIES())
+	if (0 != GC.getXMLval(XML_PLAYER_ALWAYS_RAZES_CITIES))
 	{
 		player.raze(pNewCity);
 		return false;
@@ -3257,7 +3257,7 @@ bool CvDLLButtonPopup::launchPurchaseEuropeUnitPopup(CvPopup* pPopup, CvPopupInf
 //                UnitClassTypes eUnitClass = (UnitClassTypes)GC.getUnitInfo(eUnit).getUnitClassType();
 //                for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 //                {
-//                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+//                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
 //                    {
 //                        CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 //                        if (kCivicInfo.getAllowsUnitClasses(eUnitClass) > 0)
@@ -3383,11 +3383,11 @@ bool CvDLLButtonPopup::launchCivicOptionPopup(CvPopup* pPopup, CvPopupInfo &info
 	{
 		return false;
 	}
-    FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
+    FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
     if (info.getData1() == -3)
     {
-        CivicOptionTypes eCivicOption = (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS();
-        FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
+        CivicOptionTypes eCivicOption = (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS);
+        FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
         gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_CHOOSE_TRADING_PERK"));
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
@@ -3413,7 +3413,7 @@ bool CvDLLButtonPopup::launchCivicOptionPopup(CvPopup* pPopup, CvPopupInfo &info
     ///TKe
 	CivicOptionTypes eCivicOption = (CivicOptionTypes) info.getData1();
     ///TKs Invention Core Mod v 1.0
-	if (eCivicOption == NO_CIVICOPTION || eCivicOption == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+	if (eCivicOption == NO_CIVICOPTION || eCivicOption == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
 	{
 		return false;
 	}
@@ -3749,7 +3749,7 @@ bool CvDLLButtonPopup::launchTalkNativesPopup(CvPopup* pPopup, CvPopupInfo& info
 ///TKs Invention Core Mod v 1.0
 bool CvDLLButtonPopup::launchChooseInventionPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
-    CivicOptionTypes eCivicOption = (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS();
+    CivicOptionTypes eCivicOption = (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS);
 
 	if (eCivicOption == NO_CIVICOPTION)
 	{
@@ -3878,10 +3878,10 @@ bool CvDLLButtonPopup::launchChooseInventionPopup(CvPopup* pPopup, CvPopupInfo &
 	{
 	    //bIsTrait = false;
 		CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-		FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getCache_FATHER_POINT_REAL_TRADE();
+		FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
 		if (kCivicInfo.getCivicOptionType() == eCivicOption)
 		{
-			if (info.getData3() == 1 || ((GET_PLAYER(ePlayer).canDoCivics((CivicTypes) iCivic) && eCurrentResearch != (CivicTypes)iCivic) && (GC.getCivicInfo((CivicTypes)iCivic).getRequiredFatherPoints(eFatherPoint) <= 0)) && kCivicInfo.getInventionCategory() != (CivicTypes) GC.getCache_MEDIEVAL_CENSURE())
+			if (info.getData3() == 1 || ((GET_PLAYER(ePlayer).canDoCivics((CivicTypes) iCivic) && eCurrentResearch != (CivicTypes)iCivic) && (GC.getCivicInfo((CivicTypes)iCivic).getRequiredFatherPoints(eFatherPoint) <= 0)) && kCivicInfo.getInventionCategory() != (CivicTypes) GC.getXMLval(XML_MEDIEVAL_CENSURE))
 			{
 
 			    if (info.getData3() == 1)
@@ -4009,7 +4009,7 @@ bool CvDLLButtonPopup::launchRansomKnightPopup(CvPopup* pPopup, CvPopupInfo &inf
 
 	CvPlayer& kKillerPlayer = GET_PLAYER(eCapturePlayer);
     CvPlayer& kPlayer = GET_PLAYER(ePlayer);
-	int iRansomPrice = GC.getCache_KNIGHT_RANSOM_MOD() * pRansomeUnit->getLevel();
+	int iRansomPrice = GC.getXMLval(XML_KNIGHT_RANSOM_MOD) * pRansomeUnit->getLevel();
 	int iPlayersGold = kPlayer.getGold();
 //    FAssert(ePlayer == NO_PLAYER);
 	bool bNofunds = false;
@@ -4141,7 +4141,7 @@ bool CvDLLButtonPopup::launchArmorsmithPopup(CvPopup* pPopup, CvPopupInfo &info)
         {
             //for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             //{
-             //   if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+             //   if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
              //   {
              //       CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
              //       if (kCivicInfo.getAllowsYields(eArmor) > 0)

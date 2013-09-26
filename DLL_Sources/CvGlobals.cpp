@@ -140,314 +140,6 @@ m_iUSE_ON_UPDATE_CALLBACK(0),
 m_iUSE_ON_UNIT_CREATED_CALLBACK(0),
 m_iUSE_ON_UNIT_LOST_CALLBACK(0),
 
-// cache XML - start - Nightinggale
-m_cache_ADVANCED_START_ALLOW_UNITS_OUTSIDE_CITIES(0),
-m_cache_ADVANCED_START_CITY_COST(0),
-m_cache_ADVANCED_START_CITY_COST_INCREASE(0),
-m_cache_ADVANCED_START_CITY_PLACEMENT_MAX_RANGE(0),
-m_cache_ADVANCED_START_CULTURE_COST(0),
-m_cache_ADVANCED_START_MAX_UNITS_PER_CITY(0),
-m_cache_ADVANCED_START_POPULATION_COST(0),
-m_cache_ADVANCED_START_POPULATION_COST_INCREASE(0),
-m_cache_ADVANCED_START_SIGHT_RANGE(0),
-m_cache_ADVANCED_START_VISIBILITY_COST(0),
-m_cache_ADVANCED_START_VISIBILITY_COST_INCREASE(0),
-m_cache_AI_ADVANCED_TECH_START(0),
-m_cache_AI_CAN_DISBAND_UNITS(0),
-m_cache_AI_CHEAT_AUTO_BUY(0),
-m_cache_AI_CHEAT_NEEDED_DEFENDERS(0),
-m_cache_AI_CHEAT_SPICE(0),
-m_cache_AI_CHEAT_SPICE_BUY(0),
-m_cache_AI_CHEAT_SPICE_MULTIPLE(0),
-m_cache_AI_FAVORED_TERRAIN_MOD(0),
-m_cache_AI_HANDICAP_CASTLE(0),
-m_cache_AI_HANDICAP_MOTTE(0),
-m_cache_AI_MILITARY_PROFESSION_HACK(0),
-m_cache_AI_WAREHOUSE_MOD(0),
-m_cache_ALLIANCE_CULTURE_PERCENT_DENIAL(0),
-m_cache_ALLIANCE_PACT_PEACE_DENIAL(0),
-m_cache_ANIMAL_BANDITS_GUARD_GOODY_TIMER(0),
-m_cache_AUTORESEARCH_ALL(0),
-m_cache_BANQUET_YIELD_AMOUNT(0),
-m_cache_BARBARIAN_CIVILIZATION(0),
-m_cache_BARBARIAN_LEADER(0),
-m_cache_BASE_CITY_GROWTH_THRESHOLD(0),
-m_cache_BASE_CITY_LUXURY_FOOD_THRESHOLD_MOD(0),
-m_cache_BASE_OCCUPATION_TURNS(0),
-m_cache_BASE_UNIT_UPGRADE_COST(0),
-m_cache_BUILDINGCLASS_TRAVEL_TO_FAIR(0),
-m_cache_BUILDING_PRODUCTION_DECAY_PERCENT(0),
-m_cache_BUILDING_PRODUCTION_DECAY_TIME(0),
-m_cache_BUILDING_PRODUCTION_PERCENT(0),
-m_cache_BUY_PLOT_BASE_CULTURE_COST(0),
-m_cache_BUY_PLOT_CULTURE_RANGE(0),
-m_cache_BUY_PLOT_MIN_CULTURE(0),
-m_cache_BUY_PLOT_OWNED_COST_MODIFIER(0),
-m_cache_BUY_PLOT_SELLER_INCOME_PERCENT(0),
-m_cache_CALENDER_YEAR_FIRST_CHANGE_TURN(0),
-m_cache_CALENDER_YEAR_FIRST_MULTIPLIER(0),
-m_cache_CALENDER_YEAR_SECOND_CHANGE_TURN(0),
-m_cache_CALENDER_YEAR_SECOND_MULTIPLIER(0),
-m_cache_CALENDER_YEAR_THIRD_MULTIPLIER(0),
-m_cache_CAPITAL_BUILDINGCLASS(0),
-m_cache_CAPTURED_CARGO_RANDOM_AMOUNT(0),
-m_cache_CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT(0),
-m_cache_CASTLES_TO_VILLAGES_RATIO(0),
-m_cache_CHANCE_TO_CAPTURE_CRIMINALS(0),
-m_cache_CHEAT_TRAVEL_ALL(0),
-m_cache_CITY_DEFENSE_DAMAGE_HEAL_RATE(0),
-m_cache_CITY_FREE_CULTURE_GROWTH_FACTOR(0),
-m_cache_CITY_GROWTH_MULTIPLIER(0),
-m_cache_CITY_HEAL_RATE(0),
-m_cache_CITY_PILGRAM_RANDOM(0),
-m_cache_CITY_SCREEN_FOG_ENABLED(0),
-m_cache_CITY_YIELD_CAPACITY(0),
-m_cache_CITY_YIELD_DECAY_PERCENT(0),
-m_cache_CIVICOPTION_INVENTIONS(0),
-m_cache_COLONIAL_FORCED_PEACE_TURNS(0),
-m_cache_COMBAT_DAMAGE(0),
-m_cache_COMBAT_DIE_SIDES(0),
-m_cache_COMBAT_EXPERIENCE_IN_BORDERS_PERCENT(0),
-m_cache_CONSUME_EQUIPMENT_ON_FOUND(0),
-m_cache_CONTACT_YIELD_GIFT_ENCOMEIDA_TIMER(0),
-m_cache_CONTACT_YIELD_GIFT_TECH(0),
-m_cache_CULTURE_YIELD(0),
-m_cache_DEAL_TRADE_RELATIONS_POINTS(0),
-m_cache_DEEP_WATER_TERRAIN(0),
-m_cache_DEFAULT_BUILD_CASTLE(0),
-m_cache_DEFAULT_BUILD_MOTTE_AND_BAILEY(0),
-m_cache_DEFAULT_CENSURETYPE_ANATHEMA(0),
-m_cache_DEFAULT_CENSURETYPE_ANATHEMA_COUNT(0),
-m_cache_DEFAULT_CENSURETYPE_EXCOMMUNICATION(0),
-m_cache_DEFAULT_CENSURETYPE_EXCOMMUNICATION_COUNT(0),
-m_cache_DEFAULT_CENSURETYPE_INTERDICT(0),
-m_cache_DEFAULT_CENSURETYPE_INTERDICT_COUNT(0),
-m_cache_DEFAULT_COMBAT_FOR_TRAINING(0),
-m_cache_DEFAULT_DAWN_POPULATION_UNIT(0),
-m_cache_DEFAULT_FUEDALISM_TECH(0),
-m_cache_DEFAULT_GRAIN_GROWTH_UNIT_CLASS(0),
-m_cache_DEFAULT_HUNTSMAN_PROFESSION(0),
-m_cache_DEFAULT_INVENTOR_CLASS(0),
-m_cache_DEFAULT_KNIGHT_PROFESSION_PROMOTION(0),
-m_cache_DEFAULT_KNIGHT_PROMOTION(0),
-m_cache_DEFAULT_MARAUDER_CLASS(0),
-m_cache_DEFAULT_MARUADER_SEA_PROFESSION(0),
-m_cache_DEFAULT_NOBLEMAN_CLASS(0),
-m_cache_DEFAULT_NOBLE_GROWTH_UNIT_CLASS(0),
-m_cache_DEFAULT_PILGRAM_CLASS(0),
-m_cache_DEFAULT_POPULATION_UNIT(0),
-m_cache_DEFAULT_SHRINE_CLASS(0),
-m_cache_DEFAULT_SLAVE_CLASS(0),
-m_cache_DEFAULT_SPECIALBUILDING_COURTHOUSE(0),
-m_cache_DEFAULT_TEST_DEFINE(0),
-m_cache_DEFAULT_TRAINED_PROMOTION(0),
-m_cache_DEFAULT_TREASURE_YIELD(0),
-m_cache_DEFAULT_UNTRAINED_PROMOTION(0),
-m_cache_DEFAULT_VIKING_ERA(0),
-m_cache_DEFAULT_YIELD_ARMOR_TYPE(0),
-m_cache_DIFFERENT_TEAM_FEATURE_PRODUCTION_PERCENT(0),
-m_cache_DIPLOMACY_VALUE_REMAINDER(0),
-m_cache_DOCKS_NEXT_UNITS(0),
-m_cache_EDUCATION_BASE_TUITION(0),
-m_cache_EDUCATION_THRESHOLD(0),
-m_cache_EDUCATION_THRESHOLD_INCREASE(0),
-m_cache_ENABLE_ALLIANCE_TRADING(0),
-m_cache_ENABLE_DEFENSIVE_PACT_TRADING(0),
-m_cache_ENABLE_GOLD_TRADING(0),
-m_cache_ENABLE_MAP_TRADING(0),
-m_cache_ENABLE_OPEN_BORDERS(0),
-m_cache_END_GAME_DISPLAY_WARNING(0),
-m_cache_ENEMY_HEAL_RATE(0),
-m_cache_ESTABLISH_TRADEPOST_COST(0),
-m_cache_EUROPE_EAST(0),
-m_cache_EUROPE_MARKET_CORRELATION_PERCENT(0),
-m_cache_EVENT_PROBABILITY_ROLL_SIDES(0),
-m_cache_EXPERIENCE_FROM_WITHDRAWL(0),
-m_cache_EXTRA_YIELD(0),
-m_cache_FATHER_COST_EXTRA_TEAM_MEMBER_MODIFIER(0),
-m_cache_FATHER_POINT_REAL_TRADE(0),
-m_cache_FEATURE_PRODUCTION_YIELD_MAX_DISTANCE(0),
-m_cache_FIRST_EVENT_DELAY_TURNS(0),
-m_cache_FOUND_MONASTERY_NUMBER(0),
-m_cache_FOUND_MOTTE_AND_BAILEY_NUMBER(0),
-m_cache_FOUND_OUTPOST_NUMBER(0),
-m_cache_FOUND_VILLAGE_NUMBER(0),
-m_cache_FREE_CITY_ADJACENT_CULTURE(0),
-m_cache_FREE_CITY_CULTURE(0),
-m_cache_FREE_PEASANT_CIVIC(0),
-m_cache_FRIENDLY_HEAL_RATE(0),
-m_cache_GREAT_GENERALS_THRESHOLD(0),
-m_cache_GREAT_GENERALS_THRESHOLD_INCREASE(0),
-m_cache_GREAT_GENERALS_THRESHOLD_INCREASE_TEAM(0),
-m_cache_HIRE_GUARD_COST(0),
-m_cache_HIRE_GUARD_PROMOTION(0),
-m_cache_IMMIGRATION_MAX_CITY_DISTANCE(0),
-m_cache_IMMIGRATION_THRESHOLD(0),
-m_cache_IMMIGRATION_THRESHOLD_INCREASE(0),
-m_cache_IMMIGRATION_TRAVEL_MOD(0),
-m_cache_INDUSTRIAL_VICTORY_SINGLE_YIELD(0),
-m_cache_INITIAL_AI_CITY_PRODUCTION(0),
-m_cache_INITIAL_CITY_POPULATION(0),
-m_cache_INITIAL_CITY_ROUTE_TYPE(0),
-m_cache_JUNGLE_FEATURE(0),
-m_cache_KING_BUY_UNIT_PRICE_MODIFIER(0),
-m_cache_KING_INITIAL_UNIT_INCREASE(0),
-m_cache_KING_TRANSPORT_TREASURE_COMISSION(0),
-m_cache_KNIGHT_RANSOM_MOD(0),
-m_cache_LAKE_PLOT_RAND(0),
-m_cache_LAND_IMPROVEMENT(0),
-m_cache_LAND_TERRAIN(0),
-m_cache_MARAUDERS_DAYSOUT_RANDOM(0),
-m_cache_MARAUDERS_TOWER_RANGE(0),
-m_cache_MARAUDER_CRUMBS_EVENT(0),
-m_cache_MARAUDER_EVENT_DEFAULT_TURNS(0),
-m_cache_MAX_CITY_POPULATION_COMMUNE(0),
-m_cache_MAX_CITY_POPULATION_VILLAGE(0),
-m_cache_MAX_EXPERIENCE_AFTER_UPGRADE(0),
-m_cache_MAX_EXPERIENCE_PER_COMBAT(0),
-m_cache_MAX_FORTIFY_TURNS(0),
-m_cache_MAX_INSULT_MODIFIER(0),
-m_cache_MAX_LEVEL_FROM_ANIMAL_XP(0),
-m_cache_MAX_MARAUDERS(0),
-m_cache_MAX_NUM_LANGUAGES(0),
-m_cache_MAX_PLOT_LIST_SIZE(0),
-m_cache_MAX_REBEL_COMBAT_MULTIPLER(0),
-m_cache_MAX_TRAINED_EXPERIENCE(0),
-m_cache_MAX_WITHDRAWAL_PROBABILITY(0),
-m_cache_MEDIEVAL_CENSURE(0),
-m_cache_MEDIEVAL_TRADE_TECH(0),
-m_cache_MINIMAP_RENDER_SIZE(0),
-m_cache_MIN_ANIMAL_STARTING_DISTANCE(0),
-m_cache_MIN_CITY_YIELD_DECAY(0),
-m_cache_MIN_CIV_STARTING_DISTANCE(0),
-m_cache_MIN_EXPERIENCE_PER_COMBAT(0),
-m_cache_MIN_TIMER_UNIT_DOUBLE_MOVES(0),
-m_cache_MIN_WATER_SIZE_FOR_OCEAN(0),
-m_cache_MISSIONARY_RATE_EFFECT_ON_SUCCESS(0),
-m_cache_MISSIONARY_THRESHOLD(0),
-m_cache_MISSIONARY_THRESHOLD_INCREASE(0),
-m_cache_MONASTERIES_TO_VILLAGES_RATIO(0),
-m_cache_NATIVE_AUTO_SELL_PERCENT(0),
-m_cache_NATIVE_GOODS_RAID_PERCENT(0),
-m_cache_NATIVE_GROWTH_THRESHOLD_MULTIPLIER(0),
-m_cache_NATIVE_HORSES_FOR_SALE(0),
-m_cache_NATIVE_HORSES_FOR_SALE_PERCENT(0),
-m_cache_NATIVE_TEACH_THRESHOLD_INCREASE(0),
-m_cache_NATIVE_TECH(0),
-m_cache_NATIVE_TRADING_TRADEPOST(0),
-m_cache_NEUTRAL_HEAL_RATE(0),
-m_cache_NEW_CITY_BUILDING_VALUE_MODIFIER(0),
-m_cache_NEW_HURRY_MODIFIER(0),
-m_cache_NOBLE_FIELD_LABOR_PENALTY(0),
-m_cache_NO_BAD_GOODIES_EXPERIENCE_PERCENT(0),
-m_cache_NO_BAD_GOODIES_GOLD_PERCENT(0),
-m_cache_NO_CITY_SHORTAGE_MESSAGES(0),
-m_cache_NO_STARTING_PLOTS_IN_JUNGLE(0),
-m_cache_OCCUPATION_CULTURE_PERCENT_THRESHOLD(0),
-m_cache_OCCUPATION_TURNS_POPULATION_PERCENT(0),
-m_cache_OWNERSHIP_SCORE_DURATION_THRESHOLD(0),
-m_cache_OWN_TEAM_STARTING_MODIFIER(0),
-m_cache_PEACE_TREATY_LENGTH(0),
-m_cache_PERCENT_TAX_ON_AUTOSELL_GOODS(0),
-m_cache_PILGRAM_OFFER_GOLD(0),
-m_cache_PILGRAM_OFFER_GOLD_DISTANCE_MOD(0),
-m_cache_PLAYER_ALWAYS_RAZES_CITIES(0),
-m_cache_PLOTS_PER_RIVER_EDGE(0),
-m_cache_PLOT_VISIBILITY_RANGE(0),
-m_cache_PROFESSION_COAL_BURNER(0),
-m_cache_PROFESSION_INVENTOR(0),
-m_cache_PROLIFIC_INVENTOR_THRESHOLD_INCREASE(0),
-m_cache_PROMOTION_BUILD_HOME(0),
-m_cache_RANDOM_TURNS_LOST_AT_SEA(0),
-m_cache_RAZING_CULTURAL_PERCENT_THRESHOLD(0),
-m_cache_REBEL_PERCENT_FOR_REVOLUTION(0),
-m_cache_REBEL_SENTIMENT_BELLS_FACTOR(0),
-m_cache_REBEL_SENTIMENT_TURN_WEIGHT(0),
-m_cache_REVOLUTION_EUROPE_UNIT_SHIP_MODIFIER(0),
-m_cache_REVOLUTION_EUROPE_UNIT_THRESHOLD(0),
-m_cache_REVOLUTION_EUROPE_UNIT_THRESHOLD_INCREASE(0),
-m_cache_RIVAL_TEAM_STARTING_MODIFIER(0),
-m_cache_RIVER_SOURCE_MIN_RIVER_RANGE(0),
-m_cache_RIVER_SOURCE_MIN_SEAWATER_RANGE(0),
-m_cache_RUINS_IMPROVEMENT(0),
-m_cache_SCORE_FATHER_FACTOR(0),
-m_cache_SCORE_LAND_FACTOR(0),
-m_cache_SCORE_POPULATION_FACTOR(0),
-m_cache_SCORE_TAX_FACTOR(0),
-m_cache_SETTLEMENT_TREASURE_YIELD(0),
-m_cache_SHALLOW_WATER_TERRAIN(0),
-m_cache_SLAVE_FOOD_CONSUMPTION_PER_POPULATION(0),
-m_cache_STANDARD_CALENDAR(0),
-m_cache_STANDARD_CLIMATE(0),
-m_cache_STANDARD_ERA(0),
-m_cache_STANDARD_GAMESPEED(0),
-m_cache_STANDARD_HANDICAP(0),
-m_cache_STANDARD_SEALEVEL(0),
-m_cache_STANDARD_TURNTIMER(0),
-m_cache_STARTING_DISTANCE_PERCENT(0),
-m_cache_START_YEAR(0),
-m_cache_STEAMWORKS_BUILDING(0),
-m_cache_STEAMWORKS_CLASS_TYPE(0),
-m_cache_TAX_INCREASE_CHANCE(0),
-m_cache_TAX_RATE_MAX_INCREASE(0),
-m_cache_TAX_TRADE_THRESHOLD(0),
-m_cache_TAX_TRADE_THRESHOLD_ATTITUDE_PERCENT(0),
-m_cache_TAX_TRADE_THRESHOLD_TAX_RATE_PERCENT(0),
-m_cache_TK_AI_RESEARCH_COST_MOD_PERCENT(0),
-m_cache_TK_HUMAN_RESEARCH_COST_MOD_PERCENT(0),
-m_cache_TK_IDEAS_CITY_VALUE(0),
-m_cache_TK_MAX_FORTS_PER_CITY(0),
-m_cache_TK_PIONEER_COAL_FURNACE_BONUS(0),
-m_cache_TK_PROLIFIC_INVENTOR_PROGRESS(0),
-m_cache_TK_PROLIFIC_INVENTOR_THRESHOLD(0),
-m_cache_TK_RESEARCH_PACT_IDEAS_THRESHOLD(0),
-m_cache_TK_RESEARCH_TRADE_VALUE(0),
-m_cache_TK_STEAMWORKS_MODIFIER(0),
-m_cache_TRADE_POINTS_FOR_ROUTE(0),
-m_cache_TRADE_ROUTE_SPICE(0),
-m_cache_TRADE_STIMULATES_RESEARCH_MIN_VALUE(0),
-m_cache_TRADE_STIMULATES_RESEARCH_PERCENT(0),
-m_cache_TRADING_POINTS_MOD_PERCENT(0),
-m_cache_TREASURE_UNITCLASS(0),
-m_cache_TREASURE_UNITS_ONLY_SELECT_COASTAL(0),
-m_cache_TURNS_TO_TRAIN(0),
-m_cache_UNITARMOR_LEATHER(0),
-m_cache_UNITARMOR_MAIL(0),
-m_cache_UNITARMOR_PLATE(0),
-m_cache_UNITARMOR_SCALE(0),
-m_cache_UNITARMOR_SHIELD(0),
-m_cache_UNITCLASS_PIONEER(0),
-m_cache_UNITTACTIC_PARRY(0),
-m_cache_UNITWEAPON_BLUNT(0),
-m_cache_UNIT_PRODUCTION_DECAY_PERCENT(0),
-m_cache_UNIT_PRODUCTION_DECAY_TIME(0),
-m_cache_UNIT_PRODUCTION_PERCENT(0),
-m_cache_UNIT_UPGRADE_COST_PER_PRODUCTION(0),
-m_cache_UNIT_VISIBILITY_RANGE(0),
-m_cache_USE_MEDIEVAL_CALENDER(0),
-m_cache_VASSAL_CIVILIZATION(0),
-m_cache_VASSAL_LEADER(0),
-m_cache_WARLORD_EXTRA_EXPERIENCE_PER_UNIT_PERCENT(0),
-m_cache_WAR_SUCCESS_ATTACKING(0),
-m_cache_WAR_SUCCESS_CITY_CAPTURING(0),
-m_cache_WAR_SUCCESS_DEFENDING(0),
-m_cache_WAR_SUCCESS_UNIT_CAPTURING(0),
-m_cache_WATER_IMPROVEMENT(0),
-m_cache_WATER_UNIT_FACING_DIRECTION(0),
-m_cache_WEEKS_PER_MONTHS(0),
-m_cache_WILD_ANIMAL_ATTACK_WEIGHT(0),
-m_cache_WILD_ANIMAL_LAND_BONUS_NATIVE_WEIGHT(0),
-m_cache_WILD_ANIMAL_LAND_FEATURE_NATIVE_WEIGHT(0),
-m_cache_WILD_ANIMAL_LAND_PATROL_BASE_WEIGHT(0),
-m_cache_WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT(0),
-m_cache_WILD_ANIMAL_LAND_UNIT_VARIATION_WEIGHT(0),
-m_cache_WILD_ANIMAL_SEA_BONUS_NATIVE_WEIGHT(0),
-m_cache_WILD_ANIMAL_SEA_FEATURE_NATIVE_WEIGHT(0),
-m_cache_WILD_ANIMAL_SEA_PATROL_BASE_WEIGHT(0),
-m_cache_WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT(0),
-m_cache_WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT(0),
-// cache XML - end - Nightinggale
-
 m_paHints(NULL),
 m_paMainMenus(NULL)
 {
@@ -1915,7 +1607,7 @@ int CvGlobals::getCostToResearch(CivicTypes eCivic)
         ///TK Update 1.1b
         CvCivicInfo& kCivicInfo = GC.getCivicInfo(eCivic);
         int iCivicResearchCost = kCivicInfo.getCostToResearch();
-        iCivicResearchCost = (iCivicResearchCost * GC.getCache_TK_HUMAN_RESEARCH_COST_MOD_PERCENT()) / 100;
+        iCivicResearchCost = (iCivicResearchCost * GC.getXMLval(XML_TK_HUMAN_RESEARCH_COST_MOD_PERCENT)) / 100;
         return iCivicResearchCost;
     }
     return 0;
@@ -2593,6 +2285,15 @@ FVariableSystem* CvGlobals::getDefinesVarSystem()
 
 void CvGlobals::cacheGlobals()
 {
+	// cache XML - start - Nightinggale
+	// init all variables into a value we hope not to use for real
+	// this way we can later assert if a variable is unset
+	for (int i=0; i <NUM_XML_CONSTANTS; i++)
+	{
+		this->m_aiDefineCache[i] = -31337;
+	}
+	// cache XML - end - Nightinggale
+
 	m_iMOVE_DENOMINATOR = getDefineINT("MOVE_DENOMINATOR");
 	m_iFOOD_CONSUMPTION_PER_POPULATION = getDefineINT("FOOD_CONSUMPTION_PER_POPULATION");
 	m_iMAX_HIT_POINTS = getDefineINT("MAX_HIT_POINTS");
@@ -2655,6 +2356,341 @@ void CvGlobals::cacheGlobals()
 	m_iUSE_ON_UNIT_CREATED_CALLBACK = getDefineINT("USE_ON_UNIT_CREATED_CALLBACK");
 	m_iUSE_ON_UNIT_LOST_CALLBACK = getDefineINT("USE_ON_UNIT_LOST_CALLBACK");
 }
+
+// cache XML - start - Nightinggale
+void CvGlobals::cacheXMLval()
+{
+	// EDU remake - start - Nightinggale
+	for (int i = 0; i < NUM_TEACH_LEVELS; i++)
+	{
+		this->m_aiEducationCost[i] = getDefineFLOAT(CvString::format("EDUCATION_COST_LEVEL_%d", i+1).c_str());
+	}
+	// EDU remake - start - Nightinggale
+	// discoverable yield detection - start - Nightinggale
+	// compile output cache for CvYieldInfo::isMustBeDiscovered()
+	for (int i = 0; i < NUM_YIELD_TYPES; i++)
+	{
+		this->getYieldInfo((YieldTypes)i).setMustBeDiscovered();
+	}
+	// discoverable yield detection - end - Nightinggale
+
+	// BasicInfos\CIV4UnitCombatInfos.xml
+	this->m_aiDefineCache[XML_UNITARMOR_LEATHER                        ] = this->getDefineINT("UNITARMOR_LEATHER");
+	this->m_aiDefineCache[XML_UNITARMOR_SCALE                          ] = this->getDefineINT("UNITARMOR_SCALE");
+	this->m_aiDefineCache[XML_UNITARMOR_MAIL                           ] = this->getDefineINT("UNITARMOR_MAIL");
+
+	// Units\CIV4PromotionInfos.xml
+	this->m_aiDefineCache[XML_PROMOTION_BUILD_HOME                     ] = this->getDefineINT("PROMOTION_BUILD_HOME");
+
+	// GlobalDefineALT.xml
+	this->m_aiDefineCache[XML_AI_ADVANCED_TECH_START                   ] = this->getDefineINT("AI_ADVANCED_TECH_START");
+	this->m_aiDefineCache[XML_AI_CHEAT_AUTO_BUY                        ] = this->getDefineINT("AI_CHEAT_AUTO_BUY");
+	this->m_aiDefineCache[XML_AI_CHEAT_NEEDED_DEFENDERS                ] = this->getDefineINT("AI_CHEAT_NEEDED_DEFENDERS");
+	this->m_aiDefineCache[XML_AI_CHEAT_SPICE                           ] = this->getDefineINT("AI_CHEAT_SPICE");
+	this->m_aiDefineCache[XML_AI_CHEAT_SPICE_BUY                       ] = this->getDefineINT("AI_CHEAT_SPICE_BUY");
+	this->m_aiDefineCache[XML_AI_CHEAT_SPICE_MULTIPLE                  ] = this->getDefineINT("AI_CHEAT_SPICE_MULTIPLE");
+	this->m_aiDefineCache[XML_AI_FAVORED_TERRAIN_MOD                   ] = this->getDefineINT("AI_FAVORED_TERRAIN_MOD");
+	this->m_aiDefineCache[XML_AI_HANDICAP_CASTLE                       ] = this->getDefineINT("AI_HANDICAP_CASTLE");
+	this->m_aiDefineCache[XML_AI_HANDICAP_MOTTE                        ] = this->getDefineINT("AI_HANDICAP_MOTTE");
+	this->m_aiDefineCache[XML_AI_MILITARY_PROFESSION_HACK              ] = this->getDefineINT("AI_MILITARY_PROFESSION_HACK");
+	this->m_aiDefineCache[XML_AI_WAREHOUSE_MOD                         ] = this->getDefineINT("AI_WAREHOUSE_MOD");
+	this->m_aiDefineCache[XML_ALLIANCE_CULTURE_PERCENT_DENIAL          ] = this->getDefineINT("ALLIANCE_CULTURE_PERCENT_DENIAL");
+	this->m_aiDefineCache[XML_ALLIANCE_PACT_PEACE_DENIAL               ] = this->getDefineINT("ALLIANCE_PACT_PEACE_DENIAL");
+	this->m_aiDefineCache[XML_ANIMAL_BANDITS_GUARD_GOODY_TIMER         ] = this->getDefineINT("ANIMAL_BANDITS_GUARD_GOODY_TIMER");
+	this->m_aiDefineCache[XML_AUTORESEARCH_ALL                         ] = this->getDefineINT("AUTORESEARCH_ALL");
+	this->m_aiDefineCache[XML_BANQUET_YIELD_AMOUNT                     ] = this->getDefineINT("BANQUET_YIELD_AMOUNT");
+	this->m_aiDefineCache[XML_BARBARIAN_CIVILIZATION                   ] = this->getDefineINT("BARBARIAN_CIVILIZATION");
+	this->m_aiDefineCache[XML_BARBARIAN_LEADER                         ] = this->getDefineINT("BARBARIAN_LEADER");
+	this->m_aiDefineCache[XML_BASE_CITY_GROWTH_THRESHOLD               ] = this->getDefineINT("BASE_CITY_GROWTH_THRESHOLD");
+	this->m_aiDefineCache[XML_BASE_CITY_LUXURY_FOOD_THRESHOLD_MOD      ] = this->getDefineINT("BASE_CITY_LUXURY_FOOD_THRESHOLD_MOD");
+	this->m_aiDefineCache[XML_BUILDINGCLASS_TRAVEL_TO_FAIR             ] = this->getDefineINT("BUILDINGCLASS_TRAVEL_TO_FAIR");
+	this->m_aiDefineCache[XML_CALENDER_YEAR_FIRST_CHANGE_TURN          ] = this->getDefineINT("CALENDER_YEAR_FIRST_CHANGE_TURN");
+	this->m_aiDefineCache[XML_CALENDER_YEAR_FIRST_MULTIPLIER           ] = this->getDefineINT("CALENDER_YEAR_FIRST_MULTIPLIER");
+	this->m_aiDefineCache[XML_CALENDER_YEAR_SECOND_CHANGE_TURN         ] = this->getDefineINT("CALENDER_YEAR_SECOND_CHANGE_TURN");
+	this->m_aiDefineCache[XML_CALENDER_YEAR_SECOND_MULTIPLIER          ] = this->getDefineINT("CALENDER_YEAR_SECOND_MULTIPLIER");
+	this->m_aiDefineCache[XML_CALENDER_YEAR_THIRD_MULTIPLIER           ] = this->getDefineINT("CALENDER_YEAR_THIRD_MULTIPLIER");
+	this->m_aiDefineCache[XML_CAPTURED_CARGO_RANDOM_AMOUNT             ] = this->getDefineINT("CAPTURED_CARGO_RANDOM_AMOUNT");
+	this->m_aiDefineCache[XML_CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT       ] = this->getDefineINT("CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT");
+	this->m_aiDefineCache[XML_CASTLES_TO_VILLAGES_RATIO                ] = this->getDefineINT("CASTLES_TO_VILLAGES_RATIO");
+	this->m_aiDefineCache[XML_CHANCE_TO_CAPTURE_CRIMINALS              ] = this->getDefineINT("CHANCE_TO_CAPTURE_CRIMINALS");
+	this->m_aiDefineCache[XML_CHEAT_TRAVEL_ALL                         ] = this->getDefineINT("CHEAT_TRAVEL_ALL");
+	this->m_aiDefineCache[XML_CITY_PILGRAM_RANDOM                      ] = this->getDefineINT("CITY_PILGRAM_RANDOM");
+	this->m_aiDefineCache[XML_CIVICOPTION_INVENTIONS                   ] = this->getDefineINT("CIVICOPTION_INVENTIONS");
+	this->m_aiDefineCache[XML_COLONIAL_FORCED_PEACE_TURNS              ] = this->getDefineINT("COLONIAL_FORCED_PEACE_TURNS");
+	this->m_aiDefineCache[XML_CONTACT_YIELD_GIFT_ENCOMEIDA_TIMER       ] = this->getDefineINT("CONTACT_YIELD_GIFT_ENCOMEIDA_TIMER");
+	this->m_aiDefineCache[XML_CONTACT_YIELD_GIFT_TECH                  ] = this->getDefineINT("CONTACT_YIELD_GIFT_TECH");
+	this->m_aiDefineCache[XML_DEAL_TRADE_RELATIONS_POINTS              ] = this->getDefineINT("DEAL_TRADE_RELATIONS_POINTS");
+	this->m_aiDefineCache[XML_DEFAULT_CENSURETYPE_ANATHEMA             ] = this->getDefineINT("DEFAULT_CENSURETYPE_ANATHEMA");
+	this->m_aiDefineCache[XML_DEFAULT_CENSURETYPE_ANATHEMA_COUNT       ] = this->getDefineINT("DEFAULT_CENSURETYPE_ANATHEMA_COUNT");
+	this->m_aiDefineCache[XML_DEFAULT_CENSURETYPE_EXCOMMUNICATION      ] = this->getDefineINT("DEFAULT_CENSURETYPE_EXCOMMUNICATION");
+	this->m_aiDefineCache[XML_DEFAULT_CENSURETYPE_EXCOMMUNICATION_COUNT] = this->getDefineINT("DEFAULT_CENSURETYPE_EXCOMMUNICATION_COUNT");
+	this->m_aiDefineCache[XML_DEFAULT_CENSURETYPE_INTERDICT            ] = this->getDefineINT("DEFAULT_CENSURETYPE_INTERDICT");
+	this->m_aiDefineCache[XML_DEFAULT_CENSURETYPE_INTERDICT_COUNT      ] = this->getDefineINT("DEFAULT_CENSURETYPE_INTERDICT_COUNT");
+	this->m_aiDefineCache[XML_DEFAULT_COMBAT_FOR_TRAINING              ] = this->getDefineINT("DEFAULT_COMBAT_FOR_TRAINING");
+	this->m_aiDefineCache[XML_DEFAULT_DAWN_POPULATION_UNIT             ] = this->getDefineINT("DEFAULT_DAWN_POPULATION_UNIT");
+	this->m_aiDefineCache[XML_DEFAULT_FUEDALISM_TECH                   ] = this->getDefineINT("DEFAULT_FUEDALISM_TECH");
+	this->m_aiDefineCache[XML_DEFAULT_GRAIN_GROWTH_UNIT_CLASS          ] = this->getDefineINT("DEFAULT_GRAIN_GROWTH_UNIT_CLASS");
+	this->m_aiDefineCache[XML_DEFAULT_HUNTSMAN_PROFESSION              ] = this->getDefineINT("DEFAULT_HUNTSMAN_PROFESSION");
+	this->m_aiDefineCache[XML_DEFAULT_INVENTOR_CLASS                   ] = this->getDefineINT("DEFAULT_INVENTOR_CLASS");
+	this->m_aiDefineCache[XML_DEFAULT_KNIGHT_PROFESSION_PROMOTION      ] = this->getDefineINT("DEFAULT_KNIGHT_PROFESSION_PROMOTION");
+	this->m_aiDefineCache[XML_DEFAULT_KNIGHT_PROMOTION                 ] = this->getDefineINT("DEFAULT_KNIGHT_PROMOTION");
+	this->m_aiDefineCache[XML_DEFAULT_MARAUDER_CLASS                   ] = this->getDefineINT("DEFAULT_MARAUDER_CLASS");
+	this->m_aiDefineCache[XML_DEFAULT_MARUADER_SEA_PROFESSION          ] = this->getDefineINT("DEFAULT_MARUADER_SEA_PROFESSION");
+	this->m_aiDefineCache[XML_DEFAULT_NATIVE_TRADE_PROFESSION          ] = this->getDefineINT("DEFAULT_NATIVE_TRADE_PROFESSION");
+	this->m_aiDefineCache[XML_DEFAULT_NOBLEMAN_CLASS                   ] = this->getDefineINT("DEFAULT_NOBLEMAN_CLASS");
+	this->m_aiDefineCache[XML_DEFAULT_NOBLE_GROWTH_UNIT_CLASS          ] = this->getDefineINT("DEFAULT_NOBLE_GROWTH_UNIT_CLASS");
+	this->m_aiDefineCache[XML_DEFAULT_PILGRAM_CLASS                    ] = this->getDefineINT("DEFAULT_PILGRAM_CLASS");
+	this->m_aiDefineCache[XML_DEFAULT_SHRINE_CLASS                     ] = this->getDefineINT("DEFAULT_SHRINE_CLASS");
+	this->m_aiDefineCache[XML_DEFAULT_SLAVE_CLASS                      ] = this->getDefineINT("DEFAULT_SLAVE_CLASS");
+	this->m_aiDefineCache[XML_DEFAULT_SPECIALBUILDING_COURTHOUSE       ] = this->getDefineINT("DEFAULT_SPECIALBUILDING_COURTHOUSE");
+	this->m_aiDefineCache[XML_DEFAULT_TEST_DEFINE                      ] = this->getDefineINT("DEFAULT_TEST_DEFINE");
+	this->m_aiDefineCache[XML_DEFAULT_TRAINED_PROMOTION                ] = this->getDefineINT("DEFAULT_TRAINED_PROMOTION");
+	this->m_aiDefineCache[XML_DEFAULT_TREASURE_YIELD                   ] = this->getDefineINT("DEFAULT_TREASURE_YIELD");
+	this->m_aiDefineCache[XML_DEFAULT_UNTRAINED_PROMOTION              ] = this->getDefineINT("DEFAULT_UNTRAINED_PROMOTION");
+	this->m_aiDefineCache[XML_DEFAULT_VIKING_ERA                       ] = this->getDefineINT("DEFAULT_VIKING_ERA");
+	this->m_aiDefineCache[XML_DEFAULT_YIELD_ARMOR_TYPE                 ] = this->getDefineINT("DEFAULT_YIELD_ARMOR_TYPE");
+	this->m_aiDefineCache[XML_DOCKS_NEXT_UNITS                         ] = this->getDefineINT("DOCKS_NEXT_UNITS");
+	this->m_aiDefineCache[XML_EDUCATION_THRESHOLD                      ] = this->getDefineINT("EDUCATION_THRESHOLD");
+	this->m_aiDefineCache[XML_EDUCATION_THRESHOLD_INCREASE             ] = this->getDefineINT("EDUCATION_THRESHOLD_INCREASE");
+	this->m_aiDefineCache[XML_ENABLE_MAP_TRADING                       ] = this->getDefineINT("ENABLE_MAP_TRADING");
+	this->m_aiDefineCache[XML_ESTABLISH_TRADEPOST_COST                 ] = this->getDefineINT("ESTABLISH_TRADEPOST_COST");
+	this->m_aiDefineCache[XML_EUROPE_EAST                              ] = this->getDefineINT("EUROPE_EAST");
+	this->m_aiDefineCache[XML_FATHER_POINT_REAL_TRADE                  ] = this->getDefineINT("FATHER_POINT_REAL_TRADE");
+	this->m_aiDefineCache[XML_FOOD_CONSUMPTION_PER_POPULATION          ] = this->getDefineINT("FOOD_CONSUMPTION_PER_POPULATION");
+	this->m_aiDefineCache[XML_FOUND_MONASTERY_NUMBER                   ] = this->getDefineINT("XML_FOUND_MONASTERY_NUMBER");
+	this->m_aiDefineCache[XML_FOUND_MOTTE_AND_BAILEY_NUMBER            ] = this->getDefineINT("FOUND_MOTTE_AND_BAILEY_NUMBER");
+	this->m_aiDefineCache[XML_FOUND_OUTPOST_NUMBER                     ] = this->getDefineINT("FOUND_OUTPOST_NUMBER");
+	this->m_aiDefineCache[XML_FOUND_VILLAGE_NUMBER                     ] = this->getDefineINT("FOUND_VILLAGE_NUMBER");
+	this->m_aiDefineCache[XML_FREE_PEASANT_CIVIC                       ] = this->getDefineINT("FREE_PEASANT_CIVIC");
+	this->m_aiDefineCache[XML_HIRE_GUARD_COST                          ] = this->getDefineINT("HIRE_GUARD_COST");
+	this->m_aiDefineCache[XML_HIRE_GUARD_PROMOTION                     ] = this->getDefineINT("HIRE_GUARD_PROMOTION");
+	this->m_aiDefineCache[XML_IMMIGRATION_MAX_CITY_DISTANCE            ] = this->getDefineINT("IMMIGRATION_MAX_CITY_DISTANCE");
+	this->m_aiDefineCache[XML_IMMIGRATION_THRESHOLD                    ] = this->getDefineINT("IMMIGRATION_THRESHOLD");
+	this->m_aiDefineCache[XML_IMMIGRATION_THRESHOLD_INCREASE           ] = this->getDefineINT("IMMIGRATION_THRESHOLD_INCREASE");
+	this->m_aiDefineCache[XML_IMMIGRATION_TRAVEL_MOD                   ] = this->getDefineINT("IMMIGRATION_TRAVEL_MOD");
+	this->m_aiDefineCache[XML_INDUSTRIAL_VICTORY_SINGLE_YIELD          ] = this->getDefineINT("INDUSTRIAL_VICTORY_SINGLE_YIELD");
+	this->m_aiDefineCache[XML_JUNGLE_FEATURE                           ] = this->getDefineINT("JUNGLE_FEATURE");
+	this->m_aiDefineCache[XML_KNIGHT_RANSOM_MOD                        ] = this->getDefineINT("KNIGHT_RANSOM_MOD");
+	this->m_aiDefineCache[XML_MARAUDERS_DAYSOUT_RANDOM                 ] = this->getDefineINT("MARAUDERS_DAYSOUT_RANDOM");
+	this->m_aiDefineCache[XML_MARAUDERS_TOWER_RANGE                    ] = this->getDefineINT("MARAUDERS_TOWER_RANGE");
+	this->m_aiDefineCache[XML_MARAUDER_CRUMBS_EVENT                    ] = this->getDefineINT("MARAUDER_CRUMBS_EVENT");
+	this->m_aiDefineCache[XML_MARAUDER_EVENT_DEFAULT_TURNS             ] = this->getDefineINT("MARAUDER_EVENT_DEFAULT_TURNS");
+	this->m_aiDefineCache[XML_MAX_CITY_POPULATION_COMMUNE              ] = this->getDefineINT("MAX_CITY_POPULATION_COMMUNE");
+	this->m_aiDefineCache[XML_MAX_CITY_POPULATION_VILLAGE              ] = this->getDefineINT("MAX_CITY_POPULATION_VILLAGE");
+	this->m_aiDefineCache[XML_MAX_INSULT_MODIFIER                      ] = this->getDefineINT("MAX_INSULT_MODIFIER");
+	this->m_aiDefineCache[XML_MAX_LEVEL_FROM_ANIMAL_XP                 ] = this->getDefineINT("MAX_LEVEL_FROM_ANIMAL_XP");
+	this->m_aiDefineCache[XML_MAX_MARAUDERS                            ] = this->getDefineINT("MAX_MARAUDERS");
+	this->m_aiDefineCache[XML_MAX_TRAINED_EXPERIENCE                   ] = this->getDefineINT("MAX_TRAINED_EXPERIENCE");
+	this->m_aiDefineCache[XML_MEDIEVAL_CENSURE                         ] = this->getDefineINT("MEDIEVAL_CENSURE");
+	this->m_aiDefineCache[XML_MEDIEVAL_TRADE_TECH                      ] = this->getDefineINT("MEDIEVAL_TRADE_TECH");
+	this->m_aiDefineCache[XML_MONASTERIES_TO_VILLAGES_RATIO            ] = this->getDefineINT("MONASTERIES_TO_VILLAGES_RATIO");
+	this->m_aiDefineCache[XML_NATIVE_AUTO_SELL_PERCENT                 ] = this->getDefineINT("NATIVE_AUTO_SELL_PERCENT");
+	this->m_aiDefineCache[XML_NATIVE_HORSES_FOR_SALE                   ] = this->getDefineINT("NATIVE_HORSES_FOR_SALE");
+	this->m_aiDefineCache[XML_NATIVE_HORSES_FOR_SALE_PERCENT           ] = this->getDefineINT("NATIVE_HORSES_FOR_SALE_PERCENT");
+	this->m_aiDefineCache[XML_NATIVE_TECH                              ] = this->getDefineINT("NATIVE_TECH");
+	this->m_aiDefineCache[XML_NATIVE_TRADING_TRADEPOST                 ] = this->getDefineINT("NATIVE_TRADING_TRADEPOST");
+	this->m_aiDefineCache[XML_NOBLE_FIELD_LABOR_PENALTY                ] = this->getDefineINT("NOBLE_FIELD_LABOR_PENALTY");
+	this->m_aiDefineCache[XML_NO_CITY_SHORTAGE_MESSAGES                ] = this->getDefineINT("NO_CITY_SHORTAGE_MESSAGES");
+	this->m_aiDefineCache[XML_NO_MARKED_SALES_CAP                      ] = this->getDefineINT("NO_MARKED_SALES_CAP");
+	this->m_aiDefineCache[XML_NO_STARTING_PLOTS_IN_JUNGLE              ] = this->getDefineINT("NO_STARTING_PLOTS_IN_JUNGLE");
+	this->m_aiDefineCache[XML_PERCENT_TAX_ON_AUTOSELL_GOODS            ] = this->getDefineINT("PERCENT_TAX_ON_AUTOSELL_GOODS");
+	this->m_aiDefineCache[XML_PILGRAM_OFFER_GOLD                       ] = this->getDefineINT("PILGRAM_OFFER_GOLD");
+	this->m_aiDefineCache[XML_PILGRAM_OFFER_GOLD_DISTANCE_MOD          ] = this->getDefineINT("PILGRAM_OFFER_GOLD_DISTANCE_MOD");
+	this->m_aiDefineCache[XML_PROFESSION_INVENTOR                      ] = this->getDefineINT("PROFESSION_INVENTOR");
+	this->m_aiDefineCache[XML_PROLIFIC_INVENTOR_THRESHOLD_INCREASE     ] = this->getDefineINT("PROLIFIC_INVENTOR_THRESHOLD_INCREASE");
+	//this->m_aiDefineCache[XML_PROMOTION_BUILD_HOME                     ] = this->getDefineINT("PROMOTION_BUILD_HOME");
+	this->m_aiDefineCache[XML_RANDOM_TURNS_LOST_AT_SEA                 ] = this->getDefineINT("RANDOM_TURNS_LOST_AT_SEA");
+	this->m_aiDefineCache[XML_SLAVE_FOOD_CONSUMPTION_PER_POPULATION    ] = this->getDefineINT("SLAVE_FOOD_CONSUMPTION_PER_POPULATION");
+	this->m_aiDefineCache[XML_START_YEAR                               ] = this->getDefineINT("START_YEAR");
+	this->m_aiDefineCache[XML_TK_AI_RESEARCH_COST_MOD_PERCENT          ] = this->getDefineINT("TK_AI_RESEARCH_COST_MOD_PERCENT");
+	this->m_aiDefineCache[XML_TK_HUMAN_RESEARCH_COST_MOD_PERCENT       ] = this->getDefineINT("TK_HUMAN_RESEARCH_COST_MOD_PERCENT");
+	this->m_aiDefineCache[XML_TK_IDEAS_CITY_VALUE                      ] = this->getDefineINT("TK_IDEAS_CITY_VALUE");
+	this->m_aiDefineCache[XML_TK_PROLIFIC_INVENTOR_PROGRESS            ] = this->getDefineINT("TK_PROLIFIC_INVENTOR_PROGRESS");
+	this->m_aiDefineCache[XML_TK_PROLIFIC_INVENTOR_THRESHOLD           ] = this->getDefineINT("TK_PROLIFIC_INVENTOR_THRESHOLD");
+	this->m_aiDefineCache[XML_TK_RESEARCH_PACT_IDEAS_THRESHOLD         ] = this->getDefineINT("TK_RESEARCH_PACT_IDEAS_THRESHOLD");
+	this->m_aiDefineCache[XML_TK_RESEARCH_TRADE_VALUE                  ] = this->getDefineINT("TK_RESEARCH_TRADE_VALUE");
+	this->m_aiDefineCache[XML_TRADE_POINTS_FOR_ROUTE                   ] = this->getDefineINT("TRADE_POINTS_FOR_ROUTE");
+	this->m_aiDefineCache[XML_TRADE_ROUTE_SPICE                        ] = this->getDefineINT("TRADE_ROUTE_SPICE");
+	this->m_aiDefineCache[XML_TRADE_STIMULATES_RESEARCH_MIN_VALUE      ] = this->getDefineINT("TRADE_STIMULATES_RESEARCH_MIN_VALUE");
+	this->m_aiDefineCache[XML_TRADE_STIMULATES_RESEARCH_PERCENT        ] = this->getDefineINT("TRADE_STIMULATES_RESEARCH_PERCENT");
+	this->m_aiDefineCache[XML_TRADING_POINTS_MOD_PERCENT               ] = this->getDefineINT("TRADING_POINTS_MOD_PERCENT");
+	this->m_aiDefineCache[XML_TREASURE_UNITS_ONLY_SELECT_COASTAL       ] = this->getDefineINT("TREASURE_UNITS_ONLY_SELECT_COASTAL");
+	this->m_aiDefineCache[XML_TURNS_TO_TRAIN                           ] = this->getDefineINT("TURNS_TO_TRAIN");
+	this->m_aiDefineCache[XML_UNITARMOR_PLATE                          ] = this->getDefineINT("UNITARMOR_PLATE");
+	this->m_aiDefineCache[XML_UNITARMOR_SHIELD                         ] = this->getDefineINT("UNITARMOR_SHIELD");
+	this->m_aiDefineCache[XML_UNITTACTIC_PARRY                         ] = this->getDefineINT("UNITTACTIC_PARRY");
+	this->m_aiDefineCache[XML_UNITWEAPON_BLUNT                         ] = this->getDefineINT("UNITWEAPON_BLUNT");
+	this->m_aiDefineCache[XML_USE_MEDIEVAL_CALENDER                    ] = this->getDefineINT("USE_MEDIEVAL_CALENDER");
+	this->m_aiDefineCache[XML_VASSAL_CIVILIZATION                      ] = this->getDefineINT("VASSAL_CIVILIZATION");
+	this->m_aiDefineCache[XML_VASSAL_LEADER                            ] = this->getDefineINT("VASSAL_LEADER");
+	this->m_aiDefineCache[XML_WEEKS_PER_MONTHS                         ] = this->getDefineINT("WEEKS_PER_MONTHS");
+	this->m_aiDefineCache[XML_WILD_ANIMAL_LAND_BONUS_NATIVE_WEIGHT     ] = this->getDefineINT("WILD_ANIMAL_LAND_BONUS_NATIVE_WEIGHT");
+	this->m_aiDefineCache[XML_WILD_ANIMAL_LAND_FEATURE_NATIVE_WEIGHT   ] = this->getDefineINT("WILD_ANIMAL_LAND_FEATURE_NATIVE_WEIGHT");
+	this->m_aiDefineCache[XML_WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT   ] = this->getDefineINT("WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT");
+	this->m_aiDefineCache[XML_WILD_ANIMAL_LAND_UNIT_VARIATION_WEIGHT   ] = this->getDefineINT("WILD_ANIMAL_LAND_UNIT_VARIATION_WEIGHT");
+	this->m_aiDefineCache[XML_WILD_ANIMAL_SEA_BONUS_NATIVE_WEIGHT      ] = this->getDefineINT("WILD_ANIMAL_SEA_BONUS_NATIVE_WEIGHT");
+	this->m_aiDefineCache[XML_WILD_ANIMAL_SEA_FEATURE_NATIVE_WEIGHT    ] = this->getDefineINT("WILD_ANIMAL_SEA_FEATURE_NATIVE_WEIGHT");
+	this->m_aiDefineCache[XML_WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT    ] = this->getDefineINT("WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT");
+	this->m_aiDefineCache[XML_WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT    ] = this->getDefineINT("WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT");
+
+	// vanilla GlobalDefines.xml
+	this->m_aiDefineCache[XML_ADVANCED_START_ALLOW_UNITS_OUTSIDE_CITIES] = this->getDefineINT("ADVANCED_START_ALLOW_UNITS_OUTSIDE_CITIES");
+	this->m_aiDefineCache[XML_ADVANCED_START_CITY_COST                 ] = this->getDefineINT("ADVANCED_START_CITY_COST");
+	this->m_aiDefineCache[XML_ADVANCED_START_CITY_COST_INCREASE        ] = this->getDefineINT("ADVANCED_START_CITY_COST_INCREASE");
+	this->m_aiDefineCache[XML_ADVANCED_START_CITY_PLACEMENT_MAX_RANGE  ] = this->getDefineINT("ADVANCED_START_CITY_PLACEMENT_MAX_RANGE");
+	this->m_aiDefineCache[XML_ADVANCED_START_CULTURE_COST              ] = this->getDefineINT("ADVANCED_START_CULTURE_COST");
+	this->m_aiDefineCache[XML_ADVANCED_START_MAX_UNITS_PER_CITY        ] = this->getDefineINT("ADVANCED_START_MAX_UNITS_PER_CITY");
+	this->m_aiDefineCache[XML_ADVANCED_START_POPULATION_COST           ] = this->getDefineINT("ADVANCED_START_POPULATION_COST");
+	this->m_aiDefineCache[XML_ADVANCED_START_POPULATION_COST_INCREASE  ] = this->getDefineINT("ADVANCED_START_POPULATION_COST_INCREASE");
+	this->m_aiDefineCache[XML_ADVANCED_START_SIGHT_RANGE               ] = this->getDefineINT("ADVANCED_START_SIGHT_RANGE");
+	this->m_aiDefineCache[XML_ADVANCED_START_VISIBILITY_COST           ] = this->getDefineINT("ADVANCED_START_VISIBILITY_COST");
+	this->m_aiDefineCache[XML_ADVANCED_START_VISIBILITY_COST_INCREASE  ] = this->getDefineINT("ADVANCED_START_VISIBILITY_COST_INCREASE");
+	this->m_aiDefineCache[XML_AI_CAN_DISBAND_UNITS                     ] = this->getDefineINT("AI_CAN_DISBAND_UNITS");
+	this->m_aiDefineCache[XML_AMPHIB_ATTACK_MODIFIER                   ] = this->getDefineINT("AMPHIB_ATTACK_MODIFIER");
+	this->m_aiDefineCache[XML_BASE_OCCUPATION_TURNS                    ] = this->getDefineINT("BASE_OCCUPATION_TURNS");
+	this->m_aiDefineCache[XML_BASE_UNIT_UPGRADE_COST                   ] = this->getDefineINT("BASE_UNIT_UPGRADE_COST");
+	this->m_aiDefineCache[XML_BUILDING_PRODUCTION_DECAY_PERCENT        ] = this->getDefineINT("BUILDING_PRODUCTION_DECAY_PERCENT");
+	this->m_aiDefineCache[XML_BUILDING_PRODUCTION_DECAY_TIME           ] = this->getDefineINT("BUILDING_PRODUCTION_DECAY_TIME");
+	this->m_aiDefineCache[XML_BUILDING_PRODUCTION_PERCENT              ] = this->getDefineINT("BUILDING_PRODUCTION_PERCENT");
+	this->m_aiDefineCache[XML_BUY_PLOT_BASE_CULTURE_COST               ] = this->getDefineINT("BUY_PLOT_BASE_CULTURE_COST");
+	this->m_aiDefineCache[XML_BUY_PLOT_CULTURE_RANGE                   ] = this->getDefineINT("BUY_PLOT_CULTURE_RANGE");
+	this->m_aiDefineCache[XML_BUY_PLOT_MIN_CULTURE                     ] = this->getDefineINT("BUY_PLOT_MIN_CULTURE");
+	this->m_aiDefineCache[XML_BUY_PLOT_OWNED_COST_MODIFIER             ] = this->getDefineINT("BUY_PLOT_OWNED_COST_MODIFIER");
+	this->m_aiDefineCache[XML_BUY_PLOT_SELLER_INCOME_PERCENT           ] = this->getDefineINT("BUY_PLOT_SELLER_INCOME_PERCENT");
+	this->m_aiDefineCache[XML_CAPITAL_BUILDINGCLASS                    ] = this->getDefineINT("CAPITAL_BUILDINGCLASS");
+	this->m_aiDefineCache[XML_CITY_DEFENSE_DAMAGE_HEAL_RATE            ] = this->getDefineINT("CITY_DEFENSE_DAMAGE_HEAL_RATE");
+	this->m_aiDefineCache[XML_CITY_FREE_CULTURE_GROWTH_FACTOR          ] = this->getDefineINT("CITY_FREE_CULTURE_GROWTH_FACTOR");
+	this->m_aiDefineCache[XML_CITY_GROWTH_MULTIPLIER                   ] = this->getDefineINT("CITY_GROWTH_MULTIPLIER");
+	this->m_aiDefineCache[XML_CITY_HEAL_RATE                           ] = this->getDefineINT("CITY_HEAL_RATE");
+	this->m_aiDefineCache[XML_CITY_SCREEN_FOG_ENABLED                  ] = this->getDefineINT("CITY_SCREEN_FOG_ENABLED");
+	this->m_aiDefineCache[XML_CITY_YIELD_CAPACITY                      ] = this->getDefineINT("CITY_YIELD_CAPACITY");
+	this->m_aiDefineCache[XML_CITY_YIELD_DECAY_PERCENT                 ] = this->getDefineINT("CITY_YIELD_DECAY_PERCENT");
+	this->m_aiDefineCache[XML_COMBAT_DAMAGE                            ] = this->getDefineINT("COMBAT_DAMAGE");
+	this->m_aiDefineCache[XML_COMBAT_DIE_SIDES                         ] = this->getDefineINT("COMBAT_DIE_SIDES");
+	this->m_aiDefineCache[XML_COMBAT_EXPERIENCE_IN_BORDERS_PERCENT     ] = this->getDefineINT("COMBAT_EXPERIENCE_IN_BORDERS_PERCENT");
+	this->m_aiDefineCache[XML_CONSUME_EQUIPMENT_ON_FOUND               ] = this->getDefineINT("CONSUME_EQUIPMENT_ON_FOUND");
+	this->m_aiDefineCache[XML_DEEP_WATER_TERRAIN                       ] = this->getDefineINT("DEEP_WATER_TERRAIN");
+	this->m_aiDefineCache[XML_DEFAULT_POPULATION_UNIT                  ] = this->getDefineINT("DEFAULT_POPULATION_UNIT");
+	this->m_aiDefineCache[XML_DIFFERENT_TEAM_FEATURE_PRODUCTION_PERCENT] = this->getDefineINT("DIFFERENT_TEAM_FEATURE_PRODUCTION_PERCENT");
+	this->m_aiDefineCache[XML_DIPLOMACY_VALUE_REMAINDER                ] = this->getDefineINT("DIPLOMACY_VALUE_REMAINDER");
+	this->m_aiDefineCache[XML_EDUCATION_BASE_TUITION                   ] = this->getDefineINT("EDUCATION_BASE_TUITION");
+	this->m_aiDefineCache[XML_ENABLE_ALLIANCE_TRADING                  ] = this->getDefineINT("ENABLE_ALLIANCE_TRADING");
+	this->m_aiDefineCache[XML_ENABLE_DEFENSIVE_PACT_TRADING            ] = this->getDefineINT("ENABLE_DEFENSIVE_PACT_TRADING");
+	this->m_aiDefineCache[XML_ENABLE_GOLD_TRADING                      ] = this->getDefineINT("ENABLE_GOLD_TRADING");
+	this->m_aiDefineCache[XML_ENABLE_OPEN_BORDERS                      ] = this->getDefineINT("ENABLE_OPEN_BORDERS");
+	this->m_aiDefineCache[XML_END_GAME_DISPLAY_WARNING                 ] = this->getDefineINT("END_GAME_DISPLAY_WARNING");
+	this->m_aiDefineCache[XML_ENEMY_HEAL_RATE                          ] = this->getDefineINT("ENEMY_HEAL_RATE");
+	this->m_aiDefineCache[XML_EUROPE_MARKET_CORRELATION_PERCENT        ] = this->getDefineINT("EUROPE_MARKET_CORRELATION_PERCENT");
+	this->m_aiDefineCache[XML_EVENT_PROBABILITY_ROLL_SIDES             ] = this->getDefineINT("EVENT_PROBABILITY_ROLL_SIDES");
+	this->m_aiDefineCache[XML_EXPERIENCE_FROM_WITHDRAWL                ] = this->getDefineINT("EXPERIENCE_FROM_WITHDRAWL");
+	this->m_aiDefineCache[XML_EXTRA_YIELD                              ] = this->getDefineINT("EXTRA_YIELD");
+	this->m_aiDefineCache[XML_FATHER_COST_EXTRA_TEAM_MEMBER_MODIFIER   ] = this->getDefineINT("FATHER_COST_EXTRA_TEAM_MEMBER_MODIFIER");
+	this->m_aiDefineCache[XML_FEATURE_GROWTH_MODIFIER                  ] = this->getDefineINT("FEATURE_GROWTH_MODIFIER");
+	this->m_aiDefineCache[XML_FEATURE_PRODUCTION_YIELD_MAX_DISTANCE    ] = this->getDefineINT("FEATURE_PRODUCTION_YIELD_MAX_DISTANCE");
+	this->m_aiDefineCache[XML_FIRST_EVENT_DELAY_TURNS                  ] = this->getDefineINT("FIRST_EVENT_DELAY_TURNS");
+	this->m_aiDefineCache[XML_FORTIFY_MODIFIER_PER_TURN                ] = this->getDefineINT("FORTIFY_MODIFIER_PER_TURN");
+	this->m_aiDefineCache[XML_FREE_CITY_ADJACENT_CULTURE               ] = this->getDefineINT("FREE_CITY_ADJACENT_CULTURE");
+	this->m_aiDefineCache[XML_FREE_CITY_CULTURE                        ] = this->getDefineINT("FREE_CITY_CULTURE");
+	this->m_aiDefineCache[XML_FRIENDLY_HEAL_RATE                       ] = this->getDefineINT("FRIENDLY_HEAL_RATE");
+	this->m_aiDefineCache[XML_GREAT_GENERALS_THRESHOLD                 ] = this->getDefineINT("GREAT_GENERALS_THRESHOLD");
+	this->m_aiDefineCache[XML_GREAT_GENERALS_THRESHOLD_INCREASE        ] = this->getDefineINT("GREAT_GENERALS_THRESHOLD_INCREASE");
+	this->m_aiDefineCache[XML_GREAT_GENERALS_THRESHOLD_INCREASE_TEAM   ] = this->getDefineINT("GREAT_GENERALS_THRESHOLD_INCREASE_TEAM");
+	this->m_aiDefineCache[XML_HILLS_EXTRA_DEFENSE                      ] = this->getDefineINT("HILLS_EXTRA_DEFENSE");
+	this->m_aiDefineCache[XML_HILLS_EXTRA_MOVEMENT                     ] = this->getDefineINT("HILLS_EXTRA_MOVEMENT");
+	this->m_aiDefineCache[XML_HILLS_SEE_FROM_CHANGE                    ] = this->getDefineINT("HILLS_SEE_FROM_CHANGE");
+	this->m_aiDefineCache[XML_HILLS_SEE_THROUGH_CHANGE                 ] = this->getDefineINT("HILLS_SEE_THROUGH_CHANGE");
+	this->m_aiDefineCache[XML_INITIAL_AI_CITY_PRODUCTION               ] = this->getDefineINT("INITIAL_AI_CITY_PRODUCTION");
+	this->m_aiDefineCache[XML_INITIAL_CITY_POPULATION                  ] = this->getDefineINT("INITIAL_CITY_POPULATION");
+	this->m_aiDefineCache[XML_INITIAL_CITY_ROUTE_TYPE                  ] = this->getDefineINT("INITIAL_CITY_ROUTE_TYPE");
+	this->m_aiDefineCache[XML_KING_BUY_UNIT_PRICE_MODIFIER             ] = this->getDefineINT("KING_BUY_UNIT_PRICE_MODIFIER");
+	this->m_aiDefineCache[XML_KING_INITIAL_UNIT_INCREASE               ] = this->getDefineINT("KING_INITIAL_UNIT_INCREASE");
+	this->m_aiDefineCache[XML_KING_TRANSPORT_TREASURE_COMISSION        ] = this->getDefineINT("KING_TRANSPORT_TREASURE_COMISSION");
+	this->m_aiDefineCache[XML_LAKE_MAX_AREA_SIZE                       ] = this->getDefineINT("LAKE_MAX_AREA_SIZE");
+	this->m_aiDefineCache[XML_LAKE_PLOT_RAND                           ] = this->getDefineINT("LAKE_PLOT_RAND");
+	this->m_aiDefineCache[XML_LAND_IMPROVEMENT                         ] = this->getDefineINT("LAND_IMPROVEMENT");
+	this->m_aiDefineCache[XML_LAND_TERRAIN                             ] = this->getDefineINT("LAND_TERRAIN");
+	this->m_aiDefineCache[XML_MAX_CITY_DEFENSE_DAMAGE                  ] = this->getDefineINT("MAX_CITY_DEFENSE_DAMAGE");
+	this->m_aiDefineCache[XML_MAX_EXPERIENCE_AFTER_UPGRADE             ] = this->getDefineINT("MAX_EXPERIENCE_AFTER_UPGRADE");
+	this->m_aiDefineCache[XML_MAX_EXPERIENCE_PER_COMBAT                ] = this->getDefineINT("MAX_EXPERIENCE_PER_COMBAT");
+	this->m_aiDefineCache[XML_MAX_FORTIFY_TURNS                        ] = this->getDefineINT("MAX_FORTIFY_TURNS");
+	this->m_aiDefineCache[XML_MAX_HIT_POINTS                           ] = this->getDefineINT("MAX_HIT_POINTS");
+	this->m_aiDefineCache[XML_MAX_PLOT_LIST_ROWS                       ] = this->getDefineINT("MAX_PLOT_LIST_ROWS");
+	this->m_aiDefineCache[XML_MAX_PLOT_LIST_SIZE                       ] = this->getDefineINT("MAX_PLOT_LIST_SIZE");
+	this->m_aiDefineCache[XML_MAX_REBEL_COMBAT_MULTIPLER               ] = this->getDefineINT("MAX_REBEL_COMBAT_MULTIPLER");
+	this->m_aiDefineCache[XML_MAX_REBEL_YIELD_MODIFIER                 ] = this->getDefineINT("MAX_REBEL_YIELD_MODIFIER");
+	this->m_aiDefineCache[XML_MAX_WITHDRAWAL_PROBABILITY               ] = this->getDefineINT("MAX_WITHDRAWAL_PROBABILITY");
+	this->m_aiDefineCache[XML_MIN_CITY_RANGE                           ] = this->getDefineINT("MIN_CITY_RANGE");
+	this->m_aiDefineCache[XML_MIN_CITY_YIELD_DECAY                     ] = this->getDefineINT("MIN_CITY_YIELD_DECAY");
+	this->m_aiDefineCache[XML_MIN_CIV_STARTING_DISTANCE                ] = this->getDefineINT("MIN_CIV_STARTING_DISTANCE");
+	this->m_aiDefineCache[XML_MIN_EXPERIENCE_PER_COMBAT                ] = this->getDefineINT("MIN_EXPERIENCE_PER_COMBAT");
+	this->m_aiDefineCache[XML_MIN_TIMER_UNIT_DOUBLE_MOVES              ] = this->getDefineINT("MIN_TIMER_UNIT_DOUBLE_MOVES");
+	this->m_aiDefineCache[XML_MIN_WATER_SIZE_FOR_OCEAN                 ] = this->getDefineINT("MIN_WATER_SIZE_FOR_OCEAN");
+	this->m_aiDefineCache[XML_MINIMAP_RENDER_SIZE                      ] = this->getDefineINT("MINIMAP_RENDER_SIZE");
+	this->m_aiDefineCache[XML_MISSIONARY_RATE_EFFECT_ON_SUCCESS        ] = this->getDefineINT("MISSIONARY_RATE_EFFECT_ON_SUCCESS");
+	this->m_aiDefineCache[XML_MISSIONARY_THRESHOLD                     ] = this->getDefineINT("MISSIONARY_THRESHOLD");
+	this->m_aiDefineCache[XML_MISSIONARY_THRESHOLD_INCREASE            ] = this->getDefineINT("MISSIONARY_THRESHOLD_INCREASE");
+	this->m_aiDefineCache[XML_MOVE_DENOMINATOR                         ] = this->getDefineINT("MOVE_DENOMINATOR");
+	this->m_aiDefineCache[XML_NATIVE_GOODS_RAID_PERCENT                ] = this->getDefineINT("NATIVE_GOODS_RAID_PERCENT");
+	this->m_aiDefineCache[XML_NATIVE_GROWTH_THRESHOLD_MULTIPLIER       ] = this->getDefineINT("NATIVE_GROWTH_THRESHOLD_MULTIPLIER");
+	this->m_aiDefineCache[XML_NATIVE_TEACH_THRESHOLD_INCREASE          ] = this->getDefineINT("NATIVE_TEACH_THRESHOLD_INCREASE");
+	this->m_aiDefineCache[XML_NEUTRAL_HEAL_RATE                        ] = this->getDefineINT("NEUTRAL_HEAL_RATE");
+	this->m_aiDefineCache[XML_NEW_CITY_BUILDING_VALUE_MODIFIER         ] = this->getDefineINT("NEW_CITY_BUILDING_VALUE_MODIFIER");
+	this->m_aiDefineCache[XML_NEW_HURRY_MODIFIER                       ] = this->getDefineINT("NEW_HURRY_MODIFIER");
+	this->m_aiDefineCache[XML_NO_BAD_GOODIES_EXPERIENCE_PERCENT        ] = this->getDefineINT("NO_BAD_GOODIES_EXPERIENCE_PERCENT");
+	this->m_aiDefineCache[XML_NO_BAD_GOODIES_GOLD_PERCENT              ] = this->getDefineINT("NO_BAD_GOODIES_GOLD_PERCENT");
+	this->m_aiDefineCache[XML_OCCUPATION_CULTURE_PERCENT_THRESHOLD     ] = this->getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD");
+	this->m_aiDefineCache[XML_OCCUPATION_TURNS_POPULATION_PERCENT      ] = this->getDefineINT("OCCUPATION_TURNS_POPULATION_PERCENT");
+	this->m_aiDefineCache[XML_OWNERSHIP_SCORE_DURATION_THRESHOLD       ] = this->getDefineINT("OWNERSHIP_SCORE_DURATION_THRESHOLD");
+	this->m_aiDefineCache[XML_OWN_TEAM_STARTING_MODIFIER               ] = this->getDefineINT("OWN_TEAM_STARTING_MODIFIER");
+	this->m_aiDefineCache[XML_PEACE_TREATY_LENGTH                      ] = this->getDefineINT("PEACE_TREATY_LENGTH");
+	this->m_aiDefineCache[XML_PEAK_EXTRA_MOVEMENT                      ] = this->getDefineINT("PEAK_EXTRA_MOVEMENT");
+	this->m_aiDefineCache[XML_PEAK_SEE_FROM_CHANGE                     ] = this->getDefineINT("PEAK_SEE_FROM_CHANGE");
+	this->m_aiDefineCache[XML_PEAK_SEE_THROUGH_CHANGE                  ] = this->getDefineINT("PEAK_SEE_THROUGH_CHANGE");
+	this->m_aiDefineCache[XML_PLAYER_ALWAYS_RAZES_CITIES               ] = this->getDefineINT("PLAYER_ALWAYS_RAZES_CITIES");
+	this->m_aiDefineCache[XML_PLOTS_PER_RIVER_EDGE                     ] = this->getDefineINT("PLOTS_PER_RIVER_EDGE");
+	this->m_aiDefineCache[XML_PLOT_VISIBILITY_RANGE                    ] = this->getDefineINT("PLOT_VISIBILITY_RANGE");
+	this->m_aiDefineCache[XML_RAZING_CULTURAL_PERCENT_THRESHOLD        ] = this->getDefineINT("RAZING_CULTURAL_PERCENT_THRESHOLD");
+	this->m_aiDefineCache[XML_REBEL_PERCENT_FOR_REVOLUTION             ] = this->getDefineINT("REBEL_PERCENT_FOR_REVOLUTION");
+	this->m_aiDefineCache[XML_REBEL_SENTIMENT_BELLS_FACTOR             ] = this->getDefineINT("REBEL_SENTIMENT_BELLS_FACTOR");
+	this->m_aiDefineCache[XML_REBEL_SENTIMENT_TURN_WEIGHT              ] = this->getDefineINT("REBEL_SENTIMENT_TURN_WEIGHT");
+	this->m_aiDefineCache[XML_REVOLUTION_EUROPE_UNIT_SHIP_MODIFIER     ] = this->getDefineINT("REVOLUTION_EUROPE_UNIT_SHIP_MODIFIER");
+	this->m_aiDefineCache[XML_REVOLUTION_EUROPE_UNIT_THRESHOLD         ] = this->getDefineINT("REVOLUTION_EUROPE_UNIT_THRESHOLD");
+	this->m_aiDefineCache[XML_REVOLUTION_EUROPE_UNIT_THRESHOLD_INCREASE] = this->getDefineINT("REVOLUTION_EUROPE_UNIT_THRESHOLD_INCREASE");
+	this->m_aiDefineCache[XML_RIVAL_TEAM_STARTING_MODIFIER             ] = this->getDefineINT("RIVAL_TEAM_STARTING_MODIFIER");
+	this->m_aiDefineCache[XML_RIVER_ATTACK_MODIFIER                    ] = this->getDefineINT("RIVER_ATTACK_MODIFIER");
+	this->m_aiDefineCache[XML_RIVER_SOURCE_MIN_RIVER_RANGE             ] = this->getDefineINT("RIVER_SOURCE_MIN_RIVER_RANGE");
+	this->m_aiDefineCache[XML_RIVER_SOURCE_MIN_SEAWATER_RANGE          ] = this->getDefineINT("RIVER_SOURCE_MIN_SEAWATER_RANGE");
+	this->m_aiDefineCache[XML_ROUTE_FEATURE_GROWTH_MODIFIER            ] = this->getDefineINT("ROUTE_FEATURE_GROWTH_MODIFIER");
+	this->m_aiDefineCache[XML_RUINS_IMPROVEMENT                        ] = this->getDefineINT("RUINS_IMPROVEMENT");
+	this->m_aiDefineCache[XML_SCORE_FATHER_FACTOR                      ] = this->getDefineINT("SCORE_FATHER_FACTOR");
+	this->m_aiDefineCache[XML_SCORE_LAND_FACTOR                        ] = this->getDefineINT("SCORE_LAND_FACTOR");
+	this->m_aiDefineCache[XML_SCORE_POPULATION_FACTOR                  ] = this->getDefineINT("SCORE_POPULATION_FACTOR");
+	this->m_aiDefineCache[XML_SCORE_TAX_FACTOR                         ] = this->getDefineINT("SCORE_TAX_FACTOR");
+	this->m_aiDefineCache[XML_SEAWATER_SEE_FROM_CHANGE                 ] = this->getDefineINT("SEAWATER_SEE_FROM_CHANGE");
+	this->m_aiDefineCache[XML_SETTLEMENT_TREASURE_YIELD                ] = this->getDefineINT("SETTLEMENT_TREASURE_YIELD");
+	this->m_aiDefineCache[XML_SHALLOW_WATER_TERRAIN                    ] = this->getDefineINT("SHALLOW_WATER_TERRAIN");
+	this->m_aiDefineCache[XML_STANDARD_HANDICAP                        ] = this->getDefineINT("STANDARD_HANDICAP");
+	this->m_aiDefineCache[XML_STARTING_DISTANCE_PERCENT                ] = this->getDefineINT("STARTING_DISTANCE_PERCENT");
+	this->m_aiDefineCache[XML_TAX_INCREASE_CHANCE                      ] = this->getDefineINT("TAX_INCREASE_CHANCE");
+	this->m_aiDefineCache[XML_TAX_RATE_MAX_INCREASE                    ] = this->getDefineINT("TAX_RATE_MAX_INCREASE");
+	this->m_aiDefineCache[XML_TAX_TRADE_THRESHOLD                      ] = this->getDefineINT("TAX_TRADE_THRESHOLD");
+	this->m_aiDefineCache[XML_TAX_TRADE_THRESHOLD_ATTITUDE_PERCENT     ] = this->getDefineINT("TAX_TRADE_THRESHOLD_ATTITUDE_PERCENT");
+	this->m_aiDefineCache[XML_TAX_TRADE_THRESHOLD_TAX_RATE_PERCENT     ] = this->getDefineINT("TAX_TRADE_THRESHOLD_TAX_RATE_PERCENT");
+	this->m_aiDefineCache[XML_TREASURE_UNITCLASS                       ] = this->getDefineINT("TREASURE_UNITCLASS");
+	this->m_aiDefineCache[XML_UNIT_PRODUCTION_DECAY_PERCENT            ] = this->getDefineINT("UNIT_PRODUCTION_DECAY_PERCENT");
+	this->m_aiDefineCache[XML_UNIT_PRODUCTION_DECAY_TIME               ] = this->getDefineINT("UNIT_PRODUCTION_DECAY_TIME");
+	this->m_aiDefineCache[XML_UNIT_PRODUCTION_PERCENT                  ] = this->getDefineINT("UNIT_PRODUCTION_PERCENT");
+	this->m_aiDefineCache[XML_UNIT_UPGRADE_COST_PER_PRODUCTION         ] = this->getDefineINT("UNIT_UPGRADE_COST_PER_PRODUCTION");
+	this->m_aiDefineCache[XML_UNIT_VISIBILITY_RANGE                    ] = this->getDefineINT("UNIT_VISIBILITY_RANGE");
+	this->m_aiDefineCache[XML_WARLORD_EXTRA_EXPERIENCE_PER_UNIT_PERCENT] = this->getDefineINT("WARLORD_EXTRA_EXPERIENCE_PER_UNIT_PERCENT");
+	this->m_aiDefineCache[XML_WAR_SUCCESS_ATTACKING                    ] = this->getDefineINT("WAR_SUCCESS_ATTACKING");
+	this->m_aiDefineCache[XML_WAR_SUCCESS_CITY_CAPTURING               ] = this->getDefineINT("WAR_SUCCESS_CITY_CAPTURING");
+	this->m_aiDefineCache[XML_WAR_SUCCESS_DEFENDING                    ] = this->getDefineINT("WAR_SUCCESS_DEFENDING");
+	this->m_aiDefineCache[XML_WAR_SUCCESS_UNIT_CAPTURING               ] = this->getDefineINT("WAR_SUCCESS_UNIT_CAPTURING");
+	this->m_aiDefineCache[XML_WATER_IMPROVEMENT                        ] = this->getDefineINT("WATER_IMPROVEMENT");
+	this->m_aiDefineCache[XML_WATER_UNIT_FACING_DIRECTION              ] = this->getDefineINT("WATER_UNIT_FACING_DIRECTION");
+}
+// cache XML - end - Nightinggale
 
 int CvGlobals::getDefineINT( const char * szName ) const
 {
@@ -3591,327 +3627,3 @@ void CvGlobals::CheckEnumAttitudeTypes() const
 	FAssertMsg(GC.getAttitudeInfo().size() == NUM_ATTITUDE_TYPES, CvString::format("XML error. Expected %d types, but found %d", NUM_ATTITUDE_TYPES, GC.getAttitudeInfo().size()));
 }
 // XML enum check - end - Nightinggale
-
-// cache XML - start - Nightinggale
-void CvGlobals::setXMLCache()
-{
-	if (m_cache_WEEKS_PER_MONTHS > 0)
-	{
-		// cache is already set.
-		return;
-	}
-
-	m_cache_ADVANCED_START_ALLOW_UNITS_OUTSIDE_CITIES = getDefineINT("ADVANCED_START_ALLOW_UNITS_OUTSIDE_CITIES");
-	m_cache_ADVANCED_START_CITY_COST = getDefineINT("ADVANCED_START_CITY_COST");
-	m_cache_ADVANCED_START_CITY_COST_INCREASE = getDefineINT("ADVANCED_START_CITY_COST_INCREASE");
-	m_cache_ADVANCED_START_CITY_PLACEMENT_MAX_RANGE = getDefineINT("ADVANCED_START_CITY_PLACEMENT_MAX_RANGE");
-	m_cache_ADVANCED_START_CULTURE_COST = getDefineINT("ADVANCED_START_CULTURE_COST"); 
-	m_cache_ADVANCED_START_MAX_UNITS_PER_CITY = getDefineINT("ADVANCED_START_MAX_UNITS_PER_CITY");
-	m_cache_ADVANCED_START_POPULATION_COST = getDefineINT("ADVANCED_START_POPULATION_COST");
-	m_cache_ADVANCED_START_POPULATION_COST_INCREASE = getDefineINT("ADVANCED_START_POPULATION_COST_INCREASE");
-	m_cache_ADVANCED_START_SIGHT_RANGE = getDefineINT("ADVANCED_START_SIGHT_RANGE");
-	m_cache_ADVANCED_START_VISIBILITY_COST = getDefineINT("ADVANCED_START_VISIBILITY_COST");
-	m_cache_ADVANCED_START_VISIBILITY_COST_INCREASE = getDefineINT("ADVANCED_START_VISIBILITY_COST_INCREASE");
-	m_cache_AI_ADVANCED_TECH_START = getDefineINT("AI_ADVANCED_TECH_START");
-	m_cache_AI_CAN_DISBAND_UNITS = getDefineINT("AI_CAN_DISBAND_UNITS");
-	m_cache_AI_CHEAT_AUTO_BUY = getDefineINT("AI_CHEAT_AUTO_BUY");
-	m_cache_AI_CHEAT_NEEDED_DEFENDERS = getDefineINT("AI_CHEAT_NEEDED_DEFENDERS");
-	m_cache_AI_CHEAT_SPICE = getDefineINT("AI_CHEAT_SPICE");
-	m_cache_AI_CHEAT_SPICE_BUY = getDefineINT("AI_CHEAT_SPICE_BUY");
-	m_cache_AI_CHEAT_SPICE_MULTIPLE = getDefineINT("AI_CHEAT_SPICE_MULTIPLE");
-	m_cache_AI_FAVORED_TERRAIN_MOD = getDefineINT("AI_FAVORED_TERRAIN_MOD");
-	m_cache_AI_HANDICAP_CASTLE = getDefineINT("AI_HANDICAP_CASTLE");
-	m_cache_AI_HANDICAP_MOTTE = getDefineINT("AI_HANDICAP_MOTTE");
-	m_cache_AI_MILITARY_PROFESSION_HACK = getDefineINT("AI_MILITARY_PROFESSION_HACK");
-	m_cache_AI_WAREHOUSE_MOD = getDefineINT("AI_WAREHOUSE_MOD");
-	m_cache_ALLIANCE_CULTURE_PERCENT_DENIAL = getDefineINT("ALLIANCE_CULTURE_PERCENT_DENIAL");
-	m_cache_ALLIANCE_PACT_PEACE_DENIAL = getDefineINT("ALLIANCE_PACT_PEACE_DENIAL");
-	m_cache_ANIMAL_BANDITS_GUARD_GOODY_TIMER = getDefineINT("ANIMAL_BANDITS_GUARD_GOODY_TIMER");
-	m_cache_AUTORESEARCH_ALL = getDefineINT("AUTORESEARCH_ALL");
-	m_cache_BANQUET_YIELD_AMOUNT = getDefineINT("BANQUET_YIELD_AMOUNT");
-	m_cache_BARBARIAN_CIVILIZATION = getDefineINT("BARBARIAN_CIVILIZATION");
-	m_cache_BARBARIAN_LEADER = getDefineINT("BARBARIAN_LEADER");
-	m_cache_BASE_CITY_GROWTH_THRESHOLD = getDefineINT("BASE_CITY_GROWTH_THRESHOLD");
-	m_cache_BASE_CITY_LUXURY_FOOD_THRESHOLD_MOD = getDefineINT("BASE_CITY_LUXURY_FOOD_THRESHOLD_MOD");
-	m_cache_BASE_OCCUPATION_TURNS = getDefineINT("BASE_OCCUPATION_TURNS");
-	m_cache_BASE_UNIT_UPGRADE_COST = getDefineINT("BASE_UNIT_UPGRADE_COST");
-	m_cache_BUILDINGCLASS_TRAVEL_TO_FAIR = getDefineINT("BUILDINGCLASS_TRAVEL_TO_FAIR");
-	m_cache_BUILDING_PRODUCTION_DECAY_PERCENT = getDefineINT("BUILDING_PRODUCTION_DECAY_PERCENT");
-	m_cache_BUILDING_PRODUCTION_DECAY_TIME = getDefineINT("BUILDING_PRODUCTION_DECAY_TIME");
-	m_cache_BUILDING_PRODUCTION_PERCENT = getDefineINT("BUILDING_PRODUCTION_PERCENT");
-	m_cache_BUY_PLOT_BASE_CULTURE_COST = getDefineINT("BUY_PLOT_BASE_CULTURE_COST");
-	m_cache_BUY_PLOT_CULTURE_RANGE = getDefineINT("BUY_PLOT_CULTURE_RANGE");
-	m_cache_BUY_PLOT_MIN_CULTURE = getDefineINT("BUY_PLOT_MIN_CULTURE");
-	m_cache_BUY_PLOT_OWNED_COST_MODIFIER = getDefineINT("BUY_PLOT_OWNED_COST_MODIFIER");
-	m_cache_BUY_PLOT_SELLER_INCOME_PERCENT = getDefineINT("BUY_PLOT_SELLER_INCOME_PERCENT");
-	m_cache_CALENDER_YEAR_FIRST_CHANGE_TURN = getDefineINT("CALENDER_YEAR_FIRST_CHANGE_TURN");
-	m_cache_CALENDER_YEAR_FIRST_MULTIPLIER = getDefineINT("CALENDER_YEAR_FIRST_MULTIPLIER");
-	m_cache_CALENDER_YEAR_SECOND_CHANGE_TURN = getDefineINT("CALENDER_YEAR_SECOND_CHANGE_TURN");
-	m_cache_CALENDER_YEAR_SECOND_MULTIPLIER = getDefineINT("CALENDER_YEAR_SECOND_MULTIPLIER");
-	m_cache_CALENDER_YEAR_THIRD_MULTIPLIER = getDefineINT("CALENDER_YEAR_THIRD_MULTIPLIER");
-	m_cache_CAPITAL_BUILDINGCLASS = getDefineINT("CAPITAL_BUILDINGCLASS");
-	m_cache_CAPTURED_CARGO_RANDOM_AMOUNT = getDefineINT("CAPTURED_CARGO_RANDOM_AMOUNT");
-	m_cache_CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT = getDefineINT("CAPTURED_LUXURY_FOOD_RANDOM_AMOUNT");
-	m_cache_CASTLES_TO_VILLAGES_RATIO = getDefineINT("CASTLES_TO_VILLAGES_RATIO");
-	m_cache_CHANCE_TO_CAPTURE_CRIMINALS = getDefineINT("CHANCE_TO_CAPTURE_CRIMINALS");
-	m_cache_CHEAT_TRAVEL_ALL = getDefineINT("CHEAT_TRAVEL_ALL");
-	m_cache_CITY_DEFENSE_DAMAGE_HEAL_RATE = getDefineINT("CITY_DEFENSE_DAMAGE_HEAL_RATE");
-	m_cache_CITY_FREE_CULTURE_GROWTH_FACTOR = getDefineINT("CITY_FREE_CULTURE_GROWTH_FACTOR");
-	m_cache_CITY_GROWTH_MULTIPLIER = getDefineINT("CITY_GROWTH_MULTIPLIER");
-	m_cache_CITY_HEAL_RATE = getDefineINT("CITY_HEAL_RATE");
-	m_cache_CITY_PILGRAM_RANDOM = getDefineINT("CITY_PILGRAM_RANDOM");
-	m_cache_CITY_SCREEN_FOG_ENABLED = getDefineINT("CITY_SCREEN_FOG_ENABLED");
-	m_cache_CITY_YIELD_CAPACITY = getDefineINT("CITY_YIELD_CAPACITY");
-	m_cache_CITY_YIELD_DECAY_PERCENT = getDefineINT("CITY_YIELD_DECAY_PERCENT");
-	m_cache_CIVICOPTION_INVENTIONS = getDefineINT("CIVICOPTION_INVENTIONS");
-	m_cache_COLONIAL_FORCED_PEACE_TURNS = getDefineINT("COLONIAL_FORCED_PEACE_TURNS");
-	m_cache_COMBAT_DAMAGE = getDefineINT("COMBAT_DAMAGE");
-	m_cache_COMBAT_DIE_SIDES = getDefineINT("COMBAT_DIE_SIDES");
-	m_cache_COMBAT_EXPERIENCE_IN_BORDERS_PERCENT = getDefineINT("COMBAT_EXPERIENCE_IN_BORDERS_PERCENT");
-	m_cache_CONSUME_EQUIPMENT_ON_FOUND = getDefineINT("CONSUME_EQUIPMENT_ON_FOUND");
-	m_cache_CONTACT_YIELD_GIFT_ENCOMEIDA_TIMER = getDefineINT("CONTACT_YIELD_GIFT_ENCOMEIDA_TIMER");
-	m_cache_CONTACT_YIELD_GIFT_TECH = getDefineINT("CONTACT_YIELD_GIFT_TECH");
-	m_cache_CULTURE_YIELD = getDefineINT("CULTURE_YIELD");
-	m_cache_DEAL_TRADE_RELATIONS_POINTS = getDefineINT("DEAL_TRADE_RELATIONS_POINTS");
-	m_cache_DEEP_WATER_TERRAIN = getDefineINT("DEEP_WATER_TERRAIN");
-	m_cache_DEFAULT_BUILD_CASTLE = getDefineINT("DEFAULT_BUILD_CASTLE");
-	m_cache_DEFAULT_BUILD_MOTTE_AND_BAILEY = getDefineINT("DEFAULT_BUILD_MOTTE_AND_BAILEY");
-	m_cache_DEFAULT_CENSURETYPE_ANATHEMA = getDefineINT("DEFAULT_CENSURETYPE_ANATHEMA");
-	m_cache_DEFAULT_CENSURETYPE_ANATHEMA_COUNT = getDefineINT("DEFAULT_CENSURETYPE_ANATHEMA_COUNT");
-	m_cache_DEFAULT_CENSURETYPE_EXCOMMUNICATION = getDefineINT("DEFAULT_CENSURETYPE_EXCOMMUNICATION");
-	m_cache_DEFAULT_CENSURETYPE_EXCOMMUNICATION_COUNT = getDefineINT("DEFAULT_CENSURETYPE_EXCOMMUNICATION_COUNT");
-	m_cache_DEFAULT_CENSURETYPE_INTERDICT = getDefineINT("DEFAULT_CENSURETYPE_INTERDICT");
-	m_cache_DEFAULT_CENSURETYPE_INTERDICT_COUNT = getDefineINT("DEFAULT_CENSURETYPE_INTERDICT_COUNT");
-	m_cache_DEFAULT_COMBAT_FOR_TRAINING = getDefineINT("DEFAULT_COMBAT_FOR_TRAINING");
-	m_cache_DEFAULT_DAWN_POPULATION_UNIT = getDefineINT("DEFAULT_DAWN_POPULATION_UNIT");
-	m_cache_DEFAULT_FUEDALISM_TECH = getDefineINT("DEFAULT_FUEDALISM_TECH");
-	m_cache_DEFAULT_GRAIN_GROWTH_UNIT_CLASS = getDefineINT("DEFAULT_GRAIN_GROWTH_UNIT_CLASS");
-	m_cache_DEFAULT_HUNTSMAN_PROFESSION = getDefineINT("DEFAULT_HUNTSMAN_PROFESSION");
-	m_cache_DEFAULT_INVENTOR_CLASS = getDefineINT("DEFAULT_INVENTOR_CLASS");
-	m_cache_DEFAULT_KNIGHT_PROFESSION_PROMOTION = getDefineINT("DEFAULT_KNIGHT_PROFESSION_PROMOTION");
-	m_cache_DEFAULT_KNIGHT_PROMOTION = getDefineINT("DEFAULT_KNIGHT_PROMOTION");
-	m_cache_DEFAULT_MARAUDER_CLASS = getDefineINT("DEFAULT_MARAUDER_CLASS");
-	m_cache_DEFAULT_MARUADER_SEA_PROFESSION = getDefineINT("DEFAULT_MARUADER_SEA_PROFESSION");
-	m_cache_DEFAULT_NOBLEMAN_CLASS = getDefineINT("DEFAULT_NOBLEMAN_CLASS");
-	m_cache_DEFAULT_NOBLE_GROWTH_UNIT_CLASS = getDefineINT("DEFAULT_NOBLE_GROWTH_UNIT_CLASS");
-	m_cache_DEFAULT_PILGRAM_CLASS = getDefineINT("DEFAULT_PILGRAM_CLASS");
-	m_cache_DEFAULT_POPULATION_UNIT = getDefineINT("DEFAULT_POPULATION_UNIT");
-	m_cache_DEFAULT_SHRINE_CLASS = getDefineINT("DEFAULT_SHRINE_CLASS");
-	m_cache_DEFAULT_SLAVE_CLASS = getDefineINT("DEFAULT_SLAVE_CLASS");
-	m_cache_DEFAULT_SPECIALBUILDING_COURTHOUSE = getDefineINT("DEFAULT_SPECIALBUILDING_COURTHOUSE");
-	m_cache_DEFAULT_TEST_DEFINE = getDefineINT("DEFAULT_TEST_DEFINE");
-	m_cache_DEFAULT_TRAINED_PROMOTION = getDefineINT("DEFAULT_TRAINED_PROMOTION");
-	m_cache_DEFAULT_TREASURE_YIELD = getDefineINT("DEFAULT_TREASURE_YIELD");
-	m_cache_DEFAULT_UNTRAINED_PROMOTION = getDefineINT("DEFAULT_UNTRAINED_PROMOTION");
-	m_cache_DEFAULT_VIKING_ERA = getDefineINT("DEFAULT_VIKING_ERA");
-	m_cache_DEFAULT_YIELD_ARMOR_TYPE = getDefineINT("DEFAULT_YIELD_ARMOR_TYPE");
-	m_cache_DIFFERENT_TEAM_FEATURE_PRODUCTION_PERCENT = getDefineINT("DIFFERENT_TEAM_FEATURE_PRODUCTION_PERCENT");
-	m_cache_DIPLOMACY_VALUE_REMAINDER = getDefineINT("DIPLOMACY_VALUE_REMAINDER");
-	m_cache_DOCKS_NEXT_UNITS = getDefineINT("DOCKS_NEXT_UNITS");
-	m_cache_EDUCATION_BASE_TUITION = getDefineINT("EDUCATION_BASE_TUITION");
-	m_cache_EDUCATION_THRESHOLD = getDefineINT("EDUCATION_THRESHOLD");
-	m_cache_EDUCATION_THRESHOLD_INCREASE = getDefineINT("EDUCATION_THRESHOLD_INCREASE");
-	m_cache_ENABLE_ALLIANCE_TRADING = getDefineINT("ENABLE_ALLIANCE_TRADING");
-	m_cache_ENABLE_DEFENSIVE_PACT_TRADING = getDefineINT("ENABLE_DEFENSIVE_PACT_TRADING");
-	m_cache_ENABLE_GOLD_TRADING = getDefineINT("ENABLE_GOLD_TRADING");
-	m_cache_ENABLE_MAP_TRADING = getDefineINT("ENABLE_MAP_TRADING");
-	m_cache_ENABLE_OPEN_BORDERS = getDefineINT("ENABLE_OPEN_BORDERS");
-	m_cache_END_GAME_DISPLAY_WARNING = getDefineINT("END_GAME_DISPLAY_WARNING");
-	m_cache_ENEMY_HEAL_RATE = getDefineINT("ENEMY_HEAL_RATE");
-	m_cache_ESTABLISH_TRADEPOST_COST = getDefineINT("ESTABLISH_TRADEPOST_COST");
-	m_cache_EUROPE_EAST = getDefineINT("EUROPE_EAST");
-	m_cache_EUROPE_MARKET_CORRELATION_PERCENT = getDefineINT("EUROPE_MARKET_CORRELATION_PERCENT");
-	m_cache_EVENT_PROBABILITY_ROLL_SIDES = getDefineINT("EVENT_PROBABILITY_ROLL_SIDES");
-	m_cache_EXPERIENCE_FROM_WITHDRAWL = getDefineINT("EXPERIENCE_FROM_WITHDRAWL");
-	m_cache_EXTRA_YIELD = getDefineINT("EXTRA_YIELD");
-	m_cache_FATHER_COST_EXTRA_TEAM_MEMBER_MODIFIER = getDefineINT("FATHER_COST_EXTRA_TEAM_MEMBER_MODIFIER");
-	m_cache_FATHER_POINT_REAL_TRADE = getDefineINT("FATHER_POINT_REAL_TRADE");
-	m_cache_FEATURE_PRODUCTION_YIELD_MAX_DISTANCE = getDefineINT("FEATURE_PRODUCTION_YIELD_MAX_DISTANCE");
-	m_cache_FIRST_EVENT_DELAY_TURNS = getDefineINT("FIRST_EVENT_DELAY_TURNS");
-	m_cache_FOUND_MONASTERY_NUMBER = getDefineINT("FOUND_MONASTERY_NUMBER");
-	m_cache_FOUND_MOTTE_AND_BAILEY_NUMBER = getDefineINT("FOUND_MOTTE_AND_BAILEY_NUMBER");
-	m_cache_FOUND_OUTPOST_NUMBER = getDefineINT("FOUND_OUTPOST_NUMBER");
-	m_cache_FOUND_VILLAGE_NUMBER = getDefineINT("FOUND_VILLAGE_NUMBER");
-	m_cache_FREE_CITY_ADJACENT_CULTURE = getDefineINT("FREE_CITY_ADJACENT_CULTURE");
-	m_cache_FREE_CITY_CULTURE = getDefineINT("FREE_CITY_CULTURE");
-	m_cache_FREE_PEASANT_CIVIC = getDefineINT("FREE_PEASANT_CIVIC");
-	m_cache_FRIENDLY_HEAL_RATE = getDefineINT("FRIENDLY_HEAL_RATE");
-	m_cache_GREAT_GENERALS_THRESHOLD = getDefineINT("GREAT_GENERALS_THRESHOLD");
-	m_cache_GREAT_GENERALS_THRESHOLD_INCREASE = getDefineINT("GREAT_GENERALS_THRESHOLD_INCREASE");
-	m_cache_GREAT_GENERALS_THRESHOLD_INCREASE_TEAM = getDefineINT("GREAT_GENERALS_THRESHOLD_INCREASE_TEAM");
-	m_cache_HIRE_GUARD_COST = getDefineINT("HIRE_GUARD_COST");
-	m_cache_HIRE_GUARD_PROMOTION = getDefineINT("HIRE_GUARD_PROMOTION");
-	m_cache_IMMIGRATION_MAX_CITY_DISTANCE = getDefineINT("IMMIGRATION_MAX_CITY_DISTANCE");
-	m_cache_IMMIGRATION_THRESHOLD = getDefineINT("IMMIGRATION_THRESHOLD");
-	m_cache_IMMIGRATION_THRESHOLD_INCREASE = getDefineINT("IMMIGRATION_THRESHOLD_INCREASE");
-	m_cache_IMMIGRATION_TRAVEL_MOD = getDefineINT("IMMIGRATION_TRAVEL_MOD");
-	m_cache_INDUSTRIAL_VICTORY_SINGLE_YIELD = getDefineINT("INDUSTRIAL_VICTORY_SINGLE_YIELD");
-	m_cache_INITIAL_AI_CITY_PRODUCTION = getDefineINT("INITIAL_AI_CITY_PRODUCTION");
-	m_cache_INITIAL_CITY_POPULATION = getDefineINT("INITIAL_CITY_POPULATION");
-	m_cache_INITIAL_CITY_ROUTE_TYPE = getDefineINT("INITIAL_CITY_ROUTE_TYPE");
-	m_cache_JUNGLE_FEATURE = getDefineINT("JUNGLE_FEATURE");
-	m_cache_KING_BUY_UNIT_PRICE_MODIFIER = getDefineINT("KING_BUY_UNIT_PRICE_MODIFIER");
-	m_cache_KING_INITIAL_UNIT_INCREASE = getDefineINT("KING_INITIAL_UNIT_INCREASE");
-	m_cache_KING_TRANSPORT_TREASURE_COMISSION = getDefineINT("KING_TRANSPORT_TREASURE_COMISSION");
-	m_cache_KNIGHT_RANSOM_MOD = getDefineINT("KNIGHT_RANSOM_MOD");
-	m_cache_LAKE_PLOT_RAND = getDefineINT("LAKE_PLOT_RAND");
-	m_cache_LAND_IMPROVEMENT = getDefineINT("LAND_IMPROVEMENT");
-	m_cache_LAND_TERRAIN = getDefineINT("LAND_TERRAIN");
-	m_cache_MARAUDERS_DAYSOUT_RANDOM = getDefineINT("MARAUDERS_DAYSOUT_RANDOM");
-	m_cache_MARAUDERS_TOWER_RANGE = getDefineINT("MARAUDERS_TOWER_RANGE");
-	m_cache_MARAUDER_CRUMBS_EVENT = getDefineINT("MARAUDER_CRUMBS_EVENT");
-	m_cache_MARAUDER_EVENT_DEFAULT_TURNS = getDefineINT("MARAUDER_EVENT_DEFAULT_TURNS");
-	m_cache_MAX_CITY_POPULATION_COMMUNE = getDefineINT("MAX_CITY_POPULATION_COMMUNE");
-	m_cache_MAX_CITY_POPULATION_VILLAGE = getDefineINT("MAX_CITY_POPULATION_VILLAGE");
-	m_cache_MAX_EXPERIENCE_AFTER_UPGRADE = getDefineINT("MAX_EXPERIENCE_AFTER_UPGRADE");
-	m_cache_MAX_EXPERIENCE_PER_COMBAT = getDefineINT("MAX_EXPERIENCE_PER_COMBAT");
-	m_cache_MAX_FORTIFY_TURNS = getDefineINT("MAX_FORTIFY_TURNS");
-	m_cache_MAX_INSULT_MODIFIER = getDefineINT("MAX_INSULT_MODIFIER");
-	m_cache_MAX_LEVEL_FROM_ANIMAL_XP = getDefineINT("MAX_LEVEL_FROM_ANIMAL_XP");
-	m_cache_MAX_MARAUDERS = getDefineINT("MAX_MARAUDERS");
-	m_cache_MAX_NUM_LANGUAGES = getDefineINT("MAX_NUM_LANGUAGES");
-	m_cache_MAX_PLOT_LIST_SIZE = getDefineINT("MAX_PLOT_LIST_SIZE");
-	m_cache_MAX_REBEL_COMBAT_MULTIPLER = getDefineINT("MAX_REBEL_COMBAT_MULTIPLER");
-	m_cache_MAX_TRAINED_EXPERIENCE = getDefineINT("MAX_TRAINED_EXPERIENCE");
-	m_cache_MAX_WITHDRAWAL_PROBABILITY = getDefineINT("MAX_WITHDRAWAL_PROBABILITY");
-	m_cache_MEDIEVAL_CENSURE = getDefineINT("MEDIEVAL_CENSURE");
-	m_cache_MEDIEVAL_TRADE_TECH = getDefineINT("MEDIEVAL_TRADE_TECH");
-	m_cache_MINIMAP_RENDER_SIZE = getDefineINT("MINIMAP_RENDER_SIZE");
-	m_cache_MIN_ANIMAL_STARTING_DISTANCE = getDefineINT("MIN_ANIMAL_STARTING_DISTANCE");
-	m_cache_MIN_CITY_YIELD_DECAY = getDefineINT("MIN_CITY_YIELD_DECAY");
-	m_cache_MIN_CIV_STARTING_DISTANCE = getDefineINT("MIN_CIV_STARTING_DISTANCE");
-	m_cache_MIN_EXPERIENCE_PER_COMBAT = getDefineINT("MIN_EXPERIENCE_PER_COMBAT");
-	m_cache_MIN_TIMER_UNIT_DOUBLE_MOVES = getDefineINT("MIN_TIMER_UNIT_DOUBLE_MOVES");
-	m_cache_MIN_WATER_SIZE_FOR_OCEAN = getDefineINT("MIN_WATER_SIZE_FOR_OCEAN");
-	m_cache_MISSIONARY_RATE_EFFECT_ON_SUCCESS = getDefineINT("MISSIONARY_RATE_EFFECT_ON_SUCCESS");
-	m_cache_MISSIONARY_THRESHOLD = getDefineINT("MISSIONARY_THRESHOLD");
-	m_cache_MISSIONARY_THRESHOLD_INCREASE = getDefineINT("MISSIONARY_THRESHOLD_INCREASE");
-	m_cache_MONASTERIES_TO_VILLAGES_RATIO = getDefineINT("MONASTERIES_TO_VILLAGES_RATIO");
-	m_cache_NATIVE_AUTO_SELL_PERCENT = getDefineINT("NATIVE_AUTO_SELL_PERCENT");
-	m_cache_NATIVE_GOODS_RAID_PERCENT = getDefineINT("NATIVE_GOODS_RAID_PERCENT");
-	m_cache_NATIVE_GROWTH_THRESHOLD_MULTIPLIER = getDefineINT("NATIVE_GROWTH_THRESHOLD_MULTIPLIER");
-	m_cache_NATIVE_HORSES_FOR_SALE = getDefineINT("NATIVE_HORSES_FOR_SALE");
-	m_cache_NATIVE_HORSES_FOR_SALE_PERCENT = getDefineINT("NATIVE_HORSES_FOR_SALE_PERCENT");
-	m_cache_NATIVE_TEACH_THRESHOLD_INCREASE = getDefineINT("NATIVE_TEACH_THRESHOLD_INCREASE");
-	m_cache_NATIVE_TECH = getDefineINT("NATIVE_TECH");
-	m_cache_NATIVE_TRADING_TRADEPOST = getDefineINT("NATIVE_TRADING_TRADEPOST");
-	m_cache_NEUTRAL_HEAL_RATE = getDefineINT("NEUTRAL_HEAL_RATE");
-	m_cache_NEW_CITY_BUILDING_VALUE_MODIFIER = getDefineINT("NEW_CITY_BUILDING_VALUE_MODIFIER");
-	m_cache_NEW_HURRY_MODIFIER = getDefineINT("NEW_HURRY_MODIFIER");
-	m_cache_NOBLE_FIELD_LABOR_PENALTY = getDefineINT("NOBLE_FIELD_LABOR_PENALTY");
-	m_cache_NO_BAD_GOODIES_EXPERIENCE_PERCENT = getDefineINT("NO_BAD_GOODIES_EXPERIENCE_PERCENT");
-	m_cache_NO_BAD_GOODIES_GOLD_PERCENT = getDefineINT("NO_BAD_GOODIES_GOLD_PERCENT");
-	m_cache_NO_CITY_SHORTAGE_MESSAGES = getDefineINT("NO_CITY_SHORTAGE_MESSAGES");
-	m_cache_NO_STARTING_PLOTS_IN_JUNGLE = getDefineINT("NO_STARTING_PLOTS_IN_JUNGLE");
-	m_cache_OCCUPATION_CULTURE_PERCENT_THRESHOLD = getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD");
-	m_cache_OCCUPATION_TURNS_POPULATION_PERCENT = getDefineINT("OCCUPATION_TURNS_POPULATION_PERCENT");
-	m_cache_OWNERSHIP_SCORE_DURATION_THRESHOLD = getDefineINT("OWNERSHIP_SCORE_DURATION_THRESHOLD");
-	m_cache_OWN_TEAM_STARTING_MODIFIER = getDefineINT("OWN_TEAM_STARTING_MODIFIER");
-	m_cache_PEACE_TREATY_LENGTH = getDefineINT("PEACE_TREATY_LENGTH");
-	m_cache_PERCENT_TAX_ON_AUTOSELL_GOODS = getDefineINT("PERCENT_TAX_ON_AUTOSELL_GOODS");
-	m_cache_PILGRAM_OFFER_GOLD = getDefineINT("PILGRAM_OFFER_GOLD");
-	m_cache_PILGRAM_OFFER_GOLD_DISTANCE_MOD = getDefineINT("PILGRAM_OFFER_GOLD_DISTANCE_MOD");
-	m_cache_PLAYER_ALWAYS_RAZES_CITIES = getDefineINT("PLAYER_ALWAYS_RAZES_CITIES");
-	m_cache_PLOTS_PER_RIVER_EDGE = getDefineINT("PLOTS_PER_RIVER_EDGE");
-	m_cache_PLOT_VISIBILITY_RANGE = getDefineINT("PLOT_VISIBILITY_RANGE");
-	m_cache_PROFESSION_COAL_BURNER = getDefineINT("PROFESSION_COAL_BURNER");
-	m_cache_PROFESSION_INVENTOR = getDefineINT("PROFESSION_INVENTOR");
-	m_cache_PROLIFIC_INVENTOR_THRESHOLD_INCREASE = getDefineINT("PROLIFIC_INVENTOR_THRESHOLD_INCREASE");
-	m_cache_PROMOTION_BUILD_HOME = getDefineINT("PROMOTION_BUILD_HOME");
-	m_cache_RANDOM_TURNS_LOST_AT_SEA = getDefineINT("RANDOM_TURNS_LOST_AT_SEA");
-	m_cache_RAZING_CULTURAL_PERCENT_THRESHOLD = getDefineINT("RAZING_CULTURAL_PERCENT_THRESHOLD");
-	m_cache_REBEL_PERCENT_FOR_REVOLUTION = getDefineINT("REBEL_PERCENT_FOR_REVOLUTION");
-	m_cache_REBEL_SENTIMENT_BELLS_FACTOR = getDefineINT("REBEL_SENTIMENT_BELLS_FACTOR");
-	m_cache_REBEL_SENTIMENT_TURN_WEIGHT = getDefineINT("REBEL_SENTIMENT_TURN_WEIGHT");
-	m_cache_REVOLUTION_EUROPE_UNIT_SHIP_MODIFIER = getDefineINT("REVOLUTION_EUROPE_UNIT_SHIP_MODIFIER");
-	m_cache_REVOLUTION_EUROPE_UNIT_THRESHOLD = getDefineINT("REVOLUTION_EUROPE_UNIT_THRESHOLD");
-	m_cache_REVOLUTION_EUROPE_UNIT_THRESHOLD_INCREASE = getDefineINT("REVOLUTION_EUROPE_UNIT_THRESHOLD_INCREASE");
-	m_cache_RIVAL_TEAM_STARTING_MODIFIER = getDefineINT("RIVAL_TEAM_STARTING_MODIFIER");
-	m_cache_RIVER_SOURCE_MIN_RIVER_RANGE = getDefineINT("RIVER_SOURCE_MIN_RIVER_RANGE");
-	m_cache_RIVER_SOURCE_MIN_SEAWATER_RANGE = getDefineINT("RIVER_SOURCE_MIN_SEAWATER_RANGE");
-	m_cache_RUINS_IMPROVEMENT = getDefineINT("RUINS_IMPROVEMENT");
-	m_cache_SCORE_FATHER_FACTOR = getDefineINT("SCORE_FATHER_FACTOR");
-	m_cache_SCORE_LAND_FACTOR = getDefineINT("SCORE_LAND_FACTOR");
-	m_cache_SCORE_POPULATION_FACTOR = getDefineINT("SCORE_POPULATION_FACTOR");
-	m_cache_SCORE_TAX_FACTOR = getDefineINT("SCORE_TAX_FACTOR");
-	m_cache_SETTLEMENT_TREASURE_YIELD = getDefineINT("SETTLEMENT_TREASURE_YIELD");
-	m_cache_SHALLOW_WATER_TERRAIN = getDefineINT("SHALLOW_WATER_TERRAIN");
-	m_cache_SLAVE_FOOD_CONSUMPTION_PER_POPULATION = getDefineINT("SLAVE_FOOD_CONSUMPTION_PER_POPULATION");
-	m_cache_STANDARD_CALENDAR = getDefineINT("STANDARD_CALENDAR");
-	m_cache_STANDARD_CLIMATE = getDefineINT("STANDARD_CLIMATE");
-	m_cache_STANDARD_ERA = getDefineINT("STANDARD_ERA");
-	m_cache_STANDARD_GAMESPEED = getDefineINT("STANDARD_GAMESPEED");
-	m_cache_STANDARD_HANDICAP = getDefineINT("STANDARD_HANDICAP");
-	m_cache_STANDARD_SEALEVEL = getDefineINT("STANDARD_SEALEVEL");
-	m_cache_STANDARD_TURNTIMER = getDefineINT("STANDARD_TURNTIMER");
-	m_cache_STARTING_DISTANCE_PERCENT = getDefineINT("STARTING_DISTANCE_PERCENT");
-	m_cache_START_YEAR = getDefineINT("START_YEAR");
-	m_cache_STEAMWORKS_BUILDING = getDefineINT("STEAMWORKS_BUILDING");
-	m_cache_STEAMWORKS_CLASS_TYPE = getDefineINT("STEAMWORKS_CLASS_TYPE");
-	m_cache_TAX_INCREASE_CHANCE = getDefineINT("TAX_INCREASE_CHANCE");
-	m_cache_TAX_RATE_MAX_INCREASE = getDefineINT("TAX_RATE_MAX_INCREASE");
-	m_cache_TAX_TRADE_THRESHOLD = getDefineINT("TAX_TRADE_THRESHOLD");
-	m_cache_TAX_TRADE_THRESHOLD_ATTITUDE_PERCENT = getDefineINT("TAX_TRADE_THRESHOLD_ATTITUDE_PERCENT");
-	m_cache_TAX_TRADE_THRESHOLD_TAX_RATE_PERCENT = getDefineINT("TAX_TRADE_THRESHOLD_TAX_RATE_PERCENT");
-	m_cache_TK_AI_RESEARCH_COST_MOD_PERCENT = getDefineINT("TK_AI_RESEARCH_COST_MOD_PERCENT");
-	m_cache_TK_HUMAN_RESEARCH_COST_MOD_PERCENT = getDefineINT("TK_HUMAN_RESEARCH_COST_MOD_PERCENT");
-	m_cache_TK_IDEAS_CITY_VALUE = getDefineINT("TK_IDEAS_CITY_VALUE");
-	m_cache_TK_MAX_FORTS_PER_CITY = getDefineINT("TK_MAX_FORTS_PER_CITY");
-	m_cache_TK_PIONEER_COAL_FURNACE_BONUS = getDefineINT("TK_PIONEER_COAL_FURNACE_BONUS");
-	m_cache_TK_PROLIFIC_INVENTOR_PROGRESS = getDefineINT("TK_PROLIFIC_INVENTOR_PROGRESS");
-	m_cache_TK_PROLIFIC_INVENTOR_THRESHOLD = getDefineINT("TK_PROLIFIC_INVENTOR_THRESHOLD");
-	m_cache_TK_RESEARCH_PACT_IDEAS_THRESHOLD = getDefineINT("TK_RESEARCH_PACT_IDEAS_THRESHOLD");
-	m_cache_TK_RESEARCH_TRADE_VALUE = getDefineINT("TK_RESEARCH_TRADE_VALUE");
-	m_cache_TK_STEAMWORKS_MODIFIER = getDefineINT("TK_STEAMWORKS_MODIFIER");
-	m_cache_TRADE_POINTS_FOR_ROUTE = getDefineINT("TRADE_POINTS_FOR_ROUTE");
-	m_cache_TRADE_ROUTE_SPICE = getDefineINT("TRADE_ROUTE_SPICE");
-	m_cache_TRADE_STIMULATES_RESEARCH_MIN_VALUE = getDefineINT("TRADE_STIMULATES_RESEARCH_MIN_VALUE");
-	m_cache_TRADE_STIMULATES_RESEARCH_PERCENT = getDefineINT("TRADE_STIMULATES_RESEARCH_PERCENT");
-	m_cache_TRADING_POINTS_MOD_PERCENT = getDefineINT("TRADING_POINTS_MOD_PERCENT");
-	m_cache_TREASURE_UNITCLASS = getDefineINT("TREASURE_UNITCLASS");
-	m_cache_TREASURE_UNITS_ONLY_SELECT_COASTAL = getDefineINT("TREASURE_UNITS_ONLY_SELECT_COASTAL");
-	m_cache_TURNS_TO_TRAIN = getDefineINT("TURNS_TO_TRAIN");
-	m_cache_UNITARMOR_LEATHER = getDefineINT("UNITARMOR_LEATHER");
-	m_cache_UNITARMOR_MAIL = getDefineINT("UNITARMOR_MAIL");
-	m_cache_UNITARMOR_PLATE = getDefineINT("UNITARMOR_PLATE");
-	m_cache_UNITARMOR_SCALE = getDefineINT("UNITARMOR_SCALE");
-	m_cache_UNITARMOR_SHIELD = getDefineINT("UNITARMOR_SHIELD");
-	m_cache_UNITCLASS_PIONEER = getDefineINT("UNITCLASS_PIONEER");
-	m_cache_UNITTACTIC_PARRY = getDefineINT("UNITTACTIC_PARRY");
-	m_cache_UNITWEAPON_BLUNT = getDefineINT("UNITWEAPON_BLUNT");
-	m_cache_UNIT_PRODUCTION_DECAY_PERCENT = getDefineINT("UNIT_PRODUCTION_DECAY_PERCENT");
-	m_cache_UNIT_PRODUCTION_DECAY_TIME = getDefineINT("UNIT_PRODUCTION_DECAY_TIME");
-	m_cache_UNIT_PRODUCTION_PERCENT = getDefineINT("UNIT_PRODUCTION_PERCENT");
-	m_cache_UNIT_UPGRADE_COST_PER_PRODUCTION = getDefineINT("UNIT_UPGRADE_COST_PER_PRODUCTION");
-	m_cache_UNIT_VISIBILITY_RANGE = getDefineINT("UNIT_VISIBILITY_RANGE");
-	m_cache_USE_MEDIEVAL_CALENDER = getDefineINT("USE_MEDIEVAL_CALENDER");
-	m_cache_VASSAL_CIVILIZATION = getDefineINT("VASSAL_CIVILIZATION");
-	m_cache_VASSAL_LEADER = getDefineINT("VASSAL_LEADER");
-	m_cache_WARLORD_EXTRA_EXPERIENCE_PER_UNIT_PERCENT = getDefineINT("WARLORD_EXTRA_EXPERIENCE_PER_UNIT_PERCENT");
-	m_cache_WAR_SUCCESS_ATTACKING = getDefineINT("WAR_SUCCESS_ATTACKING");
-	m_cache_WAR_SUCCESS_CITY_CAPTURING = getDefineINT("WAR_SUCCESS_CITY_CAPTURING");
-	m_cache_WAR_SUCCESS_DEFENDING = getDefineINT("WAR_SUCCESS_DEFENDING");
-	m_cache_WAR_SUCCESS_UNIT_CAPTURING = getDefineINT("WAR_SUCCESS_UNIT_CAPTURING");
-	m_cache_WATER_IMPROVEMENT = getDefineINT("WATER_IMPROVEMENT");
-	m_cache_WATER_UNIT_FACING_DIRECTION = getDefineINT("WATER_UNIT_FACING_DIRECTION");
-	m_cache_WEEKS_PER_MONTHS = getDefineINT("WEEKS_PER_MONTHS");
-	m_cache_WILD_ANIMAL_ATTACK_WEIGHT = getDefineINT("WILD_ANIMAL_ATTACK_WEIGHT");
-	m_cache_WILD_ANIMAL_LAND_BONUS_NATIVE_WEIGHT = getDefineINT("WILD_ANIMAL_LAND_BONUS_NATIVE_WEIGHT");
-	m_cache_WILD_ANIMAL_LAND_FEATURE_NATIVE_WEIGHT = getDefineINT("WILD_ANIMAL_LAND_FEATURE_NATIVE_WEIGHT");
-	m_cache_WILD_ANIMAL_LAND_PATROL_BASE_WEIGHT = getDefineINT("WILD_ANIMAL_LAND_PATROL_BASE_WEIGHT");
-	m_cache_WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT = getDefineINT("WILD_ANIMAL_LAND_TERRAIN_NATIVE_WEIGHT");
-	m_cache_WILD_ANIMAL_LAND_UNIT_VARIATION_WEIGHT = getDefineINT("WILD_ANIMAL_LAND_UNIT_VARIATION_WEIGHT");
-	m_cache_WILD_ANIMAL_SEA_BONUS_NATIVE_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_BONUS_NATIVE_WEIGHT");
-	m_cache_WILD_ANIMAL_SEA_FEATURE_NATIVE_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_FEATURE_NATIVE_WEIGHT");
-	m_cache_WILD_ANIMAL_SEA_PATROL_BASE_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_PATROL_BASE_WEIGHT");
-	m_cache_WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_TERRAIN_NATIVE_WEIGHT");
-	m_cache_WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT = getDefineINT("WILD_ANIMAL_SEA_UNIT_VARIATION_WEIGHT");
-
-	// EDU remake - start - Nightinggale
-	for (int i = 0; i < NUM_TEACH_LEVELS; i++)
-	{
-		this->m_aiEducationCost[i] = getDefineFLOAT(CvString::format("EDUCATION_COST_LEVEL_%d", i+1).c_str());
-	}
-	// EDU remake - start - Nightinggale
-}
-// cache XML - end - Nightinggale

@@ -576,6 +576,8 @@ bool CvXMLLoadUtility::SetPostGlobalsGlobalDefines()
 			GC.getDefinesVarSystem()->SetValue("WATER_UNIT_FACING_DIRECTION", DIRECTION_SOUTH);
 		}
 
+		GC.cacheXMLval(); // cache XML - Nightinggale
+
 		return true;
 	}
 
@@ -983,13 +985,6 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 		GC.getDefinesVarSystem()->SetValue(szType, i);
 	}
 
-	// discoverable yield detection - start - Nightinggale
-	// compile output cache for CvYieldInfo::isMustBeDiscovered()
-	for (int i = 0; i < NUM_YIELD_TYPES; i++)
-	{
-		GC.getYieldInfo((YieldTypes)i).setMustBeDiscovered();
-	}
-	// discoverable yield detection - end - Nightinggale
 
 	UpdateProgressCB("GlobalOther");
 

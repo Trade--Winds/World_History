@@ -1186,7 +1186,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 
                 if (isMarket(eMustSaleYield) && getYieldStored(eMustSaleYield) >= (getMaintainLevel(eMustSaleYield) + 1))
                 {
-                    int iLoss = std::max(GC.getCache_CITY_YIELD_DECAY_PERCENT() * getYieldStored(eMustSaleYield) / 100, GC.getCache_MIN_CITY_YIELD_DECAY());
+                    int iLoss = std::max(GC.getXMLval(XML_CITY_YIELD_DECAY_PERCENT) * getYieldStored(eMustSaleYield) / 100, GC.getXMLval(XML_MIN_CITY_YIELD_DECAY));
 
                     iLoss = std::min(getYieldStored(eMustSaleYield) - getMaintainLevel(eMustSaleYield), iLoss);
                     if (iLoss >= kBuildingInfo.getYieldChange(eLoopYield))
@@ -1753,7 +1753,7 @@ int CvCityAI::AI_totalBestBuildValue(CvArea* pArea) const
 			{
 				if (pLoopPlot->area() == pArea)
 				{
-					if ((pLoopPlot->getImprovementType() == NO_IMPROVEMENT) || !(GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_SAFE_AUTOMATION) && !(pLoopPlot->getImprovementType() == (GC.getCache_RUINS_IMPROVEMENT()))))
+					if ((pLoopPlot->getImprovementType() == NO_IMPROVEMENT) || !(GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_SAFE_AUTOMATION) && !(pLoopPlot->getImprovementType() == (GC.getXMLval(XML_RUINS_IMPROVEMENT)))))
 					{
 						iTotalValue += AI_getBestBuildValue(iI);
 					}
@@ -2146,7 +2146,7 @@ void CvCityAI::AI_doNative()
 				if (iSellPrice > 0)
 				{
 				    ///TKs Med
-					kPlayer.changeGold(((iAmountLost * iSellPrice) * GC.getCache_NATIVE_AUTO_SELL_PERCENT()) / 100);
+					kPlayer.changeGold(((iAmountLost * iSellPrice) * GC.getXMLval(XML_NATIVE_AUTO_SELL_PERCENT)) / 100);
 					///TKe
 				}
 			}
@@ -3385,7 +3385,7 @@ int CvCityAI::AI_professionValue(ProfessionTypes eProfession, const CvUnit* pUni
 			int iLoss = 0;
 			if (iExcess > 0)
 			{
-				iLoss = std::max(GC.getCache_CITY_YIELD_DECAY_PERCENT() * iExcess / 100, GC.getCache_MIN_CITY_YIELD_DECAY());
+				iLoss = std::max(GC.getXMLval(XML_CITY_YIELD_DECAY_PERCENT) * iExcess / 100, GC.getXMLval(XML_MIN_CITY_YIELD_DECAY));
 				iLoss = std::min(iLoss, iExcess);
 			}
 

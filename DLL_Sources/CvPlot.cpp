@@ -403,7 +403,7 @@ void CvPlot::doImprovementUpgrade()
 		{
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                     if (kCivicInfo.getAllowsBuildTypes(eImprovementUpdrade) > 0)
@@ -460,7 +460,7 @@ void CvPlot::updateFog()
 		}
 		else
 		{
-			int cityScreenFogEnabled = GC.getCache_CITY_SCREEN_FOG_ENABLED();
+			int cityScreenFogEnabled = GC.getXMLval(XML_CITY_SCREEN_FOG_ENABLED);
 			if (cityScreenFogEnabled && gDLL->getInterfaceIFace()->isCityScreenUp() && (gDLL->getInterfaceIFace()->getHeadSelectedCity() != getWorkingCity()))
 			{
 				gDLL->getEngineIFace()->DarkenVisibility(getFOWIndex());
@@ -1408,7 +1408,7 @@ void CvPlot::updateSight(bool bIncrement)
 	// Owned
 	if (isOwned())
 	{
-		changeAdjacentSight(getTeam(), GC.getCache_PLOT_VISIBILITY_RANGE(), bIncrement, NULL);
+		changeAdjacentSight(getTeam(), GC.getXMLval(XML_PLOT_VISIBILITY_RANGE), bIncrement, NULL);
 	}
 
 	// Unit
@@ -1428,7 +1428,7 @@ void CvPlot::updateSeeFromSight(bool bIncrement)
 	CvPlot* pLoopPlot;
 	int iDX, iDY;
 
-	int iRange = GC.getCache_UNIT_VISIBILITY_RANGE() + 1;
+	int iRange = GC.getXMLval(XML_UNIT_VISIBILITY_RANGE) + 1;
 	for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); ++iPromotion)
 	{
 		iRange += GC.getPromotionInfo((PromotionTypes)iPromotion).getVisibilityChange();
@@ -1837,7 +1837,7 @@ int CvPlot::getBuildTime(BuildTypes eBuild) const
         //{
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 
@@ -1956,7 +1956,7 @@ int CvPlot::getFeatureYield(BuildTypes eBuild, YieldTypes eYield, TeamTypes eTea
 
 	int iProduction = GC.getBuildInfo(eBuild).getFeatureYield(getFeatureType(), eYield);
 	const int iSafeDistance = 2;
-	int iStep = iProduction / std::max(iSafeDistance, GC.getCache_FEATURE_PRODUCTION_YIELD_MAX_DISTANCE());
+	int iStep = iProduction / std::max(iSafeDistance, GC.getXMLval(XML_FEATURE_PRODUCTION_YIELD_MAX_DISTANCE));
 	iProduction -= std::max(0, plotDistance(getX_INLINE(), getY_INLINE(), (*ppCity)->getX_INLINE(), (*ppCity)->getY_INLINE()) - iSafeDistance) * iStep;
 
 	iProduction *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent();
@@ -1964,7 +1964,7 @@ int CvPlot::getFeatureYield(BuildTypes eBuild, YieldTypes eYield, TeamTypes eTea
 
 	if (getTeam() != eTeam)
 	{
-		iProduction *= GC.getCache_DIFFERENT_TEAM_FEATURE_PRODUCTION_PERCENT();
+		iProduction *= GC.getXMLval(XML_DIFFERENT_TEAM_FEATURE_PRODUCTION_PERCENT);
 		iProduction /= 100;
 	}
 
@@ -2236,7 +2236,7 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
         {
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                     if (kCivicInfo.getRouteMovementMod(getRouteType()) != 0)
@@ -2343,7 +2343,7 @@ bool CvPlot::isAdjacentTeam(TeamTypes eTeam, bool bLandOnly) const
 bool CvPlot::isWithinCultureRange(PlayerTypes ePlayer) const
 {
 	//allow culture two plots from cities culture
-	int iExtraCultureRange = GC.getCache_BUY_PLOT_CULTURE_RANGE();
+	int iExtraCultureRange = GC.getXMLval(XML_BUY_PLOT_CULTURE_RANGE);
 	for (int iCultureLevel = 0; iCultureLevel < GC.getNumCultureLevelInfos(); ++iCultureLevel)
 	{
 		for (int iDX = -iExtraCultureRange; iDX <= iExtraCultureRange; iDX++)
@@ -3248,7 +3248,7 @@ int CvPlot::getOwnershipDuration() const
 
 bool CvPlot::isOwnershipScore() const
 {
-	return (getOwnershipDuration() >= GC.getCache_OWNERSHIP_SCORE_DURATION_THRESHOLD());
+	return (getOwnershipDuration() >= GC.getXMLval(XML_OWNERSHIP_SCORE_DURATION_THRESHOLD));
 }
 
 
@@ -3802,7 +3802,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits)
 
 		if (isOwned())
 		{
-			changeAdjacentSight(getTeam(), GC.getCache_PLOT_VISIBILITY_RANGE(), false, NULL);
+			changeAdjacentSight(getTeam(), GC.getXMLval(XML_PLOT_VISIBILITY_RANGE), false, NULL);
 
 			if (area())
 			{
@@ -3834,7 +3834,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits)
 
 		if (isOwned())
 		{
-			changeAdjacentSight(getTeam(), GC.getCache_PLOT_VISIBILITY_RANGE(), true, NULL);
+			changeAdjacentSight(getTeam(), GC.getXMLval(XML_PLOT_VISIBILITY_RANGE), true, NULL);
 
 			if (area())
 			{
@@ -3965,16 +3965,16 @@ void CvPlot::setPlotType(PlotTypes eNewValue, bool bRecalculate, bool bRebuildGr
 			{
 				if (isAdjacentToLand())
 				{
-					setTerrainType(((TerrainTypes)(GC.getCache_SHALLOW_WATER_TERRAIN())), bRecalculate, bRebuildGraphics);
+					setTerrainType(((TerrainTypes)(GC.getXMLval(XML_SHALLOW_WATER_TERRAIN))), bRecalculate, bRebuildGraphics);
 				}
 				else
 				{
-					setTerrainType(((TerrainTypes)(GC.getCache_DEEP_WATER_TERRAIN())), bRecalculate, bRebuildGraphics);
+					setTerrainType(((TerrainTypes)(GC.getXMLval(XML_DEEP_WATER_TERRAIN))), bRecalculate, bRebuildGraphics);
 				}
 			}
 			else
 			{
-				setTerrainType(((TerrainTypes)(GC.getCache_LAND_TERRAIN())), bRecalculate, bRebuildGraphics);
+				setTerrainType(((TerrainTypes)(GC.getXMLval(XML_LAND_TERRAIN))), bRecalculate, bRebuildGraphics);
 			}
 		}
 
@@ -3994,11 +3994,11 @@ void CvPlot::setPlotType(PlotTypes eNewValue, bool bRecalculate, bool bRebuildGr
 						{
 							if (pLoopPlot->isAdjacentToLand())
 							{
-								pLoopPlot->setTerrainType(((TerrainTypes)(GC.getCache_SHALLOW_WATER_TERRAIN())), bRecalculate, bRebuildGraphics);
+								pLoopPlot->setTerrainType(((TerrainTypes)(GC.getXMLval(XML_SHALLOW_WATER_TERRAIN))), bRecalculate, bRebuildGraphics);
 							}
 							else
 							{
-								pLoopPlot->setTerrainType(((TerrainTypes)(GC.getCache_DEEP_WATER_TERRAIN())), bRecalculate, bRebuildGraphics);
+								pLoopPlot->setTerrainType(((TerrainTypes)(GC.getXMLval(XML_DEEP_WATER_TERRAIN))), bRecalculate, bRebuildGraphics);
 							}
 						}
 					}
@@ -4489,7 +4489,7 @@ void CvPlot::updateCityRoute()
 
 		if (eCityRoute == NO_ROUTE)
 		{
-			eCityRoute = ((RouteTypes)(GC.getCache_INITIAL_CITY_ROUTE_TYPE()));
+			eCityRoute = ((RouteTypes)(GC.getXMLval(XML_INITIAL_CITY_ROUTE_TYPE)));
 		}
 
 		setRouteType(eCityRoute);
@@ -4784,7 +4784,7 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 			BonusTypes eBonus = getBonusType();
 			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 			{
-				if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getCache_CIVICOPTION_INVENTIONS())
+				if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
 				{
 					CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 					//if (GET_TEAM(eTeam).isHuman())
@@ -5153,7 +5153,7 @@ int CvPlot::calculatePotentialYield(YieldTypes eYield, PlayerTypes ePlayer, Impr
 		{
 			if (iYield >= GET_PLAYER(ePlayer).getExtraYieldThreshold(eYield))
 			{
-				iYield += GC.getCache_EXTRA_YIELD();
+				iYield += GC.getXMLval(XML_EXTRA_YIELD);
 			}
 		}
 	}
@@ -5469,7 +5469,7 @@ void CvPlot::changeCulture(PlayerTypes eIndex, int iChange, bool bUpdate)
 
 int CvPlot::getBuyCultureAmount(PlayerTypes ePlayer) const
 {
-	int iCulture = GC.getCache_BUY_PLOT_MIN_CULTURE() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent() / 100;
+	int iCulture = GC.getXMLval(XML_BUY_PLOT_MIN_CULTURE) * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent() / 100;
 
 	if (getOwnerINLINE() != NO_PLAYER)
 	{
@@ -5482,14 +5482,14 @@ int CvPlot::getBuyCultureAmount(PlayerTypes ePlayer) const
 
 int CvPlot::getBuyPrice(PlayerTypes ePlayer) const
 {
-	int iBuyPrice = getBuyCultureAmount(ePlayer) * GC.getCache_BUY_PLOT_BASE_CULTURE_COST();
+	int iBuyPrice = getBuyCultureAmount(ePlayer) * GC.getXMLval(XML_BUY_PLOT_BASE_CULTURE_COST);
 
 	int iModifier = 100;
 	if (getOwnerINLINE() != NO_PLAYER)
 	{
 		if (!GET_TEAM(GET_PLAYER(ePlayer).getTeam()).isAtWar(getTeam()))
 		{
-			iModifier += GC.getCache_BUY_PLOT_OWNED_COST_MODIFIER();
+			iModifier += GC.getXMLval(XML_BUY_PLOT_OWNED_COST_MODIFIER);
 		}
 
 		for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); ++iTrait)
@@ -6362,7 +6362,7 @@ bool CvPlot::changeBuildProgress(BuildTypes eBuild, int iChange, TeamTypes eTeam
                         FatherPointTypes ePointType = (FatherPointTypes) i;
                         if (GC.getFatherPointInfo(ePointType).getEuropeTradeGoldPointPercent() > 0)
                         {
-                            GET_TEAM(eTeam).changeFatherPoints(ePointType, GC.getCache_TRADE_POINTS_FOR_ROUTE());
+                            GET_TEAM(eTeam).changeFatherPoints(ePointType, GC.getXMLval(XML_TRADE_POINTS_FOR_ROUTE));
                         }
                     }
 				}
@@ -7747,11 +7747,11 @@ void CvPlot::getVisibleImprovementState(ImprovementTypes& eType, bool& bWorked)
 			{
 				if (isWater())
 				{
-					eType = ((ImprovementTypes)(GC.getCache_WATER_IMPROVEMENT()));
+					eType = ((ImprovementTypes)(GC.getXMLval(XML_WATER_IMPROVEMENT)));
 				}
 				else
 				{
-					eType = ((ImprovementTypes)(GC.getCache_LAND_IMPROVEMENT()));
+					eType = ((ImprovementTypes)(GC.getXMLval(XML_LAND_IMPROVEMENT)));
 				}
 			}
 		}
@@ -7865,7 +7865,7 @@ int CvPlot::calculateMaxYield(YieldTypes eYield) const
 	}
 	if (iExtraYieldThreshold > 0 && iMaxYield > iExtraYieldThreshold)
 	{
-		iMaxYield += GC.getCache_EXTRA_YIELD();
+		iMaxYield += GC.getXMLval(XML_EXTRA_YIELD);
 	}
 
 	return iMaxYield;
