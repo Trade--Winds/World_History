@@ -25,7 +25,7 @@ void Check_YieldGroup_AI_Sell_To_Europe::build()
 // AI attemps to buy from natives as needed (or whenever offered?)
 void Check_YieldGroup_AI_Buy_From_Natives::build()
 {
-	YieldVector.push_back(YIELD_TOOLS);
+	YieldVector.push_back(YIELD_ALIEN_SPECIMENS);
 }
 
 // AI attemps to buy from Europe (Europe as in vanilla functionality)
@@ -33,8 +33,8 @@ void Check_YieldGroup_AI_Buy_From_Europe::build()
 {
 	YieldVector.push_back(YIELD_EARTH_GOODS);
 	YieldVector.push_back(YIELD_CONTRABAND);
-	YieldVector.push_back(YIELD_TOOLS);
-	YieldVector.push_back(YIELD_WEAPONS);
+	YieldVector.push_back(YIELD_MACHINE_TOOLS);
+	YieldVector.push_back(YIELD_MUNITIONS);
 	YieldVector.push_back(YIELD_ROBOTICS);
 }
 
