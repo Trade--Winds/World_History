@@ -93,10 +93,6 @@ void BaseCheckYieldGroup::checkXML()
 	checkSingleXMLType(YIELD_BIOPOLYMERS,        "YIELD_BIOPOLYMERS");
 	checkSingleXMLType(YIELD_SILICATES,          "YIELD_SILICATES");
 	checkSingleXMLType(YIELD_BASE_METALS,        "YIELD_BASE_METALS");
-	checkSingleXMLType(YIELD_PRECIOUS_METALS,    "YIELD_PRECIOUS_METALS");
-	checkSingleXMLType(YIELD_BIONICS,            "YIELD_BIONICS");
-	checkSingleXMLType(YIELD_HARD_CURRENCY,      "YIELD_HARD_CURRENCY");
-	checkSingleXMLType(YIELD_ELECTROLYTES,       "YIELD_ELECTROLYTES");
 	checkSingleXMLType(YIELD_ACTINIDES,          "YIELD_ACTINIDES");
 	checkSingleXMLType(YIELD_ISOTOPES,           "YIELD_ISOTOPES");
 	checkSingleXMLType(YIELD_RARE_EARTHS,        "YIELD_RARE_EARTHS");
@@ -106,17 +102,18 @@ void BaseCheckYieldGroup::checkXML()
 	checkSingleXMLType(YIELD_TISSUE_SAMPLES,     "YIELD_TISSUE_SAMPLES");
 	checkSingleXMLType(YIELD_MICROBES,           "YIELD_MICROBES");
 	checkSingleXMLType(YIELD_DATACORES,          "YIELD_DATACORES");
-	checkSingleXMLType(YIELD_ARTIFACTS,          "YIELD_ARTIFACTS");
+	checkSingleXMLType(YIELD_PROGENITOR_ARTIFACTS,"YIELD_PROGENITOR_ARTIFACTS");
 	checkSingleXMLType(YIELD_ALIEN_SPECIMENS,    "YIELD_ALIEN_SPECIMENS");
+	checkSingleXMLType(YIELD_PRECIOUS_METALS,    "YIELD_PRECIOUS_METALS");
 	checkSingleXMLType(YIELD_OPIATES,            "YIELD_OPIATES");
 	checkSingleXMLType(YIELD_XENOTOXINS,         "YIELD_XENOTOXINS");
 	checkSingleXMLType(YIELD_BOTANICALS,         "YIELD_BOTANICALS");
 	checkSingleXMLType(YIELD_HYDROCARBONS,       "YIELD_HYDROCARBONS");
 	checkSingleXMLType(YIELD_CLATHRATES,         "YIELD_CLATHRATES");
 	checkSingleXMLType(YIELD_CORE_SAMPLES,       "YIELD_CORE_SAMPLES");
-	checkSingleXMLType(YIELD_TOOLS,              "YIELD_TOOLS");
-	checkSingleXMLType(YIELD_WEAPONS,            "YIELD_WEAPONS");
+	checkSingleXMLType(YIELD_MACHINE_TOOLS,      "YIELD_MACHINE_TOOLS");
 	checkSingleXMLType(YIELD_ROBOTICS,           "YIELD_ROBOTICS");
+	checkSingleXMLType(YIELD_MUNITIONS,          "YIELD_MUNITIONS");
 	checkSingleXMLType(YIELD_PHOTONICS,          "YIELD_PHOTONICS");
 	checkSingleXMLType(YIELD_PLASTEEL,           "YIELD_PLASTEEL");
 	checkSingleXMLType(YIELD_DURALLOY,           "YIELD_DURALLOY");
@@ -136,15 +133,18 @@ void BaseCheckYieldGroup::checkXML()
 	checkSingleXMLType(YIELD_PETROCHEMICALS,     "YIELD_PETROCHEMICALS");
 	checkSingleXMLType(YIELD_COLLOIDS,           "YIELD_COLLOIDS");
 	checkSingleXMLType(YIELD_CATALYSTS,          "YIELD_CATALYSTS");
+	checkSingleXMLType(YIELD_HARD_CURRENCY,      "YIELD_HARD_CURRENCY");
 	checkSingleXMLType(YIELD_EARTH_GOODS,        "YIELD_EARTH_GOODS");
 	checkSingleXMLType(YIELD_CONTRABAND,         "YIELD_CONTRABAND");
-	checkSingleXMLType(YIELD_HAMMERS,            "YIELD_HAMMERS");
-	checkSingleXMLType(YIELD_BELLS,              "YIELD_BELLS");
-	checkSingleXMLType(YIELD_CROSSES,            "YIELD_CROSSES");
+	checkSingleXMLType(YIELD_EARTHLING_SPECIMENS,"YIELD_EARTHLING_SPECIMENS");
+	checkSingleXMLType(YIELD_INDUSTRY,           "YIELD_INDUSTRY");
+	checkSingleXMLType(YIELD_MEDIA,              "YIELD_MEDIA");
+	checkSingleXMLType(YIELD_LIBERTY,            "YIELD_LIBERTY");
+	checkSingleXMLType(YIELD_RESEARCH,           "YIELD_RESEARCH");
 	checkSingleXMLType(YIELD_EDUCATION,          "YIELD_EDUCATION");
-	checkSingleXMLType(YIELD_IDEAS,              "YIELD_IDEAS");
-	checkSingleXMLType(YIELD_CULTURE,            "YIELD_CULTURE");
+	checkSingleXMLType(YIELD_INFLUENCE,          "YIELD_INFLUENCE");
 	checkSingleXMLType(YIELD_ENERGY,             "YIELD_ENERGY");
-	checkSingleXMLType(YIELD_GOLD,               "YIELD_GOLD");
+	checkSingleXMLType(YIELD_POLLUTANTS,         "YIELD_POLLUTANTS");
+	checkSingleXMLType(YIELD_CREDITS,            "YIELD_CREDITS");
 }
 #endif // COLONIZATION_2071
