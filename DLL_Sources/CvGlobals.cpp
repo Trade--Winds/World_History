@@ -2449,6 +2449,7 @@ void CvGlobals::cacheXMLval()
 	this->m_aiDefineCache[XML_DEFAULT_UNTRAINED_PROMOTION              ] = this->getDefineINT("DEFAULT_UNTRAINED_PROMOTION");
 	this->m_aiDefineCache[XML_DEFAULT_VIKING_ERA                       ] = this->getDefineINT("DEFAULT_VIKING_ERA");
 	this->m_aiDefineCache[XML_DEFAULT_YIELD_ARMOR_TYPE                 ] = this->getDefineINT("DEFAULT_YIELD_ARMOR_TYPE");
+	this->m_aiDefineCache[XML_DIPLAY_NEW_VIDEOS                        ] = this->getDefineINT("DIPLAY_NEW_VIDEOS");
 	this->m_aiDefineCache[XML_DOCKS_NEXT_UNITS                         ] = this->getDefineINT("DOCKS_NEXT_UNITS");
 	this->m_aiDefineCache[XML_EDUCATION_THRESHOLD                      ] = this->getDefineINT("EDUCATION_THRESHOLD");
 	this->m_aiDefineCache[XML_EDUCATION_THRESHOLD_INCREASE             ] = this->getDefineINT("EDUCATION_THRESHOLD_INCREASE");
@@ -2498,7 +2499,6 @@ void CvGlobals::cacheXMLval()
 	this->m_aiDefineCache[XML_PILGRAM_OFFER_GOLD_DISTANCE_MOD          ] = this->getDefineINT("PILGRAM_OFFER_GOLD_DISTANCE_MOD");
 	this->m_aiDefineCache[XML_PROFESSION_INVENTOR                      ] = this->getDefineINT("PROFESSION_INVENTOR");
 	this->m_aiDefineCache[XML_PROLIFIC_INVENTOR_THRESHOLD_INCREASE     ] = this->getDefineINT("PROLIFIC_INVENTOR_THRESHOLD_INCREASE");
-	//this->m_aiDefineCache[XML_PROMOTION_BUILD_HOME                     ] = this->getDefineINT("PROMOTION_BUILD_HOME");
 	this->m_aiDefineCache[XML_RANDOM_TURNS_LOST_AT_SEA                 ] = this->getDefineINT("RANDOM_TURNS_LOST_AT_SEA");
 	this->m_aiDefineCache[XML_SLAVE_FOOD_CONSUMPTION_PER_POPULATION    ] = this->getDefineINT("SLAVE_FOOD_CONSUMPTION_PER_POPULATION");
 	this->m_aiDefineCache[XML_START_YEAR                               ] = this->getDefineINT("START_YEAR");

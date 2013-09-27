@@ -9881,7 +9881,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                     CivicTypes eSpiceRoute = (CivicTypes)GC.getXMLval(XML_TRADE_ROUTE_SPICE);
                     CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
                     kPlayer.setHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE, true);
-                    if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+                    if (GC.getXMLval(XML_DIPLAY_NEW_VIDEOS) > 0)
                     {
                         if (!CvString(CvWString("ART_DEF_MOVIE_SPICE_ROUTE")).empty())
                         {

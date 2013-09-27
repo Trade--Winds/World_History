@@ -10812,7 +10812,7 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
         {
             if (!getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
             {
-                if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+                if (GC.getXMLval(XML_DIPLAY_NEW_VIDEOS) > 0)
                 {
                     if (!CvString(CvWString("ART_DEF_MOVIE_SPICE_ROUTE")).empty())
                     {
@@ -10829,7 +10829,7 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
         {
             if (!getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
             {
-                if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+                if (GC.getXMLval(XML_DIPLAY_NEW_VIDEOS) > 0)
                 {
                     if (!CvString(CvWString("ART_DEF_MOVIE_SILK_ROAD")).empty())
                     {
@@ -10844,7 +10844,7 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
         }
         else if (iModdersCode == MODER_CODE_ALLOWS_TRADE_FAIR)
         {
-            if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+            if (GC.getXMLval(XML_DIPLAY_NEW_VIDEOS) > 0)
             {
                 if (!CvString(CvWString("ART_DEF_MOVIE_TRADE_FAIR")).empty())
                 {
@@ -17790,7 +17790,7 @@ void CvPlayer::doIdeas(bool Cheat)
                     gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_YELLOW"));
                     processCivics(eTradeCivic, 1);
                     changeIdeasResearched(eTradeCivic, 1);
-                    if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+                    if (GC.getXMLval(XML_DIPLAY_NEW_VIDEOS) > 0)
                     {
                         if (!CvString(CvWString("ART_DEF_MOVIE_TRADE_LEAGUE")).empty())
                         {

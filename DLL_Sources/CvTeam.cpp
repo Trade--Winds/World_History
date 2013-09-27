@@ -2871,7 +2871,7 @@ void CvTeam::doRevolution()
 		CvPlayer& kPlayer = GET_PLAYER((PlayerTypes) iPlayer);
 		if (kPlayer.isAlive() && kPlayer.getTeam() == getID())
 		{
-		    if (GC.getDefineINT("DIPLAY_NEW_VIDEOS") > 0)
+		    if (GC.getXMLval(XML_DIPLAY_NEW_VIDEOS) > 0)
             {
                 if (!CvString(CvWString("ART_DEF_MOVIE_REVOLUTION")).empty())
                 {
