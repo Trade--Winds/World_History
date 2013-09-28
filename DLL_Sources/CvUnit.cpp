@@ -11639,27 +11639,59 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 
 		if (!pCity->AI_isWorkforceHack())
 		{
-			if (kOwner.hasContentsYieldEquipmentAmountSecure(getProfession()) || kOwner.hasContentsYieldEquipmentAmount(eProfession)) // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
+			// restructured to fully exploit speed gain from cache - Nightinggale
+			bool bTryAlt = false;
+			if (kOwner.hasContentsYieldEquipmentAmount(eProfession))
 			{
 				for (int i=0; i < NUM_YIELD_TYPES; ++i)
 				{
 					YieldTypes eYieldType = (YieldTypes) i;
-					///Tks Med
 					int iYieldCarried = 0;
 					if (getProfession() != NO_PROFESSION)
 					{
-						iYieldCarried += kOwner.getYieldEquipmentAmount(getProfession(), eYieldType);
+						iYieldCarried = kOwner.getYieldEquipmentAmount(getProfession(), eYieldType) + getAltEquipmentTypes(eYieldType);
 					}
 					int iYieldRequired = kOwner.getYieldEquipmentAmount(eProfession, eYieldType);
-					bool bTryAlt = false;
 					if (iYieldRequired > 0)
 					{
 						int iMissing = iYieldRequired - iYieldCarried;
 						if (iMissing > pCity->getYieldStored(eYieldType))
 						{
 							bTryAlt = true;
+							break;
 						}
 					}
+				}
+			}
+			if (bTryAlt && kOwner.hasContentsYieldEquipmentAmount(eProfession))
+			{
+				bTryAlt = false;
+				for (int i=0; i < NUM_YIELD_TYPES; ++i)
+				{
+					YieldTypes eYieldType = (YieldTypes) i;
+					int iYieldCarried = 0;
+					if (getProfession() != NO_PROFESSION)
+					{
+						iYieldCarried = kOwner.getYieldEquipmentAmount(getProfession(), eYieldType) + getAltEquipmentTypes(eYieldType);
+					}
+					int iYieldRequired = kOwner.getYieldEquipmentAmount(eProfession, eYieldType) + kOwner.getAltYieldEquipmentAmount(eProfession, eYieldType);
+					if (iYieldRequired > 0)
+					{
+						int iMissing = iYieldRequired - iYieldCarried;
+						if (iMissing > pCity->getYieldStored(eYieldType))
+						{
+							bTryAlt = true;
+							break;
+						}
+					}
+				}
+			}
+			// end of reconstruction - Nightinggale
+			if (bTryAlt)
+			{
+				return false;
+			}
+#if 0
 					if (bTryAlt)
 					{
 						if (kOwner.getAltYieldEquipmentAmount(eProfession, eYieldType) < 0)
@@ -11706,9 +11738,9 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 					{
 						return false;
 					}
-
 				}
 			}
+#endif
 
 			if (!kNewProfession.isCitizen())
 			{

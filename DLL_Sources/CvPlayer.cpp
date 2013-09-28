@@ -90,7 +90,10 @@ CvPlayer::CvPlayer()
 	m_ppiImprovementYieldChange = NULL;
 	m_ppiBuildingYieldChange = NULL;
 
-	m_cache_YieldEquipmentAmount = NULL; // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
+	// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
+	m_cache_YieldEquipmentAmount = NULL;
+	m_cache_AltYieldEquipmentAmount = NULL;
+	// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
 
 	reset(NO_PLAYER, true);
 }
@@ -129,6 +132,13 @@ CvPlayer::~CvPlayer()
  			m_cache_YieldEquipmentAmount[iProfession].reset();
  		}
  		SAFE_DELETE_ARRAY(m_cache_YieldEquipmentAmount);
+ 	}
+	if (m_cache_AltYieldEquipmentAmount != NULL)
+ 	{
+ 		for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++) {
+ 			m_cache_AltYieldEquipmentAmount[iProfession].reset();
+ 		}
+ 		SAFE_DELETE_ARRAY(m_cache_AltYieldEquipmentAmount);
  	}
  	// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
 }
@@ -15894,8 +15904,10 @@ void CvPlayer::Update_cache_YieldEquipmentAmount(ProfessionTypes eProfession)
 {
 	for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++) {
 		m_cache_YieldEquipmentAmount[eProfession].set(getYieldEquipmentAmountUncached(eProfession, (YieldTypes)iYield), iYield);
+		m_cache_AltYieldEquipmentAmount[eProfession].set(getAltYieldEquipmentAmountUncached(eProfession, (YieldTypes)iYield), iYield);
 	}
 	m_cache_YieldEquipmentAmount[eProfession].isEmpty(); // This will release the array if it's empty
+	m_cache_AltYieldEquipmentAmount[eProfession].isEmpty();
 }
 
 void CvPlayer::Update_cache_YieldEquipmentAmount()
@@ -15912,8 +15924,10 @@ void CvPlayer::Update_cache_YieldEquipmentAmount()
 		// only init NULL pointers.
 		// don't do anything about already allocated arrays as data is overwritten anyway.
 		m_cache_YieldEquipmentAmount = new YieldArray<int>[GC.getNumProfessionInfos()];
+		m_cache_AltYieldEquipmentAmount = new YieldArray<int>[GC.getNumProfessionInfos()];
 		for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++) {
 			m_cache_YieldEquipmentAmount[iProfession].init();
+			m_cache_AltYieldEquipmentAmount[iProfession].init();
 		}
 	}
 
@@ -18904,7 +18918,7 @@ int CvPlayer::getMultiYieldRate(YieldTypes eIndex) const
     return 0;
 }
 
-int CvPlayer::getAltYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const
+int CvPlayer::getAltYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const
 {
 	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
 	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
