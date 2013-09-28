@@ -88,7 +88,7 @@ enum DllExport YieldTypes
 	YIELD_STONE       = YIELD_SILICATES,
 	YIELD_ORE         = YIELD_BASE_METALS,
 	YIELD_TOOLS       = YIELD_MACHINE_TOOLS,
-	YIELD_WEAPONS     = YIELD_BIOWEAPONS,
+	YIELD_WEAPONS     = YIELD_MUNITIONS,
 	YIELD_HORSES      = YIELD_ROBOTICS,
 	YIELD_TRADE_GOODS = YIELD_EARTH_GOODS,
 
@@ -114,17 +114,17 @@ static inline bool YieldGroup_AI_Sell_To_Europe(YieldTypes eYield)
 
 static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)
 {
-	return eYield == YIELD_TOOLS;
+	return eYield == YIELD_ALIEN_SPECIMENS;
 }
 
 static inline bool YieldGroup_AI_Buy_From_Europe(YieldTypes eYield)
 {
-	return eYield == YIELD_TOOLS || eYield == YIELD_EARTH_GOODS || eYield == YIELD_CONTRABAND;
+	return eYield == YIELD_MACHINE_TOOLS || eYield == YIELD_MUNITIONS || eYield == YIELD_EARTH_GOODS || eYield == YIELD_CONTRABAND;
 }
 
 static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 {
-	return eYield == YIELD_ORE || eYield == YIELD_STONE;
+	return eYield == YIELD_BASE_METALS || eYield == YIELD_SILICATES;
 }
 
 static inline bool YieldGroup_AI_Native_Product(YieldTypes eYield)
