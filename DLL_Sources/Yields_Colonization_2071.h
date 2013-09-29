@@ -104,27 +104,27 @@ enum DllExport YieldTypes
 
 static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
 {
-	return eYield == YIELD_EARTH_GOODS || eYield == YIELD_CONTRABAND;
+	return (eYield >= YIELD_EARTH_GOODS && eYield <= YIELD_CONTRABAND);
 }
 
 static inline bool YieldGroup_AI_Sell_To_Europe(YieldTypes eYield)
 {
-	return eYield == YIELD_STATE_SECRETS;
+	return (eYield >= YIELD_FUSION_CORES && eYield <= YIELD_HARD_CURRENCY);
 }
 
 static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)
 {
-	return eYield == YIELD_ALIEN_SPECIMENS;
+	return (eYield <= YIELD_CORE_SAMPLES && eYield >= YIELD_ACTINIDES);
 }
 
 static inline bool YieldGroup_AI_Buy_From_Europe(YieldTypes eYield)
 {
-	return eYield == YIELD_MACHINE_TOOLS || eYield == YIELD_MUNITIONS || eYield == YIELD_EARTH_GOODS || eYield == YIELD_CONTRABAND;
+	return (eYield <= YIELD_MUNITIONS && eYield >= YIELD_MACHINE_TOOLS) || (eYield >= YIELD_EARTH_GOODS && eYield <= YIELD_CONTRABAND);
 }
 
 static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 {
-	return eYield == YIELD_BASE_METALS || eYield == YIELD_SILICATES;
+	return (eYield <= YIELD_BASE_METALS && eYield >= YIELD_NUTRIENTS) || (eYield <= YIELD_CRYSTALLOY && eYield >= YIELD_PHOTONICS) || (eYield == YIELD_MACHINE_TOOLS);
 }
 
 static inline bool YieldGroup_AI_Native_Product(YieldTypes eYield)
@@ -134,27 +134,27 @@ static inline bool YieldGroup_AI_Native_Product(YieldTypes eYield)
 
 static inline bool YieldGroup_City_Billboard(YieldTypes eYield)
 {
-	return false; //eYield == YIELD_HORSES || eYield == YIELD_TOOLS;
+	return false;
 }
 
 static inline bool YieldGroup_City_Billboard_Offset_Fix(YieldTypes eYield)
 {
-	return false; //eYield == YIELD_HORSES || eYield == YIELD_TOOLS;
+	return false;
 }
 
 static inline bool YieldGroup_Armor(YieldTypes eYield)
 {
-	return eYield == YIELD_PLASTEEL || eYield == YIELD_DURALLOY || eYield == YIELD_CRYSTALLOY;
+	return false;
 }
 
 static inline bool YieldGroup_Light_Armor(YieldTypes eYield)
 {
-	return eYield == YIELD_PLASTEEL;
+	return false;
 }
 
 static inline bool YieldGroup_Heavy_Armor(YieldTypes eYield)
 {
-	return eYield == YIELD_CRYSTALLOY;
+	return false;
 }
 
 static inline bool YieldGroup_Luxury_Food(YieldTypes eYield)
