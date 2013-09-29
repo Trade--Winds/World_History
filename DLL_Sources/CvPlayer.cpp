@@ -315,8 +315,11 @@ void CvPlayer::init(PlayerTypes eID)
 
 	AI_init();
 
-	Update_cache_YieldEquipmentAmount(); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
-	this->updateInventionEffectCache(); // invention effect cache - Nightinggale
+	if (this->getCivilizationType() != NO_CIVILIZATION)
+	{
+		Update_cache_YieldEquipmentAmount(); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
+		this->updateInventionEffectCache(); // invention effect cache - Nightinggale
+	}
 }
 
 
