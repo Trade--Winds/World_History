@@ -109,7 +109,7 @@ static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
 
 static inline bool YieldGroup_AI_Sell_To_Europe(YieldTypes eYield)
 {
-	return (eYield >= YIELD_FUSION_CORES && eYield <= YIELD_HARD_CURRENCY);
+	return (eYield <= YIELD_CORE_SAMPLES && eYield >= YIELD_BASE_METALS) || (eYield >= YIELD_PHOTONICS && eYield <= YIELD_HARD_CURRENCY) || (eYield == YIELD_EARTHLING_SPECIMENS);
 }
 
 static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)

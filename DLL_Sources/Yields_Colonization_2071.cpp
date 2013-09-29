@@ -19,6 +19,32 @@ void Check_YieldGroup_AI_Sell::build()
 // AI can also sell unneeded raw materials even if they aren't listed here
 void Check_YieldGroup_AI_Sell_To_Europe::build()
 {
+	YieldVector.push_back(YIELD_BASE_METALS);
+	YieldVector.push_back(YIELD_ACTINIDES);
+	YieldVector.push_back(YIELD_ISOTOPES);
+	YieldVector.push_back(YIELD_RARE_EARTHS);
+	YieldVector.push_back(YIELD_CRYSTALLOIDS);
+	YieldVector.push_back(YIELD_NUCLEIC_ACIDS);
+	YieldVector.push_back(YIELD_AMINO_ACIDS);
+	YieldVector.push_back(YIELD_TISSUE_SAMPLES);
+	YieldVector.push_back(YIELD_MICROBES);
+	YieldVector.push_back(YIELD_DATACORES);
+	YieldVector.push_back(YIELD_PROGENITOR_ARTIFACTS);
+	YieldVector.push_back(YIELD_ALIEN_SPECIMENS);
+	YieldVector.push_back(YIELD_PRECIOUS_METALS);
+	YieldVector.push_back(YIELD_OPIATES);
+	YieldVector.push_back(YIELD_XENOTOXINS);
+	YieldVector.push_back(YIELD_BOTANICALS);
+	YieldVector.push_back(YIELD_HYDROCARBONS);
+	YieldVector.push_back(YIELD_CLATHRATES);
+	YieldVector.push_back(YIELD_CORE_SAMPLES);
+	YieldVector.push_back(YIELD_PHOTONICS);
+	YieldVector.push_back(YIELD_PLASTEEL);
+	YieldVector.push_back(YIELD_DURALLOY);
+	YieldVector.push_back(YIELD_CRYSTALLOY);
+	YieldVector.push_back(YIELD_NUCLEONICS);
+	YieldVector.push_back(YIELD_EARTHLING_SPECIMENS);
+
 	YieldVector.push_back(YIELD_FUSION_CORES);
 	YieldVector.push_back(YIELD_SEMICONDUCTORS);
 	YieldVector.push_back(YIELD_PLASMIDS);

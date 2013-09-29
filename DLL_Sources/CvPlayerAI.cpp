@@ -9133,9 +9133,14 @@ void CvPlayerAI::AI_manageEconomy()
 				int iMaxStored = getNumCities() * GC.getGameINLINE().getCargoYieldCapacity();
 				iMaxStored *= GC.getYieldInfo(eLoopYield).getNativeConsumptionPercent();
 
-				int iModifier = 1 + std::max(10, 100 - (100 * iTotalStored) / iMaxStored);
-				iWeight *= iModifier;
-				iWeight /= 100;
+				// workaround for a crash when a player has 0 cities - Nightinggale
+				FAssert(iMaxStored != 0);
+				if (iMaxStored != 0)
+				{
+					int iModifier = 1 + std::max(10, 100 - (100 * iTotalStored) / iMaxStored);
+					iWeight *= iModifier;
+					iWeight /= 100;
+				}
 			}
 
 			int iEmphasize = 0;
