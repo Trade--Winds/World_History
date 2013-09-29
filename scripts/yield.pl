@@ -7,6 +7,10 @@
 # 2071: input/output is for Colonization 2071 instead of Medieval Conquest
 #
 # YieldGroup* or Check_YieldGroup*: The return line is generated based on the group in the cpp file
+#
+# python: outputs the code for CyEnumsInterface.cpp
+#
+# checkXML: outputs the code for BaseCheckYieldGroup::checkXML in Yields_(mod).cpp
 
 use strict;
 use warnings;
@@ -14,7 +18,7 @@ use warnings;
 my $target = 'Medieval_Tech';
 my $group = "";
 
-#
+# read all arguments and look for known keywords
 foreach (@ARGV)
 {
 	if ($_ eq '2071') {
@@ -25,6 +29,10 @@ foreach (@ARGV)
 		} else {
 			$group = 'Check_' . $_;
 		}
+	} elsif (substr($_,0, 6) eq 'python') {
+		$group = 'python';
+	} elsif (substr($_,0, 8) eq 'checkXML') {
+		$group = 'checkXML';
 	} 
 }
 
@@ -37,6 +45,7 @@ my $status = 0;
 
 my @yield_array = ();
 my %yield_hash = ();
+my %yield_convertion = ();
 
 while (<FILE>) {
 	if ($status == 0) {
@@ -45,12 +54,26 @@ while (<FILE>) {
 		}
 	} elsif ($status == 1) {
 		if (index($_, 'NUM_YIELD_TYPES') != -1) {
-			last
+			$status = 2;
 		} elsif (index($_, 'YIELD_') != -1) {
 			my $line = substr($_,index($_, 'YIELD_'));
 			$line = substr($line, 0, index($line, ','));
 			$yield_hash{$line} = scalar(@yield_array);
+			$yield_convertion{$line} = $line;
 			push(@yield_array, $line);
+		}
+	} elsif ($status == 2) {
+		if (substr($_,0,1) eq '}') {
+			last;
+		} elsif (index($_, '=') != -1) {
+			my $left = substr($_, index($_, 'Y'));
+			$left = substr($left, 0, index($left, ' ') );
+			
+			my $right = substr($_, index($_, '='));
+			$right = substr($right, index($right, 'Y'));
+			$right = substr($right,0,index($right, ',') );
+			
+			$yield_convertion{$right} = $left;
 		}
 	}
 }
@@ -162,10 +185,34 @@ sub GetOptimizedgroup{
 	print ";\n";
 }
 
+sub checkXML {
+	print "Fill in Yields_" . $target . ".cpp\n";
+	print "in function BaseCheckYieldGroup::checkXML\n";
+	for (@yield_array) {
+		print "\tcheckSingleXMLType(" . $_ . ",";
+		for (my $count = 26; $count >= length $_; $count--) {
+			print " ";
+		}
+		print "\"" . $_ . "\");\n";
+	}
+}
+
+sub createPythonAccess {
+	print "Fill in CyEnumsInterface.cpp\n";
+	print "python::enum_<YieldTypes>(\"YieldTypes\")\n";
+	print "under " . $target . "\n";
+	for (@yield_array) {
+		print "\t\t.value(\"" . $yield_convertion{$_} . "\", " . $_ . ")\n";
+	}
+}
+
 
 # call the subroutines ordered by command line arguments
 
 if (substr($group,0, 16) eq 'Check_YieldGroup') {
 	GetOptimizedgroup($group);
+} elsif ($group eq 'python') {
+	createPythonAccess();
+} elsif ($group eq 'checkXML') {
+	checkXML();
 }
-
