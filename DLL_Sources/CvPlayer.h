@@ -949,13 +949,16 @@ protected:
 public:
 	bool canUseYield(YieldTypes eYield) const;
 	bool canUseUnit(UnitTypes eUnit) const;
+	bool canUseProfession(ProfessionTypes eProfession) const;
 	bool canUseBonus(BonusTypes eBonus) const;
 	int getCityPlotFoodBonus() const;
 
 protected:
 	YieldArray<bool> m_abBannedYields;
 	UnitArray<bool> m_abBannedUnits;
+	ProfessionArray<bool> m_abBannedProfessions;
 	BonusArray<bool> m_abBannedBonus;
+
 	int m_iCityPlotFoodBonus;
 
 	void updateInventionEffectCache();
@@ -1041,6 +1044,12 @@ inline bool CvPlayer::canUseUnit(UnitTypes eUnit) const
 {
 	FAssert(eUnit < GC.getNumUnitInfos());
 	return eUnit >= 0 ? !this->m_abBannedUnits.get(eUnit) : false;
+}
+
+inline bool CvPlayer::canUseProfession(ProfessionTypes eProfession) const
+{
+	FAssert(eProfession < GC.getNumProfessionInfos());
+	return eProfession >= 0 ? !this->m_abBannedProfessions.get(eProfession) : false;
 }
 
 inline bool CvPlayer::canUseBonus(BonusTypes eBonus) const

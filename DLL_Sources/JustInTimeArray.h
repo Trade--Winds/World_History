@@ -183,6 +183,13 @@ public:
 	void init() { JustInTimeArray<T>::init(GC.getNumUnitInfos());}
 };
 
+template<class T>
+class ProfessionArray: public JustInTimeArray<T>
+{
+public:
+    ProfessionArray() : JustInTimeArray<T>(GC.getNumProfessionInfos()){};
+	void init() { JustInTimeArray<T>::init(GC.getNumProfessionInfos());}
+};
 
 template<class T>
 class BonusArray: public JustInTimeArray<T>

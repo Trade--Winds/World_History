@@ -11506,6 +11506,15 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 		return true;
 	}
 
+	// invention effect cache - start - Nightinggale
+	CvPlayer& kOwner = GET_PLAYER(getOwnerINLINE());
+
+	if (!kOwner.canUseProfession(eProfession))
+	{
+		return false;
+	}
+	// invention effect cache - end - Nightinggale
+
 	///TK Viscos Mod
     if (GC.getUnitInfo(getUnitType()).getProfessionsNotAllowed(eProfession))
     {
@@ -11579,7 +11588,6 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 	///Tke
 
 	CvProfessionInfo& kNewProfession = GC.getProfessionInfo(eProfession);
-	CvPlayer& kOwner = GET_PLAYER(getOwnerINLINE());
 
 	if (!kOwner.isProfessionValid(eProfession, getUnitType()))
 	{

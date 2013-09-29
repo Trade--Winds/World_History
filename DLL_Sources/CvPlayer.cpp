@@ -399,6 +399,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	// just-in-time array constructor might run before XML is read.
 	// init here to ensure length is set correctly.
 	m_abBannedUnits.init();
+	m_abBannedProfessions.init();
 	m_abBannedBonus.init();
 
 	m_iStartingX = INVALID_PLOT_COORD;
@@ -11739,8 +11740,11 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bFirstCityRazed);
 	///TKe
 
-	Update_cache_YieldEquipmentAmount(); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
-	this->updateInventionEffectCache(); // invention effect cache - Nightinggale
+	if (this->getCivilizationType() != NO_CIVILIZATION)
+	{
+		Update_cache_YieldEquipmentAmount(); // cache CvPlayer::getYieldEquipmentAmount - Nightinggale
+		this->updateInventionEffectCache(); // invention effect cache - Nightinggale	
+	}
 }
 
 //
@@ -19003,6 +19007,8 @@ bool CvPlayer::canMakeVassalDemand(PlayerTypes eVassal)
 // invention effect cache - start - Nightinggale
 void CvPlayer::updateInventionEffectCache()
 {
+	CvCivilizationInfo& kCivilizationInfo = GC.getCivilizationInfo(this->getCivilizationType());
+
 	for (int i = 0; i < NUM_YIELD_TYPES; i++)
 	{
 		YieldTypes eYield = (YieldTypes)i;
@@ -19079,6 +19085,13 @@ void CvPlayer::updateInventionEffectCache()
 
 		CvUnitInfo& kUnit = GC.getUnitInfo((UnitTypes) iUnit);
         int eUnitClass = kUnit.getUnitClassType();
+
+		if (iUnit != kCivilizationInfo.getCivilizationUnits(eUnitClass))
+		{
+			this->m_abBannedUnits.set(true, iUnit);
+			continue;
+		}
+
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
 			CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes)iCivic);
@@ -19099,6 +19112,44 @@ void CvPlayer::updateInventionEffectCache()
 		this->m_abBannedUnits.set(iCurrent <= 0, iUnit);
 	}
 	this->m_abBannedUnits.hasContent(); // release memory if possible
+
+	// cache allowed professions
+	for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++)
+	{
+		ProfessionTypes eProfession = (ProfessionTypes) iProfession;
+		int iCurrent = 0;
+		int iMax = 0;
+
+		CvProfessionInfo& kProfession = GC.getProfessionInfo(eProfession);
+
+		if (!kCivilizationInfo.isValidProfession(eProfession)
+		 || (kCivilizationInfo.isEurope() && kProfession.isEuropeInvalid()) 
+		 || (kCivilizationInfo.isNative() && kProfession.isNativesInvalid()))
+		{
+			this->m_abBannedProfessions.set(true, eProfession);
+			continue;
+		}
+
+        for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+        {
+			CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes)iCivic);
+			int iCivicWeight = kCivicInfo.getAllowsProfessions(eProfession);
+			if (iCivicWeight > 0)
+			{
+				iMax += iCivicWeight;
+			}
+			if (iCivicWeight != 0 && getIdeasResearched((CivicTypes) iCivic) > 0)
+			{
+				iCurrent += iCivicWeight;
+			}
+        }
+		if (iMax == 0)
+		{
+			iCurrent++;
+		}
+		this->m_abBannedProfessions.set(iCurrent <= 0, eProfession);
+	}
+	this->m_abBannedProfessions.hasContent(); // release memory if possible
 
 	// city plot food bonus
 	this->m_iCityPlotFoodBonus = 0;
