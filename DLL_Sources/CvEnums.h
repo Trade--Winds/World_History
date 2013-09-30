@@ -2860,13 +2860,6 @@ enum DllExport XMLconstantTypes
 	// STANDARD_HANDICAP
 
 	// ***
-	// *** BasicInfos\CIV4UnitCombatInfos
-	// ***
-	XML_UNITARMOR_LEATHER,
-	XML_UNITARMOR_SCALE,
-	XML_UNITARMOR_MAIL,
-
-	// ***
 	// *** GlobalDefinesAlt.xml
 	// ***
 

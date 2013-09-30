@@ -2374,11 +2374,6 @@ void CvGlobals::cacheXMLval()
 	}
 	// discoverable yield detection - end - Nightinggale
 
-	// BasicInfos\CIV4UnitCombatInfos.xml
-	this->m_aiDefineCache[XML_UNITARMOR_LEATHER                        ] = this->getDefineINT("UNITARMOR_LEATHER");
-	this->m_aiDefineCache[XML_UNITARMOR_SCALE                          ] = this->getDefineINT("UNITARMOR_SCALE");
-	this->m_aiDefineCache[XML_UNITARMOR_MAIL                           ] = this->getDefineINT("UNITARMOR_MAIL");
-
 	// Units\CIV4PromotionInfos.xml
 	this->m_aiDefineCache[XML_PROMOTION_BUILD_HOME                     ] = this->getDefineINT("PROMOTION_BUILD_HOME");
 

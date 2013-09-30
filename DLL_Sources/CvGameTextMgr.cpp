@@ -1160,41 +1160,22 @@ void CvGameTextMgr::setProfessionHelp(CvWStringBuffer &szBuffer, ProfessionTypes
         szBuffer.append(NEWLINE);
         szBuffer.append(gDLL->getText("TXT_KEY_TAX_COLLECTOR_PROFESSION", kProfession.getTaxCollectRate()));
     }
-    if (kProfession.getCombatGearTypes(GC.getXMLval(XML_UNITARMOR_LEATHER)))
-    {
-        szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_LEATHER_ARMOR_TEXT"));
-    }
-    if (kProfession.getCombatGearTypes(GC.getXMLval(XML_UNITARMOR_SCALE)))
-    {
-        szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_SCALE_ARMOR_TEXT"));
-    }
-    if (kProfession.getCombatGearTypes(GC.getXMLval(XML_UNITARMOR_MAIL)))
-    {
-        szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_MAIL_ARMOR_TEXT"));
-    }
-    if (kProfession.getCombatGearTypes(GC.getXMLval(XML_UNITARMOR_PLATE)))
-    {
-        szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_PLATE_ARMOR_TEXT"));
-    }
-    if (kProfession.getCombatGearTypes(GC.getXMLval(XML_UNITTACTIC_PARRY)))
-    {
-        szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_UNITTACTIC_PARRY_TEXT"));
-    }
-    if (kProfession.getCombatGearTypes(GC.getXMLval(XML_UNITARMOR_SHIELD)))
-    {
-        szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_UNITARMOR_SHIELD_TEXT"));
-    }
-    if (kProfession.getCombatGearTypes(GC.getXMLval(XML_UNITWEAPON_BLUNT)))
-    {
-        szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROFESSION_UNITWEAPON_BLUNT_TEXT"));
-    }
+
+	// generic loop by Nightinggale
+	for (int i = 0; i < GC.getNumUnitCombatInfos(); i++)
+	{
+		UnitCombatTypes eUnitCombat = (UnitCombatTypes) i;
+		if (kProfession.getCombatGearTypes(eUnitCombat))
+		{
+			CvInfoBase& kInfo = GC.getUnitCombatInfo(eUnitCombat);
+
+			if ( wcslen(kInfo.getCivilopedia()) > 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText(kInfo.getCivilopedia()));
+			}
+		}
+	}
     ///Tke
 	for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); ++iPromotion)
 	{
