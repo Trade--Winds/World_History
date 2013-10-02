@@ -374,6 +374,7 @@ public:
 	///TKs Med BM
 	DllExport bool isAltFreePromotion(int i) const;
 	DllExport bool getCombatGearTypes(int i) const;
+	DllExport bool hasCombatGearTypes() const; // CombatGearTypes - Nightinggale
 	DllExport int getAltEquipmentTypes(int i) const;
 	//int getAltEquipmentTypesArray();
 	int getAltEquipmentAt(int i) const;
@@ -449,7 +450,7 @@ protected:
 	std::vector<YieldEquipment> m_aYieldEquipments;
 	bool* m_abFreePromotions;
 	///TKs Med BM
-	bool* m_aiCombatGearTypes;
+	UnitCombatArray<bool> m_aiCombatGearTypes; // CombatGearTypes - Nightinggale
 	int* m_aiAltEquipmentTypes;
 	bool* m_abAltFreePromotions;
 	int m_iRequiredBuilding;
@@ -466,6 +467,18 @@ protected:
 	std::vector<int> m_aiYieldsConsumed;
 	// MultipleYieldsConsumed End
 };
+
+// CombatGearTypes - start - Nightinggale
+inline bool CvProfessionInfo::getCombatGearTypes(int i) const
+{
+	return m_aiCombatGearTypes.get(i);
+}
+
+inline bool CvProfessionInfo::hasCombatGearTypes() const
+{
+	return m_aiCombatGearTypes.isAllocated();
+}
+// CombatGearTypes - end - Nightinggale
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //

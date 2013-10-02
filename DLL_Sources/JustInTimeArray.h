@@ -111,6 +111,11 @@ public:
 		tArray[iIndex] = value;
 	}
 
+	inline void add(T value, int iIndex)
+	{
+		this->set(value + this->get(iIndex), iIndex);
+	}
+
 	bool hasContent(bool bRelease = true)
 	{
 		if (tArray == NULL)
@@ -153,15 +158,31 @@ public:
 	{
 		if (bWrite)
 		{
-			FAssert(tArray != NULL);
-			pStream->Write(m_iLength, tArray);
+			if (tArray == NULL)
+			{
+				// requested writing an empty array.
+				for (int i = 0; i < m_iLength; i++)
+				{
+					pStream->Write(0);
+				}
+			} else {
+				pStream->Write(m_iLength, tArray);
+			}
 		}
 	}
 
 	void read(CvXMLLoadUtility* pXML, const char* sTag)
 	{
+		// read the data into a temp int array and then set the permanent array with those values.
+		// this is a workaround for template issues
 		FAssert(this->m_iLength > 0);
-		pXML->SetVariableListTagPair(&tArray, sTag, this->m_iLength, 0);
+		int *iArray = new int[this->m_iLength];
+		pXML->SetVariableListTagPair(&iArray, sTag, this->m_iLength, 0);
+		for (int i = 0; i < this->m_iLength; i++)
+		{
+			this->set(iArray[i], i);
+		}
+		SAFE_DELETE_ARRAY(iArray);
 		this->hasContent(); // release array if possible
 	}
 };
@@ -189,6 +210,22 @@ class ProfessionArray: public JustInTimeArray<T>
 public:
     ProfessionArray() : JustInTimeArray<T>(GC.getNumProfessionInfos()){};
 	void init() { JustInTimeArray<T>::init(GC.getNumProfessionInfos());}
+};
+
+template<class T>
+class PromotionArray: public JustInTimeArray<T>
+{
+public:
+    PromotionArray() : JustInTimeArray<T>(GC.getNumPromotionInfos()){};
+	void init() { JustInTimeArray<T>::init(GC.getNumPromotionInfos());}
+};
+
+template<class T>
+class UnitCombatArray: public JustInTimeArray<T>
+{
+public:
+    UnitCombatArray() : JustInTimeArray<T>(GC.getNumUnitCombatInfos()){};
+	void init() { JustInTimeArray<T>::init(GC.getNumUnitCombatInfos());}
 };
 
 template<class T>

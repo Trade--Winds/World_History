@@ -11390,16 +11390,27 @@ void CvUnit::setProfession(ProfessionTypes eProfession, bool bForce)
 		}
 
 		processProfession(getProfession(), -1, false);
-		if (getProfessionUnitCombatType(getProfession()) != getProfessionUnitCombatType(eProfession))
+
+		// CombatGearTypes - start - Nightinggale
+		PromotionArray<int> aiPromotionChange;
+
+		if (getProfession() != NO_PROFESSION)
 		{
-			for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); ++iPromotion)
+			CvProfessionInfo& kProfession = GC.getProfessionInfo(getProfession());
+
+			if (kProfession.hasCombatGearTypes())
 			{
-				if (isHasPromotion((PromotionTypes) iPromotion))
+				for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); ++iPromotion)
 				{
-					processPromotion((PromotionTypes) iPromotion, -1);
+					if (isHasPromotion((PromotionTypes) iPromotion))
+					{
+						aiPromotionChange.set(-1, iPromotion);
+					}
 				}
 			}
 		}
+		// CombatGearTypes - end - Nightinggale
+
 		ProfessionTypes eOldProfession = getProfession();
 		m_eProfession = eProfession;
 
@@ -11448,16 +11459,36 @@ void CvUnit::setProfession(ProfessionTypes eProfession, bool bForce)
             }
         }
 
-		if (getProfessionUnitCombatType(eOldProfession) != getProfessionUnitCombatType(getProfession()))
+		// CombatGearTypes - start - Nightinggale
+		if (getProfession() != NO_PROFESSION)
 		{
-			for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); ++iPromotion)
+			CvProfessionInfo& kProfession = GC.getProfessionInfo(getProfession());
+
+			if (kProfession.hasCombatGearTypes())
 			{
-				if (isHasPromotion((PromotionTypes) iPromotion))
+				for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); ++iPromotion)
 				{
-					processPromotion((PromotionTypes) iPromotion, 1);
+					if (isHasPromotion((PromotionTypes) iPromotion))
+					{
+						aiPromotionChange.add(1, iPromotion);
+					}
 				}
 			}
 		}
+
+		if (aiPromotionChange.isAllocated())
+		{
+			for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); ++iPromotion)
+			{
+				int iChange = aiPromotionChange.get(iPromotion);
+				if (iChange != 0)
+				{
+					processPromotion((PromotionTypes) iPromotion, iChange);
+				}
+			}
+		}
+		// CombatGearTypes - end - Nightinggale
+
         ///Tke
 		processProfession(getProfession(), 1, true);
 
@@ -13056,10 +13087,36 @@ bool CvUnit::isPromotionValid(PromotionTypes ePromotion) const
 		return false;
 	}
 
-	if (!kPromotion.getUnitCombat(getUnitCombatType()))
+	// CombatGearTypes - start - Nightinggale
+	bool bAllowedCombatType = kPromotion.getUnitCombat(getUnitCombatType()); // allowed promotion according to combat type
+
+	if (!bAllowedCombatType)
 	{
-		return false;
+		ProfessionTypes eProfession = this->getProfession();
+		if (eProfession != NO_PROFESSION)
+		{
+			CvProfessionInfo& kProfession = GC.getProfessionInfo(eProfession);
+
+			if (kProfession.hasCombatGearTypes())
+			{
+				// check all gear types for the current profession
+				for (int iType = 0; iType < GC.getNumUnitCombatInfos(); iType++)
+				{
+					if (kPromotion.getUnitCombat(iType) && kProfession.getCombatGearTypes(iType))
+					{
+						bAllowedCombatType = true;
+						break;
+					}
+				}
+			}
+		}
+		if (!bAllowedCombatType)
+		{
+			// Neighter the current unit's UnitCombatType or the unit's profession allows this promotion
+			return false;
+		}
 	}
+	// CombatGearTypes - end - Nightinggale
 
 	if (kPromotion.getWithdrawalChange() + withdrawalProbability() > GC.getXMLval(XML_MAX_WITHDRAWAL_PROBABILITY))
 	{
@@ -13098,10 +13155,21 @@ bool CvUnit::isHasPromotion(PromotionTypes eIndex) const
 		return false;
 	}
 
-	if (!kPromotion.getUnitCombat(eUnitCombat))
+	// CombatGearTypes - start - Nightinggale
+	bool bNotAllowed = true;
+	for (int iType = 0; iType < GC.getNumUnitCombatInfos(); iType++)
+	{
+		if (kPromotion.getUnitCombat((UnitCombatTypes) iType))
+		{
+			bNotAllowed = false;
+			break;
+		}
+	}
+	if (bNotAllowed)
 	{
 		return false;
 	}
+	// CombatGearTypes - end - Nightinggale
 
 	if (getFreePromotionCount(eIndex) <= 0 && !isHasRealPromotion(eIndex))
 	{

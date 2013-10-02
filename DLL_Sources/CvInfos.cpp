@@ -1388,7 +1388,6 @@ CvProfessionInfo::CvProfessionInfo() :
 	m_bNoDefensiveBonus(false),
 	m_abFreePromotions(NULL),
 	///TKs Med Battle Mod
-	m_aiCombatGearTypes(NULL),
 	m_aiAltEquipmentTypes(NULL),
 	m_abAltFreePromotions(NULL),
 	//m_iCombatYieldsGathered(NULL),
@@ -1412,7 +1411,6 @@ CvProfessionInfo::~CvProfessionInfo()
 {
 	SAFE_DELETE_ARRAY(m_abFreePromotions);
 	///TKs Med BM
-	SAFE_DELETE_ARRAY(m_aiCombatGearTypes);
 	SAFE_DELETE_ARRAY(m_aiAltEquipmentTypes);
 	SAFE_DELETE_ARRAY(m_abAltFreePromotions);
 	///TKe
@@ -1561,12 +1559,6 @@ bool CvProfessionInfo::isFreePromotion(int i) const
 }
 
 ///TKs Med BM
-bool CvProfessionInfo::getCombatGearTypes(int i) const
-{
-    FAssertMsg(i < GC.getNumUnitCombatInfos(), "Index out of bounds");
-	FAssertMsg(i > -1, "Index out of bounds");
-	return m_aiCombatGearTypes ? m_aiCombatGearTypes[i] : false;
-}
 int CvProfessionInfo::getAltEquipmentTypes(int i) const
 {
     FAssertMsg(i < NUM_YIELD_TYPES, "Index out of bounds");
@@ -1769,9 +1761,7 @@ void CvProfessionInfo::read(FDataStreamBase* stream)
 	stream->Read(GC.getNumPromotionInfos(), m_abFreePromotions);
 
 	///TKs Med BM
-	SAFE_DELETE_ARRAY(m_aiCombatGearTypes);
-	m_aiCombatGearTypes = new bool[GC.getNumUnitCombatInfos()];
-	stream->Read(GC.getNumUnitCombatInfos(), m_aiCombatGearTypes);
+	m_aiCombatGearTypes.read(stream, true); // CombatGearTypes - Nightinggale
 
 	SAFE_DELETE_ARRAY(m_aiAltEquipmentTypes);
 	m_aiAltEquipmentTypes = new int[NUM_YIELD_TYPES];
@@ -1850,7 +1840,7 @@ void CvProfessionInfo::write(FDataStreamBase* stream)
 
 	stream->Write(GC.getNumPromotionInfos(), m_abFreePromotions);
 	///TKs Med BM
-	stream->Write(GC.getNumUnitCombatInfos(), m_aiCombatGearTypes);
+	m_aiCombatGearTypes.write(stream, true); // CombatGearTypes - Nightinggale
 	stream->Write(NUM_YIELD_TYPES, m_aiAltEquipmentTypes);
 	stream->Write(GC.getNumPromotionInfos(), m_abAltFreePromotions);
 	///TKe
@@ -1955,7 +1945,13 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 	SAFE_DELETE_ARRAY(aiYieldAmounts);
 	pXML->SetVariableListTagPair(&m_abFreePromotions, "FreePromotions", GC.getNumPromotionInfos(), false);
 	///TKs Med BM
-	pXML->SetVariableListTagPair(&m_aiCombatGearTypes, "CombatGearTypes", GC.getNumUnitCombatInfos(), false);
+	// CombatGearTypes - start - Nightinggale
+	m_aiCombatGearTypes.read(pXML, "CombatGearTypes");
+	if (this->getUnitCombatType() != NO_UNITCOMBAT)
+	{
+		m_aiCombatGearTypes.set(true, this->getUnitCombatType());
+	}
+	// CombatGearTypes - end - Nightinggale
 	pXML->SetVariableListTagPair(&m_aiAltEquipmentTypes, "AltEquipmentTypes", NUM_YIELD_TYPES, 0);
 	pXML->SetVariableListTagPair(&m_abAltFreePromotions, "AltFreePromotions", GC.getNumPromotionInfos(), false);
 	///TKe
