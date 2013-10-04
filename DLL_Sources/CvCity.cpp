@@ -6599,6 +6599,7 @@ void CvCity::setHasFreeBuilding(BuildingTypes eIndex, bool bNewValue)
 				processBuilding(eBuilding, abOldBuildings[eBuilding] ? -1 : 1);
 			}
 		}
+		UpdateBuildingAffectedCache(); // building affected cache - Nightinggale
 	}
 }
 
