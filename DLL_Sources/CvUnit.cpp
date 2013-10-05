@@ -14276,8 +14276,48 @@ void CvUnit::setYieldStored(int iYieldAmount)
 						else if (isHuman())
 						///Tke
 						{
-							CvPopupInfo* pPopupInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_EDUCATION, pCity->getID(), getID());
-							gDLL->getInterfaceIFace()->addPopup(pPopupInfo, getOwnerINLINE());
+							// Teacher List - start - Nightinggale
+							CvPlayer& kPlayer = GET_PLAYER(GC.getGameINLINE().getActivePlayer());
+							std::vector<UnitTypes> ordered_units;
+							// make a list of ordered units, where the owner can affort training them.
+							for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
+							{
+								int iPrice = pCity->getSpecialistTuition((UnitTypes) iI);
+								if (iPrice >= 0 && iPrice <= kPlayer.getGold())
+								{
+									UnitTypes eUnitType = (UnitTypes) iI;
+									if (kPlayer.canUseUnit(eUnitType))
+									{
+										for(int count = 0; count <	pCity->getOrderedStudents(eUnitType); count++)
+										{
+											// add one for each unit ordered, not just one for each type as a random one is selected in the end.
+											ordered_units.push_back(eUnitType);
+										}
+									}
+								}
+							}
+							
+							if (!ordered_units.empty())
+							{
+								// Train the unit into
+								int random_num = ordered_units.size();
+								if (random_num == 1)
+								{
+									// The vector contains only one unit. The "random" unit has to be the first.
+									random_num = 0;
+								} else {
+									random_num = GC.getGameINLINE().getSorenRandNum(random_num, "Pick unit for training");
+								}
+								pCity->educateStudent(this->getID(), ordered_units[random_num]);
+							}
+							else
+							{
+								// no ordered units can be trained
+								// original code to open the popup to pick a unit
+								CvPopupInfo* pPopupInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_EDUCATION, pCity->getID(), getID());
+								gDLL->getInterfaceIFace()->addPopup(pPopupInfo, getOwnerINLINE());
+							}
+							// Teacher List - end - Nightinggale
 						}
 						else
 						{

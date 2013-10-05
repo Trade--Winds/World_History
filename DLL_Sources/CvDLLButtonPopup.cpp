@@ -2187,9 +2187,6 @@ bool CvDLLButtonPopup::launchEducationPopup(CvPopup* pPopup, CvPopupInfo &info)
 
 	int iNumUnits = 0;
 	UnitTypes eLastUnit = NO_UNIT;
-	// Teacher List - start - Nightinggale
-	std::vector<UnitTypes> ordered_units;
-	// Teacher List - end - Nightinggale
 	for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
 	{
 		UnitTypes eUnit = (UnitTypes)iI;
@@ -2212,31 +2209,8 @@ bool CvDLLButtonPopup::launchEducationPopup(CvPopup* pPopup, CvPopupInfo &info)
 			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, szText, kUnit.getButton(), iI, WIDGET_GENERAL, -1, -1, true, POPUP_LAYOUT_STRETCH, DLL_FONT_LEFT_JUSTIFY);
 			++iNumUnits;
 			eLastUnit = (UnitTypes) iI;
-			// Teacher List - start - Nightinggale
-			for(int count = 0; count <	pCity->getOrderedStudents(eLastUnit); count++)
-			{
-				ordered_units.push_back(eLastUnit);
-			}
-			// Teacher List - end - Nightinggale
 		}
 	}
-
-	// Teacher List - start - Nightinggale
-	if (!ordered_units.empty())
-	{
-		// Train the unit into
-		int random_num = ordered_units.size();
-		if (random_num == 1)
-		{
-			// The vector contains only one unit. The "random" unit has to be the first.
-			random_num = 0;
-		} else {
-			random_num = GC.getGameINLINE().getSorenRandNum(random_num, "Pick unit for training");
-		}
-		gDLL->sendDoTask(info.getData1(), TASK_EDUCATE, info.getData2(), ordered_units[random_num], false, false, false, false);
-		return false;
-	}
-	// Teacher List - end - Nightinggale
 
 	if (iNumUnits <= 1)
 	{
