@@ -8705,7 +8705,13 @@ void CvPlayer::unloadUnitToEurope(CvUnit* pUnit)
 		m_aEuropeUnits.push_back(pTransferUnit);
 		pTransferUnit->AI_setUnitAIType(eUnitAI);
 
-
+		// traderoute - start - Nightinggale
+		if (this->isHuman() && eTravelState == NO_UNIT_TRAVEL_STATE)
+		{
+			// TODO figure out a generic way of setting the start location instead of this hack
+			eTravelState = UNIT_TRAVEL_STATE_IN_SPICE_ROUTE;
+		}
+		// traderoute - end - Nightinggale
 
 		if (eTravelState != NO_UNIT_TRAVEL_STATE)
 		{
