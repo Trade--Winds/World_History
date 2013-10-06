@@ -2513,6 +2513,7 @@ void CvGlobals::cacheXMLval()
 	this->m_aiDefineCache[XML_TURNS_TO_TRAIN                           ] = this->getDefineINT("TURNS_TO_TRAIN");
 	this->m_aiDefineCache[XML_UNITARMOR_PLATE                          ] = this->getDefineINT("UNITARMOR_PLATE");
 	this->m_aiDefineCache[XML_UNITARMOR_SHIELD                         ] = this->getDefineINT("UNITARMOR_SHIELD");
+	this->m_aiDefineCache[XML_UNITCOMBAT_USE_ALL_BONUS                 ] = this->getDefineINT("UNITCOMBAT_USE_ALL_BONUS");
 	this->m_aiDefineCache[XML_UNITTACTIC_PARRY                         ] = this->getDefineINT("UNITTACTIC_PARRY");
 	this->m_aiDefineCache[XML_UNITWEAPON_BLUNT                         ] = this->getDefineINT("UNITWEAPON_BLUNT");
 	this->m_aiDefineCache[XML_USE_MEDIEVAL_CALENDER                    ] = this->getDefineINT("USE_MEDIEVAL_CALENDER");

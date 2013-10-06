@@ -856,6 +856,7 @@ protected:
 	void doUnitTravelTimer();
 	void processPromotion(PromotionTypes ePromotion, int iChange);
 	UnitCombatTypes getProfessionUnitCombatType(ProfessionTypes eProfession) const;
+	bool hasUnitCombatType(UnitCombatTypes eUnitCombat) const; // CombatGearTypes - Nightinggale
 	void processUnitCombatType(UnitCombatTypes eUnitCombat, int iChange);
 	void doUnloadYield(int iAmount);
 	bool raidWeapons(std::vector<int>& aYields);

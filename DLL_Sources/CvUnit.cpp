@@ -7739,6 +7739,20 @@ UnitCombatTypes CvUnit::getProfessionUnitCombatType(ProfessionTypes eProfession)
 	return ((UnitCombatTypes)(m_pUnitInfo->getUnitCombatType()));
 }
 
+// CombatGearTypes - start - Nightinggale
+bool CvUnit::hasUnitCombatType(UnitCombatTypes eUnitCombat) const
+{
+	if (getProfession() != NO_PROFESSION)
+	{
+		if (GC.getProfessionInfo(getProfession()).getCombatGearTypes(eUnitCombat))
+		{
+			return true;
+		}
+	}
+	return ((UnitCombatTypes)(m_pUnitInfo->getUnitCombatType())) == eUnitCombat;
+}
+// CombatGearTypes - end - Nightinggale
+
 void CvUnit::processUnitCombatType(UnitCombatTypes eUnitCombat, int iChange)
 {
 	if (iChange != 0)
@@ -8418,6 +8432,61 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				pCombatDetails->iClassAttackModifier = iExtraModifier;
 			}
 
+			// CombatGearTypes - start - Nightinggale
+			{
+				int iDefendsModifier = 0;
+				int iDefendsModifierMax = -9999;
+				int iAttackModifier = 0;
+				int iAttackModifierMax = -9999;
+
+				for (int i = 0; i < GC.getNumUnitCombatInfos(); i++)
+				{
+					UnitCombatTypes eUnitCombat = (UnitCombatTypes) i;
+
+					if (pAttacker->hasUnitCombatType(eUnitCombat))
+					{
+						int iModifier = unitCombatModifier(eUnitCombat);
+						if (iModifier != 0)
+						{
+							iDefendsModifier += iModifier;
+							iDefendsModifierMax = std::max(iDefendsModifierMax, iModifier);
+						}
+					}
+
+					if (hasUnitCombatType(eUnitCombat))
+					{
+						int iModifier = pAttacker->unitCombatModifier(eUnitCombat);
+						if (iModifier != 0)
+						{
+							iAttackModifier += iModifier;
+							iAttackModifierMax = std::max(iAttackModifierMax, iModifier);
+						}
+					}
+				}
+
+				if (GC.getXMLval(XML_UNITCOMBAT_USE_ALL_BONUS) == 0)
+				{
+					if (iDefendsModifierMax != -9999)
+					{
+						iDefendsModifier = iDefendsModifierMax;
+					}
+					if (iAttackModifier != -9999)
+					{
+						iAttackModifier = iAttackModifierMax;
+					}
+				}
+
+				iAttackModifier = -iAttackModifier;
+
+				iTempModifier += iDefendsModifier + iAttackModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iCombatModifierA = iDefendsModifier;
+					pCombatDetails->iCombatModifierT = iAttackModifier;
+				}
+			}
+			// CombatGearTypes - end - Nightinggale
+#if 0
 			if (pAttacker->getUnitCombatType() != NO_UNITCOMBAT)
 			{
 				iExtraModifier = unitCombatModifier(pAttacker->getUnitCombatType());
@@ -8436,6 +8505,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 					pCombatDetails->iCombatModifierT = iExtraModifier;
 				}
 			}
+#endif
 
 			iExtraModifier = domainModifier(pAttacker->getDomainType());
 			iTempModifier += iExtraModifier;
@@ -13159,7 +13229,8 @@ bool CvUnit::isHasPromotion(PromotionTypes eIndex) const
 	bool bNotAllowed = true;
 	for (int iType = 0; iType < GC.getNumUnitCombatInfos(); iType++)
 	{
-		if (kPromotion.getUnitCombat((UnitCombatTypes) iType))
+		UnitCombatTypes eUnitCombat = (UnitCombatTypes) iType;
+		if (kPromotion.getUnitCombat(eUnitCombat) && this->hasUnitCombatType(eUnitCombat))
 		{
 			bNotAllowed = false;
 			break;
