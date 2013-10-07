@@ -315,10 +315,6 @@
     <DefineTextVal>TRADING_GUILDS</DefineTextVal>
   </Define>
   <Define>
-    <DefineName>EUROPE_EAST</DefineName>
-    <DefineTextVal>EUROPE_EAST</DefineTextVal>
-  </Define>
-  <Define>
     <DefineName>AI_MILITARY_PROFESSION_HACK</DefineName>
     <iDefineIntVal>0</iDefineIntVal>
   </Define>
@@ -373,10 +369,6 @@
   <Define>
     <DefineName>CASTLES_TO_VILLAGES_RATIO</DefineName>
     <iDefineIntVal>1</iDefineIntVal>
-  </Define>
-  <Define>
-    <DefineName>CULTURE_YIELD</DefineName>
-    <DefineTextVal>YIELD_CULTURE</DefineTextVal>
   </Define>
   <Define>
     <DefineName>IMMIGRATION_THRESHOLD_INCREASE</DefineName>
@@ -593,22 +585,6 @@
   <Define>
     <DefineName>DEFAULT_NOBLE_GROWTH_UNIT_CLASS</DefineName>
     <DefineTextVal>UNITCLASS_PAGE</DefineTextVal>
-  </Define>
-  <Define>
-    <DefineName>UNITTACTIC_PARRY</DefineName>
-    <DefineTextVal>UNITTACTIC_PARRY</DefineTextVal>
-  </Define>
-  <Define>
-    <DefineName>UNITARMOR_SHIELD</DefineName>
-    <DefineTextVal>UNITARMOR_SHIELD</DefineTextVal>
-  </Define>
-  <Define>
-    <DefineName>UNITARMOR_PLATE</DefineName>
-    <DefineTextVal>UNITARMOR_PLATE</DefineTextVal>
-  </Define>
-  <Define>
-    <DefineName>UNITWEAPON_BLUNT</DefineName>
-    <DefineTextVal>UNITWEAPON_BLUNT</DefineTextVal>
   </Define>
   <!-- This is the New Default Unit -->
   <Define>

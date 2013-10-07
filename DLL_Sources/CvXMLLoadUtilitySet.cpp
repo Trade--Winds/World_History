@@ -340,10 +340,6 @@ bool CvXMLLoadUtility::SetPostGlobalsGlobalDefines()
 		idx = FindInInfoClass(szVal);
 		GC.getDefinesVarSystem()->SetValue("TREASURE_UNITCLASS", idx);
 
-		SetGlobalDefine("CULTURE_YIELD", szVal);
-		idx = FindInInfoClass(szVal);
-		GC.getDefinesVarSystem()->SetValue("CULTURE_YIELD", idx);
-
 		///TKs Invention Core Mod v 1.0
 		SetGlobalDefine("CIVICOPTION_INVENTIONS", szVal);
 		idx = FindInInfoClass(szVal);
@@ -376,22 +372,6 @@ bool CvXMLLoadUtility::SetPostGlobalsGlobalDefines()
 		SetGlobalDefine("CONTACT_YIELD_GIFT_TECH", szVal);
 		idx = FindInInfoClass(szVal);
 		GC.getDefinesVarSystem()->SetValue("CONTACT_YIELD_GIFT_TECH", idx);
-
-		SetGlobalDefine("UNITTACTIC_PARRY", szVal);
-		idx = FindInInfoClass(szVal);
-        GC.getDefinesVarSystem()->SetValue("UNITTACTIC_PARRY", idx);
-
-		SetGlobalDefine("UNITARMOR_PLATE", szVal);
-		idx = FindInInfoClass(szVal);
-		GC.getDefinesVarSystem()->SetValue("UNITARMOR_PLATE", idx);
-
-		SetGlobalDefine("UNITARMOR_SHIELD", szVal);
-		idx = FindInInfoClass(szVal);
-		GC.getDefinesVarSystem()->SetValue("UNITARMOR_SHIELD", idx);
-
-		SetGlobalDefine("UNITWEAPON_BLUNT", szVal);
-		idx = FindInInfoClass(szVal);
-		GC.getDefinesVarSystem()->SetValue("UNITWEAPON_BLUNT", idx);
 
 		SetGlobalDefine("DEFAULT_YIELD_ARMOR_TYPE", szVal);
 		idx = FindInInfoClass(szVal);
@@ -456,10 +436,6 @@ bool CvXMLLoadUtility::SetPostGlobalsGlobalDefines()
 		SetGlobalDefine("FREE_PEASANT_CIVIC", szVal);
 		idx = FindInInfoClass(szVal);
 		GC.getDefinesVarSystem()->SetValue("FREE_PEASANT_CIVIC", idx);
-
-		SetGlobalDefine("EUROPE_EAST", szVal);
-		idx = FindInInfoClass(szVal);
-		GC.getDefinesVarSystem()->SetValue("EUROPE_EAST", idx);
 
 		SetGlobalDefine("JUNGLE_FEATURE", szVal);
 		idx = FindInInfoClass(szVal);
@@ -556,6 +532,37 @@ bool CvXMLLoadUtility::SetPostGlobalsGlobalDefines()
 
 		///TKe
 
+		// global cache - start - Nightinggale
+		// some python use CULTURE_YIELD even though reading YIELD_CULTURE is faster
+		// to avoid recoding a bunch of python we define both to be the same here
+		GC.getDefinesVarSystem()->SetValue("CULTURE_YIELD", YIELD_CULTURE);
+
+		for (int i = 0; i < GC.getNumEuropeInfos(); i++)
+		{
+			EuropeTypes eEurope = (EuropeTypes) i;
+			CvEuropeInfo& eEuropeInfo = GC.getEuropeInfo(eEurope);
+				
+			if (!strcmp(eEuropeInfo.getType(), "EUROPE_EAST"))
+			{
+				GC.getDefinesVarSystem()->SetValue(eEuropeInfo.getType(), i);
+				break;
+			}
+		}
+		
+		for (int i = 0; i < GC.getNumUnitCombatInfos(); i++)
+		{
+			UnitCombatTypes eUnitCombat = (UnitCombatTypes) i;
+			CvInfoBase& eBase = GC.getUnitCombatInfo(eUnitCombat); 
+			
+			if (   !strcmp(eBase.getType(), "UNITARMOR_PLATE")
+				|| !strcmp(eBase.getType(), "UNITARMOR_SHIELD")
+				|| !strcmp(eBase.getType(), "UNITTACTIC_PARRY")
+				|| !strcmp(eBase.getType(), "UNITWEAPON_BLUNT"))
+			{
+				GC.getDefinesVarSystem()->SetValue(eBase.getType(), i);
+			}
+		}
+		// global cache - end - Nightinggale
 
 		SetGlobalDefine("WATER_UNIT_FACING_DIRECTION", szVal);
 		bool bFound = false;
