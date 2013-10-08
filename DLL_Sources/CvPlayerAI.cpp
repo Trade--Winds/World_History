@@ -6160,7 +6160,7 @@ void CvPlayerAI::AI_doTradeRoutes()
 				}
 				yield_dests[eLoopYield] = pBestYieldCity;
 				///Tks Med
-				FAssert(pBestYieldCity != NULL);
+				FAssertMsg(pBestYieldCity != NULL, CvString::format("No target city for unsellable %s (yieldgroup setup error?)", GC.getYieldInfo(eLoopYield).getType()).c_str());
 				if (GC.getGameINLINE().getGameTurn() > 50 && pBestYieldCity != NULL)
 				{
 					pBestYieldCity->setMaintainLevel(eLoopYield, pBestYieldCity->getMaxYieldCapacity(eLoopYield) / 2);
@@ -8293,9 +8293,9 @@ bool CvPlayerAI::AI_isYieldForSale(YieldTypes eYield) const
 
 bool CvPlayerAI::AI_isYieldFinalProduct(YieldTypes eYield) const
 {
-	if (!YieldGroup_AI_Sell(eYield) && !YieldGroup_AI_Raw_Material(eYield))
+	if (!YieldGroup_AI_Sell(eYield) && !YieldGroup_AI_Raw_Material(eYield) && !YieldGroup_AI_Sell_To_Europe(eYield))
 	{
-		// only those two groups can provide a true return.
+		// only those groups can provide a true return.
 		// No need to check anything unless eYield is part of at least one of them.
 		return false;
 	}
