@@ -2125,6 +2125,13 @@ void CvCityAI::AI_doNative()
 			int iMaxStored = kPlayer.getNumCities() * GC.getGameINLINE().getCargoYieldCapacity();
 			iMaxStored *= GC.getYieldInfo(eYield).getNativeConsumptionPercent();
 
+			// workaround for a crash when a player has 0 cities - Nightinggale
+			if (iMaxStored == 0)
+			{
+				FAssertMsg(iMaxStored != 0, "Native");
+				iMaxStored = 100;
+			}
+
 			int iDestructionModifier = 50 + ((50 * iTotalStored) / iMaxStored);
 
 			int iAmountLost = 0;

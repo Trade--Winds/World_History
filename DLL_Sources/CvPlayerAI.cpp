@@ -9134,9 +9134,10 @@ void CvPlayerAI::AI_manageEconomy()
 				iMaxStored *= GC.getYieldInfo(eLoopYield).getNativeConsumptionPercent();
 
 				// workaround for a crash when a player has 0 cities - Nightinggale
-				FAssert(iMaxStored != 0);
-				if (iMaxStored != 0)
+				if (iMaxStored == 0)
 				{
+					FAssertMsg(iMaxStored != 0, "AI_manageEconomy");
+				} else {
 					int iModifier = 1 + std::max(10, 100 - (100 * iTotalStored) / iMaxStored);
 					iWeight *= iModifier;
 					iWeight /= 100;
