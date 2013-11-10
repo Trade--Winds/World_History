@@ -8470,7 +8470,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 					{
 						iDefendsModifier = iDefendsModifierMax;
 					}
-					if (iAttackModifier != -9999)
+					if (iAttackModifierMax != -9999)
 					{
 						iAttackModifier = iAttackModifierMax;
 					}
