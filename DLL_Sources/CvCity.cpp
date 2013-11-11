@@ -11040,6 +11040,12 @@ int CvCity::getMaintainLevel(YieldTypes eYield) const
 		ma_tradeStopAutoImport.set(false, eYield);
 	}
 	checkImportsMaintain(eYield, bImportStopped);
+
+	if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
+	{
+		gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+		gDLL->getInterfaceIFace()->setDirty(Domestic_Advisor_DIRTY_BIT, true);
+	}
 }
 
 // bUpdateScreen will mark the screen dirty even if nothing changed.
