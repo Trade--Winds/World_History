@@ -1111,10 +1111,36 @@ void CvCity::doTask(TaskTypes eTask, int iData1, int iData2, bool bOption, bool 
 		break;
 
 	case TASK_YIELD_IMPORT:
-		// transport feeder - Nightinggale
-		// traderoute changes are now transmitted line by line (instead variable by variable)
-		// This means data for everything in the line in the popup is present in TASK_YIELD_IMPORT packages
-		// TASK_YIELD_EXPORT and TASK_YIELD_LEVEL aren't used anymore.
+		if (iData2 != 0)
+		{
+			setImportsMaintain((YieldTypes) iData1, false); // transport feeder - Nightinggale
+			addImport((YieldTypes) iData1);
+		}
+		else
+		{
+			removeImport((YieldTypes) iData1);
+		}
+		break;
+
+	case TASK_YIELD_EXPORT:
+		if (iData2 != 0)
+		{
+			addExport((YieldTypes) iData1);
+		}
+	else
+		{
+			removeExport((YieldTypes) iData1);
+		}
+		break;
+
+	case TASK_YIELD_LEVEL:
+		setMaintainLevel((YieldTypes) iData1, iData2);
+		break;
+
+	// transport feeder - start - Nightinggale
+	case TASK_YIELD_TRADEROUTE:
+		// change all traderoute settings for a single yield in one go as setImportsMaintain() needs to be called after updating the other settings
+
 		if (bOption)
 		{
 			addImport((YieldTypes) iData1);
@@ -1136,6 +1162,7 @@ void CvCity::doTask(TaskTypes eTask, int iData1, int iData2, bool bOption, bool 
 		setMaintainLevel((YieldTypes) iData1, iData2);
 		setImportsMaintain((YieldTypes) iData1, bShift);
 		break;
+	// transport feeder - end - Nightinggale
 
 	case TASK_CLEAR_SPECIALTY:
 		{
@@ -1186,7 +1213,6 @@ void CvCity::doTask(TaskTypes eTask, int iData1, int iData2, bool bOption, bool 
 	case TASK_CHANGE_ORDERED_STUDENTS:
 		setOrderedStudents((UnitTypes)iData1, iData2, bOption, bAlt, bShift);
 		break;
-
 	// Teacher List - end - Nightinggale
 
 	// custom house - network fix - start - Nightinggale

@@ -1165,7 +1165,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 
 						if (bImport != pCity->isImport(eYield) || bExport != pCity->isExport(eYield) || bMaintainImport != pCity->getImportsMaintain(eYield) || iLevel != pCity->getMaintainLevel(eYield))
 						{
-							gDLL->sendDoTask(info.getData1(), TASK_YIELD_IMPORT, iYield, iLevel, bImport, bExport, bMaintainImport, false);
+							gDLL->sendDoTask(info.getData1(), TASK_YIELD_TRADEROUTE, iYield, iLevel, bImport, bExport, bMaintainImport, false);
 						}
 						// transport feeder - end - Nightinggale
 					}

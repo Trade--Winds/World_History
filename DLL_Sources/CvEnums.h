@@ -1007,6 +1007,7 @@ enum DllExport TaskTypes
 	// custom house - network fix - start - Nightinggale
 	TASK_CHANGE_CUSTOM_HOUSE_SETTINGS,
 	// custom house - network fix - end - Nightinggale
+	TASK_YIELD_TRADEROUTE, // transport feeder - Nightinggale
 #ifdef _USRDLL
 	NUM_TASK_TYPES
 #endif
