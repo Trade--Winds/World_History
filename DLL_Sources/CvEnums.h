@@ -3187,6 +3187,9 @@ enum DllExport XMLconstantTypes
 	// the number of XML constants
 	// used to set the array length for storage
 	NUM_XML_CONSTANTS,
+
+	// init value to indicate cache not set
+	XML_INIT_VALUE = 0xFFFF1234,
 };
 // cache XML - end - Nightinggale
 
