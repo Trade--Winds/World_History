@@ -278,6 +278,7 @@ void CyCityPythonInterface1(python::class_<CyCity>& x)
 
 		// transport feeder - start - Nightinggale
 		.def("isImportFeeder", &CyCity::isImportFeeder, "bool isImportFeeder(int /*YieldTypes*/ eYield) const")
+		.def("isAutoImportStopped", &CyCity::isAutoImportStopped, "bool isAutoImportStopped(int /*YieldTypes*/ eYield) const")
 		// transport feeder - end - Nightinggale
 
 		// R&R, Robert Surcouf, No More Variables Hidden game option START

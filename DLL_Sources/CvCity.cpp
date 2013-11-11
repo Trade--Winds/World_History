@@ -1113,7 +1113,6 @@ void CvCity::doTask(TaskTypes eTask, int iData1, int iData2, bool bOption, bool 
 	case TASK_YIELD_IMPORT:
 		if (iData2 != 0)
 		{
-			setImportsMaintain((YieldTypes) iData1, false); // transport feeder - Nightinggale
 			addImport((YieldTypes) iData1);
 		}
 		else
@@ -1141,8 +1140,9 @@ void CvCity::doTask(TaskTypes eTask, int iData1, int iData2, bool bOption, bool 
 	case TASK_YIELD_TRADEROUTE:
 		// change all traderoute settings for a single yield in one go as setImportsMaintain() needs to be called after updating the other settings
 
-		if (bOption)
-		{
+		if (bOption || bShift)
+ 		{
+			// enable import when requested by import or feeder service checkboxes (just one of them is enough)
 			addImport((YieldTypes) iData1);
 		}
 		else
@@ -1161,6 +1161,11 @@ void CvCity::doTask(TaskTypes eTask, int iData1, int iData2, bool bOption, bool 
 
 		setMaintainLevel((YieldTypes) iData1, iData2);
 		setImportsMaintain((YieldTypes) iData1, bShift);
+		if (!bOption)
+		{
+			// just in case import and import feeder are both turned off at the same time
+			removeImport((YieldTypes) iData1);
+		}
 		break;
 	// transport feeder - end - Nightinggale
 
@@ -8267,6 +8272,9 @@ enum
 	SAVE_BIT_CUSTOM_HOUSE_SELL_THRESHOLD = 1 << 7,
 	SAVE_BIT_CUSTOM_HOUSE_NEVER_SELL     = 1 << 8,
 	// R&R, ray, finishing Custom House Screen END
+	// transport feeder - start - Nightinggale
+	SAVE_BIT_IMPORT_STOP                 = 1 << 9,
+	// transport feeder - end - Nightinggale
 };
 
 // Private Functions...
@@ -8415,6 +8423,7 @@ void CvCity::read(FDataStreamBase* pStream)
  		ma_tradeThreshold.read(pStream, arrayBitmap & SAVE_BIT_TRADE_THRESHOLD);
  		// transport feeder - start - Nightinggale
  		ma_tradeImportsMaintain.read(pStream, arrayBitmap & SAVE_BIT_IMPORT_FEEDER);
+		ma_tradeStopAutoImport.read(pStream, arrayBitmap & SAVE_BIT_IMPORT_STOP);
  		// transport feeder - end - Nightinggale
  	} else {
  		int iNumYields;
@@ -8524,6 +8533,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	// traderoute just-in-time - end - Nightinggale
 	// transport feeder - start - Nightinggale
 	arrayBitmap |= ma_tradeImportsMaintain.hasContent()       ? SAVE_BIT_IMPORT_FEEDER : 0;
+	arrayBitmap |= ma_tradeStopAutoImport.hasContent()        ? SAVE_BIT_IMPORT_STOP : 0;
 	// transport feeder - end - Nightinggale
 	// Teacher List - start - Nightinggale
 	arrayBitmap |= ma_OrderedStudents.hasContent()            ? SAVE_BIT_ORDERED_STUDENTS : 0;
@@ -8638,6 +8648,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	// traderoute just-in-time - end - Nightinggale
 	// transport feeder - start - Nightinggale
 	ma_tradeImportsMaintain.write(pStream, arrayBitmap & SAVE_BIT_IMPORT_FEEDER);
+	ma_tradeStopAutoImport.write(pStream, arrayBitmap & SAVE_BIT_IMPORT_STOP);
 	// transport feeder - end - Nightinggale
 
 	// R&R, ray, finishing Custom House Screen
@@ -10891,7 +10902,7 @@ void CvCity::addImport(YieldTypes eYield, bool bUpdateRoutes)
 void CvCity::removeImport(YieldTypes eYield, bool bUpdateRoutes)
 {
 	// traderoute just-in-time - start - Nightinggale
-	if (!ma_tradeImports.get(eYield))
+	if (!ma_tradeImports.get(eYield) || getImportsMaintain(eYield))
 	{
 		return;
 	}
@@ -11022,25 +11033,48 @@ int CvCity::getMaintainLevel(YieldTypes eYield) const
  void CvCity::setImportsMaintain(YieldTypes eYield, bool bSetting)
 {
  	ma_tradeImportsMaintain.set(bSetting, eYield);
- 	checkImportsMaintain(eYield);
+
+	bool bImportStopped = isAutoImportStopped(eYield);
+	if (bImportStopped)
+	{
+		ma_tradeStopAutoImport.set(false, eYield);
+	}
+	checkImportsMaintain(eYield, bImportStopped);
 }
 
- void CvCity::checkImportsMaintain(YieldTypes eYield)
+// bUpdateScreen will mark the screen dirty even if nothing changed.
+// used by setImportsMaintain() because that one changes something
+void CvCity::checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen)
 {
  	FAssert(eYield >= 0);
  	FAssert(eYield < NUM_YIELD_TYPES);
 
- 	if (!ma_tradeImportsMaintain.get(eYield)) return;
+ 	if (!ma_tradeImportsMaintain.get(eYield))
+	{
+		FAssert(!isAutoImportStopped(eYield));
+		return;
+	}
+	
+	FAssertMsg(isImport(eYield), "Feeder service is active without import enabled");
 
  	int iMaintainLevel = ma_tradeThreshold.get(eYield);
  	int iStoredLevel   = getYieldStored(eYield);
 
- 	if (iStoredLevel >= iMaintainLevel)
+ 	if (!isAutoImportStopped(eYield) && iStoredLevel >= iMaintainLevel)
  	{
- 		removeImport(eYield);
- 	} else if ((iStoredLevel <= (iMaintainLevel*3)/4)) {
- 		addImport(eYield);
-  	}
+ 		ma_tradeStopAutoImport.set(true, eYield);
+	} else if (isAutoImportStopped(eYield) && (iStoredLevel <= (iMaintainLevel*3)/4)) {
+		ma_tradeStopAutoImport.set(false, eYield);
+	} else if (!bUpdateScreen) {
+		// nothing changed. Do not continue to screen update code.
+		return;
+	}
+
+	if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
+	{
+		gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+		gDLL->getInterfaceIFace()->setDirty(Domestic_Advisor_DIRTY_BIT, true);
+	}
 }
 // transport feeder - end - Nightinggale
 

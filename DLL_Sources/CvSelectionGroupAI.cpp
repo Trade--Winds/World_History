@@ -869,6 +869,16 @@ bool CvSelectionGroupAI::AI_tradeRoutes()
 		for (uint i = 0; i < aiRoutes.size(); ++i)
 		{
 			CvTradeRoute* pRoute = aiRoutes[i];
+
+			// transport feeder - start - Nightinggale
+			CvCity* pDestinationCity = ::getCity(pRoute->getDestinationCity());
+			if (pDestinationCity != NULL && pDestinationCity->isAutoImportStopped(pRoute->getYield()))
+			{
+				// ignore trade routes where destination is using feeder service and is full
+				continue;
+			}
+			// transport feeder - end - Nightinggale
+
 			CvCity* pSourceCity = ::getCity(pRoute->getSourceCity());
 			CvArea* pSourceWaterArea = pSourceCity->waterArea();
 			if ((pSourceCity != NULL) && ((getDomainType() != DOMAIN_SEA) || (pSourceWaterArea != NULL)))

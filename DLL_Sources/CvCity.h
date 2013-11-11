@@ -589,6 +589,7 @@ public:
 	int getMaintainLevel(YieldTypes eYield) const;
 	// transport feeder - start - Nightinggale
  	bool getImportsMaintain(YieldTypes eYield) const;
+	bool isAutoImportStopped(YieldTypes eYield) const;
  	// transport feeder - end - Nightinggale
 	///TKs Invention Core Mod v 1.0
 	int canResearch() const;
@@ -690,6 +691,7 @@ protected:
  	// traderoute just-in-time - end - Nightinggale
  	// transport feeder - start - Nightinggale
  	YieldArray<bool> ma_tradeImportsMaintain;
+	YieldArray<bool> ma_tradeStopAutoImport;
  	// transport feeder - end - Nightinggale
 
 	// CACHE: cache frequently used values
@@ -732,7 +734,7 @@ protected:
 
 	// transport feeder - start - Nightinggale
 	void setImportsMaintain(YieldTypes eYield, bool bSetting);
-	void checkImportsMaintain(YieldTypes eYield);
+	void checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen = false);
 	// transport feeder - end - Nightinggale
 	virtual bool AI_addBestCitizen() = 0;
 	virtual bool AI_removeWorstCitizen() = 0;
@@ -855,4 +857,12 @@ inline void CvCity::setYieldBuyPrice(YieldTypes eYield, int iPrice)
 }
 //Androrc Domestic Market END
 
+// transport feeder - start - Nightinggale
+inline bool CvCity::isAutoImportStopped(YieldTypes eYield) const
+{
+	return ma_tradeStopAutoImport.get(eYield);
+}
+// transport feeder - end - Nightinggale
+
 #endif
+																																																		
