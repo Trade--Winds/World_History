@@ -879,6 +879,14 @@ bool CvSelectionGroupAI::AI_tradeRoutes()
 			}
 			// transport feeder - end - Nightinggale
 
+			// traderoute fix - start - Nightinggale
+			if (isHuman() && pRoute->getDestinationCity().eOwner != getOwnerINLINE())
+			{
+				// humans can't transport to allied cities with fully automated transports
+				continue;
+			}
+			// traderoute fix - end - Nightinggale
+
 			CvCity* pSourceCity = ::getCity(pRoute->getSourceCity());
 			CvArea* pSourceWaterArea = pSourceCity->waterArea();
 			if ((pSourceCity != NULL) && ((getDomainType() != DOMAIN_SEA) || (pSourceWaterArea != NULL)))
