@@ -1960,11 +1960,25 @@ class CvMainInterface:
 				screen.setStyle("ExportTradeRouteText", "Table_EmptyScroll_Style")
 
 				for iYield in range(YieldTypes.NUM_YIELD_TYPES):
+					# transport feeder - start - Nightinggale
+					iAutoThreshold = pHeadSelectedCity.getAutoMaintainThreshold(iYield)
+					iThreshold     = pHeadSelectedCity.getMaintainLevel(iYield)
+					szThreshold = ""
+					if (iAutoThreshold > 0):
+						szThreshold += " ("
+						if (iThreshold < iAutoThreshold):
+							szThreshold += unicode(iAutoThreshold) + "/"
+						szThreshold += unicode(iThreshold) + ")"
+					# transport feeder - end - Nightinggale
+					
 					if (pHeadSelectedCity.isExport(iYield)):
 						iExportRow = screen.appendTableRow("ExportTradeRouteText")
 						szExportText = u"<font=3>%c %s</font>" % (gc.getYieldInfo(iYield).getChar(), gc.getYieldInfo(iYield).getDescription())
-						if pHeadSelectedCity.getMaintainLevel(iYield) > 0:
-							szExportText += " (%s %d)" % (localText.getText("TXT_KEY_TRADE_ROUTE_MAINTAIN", ()), pHeadSelectedCity.getMaintainLevel(iYield))
+						# transport feeder - start - Nightinggale
+						#if pHeadSelectedCity.getMaintainLevel(iYield) > 0:
+						#	szExportText += " (%s %d)" % (localText.getText("TXT_KEY_TRADE_ROUTE_MAINTAIN", ()), pHeadSelectedCity.getMaintainLevel(iYield))
+						szExportText += szThreshold
+						# transport feeder - end - Nightinggale
 						screen.setTableText("ExportTradeRouteText", 0, iExportRow, u"<font=3>%s</font>" % szExportText, "", WidgetTypes.WIDGET_YIELD_IMPORT_EXPORT, false, -1, CvUtil.FONT_LEFT_JUSTIFY )
 
 					if (pHeadSelectedCity.isImport(iYield)):
@@ -1977,6 +1991,8 @@ class CvMainInterface:
 								szImportText = localText.getText("TXT_KEY_COLOR_NEGATIVE", ()) + szImportText
 							else:
 								szImportText = localText.getText("TXT_KEY_COLOR_POSITIVE", ()) + szImportText
+
+							szImportText += szThreshold
 							szImportText += localText.getText("TXT_KEY_COLOR_REVERT", ())
 						# transport feeder - end - Nightinggale
 						screen.setTableText("ImportTradeRouteText", 0, iImportRow, szImportText, "", WidgetTypes.WIDGET_YIELD_IMPORT_EXPORT, true, -1, CvUtil.FONT_LEFT_JUSTIFY )

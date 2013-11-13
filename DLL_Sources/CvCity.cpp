@@ -6752,6 +6752,8 @@ void CvCity::pushOrder(OrderTypes eOrder, int iData1, int iData2, bool bSave, bo
 		startHeadOrder();
 	}
 
+	checkImportsMaintain(); // transport feeder - Nightinggale
+
 	if ((getTeam() == GC.getGameINLINE().getActiveTeam()) || GC.getGameINLINE().isDebugMode())
 	{
 		setBillboardDirty(true);
@@ -6907,6 +6909,9 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 	{
 		startHeadOrder();
 	}
+
+	checkImportsMaintain(); // transport feeder - Nightinggale
+
 	if ((getTeam() == GC.getGameINLINE().getActiveTeam()) || GC.getGameINLINE().isDebugMode())
 	{
 		setBillboardDirty(true);
@@ -11063,13 +11068,14 @@ void CvCity::checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen)
 	
 	FAssertMsg(isImport(eYield), "Feeder service is active without import enabled");
 
- 	int iMaintainLevel = ma_tradeThreshold.get(eYield);
+ 	int iMaintainLevel = getAutoMaintainThreshold(eYield);
  	int iStoredLevel   = getYieldStored(eYield);
+	int iNeededLevel   = getProductionNeeded(eYield);
 
- 	if (!isAutoImportStopped(eYield) && iStoredLevel >= iMaintainLevel)
+	if (!isAutoImportStopped(eYield) && iStoredLevel >= iMaintainLevel)
  	{
  		ma_tradeStopAutoImport.set(true, eYield);
-	} else if (isAutoImportStopped(eYield) && (iStoredLevel <= (iMaintainLevel*3)/4)) {
+	} else if (isAutoImportStopped(eYield) && (iNeededLevel < iStoredLevel || (iStoredLevel <= (iMaintainLevel*3)/4))) {
 		ma_tradeStopAutoImport.set(false, eYield);
 	} else if (!bUpdateScreen) {
 		// nothing changed. Do not continue to screen update code.
@@ -11080,6 +11086,14 @@ void CvCity::checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen)
 	{
 		gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
 		gDLL->getInterfaceIFace()->setDirty(Domestic_Advisor_DIRTY_BIT, true);
+	}
+}
+
+void CvCity::checkImportsMaintain()
+{
+	for (int i = 0; i < NUM_YIELD_TYPES; i++)
+	{
+		checkImportsMaintain((YieldTypes)i);
 	}
 }
 // transport feeder - end - Nightinggale

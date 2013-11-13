@@ -292,6 +292,7 @@ public:
 	// transport feeder - start - Nightinggale
 	bool isImportFeeder(int /*YieldTypes*/ eYield) const;
 	bool isAutoImportStopped(int /*YieldTypes*/ eYield) const;
+	int getAutoMaintainThreshold(int /*YieldTypes*/ eYield) const;
 	// transport feeder - end - Nightinggale
 
 	python::tuple isOrderWaitingForYield(int /*YieldTypes*/ eYield);

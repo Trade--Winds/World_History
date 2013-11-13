@@ -8959,7 +8959,10 @@ int CvPlayerAI::AI_transferYieldValue(const IDInfo target, YieldTypes eYield, in
 		///TKs Med
 		int iMaxCapacity = (eYield == YIELD_FOOD || YieldGroup_Luxury_Food(eYield)) ? pCity->growthThreshold() : pCity->getMaxYieldCapacity(eYield);
 		///Tke
-		int iMaintainLevel = pCity->getMaintainLevel(eYield);
+		// transport feeder - start - Nightinggale
+		//int iMaintainLevel = pCity->getMaintainLevel(eYield);
+		int iMaintainLevel = pCity->getAutoMaintainThreshold(eYield);
+		// transport feeder - end - Nightinggale
 		FAssert(iMaxCapacity > 0);
 		if (iAmount < 0) // Loading
 		{

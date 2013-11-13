@@ -4217,7 +4217,10 @@ int CvUnit::getMaxLoadYieldAmount(YieldTypes eYield) const
 		int iMaxAvailable = pCity->getYieldStored(eYield);
 		if (!isHuman() || isAutomated())
 		{
-			iMaxAvailable -= pCity->getMaintainLevel(eYield);
+			// transport feeder - start - Nightinggale
+			//iMaxAvailable -= pCity->getMaintainLevel(eYield);
+			iMaxAvailable -= pCity->getAutoMaintainThreshold(eYield);
+			// transport feeder - end - Nightinggale
 		}
 		iMaxAmount = std::min(iMaxAmount, iMaxAvailable);
 	}

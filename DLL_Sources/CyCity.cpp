@@ -1260,6 +1260,11 @@ bool CyCity::isAutoImportStopped(int /*YieldTypes*/ eYield) const
 {
 	return m_pCity ? m_pCity->isAutoImportStopped((YieldTypes) eYield) : false;
 }
+
+int CyCity::getAutoMaintainThreshold(int /*YieldTypes*/ eYield) const
+{
+	return m_pCity ? m_pCity->getAutoMaintainThreshold((YieldTypes) eYield) : 0;
+}
 // transport feeder - end - Nightinggale
 
 python::tuple CyCity::isOrderWaitingForYield(int /*YieldTypes*/ eYield)

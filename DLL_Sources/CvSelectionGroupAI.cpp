@@ -1035,7 +1035,10 @@ bool CvSelectionGroupAI::AI_tradeRoutes()
 			CvCity* pDestinationCity = ::getCity(routes[i]->getDestinationCity());
 			YieldTypes eYield = routes[i]->getYield();
 
-			int iAmount = pSourceCity->getYieldStored(eYield) - pSourceCity->getMaintainLevel(eYield);
+			// transport feeder - start - Nightinggale
+			//int iAmount = pSourceCity->getYieldStored(eYield) - pSourceCity->getMaintainLevel(eYield);
+			int iAmount = pSourceCity->getYieldStored(eYield) - pSourceCity->getAutoMaintainThreshold(eYield);
+			// transport feeder - end - Nightinggale
 
 			if (iAmount > 0)
 			{
@@ -1127,7 +1130,10 @@ bool CvSelectionGroupAI::AI_tradeRoutes()
 
 					if ((pPlotCity == pSourceCity))
 					{
-						int iAmount = pSourceCity->getYieldStored(eYield) - pSourceCity->getMaintainLevel(eYield);
+						// transport feeder - start - Nightinggale
+						//int iAmount = pSourceCity->getYieldStored(eYield) - pSourceCity->getMaintainLevel(eYield);
+						int iAmount = pSourceCity->getYieldStored(eYield) - pSourceCity->getAutoMaintainThreshold(eYield);
+						// transport feeder - end - Nightinggale
 
 						if (iAmount > 0)
 						{

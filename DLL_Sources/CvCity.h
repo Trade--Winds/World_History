@@ -590,6 +590,7 @@ public:
 	// transport feeder - start - Nightinggale
  	bool getImportsMaintain(YieldTypes eYield) const;
 	bool isAutoImportStopped(YieldTypes eYield) const;
+	int getAutoMaintainThreshold(YieldTypes eYield) const;
  	// transport feeder - end - Nightinggale
 	///TKs Invention Core Mod v 1.0
 	int canResearch() const;
@@ -735,6 +736,7 @@ protected:
 	// transport feeder - start - Nightinggale
 	void setImportsMaintain(YieldTypes eYield, bool bSetting);
 	void checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen = false);
+	void checkImportsMaintain();
 	// transport feeder - end - Nightinggale
 	virtual bool AI_addBestCitizen() = 0;
 	virtual bool AI_removeWorstCitizen() = 0;
@@ -861,6 +863,16 @@ inline void CvCity::setYieldBuyPrice(YieldTypes eYield, int iPrice)
 inline bool CvCity::isAutoImportStopped(YieldTypes eYield) const
 {
 	return ma_tradeStopAutoImport.get(eYield);
+}
+
+inline int CvCity::getAutoMaintainThreshold(YieldTypes eYield) const
+{
+	// TODO cache this function to avoid recalculations all the time, possibly just input to this function
+	// std::max() failed to work here
+	int a = ma_tradeThreshold.get(eYield);
+	int b = getProductionNeeded(eYield);
+
+	return a > b ? a : b;
 }
 // transport feeder - end - Nightinggale
 
