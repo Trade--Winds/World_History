@@ -7353,6 +7353,9 @@ void CvPlayer::setCurrentEra(EraTypes eNewValue)
 		// dirty all of this player's cities...
 		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
+			// transport feeder - start - Nightinggale
+			pLoopCity->setAutoThresholdCache();
+			// transport feeder - end - Nightinggale
 			if (pLoopCity->getOwnerINLINE() == getID())
 			{
 				pLoopCity->setLayoutDirty(true);
@@ -7573,6 +7576,9 @@ void CvPlayer::changeBuildingRequiredYieldModifier(YieldTypes eIndex, int iChang
 	if (iChange != 0)
 	{
 		m_aiBuildingRequiredYieldModifier[eIndex] += iChange;
+		// transport feeder - start - Nightinggale
+		this->updateTransportThreshold(eIndex);
+		// transport feeder - end - Nightinggale
 	}
 }
 
@@ -19175,3 +19181,24 @@ void CvPlayer::updateInventionEffectCache()
 	}
 }
 // invention effect cache - end - Nightinggale
+
+
+// transport feeder - start - Nightinggale
+void CvPlayer::updateTransportThreshold()
+{
+	int iLoop;
+	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+		pLoopCity->setAutoThresholdCache();
+	}
+}
+
+void CvPlayer::updateTransportThreshold(YieldTypes eYield)
+{
+	int iLoop;
+	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+		pLoopCity->setAutoThresholdCache(eYield);
+	}
+}
+// transport feeder - end - Nightinggale

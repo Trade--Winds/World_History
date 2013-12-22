@@ -116,6 +116,14 @@ public:
 		this->set(value + this->get(iIndex), iIndex);
 	}
 
+	inline void keepMax(T value, int iIndex)
+	{
+		if (value > get(iIndex))
+		{
+			set(value, iIndex);
+		}
+	}
+
 	bool hasContent(bool bRelease = true)
 	{
 		if (tArray == NULL)

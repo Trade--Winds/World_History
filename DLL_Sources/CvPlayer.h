@@ -963,6 +963,12 @@ protected:
 
 	void updateInventionEffectCache();
 // invention effect cache - end - Nightinggale
+
+// transport feeder - start - Nightinggale
+public:
+	void updateTransportThreshold();
+	void updateTransportThreshold(YieldTypes eYield);
+// transport feeder - end - Nightinggale
 };
 
 // cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale

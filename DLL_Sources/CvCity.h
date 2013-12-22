@@ -587,11 +587,6 @@ public:
 	void removeTradeRoutes();
 	void setMaintainLevel(YieldTypes eYield, int iMaintainLevel);
 	int getMaintainLevel(YieldTypes eYield) const;
-	// transport feeder - start - Nightinggale
- 	bool getImportsMaintain(YieldTypes eYield) const;
-	bool isAutoImportStopped(YieldTypes eYield) const;
-	int getAutoMaintainThreshold(YieldTypes eYield) const;
- 	// transport feeder - end - Nightinggale
 	///TKs Invention Core Mod v 1.0
 	int canResearch() const;
 	///Tke
@@ -690,10 +685,6 @@ protected:
 	///Tke
  	YieldArray<int> ma_tradeThreshold;
  	// traderoute just-in-time - end - Nightinggale
- 	// transport feeder - start - Nightinggale
- 	YieldArray<bool> ma_tradeImportsMaintain;
-	YieldArray<bool> ma_tradeStopAutoImport;
- 	// transport feeder - end - Nightinggale
 
 	// CACHE: cache frequently used values
 	mutable int	m_iPopulationRank;
@@ -733,11 +724,6 @@ protected:
 	void setUnitWorkingPlot(const CvPlot* pPlot, int iUnitId);
 	int getNextFreeUnitId() const;
 
-	// transport feeder - start - Nightinggale
-	void setImportsMaintain(YieldTypes eYield, bool bSetting);
-	void checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen = false);
-	void checkImportsMaintain();
-	// transport feeder - end - Nightinggale
 	virtual bool AI_addBestCitizen() = 0;
 	virtual bool AI_removeWorstCitizen() = 0;
 
@@ -804,6 +790,26 @@ protected:
 	YieldArray<int> ma_aiCustomHouseSellThreshold;
 	YieldArray<bool> ma_aiCustomHouseNeverSell;
 	// R&R, ray, finishing Custom House Screen END
+
+	// transport feeder - start - Nightinggale
+public:
+ 	bool getImportsMaintain(YieldTypes eYield) const;
+	bool isAutoImportStopped(YieldTypes eYield) const;
+	int getAutoMaintainThreshold(YieldTypes eYield) const;
+	void checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen = false);
+
+	// WARNING: setAutoThresholdCache will cause desyncs if not called by all computers in MP in sync
+	void setAutoThresholdCache(YieldTypes eYield);
+	void setAutoThresholdCache();
+
+protected:
+ 	YieldArray<bool> ma_tradeImportsMaintain;
+	YieldArray<bool> ma_tradeStopAutoImport;
+	YieldArray<int> ma_tradeAutoThreshold; // nosave - recalculate on load
+
+	// setImportsMaintain() is only allowed to be called by doTask() or it will cause desyncs
+	void setImportsMaintain(YieldTypes eYield, bool bSetting);
+	// transport feeder - end - Nightinggale
 };
 
 // cache getMaxYieldCapacity - start - Nightinggale
@@ -867,12 +873,7 @@ inline bool CvCity::isAutoImportStopped(YieldTypes eYield) const
 
 inline int CvCity::getAutoMaintainThreshold(YieldTypes eYield) const
 {
-	// TODO cache this function to avoid recalculations all the time, possibly just input to this function
-	// std::max() failed to work here
-	int a = ma_tradeThreshold.get(eYield);
-	int b = getProductionNeeded(eYield);
-
-	return a > b ? a : b;
+	return ma_tradeAutoThreshold.get(eYield);
 }
 // transport feeder - end - Nightinggale
 
