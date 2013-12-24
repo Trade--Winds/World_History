@@ -2398,7 +2398,7 @@ int CvCity::getProduction() const
 }
 
 
-int CvCity::getProductionNeeded(YieldTypes eYield) const
+int CvCity::getProductionNeededUncached(YieldTypes eYield) const
 {
 	CLLNode<OrderData>* pOrderNode = headOrderQueueNode();
 
@@ -11111,11 +11111,22 @@ void CvCity::checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen)
 
 void CvCity::setAutoThresholdCache(YieldTypes eYield)
 {
-	ma_tradeAutoThreshold.set(getProductionNeeded(eYield), eYield);
+	int iProductionNeeded = getProductionNeededUncached(eYield);
+
+	ma_productionNeeded.set(iProductionNeeded, eYield);
+
+	if (iProductionNeeded == MAX_INT)
+	{
+		// the city isn't producing anything. Set threshold to 0 instead of infinity.
+		ma_tradeAutoThreshold.set(0, eYield);
+	} else {
+		ma_tradeAutoThreshold.set(iProductionNeeded, eYield);
+	}
 
 #if 0
 	// only first in production queue
-	ma_tradeAutoThreshold.keepMax(getProductionNeeded(eYield), eYield);
+	//ma_tradeAutoThreshold.keepMax(getProductionNeeded(eYield), eYield);
+	// no need for this part. getProductionNeeded() is called twice in a row. The second result should never be bigger than the first.
 #else
 	// everything in production queue
 	for  (CLLNode<OrderData>* pOrderNode = headOrderQueueNode(); pOrderNode != NULL; pOrderNode = nextOrderQueueNode(pOrderNode))
@@ -11150,6 +11161,9 @@ void CvCity::setAutoThresholdCache(YieldTypes eYield)
 			break;
 		}
 	}
+
+	// increase threshold to manually set threshold, if needed
+	ma_tradeAutoThreshold.keepMax(ma_tradeThreshold.get(eYield), eYield);
 
 	checkImportsMaintain(eYield);
 }

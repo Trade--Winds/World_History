@@ -796,6 +796,7 @@ public:
  	bool getImportsMaintain(YieldTypes eYield) const;
 	bool isAutoImportStopped(YieldTypes eYield) const;
 	int getAutoMaintainThreshold(YieldTypes eYield) const;
+	int getProductionNeededUncached(YieldTypes eYield) const;
 	void checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen = false);
 
 	// WARNING: setAutoThresholdCache will cause desyncs if not called by all computers in MP in sync
@@ -806,6 +807,7 @@ protected:
  	YieldArray<bool> ma_tradeImportsMaintain;
 	YieldArray<bool> ma_tradeStopAutoImport;
 	YieldArray<int> ma_tradeAutoThreshold; // nosave - recalculate on load
+	YieldArray<int> ma_productionNeeded; // nosave - recalculate on load
 
 	// setImportsMaintain() is only allowed to be called by doTask() or it will cause desyncs
 	void setImportsMaintain(YieldTypes eYield, bool bSetting);
@@ -874,6 +876,11 @@ inline bool CvCity::isAutoImportStopped(YieldTypes eYield) const
 inline int CvCity::getAutoMaintainThreshold(YieldTypes eYield) const
 {
 	return ma_tradeAutoThreshold.get(eYield);
+}
+
+inline int CvCity::getProductionNeeded(YieldTypes eYield) const
+{
+	return ma_productionNeeded.get(eYield);
 }
 // transport feeder - end - Nightinggale
 
