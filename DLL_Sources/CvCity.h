@@ -792,6 +792,7 @@ public:
 protected:
 	YieldArray<int> ma_aiCustomHouseSellThreshold;
 	YieldArray<bool> ma_aiCustomHouseNeverSell;
+<<<<<<< HEAD
 	// R&R, ray, finishing Custom House Screen END
 
 	// transport feeder - start - Nightinggale
@@ -853,6 +854,71 @@ inline int CvCity::getMarketCap() const
 }
 // domestic yield demand - end - Nightinggale
 
+=======
+	// R&R, ray, finishing Custom House Screen END
+
+	// transport feeder - start - Nightinggale
+public:
+ 	bool getImportsMaintain(YieldTypes eYield) const;
+	bool isAutoImportStopped(YieldTypes eYield) const;
+	int getAutoMaintainThreshold(YieldTypes eYield) const;
+	int getProductionNeededUncached(YieldTypes eYield) const;
+	void checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen = false);
+
+	// WARNING: setAutoThresholdCache will cause desyncs if not called by all computers in MP in sync
+	void setAutoThresholdCache(YieldTypes eYield);
+	void setAutoThresholdCache();
+
+protected:
+ 	YieldArray<bool> ma_tradeImportsMaintain;
+	YieldArray<bool> ma_tradeStopAutoImport;
+	YieldArray<int> ma_tradeAutoThreshold; // nosave - recalculate on load
+	YieldArray<int> ma_productionNeeded; // nosave - recalculate on load
+
+	// setImportsMaintain() is only allowed to be called by doTask() or it will cause desyncs
+	void setImportsMaintain(YieldTypes eYield, bool bSetting);
+	// transport feeder - end - Nightinggale
+};
+
+// cache getMaxYieldCapacity - start - Nightinggale
+inline int CvCity::getMaxYieldCapacity(YieldTypes eYield) const
+{
+	FAssert(eYield >= NO_YIELD);
+	FAssert(eYield < NUM_YIELD_TYPES);
+	return m_cache_MaxYieldCapacity[eYield == NO_YIELD ? NUM_YIELD_TYPES : eYield];
+};
+// cache getMaxYieldCapacity - end - Nightinggale 
+
+// EDU remake - start - Nightinggale
+inline int CvCity::getTeachLevel() const
+{
+	return m_iTeachLevel;
+}
+// EDU remake - start - Nightinggale
+
+// domestic yield demand - start - Nightinggale
+inline int CvCity::getBuildingYieldDemand(YieldTypes eYield) const
+{
+	return m_aiBuildingYieldDemands.get(eYield);
+}
+
+inline int CvCity::getUnitYieldDemand(YieldTypes eYield) const
+{
+	return m_aiUnitYieldDemands.get(eYield);
+}
+
+inline int CvCity::getYieldDemand(YieldTypes eYield) const
+{
+	return (getBuildingYieldDemand(eYield) + getUnitYieldDemand(eYield)) / 100;
+}
+
+inline int CvCity::getMarketCap() const
+{
+	return m_iMarketCap;
+}
+// domestic yield demand - end - Nightinggale
+
+>>>>>>> 3cbfea28d6a38cf0466c4902515c65d535bf03a9
 //Androrc Domestic Market
 // Modified by Nightinggale
 inline int CvCity::getYieldBuyPrice(YieldTypes eYield) const
@@ -878,7 +944,18 @@ inline int CvCity::getAutoMaintainThreshold(YieldTypes eYield) const
 {
 	return ma_tradeAutoThreshold.get(eYield);
 }
+<<<<<<< HEAD
 // transport feeder - end - Nightinggale
 
 #endif
+=======
+
+inline int CvCity::getProductionNeeded(YieldTypes eYield) const
+{
+	return ma_productionNeeded.get(eYield);
+}
+// transport feeder - end - Nightinggale
+
+#endif
+>>>>>>> 3cbfea28d6a38cf0466c4902515c65d535bf03a9
 																																																		

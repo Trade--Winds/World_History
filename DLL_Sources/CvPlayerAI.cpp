@@ -9008,6 +9008,7 @@ int CvPlayerAI::AI_transferYieldValue(const IDInfo target, YieldTypes eYield, in
 				iValue /= 100;
 			}
 
+			/*
 			int iProductionNeeded = 0;
 			UnitTypes eUnit = pCity->getProductionUnit();
 			if (eUnit != NO_UNIT)
@@ -9019,6 +9020,10 @@ int CvPlayerAI::AI_transferYieldValue(const IDInfo target, YieldTypes eYield, in
 			{
 				iProductionNeeded = std::max(iProductionNeeded, pCity->getYieldProductionNeeded(eBuilding, eYield));
 			}
+			*/
+			// production cache - start - Nightinggale
+			int iProductionNeeded = pCity->getProductionNeeded(eYield);
+			// production cache - end - Nightinggale
 
 			if (iStored > 0 && iStored < iProductionNeeded)
 			{
