@@ -1414,6 +1414,7 @@ public:
 	DllExport int getFreeToCityType() const;
 	DllExport int getWhoCanBuildTypes() const;
 	DllExport int isIncreasesCityPopulation() const;
+	DllExport int getCenterPlotBonus() const;
 	DllExport int getRazedCityGoldIncrease() const;
 	DllExport int getTrainingTimeMod() const;
 	DllExport int getDetectMaruaders() const;
@@ -1507,6 +1508,7 @@ protected:
 	int m_iFreeToCityType;
 	int m_iModdersCode1;
 	int m_iIncreasesCityPopulation;
+	int m_iCenterPlotBonus;
 	int m_iRazedCityGoldIncrease;
 	int m_iDetectsMarauders;
 	int m_iTrainingTimeMod;

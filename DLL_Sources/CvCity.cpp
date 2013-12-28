@@ -526,6 +526,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iRebelSentiment = 0;
 	m_iTeachUnitMultiplier = 100;
 	///TKs Med
+	m_iCenterPlotBonus = 0;
     m_iMaxCityPop = 0;
     m_iDetectMaraudersRange = 0;
     ///TKe
@@ -2800,6 +2801,7 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange)
 	    setMaxCityPop(GC.getBuildingInfo(eBuilding).isIncreasesCityPopulation());
 	}
 	changeMarauderDetection(GC.getBuildingInfo(eBuilding).getDetectMaruaders());
+	changeCenterPlotBonus(GC.getBuildingInfo(eBuilding).getCenterPlotBonus() * iChange);
 	///TKe
 	changeFreeExperience(GC.getBuildingInfo(eBuilding).getFreeExperience() * iChange);
 	changeMaxFoodKeptPercent(GC.getBuildingInfo(eBuilding).getFoodKept() * iChange);
@@ -4023,10 +4025,16 @@ PlayerTypes CvCity::getVassalOwner() const
 	return m_eVassalOwner;
 }
 
-//PlayerTypes CvCity::getVassalOwner() const
-//{
-//	return m_eVassalOwner;
-//}
+int CvCity::getCenterPlotBonus() const
+{
+	return m_iCenterPlotBonus;
+}
+
+void CvCity::changeCenterPlotBonus(int iChange)
+{
+	m_iCenterPlotBonus = (m_iCenterPlotBonus + iChange);
+	FAssert(getCenterPlotBonus() >= 0);
+}
 
 
 void CvCity::setVassalOwner(PlayerTypes eNewValue)
@@ -8329,6 +8337,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iRebelSentiment);
 	pStream->Read(&m_iTeachUnitMultiplier);
 	///TKs Med
+	pStream->Read(&m_iCenterPlotBonus);
 	pStream->Read(&m_iMaxCityPop);
 	pStream->Read(&m_iDetectMaraudersRange);
 	///TKe
@@ -8581,6 +8590,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iRebelSentiment);
 	pStream->Write(m_iTeachUnitMultiplier);
 	///TKs Med
+	pStream->Write(m_iCenterPlotBonus);
 	pStream->Write(m_iMaxCityPop);
 	pStream->Write(m_iDetectMaraudersRange);
 	///TKe
