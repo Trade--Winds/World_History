@@ -526,6 +526,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iRebelSentiment = 0;
 	m_iTeachUnitMultiplier = 100;
 	///TKs Med
+	m_iCenterPlotBonus = 0;
     m_iMaxCityPop = 0;
     m_iDetectMaraudersRange = 0;
     ///TKe
@@ -11818,6 +11819,10 @@ void CvCity::UpdateBuildingAffectedCache()
 
 	this->m_iMarketCap = GC.getXMLval(XML_NO_MARKED_SALES_CAP);
 
+	///TKs Med
+	this->m_iCenterPlotBonus = 0;
+	///Tke
+
 	{
 		int iMaxTeachLevel = 0; // EDU remake - Nightinggale
 
@@ -11843,6 +11848,10 @@ void CvCity::UpdateBuildingAffectedCache()
 				}
 				this->m_iMarketCap += kBuilding.getMarketCap();
 				// domestic yield demand - end - Nightinggale
+
+				///TKs Med
+				this->m_iCenterPlotBonus += kBuilding.getCenterPlotBonus();
+				///Tke
 			}
 		}
 		this->m_iTeachLevel = iMaxTeachLevel; // EDU remake - Nightinggale

@@ -66,6 +66,7 @@
 	<ElementType name="iExperience" content="textOnly" dt:type="int"/>
 	<ElementType name="iFoodKept" content="textOnly" dt:type="int"/>
 	<ElementType name="iHealRateChange" content="textOnly" dt:type="int"/>
+  <ElementType name="iCenterPlotBonus" content="textOnly" dt:type="int"/>
 	<ElementType name="iMilitaryProductionModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iDefense" content="textOnly" dt:type="int"/>
 	<ElementType name="iBombardDefense" content="textOnly" dt:type="int"/>
@@ -263,7 +264,8 @@
 		<element type="iExperience"/>
 		<element type="iFoodKept"/>
 		<element type="iHealRateChange"/>
-		<element type="iMilitaryProductionModifier"/>
+    <element type="iCenterPlotBonus" minOccurs="0"/>
+    <element type="iMilitaryProductionModifier"/>
 		<element type="iDefense"/>
 		<element type="iBombardDefense"/>
 		<element type="iAsset"/>

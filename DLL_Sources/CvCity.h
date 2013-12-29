@@ -277,6 +277,7 @@ public:
 	int getRiverPlotYield(YieldTypes eIndex) const;
 	void changeRiverPlotYield(YieldTypes eIndex, int iChange);
 	///TKs Med
+	int getCenterPlotBonus() const;
 	PlayerTypes getVassalOwner() const;
 	void setVassalOwner(PlayerTypes eNewValue);
 	int getBaseRawYieldProduced(YieldTypes eIndex, SpecialBuildingTypes eSpecialBuilding = NO_SPECIALBUILDING) const;
@@ -621,6 +622,7 @@ protected:
 	int m_iRebelSentiment;
 	int m_iTeachUnitMultiplier;
 	///TKs Med
+	int m_iCenterPlotBonus;
 	MedCityTypes m_iCityType;
 	int m_iMaxCityPop;
 	int m_iDetectMaraudersRange;
@@ -883,6 +885,13 @@ inline int CvCity::getProductionNeeded(YieldTypes eYield) const
 	return ma_productionNeeded.get(eYield);
 }
 // transport feeder - end - Nightinggale
+
+///TKs Med
+inline int CvCity::getCenterPlotBonus() const
+{
+	return m_iCenterPlotBonus;
+}
+///TKe
 
 #endif
 																																																		
