@@ -1043,7 +1043,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags) const
 			if (kLoopProfession.getSpecialBuilding() == kBuildingInfo.getSpecialBuildingType())
 			{
 				// Placing an extra assert with proper error description for something which will assert with a generic description later - Nightinggale
-				//FAssertMsg(kBuildingInfo.getSpecialBuildingType() != NO_BUILDING, CvString::format("%s has no special building", kBuildingInfo.getType()).c_str());
+				FAssertMsg(kBuildingInfo.getSpecialBuildingType() != NO_BUILDING, CvString::format("%s has no special building", kBuildingInfo.getType()).c_str());
 				// MultipleYieldsProduced Start by Aymerick 22/01/2010**
 				YieldTypes eYieldConsumed = (YieldTypes)kLoopProfession.getYieldsConsumed(0, GET_PLAYER(getOwner()).getID());
 				YieldTypes eYieldProduced = (YieldTypes) kLoopProfession.getYieldsProduced(0);

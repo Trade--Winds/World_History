@@ -5564,7 +5564,6 @@ m_iCityType(-1),
 m_iFreeToCityType(-1),
 m_iModdersCode1(NO_MOD_CODE),
 m_iIncreasesCityPopulation(0),
-m_iCenterPlotBonus(0),
 m_iRazedCityGoldIncrease(0),
 m_iTrainingTimeMod(0),
 m_iDetectsMarauders(0),
@@ -5784,10 +5783,6 @@ int CvBuildingInfo::getImmigrationUnits(int i) const
 int CvBuildingInfo::getAutoSellsYields(int i) const
 {
 	return m_aiAutoSellsYields ? m_aiAutoSellsYields[i] : -1;
-}
-int CvBuildingInfo::getCenterPlotBonus() const
-{
-	return m_iCenterPlotBonus;
 }
 ///TKe
 int CvBuildingInfo::getNextSpecialBuilding() const
@@ -6053,7 +6048,6 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iFreeToCityType);
 	stream->Read(&m_iModdersCode1);
 	stream->Read(&m_iIncreasesCityPopulation);
-	stream->Read(&m_iCenterPlotBonus);
 	stream->Read(&m_iRazedCityGoldIncrease);
 	stream->Read(&m_iTrainingTimeMod);
 	stream->Read(&m_iDetectsMarauders);
@@ -6165,7 +6159,6 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iFreeToCityType);
 	stream->Write(m_iModdersCode1);
 	stream->Write(m_iIncreasesCityPopulation);
-	stream->Write(m_iCenterPlotBonus);
 	stream->Write(m_iRazedCityGoldIncrease);
 	stream->Write(m_iTrainingTimeMod);
 	stream->Write(m_iDetectsMarauders);
@@ -6241,7 +6234,6 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
     pXML->GetChildXmlValByName(szTextVal, "AutoSellYieldChange");
 	m_iAutoSellYieldChange = pXML->FindInInfoClass(szTextVal);
     pXML->GetChildXmlValByName(&m_iIncreasesCityPopulation, "iIncreasesCityPopulation");
-	pXML->GetChildXmlValByName(&m_iCenterPlotBonus, "iCenterPlotBonus");
     pXML->GetChildXmlValByName(&m_iRazedCityGoldIncrease, "iRazedCityGoldIncrease");
     pXML->GetChildXmlValByName(&m_iTrainingTimeMod, "iTrainingTimeMod");
     pXML->GetChildXmlValByName(&m_iDetectsMarauders, "iDetectsMarauders");
