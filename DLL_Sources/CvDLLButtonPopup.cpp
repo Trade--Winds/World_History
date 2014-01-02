@@ -2,12 +2,10 @@
 
 #include "CvGameCoreDLL.h"
 #include "CvDLLButtonPopup.h"
-#include "CvGlobals.h"
 #include "CvPlayerAI.h"
 #include "CvGameAI.h"
 #include "CvTeamAI.h"
 #include "CvMap.h"
-#include "CvPlot.h"
 #include "CvArtFileMgr.h"
 #include "CyCity.h"
 #include "CvTradeRoute.h"

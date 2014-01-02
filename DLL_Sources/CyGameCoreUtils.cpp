@@ -4,6 +4,9 @@
 #include "CyPlot.h"
 #include "CyCity.h"
 #include "CyUnit.h"
+
+#include "CvMap.h"
+
 int cyIntRange(int iNum, int iLow, int iHigh)
 {
 	return range(iNum, iLow, iHigh);

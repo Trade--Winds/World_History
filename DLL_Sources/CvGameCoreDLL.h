@@ -179,31 +179,15 @@ namespace python = boost::python;
 #include "CvStructs.h"
 #include "CvDLLUtilityIFaceBase.h"
 
-#include "CvPlayerAI.h"
+#include "JustInTimeArray.h"
+
 #include "CvGameCoreUtils.h"
-#include "CvMap.h"
-#include "CvGameAI.h"
-#include "CvPlot.h"
-#include "CvUnit.h"
 #include "CvGlobals.h"
-#include "CvCity.h"
 #include "FProfiler.h"
-#include "CyCity.h"
-#include "CvInfos.h"
-#include "CvTeamAI.h"
 #include "CvDLLPythonIFaceBase.h"
 #include "CvRandom.h"
-#include "CvArea.h"
 #include "CvDllEntity.h"
-#include "CvDeal.h"
 #include "CvDLLEntityIFaceBase.h"
-#include "CvGame.h"
-#include "CyGlobalContext.h"
-#include "CvSelectionGroup.h"
-#include "CvTalkingHeadMessage.h"
-#include "CvCityAI.h"
-#include "CvSelectionGroupAI.h"
-#include "CvUnitAI.h"
 
 #ifdef FINAL_RELEASE
 // Undefine OutputDebugString in final release builds

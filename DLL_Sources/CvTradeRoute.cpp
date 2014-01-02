@@ -2,6 +2,10 @@
 #include "CvTradeRoute.h"
 #include "CvDLLInterfaceIFaceBase.h"
 
+
+#include "CvPlayerAI.h"
+#include "CvGameAI.h"
+
 CvTradeRoute::CvTradeRoute() :
 	m_iId(ANYWHERE_CITY_ID),
 	m_eYield(NO_YIELD)

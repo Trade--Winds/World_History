@@ -10,6 +10,11 @@
 #include "CvDLLPythonIFaceBase.h"
 #include "CvGlobals.h"
 
+
+#include "CvPlayerAI.h"
+#include "CvGameAI.h"
+#include "CvInfos.h"
+
 CyCity::CyCity() : m_pCity(NULL)
 {
 

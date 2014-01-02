@@ -16,6 +16,10 @@
 #include "CvGameTextMgr.h"
 #include "CvGameCoreUtils.h"
 
+
+#include "CvPlayerAI.h"
+#include "CvGameAI.h"
+
 //------------------------------------------------------------------------------------------------------
 //
 //  FUNCTION:   CInfoBase()

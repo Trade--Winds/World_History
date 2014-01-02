@@ -32,6 +32,8 @@
 #include "CvDLLFAStarIFaceBase.h"
 #include "CvDLLPythonIFaceBase.h"
 
+#include "CvTeamAI.h"
+
 // Public Functions...
 
 CvMap::CvMap()

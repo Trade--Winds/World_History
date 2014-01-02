@@ -6,6 +6,8 @@
 #include "CvGlobals.h"
 #include "YieldsTestBase.h"
 
+#include "CvInfos.h"
+
 void BaseCheckYieldGroup::build()
 {
 	FAssertMsg(false, "The base function shouldn't call this virtual function");

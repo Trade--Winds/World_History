@@ -11,6 +11,11 @@
 #include "CvGameAI.h"
 #include "CvGameCoreUtils.h"
 
+
+#include "CvPlayerAI.h"
+
+
+
 // Public Functions...
 
 CvInitCore::CvInitCore()

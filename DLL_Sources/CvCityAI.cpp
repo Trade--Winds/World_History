@@ -1,23 +1,18 @@
 // cityAI.cpp
 
 #include "CvGameCoreDLL.h"
-#include "CvGlobals.h"
-#include "CvGameCoreUtils.h"
 #include "CvCityAI.h"
 #include "CvGameAI.h"
-#include "CvPlot.h"
-#include "CvArea.h"
 #include "CvPlayerAI.h"
 #include "CvTeamAI.h"
 #include "CyCity.h"
 #include "CyArgsList.h"
 #include "CvInfos.h"
-#include "FProfiler.h"
+#include "CvMap.h"
 
 #include "CvDLLPythonIFaceBase.h"
 #include "CvDLLInterfaceIFaceBase.h"
 #include "CvDLLFAStarIFaceBase.h"
-
 
 #define BUILDINGFOCUS_NO_RECURSION			(1 << 31)
 #define BUILDINGFOCUS_BUILD_ANYTHING		(1 << 30)

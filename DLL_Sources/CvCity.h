@@ -2,9 +2,6 @@
 // city.h
 #ifndef CIV4_CITY_H
 #define CIV4_CITY_H
-#include "CvDLLEntity.h"
-#include "LinkedList.h"
-#include "JustInTimeArray.h"
 
 class CvPlot;
 class CvArea;
