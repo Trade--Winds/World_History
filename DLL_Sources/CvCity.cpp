@@ -11110,6 +11110,11 @@ void CvCity::setAutoThresholdCache(YieldTypes eYield)
 
 	ma_productionNeeded.set(iProductionNeeded, eYield);
 
+	if (YieldGroup_Virtual(eYield))
+	{
+		return;
+	}
+
 	if (iProductionNeeded == MAX_INT)
 	{
 		// the city isn't producing anything. Set threshold to 0 instead of infinity.
