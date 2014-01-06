@@ -8,6 +8,10 @@ class CvArea;
 class CvGenericBuilding;
 class CvInfoBase;
 
+/// PlotGroup - start - Nightinggale
+class CvPlotGroup;
+/// PlotGroup - end - Nightinggale
+
 class CvCity : public CvDLLEntity
 {
 public:
@@ -811,6 +815,13 @@ protected:
 	// setImportsMaintain() is only allowed to be called by doTask() or it will cause desyncs
 	void setImportsMaintain(YieldTypes eYield, bool bSetting);
 	// transport feeder - end - Nightinggale
+
+	/// PlotGroup - start - Nightinggale
+public:
+	CvPlotGroup* plotGroup(PlayerTypes ePlayer) const;
+	bool isConnectedTo(CvCity* pCity) const;									// Exposed to Python
+	bool isConnectedToCapital(PlayerTypes ePlayer = NO_PLAYER) const;			// Exposed to Python
+	/// PlotGroup - end - Nightinggale
 };
 
 // cache getMaxYieldCapacity - start - Nightinggale

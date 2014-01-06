@@ -8574,3 +8574,544 @@ void CvPlot::updateImpassable()
 		m_bImpassable = ((getFeatureType() == NO_FEATURE) ? GC.getTerrainInfo(getTerrainType()).isImpassable() : GC.getFeatureInfo(getFeatureType()).isImpassable());
 	}
 }
+
+/// PlotGroup - start - Nightinggale
+CvPlotGroup* CvPlot::getPlotGroup(PlayerTypes ePlayer) const
+{
+	FAssertMsg(ePlayer >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(ePlayer < MAX_PLAYERS, "ePlayer is expected to be within maximum bounds (invalid Index)");
+
+	if (NULL == m_aiPlotGroup)
+	{
+		return GET_PLAYER(ePlayer).getPlotGroup(FFreeList::INVALID_INDEX);
+	}
+
+	return GET_PLAYER(ePlayer).getPlotGroup(m_aiPlotGroup[ePlayer]);
+}
+
+CvPlotGroup* CvPlot::getOwnerPlotGroup() const
+{
+	if (getOwnerINLINE() == NO_PLAYER)
+	{
+		return NULL;
+	}
+
+	return getPlotGroup(getOwnerINLINE());
+}
+
+void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
+{
+	CvPlotGroup* pOldPlotGroup = getPlotGroup(ePlayer);
+
+	if (pOldPlotGroup != pNewValue)
+	{
+		if (NULL ==  m_aiPlotGroup)
+		{
+			m_aiPlotGroup = new int[MAX_PLAYERS];
+			for (int iI = 0; iI < MAX_PLAYERS; ++iI)
+			{
+				m_aiPlotGroup[iI] = FFreeList::INVALID_INDEX;
+			}
+		}
+
+		CvCity* pCity = getPlotCity();
+
+		if (ePlayer == getOwnerINLINE())
+		{
+			updatePlotGroupBonus(false);
+		}
+
+#if 0
+		if (pOldPlotGroup != NULL)
+		{
+			if (pCity != NULL)
+			{
+				if (pCity->getOwnerINLINE() == ePlayer)
+				{
+					FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlot::setPlotGroup");
+					for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+					{
+						pCity->changeNumBonuses(((BonusTypes)iI), -(pOldPlotGroup->getNumBonuses((BonusTypes)iI)));
+					}
+				}
+			}
+		}
+#endif
+
+		if (pNewValue == NULL)
+		{
+			m_aiPlotGroup[ePlayer] = FFreeList::INVALID_INDEX;
+		}
+		else
+		{
+			m_aiPlotGroup[ePlayer] = pNewValue->getID();
+		}
+
+#if 0
+		if (getPlotGroup(ePlayer) != NULL)
+		{
+			if (pCity != NULL)
+			{
+				if (pCity->getOwnerINLINE() == ePlayer)
+				{
+					FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlot::setPlotGroup");
+					for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+					{
+						pCity->changeNumBonuses(((BonusTypes)iI), getPlotGroup(ePlayer)->getNumBonuses((BonusTypes)iI));
+					}
+				}
+			}
+		}
+#endif
+		if (ePlayer == getOwnerINLINE())
+		{
+			updatePlotGroupBonus(true);
+		}
+	}
+}
+
+
+void CvPlot::updatePlotGroup()
+{
+	PROFILE_FUNC();
+
+	int iI;
+
+	for (iI = 0; iI < MAX_PLAYERS; ++iI)
+	{
+		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		{
+			updatePlotGroup((PlayerTypes)iI);
+		}
+	}
+}
+
+
+void CvPlot::updatePlotGroup(PlayerTypes ePlayer, bool bRecalculate)
+{
+	PROFILE("CvPlot::updatePlotGroup(Player)");
+
+	CvPlotGroup* pPlotGroup;
+	CvPlotGroup* pAdjacentPlotGroup;
+	CvPlot* pAdjacentPlot;
+	bool bConnected;
+	bool bEmpty;
+	int iI;
+
+	if (!(GC.getGameINLINE().isFinalInitialized()))
+	{
+		return;
+	}
+
+	pPlotGroup = getPlotGroup(ePlayer);
+
+	if (pPlotGroup != NULL)
+	{
+		if (bRecalculate)
+		{
+			bConnected = false;
+
+			if (isTradeNetwork(GET_PLAYER(ePlayer).getTeam()))
+			{
+				bConnected = true;
+
+				for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+				{
+					pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+					if (pAdjacentPlot != NULL)
+					{
+						if (pAdjacentPlot->getPlotGroup(ePlayer) == pPlotGroup)
+						{
+							if (!isTradeNetworkConnected(pAdjacentPlot, GET_PLAYER(ePlayer).getTeam()))
+							{
+								bConnected = false;
+								break;
+							}
+						}
+					}
+				}
+			}
+
+			if (!bConnected)
+			{
+				bEmpty = (pPlotGroup->getLengthPlots() == 1);
+				FAssertMsg(pPlotGroup->getLengthPlots() > 0, "pPlotGroup should have more than 0 plots");
+
+				pPlotGroup->removePlot(this);
+
+				if (!bEmpty)
+				{
+					pPlotGroup->recalculatePlots();
+				}
+			}
+		}
+
+		pPlotGroup = getPlotGroup(ePlayer);
+	}
+
+	if (isTradeNetwork(GET_PLAYER(ePlayer).getTeam()))
+	{
+		for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+		{
+			pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+			if (pAdjacentPlot != NULL)
+			{
+				pAdjacentPlotGroup = pAdjacentPlot->getPlotGroup(ePlayer);
+
+				if ((pAdjacentPlotGroup != NULL) && (pAdjacentPlotGroup != pPlotGroup))
+				{
+					if (isTradeNetworkConnected(pAdjacentPlot, GET_PLAYER(ePlayer).getTeam()))
+					{
+						if (pPlotGroup == NULL)
+						{
+							pAdjacentPlotGroup->addPlot(this);
+							pPlotGroup = pAdjacentPlotGroup;
+							FAssertMsg(getPlotGroup(ePlayer) == pPlotGroup, "ePlayer's plot group is expected to equal pPlotGroup");
+						}
+						else
+						{
+							FAssertMsg(getPlotGroup(ePlayer) == pPlotGroup, "ePlayer's plot group is expected to equal pPlotGroup");
+							GC.getMapINLINE().combinePlotGroups(ePlayer, pPlotGroup, pAdjacentPlotGroup);
+							pPlotGroup = getPlotGroup(ePlayer);
+							FAssertMsg(pPlotGroup != NULL, "PlotGroup is not assigned a valid value");
+						}
+					}
+				}
+			}
+		}
+
+		if (pPlotGroup == NULL)
+		{
+			GET_PLAYER(ePlayer).initPlotGroup(this);
+		}
+	}
+}
+
+bool CvPlot::isConnectedTo(const CvCity* pCity) const
+{
+	FAssert(isOwned());
+	return ((getPlotGroup(getOwnerINLINE()) == pCity->plotGroup(getOwnerINLINE())) || (getPlotGroup(pCity->getOwnerINLINE()) == pCity->plotGroup(pCity->getOwnerINLINE())));
+}
+
+bool CvPlot::isConnectedToCapital(PlayerTypes ePlayer) const
+{
+	CvCity* pCapitalCity;
+
+	if (ePlayer == NO_PLAYER)
+	{
+		ePlayer = getOwnerINLINE();
+	}
+
+	if (ePlayer != NO_PLAYER)
+	{
+		pCapitalCity = GET_PLAYER(ePlayer).getCapitalCity();
+
+		if (pCapitalCity != NULL)
+		{
+			return isConnectedTo(pCapitalCity);
+		}
+	}
+
+	return false;
+}
+
+
+int CvPlot::getPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const
+{
+	CvPlotGroup* pPlotGroup;
+
+	FAssertMsg(ePlayer != NO_PLAYER, "Player is not assigned a valid value");
+	FAssertMsg(eBonus != NO_BONUS, "Bonus is not assigned a valid value");
+
+	pPlotGroup = getPlotGroup(ePlayer);
+
+	if (pPlotGroup != NULL)
+	{
+		return pPlotGroup->getNumBonuses(eBonus);
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+
+bool CvPlot::isPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const
+{
+	return (getPlotGroupConnectedBonus(ePlayer, eBonus) > 0);
+}
+
+
+bool CvPlot::isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const
+{
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->isPlotGroupConnectedBonus(ePlayer, eBonus))
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+void CvPlot::updatePlotGroupBonus(bool bAdd)
+{
+	PROFILE_FUNC();
+
+#if 0
+	CvCity* pPlotCity;
+	CvPlotGroup* pPlotGroup;
+	BonusTypes eNonObsoleteBonus;
+	int iI;
+
+	if (!isOwned())
+	{
+		return;
+	}
+
+	pPlotGroup = getPlotGroup(getOwnerINLINE());
+
+	if (pPlotGroup != NULL)
+	{
+		pPlotCity = getPlotCity();
+
+		if (pPlotCity != NULL)
+		{
+			for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+			{
+				if (!GET_TEAM(getTeam()).isBonusObsolete((BonusTypes)iI))
+				{
+					pPlotGroup->changeNumBonuses(((BonusTypes)iI), (pPlotCity->getFreeBonus((BonusTypes)iI) * ((bAdd) ? 1 : -1)));
+				}
+			}
+
+			if (pPlotCity->isCapital())
+			{
+				for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+				{
+					pPlotGroup->changeNumBonuses(((BonusTypes)iI), (GET_PLAYER(getOwnerINLINE()).getBonusExport((BonusTypes)iI) * ((bAdd) ? -1 : 1)));
+					pPlotGroup->changeNumBonuses(((BonusTypes)iI), (GET_PLAYER(getOwnerINLINE()).getBonusImport((BonusTypes)iI) * ((bAdd) ? 1 : -1)));
+				}
+			}
+		}
+
+		eNonObsoleteBonus = getNonObsoleteBonusType(getTeam());
+
+		if (eNonObsoleteBonus != NO_BONUS)
+		{
+			if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getBonusInfo(eNonObsoleteBonus).getTechCityTrade())))
+			{
+				if (isCity(true, getTeam()) ||
+					((getImprovementType() != NO_IMPROVEMENT) && GC.getImprovementInfo(getImprovementType()).isImprovementBonusTrade(eNonObsoleteBonus)))
+				{
+					if ((pPlotGroup != NULL) && isBonusNetwork(getTeam()))
+					{
+						pPlotGroup->changeNumBonuses(eNonObsoleteBonus, ((bAdd) ? 1 : -1));
+					}
+				}
+			}
+		}
+	}
+#endif
+}
+
+ 
+bool CvPlot::isTradeNetworkImpassable(TeamTypes eTeam) const
+{
+	return (isImpassable() && !isRiverNetwork(eTeam));
+}
+
+
+
+bool CvPlot::isRiverNetwork(TeamTypes eTeam) const
+{
+	if (!isRiver())
+	{
+		return false;
+	}
+#if 0
+	if (GET_TEAM(eTeam).isRiverTrade())
+	{
+		return true;
+	}
+#endif
+
+	if (getTeam() == eTeam)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CvPlot::isNetworkTerrain(TeamTypes eTeam) const
+{
+	FAssertMsg(eTeam != NO_TEAM, "eTeam is not assigned a valid value");
+	FAssertMsg(getTerrainType() != NO_TERRAIN, "TerrainType is not assigned a valid value");
+
+#if 0
+	if (GET_TEAM(eTeam).isTerrainTrade(getTerrainType()))
+	{
+		return true;
+	}
+#endif
+
+	if (isWater())
+	{
+		if (getTeam() == eTeam)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+bool CvPlot::isBonusNetwork(TeamTypes eTeam) const
+{
+	if (isRoute())
+	{
+		return true;
+	}
+
+	if (isRiverNetwork(eTeam))
+	{
+		return true;
+	}
+
+	if (isNetworkTerrain(eTeam))
+	{
+  		return true;
+	}
+
+	return false;
+}
+
+
+bool CvPlot::isTradeNetwork(TeamTypes eTeam) const
+{
+	FAssertMsg(eTeam != NO_TEAM, "eTeam is not assigned a valid value");
+
+	if (atWar(eTeam, getTeam()))
+	{
+		return false;
+	}
+
+#if 0
+	if (getBlockadedCount(eTeam) > 0)
+	{
+		return false;
+	}
+#endif
+
+	if (isTradeNetworkImpassable(eTeam))
+	{
+		return false;
+	}
+
+	if (!isOwned())
+	{
+		if (!isRevealed(eTeam, false))
+		{
+			return false;
+		}
+	}
+
+	return isBonusNetwork(eTeam);
+}
+
+
+bool CvPlot::isTradeNetworkConnected(const CvPlot* pPlot, TeamTypes eTeam) const
+{
+	FAssertMsg(eTeam != NO_TEAM, "eTeam is not assigned a valid value");
+
+	if (atWar(eTeam, getTeam()) || atWar(eTeam, pPlot->getTeam()))
+	{
+		return false;
+	}
+
+	if (isTradeNetworkImpassable(eTeam) || pPlot->isTradeNetworkImpassable(eTeam))
+	{
+		return false;
+	}
+
+	if (!isOwned())
+	{
+		if (!isRevealed(eTeam, false) || !(pPlot->isRevealed(eTeam, false)))
+		{
+			return false;
+		}
+	}
+
+	if (isRoute())
+	{
+		if (pPlot->isRoute())
+		{
+			return true;
+		}
+	}
+
+	if (isCity(true, eTeam))
+	{
+		if (pPlot->isNetworkTerrain(eTeam))
+		{
+			return true;
+		}
+	}
+
+	if (isNetworkTerrain(eTeam))
+	{
+		if (pPlot->isCity(true, eTeam))
+		{
+			return true;
+		}
+
+		if (pPlot->isNetworkTerrain(eTeam))
+		{
+			return true;
+		}
+
+		if (pPlot->isRiverNetwork(eTeam))
+		{
+			if (pPlot->isRiverConnection(directionXY(pPlot, this)))
+			{
+				return true;
+			}
+		}
+	}
+
+	if (isRiverNetwork(eTeam))
+	{
+		if (pPlot->isNetworkTerrain(eTeam))
+		{
+			if (isRiverConnection(directionXY(this, pPlot)))
+			{
+				return true;
+			}
+		}
+
+		if (isRiverConnection(directionXY(this, pPlot)) || pPlot->isRiverConnection(directionXY(pPlot, this)))
+		{
+			if (pPlot->isRiverNetwork(eTeam))
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+/// PlotGroup - end - Nightinggale

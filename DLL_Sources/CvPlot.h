@@ -22,6 +22,10 @@ class CvUnit;
 class CvSymbol;
 class CvFlagEntity;
 
+/// PlotGroup - start - Nightinggale
+class CvPlotGroup;
+/// PlotGroup - end - Nightinggale
+
 typedef bool (*ConstPlotUnitFunc)( const CvUnit* pUnit, int iData1, int iData2);
 typedef bool (*PlotUnitFunc)(CvUnit* pUnit, int iData1, int iData2);
 
@@ -496,6 +500,34 @@ protected:
 
 	// added so under cheat mode we can access protected stuff
 	friend class CvGameTextMgr;
+
+
+	/// PlotGroup - start - Nightinggale
+public:
+	CvPlotGroup* getPlotGroup(PlayerTypes ePlayer) const;
+	CvPlotGroup* getOwnerPlotGroup() const;
+
+	void setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue);
+	void updatePlotGroup();
+	void updatePlotGroup(PlayerTypes ePlayer, bool bRecalculate = true);
+
+	bool isConnectedTo( const CvCity* pCity) const;														// Exposed to Python
+	bool isConnectedToCapital(PlayerTypes ePlayer = NO_PLAYER) const;									// Exposed to Python
+	int getPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;						// Exposed to Python
+	bool isPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;						// Exposed to Python
+	bool isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;				// Exposed to Python
+	void updatePlotGroupBonus(bool bAdd);
+
+	bool isTradeNetworkImpassable(TeamTypes eTeam) const;												// Exposed to Python
+	bool isNetworkTerrain(TeamTypes eTeam) const;														// Exposed to Python
+	bool isBonusNetwork(TeamTypes eTeam) const;															// Exposed to Python
+	bool isTradeNetwork(TeamTypes eTeam) const;															// Exposed to Python
+	bool isTradeNetworkConnected(const CvPlot * pPlot, TeamTypes eTeam) const;							// Exposed to Python
+	bool isRiverNetwork(TeamTypes eTeam) const;
+
+protected:
+	int* m_aiPlotGroup;			// IDs - keep as int
+	/// PlotGroup - end - Nightinggale
 };
 
 #endif

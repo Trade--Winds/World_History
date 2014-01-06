@@ -12,6 +12,10 @@
 #include "CvIdVector.h"
 #include "CvTalkingHeadMessage.h"
 
+/// PlotGroup - start - Nightinggale
+#include "CvPlotGroup.h"
+/// PlotGroup - end - Nightinggale
+
 class CvDiploParameters;
 class CvPopupInfo;
 class CvEventTriggerInfo;
@@ -944,6 +948,20 @@ protected:
 	virtual void read(FDataStreamBase* pStream);
 	virtual void write(FDataStreamBase* pStream);
 	void doUpdateCacheOnTurn();
+
+/// PlotGroup - start - Nightinggale
+public:
+	CvPlotGroup* firstPlotGroup(int *pIterIdx, bool bRev=false) const;
+	CvPlotGroup* nextPlotGroup(int *pIterIdx, bool bRev=false) const;
+	int getNumPlotGroups() const;
+	CvPlotGroup* getPlotGroup(int iID) const;
+	CvPlotGroup* addPlotGroup();
+	void deletePlotGroup(int iID);
+	CvPlotGroup* initPlotGroup(CvPlot* pPlot);
+
+protected:
+	FFreeListTrashArray<CvPlotGroup> m_plotGroups;
+/// PlotGroup - end - Nightinggale
 
 // invention effect cache - start - Nightinggale
 public:

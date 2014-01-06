@@ -1355,4 +1355,41 @@ void CvMap::calculateAreas()
 }
 
 
+/// PlotGroup - start - Nightinggale
+void CvMap::combinePlotGroups(PlayerTypes ePlayer, CvPlotGroup* pPlotGroup1, CvPlotGroup* pPlotGroup2)
+{
+	CLLNode<XYCoords>* pPlotNode;
+	CvPlotGroup* pNewPlotGroup;
+	CvPlotGroup* pOldPlotGroup;
+	CvPlot* pPlot;
+
+	FAssertMsg(pPlotGroup1 != NULL, "pPlotGroup is not assigned to a valid value");
+	FAssertMsg(pPlotGroup2 != NULL, "pPlotGroup is not assigned to a valid value");
+
+	if (pPlotGroup1 == pPlotGroup2)
+	{
+		return;
+	}
+
+	if (pPlotGroup1->getLengthPlots() > pPlotGroup2->getLengthPlots())
+	{
+		pNewPlotGroup = pPlotGroup1;
+		pOldPlotGroup = pPlotGroup2;
+	}
+	else
+	{
+		pNewPlotGroup = pPlotGroup2;
+		pOldPlotGroup = pPlotGroup1;
+	}
+
+	pPlotNode = pOldPlotGroup->headPlotsNode();
+	while (pPlotNode != NULL)
+	{
+		pPlot = plotSorenINLINE(pPlotNode->m_data.iX, pPlotNode->m_data.iY);
+		pNewPlotGroup->addPlot(pPlot);
+		pPlotNode = pOldPlotGroup->deletePlotsNode(pPlotNode);
+	}
+}
+/// PlotGroup - end - Nightinggale
+
 // Private Functions...

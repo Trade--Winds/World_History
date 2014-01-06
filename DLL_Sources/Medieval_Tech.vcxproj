@@ -35,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CvPlotGroup.cpp" />
     <ClCompile Include="Yields_Colonization_2071.cpp" />
     <ClCompile Include="Yields_Medieval_Tech.cpp" />
     <ClCompile Include="Yields.cpp" />
@@ -137,6 +138,7 @@
     <None Include="interfaceDirtyBits.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CvPlotGroup.h" />
     <ClInclude Include="YieldsTestBase.h" />
     <ClInclude Include="Yields_Colonization_2071.h" />
     <ClInclude Include="Yields_Medieval_Tech.h" />

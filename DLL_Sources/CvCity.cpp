@@ -12037,3 +12037,10 @@ void CvCity::initPrices()
 	}
 }
 //Androrc End
+
+/// PlotGroup - start - Nightinggale
+CvPlotGroup* CvCity::plotGroup(PlayerTypes ePlayer) const
+{
+	return plot()->getPlotGroup(ePlayer);
+}
+/// PlotGroup - end - Nightinggale

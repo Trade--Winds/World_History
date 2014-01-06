@@ -1045,6 +1045,13 @@ protected:
 	float m_aiEducationCost[NUM_TEACH_LEVELS];
 	// EDU remake - start - Nightinggale
 	
+	/// PlotGroup - start - Nightinggale
+public:
+	DllExport FAStar& getPlotGroupFinder();
+protected:
+	FAStar* m_plotGroupFinder;
+	/// PlotGroup - end - Nightinggale
+
 	// DLL interface
 	CvDLLUtilityIFaceBase* m_pDLL;
 };
@@ -1143,6 +1150,13 @@ bool writeInfoArray(FDataStreamBase* pStream,  std::vector<T*>& array)
 	}
 	return true;
 }
+
+/// PlotGroup - start - Nightinggale
+inline FAStar& CvGlobals::getPlotGroupFinder()
+{
+	return *m_plotGroupFinder;
+}
+/// PlotGroup - end - Nightinggale
 
 // cache XML - start - Nightinggale
 inline int CvGlobals::getXMLval(XMLconstantTypes eVal)
