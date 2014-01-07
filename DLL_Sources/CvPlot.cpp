@@ -8589,15 +8589,6 @@ CvPlotGroup* CvPlot::getPlotGroup(PlayerTypes ePlayer) const
 	return GET_PLAYER(ePlayer).getPlotGroup(m_aiPlotGroup[ePlayer]);
 }
 
-CvPlotGroup* CvPlot::getOwnerPlotGroup() const
-{
-	if (getOwnerINLINE() == NO_PLAYER)
-	{
-		return NULL;
-	}
-
-	return getPlotGroup(getOwnerINLINE());
-}
 
 void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 {
@@ -8925,13 +8916,6 @@ void CvPlot::updatePlotGroupBonus(bool bAdd)
 	}
 #endif
 }
-
- 
-bool CvPlot::isTradeNetworkImpassable(TeamTypes eTeam) const
-{
-	return (isImpassable() && !isRiverNetwork(eTeam));
-}
-
 
 
 bool CvPlot::isRiverNetwork(TeamTypes eTeam) const

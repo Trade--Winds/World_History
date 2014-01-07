@@ -530,4 +530,22 @@ protected:
 	/// PlotGroup - end - Nightinggale
 };
 
+
+/// PlotGroup - start - Nightinggale
+inline CvPlotGroup* CvPlot::getOwnerPlotGroup() const
+{
+	if (getOwnerINLINE() == NO_PLAYER)
+	{
+		return NULL;
+	}
+
+	return getPlotGroup(getOwnerINLINE());
+}
+
+inline bool CvPlot::isTradeNetworkImpassable(TeamTypes eTeam) const
+{
+	return (isImpassable() && !isRiverNetwork(eTeam));
+}
+/// PlotGroup - end - Nightinggale
+
 #endif

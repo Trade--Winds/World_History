@@ -14,8 +14,6 @@
 
 CvPlotGroup::CvPlotGroup()
 {
-	m_paiNumBonuses = NULL;
-
 	reset(0, NO_PLAYER, true);
 }
 
@@ -43,7 +41,7 @@ void CvPlotGroup::init(int iID, PlayerTypes eOwner, CvPlot* pPlot)
 
 void CvPlotGroup::uninit()
 {
-	SAFE_DELETE_ARRAY(m_paiNumBonuses);
+	m_aiNumBonuses.reset();
 
 	m_plots.clear();
 }
@@ -52,24 +50,12 @@ void CvPlotGroup::uninit()
 // Initializes data members that are serialized.
 void CvPlotGroup::reset(int iID, PlayerTypes eOwner, bool bConstructorCall)
 {
-	int iI;
-
 	//--------------------------------
 	// Uninit class
 	uninit();
 
 	m_iID = iID;
 	m_eOwner = eOwner;
-
-	if (!bConstructorCall)
-	{
-		FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlotGroup::reset");
-		m_paiNumBonuses = new int [GC.getNumBonusInfos()];
-		for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
-		{
-			m_paiNumBonuses[iI] = 0;
-		}
-	}
 }
 
 
@@ -174,38 +160,6 @@ void CvPlotGroup::recalculatePlots()
 }
 
 
-int CvPlotGroup::getID() const
-{
-	return m_iID;
-}
-
-
-void CvPlotGroup::setID(int iID)
-{
-	m_iID = iID;
-}
-
-
-PlayerTypes CvPlotGroup::getOwner() const
-{
-	return getOwnerINLINE();
-}
-
-
-int CvPlotGroup::getNumBonuses(BonusTypes eBonus) const
-{
-	FAssertMsg(eBonus >= 0, "eBonus is expected to be non-negative (invalid Index)");
-	FAssertMsg(eBonus < GC.getNumBonusInfos(), "eBonus is expected to be within maximum bounds (invalid Index)");
-	return m_paiNumBonuses[eBonus];
-}
-
-
-bool CvPlotGroup::hasBonus(BonusTypes eBonus)
-{
-	return(getNumBonuses(eBonus) > 0);
-}
-
-
 void CvPlotGroup::changeNumBonuses(BonusTypes eBonus, int iChange)
 {
 	CLLNode<XYCoords>* pPlotNode;
@@ -219,7 +173,7 @@ void CvPlotGroup::changeNumBonuses(BonusTypes eBonus, int iChange)
 	{
 		iOldNumBonuses = getNumBonuses(eBonus);
 
-		m_paiNumBonuses[eBonus] = (m_paiNumBonuses[eBonus] + iChange);
+		m_aiNumBonuses.add(iChange, eBonus);
 
 		//FAssertMsg(m_paiNumBonuses[eBonus] >= 0, "m_paiNumBonuses[eBonus] is expected to be non-negative (invalid Index)"); XXX
 
@@ -292,12 +246,14 @@ void CvPlotGroup::read(FDataStreamBase* pStream)
 	uint uiFlag=0;
 	pStream->Read(&uiFlag);	// flags for expansion
 
+	uint arrayBitmap = 0;
+	pStream->Read(&arrayBitmap);
+
 	pStream->Read(&m_iID);
 
 	pStream->Read((int*)&m_eOwner);
 
-	FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlotGroup::read");
-	pStream->Read(GC.getNumBonusInfos(), m_paiNumBonuses);
+	m_aiNumBonuses.read(pStream, arrayBitmap);
 
 	m_plots.Read(pStream);
 }
@@ -308,12 +264,16 @@ void CvPlotGroup::write(FDataStreamBase* pStream)
 	uint uiFlag=0;
 	pStream->Write(uiFlag);		// flag for expansion
 
+	uint arrayBitmap = 0;
+	arrayBitmap |= m_aiNumBonuses.hasContent()               ? 1 : 0;
+
+	pStream->Write(arrayBitmap);
+
 	pStream->Write(m_iID);
 
 	pStream->Write(m_eOwner);
 
-	FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlotGroup::write");
-	pStream->Write(GC.getNumBonusInfos(), m_paiNumBonuses);
+	m_aiNumBonuses.write(pStream, arrayBitmap);
 
 	m_plots.Write(pStream);
 }

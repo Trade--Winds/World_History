@@ -1087,4 +1087,36 @@ inline int CvPlayer::getCityPlotFoodBonus() const
 }
 // invention effect cache - end - Nightinggale
 
+/// PlotGroup - start - Nightinggale
+inline CvPlotGroup* CvPlayer::firstPlotGroup(int *pIterIdx, bool bRev) const
+{
+	return !bRev ? m_plotGroups.beginIter(pIterIdx) : m_plotGroups.endIter(pIterIdx);
+}
+
+inline CvPlotGroup* CvPlayer::nextPlotGroup(int *pIterIdx, bool bRev) const
+{
+	return !bRev ? m_plotGroups.nextIter(pIterIdx) : m_plotGroups.prevIter(pIterIdx);
+}
+
+inline int CvPlayer::getNumPlotGroups() const																		
+{
+	return m_plotGroups.getCount();
+}
+
+inline CvPlotGroup* CvPlayer::getPlotGroup(int iID) const															
+{
+	return((CvPlotGroup *)(m_plotGroups.getAt(iID)));
+}
+
+inline CvPlotGroup* CvPlayer::addPlotGroup()																	
+{
+	return((CvPlotGroup *)(m_plotGroups.add()));
+}
+
+inline void CvPlayer::deletePlotGroup(int iID)																
+{
+	m_plotGroups.removeAt(iID);
+}
+/// PlotGroup - end - Nightinggale
+
 #endif

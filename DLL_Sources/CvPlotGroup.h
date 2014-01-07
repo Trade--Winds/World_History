@@ -36,7 +36,7 @@ public:
 	}
 #endif
 	int getNumBonuses(BonusTypes eBonus) const;
-	bool hasBonus(BonusTypes eBonus);										
+	bool hasBonus(BonusTypes eBonus) const;										
 	void changeNumBonuses(BonusTypes eBonus, int iChange);
 
 	void insertAtEndPlots(XYCoords xy);			
@@ -55,9 +55,39 @@ protected:
 
 	PlayerTypes m_eOwner;
 
-	int* m_paiNumBonuses;
+	BonusArray<int> m_aiNumBonuses;
 
 	CLinkList<XYCoords> m_plots;
 };
+
+inline int CvPlotGroup::getID() const
+{
+	return m_iID;
+}
+
+inline void CvPlotGroup::setID(int iID)
+{
+	m_iID = iID;
+}
+
+inline PlayerTypes CvPlotGroup::getOwner() const
+{
+	return getOwnerINLINE();
+}
+
+inline int CvPlotGroup::getNumBonuses(BonusTypes eBonus) const
+{
+	return m_aiNumBonuses.get(eBonus);
+}
+
+// Nightinggale note: getNumBonuses() always be used instead of hasBonus()
+// the reason is that when an int is used as a bool, the compiler will assume != 0 to turn it into a bool
+// I added it anyway for completeness because it's part of vanilla Civ4BTS
+// both functions should be equally fast due to inlining
+// Civ4 doesn't have hasBonus() inlined meaning it adds overhead as an extra function call
+inline bool CvPlotGroup::hasBonus(BonusTypes eBonus) const
+{
+	return(getNumBonuses(eBonus) > 0);
+}
 
 #endif

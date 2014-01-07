@@ -19217,36 +19217,6 @@ void CvPlayer::updateTransportThreshold(YieldTypes eYield)
 // transport feeder - end - Nightinggale
 
 /// PlotGroup - start - Nightinggale
-CvPlotGroup* CvPlayer::firstPlotGroup(int *pIterIdx, bool bRev) const
-{
-	return !bRev ? m_plotGroups.beginIter(pIterIdx) : m_plotGroups.endIter(pIterIdx);
-}
-
-CvPlotGroup* CvPlayer::nextPlotGroup(int *pIterIdx, bool bRev) const
-{
-	return !bRev ? m_plotGroups.nextIter(pIterIdx) : m_plotGroups.prevIter(pIterIdx);
-}
-
-int CvPlayer::getNumPlotGroups() const																		
-{
-	return m_plotGroups.getCount();
-}
-
-CvPlotGroup* CvPlayer::getPlotGroup(int iID) const															
-{
-	return((CvPlotGroup *)(m_plotGroups.getAt(iID)));
-}
-
-CvPlotGroup* CvPlayer::addPlotGroup()																	
-{
-	return((CvPlotGroup *)(m_plotGroups.add()));
-}
-
-void CvPlayer::deletePlotGroup(int iID)																
-{
-	m_plotGroups.removeAt(iID);
-}
-
 CvPlotGroup* CvPlayer::initPlotGroup(CvPlot* pPlot)
 {
 	CvPlotGroup* pPlotGroup;
