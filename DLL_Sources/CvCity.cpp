@@ -12051,10 +12051,8 @@ void CvCity::changeFreeBonus(BonusTypes eIndex, int iChange)
 
 	if (iChange != 0)
 	{
-		plot()->updatePlotGroupBonus(false);
 		m_aiFreeBonus.add(iChange, eIndex);
 		FAssert(getFreeBonus(eIndex) >= 0);
-		plot()->updatePlotGroupBonus(true);
 	}
 }
 

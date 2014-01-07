@@ -516,7 +516,6 @@ public:
 	int getPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;						// Exposed to Python
 	bool isPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;						// Exposed to Python
 	bool isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;				// Exposed to Python
-	void updatePlotGroupBonus(bool bAdd);
 
 	bool isTradeNetworkImpassable(TeamTypes eTeam) const;												// Exposed to Python
 	bool isNetworkTerrain(TeamTypes eTeam) const;														// Exposed to Python

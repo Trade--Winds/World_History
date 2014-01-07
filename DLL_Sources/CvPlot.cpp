@@ -8607,12 +8607,6 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 
 		CvCity* pCity = getPlotCity();
 
-		if (ePlayer == getOwnerINLINE())
-		{
-			updatePlotGroupBonus(false);
-		}
-
-#if 0
 		if (pOldPlotGroup != NULL)
 		{
 			if (pCity != NULL)
@@ -8627,7 +8621,6 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 				}
 			}
 		}
-#endif
 
 		if (pNewValue == NULL)
 		{
@@ -8638,7 +8631,6 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 			m_aiPlotGroup[ePlayer] = pNewValue->getID();
 		}
 
-#if 0
 		if (getPlotGroup(ePlayer) != NULL)
 		{
 			if (pCity != NULL)
@@ -8652,11 +8644,6 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 					}
 				}
 			}
-		}
-#endif
-		if (ePlayer == getOwnerINLINE())
-		{
-			updatePlotGroupBonus(true);
 		}
 	}
 }
@@ -8854,67 +8841,6 @@ bool CvPlot::isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes e
 	}
 
 	return false;
-}
-
-void CvPlot::updatePlotGroupBonus(bool bAdd)
-{
-	PROFILE_FUNC();
-
-#if 0
-	CvCity* pPlotCity;
-	CvPlotGroup* pPlotGroup;
-	BonusTypes eNonObsoleteBonus;
-	int iI;
-
-	if (!isOwned())
-	{
-		return;
-	}
-
-	pPlotGroup = getPlotGroup(getOwnerINLINE());
-
-	if (pPlotGroup != NULL)
-	{
-		pPlotCity = getPlotCity();
-
-		if (pPlotCity != NULL)
-		{
-			for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
-			{
-				if (!GET_TEAM(getTeam()).isBonusObsolete((BonusTypes)iI))
-				{
-					pPlotGroup->changeNumBonuses(((BonusTypes)iI), (pPlotCity->getFreeBonus((BonusTypes)iI) * ((bAdd) ? 1 : -1)));
-				}
-			}
-
-			if (pPlotCity->isCapital())
-			{
-				for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
-				{
-					pPlotGroup->changeNumBonuses(((BonusTypes)iI), (GET_PLAYER(getOwnerINLINE()).getBonusExport((BonusTypes)iI) * ((bAdd) ? -1 : 1)));
-					pPlotGroup->changeNumBonuses(((BonusTypes)iI), (GET_PLAYER(getOwnerINLINE()).getBonusImport((BonusTypes)iI) * ((bAdd) ? 1 : -1)));
-				}
-			}
-		}
-
-		eNonObsoleteBonus = getNonObsoleteBonusType(getTeam());
-
-		if (eNonObsoleteBonus != NO_BONUS)
-		{
-			if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getBonusInfo(eNonObsoleteBonus).getTechCityTrade())))
-			{
-				if (isCity(true, getTeam()) ||
-					((getImprovementType() != NO_IMPROVEMENT) && GC.getImprovementInfo(getImprovementType()).isImprovementBonusTrade(eNonObsoleteBonus)))
-				{
-					if ((pPlotGroup != NULL) && isBonusNetwork(getTeam()))
-					{
-						pPlotGroup->changeNumBonuses(eNonObsoleteBonus, ((bAdd) ? 1 : -1));
-					}
-				}
-			}
-		}
-	}
-#endif
 }
 
 
