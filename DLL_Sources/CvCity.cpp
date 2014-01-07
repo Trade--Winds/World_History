@@ -12043,4 +12043,31 @@ CvPlotGroup* CvCity::plotGroup(PlayerTypes ePlayer) const
 {
 	return plot()->getPlotGroup(ePlayer);
 }
+
+void CvCity::changeFreeBonus(BonusTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < GC.getNumBonusInfos(), "eIndex expected to be < GC.getNumBonusInfos()");
+
+	if (iChange != 0)
+	{
+		plot()->updatePlotGroupBonus(false);
+		m_aiFreeBonus.add(iChange, eIndex);
+		FAssert(getFreeBonus(eIndex) >= 0);
+		plot()->updatePlotGroupBonus(true);
+	}
+}
+
+int CvCity::getNumBonuses(BonusTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < GC.getNumBonusInfos(), "eIndex expected to be < GC.getNumBonusInfos()");
+
+	if (!GET_PLAYER(getOwnerINLINE()).canUseBonus(eIndex))
+	{
+		return 0;
+	}
+
+	return m_aiNumBonuses.get(eIndex) + m_aiFreeBonus.get(eIndex);
+}
 /// PlotGroup - end - Nightinggale

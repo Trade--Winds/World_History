@@ -183,7 +183,6 @@ void CvPlotGroup::changeNumBonuses(BonusTypes eBonus, int iChange)
 		{
 			pCity = GC.getMapINLINE().plotSorenINLINE(pPlotNode->m_data.iX, pPlotNode->m_data.iY)->getPlotCity();
 
-#if 0
 			if (pCity != NULL)
 			{
 				if (pCity->getOwnerINLINE() == getOwnerINLINE())
@@ -191,7 +190,6 @@ void CvPlotGroup::changeNumBonuses(BonusTypes eBonus, int iChange)
 					pCity->changeNumBonuses(eBonus, iChange);
 				}
 			}
-#endif
 
 			pPlotNode = nextPlotsNode(pPlotNode);
 		}

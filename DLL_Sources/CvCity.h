@@ -821,8 +821,37 @@ public:
 	CvPlotGroup* plotGroup(PlayerTypes ePlayer) const;
 	bool isConnectedTo(CvCity* pCity) const;									// Exposed to Python
 	bool isConnectedToCapital(PlayerTypes ePlayer = NO_PLAYER) const;			// Exposed to Python
+
+	int getFreeBonus(BonusTypes eIndex) const;									// Exposed to Python
+	void changeFreeBonus(BonusTypes eIndex, int iChange);						// Exposed to Python
+
+	int getNumBonuses(BonusTypes eIndex) const;									// Exposed to Python
+	bool hasBonus(BonusTypes eIndex) const;										// Exposed to Python
+	void changeNumBonuses(BonusTypes eIndex, int iChange);
+
+protected:
+	// TODO plotgroups save arrays
+	BonusArray<int> m_aiFreeBonus;
+	BonusArray<int> m_aiNumBonuses;
 	/// PlotGroup - end - Nightinggale
 };
+
+/// PlotGroup - start - Nightinggale
+inline int CvCity::getFreeBonus(BonusTypes eIndex) const
+{
+	return m_aiFreeBonus.get(eIndex);
+}
+
+inline bool CvCity::hasBonus(BonusTypes eIndex) const
+{
+	return (getNumBonuses(eIndex) > 0);
+}
+
+inline void CvCity::changeNumBonuses(BonusTypes eIndex, int iChange)
+{
+	m_aiNumBonuses.add(iChange, eIndex);
+}
+/// PlotGroup - end - Nightinggale
 
 // cache getMaxYieldCapacity - start - Nightinggale
 inline int CvCity::getMaxYieldCapacity(YieldTypes eYield) const
