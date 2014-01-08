@@ -615,7 +615,10 @@ bool PUF_isEnemy(const CvUnit* pUnit, int iData1, int iData2)
 	FAssertMsg(iData1 != -1, "Invalid data argument, should be >= 0");
 	FAssertMsg(iData2 != -1, "Invalid data argument, should be >= 0");
 
-	TeamTypes eOtherTeam = GET_PLAYER((PlayerTypes)iData1).getTeam();
+	//TeamTypes eOtherTeam = GET_PLAYER((PlayerTypes)iData1).getTeam();
+	///Tks Med
+	TeamTypes eOtherTeam = iData2 == 2 ? (TeamTypes)iData1 : GET_PLAYER((PlayerTypes)iData1).getTeam();
+	///TKs
 	TeamTypes eOurTeam = pUnit->getCombatTeam(eOtherTeam, pUnit->plot());
 
 	if (pUnit->canCoexistWithEnemyUnit(eOtherTeam))
@@ -623,7 +626,21 @@ bool PUF_isEnemy(const CvUnit* pUnit, int iData1, int iData2)
 		return false;
 	}
 
-	return (iData2 ? eOtherTeam != eOurTeam : atWar(eOtherTeam, eOurTeam));
+
+	//return (iData2 ? eOtherTeam != eOurTeam : atWar(eOtherTeam, eOurTeam));
+	///Tks Med
+	switch(iData2)
+	{
+	case 0:
+	case 2:
+		return atWar(eOtherTeam, eOurTeam);
+	case 1:
+		return eOtherTeam != eOurTeam;
+	default:
+		FAssert(false);
+		return false;
+	}
+	///TKs
 }
 ///Tks Med
 bool PUF_isBarbarianEnemy(const CvUnit* pUnit, int iData1, int iData2)
@@ -654,7 +671,11 @@ bool PUF_isBarbarianEnemy(const CvUnit* pUnit, int iData1, int iData2)
 bool PUF_isVisible(const CvUnit* pUnit, int iData1, int iData2)
 {
 	FAssertMsg(iData1 != -1, "Invalid data argument, should be >= 0");
-	return !(pUnit->isInvisible(GET_PLAYER((PlayerTypes)iData1).getTeam(), false));
+	//return !(pUnit->isInvisible(GET_PLAYER((PlayerTypes)iData1).getTeam(), false));
+	///Tks Med
+	TeamTypes eTeam = iData2 == 2 ? (TeamTypes)iData1 : GET_PLAYER((PlayerTypes)iData1).getTeam();
+	return !(pUnit->isInvisible(eTeam, false));
+	///TKs
 }
 
 bool PUF_isVisibleDebug(const CvUnit* pUnit, int iData1, int iData2)

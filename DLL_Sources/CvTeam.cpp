@@ -1673,7 +1673,7 @@ int CvTeam::countEnemyDangerByArea(CvArea* pArea) const
 			{
 				if (pLoopPlot->getTeam() == getID())
 				{
-					iCount += pLoopPlot->plotCount(PUF_canDefendEnemy, getLeaderID(), false, NO_PLAYER, NO_TEAM, PUF_isVisible, getLeaderID());
+					iCount += pLoopPlot->plotCount(PUF_canDefendEnemy, getLeaderID(), 0, NO_PLAYER, NO_TEAM, PUF_isVisible, getLeaderID());
 				}
 			}
 		}

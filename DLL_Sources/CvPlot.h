@@ -154,6 +154,7 @@ public:
 	int getNumVisiblePotentialEnemyDefenders(const CvUnit* pUnit) const;
 	DllExport bool isVisibleEnemyUnit(PlayerTypes ePlayer) const;
 	///TKs Med
+	bool isVisibleEnemyUnit(TeamTypes eTeam) const;
 	bool isVisibleBarbarianEnemyUnit(const CvUnit* pUnit) const;
 	///TKe
 	bool isVisibleEnemyUnit(const CvUnit* pUnit) const;

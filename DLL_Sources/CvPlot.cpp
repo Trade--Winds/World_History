@@ -2894,9 +2894,14 @@ int CvPlot::getNumVisiblePotentialEnemyDefenders(const CvUnit* pUnit) const
 
 bool CvPlot::isVisibleEnemyUnit(PlayerTypes ePlayer) const
 {
-	return (plotCheck(PUF_isEnemy, ePlayer, false, NO_PLAYER, NO_TEAM, PUF_isVisible, ePlayer) != NULL);
+	return (plotCheck(PUF_isEnemy, ePlayer, 0, NO_PLAYER, NO_TEAM, PUF_isVisible, ePlayer) != NULL);
 }
 ///TKs Med
+bool CvPlot::isVisibleEnemyUnit(TeamTypes eTeam) const
+{
+	return (plotCheck(PUF_isEnemy, eTeam, 2, NO_PLAYER, NO_TEAM, PUF_isVisible, eTeam, 2) != NULL);
+}
+
 bool CvPlot::isVisibleBarbarianEnemyUnit(const CvUnit* pUnit) const
 {
 	return (plotCheck(PUF_isBarbarianEnemy, pUnit->getOwnerINLINE(), pUnit->isAlwaysHostile(this), NO_PLAYER, NO_TEAM, PUF_isVisible, pUnit->getOwnerINLINE()) != NULL);
@@ -2904,7 +2909,7 @@ bool CvPlot::isVisibleBarbarianEnemyUnit(const CvUnit* pUnit) const
 ///TKe
 bool CvPlot::isVisibleEnemyUnit(const CvUnit* pUnit) const
 {
-	return (plotCheck(PUF_isEnemy, pUnit->getOwnerINLINE(), pUnit->isAlwaysHostile(this), NO_PLAYER, NO_TEAM, PUF_isVisible, pUnit->getOwnerINLINE()) != NULL);
+	return (plotCheck(PUF_isEnemy, pUnit->getOwnerINLINE(), pUnit->isAlwaysHostile(this) ? 1 : 0, NO_PLAYER, NO_TEAM, PUF_isVisible, pUnit->getOwnerINLINE()) != NULL);
 }
 
 bool CvPlot::isVisibleOtherUnit(PlayerTypes ePlayer) const
@@ -8919,12 +8924,10 @@ bool CvPlot::isTradeNetwork(TeamTypes eTeam) const
 		return false;
 	}
 
-#if 0
-	if (getBlockadedCount(eTeam) > 0)
+	if (isVisibleEnemyUnit(eTeam))
 	{
 		return false;
 	}
-#endif
 
 	if (isTradeNetworkImpassable(eTeam))
 	{
