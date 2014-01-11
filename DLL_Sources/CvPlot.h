@@ -271,8 +271,12 @@ public:
 	DllExport void setImprovementType(ImprovementTypes eNewValue);
 
 	DllExport RouteTypes getRouteType() const;
-	DllExport void setRouteType(RouteTypes eNewValue);
-	void updateCityRoute();
+	/// PlotGroup - start - Nightinggale
+	//DllExport void setRouteType(RouteTypes eNewValue);
+	//void updateCityRoute();
+	DllExport void setRouteType(RouteTypes eNewValue, bool bUpdatePlotGroups = true);
+	void updateCityRoute(bool bUpdatePlotGroup);
+	/// PlotGroup - end - Nightinggale
 	DllExport CvCity* getPlotCity() const;
 	void setPlotCity(CvCity* pNewValue);
 	DllExport CvCity* getWorkingCity() const;
@@ -524,6 +528,8 @@ public:
 	bool isTradeNetwork(TeamTypes eTeam) const;															// Exposed to Python
 	bool isTradeNetworkConnected(const CvPlot * pPlot, TeamTypes eTeam) const;							// Exposed to Python
 	bool isRiverNetwork(TeamTypes eTeam) const;
+
+	void updatePlotGroupBonus(bool bAdd);
 
 protected:
 	int* m_aiPlotGroup;			// IDs - keep as int

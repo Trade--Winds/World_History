@@ -2440,7 +2440,22 @@ protected:
 	bool* m_abFeatureMakesValid;
 	std::vector<int*> m_aaiRouteYieldChanges;
 	CvImprovementBonusInfo* m_paImprovementBonus;
+
+	/// PlotGroup - start - Nightinggale
+public:
+	bool CvImprovementInfo::allowsBonusResource(BonusTypes eBonus) const;
+
+protected:
+	BonusArray<bool> m_abAllowedBonusResource;
+	/// PlotGroup - end - Nightinggale
 };
+
+/// PlotGroup - start - Nightinggale
+inline bool CvImprovementInfo::allowsBonusResource(BonusTypes eBonus) const
+{
+	return m_abAllowedBonusResource.get(eBonus); 
+}
+/// PlotGroup - end - Nightinggale
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //

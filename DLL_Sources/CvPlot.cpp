@@ -3427,7 +3427,9 @@ void CvPlot::setNOfRiver(bool bNewValue, CardinalDirectionTypes eRiverDir)
 	{
 		if (isNOfRiver() != bNewValue)
 		{
+			updatePlotGroupBonus(false); /// PlotGroup - Nightinggale
 			m_bNOfRiver = bNewValue;
+			updatePlotGroupBonus(true); /// PlotGroup - Nightinggale
 
 			updateRiverCrossing();
 			updateYield(true);
@@ -3472,7 +3474,9 @@ void CvPlot::setWOfRiver(bool bNewValue, CardinalDirectionTypes eRiverDir)
 	{
 		if (isWOfRiver() != bNewValue)
 		{
+			updatePlotGroupBonus(false); /// PlotGroup - Nightinggale
 			m_bWOfRiver = bNewValue;
+			updatePlotGroupBonus(true); /// PlotGroup - Nightinggale
 
 			updateRiverCrossing();
 			updateYield(true);
@@ -3830,6 +3834,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits)
 			{
 				GET_PLAYER(getOwnerINLINE()).changeImprovementCount(getImprovementType(), -1);
 			}
+			updatePlotGroupBonus(false); /// PlotGroup - Nightinggale
 		}
 
 		m_eOwner = eNewValue;
@@ -3862,6 +3867,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits)
 			{
 				GET_PLAYER(getOwnerINLINE()).changeImprovementCount(getImprovementType(), 1);
 			}
+			updatePlotGroupBonus(true); /// PlotGroup - Nightinggale
 		}
 
 		for (int iI = 0; iI < MAX_TEAMS; ++iI)
@@ -4327,7 +4333,9 @@ void CvPlot::setBonusType(BonusTypes eNewValue)
 			}
 		}
 
+		updatePlotGroupBonus(false); /// PlotGroup - Nightinggale
 		m_eBonusType = eNewValue;
+		updatePlotGroupBonus(true); /// PlotGroup - Nightinggale
 
 		if (getBonusType() != NO_BONUS)
 		{
@@ -4380,7 +4388,9 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 			}
 		}
 
+		updatePlotGroupBonus(false); /// PlotGroup - Nightinggale
 		m_eImprovementType = eNewValue;
+		updatePlotGroupBonus(true); /// PlotGroup - Nightinggale
 
 		if (getImprovementType() == NO_IMPROVEMENT)
 		{
@@ -4445,7 +4455,7 @@ RouteTypes CvPlot::getRouteType() const
 }
 
 
-void CvPlot::setRouteType(RouteTypes eNewValue)
+void CvPlot::setRouteType(RouteTypes eNewValue, bool bUpdatePlotGroups) /// PlotGroup - Nightinggale
 {
 	bool bOldRoute;
 	int iI;
@@ -4454,7 +4464,9 @@ void CvPlot::setRouteType(RouteTypes eNewValue)
 	{
 		bOldRoute = isRoute(); // XXX is this right???
 
+		updatePlotGroupBonus(false); /// PlotGroup - Nightinggale
 		m_eRouteType = eNewValue;
+		updatePlotGroupBonus(true); /// PlotGroup - Nightinggale
 
 		for (iI = 0; iI < MAX_TEAMS; ++iI)
 		{
@@ -4469,6 +4481,16 @@ void CvPlot::setRouteType(RouteTypes eNewValue)
 
 		updateYield(true);
 
+		/// PlotGroup - start - Nightinggale
+		if (bUpdatePlotGroups)
+		{
+			if (bOldRoute != isRoute())
+			{
+				updatePlotGroup();
+			}
+		}
+		/// PlotGroup - end - Nightinggale
+
 		if (GC.getGameINLINE().isDebugMode())
 		{
 			updateRouteSymbol(true, true);
@@ -4482,7 +4504,7 @@ void CvPlot::setRouteType(RouteTypes eNewValue)
 }
 
 
-void CvPlot::updateCityRoute()
+void CvPlot::updateCityRoute(bool bUpdatePlotGroup) /// PlotGroup - Nightinggale
 {
 	RouteTypes eCityRoute;
 
@@ -4497,7 +4519,7 @@ void CvPlot::updateCityRoute()
 			eCityRoute = ((RouteTypes)(GC.getXMLval(XML_INITIAL_CITY_ROUTE_TYPE)));
 		}
 
-		setRouteType(eCityRoute);
+		setRouteType(eCityRoute, bUpdatePlotGroup); /// PlotGroup - Nightinggale
 	}
 }
 
@@ -4529,6 +4551,23 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 			}
 		}
 
+		/// PlotGroup - start - Nightinggale
+		updatePlotGroupBonus(false);
+		if (isCity())
+		{
+			CvPlotGroup *pPlotGroup = getPlotGroup(getOwnerINLINE());
+
+			if (pPlotGroup != NULL)
+			{
+				FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlot::setPlotCity");
+				for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+				{
+					getPlotCity()->changeNumBonuses(((BonusTypes)iI), -(pPlotGroup->getNumBonuses((BonusTypes)iI)));
+				}
+			}
+		}
+		/// PlotGroup - end - Nightinggale
+
 		if (pNewValue != NULL)
 		{
 			m_plotCity = pNewValue->getIDInfo();
@@ -4537,6 +4576,23 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 		{
 			m_plotCity.reset();
 		}
+
+		/// PlotGroup - start - Nightinggale
+		if (isCity())
+		{
+			CvPlotGroup *pPlotGroup = getPlotGroup(getOwnerINLINE());
+
+			if (pPlotGroup != NULL)
+			{
+				FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlot::setPlotCity");
+				for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+				{
+					getPlotCity()->changeNumBonuses(((BonusTypes)iI), pPlotGroup->getNumBonuses((BonusTypes)iI));
+				}
+			}
+		}
+		updatePlotGroupBonus(true);
+		/// PlotGroup - end - Nightinggale
 
 		if (isCity())
 		{
@@ -8612,6 +8668,11 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 
 		CvCity* pCity = getPlotCity();
 
+		if (ePlayer == getOwnerINLINE())
+		{
+			updatePlotGroupBonus(false);
+		}
+
 		if (pOldPlotGroup != NULL)
 		{
 			if (pCity != NULL)
@@ -8649,6 +8710,10 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 					}
 				}
 			}
+		}
+		if (ePlayer == getOwnerINLINE())
+		{
+			updatePlotGroupBonus(true);
 		}
 	}
 }
@@ -9025,6 +9090,65 @@ bool CvPlot::isTradeNetworkConnected(const CvPlot* pPlot, TeamTypes eTeam) const
 	}
 
 	return false;
+}
+
+
+void CvPlot::updatePlotGroupBonus(bool bAdd)
+{
+	PROFILE_FUNC();
+
+	CvCity* pPlotCity;
+	CvPlotGroup* pPlotGroup;
+
+	if (!isOwned())
+	{
+		return;
+	}
+
+	pPlotGroup = getPlotGroup(getOwnerINLINE());
+
+	if (pPlotGroup != NULL)
+	{
+		pPlotCity = getPlotCity();
+
+		if (pPlotCity != NULL)
+		{
+			for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+			{
+				int iAmount = pPlotCity->getFreeBonus((BonusTypes)iI);
+				if (iAmount != 0)
+				{
+					pPlotGroup->changeNumBonuses(((BonusTypes)iI), (iAmount * ((bAdd) ? 1 : -1)));
+				}
+			}
+
+#if 0
+			// no trading of bonus resources (yet?)
+			if (pPlotCity->isCapital())
+			{
+				for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+				{
+					pPlotGroup->changeNumBonuses(((BonusTypes)iI), (GET_PLAYER(getOwnerINLINE()).getBonusExport((BonusTypes)iI) * ((bAdd) ? -1 : 1)));
+					pPlotGroup->changeNumBonuses(((BonusTypes)iI), (GET_PLAYER(getOwnerINLINE()).getBonusImport((BonusTypes)iI) * ((bAdd) ? 1 : -1)));
+				}
+			}
+#endif
+		}
+
+		BonusTypes eBonus = this->getBonusType();
+
+		if (eBonus != NO_BONUS)
+		{
+			if (isCity(true, getTeam()) ||
+				((getImprovementType() != NO_IMPROVEMENT) && GC.getImprovementInfo(getImprovementType()).allowsBonusResource(eBonus)))
+			{
+				if ((pPlotGroup != NULL) && isBonusNetwork(getTeam()))
+				{
+					pPlotGroup->changeNumBonuses(eBonus, ((bAdd) ? 1 : -1));
+				}
+			}
+		}
+	}
 }
 
 /// PlotGroup - end - Nightinggale

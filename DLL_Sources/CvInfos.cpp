@@ -9059,6 +9059,11 @@ bool CvImprovementInfo::read(CvXMLLoadUtility* pXML)
 		}
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
+
+	/// PlotGroup - start - Nightinggale
+	this->m_abAllowedBonusResource.read(pXML, "BonusResources");
+	/// PlotGroup - end - Nightinggale
+
 	pXML->GetChildXmlValByName(szTextVal, "WorldSoundscapeAudioScript");
 	if ( szTextVal.GetLength() > 0 )
 		m_iWorldSoundscapeScriptId = gDLL->getAudioTagIndex( szTextVal.GetCString(), AUDIOTAG_SOUNDSCAPE );

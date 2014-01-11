@@ -218,7 +218,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	///Kailric Fort Mod end
 
 	pPlot->setImprovementType(NO_IMPROVEMENT);
-	pPlot->updateCityRoute();
+	pPlot->updateCityRoute(false); /// PlotGroup - Nightinggale
 
 	for (int iI = 0; iI < MAX_TEAMS; iI++)
 	{
@@ -12051,8 +12051,10 @@ void CvCity::changeFreeBonus(BonusTypes eIndex, int iChange)
 
 	if (iChange != 0)
 	{
+		plot()->updatePlotGroupBonus(false);
 		m_aiFreeBonus.add(iChange, eIndex);
 		FAssert(getFreeBonus(eIndex) >= 0);
+		plot()->updatePlotGroupBonus(true);
 	}
 }
 
