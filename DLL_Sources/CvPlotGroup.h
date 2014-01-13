@@ -35,9 +35,12 @@ public:
 		return m_eOwner;
 	}
 #endif
+
+#ifdef USE_PLOTGROUP_RESOURCES
 	int getNumBonuses(BonusTypes eBonus) const;
 	bool hasBonus(BonusTypes eBonus) const;										
 	void changeNumBonuses(BonusTypes eBonus, int iChange);
+#endif
 
 	void insertAtEndPlots(XYCoords xy);			
 	CLLNode<XYCoords>* deletePlotsNode(CLLNode<XYCoords>* pNode);
@@ -54,8 +57,9 @@ protected:
 	int m_iID;
 
 	PlayerTypes m_eOwner;
-
+#ifdef USE_PLOTGROUP_RESOURCES
 	BonusArray<int> m_aiNumBonuses;
+#endif
 
 	CLinkList<XYCoords> m_plots;
 };
@@ -75,6 +79,7 @@ inline PlayerTypes CvPlotGroup::getOwner() const
 	return getOwnerINLINE();
 }
 
+#ifdef USE_PLOTGROUP_RESOURCES
 inline int CvPlotGroup::getNumBonuses(BonusTypes eBonus) const
 {
 	return m_aiNumBonuses.get(eBonus);
@@ -89,5 +94,5 @@ inline bool CvPlotGroup::hasBonus(BonusTypes eBonus) const
 {
 	return(getNumBonuses(eBonus) > 0);
 }
-
+#endif
 #endif

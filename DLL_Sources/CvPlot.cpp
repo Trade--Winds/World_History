@@ -4552,6 +4552,7 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 		}
 
 		/// PlotGroup - start - Nightinggale
+#ifdef USE_PLOTGROUP_RESOURCES
 		updatePlotGroupBonus(false);
 		if (isCity())
 		{
@@ -4566,6 +4567,7 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 				}
 			}
 		}
+#endif
 		/// PlotGroup - end - Nightinggale
 
 		if (pNewValue != NULL)
@@ -4578,6 +4580,7 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 		}
 
 		/// PlotGroup - start - Nightinggale
+#ifdef USE_PLOTGROUP_RESOURCES
 		if (isCity())
 		{
 			CvPlotGroup *pPlotGroup = getPlotGroup(getOwnerINLINE());
@@ -4592,6 +4595,7 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 			}
 		}
 		updatePlotGroupBonus(true);
+#endif
 		/// PlotGroup - end - Nightinggale
 
 		if (isCity())
@@ -8666,6 +8670,7 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 			}
 		}
 
+#ifdef USE_PLOTGROUP_RESOURCES
 		CvCity* pCity = getPlotCity();
 
 		if (ePlayer == getOwnerINLINE())
@@ -8687,6 +8692,7 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 				}
 			}
 		}
+#endif
 
 		if (pNewValue == NULL)
 		{
@@ -8697,6 +8703,7 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 			m_aiPlotGroup[ePlayer] = pNewValue->getID();
 		}
 
+#ifdef USE_PLOTGROUP_RESOURCES
 		if (getPlotGroup(ePlayer) != NULL)
 		{
 			if (pCity != NULL)
@@ -8715,6 +8722,7 @@ void CvPlot::setPlotGroup(PlayerTypes ePlayer, CvPlotGroup* pNewValue)
 		{
 			updatePlotGroupBonus(true);
 		}
+#endif
 	}
 }
 
@@ -8866,6 +8874,7 @@ bool CvPlot::isConnectedToCapital(PlayerTypes ePlayer) const
 }
 
 
+#ifdef USE_PLOTGROUP_RESOURCES
 int CvPlot::getPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const
 {
 	CvPlotGroup* pPlotGroup;
@@ -8912,6 +8921,7 @@ bool CvPlot::isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes e
 
 	return false;
 }
+#endif
 
 
 bool CvPlot::isRiverNetwork(TeamTypes eTeam) const
@@ -9093,6 +9103,7 @@ bool CvPlot::isTradeNetworkConnected(const CvPlot* pPlot, TeamTypes eTeam) const
 }
 
 
+#ifdef USE_PLOTGROUP_RESOURCES
 void CvPlot::updatePlotGroupBonus(bool bAdd)
 {
 	PROFILE_FUNC();
@@ -9150,5 +9161,6 @@ void CvPlot::updatePlotGroupBonus(bool bAdd)
 		}
 	}
 }
+#endif
 
 /// PlotGroup - end - Nightinggale

@@ -41,7 +41,9 @@ void CvPlotGroup::init(int iID, PlayerTypes eOwner, CvPlot* pPlot)
 
 void CvPlotGroup::uninit()
 {
+#ifdef USE_PLOTGROUP_RESOURCES
 	m_aiNumBonuses.reset();
+#endif
 
 	m_plots.clear();
 }
@@ -159,7 +161,7 @@ void CvPlotGroup::recalculatePlots()
 	}
 }
 
-
+#ifdef USE_PLOTGROUP_RESOURCES
 void CvPlotGroup::changeNumBonuses(BonusTypes eBonus, int iChange)
 {
 	CLLNode<XYCoords>* pPlotNode;
@@ -195,6 +197,7 @@ void CvPlotGroup::changeNumBonuses(BonusTypes eBonus, int iChange)
 		}
 	}
 }
+#endif
 
 
 void CvPlotGroup::insertAtEndPlots(XYCoords xy)
@@ -251,7 +254,7 @@ void CvPlotGroup::read(FDataStreamBase* pStream)
 
 	pStream->Read((int*)&m_eOwner);
 
-	m_aiNumBonuses.read(pStream, arrayBitmap);
+	//m_aiNumBonuses.read(pStream, arrayBitmap);
 
 	m_plots.Read(pStream);
 }
@@ -263,7 +266,7 @@ void CvPlotGroup::write(FDataStreamBase* pStream)
 	pStream->Write(uiFlag);		// flag for expansion
 
 	uint arrayBitmap = 0;
-	arrayBitmap |= m_aiNumBonuses.hasContent()               ? 1 : 0;
+	//arrayBitmap |= m_aiNumBonuses.hasContent()               ? 1 : 0;
 
 	pStream->Write(arrayBitmap);
 
@@ -271,7 +274,7 @@ void CvPlotGroup::write(FDataStreamBase* pStream)
 
 	pStream->Write(m_eOwner);
 
-	m_aiNumBonuses.write(pStream, arrayBitmap);
+	//m_aiNumBonuses.write(pStream, arrayBitmap);
 
 	m_plots.Write(pStream);
 }

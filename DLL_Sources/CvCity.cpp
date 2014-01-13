@@ -12044,6 +12044,7 @@ CvPlotGroup* CvCity::plotGroup(PlayerTypes ePlayer) const
 	return plot()->getPlotGroup(ePlayer);
 }
 
+#ifdef USE_PLOTGROUP_RESOURCES
 void CvCity::changeFreeBonus(BonusTypes eIndex, int iChange)
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
@@ -12070,4 +12071,5 @@ int CvCity::getNumBonuses(BonusTypes eIndex) const
 
 	return m_aiNumBonuses.get(eIndex) + m_aiFreeBonus.get(eIndex);
 }
+#endif
 /// PlotGroup - end - Nightinggale

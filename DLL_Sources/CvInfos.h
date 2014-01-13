@@ -2442,19 +2442,23 @@ protected:
 	CvImprovementBonusInfo* m_paImprovementBonus;
 
 	/// PlotGroup - start - Nightinggale
+#ifdef USE_PLOTGROUP_RESOURCES
 public:
 	bool CvImprovementInfo::allowsBonusResource(BonusTypes eBonus) const;
 
 protected:
 	BonusArray<bool> m_abAllowedBonusResource;
+#endif
 	/// PlotGroup - end - Nightinggale
 };
 
 /// PlotGroup - start - Nightinggale
+#ifdef USE_PLOTGROUP_RESOURCES
 inline bool CvImprovementInfo::allowsBonusResource(BonusTypes eBonus) const
 {
 	return m_abAllowedBonusResource.get(eBonus); 
 }
+#endif
 /// PlotGroup - end - Nightinggale
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

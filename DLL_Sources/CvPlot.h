@@ -518,10 +518,6 @@ public:
 
 	bool isConnectedTo( const CvCity* pCity) const;														// Exposed to Python
 	bool isConnectedToCapital(PlayerTypes ePlayer = NO_PLAYER) const;									// Exposed to Python
-	int getPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;						// Exposed to Python
-	bool isPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;						// Exposed to Python
-	bool isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;				// Exposed to Python
-
 	bool isTradeNetworkImpassable(TeamTypes eTeam) const;												// Exposed to Python
 	bool isNetworkTerrain(TeamTypes eTeam) const;														// Exposed to Python
 	bool isBonusNetwork(TeamTypes eTeam) const;															// Exposed to Python
@@ -529,7 +525,12 @@ public:
 	bool isTradeNetworkConnected(const CvPlot * pPlot, TeamTypes eTeam) const;							// Exposed to Python
 	bool isRiverNetwork(TeamTypes eTeam) const;
 
+#ifdef USE_PLOTGROUP_RESOURCES
 	void updatePlotGroupBonus(bool bAdd);
+	int getPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;						// Exposed to Python
+	bool isPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;						// Exposed to Python
+	bool isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;				// Exposed to Python
+#endif
 
 protected:
 	int* m_aiPlotGroup;			// IDs - keep as int
@@ -538,6 +539,9 @@ protected:
 
 
 /// PlotGroup - start - Nightinggale
+#ifndef USE_PLOTGROUP_RESOURCES
+#define updatePlotGroupBonus( expr )
+#endif
 inline CvPlotGroup* CvPlot::getOwnerPlotGroup() const
 {
 	if (getOwnerINLINE() == NO_PLAYER)

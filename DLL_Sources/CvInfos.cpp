@@ -9061,7 +9061,9 @@ bool CvImprovementInfo::read(CvXMLLoadUtility* pXML)
 	}
 
 	/// PlotGroup - start - Nightinggale
+#ifdef USE_PLOTGROUP_RESOURCES
 	this->m_abAllowedBonusResource.read(pXML, "BonusResources");
+#endif
 	/// PlotGroup - end - Nightinggale
 
 	pXML->GetChildXmlValByName(szTextVal, "WorldSoundscapeAudioScript");

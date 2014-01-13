@@ -822,6 +822,7 @@ public:
 	bool isConnectedTo(CvCity* pCity) const;									// Exposed to Python
 	bool isConnectedToCapital(PlayerTypes ePlayer = NO_PLAYER) const;			// Exposed to Python
 
+#ifdef USE_PLOTGROUP_RESOURCES
 	int getFreeBonus(BonusTypes eIndex) const;									// Exposed to Python
 	void changeFreeBonus(BonusTypes eIndex, int iChange);						// Exposed to Python
 
@@ -833,10 +834,12 @@ protected:
 	// TODO plotgroups save arrays
 	BonusArray<int> m_aiFreeBonus;
 	BonusArray<int> m_aiNumBonuses;
+#endif
 	/// PlotGroup - end - Nightinggale
 };
 
 /// PlotGroup - start - Nightinggale
+#ifdef USE_PLOTGROUP_RESOURCES
 inline int CvCity::getFreeBonus(BonusTypes eIndex) const
 {
 	return m_aiFreeBonus.get(eIndex);
@@ -851,6 +854,7 @@ inline void CvCity::changeNumBonuses(BonusTypes eIndex, int iChange)
 {
 	m_aiNumBonuses.add(iChange, eIndex);
 }
+#endif
 /// PlotGroup - end - Nightinggale
 
 // cache getMaxYieldCapacity - start - Nightinggale
