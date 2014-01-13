@@ -16,6 +16,11 @@ class CvCity;
 class CyPlot;
 class CyArea;
 class CyUnit;
+
+/// PlotGroup - start - Nightinggale
+class CyPlotGroup;
+/// PlotGroup - end - Nightinggale
+
 class CyCity
 {
 public:
@@ -294,6 +299,10 @@ public:
 	bool isAutoImportStopped(int /*YieldTypes*/ eYield) const;
 	int getAutoMaintainThreshold(int /*YieldTypes*/ eYield) const;
 	// transport feeder - end - Nightinggale
+
+	/// PlotGroup - start - Nightinggale
+	CyPlotGroup* getCityPlotGroup();
+	/// PlotGroup - end - Nightinggale
 
 	python::tuple isOrderWaitingForYield(int /*YieldTypes*/ eYield);
 

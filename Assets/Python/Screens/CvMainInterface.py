@@ -1959,6 +1959,13 @@ class CvMainInterface:
 				screen.addTableControlGFC("ExportTradeRouteText", 1, CITIZEN_BAR_WIDTH + (MAP_EDGE_MARGIN_WIDTH * 2) + BUILD_AREA_WIDTH, CITY_TITLE_BAR_HEIGHT + CITY_VIEW_BOX_HEIGHT_AND_WIDTH + 3 * STACK_BAR_HEIGHT / 2, BUILD_AREA_WIDTH, TRANSPORT_AREA_HEIGHT - (STACK_BAR_HEIGHT * 3), False, False, MEDIUM_BUTTON_SIZE, MEDIUM_BUTTON_SIZE, TableStyles.TABLE_STYLE_STANDARD)
 				screen.setStyle("ExportTradeRouteText", "Table_EmptyScroll_Style")
 
+				### plotgroups start
+				# debug code
+				iExportRow = screen.appendTableRow("ExportTradeRouteText")
+				szExportText = unicode(pHeadSelectedCity.getCityPlotGroup().getLengthPlots())
+				screen.setTableText("ExportTradeRouteText", 0, iExportRow, u"<font=3>%s</font>" % szExportText, "", WidgetTypes.WIDGET_YIELD_IMPORT_EXPORT, false, -1, CvUtil.FONT_LEFT_JUSTIFY )
+				### plotgroups end
+				
 				for iYield in range(YieldTypes.NUM_YIELD_TYPES):
 					# transport feeder - start - Nightinggale
 					iAutoThreshold = pHeadSelectedCity.getAutoMaintainThreshold(iYield)
