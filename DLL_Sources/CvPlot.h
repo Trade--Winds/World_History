@@ -92,12 +92,17 @@ public:
 
 	int seeFromLevel(TeamTypes eTeam) const;
 	int seeThroughLevel() const;
-	void changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, CvUnit* pUnit);
+
+	/// PlotGroup - start - Nightinggale
+	//void changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, CvUnit* pUnit);
+	void changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, CvUnit* pUnit, bool bUpdatePlotGroups);
+	/// PlotGroup - end - Nightinggale
+
 	bool canSeePlot(CvPlot *plot, TeamTypes eTeam, int iRange, DirectionTypes eFacingDirection) const;
 	bool canSeeDisplacementPlot(TeamTypes eTeam, int dx, int dy, int originalDX, int originalDY, bool firstPlot, bool outerRing) const;
 	bool shouldProcessDisplacementPlot(int dx, int dy, int range, DirectionTypes eFacingDirection) const;
-	void updateSight(bool bIncrement);
-	void updateSeeFromSight(bool bIncrement);
+	void updateSight(bool bIncrement, bool bUpdatePlotGroups);
+	void updateSeeFromSight(bool bIncrement, bool bUpdatePlotGroups);
 	DllExport bool canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude = false) const;
 	DllExport bool canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam = NO_TEAM, bool bPotential = false) const;
 
@@ -250,7 +255,7 @@ public:
 		return (PlayerTypes)m_eOwner;
 	}
 #endif
-	void setOwner(PlayerTypes eNewValue, bool bCheckUnits);
+	void setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotGroup);
 	DllExport PlotTypes getPlotType() const;
 	DllExport bool isWater() const;
 	DllExport bool isEurope() const;
@@ -326,7 +331,11 @@ public:
 	void changePlayerCityRadiusCount(PlayerTypes eIndex, int iChange);
 
 	int getVisibilityCount(TeamTypes eTeam) const;
-	void changeVisibilityCount(TeamTypes eTeam, int iChange, InvisibleTypes eSeeInvisible);
+	
+	/// PlotGroup - start - Nightinggale
+	//void changeVisibilityCount(TeamTypes eTeam, int iChange, InvisibleTypes eSeeInvisible);
+	void changeVisibilityCount(TeamTypes eTeam, int iChange, InvisibleTypes eSeeInvisible, bool bUpdatePlotGroup);
+	/// PlotGroup - end - Nightinggale
 
 	DllExport PlayerTypes getRevealedOwner(TeamTypes eTeam, bool bDebug) const;
 	DllExport TeamTypes getRevealedTeam(TeamTypes eTeam, bool bDebug) const;
@@ -336,7 +345,13 @@ public:
 	void updateRiverCrossing(DirectionTypes eIndex);
 	void updateRiverCrossing();
 	DllExport bool isRevealed(TeamTypes eTeam, bool bDebug) const;
-	DllExport void setRevealed(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly, TeamTypes eFromTeam);
+
+	/// PlotGroup - start - Nightinggale
+	//DllExport void setRevealed(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly, TeamTypes eFromTeam);
+	DllExport void setRevealed(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly, TeamTypes eFromTeam, bool bUpdatePlotGroup);
+	/// PlotGroup - end - Nightinggale
+
+
 	bool isAdjacentRevealed(TeamTypes eTeam) const;
 	bool isAdjacentNonrevealed(TeamTypes eTeam) const;
 

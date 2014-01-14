@@ -987,7 +987,7 @@ void CvGame::assignNativeTerritory()
 			if (territoryId[iI] == i)
 			{
 				CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
-				pLoopPlot->setOwner(eBestPlayer, false);
+				pLoopPlot->setOwner(eBestPlayer, false, true);
 			}
 		}
 	}
@@ -1444,7 +1444,7 @@ void CvGame::updateCitySight(bool bIncrement)
 	{
 		if (GET_PLAYER((PlayerTypes)iI).isAlive())
 		{
-			GET_PLAYER((PlayerTypes)iI).updateCitySight(bIncrement);
+			GET_PLAYER((PlayerTypes)iI).updateCitySight(bIncrement, false);
 		}
 	}
 }

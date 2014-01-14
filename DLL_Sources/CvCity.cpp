@@ -107,7 +107,7 @@ CvCity::~CvCity()
 }
 
 ///TKs Med
-void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, int iType)
+void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, int iType, bool bUpdatePlotGroup)
 {
 //Tke
 	std::vector<int> aOldAttitude(MAX_PLAYERS, 0);
@@ -163,7 +163,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	{
 		pPlot->setCulture(getOwnerINLINE(), GC.getXMLval(XML_FREE_CITY_CULTURE), bBumpUnits);
 	}
-	pPlot->setOwner(getOwnerINLINE(), bBumpUnits);
+	pPlot->setOwner(getOwnerINLINE(), bBumpUnits, bUpdatePlotGroup);
 	pPlot->setPlotCity(this);
     ///TKs Med
     if (GET_PLAYER(getOwnerINLINE()).getVassalOwner() == NO_PLAYER)

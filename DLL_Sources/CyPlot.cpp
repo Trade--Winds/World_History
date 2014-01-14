@@ -407,7 +407,7 @@ int CyPlot::getOwner()
 void CyPlot::setOwner(int /*PlayerTypes*/ eNewValue)
 {
 	if (m_pPlot)
-		m_pPlot->setOwner((PlayerTypes) eNewValue, true);
+		m_pPlot->setOwner((PlayerTypes) eNewValue, true, true);
 }
 PlotTypes CyPlot::getPlotType()
 {
@@ -640,7 +640,7 @@ int CyPlot::getVisibilityCount(int /*TeamTypes*/ eTeam)
 void CyPlot::changeVisibilityCount(int /*TeamTypes*/ eTeam, int iChange, int /*InvisibleTypes*/ eSeeInvisible)
 {
 	if (m_pPlot)
-		m_pPlot->changeVisibilityCount((TeamTypes) eTeam, iChange, (InvisibleTypes) eSeeInvisible);
+		m_pPlot->changeVisibilityCount((TeamTypes) eTeam, iChange, (InvisibleTypes) eSeeInvisible, true);
 }
 int /*PlayerTypes*/ CyPlot::getRevealedOwner(int /*TeamTypes*/ eTeam, bool bDebug)
 {
@@ -661,7 +661,7 @@ bool CyPlot::isRevealed(int /*TeamTypes*/ eTeam, bool bDebug)
 void CyPlot::setRevealed(int /*TeamTypes*/ eTeam, bool bNewValue, bool bTerrainOnly, int /*TeamTypes*/ eFromTeam)
 {
 	if (m_pPlot)
-		m_pPlot->setRevealed((TeamTypes)eTeam, bNewValue, bTerrainOnly, (TeamTypes)eFromTeam);
+		m_pPlot->setRevealed((TeamTypes)eTeam, bNewValue, bTerrainOnly, (TeamTypes)eFromTeam, true);
 }
 int /* ImprovementTypes */ CyPlot::getRevealedImprovementType(int /*TeamTypes*/ eTeam, bool bDebug)
 {

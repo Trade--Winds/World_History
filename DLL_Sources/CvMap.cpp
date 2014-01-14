@@ -246,7 +246,10 @@ void CvMap::setRevealedPlots(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly)
 
 	for (int iI = 0; iI < numPlotsINLINE(); iI++)
 	{
-		plotByIndexINLINE(iI)->setRevealed(eTeam, bNewValue, bTerrainOnly, NO_TEAM);
+		/// PlotGroup - start - Nightinggale
+		//plotByIndexINLINE(iI)->setRevealed(eTeam, bNewValue, bTerrainOnly, NO_TEAM);
+		plotByIndexINLINE(iI)->setRevealed(eTeam, bNewValue, bTerrainOnly, NO_TEAM, false);
+		/// PlotGroup - end - Nightinggale
 	}
 }
 
@@ -352,7 +355,7 @@ void CvMap::updateSight(bool bIncrement)
 {
 	for (int iI = 0; iI < numPlotsINLINE(); iI++)
 	{
-		plotByIndexINLINE(iI)->updateSight(bIncrement);
+		plotByIndexINLINE(iI)->updateSight(bIncrement, false);
 	}
 }
 

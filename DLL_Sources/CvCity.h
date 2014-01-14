@@ -18,7 +18,7 @@ public:
 	CvCity();
 	virtual ~CvCity();
 	///Tks Med
-	void init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, int iType = 0);
+	void init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, int iType, bool bUpdatePlotGroup);
 	///Tke
 	void uninit();
 	void reset(int iID = 0, PlayerTypes eOwner = NO_PLAYER, int iX = 0, int iY = 0, bool bConstructorCall = false);

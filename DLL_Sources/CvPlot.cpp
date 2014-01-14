@@ -436,7 +436,7 @@ void CvPlot::updateCulture(bool bBumpUnits)
 {
 	if (!isCity())
 	{
-		setOwner(calculateCulturalOwner(), bBumpUnits);
+		setOwner(calculateCulturalOwner(), bBumpUnits, true);
 	}
 }
 
@@ -1159,7 +1159,7 @@ int CvPlot::seeThroughLevel() const
 
 
 
-void CvPlot::changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, CvUnit* pUnit)
+void CvPlot::changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, CvUnit* pUnit, bool bUpdatePlotGroups)
 {
 	if(pUnit != NULL)
 	{
@@ -1215,7 +1215,7 @@ void CvPlot::changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, C
 						CvPlot* pPlot = plotXY(getX_INLINE(), getY_INLINE(), dx, dy);
 						if (NULL != pPlot)
 						{
-							pPlot->changeVisibilityCount(eTeam, ((bIncrement) ? 1 : -1), aSeeInvisibleTypes[i]);
+							pPlot->changeVisibilityCount(eTeam, ((bIncrement) ? 1 : -1), aSeeInvisibleTypes[i], bUpdatePlotGroups);
 						}
 					}
 				}
@@ -1227,8 +1227,8 @@ void CvPlot::changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, C
 						CvPlot* pPlot = plotXY(getX_INLINE(), getY_INLINE(), dx, dy);
 						if (NULL != pPlot)
 						{
-							pPlot->changeVisibilityCount(eTeam, 1, aSeeInvisibleTypes[i]);
-							pPlot->changeVisibilityCount(eTeam, -1, aSeeInvisibleTypes[i]);
+							pPlot->changeVisibilityCount(eTeam, 1, aSeeInvisibleTypes[i], bUpdatePlotGroups);
+							pPlot->changeVisibilityCount(eTeam, -1, aSeeInvisibleTypes[i], bUpdatePlotGroups);
 						}
 					}
 				}
@@ -1401,14 +1401,14 @@ bool CvPlot::shouldProcessDisplacementPlot(int dx, int dy, int range, DirectionT
 	}
 }
 
-void CvPlot::updateSight(bool bIncrement)
+void CvPlot::updateSight(bool bIncrement, bool bUpdatePlotGroups)
 {
 	CvCity* pCity = getPlotCity();
 
 	// Owned
 	if (isOwned())
 	{
-		changeAdjacentSight(getTeam(), GC.getXMLval(XML_PLOT_VISIBILITY_RANGE), bIncrement, NULL);
+		changeAdjacentSight(getTeam(), GC.getXMLval(XML_PLOT_VISIBILITY_RANGE), bIncrement, NULL, bUpdatePlotGroups);
 	}
 
 	// Unit
@@ -1417,13 +1417,13 @@ void CvPlot::updateSight(bool bIncrement)
 		CvUnit* pLoopUnit = ::getUnit(pUnitNode->m_data);
 		if (pLoopUnit->isOnMap())
 		{
-			changeAdjacentSight(pLoopUnit->getTeam(), pLoopUnit->visibilityRange(), bIncrement, pLoopUnit);
+			changeAdjacentSight(pLoopUnit->getTeam(), pLoopUnit->visibilityRange(), bIncrement, pLoopUnit, bUpdatePlotGroups);
 		}
 	}
 }
 
 
-void CvPlot::updateSeeFromSight(bool bIncrement)
+void CvPlot::updateSeeFromSight(bool bIncrement, bool bUpdatePlotGroups)
 {
 	CvPlot* pLoopPlot;
 	int iDX, iDY;
@@ -1442,7 +1442,7 @@ void CvPlot::updateSeeFromSight(bool bIncrement)
 
 			if (pLoopPlot != NULL)
 			{
-				pLoopPlot->updateSight(bIncrement);
+				pLoopPlot->updateSight(bIncrement, bUpdatePlotGroups);
 			}
 		}
 	}
@@ -3797,7 +3797,7 @@ PlayerTypes CvPlot::getOwner() const
 }
 
 
-void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits)
+void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotGroup)
 {
 	PROFILE_FUNC();
 
@@ -3811,7 +3811,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits)
 
 		if (isOwned())
 		{
-			changeAdjacentSight(getTeam(), GC.getXMLval(XML_PLOT_VISIBILITY_RANGE), false, NULL);
+			changeAdjacentSight(getTeam(), GC.getXMLval(XML_PLOT_VISIBILITY_RANGE), false, NULL, bUpdatePlotGroup);
 
 			if (area())
 			{
@@ -3844,7 +3844,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits)
 
 		if (isOwned())
 		{
-			changeAdjacentSight(getTeam(), GC.getXMLval(XML_PLOT_VISIBILITY_RANGE), true, NULL);
+			changeAdjacentSight(getTeam(), GC.getXMLval(XML_PLOT_VISIBILITY_RANGE), true, NULL, bUpdatePlotGroup);
 
 			if (area())
 			{
@@ -3879,6 +3879,13 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits)
 		}
 
 		updateYield(true);
+
+		/// PlotGroup - start - Nightinggale
+		if (bUpdatePlotGroup)
+		{
+			updatePlotGroup();
+		}
+		/// PlotGroup - end - Nightinggale
 
 		if (bCheckUnits)
 		{
@@ -3962,13 +3969,17 @@ void CvPlot::setPlotType(PlotTypes eNewValue, bool bRecalculate, bool bRebuildGr
 
 		bWasWater = isWater();
 
-		updateSeeFromSight(false);
+		updateSeeFromSight(false, true);
 
 		m_ePlotType = eNewValue;
 
 		updateYield(true);
 
-		updateSeeFromSight(true);
+		/// PlotGroup - start - Nightinggale
+		updatePlotGroup();
+		/// PlotGroup - end - Nightinggale
+
+		updateSeeFromSight(true, true);
 
 		if ((getTerrainType() == NO_TERRAIN) || (GC.getTerrainInfo(getTerrainType()).isWater() != isWater()))
 		{
@@ -4023,6 +4034,9 @@ void CvPlot::setPlotType(PlotTypes eNewValue, bool bRecalculate, bool bRebuildGr
 				if (pLoopPlot != NULL)
 				{
 					pLoopPlot->updateYield(true);
+					/// PlotGroup - start - Nightinggale
+					pLoopPlot->updatePlotGroup();
+					/// PlotGroup - end - Nightinggale
 				}
 			}
 
@@ -4210,7 +4224,7 @@ void CvPlot::setTerrainType(TerrainTypes eNewValue, bool bRecalculate, bool bReb
 
 		if (bUpdateSight)
 		{
-			updateSeeFromSight(false);
+			updateSeeFromSight(false, true);
 		}
 
 		m_eTerrainType = eNewValue;
@@ -4218,9 +4232,13 @@ void CvPlot::setTerrainType(TerrainTypes eNewValue, bool bRecalculate, bool bReb
 
 		updateYield(true);
 
+		/// PlotGroup - start - Nightinggale
+		updatePlotGroup();
+		/// PlotGroup - end - Nightinggale
+
 		if (bUpdateSight)
 		{
-			updateSeeFromSight(true);
+			updateSeeFromSight(true, true);
 		}
 
 		if (bRebuildGraphics && GC.IsGraphicsInitialized())
@@ -4281,7 +4299,7 @@ void CvPlot::setFeatureType(FeatureTypes eNewValue, int iVariety)
 
 		if (bUpdateSight)
 		{
-			updateSeeFromSight(false);
+			updateSeeFromSight(false, true);
 		}
 
 		m_eFeatureType = eNewValue;
@@ -4292,7 +4310,7 @@ void CvPlot::setFeatureType(FeatureTypes eNewValue, int iVariety)
 
 		if (bUpdateSight)
 		{
-			updateSeeFromSight(true);
+			updateSeeFromSight(true, true);
 		}
 
 		updateFeatureSymbol();
@@ -4423,6 +4441,15 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 		}
 
 		updateYield(true);
+
+		/// PlotGroup - start - Nightinggale
+		// Building or removing a fort will now force a plotgroup update to verify resource connections.
+		if ( (NO_IMPROVEMENT != getImprovementType() && GC.getImprovementInfo(getImprovementType()).isActsAsCity()) !=
+			 (NO_IMPROVEMENT != eOldImprovement && GC.getImprovementInfo(eOldImprovement).isActsAsCity()) )
+		{
+			updatePlotGroup();
+		}
+		/// PlotGroup - end - Nightinggale
 
 		if (NO_FEATURE != eOldImprovement && GC.getImprovementInfo(eOldImprovement).isActsAsCity())
 		{
@@ -5742,7 +5769,7 @@ int CvPlot::getVisibilityCount(TeamTypes eTeam) const
 }
 
 
-void CvPlot::changeVisibilityCount(TeamTypes eTeam, int iChange, InvisibleTypes eSeeInvisible)
+void CvPlot::changeVisibilityCount(TeamTypes eTeam, int iChange, InvisibleTypes eSeeInvisible, bool bUpdatePlotGroups)
 {
 	CvCity* pCity;
 	CvPlot* pAdjacentPlot;
@@ -5777,7 +5804,10 @@ void CvPlot::changeVisibilityCount(TeamTypes eTeam, int iChange, InvisibleTypes 
 		{
 			if (isVisible(eTeam, false))
 			{
-				setRevealed(eTeam, true, false, NO_TEAM);
+				/// PlotGroup - start - Nightinggale
+				//setRevealed(eTeam, true, false, NO_TEAM);
+				setRevealed(eTeam, true, false, NO_TEAM, bUpdatePlotGroups);
+				/// PlotGroup - end - Nightinggale
 
 				for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
 				{
@@ -6117,7 +6147,7 @@ bool CvPlot::isRevealed(TeamTypes eTeam, bool bDebug) const
 }
 
 
-void CvPlot::setRevealed(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly, TeamTypes eFromTeam)
+void CvPlot::setRevealed(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly, TeamTypes eFromTeam, bool bUpdatePlotGroup)
 {
 	CvCity* pCity;
 
@@ -6143,6 +6173,23 @@ void CvPlot::setRevealed(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly, Tea
 		{
 			area()->changeNumRevealedTiles(eTeam, ((isRevealed(eTeam, false)) ? 1 : -1));
 		}
+
+		/// PlotGroup - start - Nightinggale
+		if (bUpdatePlotGroup)
+		{
+			for (int iI = 0; iI < MAX_PLAYERS; ++iI)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam)
+					{
+						updatePlotGroup((PlayerTypes)iI);
+					}
+				}
+			}
+		}
+		/// PlotGroup - end - Nightinggale
+
 
 		if (eTeam == GC.getGameINLINE().getActiveTeam())
 		{

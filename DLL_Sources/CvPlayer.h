@@ -98,7 +98,7 @@ public:
 
 	void updateYield();
 	void updateCityPlotYield();
-	void updateCitySight(bool bIncrement);
+	void updateCitySight(bool bIncrement, bool bUpdatePlotGroups);
 
 	void updateTimers();
 

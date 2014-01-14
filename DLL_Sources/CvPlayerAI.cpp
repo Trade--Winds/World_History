@@ -9426,7 +9426,7 @@ void CvPlayerAI::AI_createNativeCities()
 			}
 			else if (pLoopPlot->getOwnerINLINE() == getID())
 			{
-				pLoopPlot->setOwner(NO_PLAYER, false);
+				pLoopPlot->setOwner(NO_PLAYER, false, true);
 			}
 		}
 
@@ -13523,7 +13523,10 @@ void CvPlayerAI::AI_doAdvancedStart(bool bNoExit)
 
 							if (plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE()) <= GC.getXMLval(XML_ADVANCED_START_SIGHT_RANGE))
 							{
-								pPlot->setRevealed(getTeam(), true, false, NO_TEAM);
+								/// PlotGroup - start - Nightinggale
+								//pPlot->setRevealed(getTeam(), true, false, NO_TEAM);
+								pPlot->setRevealed(getTeam(), true, false, NO_TEAM, false);
+								/// PlotGroup - end - Nightinggale
 							}
 						}
 					}

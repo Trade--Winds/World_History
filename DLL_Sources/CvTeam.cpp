@@ -390,7 +390,7 @@ void CvTeam::addTeam(TeamTypes eTeam)
 	{
 		pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
 
-		pLoopPlot->changeVisibilityCount(getID(), pLoopPlot->getVisibilityCount(eTeam), NO_INVISIBLE);
+		pLoopPlot->changeVisibilityCount(getID(), pLoopPlot->getVisibilityCount(eTeam), NO_INVISIBLE, false);
 
 		for (iJ = 0; iJ < GC.getNumInvisibleInfos(); iJ++)
 		{
@@ -399,7 +399,7 @@ void CvTeam::addTeam(TeamTypes eTeam)
 
 		if (pLoopPlot->isRevealed(eTeam, false))
 		{
-			pLoopPlot->setRevealed(getID(), true, false, eTeam);
+			pLoopPlot->setRevealed(getID(), true, false, eTeam, false);
 		}
 	}
 

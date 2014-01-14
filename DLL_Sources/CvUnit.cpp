@@ -10077,7 +10077,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 	{
 		pOldPlot->removeUnit(this, bUpdate);
 
-		pOldPlot->changeAdjacentSight(getTeam(), visibilityRange(), false, this);
+		pOldPlot->changeAdjacentSight(getTeam(), visibilityRange(), false, this, true);
 
 		pOldPlot->area()->changeUnitsPerPlayer(getOwnerINLINE(), -1);
 		pOldPlot->area()->changePower(getOwnerINLINE(), -getPower());
@@ -10208,7 +10208,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 
 		setFortifyTurns(0);
 
-		pNewPlot->changeAdjacentSight(getTeam(), visibilityRange(), true, this); // needs to be here so that the square is considered visible when we move into it...
+		pNewPlot->changeAdjacentSight(getTeam(), visibilityRange(), true, this, true); // needs to be here so that the square is considered visible when we move into it...
 
 		pNewPlot->addUnit(this, bUpdate);
 
@@ -11074,12 +11074,12 @@ void CvUnit::changeExtraVisibilityRange(int iChange)
 {
 	if (iChange != 0)
 	{
-		plot()->changeAdjacentSight(getTeam(), visibilityRange(), false, this);
+		plot()->changeAdjacentSight(getTeam(), visibilityRange(), false, this, true);
 
 		m_iExtraVisibilityRange += iChange;
 		FAssert(getExtraVisibilityRange() >= 0);
 
-		plot()->changeAdjacentSight(getTeam(), visibilityRange(), true, this);
+		plot()->changeAdjacentSight(getTeam(), visibilityRange(), true, this, true);
 	}
 }
 
@@ -11354,13 +11354,13 @@ void CvUnit::setFacingDirection(DirectionTypes eFacingDirection)
 		if (m_pUnitInfo->isLineOfSight())
 		{
 			//remove old fog
-			plot()->changeAdjacentSight(getTeam(), visibilityRange(), false, this);
+			plot()->changeAdjacentSight(getTeam(), visibilityRange(), false, this, true);
 
 			//change direction
 			m_eFacingDirection = eFacingDirection;
 
 			//clear new fog
-			plot()->changeAdjacentSight(getTeam(), visibilityRange(), true, this);
+			plot()->changeAdjacentSight(getTeam(), visibilityRange(), true, this, true);
 
 			gDLL->getInterfaceIFace()->setDirty(ColoredPlots_DIRTY_BIT, true);
 		}
@@ -14540,7 +14540,7 @@ void CvUnit::setUnitTravelState(UnitTravelStates eState, bool bShowEuropeScreen)
 		CvPlot* pPlot = plot();
 		if (pPlot != NULL)
 		{
-			pPlot->changeAdjacentSight(getTeam(), visibilityRange(), false, this);
+			pPlot->changeAdjacentSight(getTeam(), visibilityRange(), false, this, true);
 		}
 
 
@@ -14601,7 +14601,7 @@ void CvUnit::setUnitTravelState(UnitTravelStates eState, bool bShowEuropeScreen)
 			}
 			///Tke
 
-			pPlot->changeAdjacentSight(getTeam(), visibilityRange(), true, this);
+			pPlot->changeAdjacentSight(getTeam(), visibilityRange(), true, this, true);
 
 			if (hasCargo())
 			{

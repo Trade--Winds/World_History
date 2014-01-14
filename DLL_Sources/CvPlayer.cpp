@@ -825,7 +825,10 @@ void CvPlayer::initFreeUnits()
 
 				if (plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE()) <= GC.getXMLval(XML_ADVANCED_START_SIGHT_RANGE))
 				{
-					pPlot->setRevealed(getTeam(), true, false, NO_TEAM);
+					/// PlotGroup - start - Nightinggale
+					//pPlot->setRevealed(getTeam(), true, false, NO_TEAM);
+					pPlot->setRevealed(getTeam(), true, false, NO_TEAM, false);
+					/// PlotGroup - end - Nightinggale
 				}
 			}
 		}
@@ -1328,7 +1331,7 @@ CvCity* CvPlayer::initCity(int iX, int iY, bool bBumpUnits, int iType)
 	FAssertMsg(pCity != NULL, "City is not assigned a valid value");
 	FAssertMsg(!(GC.getMapINLINE().plotINLINE(iX, iY)->isCity()), "No city is expected at this plot when initializing new city");
 
-	pCity->init(pCity->getID(), getID(), iX, iY, bBumpUnits, iType);
+	pCity->init(pCity->getID(), getID(), iX, iY, bBumpUnits, iType, true);
 
 	return pCity;
 }
@@ -1738,7 +1741,9 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade)
 		GC.getMapINLINE().verifyUnitValidPlot();
 	}
 
-	pCityPlot->setRevealed(GET_PLAYER(eOldOwner).getTeam(), true, false, NO_TEAM);
+	/// PlotGroup - start - Nightinggale
+	pCityPlot->setRevealed(GET_PLAYER(eOldOwner).getTeam(), true, false, NO_TEAM, false);
+	/// PlotGroup - end - Nightinggale
 
 	gDLL->getEventReporterIFace()->cityAcquired(eOldOwner, getID(), pNewCity, bConquest, bTrade);
 
@@ -2681,12 +2686,12 @@ void CvPlayer::updateCityPlotYield()
 }
 
 
-void CvPlayer::updateCitySight(bool bIncrement)
+void CvPlayer::updateCitySight(bool bIncrement, bool bUpdatePlotGroups)
 {
 	int iLoop;
 	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 	{
-		pLoopCity->plot()->updateSight(bIncrement);
+		pLoopCity->plot()->updateSight(bIncrement, bUpdatePlotGroups);
 	}
 }
 
@@ -4567,7 +4572,10 @@ int CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 					{
 						if (GC.getGameINLINE().getSorenRandNum(100, "Goody Map") < kGoody.getMapProb())
 						{
-							pLoopPlot->setRevealed(getTeam(), true, false, NO_TEAM);
+							/// PlotGroup - start - Nightinggale
+							//pLoopPlot->setRevealed(getTeam(), true, false, NO_TEAM);
+							pLoopPlot->setRevealed(getTeam(), true, false, NO_TEAM, true);
+							/// PlotGroup - end - Nightinggale
 						}
 					}
 				}
@@ -5714,7 +5722,10 @@ void CvPlayer::processFatherOnce(FatherTypes eFather)
 
 				if (pPlot->getImprovementType() == iImprovement)
 				{
-					pPlot->setRevealed(getTeam(), true, false, NO_TEAM);
+					/// PlotGroup - start - Nightinggale
+					//pPlot->setRevealed(getTeam(), true, false, NO_TEAM);
+					pPlot->setRevealed(getTeam(), true, false, NO_TEAM, true);
+					/// PlotGroup - end - Nightinggale
 				}
 			}
 		}
@@ -9980,7 +9991,9 @@ void CvPlayer::doAdvancedStartAction(AdvancedStartActionTypes eAction, int iX, i
 			{
 				if (getAdvancedStartPoints() >= iCost)
 				{
-					pPlot->setRevealed(getTeam(), true, true, NO_TEAM);
+					/// PlotGroup - start - Nightinggale
+					pPlot->setRevealed(getTeam(), true, true, NO_TEAM, true);
+					/// PlotGroup - end - Nightinggale
 					changeAdvancedStartPoints(-iCost);
 				}
 			}
@@ -9988,7 +10001,9 @@ void CvPlayer::doAdvancedStartAction(AdvancedStartActionTypes eAction, int iX, i
 			// Remove Visibility from the Plot
 			else
 			{
-				pPlot->setRevealed(getTeam(), false, true, NO_TEAM);
+				/// PlotGroup - start - Nightinggale
+				pPlot->setRevealed(getTeam(), false, true, NO_TEAM, true);
+				/// PlotGroup - end - Nightinggale
 				changeAdvancedStartPoints(iCost);
 			}
 		}
