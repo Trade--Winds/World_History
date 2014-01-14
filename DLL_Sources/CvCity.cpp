@@ -218,7 +218,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	///Kailric Fort Mod end
 
 	pPlot->setImprovementType(NO_IMPROVEMENT);
-	pPlot->updateCityRoute(false); /// PlotGroup - Nightinggale
+	pPlot->updateCityRoute(true); /// PlotGroup - Nightinggale
 
 	for (int iI = 0; iI < MAX_TEAMS; iI++)
 	{

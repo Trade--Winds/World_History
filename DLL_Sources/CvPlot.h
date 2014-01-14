@@ -534,11 +534,11 @@ public:
 	bool isConnectedTo( const CvCity* pCity) const;														// Exposed to Python
 	bool isConnectedToCapital(PlayerTypes ePlayer = NO_PLAYER) const;									// Exposed to Python
 	bool isTradeNetworkImpassable(TeamTypes eTeam) const;												// Exposed to Python
-	bool isNetworkTerrain(TeamTypes eTeam) const;														// Exposed to Python
+	//bool isNetworkTerrain(TeamTypes eTeam) const;														// Exposed to Python
 	bool isBonusNetwork(TeamTypes eTeam) const;															// Exposed to Python
 	bool isTradeNetwork(TeamTypes eTeam) const;															// Exposed to Python
 	bool isTradeNetworkConnected(const CvPlot * pPlot, TeamTypes eTeam) const;							// Exposed to Python
-	bool isRiverNetwork(TeamTypes eTeam) const;
+	//bool isRiverNetwork(TeamTypes eTeam) const;
 
 #ifdef USE_PLOTGROUP_RESOURCES
 	void updatePlotGroupBonus(bool bAdd);
@@ -569,7 +569,8 @@ inline CvPlotGroup* CvPlot::getOwnerPlotGroup() const
 
 inline bool CvPlot::isTradeNetworkImpassable(TeamTypes eTeam) const
 {
-	return (isImpassable() && !isRiverNetwork(eTeam));
+	//return (isImpassable() && !isRiverNetwork(eTeam));
+	return isImpassable();
 }
 /// PlotGroup - end - Nightinggale
 

@@ -11529,6 +11529,10 @@ void CvPlayer::read(FDataStreamBase* pStream)
 		m_aEuropeUnits.push_back(pUnit);
 	}
 
+	/// PlotGroup - start - Nightinggale
+	ReadStreamableFFreeListTrashArray(m_plotGroups, pStream);
+	/// PlotGroup - end - Nightinggale
+
 	ReadStreamableFFreeListTrashArray(m_selectionGroups, pStream);
 	ReadStreamableFFreeListTrashArray(m_eventsTriggered, pStream);
 
@@ -11945,6 +11949,10 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	{
 		m_aEuropeUnits[i]->write(pStream);
 	}
+
+	/// PlotGroup - start - Nightinggale
+	WriteStreamableFFreeListTrashArray(m_plotGroups, pStream);
+	/// PlotGroup - end - Nightinggale
 
 	WriteStreamableFFreeListTrashArray(m_selectionGroups, pStream);
 	WriteStreamableFFreeListTrashArray(m_eventsTriggered, pStream);

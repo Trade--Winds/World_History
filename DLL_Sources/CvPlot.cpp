@@ -59,6 +59,10 @@ CvPlot::CvPlot()
 
 	m_szScriptData = NULL;
 
+	/// PlotGroup - start - Nightinggale
+	m_aiPlotGroup = NULL;
+	/// PlotGroup - end - Nightinggale
+
 	reset(0, 0, true);
 }
 
@@ -110,6 +114,10 @@ void CvPlot::uninit()
 	SAFE_DELETE_ARRAY(m_aeRevealedRouteType);
 
 	SAFE_DELETE_ARRAY(m_paiBuildProgress);
+
+	/// PlotGroup - start - Nightinggale
+	SAFE_DELETE_ARRAY(m_aiPlotGroup);
+	/// PlotGroup - end - Nightinggale
 
 	if (NULL != m_apaiCultureRangeCities)
 	{
@@ -7445,6 +7453,16 @@ void CvPlot::read(FDataStreamBase* pStream)
 
 	pStream->Read(NUM_YIELD_TYPES, m_aiYield);
 
+	/// PlotGroup - start - Nightinggale
+	SAFE_DELETE_ARRAY(m_aiPlotGroup);
+	pStream->Read(&cCount);
+	if (cCount > 0)
+	{
+		m_aiPlotGroup = new int[cCount];
+		pStream->Read(cCount, m_aiPlotGroup);
+	}
+	/// PlotGroup - end - Nightinggale
+
 	SAFE_DELETE_ARRAY(m_aiCulture);
 	pStream->Read(&cCount);
 	if (cCount > 0)
@@ -7638,6 +7656,18 @@ void CvPlot::write(FDataStreamBase* pStream)
 	m_workingCityOverride.write(pStream);
 
 	pStream->Write(NUM_YIELD_TYPES, m_aiYield);
+
+	/// PlotGroup - start - Nightinggale
+	if (NULL == m_aiPlotGroup)
+	{
+		pStream->Write((char)0);
+	}
+	else
+	{
+		pStream->Write((char)MAX_PLAYERS);
+		pStream->Write(MAX_PLAYERS, m_aiPlotGroup);
+	}
+	/// PlotGroup - end - Nightinggale
 
 	if (NULL == m_aiCulture)
 	{
@@ -8970,7 +9000,7 @@ bool CvPlot::isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes e
 }
 #endif
 
-
+#if 0
 bool CvPlot::isRiverNetwork(TeamTypes eTeam) const
 {
 	if (!isRiver())
@@ -8991,7 +9021,9 @@ bool CvPlot::isRiverNetwork(TeamTypes eTeam) const
 
 	return false;
 }
+#endif
 
+#if 0
 bool CvPlot::isNetworkTerrain(TeamTypes eTeam) const
 {
 	FAssertMsg(eTeam != NO_TEAM, "eTeam is not assigned a valid value");
@@ -9014,15 +9046,17 @@ bool CvPlot::isNetworkTerrain(TeamTypes eTeam) const
 
 	return false;
 }
+#endif
 
 
-bool CvPlot::isBonusNetwork(TeamTypes eTeam) const
+inline bool CvPlot::isBonusNetwork(TeamTypes eTeam) const
 {
 	if (isRoute())
 	{
 		return true;
 	}
 
+#if 0
 	if (isRiverNetwork(eTeam))
 	{
 		return true;
@@ -9032,6 +9066,7 @@ bool CvPlot::isBonusNetwork(TeamTypes eTeam) const
 	{
   		return true;
 	}
+#endif
 
 	return false;
 }
@@ -9098,6 +9133,7 @@ bool CvPlot::isTradeNetworkConnected(const CvPlot* pPlot, TeamTypes eTeam) const
 		}
 	}
 
+#if 0
 	if (isCity(true, eTeam))
 	{
 		if (pPlot->isNetworkTerrain(eTeam))
@@ -9145,7 +9181,7 @@ bool CvPlot::isTradeNetworkConnected(const CvPlot* pPlot, TeamTypes eTeam) const
 			}
 		}
 	}
-
+#endif
 	return false;
 }
 
