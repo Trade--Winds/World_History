@@ -10996,6 +10996,10 @@ int CvPlayerAI::AI_setUnitAIStatesRange(CvPlot* pPlot, int iRange, UnitAIStates 
 	return iCount;
 }
 
+/// post load function - start - Nightinggale
+void postLoadGameFixes(int uiFlag);
+/// post load function - end - Nightinggale
+
 //
 // read object from a stream
 // used during load
@@ -11103,6 +11107,14 @@ void CvPlayerAI::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_STRATEGY_TYPES, m_aiStrategyStartedTurn);
 	pStream->Read(NUM_STRATEGY_TYPES, m_aiStrategyData);
 
+	/// post load function - start - Nightinggale
+	if (m_eID == (MAX_PLAYERS - 1))
+	{
+		// Done loading the last player
+		// Execute the post load code
+		postLoadGameFixes(uiFlag);
+	}
+	/// post load function - end - Nightinggale
 }
 
 
@@ -11114,7 +11126,7 @@ void CvPlayerAI::write(FDataStreamBase* pStream)
 {
 	CvPlayer::write(pStream);	// write base class data first
 
-	uint uiFlag=2;
+	uint uiFlag=3;
 	pStream->Write(uiFlag);		// flag for expansion
 
 	pStream->Write(m_distanceMap.size());

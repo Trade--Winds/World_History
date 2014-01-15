@@ -11530,7 +11530,10 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	}
 
 	/// PlotGroup - start - Nightinggale
-	ReadStreamableFFreeListTrashArray(m_plotGroups, pStream);
+	if (uiFlag >= 4)
+	{
+		ReadStreamableFFreeListTrashArray(m_plotGroups, pStream);
+	}
 	/// PlotGroup - end - Nightinggale
 
 	ReadStreamableFFreeListTrashArray(m_selectionGroups, pStream);
@@ -11802,7 +11805,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 {
 	int iI;
 
-	uint uiFlag = 3;
+	uint uiFlag = 4;
 	pStream->Write(uiFlag);		// flag for expansion
 
 	pStream->Write(m_iStartingX);

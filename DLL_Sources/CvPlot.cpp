@@ -7455,11 +7455,14 @@ void CvPlot::read(FDataStreamBase* pStream)
 
 	/// PlotGroup - start - Nightinggale
 	SAFE_DELETE_ARRAY(m_aiPlotGroup);
-	pStream->Read(&cCount);
-	if (cCount > 0)
+	if (uiFlag > 0)
 	{
-		m_aiPlotGroup = new int[cCount];
-		pStream->Read(cCount, m_aiPlotGroup);
+		pStream->Read(&cCount);
+		if (cCount > 0)
+		{
+			m_aiPlotGroup = new int[cCount];
+			pStream->Read(cCount, m_aiPlotGroup);
+		}
 	}
 	/// PlotGroup - end - Nightinggale
 
@@ -7610,7 +7613,7 @@ void CvPlot::write(FDataStreamBase* pStream)
 {
 	uint iI;
 
-	uint uiFlag=0;
+	uint uiFlag=1;
 	pStream->Write(uiFlag);		// flag for expansion
 
 	pStream->Write(m_iX);

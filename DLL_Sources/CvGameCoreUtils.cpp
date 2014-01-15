@@ -1676,3 +1676,28 @@ void getUnitAIString(CvWString& szString, UnitAITypes eUnitAI)
 	default: szString = CvWString::format(L"unknown(%d)", eUnitAI); break;
 	}
 }
+
+/// post load function - start - Nightinggale
+//
+// This function is called whenever a savegame finish loading
+// The primary function is to calculate data missing in old savegames
+//
+// However other functions could be added here, like cache generation
+//
+// The argument uiFlag is the one set in CvPlayerAI::write()
+//
+void postLoadGameFixes(int uiFlag)
+{
+	/// PlotGroup - start - Nightinggale
+	if (uiFlag < 3)
+	{
+		// assign plotgroups to this old savegame
+		for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+		{
+			CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+			pLoopPlot->updatePlotGroup();
+		}
+	}
+	/// PlotGroup - end - Nightinggale
+}
+/// post load function - end - Nightinggale
