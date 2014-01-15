@@ -24,6 +24,7 @@
 #include "FAStarNode.h"
 #include "CvInitCore.h"
 #include "CvInfos.h"
+#include "CvUnitAI.h"
 #include "FProfiler.h"
 
 #include "CvDLLEngineIFaceBase.h"

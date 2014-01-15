@@ -23,6 +23,7 @@
 #include "CvReplayInfo.h"
 #include "CyPlot.h"
 #include "CvGameTextMgr.h"
+#include "CvUnitAI.h"
 
 // interface uses
 #include "CvDLLInterfaceIFaceBase.h"

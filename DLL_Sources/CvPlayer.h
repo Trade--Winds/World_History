@@ -6,7 +6,6 @@
 #define CIV4_PLAYER_H
 
 #include "CvCityAI.h"
-#include "CvUnitAI.h"
 #include "CvSelectionGroupAI.h"
 #include "LinkedList.h"
 #include "CvIdVector.h"
@@ -20,6 +19,7 @@ class CvDiploParameters;
 class CvPopupInfo;
 class CvEventTriggerInfo;
 class CvTradeRoute;
+class CvUnitAI;
 
 typedef std::list<CvTalkingHeadMessage> CvMessageQueue;
 typedef std::list<CvPopupInfo*> CvPopupQueue;

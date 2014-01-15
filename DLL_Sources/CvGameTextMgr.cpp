@@ -26,6 +26,7 @@
 #include "CvMap.h"
 #include "CvArea.h"
 #include "CvPlot.h"
+#include "CvUnitAI.h"
 #include "CvPopupInfo.h"
 #include "FProfiler.h"
 #include "CyArgsList.h"

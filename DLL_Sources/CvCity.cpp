@@ -14,6 +14,7 @@
 #include "CyArgsList.h"
 #include "CvGameTextMgr.h"
 #include "CvTradeRoute.h"
+#include "CvUnitAI.h"
 #include <numeric>
 
 // interfaces used

@@ -11,6 +11,7 @@
 #include "CvMap.h"
 #include "CvPlot.h"
 #include "CvTeam.h"
+#include "CvUnitAI.h"
 #include "CvDLLInterfaceIFaceBase.h"
 #include "CvDLLEventReporterIFaceBase.h"
 #include "CvDLLEngineIFaceBase.h"

@@ -23,6 +23,7 @@
 #include "CvGameTextMgr.h"
 #include "CyCity.h"
 #include "CyPlot.h"
+#include "CvUnitAI.h"
 #include "CvTradeRoute.h"
 #include <numeric>
 
