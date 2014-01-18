@@ -959,8 +959,30 @@ public:
 	void deletePlotGroup(int iID);
 	CvPlotGroup* initPlotGroup(CvPlot* pPlot);
 
+	// update the cache is needed
+	void setPlotgroupCityCache();
+
+	// mark the cities in plotgroup cache as outdated
+	void clearPlotgroupCityCache();
+
+	// get plotgroups in cache and update cache if needed
+	int getNumPlotgroups();
+
+	// number of cached cities in a cached plotgroup
+	int getNumCitiesInPlotgroup(int iPlotGroup) const;
+
+	// get city from cached plotgroups
+	CvCity* getCity(int iPlotGroup, int iCity) const;
+
+	// get cache index of a plotgroup nd update cache is needed
+	int getCacheIndex(CvPlotGroup* pPlotGroup);
+
 protected:
 	FFreeListTrashArray<CvPlotGroup> m_plotGroups;
+
+	std::vector<std::vector<CvCity*> > m_aapPlotGroupCityList;
+	std::vector<CvPlotGroup*> m_aPlotGroupCache;
+	bool m_bIsPlotGroupCacheUpdated;
 /// PlotGroup - end - Nightinggale
 
 // invention effect cache - start - Nightinggale
@@ -1116,6 +1138,11 @@ inline CvPlotGroup* CvPlayer::addPlotGroup()
 inline void CvPlayer::deletePlotGroup(int iID)																
 {
 	m_plotGroups.removeAt(iID);
+}
+
+inline void CvPlayer::clearPlotgroupCityCache()
+{
+	this->m_bIsPlotGroupCacheUpdated = false;
 }
 /// PlotGroup - end - Nightinggale
 

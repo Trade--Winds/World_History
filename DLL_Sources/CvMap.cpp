@@ -1393,6 +1393,10 @@ void CvMap::combinePlotGroups(PlayerTypes ePlayer, CvPlotGroup* pPlotGroup1, CvP
 		pNewPlotGroup->addPlot(pPlot);
 		pPlotNode = pOldPlotGroup->deletePlotsNode(pPlotNode);
 	}
+
+	/// PlotGroup - start - Nightinggale
+	GET_PLAYER(ePlayer).clearPlotgroupCityCache();
+	/// PlotGroup - end - Nightinggale
 }
 /// PlotGroup - end - Nightinggale
 

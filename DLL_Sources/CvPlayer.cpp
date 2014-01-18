@@ -27,6 +27,8 @@
 #include "CvTradeRoute.h"
 #include <numeric>
 
+#include "CvPlotGroup.h"
+
 #include "CvDLLInterfaceIFaceBase.h"
 #include "CvDLLEntityIFaceBase.h"
 #include "CvDLLEngineIFaceBase.h"
@@ -395,6 +397,7 @@ void CvPlayer::uninit()
 
 	/// PlotGroup - start - Nightinggale
 	m_plotGroups.uninit();
+	clearPlotgroupCityCache();
 	/// PlotGroup - end - Nightinggale
 }
 
@@ -2400,9 +2403,6 @@ void CvPlayer::doTurn()
 {
 	PROFILE_FUNC();
 
-	CvCity* pLoopCity;
-	int iLoop;
-
 	FAssertMsg(isAlive(), "isAlive is expected to be true");
 	FAssertMsg(!hasBusyUnit() || GC.getGameINLINE().isMPOption(MPOPTION_SIMULTANEOUS_TURNS)  || GC.getGameINLINE().isSimultaneousTeamTurns(), "End of turn with busy units in a sequential-turn game");
 
@@ -2443,11 +2443,16 @@ void CvPlayer::doTurn()
 
 	doCrosses();
 
-	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	/// PlotGroup - start - Nightinggale
+	for (int iPlotGroup = 0; iPlotGroup < getNumPlotgroups(); iPlotGroup++)
 	{
-		pLoopCity->doTurn();
+		for (int iCity = 0; iCity < getNumCitiesInPlotgroup(iPlotGroup); iCity++)
+		{
+			CvCity* pCity = getCity(iPlotGroup, iCity);
+			pCity->doTurn();
+		}
 	}
-
+	/// PlotGroup - end - Nightinggale
 
 	verifyCivics();
 
@@ -8564,12 +8569,18 @@ CvCity* CvPlayer::getCity(int iID) const
 
 CvCity* CvPlayer::addCity()
 {
+	/// PlotGroup - start - Nightinggale
+	this->clearPlotgroupCityCache();
+	/// PlotGroup - end - Nightinggale
 	return(m_cities.add());
 }
 
 
 void CvPlayer::deleteCity(int iID)
 {
+	/// PlotGroup - start - Nightinggale
+	this->clearPlotgroupCityCache();
+	/// PlotGroup - end - Nightinggale
 	m_cities.removeAt(iID);
 }
 
@@ -19255,5 +19266,78 @@ CvPlotGroup* CvPlayer::initPlotGroup(CvPlot* pPlot)
 	pPlotGroup->init(pPlotGroup->getID(), getID(), pPlot);
 
 	return pPlotGroup;
+}
+
+void CvPlayer::setPlotgroupCityCache()
+{
+	int iLoop;
+
+	FAssert(!m_bIsPlotGroupCacheUpdated);
+
+	this->m_bIsPlotGroupCacheUpdated = true;
+
+	m_aapPlotGroupCityList.clear();
+	m_aPlotGroupCache.clear();
+
+	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+		CvPlotGroup* pPlotGroup = pLoopCity->plot()->getPlotGroup(this->getID());
+		FAssertMsg(pPlotGroup != NULL, "city lacks a plotgroup");
+
+		int iPlotGroup = getCacheIndex(pPlotGroup);
+
+		if (iPlotGroup == -1)
+		{
+			// the city isn't in a group already allocated.
+			// allocate a vector for this group
+			iPlotGroup = m_aapPlotGroupCityList.size();
+			m_aapPlotGroupCityList.resize(iPlotGroup+1);
+			m_aPlotGroupCache.push_back(pPlotGroup);
+		} 
+		m_aapPlotGroupCityList[iPlotGroup].push_back(pLoopCity);
+	}
+}
+
+int CvPlayer::getNumPlotgroups()
+{
+	if (!m_bIsPlotGroupCacheUpdated)
+	{
+		setPlotgroupCityCache();
+	}
+	
+	return m_aapPlotGroupCityList.size();
+}
+
+int CvPlayer::getNumCitiesInPlotgroup(int iPlotGroup) const
+{
+	FAssert(iPlotGroup >= 0);
+	FAssert((unsigned int)iPlotGroup < m_aapPlotGroupCityList.size());
+	return m_aapPlotGroupCityList[iPlotGroup].size();
+}
+
+CvCity* CvPlayer::getCity(int iPlotGroup, int iCity) const
+{
+	FAssert(iCity >= 0 && iPlotGroup >= 0);
+	FAssert((unsigned int)iPlotGroup < m_aapPlotGroupCityList.size());
+	FAssert((unsigned int)iCity < m_aapPlotGroupCityList[iPlotGroup].size());
+	return m_aapPlotGroupCityList[iPlotGroup][iCity];
+}
+
+int CvPlayer::getCacheIndex(CvPlotGroup* pPlotGroup)
+{
+	if (!m_bIsPlotGroupCacheUpdated)
+	{
+		setPlotgroupCityCache();
+	}
+
+	for (unsigned int iI = 0; iI < m_aPlotGroupCache.size(); iI++)
+	{
+		if (m_aPlotGroupCache[iI] == pPlotGroup)
+		{
+			return iI;
+		}
+	}
+	// not found
+	return -1;
 }
 /// PlotGroup - end - Nightinggale

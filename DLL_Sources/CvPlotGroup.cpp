@@ -159,6 +159,10 @@ void CvPlotGroup::recalculatePlots()
 
 		pPlotNode = oldPlotGroup.deleteNode(pPlotNode);
 	}
+
+	// update the city cache
+	// we can't tell if it's needed at this point and it is better to be safe than sorry
+	GET_PLAYER(eOwner).clearPlotgroupCityCache();
 }
 
 #ifdef USE_PLOTGROUP_RESOURCES
