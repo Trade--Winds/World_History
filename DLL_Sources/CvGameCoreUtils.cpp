@@ -1684,12 +1684,12 @@ void getUnitAIString(CvWString& szString, UnitAITypes eUnitAI)
 //
 // However other functions could be added here, like cache generation
 //
-// The argument uiFlag is the one set in CvPlayerAI::write()
+// The argument iFixCount is set in CvPlayerAI::write()
 //
-void postLoadGameFixes(int uiFlag)
+void postLoadGameFixes(uint iFixCount)
 {
 	/// PlotGroup - start - Nightinggale
-	if (uiFlag < 3)
+	if (iFixCount < 1)
 	{
 		// assign plotgroups to this old savegame
 		for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)

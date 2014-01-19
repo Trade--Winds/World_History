@@ -10998,7 +10998,7 @@ int CvPlayerAI::AI_setUnitAIStatesRange(CvPlot* pPlot, int iRange, UnitAIStates 
 }
 
 /// post load function - start - Nightinggale
-void postLoadGameFixes(int uiFlag);
+void postLoadGameFixes(uint iFixCount);
 /// post load function - end - Nightinggale
 
 //
@@ -11109,11 +11109,17 @@ void CvPlayerAI::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_STRATEGY_TYPES, m_aiStrategyData);
 
 	/// post load function - start - Nightinggale
+	uint iFixCount = 0;
+	if (uiFlag >= 4)
+	{
+		pStream->Read(&iFixCount);
+	}
+
 	if (m_eID == (MAX_PLAYERS - 1))
 	{
 		// Done loading the last player
 		// Execute the post load code
-		postLoadGameFixes(uiFlag);
+		postLoadGameFixes(iFixCount);
 	}
 	/// post load function - end - Nightinggale
 }
@@ -11127,7 +11133,11 @@ void CvPlayerAI::write(FDataStreamBase* pStream)
 {
 	CvPlayer::write(pStream);	// write base class data first
 
-	uint uiFlag=3;
+	/// post load function - start - Nightinggale
+	uint iFixCount = 1;
+	/// post load function - end - Nightinggale
+
+	uint uiFlag=4;
 	pStream->Write(uiFlag);		// flag for expansion
 
 	pStream->Write(m_distanceMap.size());
@@ -11212,6 +11222,10 @@ void CvPlayerAI::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_EMOTION_TYPES, m_aiEmotions);
 	pStream->Write(NUM_STRATEGY_TYPES, m_aiStrategyStartedTurn);
 	pStream->Write(NUM_STRATEGY_TYPES, m_aiStrategyData);
+
+	/// post load function - start - Nightinggale
+	pStream->Write(iFixCount);
+	/// post load function - end - Nightinggale
 }
 
 

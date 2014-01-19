@@ -112,6 +112,8 @@ void CvPlotGroup::recalculatePlots()
 
 	pPlotNode = headPlotsNode();
 
+	// TODO find a better way to tell if the plotgroup splits
+#if 0
 	if (pPlotNode != NULL)
 	{
 		pPlot = GC.getMapINLINE().plotSorenINLINE(pPlotNode->m_data.iX, pPlotNode->m_data.iY);
@@ -126,6 +128,7 @@ void CvPlotGroup::recalculatePlots()
 			return;
 		}
 	}
+#endif
 
 	oldPlotGroup.clear();
 
