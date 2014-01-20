@@ -1310,6 +1310,18 @@ int stepAdd(FAStarNode* parent, FAStarNode* node, int data, const void* pointer,
 }
 
 
+// Nightinggale note:
+// This function has been expanded to solve more tasks than the vanilla one
+// It exists in two modes:
+//
+//  1:
+//    iInfo set to playerID
+//    vanilla behavior (something about AI checking route quality between cities)
+//
+//  2:
+//    iInfo is set to TeamTypes + 0x40 (64)
+//    tells if there is a road (of any quality) between start and end plots
+//    Used to detect plotgroup splitting
 int routeValid(FAStarNode* parent, FAStarNode* node, int data, const void* pointer, FAStar* finder)
 {
 	CvPlot* pNewPlot;
@@ -1322,7 +1334,17 @@ int routeValid(FAStarNode* parent, FAStarNode* node, int data, const void* point
 
 	pNewPlot = GC.getMapINLINE().plotSorenINLINE(node->m_iX, node->m_iY);
 
-	ePlayer = ((PlayerTypes)(gDLL->getFAStarIFace()->GetInfo(finder)));
+	/// PlotGroup - start - Nightinggale
+	int iInfo = gDLL->getFAStarIFace()->GetInfo(finder);
+
+	if (iInfo & 0x40)
+	{
+		return pNewPlot->isTradeNetwork((TeamTypes)(iInfo & 0x3f));
+	}
+	
+	//ePlayer = ((PlayerTypes)(gDLL->getFAStarIFace()->GetInfo(finder)));
+	ePlayer = ((PlayerTypes)(iInfo));
+	/// PlotGroup - end - Nightinggale
 
 	if (!(pNewPlot->isOwned()) || (pNewPlot->getTeam() == GET_PLAYER(ePlayer).getTeam()))
 	{

@@ -540,6 +540,10 @@ public:
 	bool isTradeNetworkConnected(const CvPlot * pPlot, TeamTypes eTeam) const;							// Exposed to Python
 	//bool isRiverNetwork(TeamTypes eTeam) const;
 
+	// homemade functions - Nightinggale
+	void removeTradeNetwork(PlayerTypes ePlayer);
+	void addTradeNetwork(PlayerTypes ePlayer);
+
 #ifdef USE_PLOTGROUP_RESOURCES
 	void updatePlotGroupBonus(bool bAdd);
 	int getPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;						// Exposed to Python

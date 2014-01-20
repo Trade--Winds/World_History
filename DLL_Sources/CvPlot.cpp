@@ -8825,102 +8825,81 @@ void CvPlot::updatePlotGroup()
 
 void CvPlot::updatePlotGroup(PlayerTypes ePlayer, bool bRecalculate)
 {
-	PROFILE("CvPlot::updatePlotGroup(Player)");
-
-	CvPlotGroup* pPlotGroup;
-	CvPlotGroup* pAdjacentPlotGroup;
-	CvPlot* pAdjacentPlot;
-	bool bConnected;
-	bool bEmpty;
-	int iI;
-
 	if (!(GC.getGameINLINE().isFinalInitialized()))
 	{
 		return;
 	}
 
-	pPlotGroup = getPlotGroup(ePlayer);
+	FAssert(ePlayer >= 0);
+	FAssert(ePlayer < MAX_PLAYERS);
 
-	if (pPlotGroup != NULL)
+	CvPlayerAI& kPlayer = GET_PLAYER(ePlayer);
+
+	TeamTypes eTeam = kPlayer.getTeam();
+
+	CvPlotGroup* pPlotGroup = getPlotGroup(ePlayer);
+
+	if (isTradeNetwork(eTeam))
 	{
-		if (bRecalculate)
-		{
-			bConnected = false;
-
-			if (isTradeNetwork(GET_PLAYER(ePlayer).getTeam()))
-			{
-				bConnected = true;
-
-				for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
-				{
-					pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
-
-					if (pAdjacentPlot != NULL)
-					{
-						if (pAdjacentPlot->getPlotGroup(ePlayer) == pPlotGroup)
-						{
-							if (!isTradeNetworkConnected(pAdjacentPlot, GET_PLAYER(ePlayer).getTeam()))
-							{
-								bConnected = false;
-								break;
-							}
-						}
-					}
-				}
-			}
-
-			if (!bConnected)
-			{
-				bEmpty = (pPlotGroup->getLengthPlots() == 1);
-				FAssertMsg(pPlotGroup->getLengthPlots() > 0, "pPlotGroup should have more than 0 plots");
-
-				pPlotGroup->removePlot(this);
-
-				if (!bEmpty)
-				{
-					pPlotGroup->recalculatePlots();
-				}
-			}
-		}
-
-		pPlotGroup = getPlotGroup(ePlayer);
-	}
-
-	if (isTradeNetwork(GET_PLAYER(ePlayer).getTeam()))
-	{
-		for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
-		{
-			pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
-
-			if (pAdjacentPlot != NULL)
-			{
-				pAdjacentPlotGroup = pAdjacentPlot->getPlotGroup(ePlayer);
-
-				if ((pAdjacentPlotGroup != NULL) && (pAdjacentPlotGroup != pPlotGroup))
-				{
-					if (isTradeNetworkConnected(pAdjacentPlot, GET_PLAYER(ePlayer).getTeam()))
-					{
-						if (pPlotGroup == NULL)
-						{
-							pAdjacentPlotGroup->addPlot(this);
-							pPlotGroup = pAdjacentPlotGroup;
-							FAssertMsg(getPlotGroup(ePlayer) == pPlotGroup, "ePlayer's plot group is expected to equal pPlotGroup");
-						}
-						else
-						{
-							FAssertMsg(getPlotGroup(ePlayer) == pPlotGroup, "ePlayer's plot group is expected to equal pPlotGroup");
-							GC.getMapINLINE().combinePlotGroups(ePlayer, pPlotGroup, pAdjacentPlotGroup);
-							pPlotGroup = getPlotGroup(ePlayer);
-							FAssertMsg(pPlotGroup != NULL, "PlotGroup is not assigned a valid value");
-						}
-					}
-				}
-			}
-		}
-
 		if (pPlotGroup == NULL)
 		{
-			GET_PLAYER(ePlayer).initPlotGroup(this);
+			// plot can have a plotgroup, but has none
+			// see if it can connect to a nearby plotgroup
+			for (int i = 1; i < NUM_CITY_PLOTS; ++i)
+			{
+				CvPlot* pLoopPlot = ::plotCity(getX_INLINE(), getY_INLINE(), i);
+				if (pLoopPlot != NULL)
+				{
+					CvPlotGroup* pGroup = pLoopPlot->getPlotGroup(ePlayer);
+					if (pGroup != NULL)
+					{
+						// found a plotgroup to join
+						pGroup->addPlot(this);
+
+						// see if this plotgroup can spread across this newly added plot
+						this->addTradeNetwork(ePlayer);
+						return;
+					}
+				}
+			}
+
+			// this plot can hold a plotgroup, but there is none nearby. Check if a new one can be startet.
+			if (this->isCity() && ePlayer == this->getOwnerINLINE())
+			{
+				GET_PLAYER(ePlayer).initPlotGroup(this);
+				this->addTradeNetwork(ePlayer);
+			}
+		}
+	}
+	else
+	{
+		if (pPlotGroup != NULL)
+		{
+			// the plot is in a plotgroup, yet something prevents the plot from being in a plotgroup
+			// remove the plot
+			pPlotGroup->removePlot(this);
+
+			// check if there are cities left in the plotgroup
+			bool bFound = false;
+
+			int iLoop;
+			for (CvCity* pLoopCity = kPlayer.firstCity(&iLoop); pLoopCity != NULL; pLoopCity = kPlayer.nextCity(&iLoop))
+			{
+				if (pLoopCity->plot()->getPlotGroup(ePlayer) == pPlotGroup)
+				{
+					bFound = true;
+					break;
+				}
+			}
+
+			if (bFound)
+			{
+				// check if we split the plotgroup in 2+ gropus
+				this->removeTradeNetwork(ePlayer);
+			} else {
+				// the plotgroup has no cities anymore. Delete it.
+				pPlotGroup->recalculatePlots();
+			}
 		}
 	}
 }
@@ -9248,5 +9227,94 @@ void CvPlot::updatePlotGroupBonus(bool bAdd)
 	}
 }
 #endif
+
+
+void CvPlot::removeTradeNetwork(PlayerTypes ePlayer)
+{
+	FAssert(ePlayer >= 0);
+	FAssert(ePlayer < MAX_PLAYERS);
+
+	CvPlotGroup* pHeadGroup = getPlotGroup(ePlayer);
+	FAssert(pHeadGroup == NULL);
+
+	TeamTypes eTeam = GET_PLAYER(ePlayer).getTeam();
+	FAssert(eTeam >= 0);
+	FAssert(eTeam < 64);
+
+	CvPlot* pLastPlot = NULL;
+
+	// loop all the plots around the plot in question, but not the plot itself.
+	// while the function names indicate it is for cities, it actually works on non-city plots.
+	//
+	// all surrounding plots needs to be connected by road or the whole PlotGroup should be recalculated as it has split into two or more groups
+	for (int i = 1; i < NUM_CITY_PLOTS; ++i)
+	{
+		CvPlot* pLoopPlot = ::plotCity(getX_INLINE(), getY_INLINE(), i);
+		if (pLoopPlot != NULL)
+		{
+			CvPlotGroup* pGroup = pLoopPlot->getPlotGroup(ePlayer);
+
+			if (pGroup != NULL)
+			{
+				if (pLastPlot != NULL)
+				{
+					gDLL->getFAStarIFace()->ForceReset(&GC.getRouteFinder());
+					if (!(gDLL->getFAStarIFace()->GeneratePath(&GC.getRouteFinder(), pLastPlot->getX_INLINE(), pLastPlot->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), false, (0x40 & eTeam), true)))
+					{
+						// plots failed to connect. The plotgroup has to be split and recalculating all plots in the plotgroup is needed.
+						pGroup->recalculatePlots();
+						return;
+					}
+				}
+				// update last plot
+				// this will then be the plot to find a route from during next route finding.
+				pLastPlot = pLoopPlot;
+			}
+		}
+	}
+}
+
+// check spreading of plotgroup of a newly added plot in a plotgroup
+// adds new plots with resursive calls
+void CvPlot::addTradeNetwork(PlayerTypes ePlayer)
+{
+	FAssert(ePlayer >= 0);
+	FAssert(ePlayer < MAX_PLAYERS);
+
+	CvPlotGroup* pHeadGroup = getPlotGroup(ePlayer);
+	FAssert(pHeadGroup != NULL);
+
+	TeamTypes eTeam = GET_PLAYER(ePlayer).getTeam();
+	FAssert(isTradeNetwork(eTeam));
+
+	// loop all the plots around the plot in question, but not the plot itself.
+	// while the function names indicate it is for cities, it actually works on non-city plots.
+	for (int i = 1; i < NUM_CITY_PLOTS; ++i)
+	{
+		CvPlot* pLoopPlot = ::plotCity(getX_INLINE(), getY_INLINE(), i);
+		if (pLoopPlot != NULL)
+		{
+			CvPlotGroup* pGroup = pLoopPlot->getPlotGroup(ePlayer);
+
+			if (pGroup != NULL && pHeadGroup != pGroup)
+			{
+				// two different plotgroups became connected by adding this plot
+				GC.getMapINLINE().combinePlotGroups(ePlayer, pGroup, pHeadGroup);
+			
+				// update the current group as we don't know which one merged into the other
+				pHeadGroup = getPlotGroup(ePlayer);
+			}
+			else if (pGroup == NULL && pLoopPlot->isTradeNetwork(eTeam))
+			{
+				// plot is able to have a trade network, but it has none. Spread it now.
+				pHeadGroup->addPlot(pLoopPlot);
+				pLoopPlot->addTradeNetwork(ePlayer);
+
+				// update the current group as it might have merged with another one.
+				pHeadGroup = getPlotGroup(ePlayer);
+			}
+		}
+	}
+}
 
 /// PlotGroup - end - Nightinggale

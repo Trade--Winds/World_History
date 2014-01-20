@@ -106,29 +106,10 @@ void CvPlotGroup::recalculatePlots()
 	CLinkList<XYCoords> oldPlotGroup;
 	XYCoords xy;
 	PlayerTypes eOwner;
-	int iCount;
 
 	eOwner = getOwnerINLINE();
 
 	pPlotNode = headPlotsNode();
-
-	// TODO find a better way to tell if the plotgroup splits
-#if 0
-	if (pPlotNode != NULL)
-	{
-		pPlot = GC.getMapINLINE().plotSorenINLINE(pPlotNode->m_data.iX, pPlotNode->m_data.iY);
-
-		iCount = 0;
-
-		gDLL->getFAStarIFace()->SetData(&GC.getPlotGroupFinder(), &iCount);
-		gDLL->getFAStarIFace()->GeneratePath(&GC.getPlotGroupFinder(), pPlot->getX_INLINE(), pPlot->getY_INLINE(), -1, -1, false, eOwner);
-
-		if (iCount == getLengthPlots())
-		{
-			return;
-		}
-	}
-#endif
 
 	oldPlotGroup.clear();
 
@@ -164,7 +145,6 @@ void CvPlotGroup::recalculatePlots()
 	}
 
 	// update the city cache
-	// we can't tell if it's needed at this point and it is better to be safe than sorry
 	GET_PLAYER(eOwner).clearPlotgroupCityCache();
 }
 
