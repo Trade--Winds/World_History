@@ -3983,10 +3983,6 @@ void CvPlot::setPlotType(PlotTypes eNewValue, bool bRecalculate, bool bRebuildGr
 
 		updateYield(true);
 
-		/// PlotGroup - start - Nightinggale
-		updatePlotGroup();
-		/// PlotGroup - end - Nightinggale
-
 		updateSeeFromSight(true, true);
 
 		if ((getTerrainType() == NO_TERRAIN) || (GC.getTerrainInfo(getTerrainType()).isWater() != isWater()))
@@ -4042,9 +4038,6 @@ void CvPlot::setPlotType(PlotTypes eNewValue, bool bRecalculate, bool bRebuildGr
 				if (pLoopPlot != NULL)
 				{
 					pLoopPlot->updateYield(true);
-					/// PlotGroup - start - Nightinggale
-					pLoopPlot->updatePlotGroup();
-					/// PlotGroup - end - Nightinggale
 				}
 			}
 
@@ -4239,10 +4232,6 @@ void CvPlot::setTerrainType(TerrainTypes eNewValue, bool bRecalculate, bool bReb
 		updateImpassable();
 
 		updateYield(true);
-
-		/// PlotGroup - start - Nightinggale
-		updatePlotGroup();
-		/// PlotGroup - end - Nightinggale
 
 		if (bUpdateSight)
 		{
@@ -4449,15 +4438,6 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 		}
 
 		updateYield(true);
-
-		/// PlotGroup - start - Nightinggale
-		// Building or removing a fort will now force a plotgroup update to verify resource connections.
-		if ( (NO_IMPROVEMENT != getImprovementType() && GC.getImprovementInfo(getImprovementType()).isActsAsCity()) !=
-			 (NO_IMPROVEMENT != eOldImprovement && GC.getImprovementInfo(eOldImprovement).isActsAsCity()) )
-		{
-			updatePlotGroup();
-		}
-		/// PlotGroup - end - Nightinggale
 
 		if (NO_FEATURE != eOldImprovement && GC.getImprovementInfo(eOldImprovement).isActsAsCity())
 		{
@@ -8726,12 +8706,7 @@ CvPlotGroup* CvPlot::getPlotGroup(PlayerTypes ePlayer) const
 	FAssertMsg(ePlayer >= 0, "eIndex is expected to be non-negative (invalid Index)");
 	FAssertMsg(ePlayer < MAX_PLAYERS, "ePlayer is expected to be within maximum bounds (invalid Index)");
 
-	if (NULL == m_aiPlotGroup)
-	{
-		return GET_PLAYER(ePlayer).getPlotGroup(FFreeList::INVALID_INDEX);
-	}
-
-	return GET_PLAYER(ePlayer).getPlotGroup(m_aiPlotGroup[ePlayer]);
+	return m_aiPlotGroup == NULL ? NULL : GET_PLAYER(ePlayer).getPlotGroup(m_aiPlotGroup[ePlayer]);
 }
 
 
@@ -8898,7 +8873,7 @@ void CvPlot::updatePlotGroup(PlayerTypes ePlayer, bool bRecalculate)
 				this->removeTradeNetwork(ePlayer);
 			} else {
 				// the plotgroup has no cities anymore. Delete it.
-				pPlotGroup->recalculatePlots();
+				pPlotGroup->deleteAllPlots();
 			}
 		}
 	}
@@ -8982,78 +8957,6 @@ bool CvPlot::isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes e
 }
 #endif
 
-#if 0
-bool CvPlot::isRiverNetwork(TeamTypes eTeam) const
-{
-	if (!isRiver())
-	{
-		return false;
-	}
-#if 0
-	if (GET_TEAM(eTeam).isRiverTrade())
-	{
-		return true;
-	}
-#endif
-
-	if (getTeam() == eTeam)
-	{
-		return true;
-	}
-
-	return false;
-}
-#endif
-
-#if 0
-bool CvPlot::isNetworkTerrain(TeamTypes eTeam) const
-{
-	FAssertMsg(eTeam != NO_TEAM, "eTeam is not assigned a valid value");
-	FAssertMsg(getTerrainType() != NO_TERRAIN, "TerrainType is not assigned a valid value");
-
-#if 0
-	if (GET_TEAM(eTeam).isTerrainTrade(getTerrainType()))
-	{
-		return true;
-	}
-#endif
-
-	if (isWater())
-	{
-		if (getTeam() == eTeam)
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-#endif
-
-
-inline bool CvPlot::isBonusNetwork(TeamTypes eTeam) const
-{
-	if (isRoute())
-	{
-		return true;
-	}
-
-#if 0
-	if (isRiverNetwork(eTeam))
-	{
-		return true;
-	}
-
-	if (isNetworkTerrain(eTeam))
-	{
-  		return true;
-	}
-#endif
-
-	return false;
-}
-
-
 bool CvPlot::isTradeNetwork(TeamTypes eTeam) const
 {
 	FAssertMsg(eTeam != NO_TEAM, "eTeam is not assigned a valid value");
@@ -9068,7 +8971,7 @@ bool CvPlot::isTradeNetwork(TeamTypes eTeam) const
 		return false;
 	}
 
-	if (isTradeNetworkImpassable(eTeam))
+	if (isImpassable())
 	{
 		return false;
 	}
@@ -9081,10 +8984,11 @@ bool CvPlot::isTradeNetwork(TeamTypes eTeam) const
 		}
 	}
 
-	return isBonusNetwork(eTeam);
+	return isRoute();
 }
 
 
+// TODO: not used. Remove or use?
 bool CvPlot::isTradeNetworkConnected(const CvPlot* pPlot, TeamTypes eTeam) const
 {
 	FAssertMsg(eTeam != NO_TEAM, "eTeam is not assigned a valid value");
@@ -9094,7 +8998,7 @@ bool CvPlot::isTradeNetworkConnected(const CvPlot* pPlot, TeamTypes eTeam) const
 		return false;
 	}
 
-	if (isTradeNetworkImpassable(eTeam) || pPlot->isTradeNetworkImpassable(eTeam))
+	if (isImpassable() || pPlot->isImpassable())
 	{
 		return false;
 	}

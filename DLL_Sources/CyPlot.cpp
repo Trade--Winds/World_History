@@ -717,3 +717,11 @@ void CyPlot::setScriptData(std::string szNewValue)
 	if (m_pPlot)
 		m_pPlot->setScriptData(szNewValue.c_str());
 }
+
+/// PlotGroup - start - Nightinggale
+bool CyPlot::isConnectedTo(CyCity* pCity)
+{
+	// added extra checks compared to vanilla BTS - Nightinggale
+	return (m_pPlot != NULL && m_pPlot->isOwned() && pCity != NULL && pCity->getCity()) ? m_pPlot->isConnectedTo(pCity->getCity()) : false; 
+}
+/// PlotGroup - end - Nightinggale

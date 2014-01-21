@@ -97,6 +97,31 @@ void CvPlotGroup::removePlot(CvPlot* pPlot)
 }
 
 
+// homemade function - Nightinggale
+// delete all plots in plotgroup and the plotgroup itself
+// called when recalculatePlots() will produce the same result, except this one is faster due to less check
+void CvPlotGroup::deleteAllPlots()
+{
+	CLLNode<XYCoords>* pPlotNode = headPlotsNode();
+	PlayerTypes eOwner = getOwnerINLINE();
+
+	while (pPlotNode != NULL)
+	{
+		CvPlot* pPlot = GC.getMapINLINE().plotSorenINLINE(pPlotNode->m_data.iX, pPlotNode->m_data.iY);
+
+		FAssertMsg(pPlot != NULL, "Plot is not assigned a valid value");
+
+		XYCoords xy;
+
+		xy.iX = pPlot->getX_INLINE();
+		xy.iY = pPlot->getY_INLINE();
+
+		pPlot->setPlotGroup(eOwner, NULL);
+
+		pPlotNode = deletePlotsNode(pPlotNode); // will delete this PlotGroup...
+	}
+}
+
 void CvPlotGroup::recalculatePlots()
 {
 	PROFILE_FUNC();

@@ -414,10 +414,6 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 		}
 	}
 
-    ///Kailric Fort Mod Start
-    //pPlot->updatePlotGroup(getOwner(), false);
-    ///Kailric Fort Mod end
-
 	for (int i = 0; i < MAX_PLAYERS; ++i)
 	{
 		CvPlayerAI& kPlayer = GET_PLAYER((PlayerTypes) i );

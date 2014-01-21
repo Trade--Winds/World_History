@@ -1964,6 +1964,18 @@ class CvMainInterface:
 				iExportRow = screen.appendTableRow("ExportTradeRouteText")
 				szExportText = unicode(pHeadSelectedCity.getCityPlotGroup().getLengthPlots())
 				screen.setTableText("ExportTradeRouteText", 0, iExportRow, u"<font=3>%s</font>" % szExportText, "", WidgetTypes.WIDGET_YIELD_IMPORT_EXPORT, false, -1, CvUtil.FONT_LEFT_JUSTIFY )
+				for iPlayer in range(gc.getMAX_PLAYERS()):
+					player = gc.getPlayer(iPlayer)
+					(pLoopCity, iter) = player.firstCity(false)
+					while(pLoopCity):
+						if (pLoopCity.plot().isConnectedTo(pHeadSelectedCity)):
+							if (iPlayer != pHeadSelectedCity.getOwner()):
+								screenName = "ExportTradeRouteText"
+							else:
+								screenName = "ImportTradeRouteText"
+							iExportRow = screen.appendTableRow(screenName)
+							screen.setTableText(screenName, 0, iExportRow, u"<font=3>%s</font>" % pLoopCity.getName(), "", WidgetTypes.WIDGET_YIELD_IMPORT_EXPORT, false, -1, CvUtil.FONT_LEFT_JUSTIFY )
+						(pLoopCity, iter) = player.nextCity(iter, false)
 				### plotgroups end
 				
 				for iYield in range(YieldTypes.NUM_YIELD_TYPES):

@@ -52,6 +52,9 @@ public:
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
 
+	// homemade function - Nightinggale
+	void deleteAllPlots();
+
 protected:
 
 	int m_iID;
