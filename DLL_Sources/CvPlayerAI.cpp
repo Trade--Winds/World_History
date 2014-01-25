@@ -10997,10 +10997,6 @@ int CvPlayerAI::AI_setUnitAIStatesRange(CvPlot* pPlot, int iRange, UnitAIStates 
 	return iCount;
 }
 
-/// post load function - start - Nightinggale
-void postLoadGameFixes(uint iFixCount);
-/// post load function - end - Nightinggale
-
 //
 // read object from a stream
 // used during load
@@ -11134,7 +11130,7 @@ void CvPlayerAI::write(FDataStreamBase* pStream)
 	CvPlayer::write(pStream);	// write base class data first
 
 	/// post load function - start - Nightinggale
-	uint iFixCount = 1;
+	uint iFixCount = 2;
 	/// post load function - end - Nightinggale
 
 	uint uiFlag=4;

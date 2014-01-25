@@ -4533,7 +4533,7 @@ void CvPlot::updateCityRoute(bool bUpdatePlotGroup) /// PlotGroup - Nightinggale
 	{
 		FAssertMsg(isOwned(), "isOwned is expected to be true");
 
-		eCityRoute = GET_PLAYER(getOwnerINLINE()).getBestRoute();
+		eCityRoute = GET_PLAYER(getOwnerINLINE()).getBestRoute(this);
 
 		if (eCityRoute == NO_ROUTE)
 		{

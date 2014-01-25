@@ -4391,6 +4391,10 @@ void CvGame::setFinalInitialized(bool bNewValue)
 					GET_TEAM((TeamTypes)iI).AI_updateAreaStragies();
 				}
 			}
+			/// PlotGroup - start - Nightinggale
+			// set up plotgroups etc
+			postLoadGameFixes(-1);
+			/// PlotGroup - end - Nightinggale
 		}
 	}
 }
