@@ -358,6 +358,12 @@ void CvPlot::doTurn()
 	// XXX
 
 	m_iCrumbs = (m_iCrumbs * 95) / 100;
+
+	/// unit plot cache - start - Nightinggale
+#ifdef FASSERT_ENABLE
+	checkUnitCache();
+#endif
+	/// unit plot cache - end - Nightinggale
 }
 
 
@@ -7061,6 +7067,10 @@ void CvPlot::addUnit(CvUnit* pUnit, bool bUpdate)
 		m_units.insertAtEnd(pUnit->getIDInfo());
 	}
 
+	/// unit plot cache - start - Nightinggale
+	changeUnitCache(1, pUnit);
+	/// unit plot cache - end - Nightinggale
+
 	if (bUpdate)
 	{
 		updateCenterUnit();
@@ -7089,6 +7099,10 @@ void CvPlot::removeUnit(CvUnit* pUnit, bool bUpdate)
 			pUnitNode = nextUnitNode(pUnitNode);
 		}
 	}
+
+	/// unit plot cache - start - Nightinggale
+	changeUnitCache(-1, pUnit);
+	/// unit plot cache - end - Nightinggale
 
 	if (bUpdate)
 	{
@@ -9222,3 +9236,59 @@ void CvPlot::addTradeNetwork(PlayerTypes ePlayer)
 }
 
 /// PlotGroup - end - Nightinggale
+
+/// unit plot cache - start - Nightinggale
+#ifdef FASSERT_ENABLE
+// check if cache is consistent with the actual number
+// don't waste time on this unless asserts are enabled
+void CvPlot::checkUnitCache()
+{
+	PlayerArray<int> aOldCache;
+
+	if (m_aiUnitCache.isAllocated())
+	{
+		for (int iPlayer = 0; iPlayer < MAX_PLAYERS; iPlayer++)
+		{
+			aOldCache.set(m_aiUnitCache.get(iPlayer), iPlayer);
+		}
+	}
+
+	rebuildUnitCache();
+
+	if (m_aiUnitCache.isAllocated() || aOldCache.isAllocated())
+	{
+		for (int iPlayer = 0; iPlayer < MAX_PLAYERS; iPlayer++)
+		{
+			FAssert(m_aiUnitCache.get(iPlayer) == aOldCache.get(iPlayer));
+		}
+	}
+}
+#endif
+
+// function to change units in cache.
+// restrictions on which units to count can be added here.
+// argument i tells if the unit should be added (1) or removed (-1).
+// adding restrictions might demand more calls to this function where units turns these restrictions on/off.
+// SAVEGAMES: cache isn't saved and is recalculated on load. Changes will not affect savegame compatibility.
+void CvPlot::changeUnitCache(int i, const CvUnit* pUnit)
+{
+	m_aiUnitCache.add(i, pUnit->getOwnerINLINE());
+}
+
+void CvPlot::rebuildUnitCache()
+{
+	m_aiUnitCache.resetContent();
+
+	CLLNode<IDInfo>* pUnitNode;
+	CvUnit* pLoopUnit;
+
+	pUnitNode = headUnitNode();
+	while (pUnitNode != NULL)
+	{
+		pLoopUnit = ::getUnit(pUnitNode->m_data);
+		pUnitNode = nextUnitNode(pUnitNode);
+
+		changeUnitCache(1, pLoopUnit);
+	}
+}
+/// unit plot cache - start - Nightinggale

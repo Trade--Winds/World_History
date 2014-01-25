@@ -60,9 +60,20 @@ public:
 		SAFE_DELETE_ARRAY(tArray);
 	}
 
-	void reset()
+	inline void reset()
 	{
 		SAFE_DELETE_ARRAY(tArray);
+	}
+
+	inline void resetContent()
+	{
+		if (isAllocated())
+		{
+			for (int iIterator = 0; iIterator < m_iLength; ++iIterator)
+			{
+				tArray[iIterator] = 0;
+			}
+		}
 	}
 
 	inline bool isAllocated() const
@@ -103,10 +114,7 @@ public:
 				return;
 			}
 			tArray = new T[m_iLength];
-			for (int iIterator = 0; iIterator < m_iLength; ++iIterator)
-			{
-				tArray[iIterator] = 0;
-			}
+			resetContent();
 		}
 		tArray[iIndex] = value;
 	}
@@ -242,4 +250,12 @@ class BonusArray: public JustInTimeArray<T>
 public:
     BonusArray() : JustInTimeArray<T>(GC.getNumBonusInfos()){};
 	void init() { JustInTimeArray<T>::init(GC.getNumBonusInfos());}
+};
+
+template<class T>
+class PlayerArray: public JustInTimeArray<T>
+{
+public:
+	PlayerArray() : JustInTimeArray<T>(MAX_PLAYERS){};
+	void init() {  JustInTimeArray<T>::init(MAX_PLAYERS);}
 };

@@ -551,6 +551,18 @@ public:
 protected:
 	int* m_aiPlotGroup;			// IDs - keep as int
 	/// PlotGroup - end - Nightinggale
+
+	/// unit plot cache - start - Nightinggale
+public:
+	int getUnitCache(PlayerTypes ePlayer) const;
+	void changeUnitCache(int i, const CvUnit* pUnit);
+	void rebuildUnitCache();
+#ifdef FASSERT_ENABLE
+	void checkUnitCache();
+#endif
+protected:
+	PlayerArray<int> m_aiUnitCache;
+	/// unit plot cache - end - Nightinggale
 };
 
 
@@ -568,5 +580,12 @@ inline CvPlotGroup* CvPlot::getOwnerPlotGroup() const
 	return getPlotGroup(getOwnerINLINE());
 }
 /// PlotGroup - end - Nightinggale
+
+/// unit plot cache - start - Nightinggale
+inline int CvPlot::getUnitCache(PlayerTypes ePlayer) const
+{
+	return m_aiUnitCache.get(ePlayer);
+}
+/// unit plot cache - end - Nightinggale
 
 #endif
