@@ -60,11 +60,14 @@ public:
 		SAFE_DELETE_ARRAY(tArray);
 	}
 
+	// use resetContent() if you want to write to the array
+	// this way memory will not be freed and reallocated (slow process)
 	inline void reset()
 	{
 		SAFE_DELETE_ARRAY(tArray);
 	}
 
+	// reset content of an array if it is allocated
 	inline void resetContent()
 	{
 		if (isAllocated())
@@ -210,6 +213,14 @@ class YieldArray: public JustInTimeArray<T>
 public:
 	YieldArray() : JustInTimeArray<T>(NUM_YIELD_TYPES){};
 	void init() {  JustInTimeArray<T>::init(NUM_YIELD_TYPES);}
+};
+
+template<class T>
+class YieldCargoArray: public JustInTimeArray<T>
+{
+public:
+	YieldCargoArray() : JustInTimeArray<T>(NUM_CARGO_YIELD_TYPES){};
+	void init() {  JustInTimeArray<T>::init(NUM_CARGO_YIELD_TYPES);}
 };
 
 template<class T>

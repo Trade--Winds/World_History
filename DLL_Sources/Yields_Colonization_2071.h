@@ -100,6 +100,8 @@ enum DllExport YieldTypes
 	YIELD_IDEAS = YIELD_RESEARCH,
 	YIELD_CULTURE = YIELD_INFLUENCE,
     YIELD_GOLD = YIELD_CREDITS,
+
+	NUM_CARGO_YIELD_TYPES = YIELD_HAMMERS,
 };
 
 static inline bool YieldGroup_AI_Sell(YieldTypes eYield)

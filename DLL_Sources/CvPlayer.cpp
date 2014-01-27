@@ -2444,14 +2444,7 @@ void CvPlayer::doTurn()
 	doCrosses();
 
 	/// PlotGroup - start - Nightinggale
-	for (int iPlotGroup = 0; iPlotGroup < getNumPlotgroups(); iPlotGroup++)
-	{
-		for (int iCity = 0; iCity < getNumCitiesInPlotgroup(iPlotGroup); iCity++)
-		{
-			CvCity* pCity = getCity(iPlotGroup, iCity);
-			pCity->doTurn();
-		}
-	}
+	doCities();
 	/// PlotGroup - end - Nightinggale
 
 	verifyCivics();
@@ -9533,6 +9526,179 @@ void CvPlayer::doCrosses()
 	}
 	//TKe
 }
+
+/// PlotGroup - start - Nightinggale
+void CvPlayer::doCities()
+{
+	// allocate here to ensure the memory is only allocated once
+	// memory allocation is slow
+	YieldCargoArray<int> aiExcessYield;
+	YieldCargoArray<int> aiYieldDemand;
+	YieldCargoArray<int> aiYieldSold;
+
+	int iProfit = 0;
+
+	for (int iPlotGroup = 0; iPlotGroup < getNumPlotgroups(); iPlotGroup++)
+	{
+		int iMarketCap = 0;
+		int iSold = 0;
+		aiExcessYield.resetContent();
+		aiYieldDemand.resetContent();
+		aiYieldSold.resetContent();
+
+		YieldTypes eYieldMax = NO_YIELD;
+		YieldTypes eYieldMin = NUM_CARGO_YIELD_TYPES;
+
+		// do turn and collect info from all cities in plotgroup
+		for (int iCity = 0; iCity < getNumCitiesInPlotgroup(iPlotGroup); iCity++)
+		{
+			CvCity* pCity = getCity(iPlotGroup, iCity);
+			pCity->doTurn();
+
+			// save yield related data from city
+			iMarketCap += pCity->getMarketCap();
+
+			for (int iYield = 0; iYield < NUM_CARGO_YIELD_TYPES; ++iYield)
+			{
+				YieldTypes eYield = (YieldTypes)iYield;
+				if (!pCity->isCustomHouseNeverSell(eYield))
+				{
+					int iExcess = pCity->getYieldStored(eYield) - pCity->getCustomHouseSellThreshold(eYield);
+					if (iExcess > 0)
+					{
+						aiExcessYield.add(iExcess, iYield);
+					}
+				}
+				aiYieldDemand.add(pCity->getYieldDemand(eYield), eYield);
+			}
+		}
+
+		// sell yields on market in the plotgroup
+		// the approach is as follows
+		// the loop locates the highest priced yield, which has both demand and is for sale
+		// the yield is sold and the cap is lowered
+		// repeat loop until cap is used up or there is no more for sale to meet demands
+		if (iMarketCap && aiExcessYield.isAllocated() && aiYieldDemand.isAllocated())
+		{
+			for (int iYield = 0; iYield < NUM_CARGO_YIELD_TYPES; ++iYield)
+			{
+				// divide all demands by 100
+				aiYieldDemand.set(aiYieldDemand.get(iYield)/100, iYield);
+			}
+
+			while (iMarketCap)
+			{
+				int iMaxPrice = 0;
+				YieldTypes eYieldHighest = NO_YIELD;
+				for (int iYield = 0; iYield < NUM_CARGO_YIELD_TYPES; ++iYield)
+				{
+					YieldTypes eYield = (YieldTypes)iYield;
+
+					if (aiYieldDemand.get(iYield) > 0 && aiExcessYield.get(iYield) > 0)
+					{
+						int iBuyPrice = getYieldBuyPrice(eYield);
+						if (iBuyPrice > iMaxPrice)
+						{
+							iMaxPrice = iBuyPrice;
+							eYieldHighest = eYield;
+							if (eYieldMax < eYield)
+							{
+								// keep track of the highest yield ID being sold
+								eYieldMax = eYield;
+							}
+							if (eYieldMin > eYield)
+							{
+								// keep track of the lowest yield ID being sold
+								eYieldMin = eYield;
+							}
+						}
+					}
+				}
+
+				if (eYieldHighest == NO_YIELD)
+				{
+					// no more yields for sale, which matches demand
+					break;
+				}
+
+				int iAvailable = std::min(aiYieldDemand.get(eYieldHighest), aiExcessYield.get(eYieldHighest));
+				if (iAvailable > iMarketCap)
+				{
+					// the demand is lower than availble yields. Fully supply the demand
+					iAvailable = iMarketCap;
+				} else {
+					iMarketCap -= iAvailable;
+				}
+
+				aiYieldDemand.set(0, eYieldHighest);
+				iProfit += iAvailable * iMaxPrice;
+				iMarketCap -= iAvailable;
+
+				iSold += iAvailable;
+				aiYieldSold.add(iAvailable, eYieldHighest);
+
+				if (iMarketCap == 0)
+				{
+					break;
+				}
+			}
+
+			// remove sold yields from cities
+			if (iSold)
+			{
+				// if we want to store how much we sold domestically, then this is the place to increase the counter
+				// loop though aiYieldSold and add accordingly
+				// it has to be before the city loop as that loop modifies aiYieldSold
+
+				for (int iCity = 0; iCity < getNumCitiesInPlotgroup(iPlotGroup); iCity++)
+				{
+					CvCity* pCity = getCity(iPlotGroup, iCity);
+
+					// loop from min to max of sold yieldtypes
+					// we know the rest of the yields will not be sold. This mean we shouldn't waste time with them. 
+					for (int iYield = eYieldMin; iYield <= eYieldMax; ++iYield)
+					{
+						YieldTypes eYield = (YieldTypes)iYield;
+						int iSoldYield = aiYieldSold.get(iYield);
+						if (iSoldYield && !pCity->isCustomHouseNeverSell(eYield))
+						{
+							int iExcess = pCity->getYieldStored(eYield) - pCity->getCustomHouseSellThreshold(eYield);
+							if (iExcess > 0)
+							{
+								int iRemove = std::min(iExcess, iSoldYield);
+								aiYieldSold.add(-iRemove, iYield);
+								iSold -= iRemove;
+
+								pCity->changeYieldStored((YieldTypes)iYield, -iRemove);
+
+								if (iSold == 0)
+								{
+									// removed everything sold
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+			FAssert(iSold == 0);
+		}
+	}
+	if (iProfit != 0)
+	{
+		// TODO message and trade points
+
+		// get a city because a city name
+		// we need a proper message eventually
+		int iLoop;
+		CvCity* pCity = firstCity(&iLoop);
+
+		changeGold(iProfit);
+		CvWString szBuffer = gDLL->getText("TXT_KEY_GOODS_DOMESTIC_SOLD", pCity->getNameKey(), iProfit);
+		gDLL->getInterfaceIFace()->addMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, NULL, MESSAGE_TYPE_MINOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
+	}
+}
+/// PlotGroup - end - Nightinggale
 
 void CvPlayer::doAdvancedStartAction(AdvancedStartActionTypes eAction, int iX, int iY, int iData, bool bAdd)
 {

@@ -931,6 +931,9 @@ protected:
 	void doGold();
 	void doBells();
 	void doCrosses();
+	/// PlotGroup - start - Nightinggale
+	void doCities();
+	/// PlotGroup - end - Nightinggale
 	void doWarnings();
 	void doEvents();
 	void doPrices();

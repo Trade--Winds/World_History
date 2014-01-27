@@ -764,23 +764,16 @@ public:
 	int getBuildingYieldDemand(YieldTypes eYield) const;
 	int getUnitYieldDemand(YieldTypes eYield) const;
 	// R&R, Androrc, Domestic Market
-	int getYieldBuyPrice(YieldTypes eYield) const;
 	int getYieldDemand(YieldTypes eYield) const;
 	//Androrc End
 	int getMarketCap() const;
 protected:
-	void doPrices(); // R&R, Androrc, Domestic Market
-	void initPrices();
-	void setYieldBuyPrice(YieldTypes eYield, int iPrice);
-
 	void setUnitYieldDemand();
 	void setUnitYieldDemand(UnitTypes eUnit, bool const bRemove = false);
 
 	YieldArray<int> m_aiBuildingYieldDemands; // nosave cache
 	YieldArray<int> m_aiUnitYieldDemands; // nosave cache
 	int m_iMarketCap; // nosave cache
-
-	YieldArray<int> m_aiYieldBuyPrice;
 	// domestic yield demand - end - Nightinggale
 
 	// R&R, ray, finishing Custom House Screen START
@@ -886,7 +879,7 @@ inline int CvCity::getUnitYieldDemand(YieldTypes eYield) const
 
 inline int CvCity::getYieldDemand(YieldTypes eYield) const
 {
-	return (getBuildingYieldDemand(eYield) + getUnitYieldDemand(eYield)) / 100;
+	return (getBuildingYieldDemand(eYield) + getUnitYieldDemand(eYield));
 }
 
 inline int CvCity::getMarketCap() const
@@ -894,21 +887,6 @@ inline int CvCity::getMarketCap() const
 	return m_iMarketCap;
 }
 // domestic yield demand - end - Nightinggale
-
-//Androrc Domestic Market
-// Modified by Nightinggale
-inline int CvCity::getYieldBuyPrice(YieldTypes eYield) const
-{
-	return m_aiYieldBuyPrice.get(eYield);
-}
-
-// R&R, ray, adjustment Domestic Markets
-// No messages, because too many messages get annoying
-inline void CvCity::setYieldBuyPrice(YieldTypes eYield, int iPrice)
-{
-	m_aiYieldBuyPrice.set(iPrice, eYield);
-}
-//Androrc Domestic Market END
 
 // transport feeder - start - Nightinggale
 inline bool CvCity::isAutoImportStopped(YieldTypes eYield) const

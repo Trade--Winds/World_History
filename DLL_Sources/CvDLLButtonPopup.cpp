@@ -4315,7 +4315,7 @@ bool CvDLLButtonPopup::launchDomesticMarketPopup(CvPopup* pPopup, CvPopupInfo &i
 			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, L"", kYield.getButton(), -1, WIDGET_HELP_YIELD, iYield);
 			//gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, "9", 0, -1, WIDGET_GENERAL, MAX_INT);
 			gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldStored((YieldTypes) iYield)));
-			gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldBuyPrice((YieldTypes) iYield)));
+			gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_NUMBER", kPlayer.getYieldBuyPrice((YieldTypes) iYield)));
 			gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldDemand((YieldTypes) iYield)));
 			//gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldStored((YieldTypes) iYield)), 0, -1, WIDGET_GENERAL, MAX_INT); 
 			//gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_NUMBER", pCity->getYieldBuyPrice((YieldTypes) iYield)), 0, -1, WIDGET_GENERAL, MAX_INT); 

@@ -67,6 +67,8 @@ enum DllExport YieldTypes
 
 	// Setup for which yields to have certain hardcoded functions
 	YIELD_FROM_ANIMALS = YIELD_GRAIN,
+
+	NUM_CARGO_YIELD_TYPES = YIELD_HAMMERS,
 };
 
 static inline bool YieldGroup_AI_Sell(YieldTypes eYield)

@@ -425,8 +425,6 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 		}
 	}
 
-	this->initPrices(); // R&R, Androrc, Domestic Market
-
 	UpdateBuildingAffectedCache(); // building affected cache - Nightinggale
 
 	GET_PLAYER(getOwnerINLINE()).AI_invalidateDistanceMap();
@@ -826,8 +824,6 @@ void CvCity::doTurn()
 	doPlotCulture(false, getOwnerINLINE(), getCultureRate());
 
 	doProduction(bAllowNoProduction);
-
-	doPrices(); // R&R, Androrc Domestic Market
 
 	doDecay();
 
@@ -7376,11 +7372,6 @@ void CvCity::doYields()
     int iArmorWeight = 0;
     int iBestArmorWeight = 0;
 
-	// custom house - start - Nightinggale
-	int iTotalProfitFromDomesticMarket = 0;
-	int iMarketCap = this->getMarketCap();
-	// custom house - end - Nightinggale
-
 	for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
 	{
 		YieldTypes eYield = (YieldTypes) iYield;
@@ -7721,31 +7712,6 @@ void CvCity::doYields()
 
 			if (GC.getYieldInfo(eYield).isCargo())
 			{
-				// custom house - start - Nightinggale
-				if (iMarketCap > 0 && !this->isCustomHouseNeverSell(eYield))
-				{
-					int iDemand = getYieldDemand(eYield);
-					if (iDemand > 0)
-					{
-						int iStored = getYieldStored(eYield);
-						int iThreshold = getCustomHouseSellThreshold(eYield);
-						if (iStored > iThreshold)
-						{
-							int iAmount = std::min(std::min(iMarketCap, iDemand), iStored - iThreshold);
-
-							int iProfit = iAmount * this->getYieldBuyPrice(eYield);
-
-							if (iProfit > 0)
-							{
-								iMarketCap -= iAmount;
-								changeYieldStored(eYield, -iAmount);
-								iTotalProfitFromDomesticMarket += iProfit;
-							}
-						}
-					}
-				}
-				// custom house - end - Nightinggale
-
 			    ///TKs Med
 				int iExcess = getYieldStored(eYield) - getMaxYieldCapacity(eYield);
 				///Tke
@@ -7855,15 +7821,6 @@ void CvCity::doYields()
     {
        setSelectedArmor(eSelectedArmor);
     }
-
-	// custom house - start - Nightinggale
-	if (iTotalProfitFromDomesticMarket != 0)
-	{
-		GET_PLAYER(getOwnerINLINE()).changeGold(iTotalProfitFromDomesticMarket);
-		CvWString szBuffer = gDLL->getText("TXT_KEY_GOODS_DOMESTIC_SOLD", getNameKey(), iTotalProfitFromDomesticMarket);
-		gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, NULL, MESSAGE_TYPE_MINOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
-	}
-	// custom house - end - Nightinggale
 }
 ///TKe
 void CvCity::doCulture()
@@ -8466,7 +8423,15 @@ void CvCity::read(FDataStreamBase* pStream)
 	// R&R, ray, finishing Custom House Screen
 	ma_aiCustomHouseSellThreshold.read(pStream, arrayBitmap & SAVE_BIT_CUSTOM_HOUSE_SELL_THRESHOLD);
 	ma_aiCustomHouseNeverSell.read(    pStream, arrayBitmap & SAVE_BIT_CUSTOM_HOUSE_NEVER_SELL);
-	m_aiYieldBuyPrice.read(pStream, uiFlag > 3);
+	if (uiFlag == 4)
+	{
+		// saved prices are no longer needed. Skip past them.
+		for (int i = 0; i < NUM_YIELD_TYPES; i++)
+		{
+			int iBuffer;
+			pStream->Read(&iBuffer);
+		}
+	}
 	// R&R, ray, finishing Custom House Screen END
 
 	// Teacher List - start - Nightinggale
@@ -8501,13 +8466,6 @@ void CvCity::read(FDataStreamBase* pStream)
 		m_aBuildingYieldChange.push_back(kChange);
 	}
 
-	// domestic market - start - Nightinggale
-	if (uiFlag < 4)
-	{
-		this->initPrices();
-	}
-	// domestic market - end - Nightinggale
-
 	// set cache
 	UpdateBuildingAffectedCache(); // building affected cache - Nightinggale
 	this->setUnitYieldDemand(); // // domestic yield demand - Nightinggale
@@ -8516,7 +8474,7 @@ void CvCity::read(FDataStreamBase* pStream)
 
 void CvCity::write(FDataStreamBase* pStream)
 {
-	uint uiFlag=4;
+	uint uiFlag=5;
 	pStream->Write(uiFlag);		// flag for expansion
 
 	// just-in-time yield arrays - start - Nightinggale
@@ -8652,7 +8610,6 @@ void CvCity::write(FDataStreamBase* pStream)
 	// R&R, ray, finishing Custom House Screen
 	ma_aiCustomHouseSellThreshold.write(pStream, arrayBitmap & SAVE_BIT_CUSTOM_HOUSE_SELL_THRESHOLD);
 	ma_aiCustomHouseNeverSell.write    (pStream, arrayBitmap & SAVE_BIT_CUSTOM_HOUSE_NEVER_SELL);
-	m_aiYieldBuyPrice.write(pStream, true);
 	// R&R, ray, finishing Custom House Screen END
 
 	// Teacher List - start - Nightinggale
@@ -11996,6 +11953,7 @@ void CvCity::setUnitYieldDemand(UnitTypes eUnit, const bool bRemove)
 }
 // domestic yield demand - end - Nightinggale
 
+#if 0
 // R&R, ray, adjustment Domestic Markets
 // modified by Nightinggale
 void CvCity::doPrices()
@@ -12033,6 +11991,7 @@ void CvCity::initPrices()
 		setYieldBuyPrice(eYield, iBuyPrice);
 	}
 }
+#endif
 //Androrc End
 
 /// PlotGroup - start - Nightinggale
