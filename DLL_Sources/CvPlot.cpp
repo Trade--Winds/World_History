@@ -42,7 +42,10 @@ CvPlot::CvPlot()
 	m_aiVisibilityCount = NULL;
 	m_aiRevealedOwner = NULL;
 	m_abRiverCrossing = NULL;
-	m_abRevealed = NULL;
+/// player bitmap - start - Nightinggale
+	//m_abRevealed = NULL;
+	m_bmRevealed = 0;
+/// player bitmap - end - Nightinggale
 	m_aeRevealedImprovementType = NULL;
 	m_aeRevealedRouteType = NULL;
 	m_paiBuildProgress = NULL;
@@ -108,7 +111,10 @@ void CvPlot::uninit()
 	SAFE_DELETE_ARRAY(m_aiRevealedOwner);
 
 	SAFE_DELETE_ARRAY(m_abRiverCrossing);
-	SAFE_DELETE_ARRAY(m_abRevealed);
+	//SAFE_DELETE_ARRAY(m_abRevealed);
+	/// player bitmap - start - Nightinggale
+	m_bmRevealed = 0;
+	/// player bitmap - end - Nightinggale
 
 	SAFE_DELETE_ARRAY(m_aeRevealedImprovementType);
 	SAFE_DELETE_ARRAY(m_aeRevealedRouteType);
@@ -6132,12 +6138,18 @@ bool CvPlot::isRevealed(TeamTypes eTeam, bool bDebug) const
 		return true;
 	}
 
+	/// player bitmap - start - Nightinggale
+	return HasBit(m_bmRevealed, eTeam);
+	/// player bitmap - end - Nightinggale
+
+	/*
 	if (NULL == m_abRevealed)
 	{
 		return false;
 	}
 
 	return m_abRevealed[eTeam];
+	*/
 }
 
 
@@ -6152,6 +6164,16 @@ void CvPlot::setRevealed(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly, Tea
 
 	if (isRevealed(eTeam, false) != bNewValue)
 	{
+		/// player bitmap - start - Nightinggale
+		if (bNewValue)
+		{
+			SetBit(m_bmRevealed, eTeam);
+		} else {
+			ClrBit(m_bmRevealed, eTeam);
+		}
+		/// player bitmap - end - Nightinggale
+
+		/*
 		if (NULL == m_abRevealed)
 		{
 			m_abRevealed = new bool[MAX_TEAMS];
@@ -6162,6 +6184,7 @@ void CvPlot::setRevealed(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly, Tea
 		}
 
 		m_abRevealed[eTeam] = bNewValue;
+		*/
 
 		if (area())
 		{
@@ -7508,13 +7531,35 @@ void CvPlot::read(FDataStreamBase* pStream)
 		pStream->Read(cCount, m_abRiverCrossing);
 	}
 
+	/*
 	SAFE_DELETE_ARRAY(m_abRevealed);
 	pStream->Read(&cCount);
 	if (cCount > 0)
 	{
 		m_abRevealed = new bool[cCount];
 		pStream->Read(cCount, m_abRevealed);
+	}*/
+	/// player bitmap - start - Nightinggale
+	if (uiFlag >= 2)
+	{
+		pStream->Read(&m_bmRevealed);
+	} else {
+		pStream->Read(&cCount);
+		if (cCount > 0)
+		{
+			// convert old format to the new bitmap
+			for (int i = 0; i < cCount; i++)
+			{
+				bool bTemp;
+				pStream->Read(&bTemp);
+				if (bTemp)
+				{
+					SetBit(m_bmRevealed, i);
+				}
+			}
+		}
 	}
+	/// player bitmap - end - Nightinggale
 
 	SAFE_DELETE_ARRAY(m_aeRevealedImprovementType);
 	pStream->Read(&cCount);
@@ -7607,7 +7652,7 @@ void CvPlot::write(FDataStreamBase* pStream)
 {
 	uint iI;
 
-	uint uiFlag=1;
+	uint uiFlag=2;
 	pStream->Write(uiFlag);		// flag for expansion
 
 	pStream->Write(m_iX);
@@ -7726,6 +7771,7 @@ void CvPlot::write(FDataStreamBase* pStream)
 		pStream->Write(NUM_DIRECTION_TYPES, m_abRiverCrossing);
 	}
 
+	/*
 	if (NULL == m_abRevealed)
 	{
 		pStream->Write((char)0);
@@ -7735,6 +7781,10 @@ void CvPlot::write(FDataStreamBase* pStream)
 		pStream->Write((char)MAX_TEAMS);
 		pStream->Write(MAX_TEAMS, m_abRevealed);
 	}
+	*/
+	/// player bitmap - start - Nightinggale
+	pStream->Write(m_bmRevealed);
+	/// player bitmap - end - Nightinggale
 
 	if (NULL == m_aeRevealedImprovementType)
 	{

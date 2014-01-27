@@ -153,6 +153,26 @@ __forceinline DWORD FtoDW( float f ) { return *(DWORD*)&f; }
 __forceinline float DWtoF( dword n ) { return *(float*)&n; }
 __forceinline float MaxFloat() { return DWtoF(0x7f7fffff); }
 
+/// bitmap - start - Nightinggale
+template <typename T>
+static inline bool HasBit(const T x, const int y)
+{
+	return (x & ((T)1U << y)) != 0;
+}
+
+template <typename T>
+static inline T SetBit(T &x, const int y)
+{
+   return x = (T)(x | ((T)1U << y));
+}
+
+template <typename T>
+static inline T ClrBit(T &x, const int y)
+{
+	return x = (T)(x & ~((T)1U << y));
+}
+/// bitmap - end - Nightinggale
+
 //
 // Boost Python
 //

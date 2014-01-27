@@ -31,6 +31,10 @@ typedef bool (*PlotUnitFunc)(CvUnit* pUnit, int iData1, int iData2);
 
 class CvPlot
 {
+/// player bitmap - start - Nightinggale
+protected:
+	PlayerBitmap m_bmRevealed;
+/// player bitmap - end - Nightinggale
 
 public:
 	CvPlot();
@@ -488,7 +492,6 @@ protected:
 	char* m_aiRevealedOwner;
 
 	bool* m_abRiverCrossing;	// bit vector
-	bool* m_abRevealed;
 
 	short* /*ImprovementTypes*/ m_aeRevealedImprovementType;
 	short* /*RouteTypes*/ m_aeRevealedRouteType;

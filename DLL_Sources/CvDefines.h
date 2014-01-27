@@ -36,6 +36,16 @@
 #define MAX_PLAYERS												(CvGlobals::getInstance().getMaxCivPlayers())
 #endif
 
+/// player bitmap - start - Nightinggale
+// allocate 32 or 64 bools for players
+// MAX_PLAYERS could be moved to the top of the file and made mod specific
+#if MAX_PLAYERS > 32
+typedef unsigned __int64 PlayerBitmap;
+#else
+typedef unsigned int PlayerBitmap;
+#endif
+/// player bitmap - end - Nightinggale
+
 #define MAX_TEAMS													(MAX_PLAYERS)
 
 // Char Count limit for edit boxes
