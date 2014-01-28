@@ -207,6 +207,9 @@ void CyInfoPythonInterface3()
 		.def("getTripLength", &CvEuropeInfo::getTripLength, "int ()")
 		.def("getMinLandDistance", &CvEuropeInfo::getMinLandDistance, "int ()")
 		.def("getWidthPercent", &CvEuropeInfo::getWidthPercent, "int ()")
+		///Tks Med **TradeRoutes**
+		.def("getTradeRouteButton", &CvEuropeInfo::getTradeRouteButton, "string ()")
+		///TKe
 		;
 	python::class_<CvAssetInfoBase>("CvAssetInfoBase")
 		.def("setTag", &CvAssetInfoBase::setTag, "void (string)")

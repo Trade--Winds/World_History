@@ -3522,7 +3522,14 @@ EuropeTypes CvPlot::getEurope() const
 
 
     ///TKe
-	return (EuropeTypes)m_eEurope;
+	if (m_eEurope != NO_EUROPE)
+	{
+		return (EuropeTypes)m_eEurope;
+	}
+	else
+	{
+		return NO_EUROPE;
+	}
 }
 
 void CvPlot::setEurope(EuropeTypes eEurope)

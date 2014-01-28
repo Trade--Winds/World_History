@@ -1070,6 +1070,23 @@ void CyUnit::setBarbarian(bool bNewValue)
 		m_pUnit->setBarbarian(bNewValue);
 }
 // < JAnimals Mod End >
+
+//TKs Med **TradeRoute**
+//canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, TradeRouteTypes eTradeRouteType, bool bAIForce, EuropeTypes eEuropeTradeRoute)
+bool CyUnit::canCrossOcean(CyPlot* pPlot, int /*UnitTravelStates*/ eNewState, int /*TradeRouteTypes*/ eTradeRouteType, bool bAIForce, int /*EuropeTypes*/ eEuropeTradeRoute)
+{
+	return m_pUnit ? m_pUnit->canCrossOcean(pPlot->getPlot(), (UnitTravelStates)eNewState, (TradeRouteTypes)eTradeRouteType, bAIForce, (EuropeTypes)eEuropeTradeRoute) : false;
+}
+int /*EuropeTypes*/ CyUnit::getUnitTradeMarket()
+{
+	return m_pUnit ? m_pUnit->getUnitTradeMarket() : NO_EUROPE;
+}
+void CyUnit::setUnitTradeMarket(int /*EuropeTypes*/ eMarket)
+{
+	if (m_pUnit)
+		m_pUnit->setUnitTradeMarket((EuropeTypes) eMarket);
+}
+
 // Python Helper Functions
 void CyUnit::centerCamera()
 {

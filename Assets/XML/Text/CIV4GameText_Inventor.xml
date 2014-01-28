@@ -1186,8 +1186,8 @@
     <Spanish>Vender: %d1_Price [ICON_GOLD]/ Comprar: %d2_Price [ICON_GOLD]</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_BUY_AND_SELL_YIELD_SPICE_ROUTE</Tag>
-    <English>Spice Route- Sell: %d1_Price[ICON_GOLD] / Buy: %d2_Price[ICON_GOLD]</English>
+    <Tag>TXT_KEY_BUY_AND_SELL_YIELD_TRADE_SCREEN</Tag>
+    <English>%s1- Sell: %d2_Price[ICON_GOLD] / Buy: %d3_Price[ICON_GOLD]</English>
     <French>Vendre : %d1_Price[ICON_GOLD] / Acheter : %d2_Price[ICON_GOLD]</French>
     <German>Verkaufen: %d1_Price[ICON_GOLD] / Kaufen: %d2_Price[ICON_GOLD]</German>
     <Italian>Vendere: %d1_Price[ICON_GOLD] / Comperare: %d2_Price[ICON_GOLD]</Italian>
@@ -1210,8 +1210,8 @@
     <Spanish>Vender: %d2_Price [ICON_GOLD]/ Comprar: %d3_Price [ICON_GOLD]</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_BUY_AND_SELL_YIELD_SPICE_ROUTE_AMOUNT</Tag>
-    <English>Spice Route (%d1_Amount[ICON_GOLD])- Sell: %d2_Price[ICON_GOLD] / Buy: %d3_Price[ICON_GOLD]</English>
+    <Tag>TXT_KEY_BUY_AND_SELL_YIELD_TRADE_SCREEN_AMOUNT</Tag>
+    <English>%s1 (%d2_Amount[ICON_GOLD])- Sell: %d3_Price[ICON_GOLD] / Buy: %d4_Price[ICON_GOLD]</English>
     <French>Vendre : %d2_Price[ICON_GOLD] / Acheter : %d3_Price[ICON_GOLD]</French>
     <German>Verkaufen: %d2_Price[ICON_GOLD] / Kaufen: %d3_Price[ICON_GOLD]</German>
     <Italian>Vendere: %d2_Price[ICON_GOLD] / Comperare: %d3_Price[ICON_GOLD]</Italian>

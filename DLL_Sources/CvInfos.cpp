@@ -2157,7 +2157,10 @@ bool CvControlInfo::read(CvXMLLoadUtility* pXML)
 CvCommandInfo::CvCommandInfo() :
 m_bConfirmCommand(false),
 m_bVisible(false),
-m_bAll(false)
+m_bAll(false),
+///TKs **TradeRoute**
+m_iEuropeTradeRoute(-1)
+//TKe
 {
 }
 
@@ -2183,6 +2186,12 @@ bool CvCommandInfo::getAll() const
 {
 	return m_bAll;
 }
+///Tk **TradeRoute**
+int CvCommandInfo::getEuropeTradeRoute() const
+{
+	return m_iEuropeTradeRoute;
+}
+//TKe
 bool CvCommandInfo::read(CvXMLLoadUtility* pXML)
 {
 	CvString szTextVal;
@@ -2193,6 +2202,11 @@ bool CvCommandInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bConfirmCommand, "bConfirmCommand");
 	pXML->GetChildXmlValByName(&m_bVisible, "bVisible");
 	pXML->GetChildXmlValByName(&m_bAll, "bAll");
+	///TK **TradeRoute**
+	pXML->GetChildXmlValByName(szTextVal, "EuropeTradeRoute");
+	m_iEuropeTradeRoute = pXML->FindInInfoClass(szTextVal);
+	//pXML->GetChildXmlValByName(&m_iEuropeTradeRoute, "EuropeTradeRoute");
+	//TKe
 	return true;
 }
 //======================================================================================================
@@ -4147,7 +4161,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_abFreePromotions, "FreePromotions", GC.getNumPromotionInfos(), false);
 	///TK Med Viscos Mod
 	pXML->SetVariableListTagPair(&m_abProfessionsNotAllowed, "ProfessionsNotAllowed", GC.getNumProfessionInfos(), false);
-	pXML->SetVariableListTagPair(&m_aiTradeScreenPrice, "TradeScreenTypes", NUM_TRADE_SCREEN_TYPES, -1);
+	pXML->SetVariableListTagPair(&m_aiTradeScreenPrice, "TradeScreenTypes", GC.getNumEuropeInfos(), -1);
 	///TK end
 	pXML->GetChildXmlValByName(szTextVal, "LeaderPromotion");
 	m_iLeaderPromotion = pXML->FindInInfoClass(szTextVal);
@@ -4379,6 +4393,7 @@ m_aiRequiredYields(NULL),
 
 m_iCostToResearch(0),
 m_iAllowsTrait(NO_TRAIT),
+m_iAllowsTradeScreen(NO_EUROPE),
 m_iConvertsResearchYield(NO_YIELD),
 m_iDisallowsTech(NO_CIVIC),
 m_iFreeUnitFirstToResearch(NO_UNITCLASS),
@@ -4700,6 +4715,11 @@ int CvCivicInfo::getAllowsTrait() const
 {
 	return m_iAllowsTrait;
 }
+/// TK Med TradeScreen
+int CvCivicInfo::getAllowsTradeScreen() const
+{
+	return m_iAllowsTradeScreen;
+}
 
 int CvCivicInfo::getConvertsResearchYield() const
 {
@@ -4906,6 +4926,7 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iCostToResearch);
 
 	stream->Read(&m_iAllowsTrait);
+	stream->Read(&m_iAllowsTradeScreen);
 	stream->Read(&m_iConvertsResearchYield);
 	stream->Read(&m_iDisallowsTech);
 	stream->Read(&m_iFreeUnitFirstToResearch);
@@ -5073,6 +5094,7 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iCostToResearch);
 
 	stream->Write(m_iAllowsTrait);
+	stream->Write(m_iAllowsTradeScreen);
 	stream->Write(m_iConvertsResearchYield);
 	stream->Write(m_iCheaperPopulationGrowth);
 	stream->Write(m_iCenterPlotFoodBonus);
@@ -5175,6 +5197,9 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "AllowsTrait");
 	m_iAllowsTrait = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "AllowsTradeScreen");
+	m_iAllowsTradeScreen = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(szTextVal, "ConvertsResearchYield");
 	m_iConvertsResearchYield = pXML->FindInInfoClass(szTextVal);
@@ -8019,7 +8044,7 @@ bool CvGameSpeedInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iGreatGeneralPercent, "iGreatGeneralPercent");
 	pXML->GetChildXmlValByName(&m_iRevolutionTurns, "iRevolutionTurns");
 	///TKs Med
-	pXML->SetVariableListTagPair(&m_aiTradeRouteTripLength, "TradeRouteTripLengths", NUM_TRADE_SCREEN_TYPES, 0);
+	pXML->SetVariableListTagPair(&m_aiTradeRouteTripLength, "TradeRouteTripLengths", GC.getNumEuropeInfos(), 0);
 	///TKe
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"GameTurnInfos"))
 	{
@@ -9900,7 +9925,7 @@ bool CvYieldInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bIsMilitary, "bIsMilitary");
 	pXML->GetChildXmlValByName(&m_bIsNativeTrade, "bIsNativeTrade");
 	//pXML->GetChildXmlValByName(&m_bIsMustBeDiscovered, "bIsMustBeDiscovered");
-	pXML->SetVariableListTagPair(&m_aiTradeScreenPrice, "TradeScreenTypes", NUM_TRADE_SCREEN_TYPES, 0);
+	pXML->SetVariableListTagPair(&m_aiTradeScreenPrice, "TradeScreenTypes", GC.getNumEuropeInfos(), 0);
 	///Tke
 	pXML->GetChildXmlValByName(m_szIcon, "Icon");
 	pXML->GetChildXmlValByName(m_szHightlightIcon, "HightlightIcon");
@@ -11026,18 +11051,87 @@ CvEuropeInfo::CvEuropeInfo() :
 	m_iTripLength(0),
 	m_iMinLandDistance(0),
 	m_iWidthPercent(0),
-	///TKs Med
-	m_aiTradeScreens(NULL)
+	///TKs Med **TradeRoute**
+	m_iMaxLandCoverage(0),
+	m_bAIonly(false),
+	m_bRequiresTech(false),
+	m_bNoEuropePlot(false),
+	m_bLeaveFromBarbarianCity(false),
+	m_bLeaveFromForeignCity(false),
+	m_bLeaveFromOwnedCity(false),
+	m_bLeaveFromAnyCity(false),
+	m_iDefaultColor(NO_PLAYERCOLOR),
+	m_iCityRequiredBuilding(NO_BUILDINGCLASS),
+	m_aiTradeScreens(NULL),
+	m_aiDirectionArrays(NULL)
+
 {
 }
+
 CvEuropeInfo::~CvEuropeInfo()
 {
     SAFE_DELETE_ARRAY(m_aiTradeScreens);
+	SAFE_DELETE_ARRAY(m_aiDirectionArrays);
+}
+const char* CvEuropeInfo::getTradeRouteButton() const
+{
+	return m_szTradeRouteButton;
 }
 int CvEuropeInfo::getTradeScreensValid(int i) const
 {
 	return m_aiTradeScreens ? m_aiTradeScreens[i] : 0;
 }
+
+int CvEuropeInfo::getDefaultColor() const
+{
+	return m_iDefaultColor;
+}
+
+int CvEuropeInfo::getDirectionValid(int i) const
+{
+	return m_aiDirectionArrays ? m_aiDirectionArrays[i] : -1;
+}
+int CvEuropeInfo::getCityRequiredBuilding() const
+{
+	return m_iCityRequiredBuilding;
+}
+bool CvEuropeInfo::isLeaveFromBarbarianCity() const
+{
+	return m_bLeaveFromBarbarianCity;
+}
+bool CvEuropeInfo::isLeaveFromForeignCity() const
+{
+	return m_bLeaveFromForeignCity;
+}
+bool CvEuropeInfo::isLeaveFromOwnedCity() const
+{
+	return m_bLeaveFromOwnedCity;
+}
+bool CvEuropeInfo::isLeaveFromAnyCity() const
+{
+	return m_bLeaveFromAnyCity;
+}
+const char* CvEuropeInfo::getPythonTradeScreen() const
+{
+	return m_szPythonTradeScreen;
+}
+bool CvEuropeInfo::isRequiresTech() const
+{
+	return m_bRequiresTech;
+}
+bool CvEuropeInfo::isAIonly() const
+{
+	return m_bAIonly;
+}
+bool CvEuropeInfo::isNoEuropePlot() const
+{
+	return m_bNoEuropePlot;
+}
+int CvEuropeInfo::getMaxLandCoverage() const
+{
+	return m_iMaxLandCoverage;
+}
+
 ///Tke
 bool CvEuropeInfo::isStart() const
 {
@@ -11085,13 +11179,30 @@ bool CvEuropeInfo::read(CvXMLLoadUtility* pXML)
 		FAssertMsg(false, "Could not match direction string.");
 		m_iCardinalDirection = CARDINALDIRECTION_EAST;
 	}
-
+	pXML->GetChildXmlValByName(m_szTradeRouteButton, "Button");
 	pXML->GetChildXmlValByName(&m_bStart, "bStart");
 	pXML->GetChildXmlValByName(&m_iTripLength, "iTripLength");
 	pXML->GetChildXmlValByName(&m_iMinLandDistance, "iMinLandDistance");
 	pXML->GetChildXmlValByName(&m_iWidthPercent, "iWidthPercent");
 	///Tks Med
+	pXML->GetChildXmlValByName(&m_iMaxLandCoverage, "iMaxLandCoverage");
+	pXML->GetChildXmlValByName(&m_bAIonly, "bAIRoute");
+	pXML->GetChildXmlValByName(&m_bRequiresTech, "bRequiresTech");
+	pXML->GetChildXmlValByName(&m_bNoEuropePlot, "bNoEuropePlot");
+	pXML->GetChildXmlValByName(m_szPythonTradeScreen, "PythonTradeScreen");
+	//pXML->GetChildXmlValByName(szVal, "PythonTradeScreen");
+	pXML->GetChildXmlValByName(szVal, "CityRequiredBuildingClass");
+	m_iCityRequiredBuilding = pXML->FindInInfoClass(szVal);
+
+	pXML->GetChildXmlValByName(szVal, "DefaultColor");
+	m_iDefaultColor = pXML->FindInInfoClass(szVal);
+
+	pXML->GetChildXmlValByName(&m_bLeaveFromBarbarianCity, "bLeaveFromBarbarianCity");
+	pXML->GetChildXmlValByName(&m_bLeaveFromForeignCity, "bLeaveFromForeignCity");
+	pXML->GetChildXmlValByName(&m_bLeaveFromOwnedCity, "bLeaveFromOwnedCity");
+	pXML->GetChildXmlValByName(&m_bLeaveFromAnyCity, "bLeaveFromAnyCity");
 	pXML->SetVariableListTagPair(&m_aiTradeScreens, "TradeScreenTypes", NUM_TRADE_SCREEN_TYPES, 0);
+	pXML->SetVariableListTagPair(&m_aiDirectionArrays, "DirectionArrays", NUM_DIRECTION_TYPES, 0);
 	///TKe
 
 	return true;

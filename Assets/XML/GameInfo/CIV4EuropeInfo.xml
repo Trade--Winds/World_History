@@ -8,9 +8,18 @@
 	<EuropeInfos>
 		<EuropeInfo>
 			<Type>EUROPE_EAST</Type>
-			<Description>Spice Route East</Description>
+			<Description>TXT_KEY_COMMAND_SAIL_SPICE_ROUTE</Description>
+      <Strategy>TXT_KEY_AUTO_SELL_SPICE_ROUTE_HELP</Strategy>
+      <Help>TXT_KEY_AUTO_SELL_SPICE_ROUTE_HELP</Help>
 			<Direction>east</Direction>
+      <DirectionArrays>
+        <DirectionArray>
+          <Direction>DIRECTION_NORTHEAST</Direction>
+          <bValue>0</bValue>
+        </DirectionArray>
+      </DirectionArrays>
 			<bStart>1</bStart>
+      <bAIRoute>1</bAIRoute>
 			<iTripLength>3</iTripLength>
 			<iMinLandDistance>4</iMinLandDistance>
 			<iWidthPercent>20</iWidthPercent>
@@ -20,29 +29,75 @@
           <bValue>1</bValue>
         </TradeScreenType>
       </TradeScreenTypes>
+      <PythonTradeScreen>showSpiceRouteScreen</PythonTradeScreen>
+      <DefaultColor>PLAYERCOLOR_BLUE</DefaultColor>
+      <Button>Art/Interface/Game Hud/Actions/trade_goods_high_res.dds</Button>
 		</EuropeInfo>
-		<EuropeInfo>
-			<Type>EUROPE_WEST</Type>
-			<Description>Spice Route West</Description>
-			<Direction>west</Direction>
-			<bStart>0</bStart>
-			<iTripLength>3</iTripLength>
-			<iMinLandDistance>4</iMinLandDistance>
-			<iWidthPercent>20</iWidthPercent>
+    <EuropeInfo>
+      <Type>TRADE_SCREEN_SPICE_ROUTE_MARKET</Type>
+      <Description>TXT_KEY_COMMAND_SAIL_SPICE_ROUTE</Description>
+      <Strategy>TXT_KEY_AUTO_SELL_SPICE_ROUTE_HELP</Strategy>
+      <Help>Spice Route</Help>
+      <Direction>east</Direction>
+      <DirectionArrays>
+        <DirectionArray>
+          <Direction>DIRECTION_EAST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_WEST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_NORTHEAST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_NORTHWEST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_SOUTHEAST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_SOUTHWEST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+      </DirectionArrays>
+      <bStart>1</bStart>
+      <iTripLength>3</iTripLength>
+      <iMinLandDistance>4</iMinLandDistance>
+      <iWidthPercent>20</iWidthPercent>
       <TradeScreenTypes>
         <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
           <bValue>1</bValue>
         </TradeScreenType>
       </TradeScreenTypes>
-		</EuropeInfo>
+      <PythonTradeScreen>showSpiceRouteScreen</PythonTradeScreen>
+      <Button>Art/Interface/Game Hud/Actions/travelSpiceRoute.dds</Button>
+    </EuropeInfo>
 		<EuropeInfo>
-			<Type>EUROPE_NORTH</Type>
-			<Description>Silk Road North</Description>
+			<Type>TRADE_SCREEN_SILK_ROAD_MARKET</Type>
+			<Description>TXT_KEY_COMMAND_TRAVEL_SILK_ROAD</Description>
+      <Strategy>TXT_KEY_COMMAND_TRAVEL_SILK_ROAD_HELP</Strategy>
+      <Help>Silk Road</Help>
 			<Direction>north</Direction>
+      <DirectionArrays>
+        <DirectionArray>
+          <Direction>DIRECTION_NORTH</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_SOUTH</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+      </DirectionArrays>
 			<bStart>0</bStart>
 			<iTripLength>3</iTripLength>
 			<iMinLandDistance>0</iMinLandDistance>
+      <iMaxLandCoverage>4</iMaxLandCoverage>
 			<iWidthPercent>20</iWidthPercent>
       <TradeScreenTypes>
         <TradeScreenType>
@@ -50,21 +105,30 @@
           <bValue>1</bValue>
         </TradeScreenType>
       </TradeScreenTypes>
+      <PythonTradeScreen>showSilkRoadScreen</PythonTradeScreen>
+      <Button>Art/Interface/Game Hud/Actions/travelsilkroad.dds</Button>
 		</EuropeInfo>
-		<EuropeInfo>
-			<Type>EUROPE_SOUTH</Type>
-			<Description>Silk Road South</Description>
-			<Direction>south</Direction>
-			<bStart>0</bStart>
-			<iTripLength>3</iTripLength>
-			<iMinLandDistance>0</iMinLandDistance>
-			<iWidthPercent>20</iWidthPercent>
+    <EuropeInfo>
+      <Type>TRADE_SCREEN_TRADE_FAIR_MARKET</Type>
+      <Description>TXT_KEY_COMMAND_TRAVEL_TO_FAIR</Description>
+      <Strategy>TXT_KEY_COMMAND_TRAVEL_TO_FAIR_HELP</Strategy>
+      <Help>Local</Help>
+      <Direction>north</Direction>
+      <DirectionArrays/>
+      <bStart>0</bStart>
+      <iTripLength>3</iTripLength>
+      <iMinLandDistance>0</iMinLandDistance>
+      <iWidthPercent>20</iWidthPercent>
+      <bNoEuropePlot>1</bNoEuropePlot>
+      <bLeaveFromOwnedCity>1</bLeaveFromOwnedCity>
       <TradeScreenTypes>
         <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
           <bValue>1</bValue>
         </TradeScreenType>
       </TradeScreenTypes>
-		</EuropeInfo>
+      <PythonTradeScreen>showTradeFairScreen</PythonTradeScreen>
+      <Button>Art/Interface/Game Hud/Actions/TraveltoFair.dds</Button>
+    </EuropeInfo>
 	</EuropeInfos>
 </Civ4EuropeInfo>
