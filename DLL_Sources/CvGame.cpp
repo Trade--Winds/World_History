@@ -1309,12 +1309,13 @@ void CvGame::updateColoredPlots()
                         gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), colorC, AREA_BORDER_LAYER_EUROPE);
 				    }
 				    
-				    if (GC.getEuropeInfo(pLoopPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SPICE_ROUTE))
+				    if (GC.getEuropeInfo(pLoopPlot->getEurope()).getMaxLandCoverage() <= 0)
 				    {
 				        color.a = 0.5f;
                         gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), color, AREA_BORDER_LAYER_EUROPE);
 				    }
-				    if (GC.getEuropeInfo(pLoopPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SILK_ROAD))
+
+				    if (GC.getEuropeInfo(pLoopPlot->getEurope()).getMaxLandCoverage() > 0)
 				    {
 				        //NiColorA color(GC.getColorInfo((ColorTypes)GC.getInfoTypeForString("COLOR_WHITE")).getColor());
 						colorB.a = 0.5f;
