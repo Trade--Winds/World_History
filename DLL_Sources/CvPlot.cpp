@@ -6165,12 +6165,7 @@ void CvPlot::setRevealed(TeamTypes eTeam, bool bNewValue, bool bTerrainOnly, Tea
 	if (isRevealed(eTeam, false) != bNewValue)
 	{
 		/// player bitmap - start - Nightinggale
-		if (bNewValue)
-		{
-			SetBit(m_bmRevealed, eTeam);
-		} else {
-			ClrBit(m_bmRevealed, eTeam);
-		}
+		SetBit(m_bmRevealed, eTeam, bNewValue);
 		/// player bitmap - end - Nightinggale
 
 		/*
@@ -7547,16 +7542,7 @@ void CvPlot::read(FDataStreamBase* pStream)
 		pStream->Read(&cCount);
 		if (cCount > 0)
 		{
-			// convert old format to the new bitmap
-			for (int i = 0; i < cCount; i++)
-			{
-				bool bTemp;
-				pStream->Read(&bTemp);
-				if (bTemp)
-				{
-					SetBit(m_bmRevealed, i);
-				}
-			}
+			loadIntoBitmap(pStream, m_bmRevealed, cCount);
 		}
 	}
 	/// player bitmap - end - Nightinggale

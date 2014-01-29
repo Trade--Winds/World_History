@@ -646,7 +646,7 @@ protected:
     PlayerTypes m_eVassalOwner;
 	YieldTypes m_eSelectedArmor;
 	int* m_aiEventTimers;
-	bool* m_abTradePostBuilt;
+	PlayerBitmap m_bmTradePostBuilt;
 	///TKe
 	int* m_aiSeaPlotYield;
 	int* m_aiRiverPlotYield;
@@ -656,9 +656,11 @@ protected:
 	int* m_aiDomainFreeExperience;
 	int* m_aiDomainProductionModifier;
 	int* m_aiCulture;
-	bool* m_abEverOwned;
-	bool* m_abRevealed;
-	bool* m_abScoutVisited;
+	/// player bitmap - start - Nightinggale
+	PlayerBitmap m_bmEverOwned;
+	PlayerBitmap m_bmRevealed;
+	PlayerBitmap m_bmScoutVisited;
+	/// player bitmap - end - Nightinggale
 	CvWString m_szName;
 	CvString m_szScriptData;
 	int* m_paiBuildingProduction;

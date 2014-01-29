@@ -33,7 +33,8 @@ CvCity::CvCity()
     ///Kailric Fort Mod end
     ///Tks Med
     m_aiEventTimers = new int[2];
-    m_abTradePostBuilt = new bool[MAX_TEAMS];
+    //m_abTradePostBuilt = new bool[MAX_TEAMS];
+	m_bmTradePostBuilt = 0;
 
     ///Tke
 	m_aiSeaPlotYield = new int[NUM_YIELD_TYPES];
@@ -45,9 +46,11 @@ CvCity::CvCity()
 	m_aiDomainProductionModifier = new int[NUM_DOMAIN_TYPES];
 
 	m_aiCulture = new int[MAX_PLAYERS];
-	m_abEverOwned = new bool[MAX_PLAYERS];
-	m_abRevealed = new bool[MAX_TEAMS];
-	m_abScoutVisited = new bool[MAX_TEAMS];
+	/// player bitmap - start - Nightinggale
+	m_bmEverOwned = 0;
+	m_bmRevealed = 0;
+	m_bmScoutVisited = 0;
+	/// player bitmap - end - Nightinggale
 
 	m_paiBuildingProduction = NULL;
 	m_paiBuildingProductionTime = NULL;
@@ -87,7 +90,7 @@ CvCity::~CvCity()
     ///Kailric Fort Mod end
     ///Tks Med
     SAFE_DELETE_ARRAY(m_aiEventTimers);
-    SAFE_DELETE_ARRAY(m_abTradePostBuilt);
+    //SAFE_DELETE_ARRAY(m_abTradePostBuilt);
     ///Tke
 
 	SAFE_DELETE_ARRAY(m_abBaseYieldRankValid);
@@ -102,9 +105,6 @@ CvCity::~CvCity()
 	SAFE_DELETE_ARRAY(m_aiDomainFreeExperience);
 	SAFE_DELETE_ARRAY(m_aiDomainProductionModifier);
 	SAFE_DELETE_ARRAY(m_aiCulture);
-	SAFE_DELETE_ARRAY(m_abEverOwned);
-	SAFE_DELETE_ARRAY(m_abRevealed);
-	SAFE_DELETE_ARRAY(m_abScoutVisited);
 }
 
 ///TKs Med
@@ -566,20 +566,14 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aiCulture[iI] = 0;
 	}
 
-	for (iI = 0; iI < MAX_PLAYERS; iI++)
-	{
-		m_abEverOwned[iI] = false;
-	}
-
-	for (iI = 0; iI < MAX_TEAMS; iI++)
-	{
-		m_abRevealed[iI] = false;
-		m_abScoutVisited[iI] = false;
-		///Tks Med
-		m_abTradePostBuilt[iI] = false;
-		///Tke
-
-	}
+	/// player bitmap - start - Nightinggale
+	m_bmEverOwned = 0;
+	m_bmRevealed = 0;
+	m_bmScoutVisited = 0;
+	/// player bitmap - end - Nightinggale
+	///Tks Med
+	m_bmTradePostBuilt = 0;
+	///Tke
 
 	clear(m_szName);
 	m_szScriptData = "";
@@ -5810,7 +5804,10 @@ bool CvCity::isEverOwned(PlayerTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex expected to be < MAX_PLAYERS");
-	return m_abEverOwned[eIndex];
+	//return m_abEverOwned[eIndex];
+	/// player bitmap - start - Nightinggale
+	return HasBit(m_bmEverOwned, eIndex);
+	/// player bitmap - end - Nightinggale
 }
 
 
@@ -5818,7 +5815,10 @@ void CvCity::setEverOwned(PlayerTypes eIndex, bool bNewValue)
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex expected to be < MAX_PLAYERS");
-	m_abEverOwned[eIndex] = bNewValue;
+	//m_abEverOwned[eIndex] = bNewValue;
+	/// player bitmap - start - Nightinggale
+	SetBit(m_bmEverOwned, eIndex, bNewValue);
+	/// player bitmap - end - Nightinggale
 }
 
 
@@ -5833,7 +5833,10 @@ bool CvCity::isRevealed(TeamTypes eIndex, bool bDebug) const
 		FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 		FAssertMsg(eIndex < MAX_TEAMS, "eIndex expected to be < MAX_TEAMS");
 
-		return m_abRevealed[eIndex];
+		//return m_abRevealed[eIndex];
+		/// player bitmap - start - Nightinggale
+		return HasBit(m_bmRevealed, eIndex);
+		/// player bitmap - end - Nightinggale
 	}
 }
 
@@ -5848,7 +5851,10 @@ void CvCity::setRevealed(TeamTypes eIndex, bool bNewValue)
 
 	if (isRevealed(eIndex, false) != bNewValue)
 	{
-		m_abRevealed[eIndex] = bNewValue;
+		//m_abRevealed[eIndex] = bNewValue;
+		/// player bitmap - start - Nightinggale
+		SetBit(m_bmRevealed, eIndex, bNewValue);
+		/// player bitmap - end - Nightinggale
 
 		updateVisibility();
 
@@ -8323,7 +8329,13 @@ void CvCity::read(FDataStreamBase* pStream)
 	}
     ///TKs Med
     pStream->Read(2, m_aiEventTimers);
-    pStream->Read(MAX_TEAMS, m_abTradePostBuilt);
+    //pStream->Read(MAX_TEAMS, m_abTradePostBuilt);
+	if (uiFlag < 6)
+	{
+		loadIntoBitmap(pStream, m_bmTradePostBuilt, MAX_TEAMS);
+	} else {
+		pStream->Read(&m_bmTradePostBuilt);
+	}
     ///Tke
 	pStream->Read(NUM_YIELD_TYPES, m_aiSeaPlotYield);
 	pStream->Read(NUM_YIELD_TYPES, m_aiRiverPlotYield);
@@ -8334,9 +8346,21 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Read(MAX_PLAYERS, m_aiCulture);
 
-	pStream->Read(MAX_PLAYERS, m_abEverOwned);
-	pStream->Read(MAX_TEAMS, m_abRevealed);
-	pStream->Read(MAX_TEAMS, m_abScoutVisited);
+	/// player bitmap - start - Nightinggale
+	//pStream->Read(MAX_PLAYERS, m_abEverOwned);
+	//pStream->Read(MAX_TEAMS, m_abRevealed);
+	//pStream->Read(MAX_TEAMS, m_abScoutVisited);
+	if (uiFlag < 6)
+	{
+		loadIntoBitmap(pStream, m_bmEverOwned, MAX_PLAYERS);
+		loadIntoBitmap(pStream, m_bmRevealed, MAX_TEAMS);
+		loadIntoBitmap(pStream, m_bmScoutVisited, MAX_TEAMS);
+	} else {
+		pStream->Read(&m_bmEverOwned);
+		pStream->Read(&m_bmRevealed);
+		pStream->Read(&m_bmScoutVisited);
+	}
+	/// player bitmap - end - Nightinggale
 
 	pStream->ReadString(m_szName);
 	pStream->ReadString(m_szScriptData);
@@ -8474,7 +8498,7 @@ void CvCity::read(FDataStreamBase* pStream)
 
 void CvCity::write(FDataStreamBase* pStream)
 {
-	uint uiFlag=5;
+	uint uiFlag=6;
 	pStream->Write(uiFlag);		// flag for expansion
 
 	// just-in-time yield arrays - start - Nightinggale
@@ -8555,7 +8579,8 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_eMissionaryPlayer);
 	///TKs Med
 	pStream->Write(2, m_aiEventTimers);
-	pStream->Write(MAX_TEAMS, m_abTradePostBuilt);
+	//pStream->Write(MAX_TEAMS, m_abTradePostBuilt);
+	pStream->Write(m_bmTradePostBuilt);
 	///Tke
 
 	pStream->Write(NUM_YIELD_TYPES, m_aiSeaPlotYield);
@@ -8567,9 +8592,14 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Write(MAX_PLAYERS, m_aiCulture);
 
-	pStream->Write(MAX_PLAYERS, m_abEverOwned);
-	pStream->Write(MAX_TEAMS, m_abRevealed);
-	pStream->Write(MAX_TEAMS, m_abScoutVisited);
+	//pStream->Write(MAX_PLAYERS, m_abEverOwned);
+	//pStream->Write(MAX_TEAMS, m_abRevealed);
+	//pStream->Write(MAX_TEAMS, m_abScoutVisited);
+	/// player bitmap - start - Nightinggale
+	pStream->Write(m_bmEverOwned);
+	pStream->Write(m_bmRevealed);
+	pStream->Write(m_bmScoutVisited);
+	/// player bitmap - end - Nightinggale
 
 	pStream->WriteString(m_szName);
 	pStream->WriteString(m_szScriptData);
@@ -9981,7 +10011,10 @@ void CvCity::setScoutVisited(TeamTypes eTeam, bool bVisited)
 
 	if(bVisited != isScoutVisited(eTeam))
 	{
-		m_abScoutVisited[eTeam] = bVisited;
+		//m_abScoutVisited[eTeam] = bVisited;
+		/// player bitmap - start - Nightinggale
+		SetBit(m_bmScoutVisited, eTeam, bVisited);
+		/// player bitmap - end - Nightinggale
 		setBillboardDirty(true);
 	}
 }
@@ -9993,7 +10026,7 @@ void CvCity::setTradePostBuilt(TeamTypes eTeam, bool bBuilt)
 
 	if(bBuilt != isTradePostBuilt(eTeam))
 	{
-		m_abTradePostBuilt[eTeam] = bBuilt;
+		SetBit(m_bmTradePostBuilt, eTeam, bBuilt);
 		setBillboardDirty(true);
 	}
 }
@@ -10007,7 +10040,8 @@ bool CvCity::isTradePostBuilt(TeamTypes eTeam) const
 	//{
 		//return false;
 	//}
-	return m_abTradePostBuilt[eTeam];
+	//return m_abTradePostBuilt[eTeam];
+	return HasBit(m_bmTradePostBuilt, eTeam);
 }
 
 ///Tke
@@ -10025,7 +10059,10 @@ bool CvCity::isScoutVisited(TeamTypes eTeam) const
 	{
 		return true;
 	}
-	return m_abScoutVisited[eTeam];
+	//return m_abScoutVisited[eTeam];
+	/// player bitmap - start - Nightinggale
+	return HasBit(m_bmScoutVisited, eTeam);
+	/// player bitmap - end - Nightinggale
 }
 
 
