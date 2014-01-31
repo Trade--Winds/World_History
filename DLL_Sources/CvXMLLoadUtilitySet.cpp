@@ -686,6 +686,9 @@ void CvXMLLoadUtility::SetDiplomacyCommentTypes(CvString** ppszString, int* iNum
 //------------------------------------------------------------------------------------------------------
 bool CvXMLLoadUtility::SetupGlobalLandscapeInfo()
 {
+	// load order: 6
+	// loads after main menu
+
 	if (!CreateFXml())
 	{
 		return false;
@@ -710,6 +713,8 @@ bool CvXMLLoadUtility::SetupGlobalLandscapeInfo()
 //------------------------------------------------------------------------------------------------------
 bool CvXMLLoadUtility::SetGlobalArtDefines()
 {
+	// load order: 3
+
 	if (!CreateFXml())
 	{
 		return false;
@@ -811,6 +816,8 @@ bool CvXMLLoadUtility::LoadGlobalText()
 
 bool CvXMLLoadUtility::LoadBasicInfos()
 {
+	// load order: 4
+
 	if (!CreateFXml())
 	{
 		return false;
@@ -853,6 +860,8 @@ bool CvXMLLoadUtility::LoadBasicInfos()
 //
 bool CvXMLLoadUtility::LoadPreMenuGlobals()
 {
+	// load order: 5
+
 	if (!CreateFXml())
 	{
 		return false;
@@ -1011,6 +1020,9 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 //------------------------------------------------------------------------------------------------------
 bool CvXMLLoadUtility::LoadPostMenuGlobals()
 {
+	// load order: 7
+	// loads after main menu
+
 	PROFILE_FUNC();
 	if (!CreateFXml())
 	{
@@ -2151,6 +2163,8 @@ void CvXMLLoadUtility::SetVariableListTagPairForAudioScripts(int **ppiList, cons
 
 DllExport bool CvXMLLoadUtility::LoadPlayerOptions()
 {
+	// load order: 1
+
 	if (!CreateFXml())
 		return false;
 
@@ -2164,6 +2178,8 @@ DllExport bool CvXMLLoadUtility::LoadPlayerOptions()
 
 DllExport bool CvXMLLoadUtility::LoadGraphicOptions()
 {
+	// load order: 2
+
 	if (!CreateFXml())
 		return false;
 
