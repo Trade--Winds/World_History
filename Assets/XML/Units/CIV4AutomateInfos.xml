@@ -112,7 +112,7 @@
       <iHotKeyPriorityAlt>0</iHotKeyPriorityAlt>
       <Command>COMMAND_AUTOMATE</Command>
       <Automate>AUTOMATE_TRAVEL_FAIR</Automate>
-      <bVisible>1</bVisible>
+      <bVisible>0</bVisible>
       <Button>Art/Interface/Game Hud/Actions/TraveltoFair.dds</Button>
     </AutomateInfo>
     <AutomateInfo>
@@ -130,7 +130,7 @@
       <iHotKeyPriorityAlt>0</iHotKeyPriorityAlt>
       <Command>COMMAND_AUTOMATE</Command>
       <Automate>AUTOMATE_TRAVEL_SILK_ROAD</Automate>
-      <bVisible>1</bVisible>
+      <bVisible>0</bVisible>
       <Button>Art/Interface/Game Hud/Actions/travelsilkroad.dds</Button>
     </AutomateInfo>
     <AutomateInfo>
@@ -148,7 +148,7 @@
       <iHotKeyPriorityAlt>0</iHotKeyPriorityAlt>
       <Command>COMMAND_AUTOMATE</Command>
       <Automate>AUTOMATE_SAIL_SPICE_ROUTE</Automate>
-      <bVisible>1</bVisible>
+      <bVisible>0</bVisible>
       <Button>Art/Interface/Game Hud/Actions/travelSpiceRoute.dds</Button>
     </AutomateInfo>
 		<AutomateInfo>

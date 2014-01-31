@@ -637,6 +637,7 @@
 	<ElementType name="bConfirmCommand" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bVisible" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAll" content="textOnly" dt:type="boolean"/>
+  <ElementType name="EuropeTradeRoute" content="textOnly"/>
 	<ElementType name="CommandInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -655,6 +656,7 @@
 		<element type="bConfirmCommand" minOccurs="0"/>
 		<element type="bVisible" minOccurs="0"/>
 		<element type="bAll" minOccurs="0"/>
+    <element type="EuropeTradeRoute" minOccurs="0"/>
 		<element type="Button" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="CommandInfos" content="eltOnly">

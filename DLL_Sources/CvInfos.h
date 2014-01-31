@@ -547,12 +547,18 @@ public:
 	DllExport bool getConfirmCommand() const;
 	DllExport bool getVisible() const;
 	DllExport bool getAll() const;
+	///TKs **TradeRoute**
+	DllExport int getEuropeTradeRoute() const;
+	//TKe
 	DllExport bool read(CvXMLLoadUtility* pXML);
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 protected:
 	bool m_bConfirmCommand;
 	bool m_bVisible;
 	bool m_bAll;
+	///TK **TradeRoute**
+	int m_iEuropeTradeRoute;
+	//Tke
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1137,6 +1143,7 @@ public:
     DllExport int getIncreaseCityPopulation() const;
     DllExport int getAllowsProfession() const;
 	DllExport int getAllowsTrait() const;
+	DllExport int getAllowsTradeScreen() const;
 	DllExport int getConvertsResearchYield() const;
 	DllExport int getDisallowsTech() const;
 	DllExport int getFreeUnitFirstToResearch() const;
@@ -1233,6 +1240,7 @@ protected:
 	int m_iCostToResearch;
 
 	int m_iAllowsTrait;
+	int m_iAllowsTradeScreen;
 	int m_iConvertsResearchYield;
 	int m_iDisallowsTech;
 	int m_iFreeUnitFirstToResearch;
@@ -3098,7 +3106,21 @@ public:
 	DllExport int getTripLength() const;
 	DllExport int getMinLandDistance() const;
 	DllExport int getWidthPercent() const;
+	///TKs Med ***TradeRoute**
+	DllExport int getMaxLandCoverage() const;
+	DllExport bool isAIonly() const;
+	DllExport bool isRequiresTech() const;
+	DllExport bool isNoEuropePlot() const;
     DllExport int getTradeScreensValid(int i) const;
+	DllExport int getDirectionValid(int i) const;
+	DllExport int getCityRequiredBuilding() const;
+	DllExport int getDefaultColor() const;
+	DllExport bool isLeaveFromBarbarianCity() const;
+	DllExport bool isLeaveFromForeignCity() const;
+	DllExport bool isLeaveFromOwnedCity() const;
+	DllExport bool isLeaveFromAnyCity() const;
+	DllExport const char* getTradeRouteButton() const;
+	DllExport const char* getPythonTradeScreen() const;
 	DllExport bool read(CvXMLLoadUtility* pXML);
 
 protected:
@@ -3108,7 +3130,20 @@ protected:
 	int m_iMinLandDistance;
 	int m_iWidthPercent;
 	///Tks Med
+	int m_iMaxLandCoverage;
+	bool m_bAIonly;
+	bool m_bRequiresTech;
+	bool m_bNoEuropePlot;
+	CvString m_szPythonTradeScreen;
+	CvString m_szTradeRouteButton;
     int* m_aiTradeScreens;
+	int* m_aiDirectionArrays;
+	bool m_bLeaveFromBarbarianCity;
+	bool m_bLeaveFromForeignCity;
+	bool m_bLeaveFromOwnedCity;
+	bool m_bLeaveFromAnyCity;
+	int m_iCityRequiredBuilding;
+	int m_iDefaultColor;
 	///TKe
 };
 

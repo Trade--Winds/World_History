@@ -386,7 +386,8 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iCargoCapacity = (NO_UNIT != m_eUnitType) ? m_pUnitInfo->getCargoSpace() : 0;
 	m_eProfession = NO_PROFESSION;
 	m_eUnitTravelState = NO_UNIT_TRAVEL_STATE;
-    ///TKs Invention Core Mod v 1.0
+    ///TKs Med **TradeRoute**
+	m_eUnitTradeMarket = NO_EUROPE;
 	m_ConvertToUnit = NO_UNIT;
 	///Tke
 	m_combatUnit.reset();
@@ -2435,17 +2436,20 @@ bool CvUnit::canDoCommand(CommandTypes eCommand, int iData1, int iData2, bool bT
 
 	case COMMAND_SAIL_TO_EUROPE:
          ///Tks Med
-         if (isOnMap() && GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getLeaderType()).getTravelCommandType() == 1)
-         {
-             return false;
-         }
-        ///Tke
-		if (canCrossOcean(plot(), (UnitTravelStates)iData1))
 		{
-			return true;
+			 if (isOnMap() && GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getLeaderType()).getTravelCommandType() == 1)
+			 {
+				 return false;
+			 }
+			
+			EuropeTypes eTradeRoute = (EuropeTypes)iData2;
+			if (canCrossOcean(plot(), (UnitTravelStates)iData1, NO_TRADE_ROUTES, false, eTradeRoute))
+			{
+				return true;
+			}
 		}
 		break;
-
+		///Tke
 	case COMMAND_CHOOSE_TRADE_ROUTES:
 	case COMMAND_ASSIGN_TRADE_ROUTE:
 		if (iData2 == 0 || canAssignTradeRoute(iData1))
@@ -2580,24 +2584,30 @@ bool CvUnit::canDoCommand(CommandTypes eCommand, int iData1, int iData2, bool bT
              break;
     ///TKs Med
         case COMMAND_SAIL_SPICE_ROUTE:
-            if (canCrossOcean(plot(), (UnitTravelStates)iData1, TRADE_ROUTE_SPICE_ROUTE))
-            {
-                return true;
-            }
+			{
+				EuropeTypes eEuropeTradeRoute = (EuropeTypes)GC.getCommandInfo(COMMAND_SAIL_SPICE_ROUTE).getEuropeTradeRoute();
+				if (canCrossOcean(plot(), (UnitTravelStates)iData1, TRADE_ROUTE_SPICE_ROUTE, false, eEuropeTradeRoute))
+				{
+					//return true;
+					return false;
+				}
+			}
             break;
         case COMMAND_TRAVEL_TO_FAIR:
             if (GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getLeaderType()).getTravelCommandType() == 1)
             {
 				if (canCrossOcean(plot(), (UnitTravelStates)iData1, TRADE_ROUTE_FAIR))
                 {
-                    return true;
+                   //return true;
+					return false;
                 }
             }
             break;
         case COMMAND_TRAVEL_SILK_ROAD:
             if (canCrossOcean(plot(), (UnitTravelStates)iData1, TRADE_ROUTE_SILK_ROAD))
             {
-                return true;
+                //return true;
+				return false;
             }
             break;
         case COMMAND_CONVERT_UNIT:
@@ -2755,7 +2765,7 @@ void CvUnit::doCommand(CommandTypes eCommand, int iData1, int iData2)
 			{
 				setSailEurope((EuropeTypes) iData2);
 			}
-			crossOcean((UnitTravelStates) iData1);
+			crossOcean((UnitTravelStates) iData1, false, (EuropeTypes)iData2);
 			break;
 
 		case COMMAND_CHOOSE_TRADE_ROUTES:
@@ -2884,11 +2894,11 @@ void CvUnit::doCommand(CommandTypes eCommand, int iData1, int iData2)
 			crossOcean((UnitTravelStates) iData1);
 			break;
         case COMMAND_SAIL_SPICE_ROUTE:
-			if (iData2 != NO_EUROPE)
-			{
-				setSailEurope((EuropeTypes) iData2);
-			}
-			crossOcean((UnitTravelStates) iData1);
+			//if (iData2 != NO_EUROPE)
+			//{
+				//setSailEurope((EuropeTypes) iData2);
+			//}
+			crossOcean((UnitTravelStates) iData1, false, (EuropeTypes) iData2);
 			break;
         case COMMAND_TRAVEL_SILK_ROAD:
 			crossOcean((UnitTravelStates) iData1);
@@ -3655,13 +3665,13 @@ bool CvUnit::canAutomate(AutomateTypes eAutomate) const
             {
                 return false;
             }
-            if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_FAIR))
-		    {
-		        if (GC.getXMLval(XML_CHEAT_TRAVEL_ALL) == 0)
+            //if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_FAIR))
+		    //{
+		        /*if (GC.getXMLval(XML_CHEAT_TRAVEL_ALL) == 0)
 		        {
                     return false;
-		        }
-		    }
+		        }*/
+		    //}
             if (plot()->isCity())
             {
                 return false;
@@ -3682,11 +3692,11 @@ bool CvUnit::canAutomate(AutomateTypes eAutomate) const
         }
 		break;
     case AUTOMATE_TRAVEL_SILK_ROAD:
-//        if (!canAutoCrossOcean(plot(), TRADE_ROUTE_SILK_ROAD))
-//		{
-//			return false;
-//		}
-        if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
+        if (!canAutoCrossOcean(plot(), TRADE_ROUTE_SILK_ROAD))
+		{
+			return false;
+		}
+        /*if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
         {
             if (GC.getXMLval(XML_CHEAT_TRAVEL_ALL) == 0)
             {
@@ -3700,7 +3710,7 @@ bool CvUnit::canAutomate(AutomateTypes eAutomate) const
         if (getDomainType() != DOMAIN_LAND)
         {
             return false;
-        }
+        }*/
 		break;
     ///TKe
 	case AUTOMATE_FULL:
@@ -4412,6 +4422,38 @@ void CvUnit::clearSpecialty()
 bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteType, bool bAIForce) const
 {
     ///TKe MEd
+	if (cargoSpace() <= 0)
+	{
+        return false;
+	}
+
+	if (getTransportUnit() != NULL)
+	{
+		return false;
+	}
+
+	if (m_pUnitInfo->isPreventTraveling())
+	{
+	    return false;
+	}
+
+	/*if (getUnitTravelState() == NO_UNIT_TRAVEL_STATE && !canMove())
+	{
+		return false;
+	}*/
+	bool bWaterRoute = false;
+	if (pPlot != NULL && pPlot->isEurope())
+	{
+		bWaterRoute = (GC.getEuropeInfo((EuropeTypes)pPlot->getEurope()).getMinLandDistance() > 0);
+		if (bWaterRoute && getDomainType() != DOMAIN_SEA)
+		{
+			return false;
+		}
+		else if (getDomainType() != DOMAIN_LAND)
+		{
+			return false;
+		}
+	}
 
 	if (eTradeRouteType == TRADE_ROUTE_EUROPE || eTradeRouteType == NO_TRADE_ROUTES)
 	{
@@ -4424,40 +4466,17 @@ bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteT
             return false;
         }
 	}
-	else if (eTradeRouteType == TRADE_ROUTE_SPICE_ROUTE)
-	{
-        if (!GET_PLAYER(getOwner()).getHasTradeRouteType(eTradeRouteType))
-        {
-            return false;
-        }
-        if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_SPICE_ROUTE, eTradeRouteType, bAIForce))
-        {
-            return false;
-        }
 
-	}
-	else if (eTradeRouteType == TRADE_ROUTE_SILK_ROAD)
-	{
-        if (!GET_PLAYER(getOwner()).getHasTradeRouteType(eTradeRouteType))
-        {
-            return false;
-        }
-        if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_SILK_ROAD, eTradeRouteType, bAIForce))
-        {
-            return false;
-        }
-
-	}
 ///TKe
 	if (!GET_PLAYER(getOwnerINLINE()).canTradeWithEurope())
 	{
 		return false;
 	}
 
-	if (getDomainType() != DOMAIN_SEA)
+	/*if (getDomainType() != DOMAIN_SEA)
 	{
 		return false;
-	}
+	}*/
 
 	if (!pPlot->isEuropeAccessable())
 	{
@@ -4467,8 +4486,13 @@ bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteT
 	return true;
 }
 ///Tks Med
-bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, TradeRouteTypes eTradeRouteType, bool bAIForce) const
+bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, TradeRouteTypes eTradeRouteType, bool bAIForce, EuropeTypes eEuropeTradeRoute) const
 {
+	if (cargoSpace() <= 0)
+	{
+        return false;
+	}
+
 	if (getTransportUnit() != NULL)
 	{
 		return false;
@@ -4479,106 +4503,221 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 	{
 	    return false;
 	}
-
-
-	if (getUnitTravelState() == NO_UNIT_TRAVEL_STATE && !canMove())
-	{
-		return false;
-	}
-
+	
 	switch (getUnitTravelState())
 	{
 	case NO_UNIT_TRAVEL_STATE:
-		if (eNewState != UNIT_TRAVEL_STATE_TO_EUROPE)
 		{
-			if (eNewState != UNIT_TRAVEL_STATE_TO_SPICE_ROUTE)
-            {
-                if (eNewState != UNIT_TRAVEL_STATE_TO_SILK_ROAD)
-                {
-                    if (eNewState != UNIT_TRAVEL_STATE_TO_TRADE_FAIR)
-                    {
-                        return false;
-                    }
-                }
-            }
-		}
-		if (eNewState == UNIT_TRAVEL_STATE_TO_SPICE_ROUTE)
-		{
-		    if (getDomainType() != DOMAIN_SEA)
-		    {
-		        return false;
-		    }
-		    if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
-		    {
-		        return false;
-		    }
-		    if (pPlot->isEurope())
-            {
-                //EuropeTypes eEurope = (EuropeTypes)pPlot->getEurope();
-                if (GC.getEuropeInfo(pPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SPICE_ROUTE))
-                {
-                    return true;
-                }
-            }
+			if (eNewState != UNIT_TRAVEL_STATE_TO_EUROPE)
+			{
+				return false;
+			}
 
-            return false;
-		}
-		else if (eNewState == UNIT_TRAVEL_STATE_TO_SILK_ROAD)
-		{
-		    if (getDomainType() != DOMAIN_LAND)
-		    {
-		        return false;
-		    }
-		    if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
-		    {
-		        return false;
-		    }
-            //EuropeTypes eEurope = (EuropeTypes)pPlot->getEurope();
-		    if (pPlot->isEurope())
-            {
-                if (GC.getEuropeInfo(pPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SILK_ROAD))
-                {
-                    return true;
-                }
-            }
+			FAssert(pPlot != NULL);
 
-            if (!isHuman() && bAIForce)
-            {
-                CvCity* pCity = plot()->getPlotCity();
-                if (pCity != NULL)
-                {
-//                    if (pCity->isNative())
+			bool bWaterRoute = false;
+			if (isHuman())
+			{
+				
+				FAssert(eEuropeTradeRoute < GC.getNumEuropeInfos());
+				FAssert(eEuropeTradeRoute >= -1);
+
+				if (eEuropeTradeRoute == NO_EUROPE)
+				{
+					return false;
+				}
+
+				if (GC.getEuropeInfo(eEuropeTradeRoute).isAIonly())
+				{
+					return false;
+				}
+
+				if (GC.getEuropeInfo(eEuropeTradeRoute).isRequiresTech())
+				{
+					if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(eEuropeTradeRoute))
+					{
+						return false;
+					}
+				}
+
+				bWaterRoute = (GC.getEuropeInfo(eEuropeTradeRoute).getMinLandDistance() > 0);
+				if (bWaterRoute)
+				{
+					if (getDomainType() != DOMAIN_SEA)
+					{
+						return false;
+					}
+				}
+				else if (getDomainType() != DOMAIN_LAND)
+				{
+					return false;
+				}
+
+				if (GC.getEuropeInfo(eEuropeTradeRoute).isNoEuropePlot())
+				{
+					CvCity* pPlotCity = pPlot->getPlotCity();
+					if (pPlotCity != NULL && GC.getEuropeInfo(eEuropeTradeRoute).getCityRequiredBuilding() != NO_BUILDINGCLASS)
+					{
+						if (!pPlotCity->isHasBuildingClass((BuildingClassTypes)GC.getEuropeInfo(eEuropeTradeRoute).getCityRequiredBuilding()))
+						{
+							return false;
+						}
+					}
+
+					if (GC.getEuropeInfo(eEuropeTradeRoute).isLeaveFromBarbarianCity())
+					{
+						if (pPlotCity != NULL)
+						{
+							if (!pPlotCity->isNative())
+							{
+								return false;
+							}
+						}
+						else
+						{
+							return false;
+						}
+					}
+
+					if (GC.getEuropeInfo(eEuropeTradeRoute).isLeaveFromForeignCity())
+					{
+						if (pPlotCity != NULL)
+						{
+							if (pPlotCity->isNative() || pPlotCity->getOwner() == getOwner())
+							{
+								return false;
+							}
+						}
+						else
+						{
+							return false;
+						}
+					}
+
+					if (GC.getEuropeInfo(eEuropeTradeRoute).isLeaveFromOwnedCity())
+					{
+						if (pPlotCity != NULL)
+						{
+							if (pPlotCity->getOwner() != getOwner())
+							{
+								return false;
+							}
+						}
+						else
+						{
+							return false;
+						}
+					}
+
+					if (GC.getEuropeInfo(eEuropeTradeRoute).isLeaveFromAnyCity())
+					{
+						if (pPlotCity == NULL)
+						{
+							return false;
+						}
+					}
+
+					return true;
+				}
+
+				if (!pPlot->isEurope())
+				{
+					return false;
+				}
+
+				if (pPlot->getEurope() != eEuropeTradeRoute)
+				{
+					return false;
+				}
+
+			}
+
+			return true;
+			//if (isHuman())
+			//{
+				//return false;
+			//}
+		////*************OLD TRADE ROUTE
+//		if (eNewState == UNIT_TRAVEL_STATE_TO_SPICE_ROUTE)
+//		{
+//			/*if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
+//		    {
+//		        return false;
+//		    }*/
+//
+//		    if (pPlot->isEurope())
+//            {
+//                //EuropeTypes eEurope = (EuropeTypes)pPlot->getEurope();
+//                if (GC.getEuropeInfo(pPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SPICE_ROUTE))
+//                {
+//                    return true;
+//                }
+//            }
+//
+//            return false;
+//		}
+//		else if (eNewState == UNIT_TRAVEL_STATE_TO_SILK_ROAD)
+//		{
+//			if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
+//		    {
+//		        return false;
+//		    }
+//
+//		   /* if (bWaterRoute && getDomainType() != DOMAIN_SEA)
+//		    {
+//		        return false;
+//		    }
+//			else if (getDomainType() != DOMAIN_LAND)
+//			{
+//				return false;
+//			}*/
+//            //EuropeTypes eEurope = (EuropeTypes)pPlot->getEurope();
+//		    if (pPlot->isEurope())
+//            {
+//                if (GC.getEuropeInfo(pPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SILK_ROAD))
+//                {
+//                    return true;
+//                }
+//            }
+//
+//            if (!isHuman() && bAIForce)
+//            {
+//                CvCity* pCity = plot()->getPlotCity();
+//                if (pCity != NULL)
+//                {
+////                    if (pCity->isNative())
+////                    {
+////                        return false;
+////                    }
+//
+//                    if (pCity->getOwner() != getOwner())
 //                    {
-//                        return false;
+//                        return true;
 //                    }
-
-                    if (pCity->getOwner() != getOwner())
-                    {
-                        return true;
-                    }
-
-                }
-            }
-
-            return false;
-
-
-		}
-		else if (eNewState == UNIT_TRAVEL_STATE_TO_TRADE_FAIR)
-		{
-		    if (getDomainType() != DOMAIN_LAND)
-		    {
-		        return false;
-		    }
-		    if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_FAIR))
-		    {
-		        return false;
-		    }
-
-		}
+//
+//                }
+//            }
+//
+//            return false;
+//
+//
+//		}
+//		else if (eNewState == UNIT_TRAVEL_STATE_TO_TRADE_FAIR)
+//		{
+//		    if (getDomainType() != DOMAIN_LAND)
+//		    {
+//		        return false;
+//		    }
+//		    if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_FAIR))
+//		    {
+//		        return false;
+//		    }
+//
+//		}
 		if (!GET_PLAYER(getOwnerINLINE()).canTradeWithEurope())
 		{
 			return false;
+		}
 		}
 		break;
 	case UNIT_TRAVEL_STATE_IN_EUROPE:
@@ -4620,11 +4759,6 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
            return false;
         }
 
-        if (cargoSpace() <= 0)
-	    {
-            return false;
-	    }
-
         if (!plot()->isCity() && getUnitTravelState() == NO_UNIT_TRAVEL_STATE)
 	    {
 	        return false;
@@ -4647,20 +4781,6 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
                 {
                     return true;
                 }
-//                if (eTradeRouteType == TRADE_ROUTE_FAIR)
-//                {
-//                    BuildingClassTypes eIndex = (BuildingClassTypes)GC.getDefineINT("BUILDINGCLASS_TRAVEL_TO_FAIR");
-//                    BuildingTypes eBuilding = (BuildingTypes) GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getCivilizationBuildings(eIndex);
-//                    if(eBuilding == NO_BUILDING)
-//                    {
-//                        return false;
-//                    }
-//
-//                    if (pCity->isHasConceptualBuilding(eBuilding))
-//                    {
-//                       return true;
-//                    }
-//                }
 
 	        }
 
@@ -4679,7 +4799,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 	return true;
 }
 ///Tke
-void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce)
+void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce, EuropeTypes eTradeMarket)
 {
 	///TKs
     TradeRouteTypes eTradeRoute = NO_TRADE_ROUTES;
@@ -4723,7 +4843,7 @@ void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce)
 	}
 	///TKe MEd
 
-	if (!bAIForce && !canCrossOcean(plot(), eNewState, eTradeRoute))
+	if (!bAIForce && !canCrossOcean(plot(), eNewState, eTradeRoute, false, eTradeMarket))
 	{
 		return;
 	}
@@ -4769,8 +4889,10 @@ void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce)
 
         iTravelTime = GC.getEuropeInfo((EuropeTypes)GC.getXMLval(XML_EUROPE_EAST)).getTripLength();
     }
-
-	iTravelTime += GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTradeRouteTripLength(eTradeScreen);
+	if (eTradeMarket != NO_EUROPE)
+	{
+		iTravelTime += GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTradeRouteTripLength(eTradeMarket);
+	}
 	iTravelTime *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent();
 	iTravelTime /= 100;
 
@@ -4785,6 +4907,9 @@ void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce)
 	}
 
 	setUnitTravelState(eNewState, false);
+	//TK **TradeRoute**
+	setUnitTradeMarket(eTradeMarket);
+
 	if (iTravelTime > 0)
 	{
 		setUnitTravelTimer(iTravelTime);
@@ -9944,8 +10069,8 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 	{
 
 		pTransportUnit = getTransportUnit();
-        ///TKs Med
-        if (isHuman() && !GET_PLAYER(getOwner()).getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE) && pTransportUnit == NULL)
+        ///TKs Med TradeRoute Show Discover TradeRoute Video
+        /*if (isHuman() && !GET_PLAYER(getOwner()).getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE) && pTransportUnit == NULL)
         {
             if (pNewPlot->isEurope())
             {
@@ -9967,7 +10092,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
                 }
             }
 
-        }
+        }*/
 
 		if (pTransportUnit != NULL)
 		{
@@ -13521,7 +13646,15 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iBadCityDefenderCount);
 	pStream->Read(&m_iUnarmedCount);
 	pStream->Read((int*)&m_eUnitTravelState);
-    ///TKs Med FS
+    ///TKs Med **TradeMarket**
+	if (uiFlag > 0)
+	{
+		pStream->Read((int*)&m_eUnitTradeMarket);
+	}
+	//else
+	//{
+		//m_eUnitTradeMarket = NO_EUROPE;
+	//}
 	pStream->Read(&m_iInvisibleTimer);
 	pStream->Read(&m_iTravelPlotX);
 	pStream->Read(&m_iTravelPlotY);
@@ -13587,7 +13720,7 @@ void CvUnit::read(FDataStreamBase* pStream)
 
 void CvUnit::write(FDataStreamBase* pStream)
 {
-	uint uiFlag=0;
+	uint uiFlag=1;
 	pStream->Write(uiFlag);		// flag for expansion
 
 	pStream->Write(m_iID);
@@ -13644,6 +13777,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iUnarmedCount);
 	pStream->Write(m_eUnitTravelState);
     ///TK FS
+	pStream->Write(m_eUnitTradeMarket);
 	pStream->Write(m_iInvisibleTimer);
 	pStream->Write(m_iTravelPlotX);
 	pStream->Write(m_iTravelPlotY);
@@ -14533,6 +14667,16 @@ UnitTravelStates CvUnit::getUnitTravelState() const
 	return m_eUnitTravelState;
 }
 ///TKs Med
+EuropeTypes CvUnit::getUnitTradeMarket() const
+{
+	return m_eUnitTradeMarket;
+}
+
+void CvUnit::setUnitTradeMarket(EuropeTypes eMarket)
+{
+	m_eUnitTradeMarket = eMarket;
+}
+///Tks Med
 void CvUnit::setUnitTravelState(UnitTravelStates eState, bool bShowEuropeScreen)
 {
 	if (getUnitTravelState() != eState)
@@ -14553,7 +14697,7 @@ void CvUnit::setUnitTravelState(UnitTravelStates eState, bool bShowEuropeScreen)
 		    bool bMoveCargo = false;
             CvPlot* pTravelPlot = NULL;
 
-			if (eFromState == UNIT_TRAVEL_STATE_FROM_EUROPE || eFromState == UNIT_TRAVEL_STATE_FROM_SPICE_ROUTE)
+			if (eFromState == UNIT_TRAVEL_STATE_FROM_EUROPE)
 			{
 			    ///Tke
 				EuropeTypes eEurope = pPlot->getEurope();
@@ -14594,10 +14738,13 @@ void CvUnit::setUnitTravelState(UnitTravelStates eState, bool bShowEuropeScreen)
                     }
                 }
 			}
-
-			if (isHuman() && eState == UNIT_TRAVEL_STATE_TO_TRADE_FAIR)
+			
+			if (isHuman() && eState == UNIT_TRAVEL_STATE_TO_EUROPE)
 			{
-			    setTravelPlot();
+				if ((EuropeTypes)getUnitTradeMarket() != NO_EUROPE && GC.getEuropeInfo((EuropeTypes)getUnitTradeMarket()).isNoEuropePlot())
+				{
+					setTravelPlot();
+				}
 			}
 			///Tke
 
@@ -14612,16 +14759,6 @@ void CvUnit::setUnitTravelState(UnitTravelStates eState, bool bShowEuropeScreen)
 					{
 						pLoopUnit->setUnitTravelState(eState, false);
 					}
-
-					///Tks Med
-//					if (bMoveCargo)
-//                    {
-//                        if (pTravelPlot != NULL)
-//                        {
-//                            pLoopUnit->setXY(pTravelPlot->getX_INLINE(), pTravelPlot->getY_INLINE());
-//                        }
-//                    }
-					///TKe
 				}
 			}
 		}
@@ -14641,23 +14778,27 @@ void CvUnit::setUnitTravelState(UnitTravelStates eState, bool bShowEuropeScreen)
 		else
 		{
 			GET_PLAYER(getOwnerINLINE()).updateGroupCycle(this);
+			setUnitTradeMarket(NO_EUROPE);
 		}
 
 		//popup europe screen
-		if (bShowEuropeScreen)
+		if (bShowEuropeScreen && (EuropeTypes)getUnitTradeMarket() != NO_EUROPE)
 		{
+
 			if (getUnitTravelState() == UNIT_TRAVEL_STATE_IN_EUROPE)
 			{
 				if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
 				{
 					bool bFound = false;
 					const CvPopupQueue& kPopups = GET_PLAYER(getOwnerINLINE()).getPopups();
+					FAssert((EuropeTypes)getUnitTradeMarket() != NO_EUROPE);
+					CvWString szTradeRoute = GC.getEuropeInfo((EuropeTypes)getUnitTradeMarket()).getPythonTradeScreen();
 					for (CvPopupQueue::const_iterator it = kPopups.begin(); it != kPopups.end(); it++)
 					{
 						CvPopupInfo* pInfo = *it;
 						if (NULL != pInfo)
 						{
-							if (pInfo->getButtonPopupType() == BUTTONPOPUP_PYTHON_SCREEN && pInfo->getText() == L"showEuropeScreen")
+							if (pInfo->getButtonPopupType() == BUTTONPOPUP_PYTHON_SCREEN && pInfo->getText() == szTradeRoute)
 							{
 								bFound = true;
 								break;
@@ -14668,88 +14809,7 @@ void CvUnit::setUnitTravelState(UnitTravelStates eState, bool bShowEuropeScreen)
 					if(!bFound)
 					{
 						CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_PYTHON_SCREEN);
-						pInfo->setText(L"showEuropeScreen");
-						gDLL->getInterfaceIFace()->addPopup(pInfo, getOwnerINLINE(), false);
-					}
-				}
-			}
-			else if (getUnitTravelState() == UNIT_TRAVEL_STATE_IN_SPICE_ROUTE)
-			{
-				if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
-				{
-					bool bFound = false;
-					const CvPopupQueue& kPopups = GET_PLAYER(getOwnerINLINE()).getPopups();
-					for (CvPopupQueue::const_iterator it = kPopups.begin(); it != kPopups.end(); it++)
-					{
-						CvPopupInfo* pInfo = *it;
-						if (NULL != pInfo)
-						{
-							if (pInfo->getButtonPopupType() == BUTTONPOPUP_PYTHON_SCREEN && pInfo->getText() == L"showSpiceRouteScreen")
-							{
-								bFound = true;
-								break;
-							}
-						}
-					}
-
-					if(!bFound)
-					{
-						CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_PYTHON_SCREEN);
-						pInfo->setText(L"showSpiceRouteScreen");
-						gDLL->getInterfaceIFace()->addPopup(pInfo, getOwnerINLINE(), false);
-					}
-				}
-			}
-			else if (getUnitTravelState() == UNIT_TRAVEL_STATE_IN_TRADE_FAIR)
-			{
-				if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
-				{
-					bool bFound = false;
-					const CvPopupQueue& kPopups = GET_PLAYER(getOwnerINLINE()).getPopups();
-					for (CvPopupQueue::const_iterator it = kPopups.begin(); it != kPopups.end(); it++)
-					{
-						CvPopupInfo* pInfo = *it;
-						if (NULL != pInfo)
-						{
-							if (pInfo->getButtonPopupType() == BUTTONPOPUP_PYTHON_SCREEN && pInfo->getText() == L"showTradeFairScreen")
-							{
-								bFound = true;
-								break;
-							}
-						}
-					}
-
-					if(!bFound)
-					{
-						CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_PYTHON_SCREEN);
-						pInfo->setText(L"showTradeFairScreen");
-						gDLL->getInterfaceIFace()->addPopup(pInfo, getOwnerINLINE(), false);
-					}
-				}
-			}
-			else if (getUnitTravelState() == UNIT_TRAVEL_STATE_IN_SILK_ROAD)
-			{
-				if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
-				{
-					bool bFound = false;
-					const CvPopupQueue& kPopups = GET_PLAYER(getOwnerINLINE()).getPopups();
-					for (CvPopupQueue::const_iterator it = kPopups.begin(); it != kPopups.end(); it++)
-					{
-						CvPopupInfo* pInfo = *it;
-						if (NULL != pInfo)
-						{
-							if (pInfo->getButtonPopupType() == BUTTONPOPUP_PYTHON_SCREEN && pInfo->getText() == L"showSilkRoadScreen")
-							{
-								bFound = true;
-								break;
-							}
-						}
-					}
-
-					if(!bFound)
-					{
-						CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_PYTHON_SCREEN);
-						pInfo->setText(L"showSilkRoadScreen");
+						pInfo->setText(szTradeRoute);
 						gDLL->getInterfaceIFace()->addPopup(pInfo, getOwnerINLINE(), false);
 					}
 				}
@@ -14963,22 +15023,25 @@ void CvUnit::doUnitTravelTimer()
 				break;
 			}
 
-			if (eFromState == UNIT_TRAVEL_STATE_FROM_TRADE_FAIR)
+			if (getUnitTradeMarket() != NO_EUROPE)
 			{
-                CvPlot* pTravelPlot = getTravelPlot();
-                if (pTravelPlot != NULL)
-                {
-                    if (plot() != pTravelPlot)
-                    {
-                        //GET_PLAYER(getOwnerINLINE()).setStartingPlot(pTravelPlot, false);
-                       setXY(pTravelPlot->getX_INLINE(), pTravelPlot->getY_INLINE());
-//                        if (hasCargo())
-//                        {
-//                            bMoveCargo = true;
-//                        }
-                    }
+				if (GC.getEuropeInfo((EuropeTypes)getUnitTradeMarket()).isNoEuropePlot())
+				{
+					CvPlot* pTravelPlot = getTravelPlot();
+					if (pTravelPlot != NULL)
+					{
+						if (plot() != pTravelPlot)
+						{
+							//GET_PLAYER(getOwnerINLINE()).setStartingPlot(pTravelPlot, false);
+						   setXY(pTravelPlot->getX_INLINE(), pTravelPlot->getY_INLINE());
+	//                        if (hasCargo())
+	//                        {
+	//                            bMoveCargo = true;
+	//                        }
+						}
 
-                }
+					}
+				}
 			}
 		}
 	}

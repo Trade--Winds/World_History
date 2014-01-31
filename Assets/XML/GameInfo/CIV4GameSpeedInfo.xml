@@ -26,19 +26,19 @@
 			</GameTurnInfos>
       <TradeRouteTripLengths>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_EUROPE</TradeScreen>
+          <TradeScreen>EUROPE_EAST</TradeScreen>
           <iTripLength>0</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_TRADE_FAIR</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_TRADE_FAIR_MARKET</TradeScreen>
           <iTripLength>-2</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
       </TradeRouteTripLengths>
@@ -62,19 +62,19 @@
 			</GameTurnInfos>
       <TradeRouteTripLengths>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_EUROPE</TradeScreen>
+          <TradeScreen>EUROPE_EAST</TradeScreen>
           <iTripLength>0</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_TRADE_FAIR</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_TRADE_FAIR_MARKET</TradeScreen>
           <iTripLength>-2</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
       </TradeRouteTripLengths>
@@ -98,19 +98,19 @@
 			</GameTurnInfos>
       <TradeRouteTripLengths>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_EUROPE</TradeScreen>
+          <TradeScreen>EUROPE_EAST</TradeScreen>
           <iTripLength>0</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_TRADE_FAIR</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_TRADE_FAIR_MARKET</TradeScreen>
           <iTripLength>-2</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
       </TradeRouteTripLengths>
@@ -134,19 +134,19 @@
 			</GameTurnInfos>
       <TradeRouteTripLengths>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_EUROPE</TradeScreen>
+          <TradeScreen>EUROPE_EAST</TradeScreen>
           <iTripLength>0</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_TRADE_FAIR</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_TRADE_FAIR_MARKET</TradeScreen>
           <iTripLength>-2</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iTripLength>0</iTripLength>
         </TradeRouteTripLength>
         <TradeRouteTripLength>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iTripLength>1</iTripLength>
         </TradeRouteTripLength>
       </TradeRouteTripLengths>

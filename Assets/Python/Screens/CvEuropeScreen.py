@@ -81,7 +81,7 @@ class CvEuropeScreen:
 		self.H_DOCK = (self.PANE_HEIGHT - (self.H_TEXT_MARGIN * 2)) * 35 / 100
 		
 		self.EUROPE_EAST = CvUtil.findInfoTypeNum('EUROPE_EAST')
-		self.EUROPE_WEST = CvUtil.findInfoTypeNum('EUROPE_WEST')
+		#self.EUROPE_WEST = CvUtil.findInfoTypeNum('EUROPE_WEST')
 
 		# Set the background and exit button, and show the screen
 		screen.setDimensions(0, 0, self.XResolution, self.YResolution)
@@ -243,8 +243,8 @@ class CvEuropeScreen:
 					screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_PORT").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE * 2) - (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD, unit.getID())
 				else:
 					screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_FAIR").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE * 2) - (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD, unit.getID())
-			if (unit.canSailEurope(self.EUROPE_WEST) and gc.getCivilizationInfo(player.getCivilizationType()).isWaterStart()):
-				screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_PORT").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE / 2), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD_WEST, unit.getID())
+			#if (unit.canSailEurope(self.EUROPE_WEST) and gc.getCivilizationInfo(player.getCivilizationType()).isWaterStart()):
+				#screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_PORT").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE / 2), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD_WEST, unit.getID())
 			yLocation_InPort -= ShipPanelHight + (ShipPanelHight / 3)
 
 		ShipPanelHight = self.YResolution / 12
@@ -341,7 +341,7 @@ class CvEuropeScreen:
 		for iYield in range(YieldTypes.NUM_YIELD_TYPES):
 			kYield = gc.getYieldInfo(iYield)
 			if kYield.isCargo():
-				if (pPlayer.canUnitBeTraded(iYield, UnitTravelStates.NO_UNIT_TRAVEL_STATE, UnitTypes.NO_UNIT)):
+				if (pPlayer.canUnitBeTraded(iYield, self.EUROPE_EAST, UnitTypes.NO_UNIT)):
 					YieldList.append(iYield)
 				else:
 					iDiscoverCount += 1
@@ -362,14 +362,14 @@ class CvEuropeScreen:
 		for iYield in YieldList:
 			kYield = gc.getYieldInfo(iYield)
 			#TKs Med
-			iSellPrice = playerEurope.getYieldSellPrice(iYield, UnitTravelStates.UNIT_TRAVEL_STATE_IN_EUROPE)
-			iBuyPrice = playerEurope.getYieldBuyPrice(iYield, UnitTravelStates.UNIT_TRAVEL_STATE_IN_EUROPE)
+			iSellPrice = playerEurope.getYieldSellPrice(iYield, self.EUROPE_EAST)
+			iBuyPrice = playerEurope.getYieldBuyPrice(iYield, self.EUROPE_EAST)
 			#Tke
 			if (kYield.isMilitary()):
 				screen.addDDSGFC(self.getNextWidgetName(), ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE_BOX_PRICE").getPath(), xMilitaryLocation - MilitaryBoxSize, Military_Y_RATES, MilitaryBoxSize, MilitaryBoxSize, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1 )
 				screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xMilitaryLocation - MilitaryBoxSize + (MilitaryBoxSize / 8), Military_Y_RATES + (MilitaryBoxSize / 3), MilitaryBoxSize * 3 / 4, MilitaryBoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
 				szPrices = u"<font=3>%d/%d</font>" % (iBuyPrice, iSellPrice)
-				if not player.isYieldEuropeTradable(iYield):
+				if not player.isYieldEuropeTradable(iYield, self.EUROPE_EAST):
 					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
 				screen.setLabel(self.getNextWidgetName(), "Background", szPrices, CvUtil.FONT_CENTER_JUSTIFY, xMilitaryLocation - (MilitaryBoxSize / 2), Military_Y_RATES, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1)
 	
@@ -378,7 +378,7 @@ class CvEuropeScreen:
 				screen.addDDSGFC(self.getNextWidgetName(), ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE_BOX_PRICE").getPath(), xLocation - BoxSize, self.Y_RATES - 10, BoxSize, BoxSize, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1 )
 				screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xLocation - BoxSize + (BoxSize / 8), self.Y_RATES + (BoxSize / 3) - 10, BoxSize * 3 / 4, BoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
 				szPrices = u"<font=3>%d/%d</font>" % (iBuyPrice, iSellPrice)
-				if not player.isYieldEuropeTradable(iYield):
+				if not player.isYieldEuropeTradable(iYield, self.EUROPE_EAST):
 					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
 				screen.setLabel(self.getNextWidgetName(), "Background", szPrices, CvUtil.FONT_CENTER_JUSTIFY, xLocation - (BoxSize / 2), self.Y_RATES - 10, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1)
 	
@@ -433,11 +433,11 @@ class CvEuropeScreen:
 					if (not transport.isNone()) and transport.getUnitTravelState() != UnitTravelStates.UNIT_TRAVEL_STATE_FROM_EUROPE:
 						CyMessageControl().sendDoCommand(inputClass.getData2(), CommandTypes.COMMAND_SAIL_TO_EUROPE, UnitTravelStates.UNIT_TRAVEL_STATE_FROM_EUROPE, self.EUROPE_EAST, false)
 
-				elif (inputClass.getData1() == self.SAIL_TO_NEW_WORLD_WEST) :
-					activePlayer = gc.getPlayer(gc.getGame().getActivePlayer())
-					transport = activePlayer.getUnit(inputClass.getData2())
-					if (not transport.isNone()) and transport.getUnitTravelState() != UnitTravelStates.UNIT_TRAVEL_STATE_FROM_EUROPE:
-						CyMessageControl().sendDoCommand(inputClass.getData2(), CommandTypes.COMMAND_SAIL_TO_EUROPE, UnitTravelStates.UNIT_TRAVEL_STATE_FROM_EUROPE, self.EUROPE_WEST, false)
+				#elif (inputClass.getData1() == self.SAIL_TO_NEW_WORLD_WEST) :
+					#activePlayer = gc.getPlayer(gc.getGame().getActivePlayer())
+					#transport = activePlayer.getUnit(inputClass.getData2())
+					#if (not transport.isNone()) and transport.getUnitTravelState() != UnitTravelStates.UNIT_TRAVEL_STATE_FROM_EUROPE:
+						#CyMessageControl().sendDoCommand(inputClass.getData2(), CommandTypes.COMMAND_SAIL_TO_EUROPE, UnitTravelStates.UNIT_TRAVEL_STATE_FROM_EUROPE, self.EUROPE_WEST, false)
 
 				elif (inputClass.getData1() == self.SELL_ALL) :
 					player = gc.getPlayer(gc.getGame().getActivePlayer())
@@ -486,12 +486,12 @@ class CvEuropeScreen:
 					return localText.getText("TXT_KEY_SAIL", ()) + " - " + localText.getObjectText("TXT_KEY_EUROPE_EAST", 0)
 				else:
 					return localText.getText("TXT_KEY_LEAVE", ())
-			if iData1 == self.SAIL_TO_NEW_WORLD_WEST:
-				player = gc.getPlayer(gc.getGame().getActivePlayer())
-				if gc.getCivilizationInfo(player.getCivilizationType()).isWaterStart():
-					return localText.getText("TXT_KEY_SAIL", ()) + " - " + localText.getObjectText("TXT_KEY_EUROPE_WEST", 0)
-				else:
-					return localText.getText("TXT_KEY_LEAVE", ()) + " - " + localText.getObjectText("TXT_KEY_EUROPE_WEST", 0)
+			#if iData1 == self.SAIL_TO_NEW_WORLD_WEST:
+				#player = gc.getPlayer(gc.getGame().getActivePlayer())
+				#if gc.getCivilizationInfo(player.getCivilizationType()).isWaterStart():
+					#return localText.getText("TXT_KEY_SAIL", ()) + " - " + localText.getObjectText("TXT_KEY_EUROPE_WEST", 0)
+				#else:
+					#return localText.getText("TXT_KEY_LEAVE", ()) + " - " + localText.getObjectText("TXT_KEY_EUROPE_WEST", 0)
 				#TKe
 			elif iData1 == self.SELL_ALL:
 				return localText.getText("TXT_KEY_SELL_ALL", ())

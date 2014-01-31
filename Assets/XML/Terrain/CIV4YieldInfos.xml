@@ -39,11 +39,11 @@
       <Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,1,1</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -82,11 +82,11 @@
       <bIsMustBeDiscovered>1</bIsMustBeDiscovered>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -124,11 +124,11 @@
       <Button>Art/Buttons/Resources/Cattle.dds</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -166,11 +166,11 @@
       <Button>Art/Buttons/Resources/Sheep.dds</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -210,11 +210,11 @@
       <iLatitudeModifiers>2</iLatitudeModifiers>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -252,11 +252,11 @@
 			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,2,1</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>400</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>350</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -295,11 +295,11 @@
       <bIsMustBeDiscovered>1</bIsMustBeDiscovered>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>500</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>350</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -337,11 +337,11 @@
 			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,3,1</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -380,11 +380,11 @@
       <bIsNativeTrade>1</bIsNativeTrade>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>25</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -424,11 +424,11 @@
       <bIsMustBeDiscovered>0</bIsMustBeDiscovered>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>25</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>75</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -466,11 +466,11 @@
       <Button>Art/Buttons/Resources/hides.dds</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>50</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>50</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -509,11 +509,11 @@
       <bIsMustBeDiscovered>1</bIsMustBeDiscovered>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>40</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>25</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -551,11 +551,11 @@
       <Button>Art/Buttons/Resources/Barley.dds</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>40</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>60</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -593,11 +593,11 @@
       <Button>Art/Buttons/Resources/Grapes.dds</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -635,11 +635,11 @@
 			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,8,1</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -677,11 +677,11 @@
 			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,1,2</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>80</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -719,11 +719,11 @@
 			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,2,2</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -761,11 +761,11 @@
       <Button>Art/Buttons/Resources/Ale.dds</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>75</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -803,11 +803,11 @@
       <Button>Art/Buttons/Resources/Wine.dds</Button>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>225</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -878,11 +878,11 @@
       <bIsMilitary>1</bIsMilitary>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -921,11 +921,11 @@
       <bIsMilitary>1</bIsMilitary>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -1000,11 +1000,11 @@
       <bIsMustBeDiscovered>1</bIsMustBeDiscovered>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -1045,11 +1045,11 @@
       <bIsMustBeDiscovered>1</bIsMustBeDiscovered>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
@@ -1090,11 +1090,11 @@
       <bIsMustBeDiscovered>1</bIsMustBeDiscovered>
       <TradeScreenTypes>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</TradeScreen>
           <iPricePercent>-1</iPricePercent>
         </TradeScreenType>
         <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+          <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>-1</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>

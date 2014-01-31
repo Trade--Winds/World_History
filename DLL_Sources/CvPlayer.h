@@ -308,7 +308,7 @@ public:
 	int getExtraYieldThreshold(YieldTypes eIndex) const;
 	void updateExtraYieldThreshold(YieldTypes eIndex);
 	int getYieldRate(YieldTypes eIndex) const;
-	bool isYieldEuropeTradable(YieldTypes eIndex) const;
+	bool isYieldEuropeTradable(YieldTypes eIndex, EuropeTypes eTradeScreen=NO_EUROPE) const;
 	void setYieldEuropeTradable(YieldTypes eIndex, bool bTradeable);
 	void setYieldEuropeTradableAll();
 	bool isFeatAccomplished(FeatTypes eIndex) const;
@@ -543,11 +543,11 @@ public:
 	CvPlot* getStartingTradeRoutePlot(TradeRouteTypes eTradeRoute) const;
 	void setStartingTradeRoutePlot(CvPlot* pNewValue, TradeRouteTypes eTradeRoute);
 	void changeCensureType(CensureType eCensure, int iValue);
-	bool getHasTradeRouteType(TradeRouteTypes eTradeRoute) const;
-	void setHasTradeRouteType(TradeRouteTypes eTradeRoute, bool bValue);
+	bool getHasTradeRouteType(EuropeTypes eTradeRoute) const;
+	void setHasTradeRouteType(EuropeTypes eTradeRoute, bool bValue);
 	CvCity* findImmigrationCity(CvCity* pPrimaryCity, int MaxDistance);
 	void doMedievalEvents();
-	bool canUnitBeTraded(YieldTypes eYield, UnitTravelStates eTravelState = NO_UNIT_TRAVEL_STATE, UnitTypes eUnit = NO_UNIT) const;
+	bool canUnitBeTraded(YieldTypes eYield, EuropeTypes eTradeScreen = NO_EUROPE, UnitTypes eUnit = NO_UNIT) const;
 	bool isAllResearchComplete() const;
 	void setAllResearchComplete(bool bSet);
 	bool isFirstCityRazed() const;
@@ -611,14 +611,13 @@ public:
     DllExport const wchar* getDeclareKey() const;
     DllExport const wchar* getDawnKey() const;
 	///TKe
-
-	int getSellToEuropeProfit(YieldTypes eYield, int iAmount) const;
 	///TKs Med
-	int getYieldSellPrice(YieldTypes eYield, UnitTravelStates eTradeScreen = NO_UNIT_TRAVEL_STATE) const;
-	int getYieldBuyPrice(YieldTypes eYield, UnitTravelStates eTradeScreen = NO_UNIT_TRAVEL_STATE) const;
-	int getTradeScreenPriceMod(YieldTypes eYield, UnitTravelStates eTravelState = NO_UNIT_TRAVEL_STATE, UnitTypes eUnit = NO_UNIT) const;
-	CvUnit* buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteTypes eTradeRoute=NO_TRADE_ROUTES);
-	int getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScreen=TRADE_SCREEN_DEFAULT) const;
+	int getSellToEuropeProfit(YieldTypes eYield, int iAmount, EuropeTypes eTradeScreen = NO_EUROPE) const;
+	int getYieldSellPrice(YieldTypes eYield, EuropeTypes eTradeScreen = NO_EUROPE) const;
+	int getYieldBuyPrice(YieldTypes eYield, EuropeTypes eTradeScreen = NO_EUROPE) const;
+	int getTradeScreenPriceMod(YieldTypes eYield, EuropeTypes eTradeScreen = NO_EUROPE, UnitTypes eUnit = NO_UNIT) const;
+	CvUnit* buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, EuropeTypes eTradeScreen=NO_EUROPE);
+	int getEuropeUnitBuyPrice(UnitTypes eUnit, EuropeTypes eTradeScreenType=NO_EUROPE) const;
 	///TKe
 	void setYieldBuyPrice(YieldTypes eYield, int iPrice, bool bMessage);
 	void sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission);

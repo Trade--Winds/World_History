@@ -171,10 +171,18 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_DOCK:
 		parseEuropeUnitHelp(widgetDataStruct, szBuffer);
 		break;
-
+///Tks Med TradeRoute
 	case WIDGET_SAIL:
 		szBuffer.append(gDLL->getText("TXT_KEY_SAIL"));
 		break;
+
+	case WIDGET_TRADE_SCREEN_ROUTE:
+		{			
+			szBuffer.append(GC.getEuropeInfo((EuropeTypes) widgetDataStruct.m_iData2).getDescription());
+			szBuffer.append(GC.getEuropeInfo((EuropeTypes) widgetDataStruct.m_iData2).getStrategy());
+		}
+		break;
+///TKe
 
 	case WIDGET_GOTO_CITY:
 		{
@@ -647,7 +655,7 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 		doTaxAdvisor(widgetDataStruct);
 		break;
     //Tke
-    ///TKs Invention Core Mod v 1.0
+    ///TKs Med  v 1.0
 	case WIDGET_INVENTORS_HOUSE:
 		doInventorsHouse(widgetDataStruct);
 		break;
@@ -656,6 +664,17 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 		break;
     case WIDGET_MARKET:
 		doMarket(widgetDataStruct);
+		break;
+		///TradeRoutes
+	case WIDGET_TRADE_SCREEN_ROUTE:
+		{
+			CvUnit* pHeadSelectedUnit = gDLL->getInterfaceIFace()->getHeadSelectedUnit();
+			if (pHeadSelectedUnit != NULL)
+			{
+				//gDLL->sendDoCommand(pHeadSelectedUnit->getID(), COMMAND_SAIL_SPICE_ROUTE, widgetDataStruct.m_iData1, widgetDataStruct.m_iData2, false);
+				pHeadSelectedUnit->crossOcean((UnitTravelStates) widgetDataStruct.m_iData1, false, (EuropeTypes) widgetDataStruct.m_iData2);
+			}
+		}
 		break;
 	///TKe
 	case WIDGET_ASSIGN_TRADE_ROUTE:

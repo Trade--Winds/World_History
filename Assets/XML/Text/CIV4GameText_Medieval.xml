@@ -1903,11 +1903,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_COMMAND_TRAVEL_TO_FAIR</Tag>
-    <English>Travel to The Fair</English>
-    <French>Travel to The Fair</French>
-    <German>Travel to The Fair</German>
-    <Italian>Travel to The Fair</Italian>
-    <Spanish>Travel to The Fair</Spanish>
+    <English>[COLOR_HIGHLIGHT_TEXT]Travel to The Fair[COLOR_REVERT][NEWLINE]</English>
+    <French>[COLOR_HIGHLIGHT_TEXT]Travel to The Fair[COLOR_REVERT][NEWLINE]</French>
+    <German>[COLOR_HIGHLIGHT_TEXT]Travel to The Fair[COLOR_REVERT][NEWLINE]</German>
+    <Italian>[COLOR_HIGHLIGHT_TEXT]Travel to The Fair[COLOR_REVERT][NEWLINE]</Italian>
+    <Spanish>[COLOR_HIGHLIGHT_TEXT]Travel to The Fair[COLOR_REVERT][NEWLINE]</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_AUTO_TRAVEL_SILK_ROAD_HELP</Tag>
@@ -1927,11 +1927,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_COMMAND_TRAVEL_SILK_ROAD</Tag>
-    <English>Embark on the Silk Road</English>
-    <French>Embark on the Silk Road</French>
-    <German>Embark on the Silk Road</German>
-    <Italian>Embark on the Silk Road</Italian>
-    <Spanish>Embark on the Silk Road</Spanish>
+    <English>[COLOR_HIGHLIGHT_TEXT]Embark on the Silk Road[COLOR_REVERT][NEWLINE]</English>
+    <French>[COLOR_HIGHLIGHT_TEXT]Embark on the Silk Road[COLOR_REVERT][NEWLINE]</French>
+    <German>[COLOR_HIGHLIGHT_TEXT]Embark on the Silk Road[COLOR_REVERT][NEWLINE]</German>
+    <Italian>[COLOR_HIGHLIGHT_TEXT]Embark on the Silk Road[COLOR_REVERT][NEWLINE]</Italian>
+    <Spanish>[COLOR_HIGHLIGHT_TEXT]Embark on the Silk Road[COLOR_REVERT][NEWLINE]</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_AUTO_SELL_SPICE_ROUTE_HELP</Tag>
@@ -1943,11 +1943,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_COMMAND_SAIL_SPICE_ROUTE</Tag>
-    <English>Embark on the Spice Route</English>
-    <French>Embark on the Spice Route</French>
-    <German>Embark on the Spice Route</German>
-    <Italian>Embark on the Spice Route</Italian>
-    <Spanish>Embark on the Spice Route</Spanish>
+    <English>[COLOR_HIGHLIGHT_TEXT]Embark on the Spice Route[COLOR_REVERT][NEWLINE]</English>
+    <French>[COLOR_HIGHLIGHT_TEXT]Embark on the Spice Route[COLOR_REVERT][NEWLINE]</French>
+    <German>[COLOR_HIGHLIGHT_TEXT]Embark on the Spice Route[COLOR_REVERT][NEWLINE]</German>
+    <Italian>[COLOR_HIGHLIGHT_TEXT]Embark on the Spice Route[COLOR_REVERT][NEWLINE]</Italian>
+    <Spanish>[COLOR_HIGHLIGHT_TEXT]Embark on the Spice Route[COLOR_REVERT][NEWLINE]</Spanish>
   </TEXT>
   <TEXT>
     <Tag>INTERFACE_COLONIAL_FORCES</Tag>

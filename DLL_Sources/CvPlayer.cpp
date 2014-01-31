@@ -61,7 +61,7 @@ CvPlayer::CvPlayer()
     m_aiCensureTypes = new int[NUM_CENSURE_TYPES];
     m_aiTradeRouteStartingPlotX = new int[NUM_TRADE_ROUTES_TYPES];
     m_aiTradeRouteStartingPlotY = new int[NUM_TRADE_ROUTES_TYPES];
-    m_abTradeRouteTypes = new bool[NUM_TRADE_ROUTES_TYPES];
+	m_abTradeRouteTypes = new bool[GC.getNumEuropeInfos()];
     ///TKe
 	m_abYieldEuropeTradable = new bool[NUM_YIELD_TYPES];
 	m_abFeatAccomplished = new bool[NUM_FEAT_TYPES];
@@ -557,7 +557,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	}
 	for (iI = 0; iI < NUM_TRADE_ROUTES_TYPES; iI++)
 	{
-	    m_abTradeRouteTypes[iI] = false;
+	    m_abTradeRouteTypes[iI] = true;
 	}
     ///TKe
 	for (iI = 0; iI < MAX_PLAYERS; ++iI)
@@ -7695,7 +7695,7 @@ int CvPlayer::getYieldRate(YieldTypes eIndex) const
 	return iTotalRate;
 }
 
-bool CvPlayer::isYieldEuropeTradable(YieldTypes eYield) const
+bool CvPlayer::isYieldEuropeTradable(YieldTypes eYield, EuropeTypes eTradeScreen) const
 {
 	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
 
@@ -7715,32 +7715,23 @@ bool CvPlayer::isYieldEuropeTradable(YieldTypes eYield) const
 	}
 
 
-	///TKs Invention Core Mod v 1.0
-	if (isHuman() && !getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
+	///TKs TradeScreen
+	if (isHuman())
     {
-        //for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-        //{
-        //    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
-        //    {
-        //        CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-        //        if (eYield != NO_YIELD && kCivicInfo.getAllowsYields(eYield) > 0)
-        //        {
-        //            if (getIdeasResearched((CivicTypes) iCivic) == 0)
-        //            {
-        //                return false;
-        //            }
-        //        }
-		//
-        //    }
-        //}
 		if (!this->canUseYield(eYield))
 		{
-			return false;
+			if (eTradeScreen != NO_EUROPE)
+			{
+				if (GET_PLAYER(getParent()).getYieldBuyPrice(eYield, eTradeScreen) <= 0)
+				{
+					return false;
+				}
+			}
 		}
     }
 	///TKe
 
-	if (GET_PLAYER(getParent()).getYieldBuyPrice(eYield) <= 0)
+	if (GET_PLAYER(getParent()).getYieldBuyPrice(eYield, eTradeScreen) <= 0)
 	{
 		return false;
 	}
@@ -8744,7 +8735,7 @@ void CvPlayer::unloadUnitToEurope(CvUnit* pUnit)
 		if (this->isHuman() && eTravelState == NO_UNIT_TRAVEL_STATE)
 		{
 			// TODO figure out a generic way of setting the start location instead of this hack
-			eTravelState = UNIT_TRAVEL_STATE_IN_SPICE_ROUTE;
+			eTravelState = UNIT_TRAVEL_STATE_IN_EUROPE;
 		}
 		// traderoute - end - Nightinggale
 
@@ -11036,59 +11027,11 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
         sprintf(szOut, "######################## Player %d %S Has Aquired %S\n", getID(), getNameKey(), GC.getCivicInfo(eCivic).getTextKeyWide());
         gDLL->messageControlLog(szOut);
 	//}
-    ///TKs Med Trade Routes
-    if ((ModCodeTypes)kCivicInfo.getModdersCode1() != NO_MOD_CODE)
-    {
-        ModCodeTypes iModdersCode = (ModCodeTypes)kCivicInfo.getModdersCode1();
-        if (iModdersCode == MODER_CODE_SPICE_ROUTE)
-        {
-            if (!getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
-            {
-                if (GC.getXMLval(XML_DIPLAY_NEW_VIDEOS) > 0)
-                {
-                    if (!CvString(CvWString("ART_DEF_MOVIE_SPICE_ROUTE")).empty())
-                    {
-                        CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
-                        pInfo->setText(CvWString("ART_DEF_MOVIE_SPICE_ROUTE"));
-                        gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
-                    }
-                }
-                setHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE, true);
-            }
-
-        }
-        else if (iModdersCode == MODER_CODE_SILK_ROAD_ROUTE)
-        {
-            if (!getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
-            {
-                if (GC.getXMLval(XML_DIPLAY_NEW_VIDEOS) > 0)
-                {
-                    if (!CvString(CvWString("ART_DEF_MOVIE_SILK_ROAD")).empty())
-                    {
-                        CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
-                        pInfo->setText(CvWString("ART_DEF_MOVIE_SILK_ROAD"));
-                        gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
-                    }
-                }
-                setHasTradeRouteType(TRADE_ROUTE_SILK_ROAD, true);
-            }
-
-        }
-        else if (iModdersCode == MODER_CODE_ALLOWS_TRADE_FAIR)
-        {
-            if (GC.getXMLval(XML_DIPLAY_NEW_VIDEOS) > 0)
-            {
-                if (!CvString(CvWString("ART_DEF_MOVIE_TRADE_FAIR")).empty())
-                {
-                    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_MOVIE);
-                    pInfo->setText(CvWString("ART_DEF_MOVIE_TRADE_FAIR"));
-                    gDLL->getInterfaceIFace()->addPopup(pInfo, getID());
-                }
-            }
-            setHasTradeRouteType(TRADE_ROUTE_FAIR, true);
-        }
-
-    }
+    ///TKs Med TradeScreen
+	if ((EuropeTypes)kCivicInfo.getAllowsTradeScreen() != NO_EUROPE)
+	{
+		setHasTradeRouteType((EuropeTypes)kCivicInfo.getAllowsTradeScreen(), true);
+	}
     ///TKe
     if (kCivicInfo.getGoldBonusForFirstToResearch() > 0)
     {
@@ -12717,7 +12660,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
            // {
                 //if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
                 //{
-                    if (getIdeasResearched((CivicTypes)kTrigger.getCivic()) <= 0)
+                    /*if (getIdeasResearched((CivicTypes)kTrigger.getCivic()) <= 0)
                     {
                         bool bFoundRoute = false;
                         if ((ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1() != NO_MOD_CODE)
@@ -12735,7 +12678,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
                         {
                             return NULL;
                         }
-                    }
+                    }*/
                 //}
             //}
         }
@@ -14267,17 +14210,18 @@ int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
         {
             bFoundValid = true;
         }
-        else if ((ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1() != NO_MOD_CODE)
-        {
-            ModCodeTypes iModdersCode = (ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1();
-            if (iModdersCode == MODER_CODE_SPICE_ROUTE)
-            {
-                if (getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
+		// This Code is for discovering the Trade Route
+        //else if ((ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1() != NO_MOD_CODE)
+       // {
+           // ModCodeTypes iModdersCode = (ModCodeTypes)GC.getCivicInfo((CivicTypes) kTrigger.getCivic()).getModdersCode1();
+           // if (iModdersCode == MODER_CODE_SPICE_ROUTE)
+           // {
+                /*if (getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
                 {
                     bFoundValid = true;
-                }
-            }
-        }
+                }*/
+            //}
+       // }
 
 //		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 //        {
@@ -14651,23 +14595,22 @@ CvCity* CvPlayer::getPopulationUnitCity(int iUnitId) const
 	return NULL;
 }
 ///TKs Med
-int CvPlayer::getYieldSellPrice(YieldTypes eYield, UnitTravelStates eTradeScreen) const
+int CvPlayer::getYieldSellPrice(YieldTypes eYield, EuropeTypes eTradeScreen) const
 {
 	FAssert(eYield >= 0);
 	FAssert(eYield < NUM_YIELD_TYPES);
 
 	int iPrice = (getYieldBuyPrice(eYield, eTradeScreen) + GC.getYieldInfo(eYield).getSellPriceDifference());
-    //iPrice =  (iPrice * getTradeScreenPriceMod(eYield, eTradeScreen)) / 100;
 	return std::max(1, iPrice);
 }
 
-int CvPlayer::getYieldBuyPrice(YieldTypes eYield, UnitTravelStates eTradeScreen) const
+int CvPlayer::getYieldBuyPrice(YieldTypes eYield, EuropeTypes eTradeScreen) const
 {
 	FAssert(eYield >= 0);
 	FAssert(eYield < NUM_YIELD_TYPES);
 	int iPrice = m_aiYieldBuyPrice[eYield];
 	///TKs Med
-	if (eTradeScreen != NO_UNIT_TRAVEL_STATE)
+	if (eTradeScreen != NO_EUROPE)
 	{
         if (getTradeScreenPriceMod(eYield, eTradeScreen) > 0 && iPrice == 0)
         {
@@ -14718,46 +14661,19 @@ void CvPlayer::setYieldBuyPrice(YieldTypes eYield, int iPrice, bool bMessage)
 	}
 }
 ///Tks Med
-//TRADE_SCREEN_MOTHERLAND
-//TRADE_SCREEN_TRADE_FAIR
-//TRADE_SCREEN_SPICE_ROUTE
-//TRADE_SCREEN_SILK_ROAD
-//TRADE_SCREEN_EUROPE
-
-//UNIT_TRAVEL_STATE_IN_EUROPE
-//UNIT_TRAVEL_STATE_IN_SPICE_ROUTE
-//UNIT_TRAVEL_STATE_IN_SILK_ROAD
-int CvPlayer::getTradeScreenPriceMod(YieldTypes eYield, UnitTravelStates eTravelState, UnitTypes eUnit) const
+int CvPlayer::getTradeScreenPriceMod(YieldTypes eYield, EuropeTypes eTradeScreen, UnitTypes eUnit) const
 {
     if (NO_YIELD != eYield)
     {
-            if (eTravelState == UNIT_TRAVEL_STATE_IN_SPICE_ROUTE)
-            {
-                if (GC.getYieldInfo(eYield).getTradeScreenPrice(TRADE_SCREEN_SPICE_ROUTE) != 0)
-                {
-                    return GC.getYieldInfo(eYield).getTradeScreenPrice(TRADE_SCREEN_SPICE_ROUTE);
-                }
-//                else if (GC.getYieldInfo(eYield).getTradeScreenPrice(TRADE_SCREEN_SPICE_ROUTE) == -1)
-//                {
-//                    return 0;
-//                }
-            }
-            else if (eTravelState == UNIT_TRAVEL_STATE_IN_SILK_ROAD)
-            {
-                if (GC.getYieldInfo(eYield).getTradeScreenPrice(TRADE_SCREEN_SILK_ROAD) != 0)
-                {
-                    return GC.getYieldInfo(eYield).getTradeScreenPrice(TRADE_SCREEN_SILK_ROAD);
-                }
-//                else if (GC.getYieldInfo(eYield).getTradeScreenPrice(TRADE_SCREEN_SILK_ROAD) == -1)
-//                {
-//                    return 0;
-//                }
-            }
+		if (GC.getYieldInfo(eYield).getTradeScreenPrice(eTradeScreen) != 0)
+        {
+            return GC.getYieldInfo(eYield).getTradeScreenPrice(eTradeScreen);
+        }
     }
 
     return 100;
 }
-///TKe
+
 void CvPlayer::sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission)
 {
 	FAssert(pUnit != NULL);
@@ -14767,6 +14683,12 @@ void CvPlayer::sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission
 		FAssert(getParent() != NO_PLAYER);
 		CvPlayer& kPlayerEurope = GET_PLAYER(getParent());
 		bool bDelayedDeath = (pUnit->getUnitTravelState() == NO_UNIT_TRAVEL_STATE);
+		EuropeTypes eTradeScreen = (EuropeTypes)0;
+
+		if (pUnit->getTransportUnit() != NULL)
+		{
+			eTradeScreen = pUnit->getTransportUnit()->getUnitTradeMarket();
+		}
 
 		YieldTypes eYield = pUnit->getYield();
 		if (NO_YIELD != eYield)
@@ -14774,14 +14696,9 @@ void CvPlayer::sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission
 			if (isYieldEuropeTradable(eYield))
 			{
 				iAmount = std::min(iAmount, pUnit->getYieldStored());
-                int iTradeRoutePrice = kPlayerEurope.getYieldBuyPrice(eYield, pUnit->getUnitTravelState());
+                int iTradeRoutePrice = kPlayerEurope.getYieldBuyPrice(eYield,  eTradeScreen);
 				int iProfit = iAmount * iTradeRoutePrice;
                 iProfit -= (iProfit * getTaxRate()) / 100;
-				//int iProfit = getSellToEuropeProfit(eYield, iAmount * (100 - iCommission) / 100);
-				///TKs Med
-//				int iTCPriceMod = getTradeScreenPriceMod(eYield, pUnit->getUnitTravelState());
-//
-//				iProfit = (iProfit * iTCPriceMod) / 100;
 				///TKe
 				changeGold(iProfit * getExtraTradeMultiplier(kPlayerEurope.getID()) / 100);
                 ///TKs Invention Core Mod v 1.0
@@ -14828,7 +14745,7 @@ void CvPlayer::sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission
 
 
 				CvWStringBuffer szMessage;
-				GAMETEXT.setEuropeYieldSoldHelp(szMessage, *this, eYield, iAmount, iCommission, pUnit->getUnitTravelState());
+				GAMETEXT.setEuropeYieldSoldHelp(szMessage, *this, eYield, iAmount, iCommission, eTradeScreen);
 				m_aszTradeMessages.push_back(szMessage.getCString());
 				gDLL->getInterfaceIFace()->addMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szMessage.getCString(), "AS2D_BUILD_BANK", MESSAGE_TYPE_LOG_ONLY);
 
@@ -14849,7 +14766,7 @@ void CvPlayer::sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission
 			pUnit->kill(bDelayedDeath);
 
 			CvWStringBuffer szMessage;
-			GAMETEXT.setEuropeYieldSoldHelp(szMessage, *this, eYield, iAmount, iCommission, pUnit->getUnitTravelState());
+			GAMETEXT.setEuropeYieldSoldHelp(szMessage, *this, eYield, iAmount, iCommission, eTradeScreen);
 			m_aszTradeMessages.push_back(szMessage.getCString());
 			gDLL->getInterfaceIFace()->addMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szMessage.getCString(), "AS2D_BUILD_BANK", MESSAGE_TYPE_LOG_ONLY);
 
@@ -14861,20 +14778,13 @@ void CvPlayer::sellYieldUnitToEurope(CvUnit* pUnit, int iAmount, int iCommission
 
 CvUnit* CvPlayer::buyYieldUnitFromEurope(YieldTypes eYield, int iAmount, CvUnit* pTransport)
 {
-	if (!isYieldEuropeTradable(eYield))
+	FAssert(pTransport != NULL);
+	if (NULL == pTransport)
 	{
 		return NULL;
 	}
 
-	///TKs Invention Core Mod v 1.0
-//	if (eYield == YIELD_CLOTH && GC.getGameINLINE().isIndustrialVictoryAll())
-//    {
-//        return NULL;
-//    }
-	///TKe
-
-	FAssert(pTransport != NULL);
-	if (NULL == pTransport)
+	if (!isYieldEuropeTradable(eYield, pTransport->getUnitTradeMarket()))
 	{
 		return NULL;
 	}
@@ -14890,27 +14800,8 @@ CvUnit* CvPlayer::buyYieldUnitFromEurope(YieldTypes eYield, int iAmount, CvUnit*
 	FAssert(pTransport->getOwnerINLINE() == getID());
 	FAssert(getParent() != NO_PLAYER);
 	CvPlayer& kPlayerEurope = GET_PLAYER(getParent());
-	int iTradeRoutePrice = kPlayerEurope.getYieldSellPrice(eYield, pTransport->getUnitTravelState());
+	int iTradeRoutePrice = kPlayerEurope.getYieldSellPrice(eYield, pTransport->plot()->getEurope());
 	int iPrice = iAmount * iTradeRoutePrice;
-	///Tks Med
-//	if (pTransport->getUnitTravelState() != NO_UNIT_TRAVEL_STATE)
-//    {
-////        switch (pTransport->getUnitTravelState())
-////        {
-////            case UNIT_TRAVEL_STATE_IN_SPICE_ROUTE:
-////            case UNIT_TRAVEL_STATE_IN_SILK_ROAD:
-////            {
-//            if (getTradeScreenPriceMod(eYield, pTransport->getUnitTravelState()) > 0)
-//            {
-//                iPrice += iPrice * getTradeScreenPriceMod(eYield, eTravelState) / 100;
-//            }
-////            }
-////                break;
-////            default:
-////                break;
-//        //}
-//    }
-    ///Tke
 	//FAssert(iPrice <= getGold());
 	if (iPrice > getGold())
 	{
@@ -14965,7 +14856,7 @@ CvUnit* CvPlayer::buyYieldUnitFromEurope(YieldTypes eYield, int iAmount, CvUnit*
 	return pUnit;
 }
 ///TKs Med
-int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScreenType) const
+int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, EuropeTypes eTradeScreenType) const
 {
     ///TKs Invention Core Mod v 1.0
 	CvUnitInfo& kUnit = GC.getUnitInfo(eUnit);
@@ -14996,16 +14887,16 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
 	int iTradeRoutePrice = -1;
 	if (isHuman())
 	{
-		if (eTradeScreenType != TRADE_SCREEN_DEFAULT)
+		if (eTradeScreenType != NO_EUROPE)
 		{
-			if (eTradeScreenType == TRADE_SCREEN_SPICE_ROUTE)
+			/*if (eTradeScreenType == TRADE_SCREEN_SPICE_ROUTE)
 			{
-				iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SPICE_ROUTE);
+				iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(eTradeScreenType);
 			}
 			else if (eTradeScreenType == TRADE_SCREEN_SILK_ROAD)
-			{
-				iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_SILK_ROAD);
-			}
+			{*/
+			iTradeRoutePrice = GC.getUnitInfo(eUnit).getTradeScreenPrice(eTradeScreenType);
+			//}
 
 			if (iTradeRoutePrice > 0)
 			{
@@ -15057,7 +14948,7 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
 	}
 	else
     {
-        iCost = GC.getUnitInfo(eUnit).getTradeScreenPrice(TRADE_SCREEN_EUROPE);
+        iCost = GC.getUnitInfo(eUnit).getTradeScreenPrice(eTradeScreenType);
     }
 ///TKe
 	bool bNegative = (iCost < 0);
@@ -15097,7 +14988,7 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, TradeScreenTypes eTradeScre
 	return iCost;
 }
 ///Tks Med
-CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteTypes eTradeRoute)
+CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, EuropeTypes eTradeScreen)
 {
 	FAssert(canTradeWithEurope());
 	if (!canTradeWithEurope())
@@ -15105,8 +14996,8 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteT
 		return NULL;
 	}
     int iPrice = 0;
-    TradeScreenTypes eTradeScreen = TRADE_SCREEN_DEFAULT;
-    if (eTradeRoute != NO_TRADE_ROUTES)
+    /*TradeScreenTypes eTradeScreen = TRADE_SCREEN_DEFAULT;
+    if (eTradeScreen != NO_TRADE_ROUTES)
     {
         if (eTradeRoute == TRADE_ROUTE_SPICE_ROUTE)
         {
@@ -15116,7 +15007,7 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteT
         {
             eTradeScreen = TRADE_SCREEN_SILK_ROAD;
         }
-    }
+    }*/
 
 	if (getEuropeUnitBuyPrice(eUnit, eTradeScreen) < 0)
 	{
@@ -15143,7 +15034,7 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteT
 	if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_SEA && pStartingPlot != NULL)
 	{
 	    UnitTravelStates eTravelState = UNIT_TRAVEL_STATE_IN_EUROPE;
-	    if (eTradeRoute != NO_TRADE_ROUTES)
+	    /*if (eTradeRoute != NO_TRADE_ROUTES)
         {
             FAssert(eTradeRoute >= 0)
             FAssert(eTradeRoute < NUM_TRADE_ROUTES_TYPES);
@@ -15156,14 +15047,14 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteT
                 eTravelState = UNIT_TRAVEL_STATE_IN_SILK_ROAD;
             }
             FAssert(eTravelState != NO_UNIT_TRAVEL_STATE);
-        }
+        }*/
 
 		pUnit = initUnit(eUnit, (ProfessionTypes) GC.getUnitInfo(eUnit).getDefaultProfession(), INVALID_PLOT_COORD, INVALID_PLOT_COORD);
         if (pUnit != NULL)
 		{
-		    if (eTradeRoute != NO_TRADE_ROUTES)
+		    if (eTradeScreen != NO_EUROPE)
             {
-                CvPlot* pStartingTradePlot = getStartingTradeRoutePlot(eTradeRoute);
+                CvPlot* pStartingTradePlot = getStartingTradeRoutePlot(TRADE_ROUTE_SPICE_ROUTE);
                 if (!pStartingPlot->isEurope() && pStartingTradePlot == NULL)
                 {
                     CvPlot* pNewPlot = NULL;
@@ -15192,7 +15083,7 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteT
 
                         if (pUnit->isValidPlot(pLoopPlot) && !pLoopPlot->isVisibleEnemyDefender(pUnit))
                         {
-                            if (pUnit->canCrossOcean(pLoopPlot, eTravelState, eTradeRoute))
+                            if (pUnit->canCrossOcean(pLoopPlot, eTravelState, NO_TRADE_ROUTES, false, eTradeScreen))
                             {
                                 int iPathTurns;
                                 if (pUnit->generatePath(pStartingPlot, MOVE_BUST_FOG, true, &iPathTurns))
@@ -15307,7 +15198,7 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, TradeRouteT
 				FAssert(pTransferUnit == pUnit);
 				m_aEuropeUnits.push_back(pTransferUnit);
 				pTransferUnit->AI_setUnitAIType(eUnitAI);
-				pTransferUnit->setUnitTravelState(UNIT_TRAVEL_STATE_IN_SPICE_ROUTE, false);
+				pTransferUnit->setUnitTravelState(UNIT_TRAVEL_STATE_IN_EUROPE, false);
 				gDLL->getInterfaceIFace()->setDirty(EuropeScreen_DIRTY_BIT, true);
 
 				if (NULL != pTransferUnit)
@@ -15583,21 +15474,21 @@ bool CvPlayer::canTradeWithEurope() const
 }
 
 
-int CvPlayer::getSellToEuropeProfit(YieldTypes eYield, int iAmount) const
+int CvPlayer::getSellToEuropeProfit(YieldTypes eYield, int iAmount, EuropeTypes eTradeScreen) const
 {
 	if (getParent() == NO_PLAYER)
 	{
 		return 0;
 	}
 
-	if (!isYieldEuropeTradable(eYield))
+	if (!isYieldEuropeTradable(eYield, eTradeScreen))
 	{
 		return 0;
 	}
 
 	CvPlayer& kPlayerEurope = GET_PLAYER(getParent());
 
-	int iPrice = iAmount * kPlayerEurope.getYieldBuyPrice(eYield);
+	int iPrice = iAmount * kPlayerEurope.getYieldBuyPrice(eYield, eTradeScreen);
 	iPrice -= (iPrice * getTaxRate()) / 100;
 
 	return iPrice;
@@ -15609,7 +15500,7 @@ void CvPlayer::doAction(PlayerActionTypes eAction, int iData1, int iData2, int i
 	{
 	case PLAYER_ACTION_BUY_EUROPE_UNIT:
 	///Tks Med
-		buyEuropeUnit((UnitTypes) iData1, iData2, (TradeRouteTypes)iData3);
+		buyEuropeUnit((UnitTypes) iData1, iData2, (EuropeTypes)iData3);
 		///Tke
 		break;
 	case PLAYER_ACTION_SELL_YIELD_UNIT:
@@ -16296,19 +16187,22 @@ void CvPlayer::doPrices()
 
             if (kChildPlayer.isAlive())
             {
-                ///Tks Med
-                if (GC.getLeaderHeadInfo(kChildPlayer.getLeaderType()).getEconomyType() == 2)
+                ///Tks Med Trade Routes. If Economy type = 2 Do Prices want start unless you have a Trade Screen discovered.
+                if (isHuman() && GC.getLeaderHeadInfo(kChildPlayer.getLeaderType()).getEconomyType() == 2)
                 {
-                    if (!kChildPlayer.getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
-                    {
-                        if (!kChildPlayer.getHasTradeRouteType(TRADE_ROUTE_FAIR))
-                        {
-                            if (!kChildPlayer.getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
-                            {
-                                return;
-                            }
-                        }
-                    }
+					bool bFoundRoute = false;
+					for (int iRoute = 0; iRoute < GC.getNumEuropeInfos(); ++iRoute)
+					{
+						if (kChildPlayer.getHasTradeRouteType((EuropeTypes)iRoute))
+						{
+							bFoundRoute = true;
+							break;
+						}
+					}
+					if (!bFoundRoute)
+					{
+						return;
+					}
                 }
 
                 ///TKe
@@ -18085,12 +17979,12 @@ void CvPlayer::doIdeas(bool Cheat)
                             {
                                 if (canDoCivics((CivicTypes)iLoopCivic))
                                 {
-                                    if ((CivicTypes)iLoopCivic == eSpiceRoute && getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
+                                    /*if ((CivicTypes)iLoopCivic == eSpiceRoute && getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
                                     {
                                         changeIdeasResearched(eSpiceRoute, 1);
                                         processCivics(eSpiceRoute, 1);
                                         continue;
-                                    }
+                                    }*/
                                     iMultTradingPerk++;
                                     eNewTech = (CivicTypes)iLoopCivic;
                                     if (iMultTradingPerk > 1)
@@ -18744,11 +18638,11 @@ void CvPlayer::ConvertUnits(UnitTypes eFromUnit, UnitTypes eToUnit, CivicTypes e
 
 }
 ///TKs Med
-bool CvPlayer::canUnitBeTraded(YieldTypes eYield, UnitTravelStates eTravelState, UnitTypes eUnit) const
+bool CvPlayer::canUnitBeTraded(YieldTypes eYield, EuropeTypes eTradeScreen, UnitTypes eUnit) const
 {
 	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
 
-	if (getTradeScreenPriceMod(eYield, eTravelState) == -1)
+	if (getTradeScreenPriceMod(eYield, eTradeScreen) == -1)
 	{
 	    return false;
 	}
@@ -18759,73 +18653,26 @@ bool CvPlayer::canUnitBeTraded(YieldTypes eYield, UnitTravelStates eTravelState,
 	}
 	else
 	{
-	    if (eTravelState != NO_UNIT_TRAVEL_STATE)
+	    if (eTradeScreen != NO_EUROPE)
         {
-//            switch (eTravelState)
-//            {
-//                case UNIT_TRAVEL_STATE_IN_SPICE_ROUTE:
-//                case UNIT_TRAVEL_STATE_IN_SILK_ROAD:
-//                {
-            if (getTradeScreenPriceMod(eYield, eTravelState) > 0)
+            if (getTradeScreenPriceMod(eYield, eTradeScreen) > 0)
             {
                 return true;
             }
-//                }
-//                    break;
-//                default:
-//                    break;
-//            }
         }
-        else
-        {
-            if (getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
-            {
-                if (getTradeScreenPriceMod(eYield, UNIT_TRAVEL_STATE_IN_SPICE_ROUTE) > 0)
-                {
-                    return true;
-                }
-            }
-            if (getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
-            {
-                if (getTradeScreenPriceMod(eYield, UNIT_TRAVEL_STATE_IN_SILK_ROAD) > 0)
-                {
-                    return true;
-                }
-            }
-        }
-
 
 	}
 
 	///TKs Invention Core Mod v 1.0
 	if (isHuman())
     {
-        if (!getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
-        {
-			/*
-            for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-            {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
-                {
-                    CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-                    if (eYield != NO_YIELD && kCivicInfo.getAllowsYields(eYield) > 0)
-                    {
-                        if (getIdeasResearched((CivicTypes) iCivic) == 0)
-                        {
-                            return false;
-                        }
-                    }
-
-                }
-            }
-			*/
 			// invention effect cache - start - Nightinggale
 			if (!this->canUseYield(eYield))
 			{
 				return false;
 			}
 			// invention effect cache - end - Nightinggale
-        }
+       // }
     }
 
 
@@ -18996,7 +18843,7 @@ void CvPlayer::setStartingTradeRoutePlot(CvPlot* pNewValue, TradeRouteTypes eTra
 	}
 }
 
-bool CvPlayer::getHasTradeRouteType(TradeRouteTypes eTradeRoute) const
+bool CvPlayer::getHasTradeRouteType(EuropeTypes eTradeRoute) const
 {
     if (GC.getXMLval(XML_CHEAT_TRAVEL_ALL) || !isHuman())
     {
@@ -19006,7 +18853,7 @@ bool CvPlayer::getHasTradeRouteType(TradeRouteTypes eTradeRoute) const
 	//return 0;
 }
 
-void CvPlayer::setHasTradeRouteType(TradeRouteTypes eTradeRoute, bool bValue)
+void CvPlayer::setHasTradeRouteType(EuropeTypes eTradeRoute, bool bValue)
 {
     m_abTradeRouteTypes[eTradeRoute] = bValue;
 }
@@ -19384,15 +19231,28 @@ void CvPlayer::updateInventionEffectCache()
 	this->m_abBannedProfessions.hasContent(); // release memory if possible
 
 	// city plot food bonus
+	// Initiate Trade Route Screens
 	this->m_iCityPlotFoodBonus = 0;
+	bool bTradeScreen = false;
 	for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 	{
 		CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 		if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
 		{
+			//for (int iTradeScreen = 0; iTradeScreen < GC.getNumEuropeInfos(); ++iTradeScreen)
+			if (kCivicInfo.getAllowsTradeScreen() != NO_EUROPE)
+			{
+				FAssert (kCivicInfo.getAllowsTradeScreen() < GC.getNumEuropeInfos());
+				bTradeScreen = true;
+			}
+
 			if (this->getIdeasResearched((CivicTypes) iCivic) > 0)
 			{
 				this->m_iCityPlotFoodBonus += kCivicInfo.getCenterPlotFoodBonus();
+			}
+			else if (bTradeScreen)
+			{
+				setHasTradeRouteType((EuropeTypes)kCivicInfo.getAllowsTradeScreen(), false);
 			}
 		}
 	}
