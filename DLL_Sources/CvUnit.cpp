@@ -4751,7 +4751,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 		break;
 	}
 
-	if(isHuman() && !GC.getCivilizationInfo(getCivilizationType()).isWaterStart() && (eTradeRouteType == TRADE_ROUTE_FAIR))
+	/*if(isHuman() && !GC.getCivilizationInfo(getCivilizationType()).isWaterStart() && GC.getEuropeInfo(eEuropeTradeRoute).isNoEuropePlot())
 	{
 
         if (getDomainType() != DOMAIN_LAND)
@@ -4787,11 +4787,11 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 	    }
 
 	    return true;
-	}
+	}*/
 	///TKe
 
 	FAssert(pPlot != NULL);
-	if (!pPlot->isEurope())
+	if (!pPlot->isEurope() && !isHuman())
 	{
 		return false;
 	}
@@ -4802,7 +4802,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce, EuropeTypes eTradeMarket)
 {
 	///TKs
-    TradeRouteTypes eTradeRoute = NO_TRADE_ROUTES;
+    /*TradeRouteTypes eTradeRoute = NO_TRADE_ROUTES;
     TradeScreenTypes eTradeScreen = TRADE_SCREEN_DEFAULT;
     switch (eNewState)
     {
@@ -4840,10 +4840,10 @@ void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce, EuropeTypes e
             break;
         default:
             break;
-	}
+	}*/
 	///TKe MEd
 
-	if (!bAIForce && !canCrossOcean(plot(), eNewState, eTradeRoute, false, eTradeMarket))
+	if (!bAIForce && !canCrossOcean(plot(), eNewState, NO_TRADE_ROUTES, false, eTradeMarket))
 	{
 		return;
 	}
@@ -4873,12 +4873,12 @@ void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce, EuropeTypes e
 	int iTravelTime = 0;
     if (plot()->isEurope() != false)
     {
-        if (eTradeRoute != NO_TRADE_ROUTES)
+        if (eTradeMarket != NO_EUROPE)
         {
-            CvPlot* pStartingTradePlot = GET_PLAYER(getOwnerINLINE()).getStartingTradeRoutePlot(eTradeRoute);
+            CvPlot* pStartingTradePlot = GET_PLAYER(getOwnerINLINE()).getStartingTradeRoutePlot(eTradeMarket);
             if (pStartingTradePlot == NULL)
             {
-                GET_PLAYER(getOwnerINLINE()).setStartingTradeRoutePlot(plot(), eTradeRoute);
+                GET_PLAYER(getOwnerINLINE()).setStartingTradeRoutePlot(plot(), eTradeMarket);
             }
         }
 
