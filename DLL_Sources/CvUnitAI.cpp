@@ -5233,7 +5233,7 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 
         if (pBestPlot != NULL)
         {
-            GET_PLAYER(getOwnerINLINE()).setStartingTradeRoutePlot(pBestPlot, eTradeRouteType);
+            GET_PLAYER(getOwnerINLINE()).setStartingTradeRoutePlot(pBestPlot, (EuropeTypes)0);
         }
 	}
 	else if (!isHuman() && pBestPlot == NULL && bLandRoute)
