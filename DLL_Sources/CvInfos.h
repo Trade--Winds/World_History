@@ -407,7 +407,7 @@ public:
 	///TKs Med
     //DllExport bool readPass2(CvXMLLoadUtility* pXML);
     ///Tke
-	DllExport bool readPass3();
+	//DllExport bool readPass3();
 
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 protected:
@@ -1368,7 +1368,7 @@ public:
 	DllExport int getDefaultUnitIndex() const;
 	DllExport void setDefaultUnitIndex(int i);
 	DllExport bool read(CvXMLLoadUtility* pXML);
-	DllExport bool readPass3();
+	//DllExport bool readPass3();
 //---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 protected:
 	int m_iDefaultUnitIndex;
@@ -1647,7 +1647,7 @@ public:
 	DllExport int getVictoryThreshold(int i) const;
 
 	DllExport bool read(CvXMLLoadUtility* pXML);
-	DllExport bool readPass3();
+	//DllExport bool readPass3();
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 protected:
 	int m_iDefaultBuildingIndex;
@@ -4581,7 +4581,7 @@ public:
 	DllExport void write(FDataStreamBase* );
 	DllExport bool read(CvXMLLoadUtility* pXML);
 	///TK Med
-	DllExport bool readPass3();
+	//DllExport bool readPass3();
 	///Tke
 
 protected:

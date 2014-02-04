@@ -1901,10 +1901,17 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "YieldConsumed");
 	m_iYieldConsumed = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "SpecialBuilding");
-	m_aszExtraXMLforPass3.push_back(szTextVal);
-    ///TKs Med
+	/// XML load - start - Nightinggale
+	//m_aszExtraXMLforPass3.push_back(szTextVal);
+    m_iSpecialBuilding = pXML->FindInInfoClass(szTextVal);
+	/// XML load - end - Nightinggale
+	
+	///TKs Med
     pXML->GetChildXmlValByName(szTextVal, "UpgradeProfession");
-	m_aszExtraXMLforPass3.push_back(szTextVal);
+	/// XML load - start - Nightinggale
+	//m_aszExtraXMLforPass3.push_back(szTextVal);
+	m_iUpgradeProfession = pXML->FindInInfoClass(szTextVal);
+	/// XML load - end - Nightinggale
 
 	pXML->GetChildXmlValByName(szTextVal, "LeadUnit");
 	m_iLeadUnit = pXML->FindInInfoClass(szTextVal);
@@ -1913,7 +1920,10 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 
 
     pXML->GetChildXmlValByName(szTextVal, "RequiredBuilding");
-	m_aszExtraXMLforPass3.push_back(szTextVal);
+	/// XML load - start - Nightinggale
+	//m_aszExtraXMLforPass3.push_back(szTextVal);
+	m_iRequiredBuilding = pXML->FindInInfoClass(szTextVal);
+	/// XML load - end - Nightinggale
 
 	pXML->GetChildXmlValByName(&m_iTaxCollectRate, "iTaxCollectRate");
 	pXML->GetChildXmlValByName(&m_iExperenceLevel, "iExperenceLevel");
@@ -2017,6 +2027,7 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 }
 
 
+#if 0
 bool CvProfessionInfo::readPass3()
 {
 	if (m_aszExtraXMLforPass3.size() < 1)
@@ -2033,6 +2044,7 @@ bool CvProfessionInfo::readPass3()
 	///Tke
 	return true;
 }
+#endif
 
 //======================================================================================================
 //					CvMissionInfo
@@ -5533,9 +5545,14 @@ bool CvUnitClassInfo::read(CvXMLLoadUtility* pXML)
 	}
 	CvString szTextVal;
 	pXML->GetChildXmlValByName(szTextVal, "DefaultUnit");
-	m_aszExtraXMLforPass3.push_back(szTextVal);
+	/// XML load - start - Nightinggale
+	//m_aszExtraXMLforPass3.push_back(szTextVal);
+	m_iDefaultUnitIndex = pXML->FindInInfoClass(szTextVal);
+	/// XML load - end - Nightinggale
 	return true;
 }
+
+#if 0
 bool CvUnitClassInfo::readPass3()
 {
 	if (m_aszExtraXMLforPass3.size() < 1)
@@ -5547,6 +5564,7 @@ bool CvUnitClassInfo::readPass3()
 	m_aszExtraXMLforPass3.clear();
 	return true;
 }
+#endif
 
 //======================================================================================================
 //					CvBuildingInfo
@@ -6477,9 +6495,15 @@ bool CvBuildingClassInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_aiVictoryThreshold, "VictoryThresholds", GC.getNumVictoryInfos(), 0);
 	CvString szTextVal;
 	pXML->GetChildXmlValByName(szTextVal, "DefaultBuilding");
-	m_aszExtraXMLforPass3.push_back(szTextVal);
+	/// XML load - start - Nightinggale
+	//m_aszExtraXMLforPass3.push_back(szTextVal);
+	m_iDefaultBuildingIndex = pXML->FindInInfoClass(szTextVal);
+	/// XML load - end - Nightinggale
+	
 	return true;
 }
+
+#if 0
 bool CvBuildingClassInfo::readPass3()
 {
 	if (m_aszExtraXMLforPass3.size() < 1)
@@ -6491,6 +6515,7 @@ bool CvBuildingClassInfo::readPass3()
 	m_aszExtraXMLforPass3.clear();
 	return true;
 }
+#endif
 
 //======================================================================================================
 //					CvRiverModelInfo
@@ -15513,6 +15538,7 @@ bool CvFatherInfo::read(CvXMLLoadUtility* pXML)
 	//m_aszExtraXMLforPass3.push_back(szTextVal);
 	//return true;
 
+#if 0
 bool CvFatherInfo::readPass3()
 {
 //	if (m_aszExtraXMLforPass3.size() < 1)
@@ -15524,6 +15550,7 @@ bool CvFatherInfo::readPass3()
 //	m_aszExtraXMLforPass3.clear();
 	return true;
 }
+#endif
 
 CvFatherPointInfo::CvFatherPointInfo() :
 	m_iChar(0),
