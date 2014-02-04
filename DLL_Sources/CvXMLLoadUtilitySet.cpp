@@ -25,23 +25,6 @@ bool bFirstLoadRound;
 
 void CvXMLLoadUtility::loadXMLFiles()
 {
-	if (!bFirstLoadRound)
-	{
-		// type less XML files
-		// these files will produce an error if loaded more than once
-		loadXMLFile(XML_FILE_CIV4Hints);
-		loadXMLFile(XML_FILE_CIV4SlideShowInfos);
-		loadXMLFile(XML_FILE_CIV4SlideShowRandomInfos);
-		loadXMLFile(XML_FILE_CIV4WorldPickerInfos);
-		loadXMLFile(XML_FILE_Civ4RouteModelInfos);
-		loadXMLFile(XML_FILE_CIV4RiverModelInfos);
-		loadXMLFile(XML_FILE_CIV4WaterPlaneInfos);
-		loadXMLFile(XML_FILE_CIV4TerrainPlaneInfos);
-		loadXMLFile(XML_FILE_CIV4CameraOverlayInfos);
-		loadXMLFile(XML_FILE_CIV4AutomateInfos);
-		loadXMLFile(XML_FILE_CIV4InterfaceModeInfos);
-		loadXMLFile(XML_FILE_CIV4FormationInfos);
-	}
 	loadXMLFile(XML_FILE_CIV4BasicInfos);
 	loadXMLFile(XML_FILE_CIV4CalendarInfos);
 	loadXMLFile(XML_FILE_CIV4SeasonInfos);
@@ -109,6 +92,25 @@ void CvXMLLoadUtility::loadXMLFiles()
 	loadXMLFile(XML_FILE_CIV4ControlInfos);
 	loadXMLFile(XML_FILE_CIV4CommandInfos);
 	loadXMLFile(XML_FILE_CIV4AttachableInfos);
+
+
+	if (!bFirstLoadRound)
+	{
+		// type less XML files
+		// these files will produce an error if loaded more than once
+		loadXMLFile(XML_FILE_CIV4Hints);
+		loadXMLFile(XML_FILE_CIV4SlideShowInfos);
+		loadXMLFile(XML_FILE_CIV4SlideShowRandomInfos);
+		loadXMLFile(XML_FILE_CIV4WorldPickerInfos);
+		loadXMLFile(XML_FILE_Civ4RouteModelInfos);
+		loadXMLFile(XML_FILE_CIV4RiverModelInfos);
+		loadXMLFile(XML_FILE_CIV4WaterPlaneInfos);
+		loadXMLFile(XML_FILE_CIV4TerrainPlaneInfos);
+		loadXMLFile(XML_FILE_CIV4CameraOverlayInfos);
+		loadXMLFile(XML_FILE_CIV4AutomateInfos);
+		loadXMLFile(XML_FILE_CIV4InterfaceModeInfos);
+		loadXMLFile(XML_FILE_CIV4FormationInfos);
+	}
 }
 
 void CvXMLLoadUtility::loadXMLFile(XMLFileNames eFile)
