@@ -2744,6 +2744,9 @@ DllExport bool CvXMLLoadUtility::LoadPlayerOptions()
 /// XML load - start - Nightinggale
 	bFirstLoadRound = false;
 
+	// hardcode NONE to -1 when reading XML files
+	GC.setInfoTypeFromString("NONE", -1);
+
 	// load options and graphic files
 	loadXMLFile(XML_FILE_CIV4PlayerOptionInfos);
 	loadXMLFile(XML_FILE_CIV4GraphicOptionInfos);
