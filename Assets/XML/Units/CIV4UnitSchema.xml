@@ -452,10 +452,10 @@
 		<element type="Domain"/>
 		<element type="DefaultUnitAI"/>
 		<element type="DefaultProfession"/>
-    <element type="bNativesInvalid" minOccurs="0"/>
-    <element type="bEuropeInvalid" minOccurs="0"/>
-    <element type="bColonialInvalid" minOccurs="0"/>
-    <element type="Invisible"/>
+		<element type="bNativesInvalid"/>
+		<element type="bEuropeInvalid"/>
+		<element type="bColonialInvalid"/>
+		<element type="Invisible"/>
 		<element type="SeeInvisible"/>
 		<element type="Description"/>
 		<element type="Civilopedia"/>
@@ -481,7 +481,7 @@
 		<element type="bAlwaysHostile"/>
 		<element type="bTreasure"/>
 		<!-- JAnimals Mod Start -->
-		<element type="bAnimal" minOccurs="0"/>
+		<element type="bAnimal"/>
 		<!-- JAnimals Mod End -->
 		<element type="UnitClassUpgrades"/>
 		<element type="UnitAIs"/>
@@ -509,9 +509,9 @@
 		<element type="TerrainImpassables"/>
 		<element type="FeatureImpassables"/>
 		<!-- JAnimals Mod Start -->
-		<element type="TerrainNatives" minOccurs="0"/>
-		<element type="FeatureNatives" minOccurs="0"/>
-		<element type="BonusNatives" minOccurs="0"/>
+		<element type="TerrainNatives"/>
+		<element type="FeatureNatives"/>
+		<element type="BonusNatives"/>
 		<!-- JAnimals Mod End -->
 		<element type="EvasionBuildings"/>
 		<element type="iCombat"/>
@@ -536,7 +536,7 @@
 		<element type="BonusYieldChanges"/>
 		<element type="bLandYieldChanges"/>
 		<element type="bWaterYieldChanges"/>
-		<element type="YieldDemands" minOccurs="0"/>
+		<element type="YieldDemands"/>
 		<element type="iBombardRate"/>
 		<element type="SpecialCargo"/>
 		<element type="DomainCargo"/>
@@ -547,10 +547,10 @@
 		<element type="iNativeLearnTime"/>
 		<element type="iStudentWeight"/>
 		<element type="iTeacherWeight"/>
-		<element type="iTeachLevel" minOccurs="0"/>
+		<element type="iTeachLevel"/>
 		<!-- JAnimals Mod Start -->
-		<element type="iAnimalPatrolWeight" minOccurs="0"/>
-		<element type="iAnimalAttackWeight" minOccurs="0"/>
+		<element type="iAnimalPatrolWeight"/>
+		<element type="iAnimalAttackWeight"/>
 		<!-- JAnimals Mod End -->
 		<element type="ProfessionMeshGroups"/>
 		<element type="FormationType"/>
@@ -562,19 +562,19 @@
 		<element type="FreePromotions"/>
 		<element type="LeaderPromotion"/>
 		<element type="iLeaderExperience"/>
-    <!-- TK Attributes -->
-    <element type="ProfessionsNotAllowed" minOccurs="0"/>
-    <element type="KnightDubbingWeight" minOccurs="0"/>
-    <element type="iCasteAttribute" minOccurs="0"/>
-    <element type="bPreventFounding" minOccurs="0"/>
-    <element type="bPreventTraveling" minOccurs="0"/>
-    <element type="EducationUnitClass" minOccurs="0"/>
-    <element type="RehibilitateUnitClass" minOccurs="0"/>
-    <element type="LaborForceUnitClass" minOccurs="0"/>
-    <element type="iTradeBonus" minOccurs="0"/>
-    <element type="ConvertsToYield" minOccurs="0"/>
-    <element type="ConvertsToBuildingClass" minOccurs="0"/>
-    <element type="ConvertsToGold" minOccurs="0"/>
+		<!-- TK Attributes -->
+		<element type="ProfessionsNotAllowed"/>
+		<element type="KnightDubbingWeight"/>
+		<element type="iCasteAttribute"/>
+		<element type="bPreventFounding"/>
+		<element type="bPreventTraveling"/>
+		<element type="EducationUnitClass"/>
+		<element type="RehibilitateUnitClass"/>
+		<element type="LaborForceUnitClass"/>
+		<element type="iTradeBonus"/>
+		<element type="ConvertsToYield"/>
+		<element type="ConvertsToBuildingClass"/>
+		<element type="ConvertsToGold"/>
 		<element type="iOrderPriority" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="UnitInfos" content="eltOnly">
