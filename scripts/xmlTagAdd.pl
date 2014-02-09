@@ -26,9 +26,11 @@ use warnings;
 
 # setup (global definitions, which has to be first)
 my $xml_location = '../Assets/xml';
+my $xml_source_location = $xml_location;
 my $to_file = 1;
 my $FILE = "INIT";
 my @lines;
+init();
 
 # UnitInfo
 
@@ -63,6 +65,59 @@ writeFile();
 
 # end if setup. The following code handles actual file handling etc.
 
+sub init
+{
+	my $source_dir = $xml_location . '/../../DLL_Sources';
+	
+	my $settings_file = $source_dir . '/Makefile.settings';
+	
+	if ( -e $settings_file )
+	{
+		open (READFILE, "< " . $settings_file) or die "Can't open file " . $settings_file . "\n" . $!;
+		my @settings_lines = <READFILE>;
+		close READFILE;
+	
+		foreach (@settings_lines)
+		{
+			if (substr($_, 0, 7) eq 'YOURMOD')
+			{
+				my $path = substr($_, 7);
+				while (substr($path, 0, 1) eq " " or substr($path, 0, 1) eq "=")
+				{
+					$path = substr($path, 1);
+				}
+				
+				if (substr($path, 1, 2) eq ":\\")
+				{
+					if ($^O eq 'MSWin32')
+					{
+						$xml_location = $path;
+					} else {
+						$xml_location = substr($path, 2);
+					}
+				}
+				else
+				{
+					$xml_location = $source_dir . "/" . $path;
+				}
+				
+				if ($^O ne 'MSWin32')
+				{
+					$xml_location =~ s/\\/\//g;
+				}
+				$xml_location =~ s/[\x0A\x0D]//g;
+				chomp($xml_location);
+				
+				$xml_location = $xml_location . "/Assets/xml";
+
+				print "Using XML location: " . $xml_location . "\n";
+				return;
+			}
+		}
+	}
+	print "Using XML location: " . $xml_location . "\n";
+}
+
 sub writeoutput
 {
 	if ($to_file == 0) {
@@ -75,6 +130,48 @@ sub writeoutput
 sub openFile
 {
 	$FILE = $_[0];
+	
+	if ($xml_source_location ne $xml_location)
+	{
+		if (index($FILE, "/") != -1)
+		{
+			my $subdir = substr($FILE, 0, index($FILE, "/"));
+			
+			my $schemaFile = "";
+			my $dirname = $xml_source_location . "/" . $subdir;
+			
+			opendir my($dh), $dirname or die "Couldn't open dir '$dirname': $!";
+			foreach (readdir $dh)
+			{
+				if (index($_, "Schema") != -1)
+				{
+					$schemaFile = $_;
+				} 
+			}
+			closedir $dh;
+			
+			if ($schemaFile ne "" )
+			{
+				print "Copying " . $schemaFile . "\n";
+				
+				my $source_file = $dirname . "/" . $schemaFile;
+				my $destination_file = $xml_location . "/" . $subdir . "/" . $schemaFile;
+				
+				open (READFILE, "< " . $source_file) or die "Can't open file " . $source_file . "\n" . $!;
+				open (WRITE_FILE, "> " . $destination_file) or die "Can't open file " . $destination_file . "\n" . $!;
+				
+				foreach (<READFILE>)
+				{
+					print WRITE_FILE $_;
+				}
+				
+				close READFILE;
+				close WRITE_FILE;
+			}
+		}
+	}
+	print "Updating file $FILE\n";
+	
 	my $DESTINATION_FILE = $xml_location . '/' . $FILE;
 	open (READFILE, "< " . $DESTINATION_FILE) or die "Can't open file " . $DESTINATION_FILE . "\n" . $!;
 	@lines = <READFILE>;
