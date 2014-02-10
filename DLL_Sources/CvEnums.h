@@ -2883,6 +2883,7 @@ enum XMLFileNames
 	XML_FILE_CIV4CultureLevelInfo,
 	XML_FILE_CIV4CursorInfo,
 	XML_FILE_CIV4DenialInfos,
+	XML_FILE_CIV4DiplomacyInfos,
 	XML_FILE_CIV4DomainInfos,
 	XML_FILE_CIV4EffectInfos,
 	XML_FILE_CIV4EmphasizeInfo,

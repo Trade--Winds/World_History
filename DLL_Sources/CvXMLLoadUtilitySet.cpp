@@ -92,6 +92,7 @@ void CvXMLLoadUtility::loadXMLFiles()
 	loadXMLFile(XML_FILE_CIV4ControlInfos);
 	loadXMLFile(XML_FILE_CIV4CommandInfos);
 	loadXMLFile(XML_FILE_CIV4AttachableInfos);
+	loadXMLFile(XML_FILE_CIV4DiplomacyInfos);
 
 
 	if (!bFirstLoadRound)
@@ -275,6 +276,17 @@ void CvXMLLoadUtility::loadXMLFile(XMLFileNames eFile)
 	{
 		LoadGlobalClassInfo(GC.getDenialInfo(), "CIV4DenialInfos", "BasicInfos", "Civ4DenialInfos/DenialInfos/DenialInfo", NULL);
 		FAssertMsg(GC.getNumDenialInfos() == GC.XMLlength, CvString::format("XML read error. \"%s\" is used more than once", f_szXMLname)); // XML length check - Nightinggale
+	}
+	else if (eFile == XML_FILE_CIV4DiplomacyInfos)
+	{
+		if (bFirstLoadRound)
+		{
+			LoadGlobalClassInfo(GC.getDiplomacyInfo(), "CIV4DiplomacyInfos", "GameInfo", "Civ4DiplomacyInfos/DiplomacyInfos/DiplomacyInfo", NULL);
+		} else {
+			// Special Case Diplomacy Info due to double vectored nature and appending of Responses
+			LoadDiplomacyInfo(GC.getDiplomacyInfo(), "CIV4DiplomacyInfos", "GameInfo", "Civ4DiplomacyInfos/DiplomacyInfos/DiplomacyInfo", &CvDLLUtilityIFaceBase::createDiplomacyInfoCacheObject);
+		}
+		FAssertMsg(GC.getNumDiplomacyInfos() == GC.XMLlength, CvString::format("XML read error. \"%s\" is used more than once", f_szXMLname)); // XML length check - Nightinggale
 	}
 	else if (eFile == XML_FILE_CIV4DomainInfos)
 	{
@@ -2317,6 +2329,13 @@ void CvXMLLoadUtility::LoadDiplomacyInfo(std::vector<CvDiplomacyInfo*>& DiploInf
 	bool bWriteCache = true;
 	CvCacheObject* pCache = NULL;
 	GC.addToInfosVectors(&DiploInfos);
+
+	// XML length check - start - Nightinggale
+	GC.XMLlength = 0;
+#ifdef FASSERT_ENABLE
+	f_szXMLname[0] = 0;
+#endif
+	// XML length check - end - Nightinggale
 
 	if (NULL != pArgFunction)
 	{
