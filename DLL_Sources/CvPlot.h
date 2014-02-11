@@ -138,8 +138,8 @@ public:
 	DllExport bool isVisible(TeamTypes eTeam, bool bDebug) const;
 	DllExport bool isActiveVisible(bool bDebug) const;
 	///TKs TradeScreen
-	void setDistanceToTradeScreen(EuropeTypes eTradeScreen, int iNewValue);
-	int getDistanceToTradeScreen(EuropeTypes eTradeScreen) const;
+	void setDistanceToTradeScreen(EuropeTypes eTradeScreen, short iNewValue);
+	short getDistanceToTradeScreen(EuropeTypes eTradeScreen) const;
 	CvPlot* findNearbyTradeScreenPlot(EuropeTypes eTradeScreen, int iRandomization=0);
 	bool isTradeScreenAccessPlot(EuropeTypes eEurope) const;
 	void setTradeScreenAccess(EuropeTypes eEurope, bool bClear=false);
@@ -499,7 +499,7 @@ protected:
 	short* m_aiVisibilityCount;
 	char* m_aiRevealedOwner;
 	///Tks TradeScreen
-	int* m_aiTradeScreenDistance;
+	EuropeArray<short> m_asTradeScreenDistance;
 	///Tke
 	bool* m_abRiverCrossing;	// bit vector
 

@@ -43,7 +43,7 @@ CvPlot::CvPlot()
 	m_aiRevealedOwner = NULL;
 	m_abRiverCrossing = NULL;
 	///Tks TradeScreen
-	m_aiTradeScreenDistance = NULL;
+	m_asTradeScreenDistance = EuropeArray<short>(MAX_SHORT);
 	//Tke
 /// player bitmap - start - Nightinggale
 	//m_abRevealed = NULL;
@@ -115,7 +115,7 @@ void CvPlot::uninit()
 
 	SAFE_DELETE_ARRAY(m_abRiverCrossing);
 	///Tks TradScreen
-	SAFE_DELETE_ARRAY(m_aiTradeScreenDistance);
+	m_asTradeScreenDistance.reset();
 	///TKe
 	//SAFE_DELETE_ARRAY(m_abRevealed);
 	/// player bitmap - start - Nightinggale
@@ -207,14 +207,7 @@ void CvPlot::reset(int iX, int iY, bool bConstructorCall)
 		m_aiYield[iI] = 0;
 	}
 	///Tks TradeScreen
-	if (!bConstructorCall)
-	{
-		m_aiTradeScreenDistance = new int[GC.getNumEuropeInfos()];
-		for (int iI = 0; iI < GC.getNumEuropeInfos(); iI++)
-		{
-			m_aiTradeScreenDistance[iI] = MAX_SHORT;
-		}
-	}
+	m_asTradeScreenDistance.reset();
 	///Tke
 	updateImpassable();
 }
@@ -3646,27 +3639,14 @@ bool CvPlot::isEuropeAccessable() const
 }
 
 ///Tks TradeScreen
-void CvPlot::setDistanceToTradeScreen(EuropeTypes eTradeScreen, int iNewValue)
+void CvPlot::setDistanceToTradeScreen(EuropeTypes eTradeScreen, short iNewValue)
 {
-	if (NULL == m_aiTradeScreenDistance)
-	{
-		m_aiTradeScreenDistance = new int[GC.getNumEuropeInfos()];
-		for (int iI = 0; iI < GC.getNumEuropeInfos(); ++iI)
-		{
-			m_aiTradeScreenDistance[iI] = MAX_SHORT;
-		}
-	}
-	m_aiTradeScreenDistance[eTradeScreen]= iNewValue;
+	m_asTradeScreenDistance.set(iNewValue, eTradeScreen);
 }
 
-int CvPlot::getDistanceToTradeScreen(EuropeTypes eTradeScreen) const
+short CvPlot::getDistanceToTradeScreen(EuropeTypes eTradeScreen) const
 {
-	if (NULL == m_aiTradeScreenDistance)
-	{
-		return MAX_SHORT;
-	}
-
-	return m_aiTradeScreenDistance[eTradeScreen];
+	return m_asTradeScreenDistance.get(eTradeScreen);
 }
 
 CvPlot* CvPlot::findNearbyTradeScreenPlot(EuropeTypes eTradeScreen, int iRandomization)
@@ -7554,6 +7534,15 @@ ColorTypes CvPlot::plotMinimapColor()
 	return (ColorTypes)GC.getInfoTypeForString("COLOR_CLEAR");
 }
 
+
+// just-in-time yield arrays - start - Nightinggale
+// bitmap to tell which arrays are saved
+enum
+{
+	SAVE_BIT_TRADE_DISTANCE               = 1 << 0,
+};
+// just-in-time yield arrays - end - Nightinggale
+
 //
 // read object from a stream
 // used during load
@@ -7570,6 +7559,11 @@ void CvPlot::read(FDataStreamBase* pStream)
 
 	uint uiFlag=0;
 	pStream->Read(&uiFlag);	// flags for expansion
+	
+	// just-in-time yield arrays - start - Nightinggale
+	uint arrayBitmap = 0;
+	pStream->Read(&arrayBitmap);
+	// just-in-time yield arrays - end - Nightinggale
 
 	pStream->Read(&m_iX);
 	pStream->Read(&m_iY);
@@ -7588,6 +7582,7 @@ void CvPlot::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCrumbs);
 	///TKs TradeScreen
 	pStream->Read(&m_iTradeScreenAccess);
+	m_asTradeScreenDistance.read(pStream, arrayBitmap & SAVE_BIT_TRADE_DISTANCE);
 	///Tke
 	pStream->Read(&bVal);
 	m_bStartingPlot = bVal;
@@ -7635,17 +7630,6 @@ void CvPlot::read(FDataStreamBase* pStream)
 		}
 	}
 	/// PlotGroup - end - Nightinggale
-
-	//Tks TradeScreen
-	//pStream->Read(GC.getNumEuropeInfos(), m_aiTradeScreenDistance);
-	/*SAFE_DELETE_ARRAY(m_aiTradeScreenDistance);
-	pStream->Read(&cCount);
-	if (cCount > 0)
-	{
-		m_aiTradeScreenDistance = new int[cCount];
-		pStream->Read(cCount, m_aiTradeScreenDistance);
-	}*/
-	//tke
 
 	SAFE_DELETE_ARRAY(m_aiCulture);
 	pStream->Read(&cCount);
@@ -7810,6 +7794,14 @@ void CvPlot::write(FDataStreamBase* pStream)
 	uint uiFlag=2;
 	pStream->Write(uiFlag);		// flag for expansion
 
+	// just-in-time yield arrays - start - Nightinggale
+	uint arrayBitmap = 0;
+
+	arrayBitmap |= m_asTradeScreenDistance.hasContent()               ? SAVE_BIT_TRADE_DISTANCE : 0;
+
+	pStream->Write(arrayBitmap);
+	// just-in-time yield arrays - end - Nightinggale
+
 	pStream->Write(m_iX);
 	pStream->Write(m_iY);
 	pStream->Write(m_iArea);
@@ -7827,6 +7819,7 @@ void CvPlot::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCrumbs);
 	///TKs TradeScreen
 	pStream->Write(m_iTradeScreenAccess);
+	m_asTradeScreenDistance.write(pStream, arrayBitmap & SAVE_BIT_TRADE_DISTANCE);
 	///Tke
 	pStream->Write(m_bStartingPlot);
 	pStream->Write(m_bHills);
@@ -7973,18 +7966,7 @@ void CvPlot::write(FDataStreamBase* pStream)
 		pStream->Write((int)GC.getNumBuildInfos());
 		pStream->Write(GC.getNumBuildInfos(), m_paiBuildProgress);
 	}
-	///TKs TradeScreen
-	//pStream->Write(GC.getNumEuropeInfos(), m_aiTradeScreenDistance);
-	/*if (NULL == m_aiTradeScreenDistance)
-	{
-		pStream->Write((int)0);
-	}
-	else
-	{
-		pStream->Write((int)GC.getNumEuropeInfos());
-		pStream->Write(GC.getNumEuropeInfos(), m_aiTradeScreenDistance);
-	}*/
-	//Tke
+
 	if (NULL == m_apaiCultureRangeCities)
 	{
 		pStream->Write((char)0);

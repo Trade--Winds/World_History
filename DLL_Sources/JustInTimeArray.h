@@ -47,12 +47,14 @@ template<class T> class JustInTimeArray
 private:
 	T* tArray;
 	int m_iLength;
+	T m_eDefault;
 
 public:
-	JustInTimeArray(int iLength)
+	JustInTimeArray(int iLength, T eDefault = 0)
 	{
 		tArray = NULL;
 		m_iLength = iLength;
+		m_eDefault = eDefault;
 	}
 
 	~JustInTimeArray()
@@ -74,7 +76,7 @@ public:
 		{
 			for (int iIterator = 0; iIterator < m_iLength; ++iIterator)
 			{
-				tArray[iIterator] = 0;
+				tArray[iIterator] = m_eDefault;
 			}
 		}
 	}
@@ -101,7 +103,7 @@ public:
 	{
 		FAssert(iIndex >= 0);
 		FAssert(iIndex < m_iLength);
-		return tArray ? tArray[iIndex] : 0;
+		return tArray ? tArray[iIndex] : m_eDefault;
 	}
 
 	inline void set(T value, int iIndex)
@@ -111,7 +113,7 @@ public:
 
 		if (tArray == NULL)
 		{
-			if (value == 0)
+			if (value == m_eDefault)
 			{
 				// no need to allocate memory to assign a default (false) value
 				return;
@@ -182,7 +184,7 @@ public:
 				// requested writing an empty array.
 				for (int i = 0; i < m_iLength; i++)
 				{
-					pStream->Write(0);
+					pStream->Write(m_eDefault);
 				}
 			} else {
 				pStream->Write(m_iLength, tArray);
@@ -269,4 +271,13 @@ class PlayerArray: public JustInTimeArray<T>
 public:
 	PlayerArray() : JustInTimeArray<T>(MAX_PLAYERS){};
 	void init() {  JustInTimeArray<T>::init(MAX_PLAYERS);}
+};
+
+template<class T>
+class EuropeArray: public JustInTimeArray<T>
+{
+public:
+	EuropeArray() : JustInTimeArray<T>(GC.getNumEuropeInfos()){};
+	EuropeArray(T eDefault) : JustInTimeArray<T>(GC.getNumEuropeInfos(), eDefault){};
+	void init() {  JustInTimeArray<T>::init(GC.getNumEuropeInfos());}
 };
