@@ -11081,7 +11081,7 @@ void CvCity::checkImportsMaintain(YieldTypes eYield, bool bUpdateScreen)
 	if (!isAutoImportStopped(eYield) && iStoredLevel >= iMaintainLevel)
  	{
  		ma_tradeStopAutoImport.set(true, eYield);
-	} else if (isAutoImportStopped(eYield) && (iNeededLevel < iStoredLevel || (iStoredLevel <= (iMaintainLevel*3)/4))) {
+	} else if (isAutoImportStopped(eYield) && (iNeededLevel > iStoredLevel || (iStoredLevel <= (iMaintainLevel*3)/4))) {
 		ma_tradeStopAutoImport.set(false, eYield);
 	} else if (!bUpdateScreen) {
 		// nothing changed. Do not continue to screen update code.
