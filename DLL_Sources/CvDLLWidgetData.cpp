@@ -182,6 +182,12 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 			szBuffer.append(GC.getEuropeInfo((EuropeTypes) widgetDataStruct.m_iData2).getStrategy());
 		}
 		break;
+	case WIDGET_AUTO_TRADE_SCREEN:
+		{			
+			szBuffer.append(GC.getEuropeInfo((EuropeTypes) widgetDataStruct.m_iData1).getDescription());
+			szBuffer.append(GC.getEuropeInfo((EuropeTypes) widgetDataStruct.m_iData1).getStrategy());
+		}
+		break;
 ///TKe
 
 	case WIDGET_GOTO_CITY:
@@ -673,6 +679,17 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 			{
 				//gDLL->sendDoCommand(pHeadSelectedUnit->getID(), COMMAND_SAIL_SPICE_ROUTE, widgetDataStruct.m_iData1, widgetDataStruct.m_iData2, false);
 				pHeadSelectedUnit->crossOcean((UnitTravelStates) widgetDataStruct.m_iData1, false, (EuropeTypes) widgetDataStruct.m_iData2);
+			}
+		}
+		break;
+	case WIDGET_AUTO_TRADE_SCREEN:
+		{
+			CvUnit* pHeadSelectedUnit = gDLL->getInterfaceIFace()->getHeadSelectedUnit();
+			if (pHeadSelectedUnit != NULL)
+			{
+				pHeadSelectedUnit->setUnitTradeMarket((EuropeTypes) widgetDataStruct.m_iData1);
+				//pHeadSelectedUnit->automate(AUTOMATE_SAIL);
+				pHeadSelectedUnit->getGroup()->setAutomateType(AUTOMATE_SAIL);
 			}
 		}
 		break;

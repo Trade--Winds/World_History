@@ -271,6 +271,7 @@ void CyUnitPythonInterface1(python::class_<CyUnit>& x)
 		// < JAnimals Mod End >
 		//Tks Med **TradeRoute**
 		.def("canCrossOcean", &CyUnit::canCrossOcean, "bool (CyPlot* pPlot, int /*UnitTravelStates*/ eNewState, int /*TradeRouteTypes*/ eTradeRouteType, bool bAIForce, int /*EuropeTypes*/ eEuropeTradeRoute)")
+		.def("canAutoSailTradeScreen", &CyUnit::canAutoSailTradeScreen, "bool (CyPlot* pPlot, int /*UnitTravelStates*/ eNewState, int /*EuropeTypes*/ eEuropeTradeRoute, bool bAIForce)")
 		.def("getUnitTradeMarket", &CyUnit::getUnitTradeMarket, "int /*EuropeTypes*/ ()")
 		.def("setUnitTradeMarket", &CyUnit::setUnitTradeMarket, "void (int /*EuropeTypes*/)")
 		//TKe

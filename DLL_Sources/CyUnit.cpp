@@ -1077,6 +1077,10 @@ bool CyUnit::canCrossOcean(CyPlot* pPlot, int /*UnitTravelStates*/ eNewState, in
 {
 	return m_pUnit ? m_pUnit->canCrossOcean(pPlot->getPlot(), (UnitTravelStates)eNewState, (TradeRouteTypes)eTradeRouteType, bAIForce, (EuropeTypes)eEuropeTradeRoute) : false;
 }
+bool CyUnit::canAutoSailTradeScreen(CyPlot* pPlot, int /*EuropeTypes*/ eEuropeTradeRoute, bool bAIForce)
+{
+	return m_pUnit ? m_pUnit->canAutoSailTradeScreen(pPlot->getPlot(), (EuropeTypes)eEuropeTradeRoute, bAIForce) : false;
+}
 int /*EuropeTypes*/ CyUnit::getUnitTradeMarket()
 {
 	return m_pUnit ? m_pUnit->getUnitTradeMarket() : NO_EUROPE;

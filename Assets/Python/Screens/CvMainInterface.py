@@ -2155,6 +2155,21 @@ class CvMainInterface:
 							if iAngle < 0:
 								self.NADER_SIGN = -1
 							iCount += 1
+						elif (pHeadSelectedUnit.canAutoSailTradeScreen(plot, iRoute, False)):
+							#test = 1
+							#cancross = pHeadSelectedUnit.canCrossOcean(plot, UnitTravelStates.UNIT_TRAVEL_STATE_TO_EUROPE, TradeRouteTypes.NO_TRADE_ROUTES, False, plot.getEurope())
+							Xcord = (math.sin(math.radians(iAngle * self.NADER_SIGN)) * int(yResolution * self.CENTER_POINT_HEIGHT)) * self.NADER_SIGN * ASPECT_ADJUSTMENT + ((xResolution) / 2)
+							Ycord = (math.cos(math.radians(iAngle * self.NADER_SIGN)) * int(yResolution * self.CENTER_POINT_HEIGHT)) - (yResolution * self.CENTER_POINT_HEIGHT) + yResolution - (yResolution * self.CENTER_HUD_HEIGHT)
+							szName = "ActionButton" + str(iCount)
+							screen.setImageButton(szName, gc.getEuropeInfo(iRoute).getButton(), int(Xcord) - LARGE_BUTTON_SIZE, int(Ycord) - LARGE_BUTTON_SIZE, LARGE_BUTTON_SIZE * 2, LARGE_BUTTON_SIZE * 2, WidgetTypes.WIDGET_AUTO_TRADE_SCREEN, iRoute, -1)
+							screen.setImageShape(szName, ImageShapes.IMAGE_SHAPE_ELLIPSE, -1)
+							screen.setHitMargins(szName, 18, 18)
+							ActionButtonList.append(szName)
+
+							iAngle -= self.ARC_SEPERATION
+							if iAngle < 0:
+								self.NADER_SIGN = -1
+							iCount += 1
 									
 
 					if (CyInterface().canCreateGroup()):

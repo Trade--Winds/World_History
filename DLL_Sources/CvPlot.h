@@ -137,7 +137,13 @@ public:
 
 	DllExport bool isVisible(TeamTypes eTeam, bool bDebug) const;
 	DllExport bool isActiveVisible(bool bDebug) const;
-	///TKs Med
+	///TKs TradeScreen
+	void setDistanceToTradeScreen(EuropeTypes eTradeScreen, int iNewValue);
+	int getDistanceToTradeScreen(EuropeTypes eTradeScreen) const;
+	CvPlot* findNearbyTradeScreenPlot(EuropeTypes eTradeScreen, int iRandomization=0);
+	bool isTradeScreenAccessPlot(EuropeTypes eEurope) const;
+	void setTradeScreenAccess(EuropeTypes eEurope, bool bClear=false);
+	EuropeTypes getNearestTradeScreenPlot(EuropeTypes eEurope, bool bAccessable=false) const;
 	bool isVisibleToCivTeam(bool bIgnoreNativeTeams = false) const;
 	///Tke
 	bool isVisibleToWatchingHuman() const;
@@ -457,7 +463,9 @@ protected:
 	short m_iRiverCrossingCount;
 	short m_iDistanceToOcean;
 	short m_iCrumbs;
-
+	///Tks TradeScreen
+	unsigned int m_iTradeScreenAccess;
+	//Tke
 	bool m_bStartingPlot:1;
 	bool m_bHills:1;
 	bool m_bNOfRiver:1;
@@ -490,7 +498,9 @@ protected:
 	char* m_aiPlayerCityRadiusCount;
 	short* m_aiVisibilityCount;
 	char* m_aiRevealedOwner;
-
+	///Tks TradeScreen
+	int* m_aiTradeScreenDistance;
+	///Tke
 	bool* m_abRiverCrossing;	// bit vector
 
 	short* /*ImprovementTypes*/ m_aeRevealedImprovementType;

@@ -909,7 +909,7 @@ void CvMapGenerator::addEurope()
 				    bCheckDirection = false;
 				}
 
-				if (bCheckDirection && !pPlot->isEurope())
+				if (bCheckDirection && !pPlot->isTradeScreenAccessPlot(eEurope))
 				{
 					for (int iDir = 0; iDir < NUM_DIRECTION_TYPES; ++iDir)
 					{
@@ -1066,7 +1066,11 @@ void CvMapGenerator::addEurope()
 
 						if (bEurope)
 						{
-							pPlot->setEurope(eEurope);
+							if (!pPlot->isEurope())
+							{
+								pPlot->setEurope(eEurope);
+							}
+							pPlot->setTradeScreenAccess(eEurope);
 							bAnyEuropeFound = true;
 						}
 					}

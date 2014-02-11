@@ -42,6 +42,9 @@ CvPlot::CvPlot()
 	m_aiVisibilityCount = NULL;
 	m_aiRevealedOwner = NULL;
 	m_abRiverCrossing = NULL;
+	///Tks TradeScreen
+	m_aiTradeScreenDistance = NULL;
+	//Tke
 /// player bitmap - start - Nightinggale
 	//m_abRevealed = NULL;
 	m_bmRevealed = 0;
@@ -111,6 +114,9 @@ void CvPlot::uninit()
 	SAFE_DELETE_ARRAY(m_aiRevealedOwner);
 
 	SAFE_DELETE_ARRAY(m_abRiverCrossing);
+	///Tks TradScreen
+	SAFE_DELETE_ARRAY(m_aiTradeScreenDistance);
+	///TKe
 	//SAFE_DELETE_ARRAY(m_abRevealed);
 	/// player bitmap - start - Nightinggale
 	m_bmRevealed = 0;
@@ -167,7 +173,9 @@ void CvPlot::reset(int iX, int iY, bool bConstructorCall)
 	m_iRiverCrossingCount = 0;
 	m_iDistanceToOcean = MAX_SHORT;
 	m_iCrumbs = 0;
-
+	//Tks TradeScreen
+	m_iTradeScreenAccess = 0;
+	//Tke
 	m_bStartingPlot = false;
 	m_bHills = false;
 	m_bNOfRiver = false;
@@ -198,7 +206,16 @@ void CvPlot::reset(int iX, int iY, bool bConstructorCall)
 	{
 		m_aiYield[iI] = 0;
 	}
-
+	///Tks TradeScreen
+	if (!bConstructorCall)
+	{
+		m_aiTradeScreenDistance = new int[GC.getNumEuropeInfos()];
+		for (int iI = 0; iI < GC.getNumEuropeInfos(); iI++)
+		{
+			m_aiTradeScreenDistance[iI] = MAX_SHORT;
+		}
+	}
+	///Tke
 	updateImpassable();
 }
 
@@ -3627,6 +3644,138 @@ bool CvPlot::isEuropeAccessable() const
 {
 	return getDistanceToOcean() != MAX_SHORT;
 }
+
+///Tks TradeScreen
+void CvPlot::setDistanceToTradeScreen(EuropeTypes eTradeScreen, int iNewValue)
+{
+	if (NULL == m_aiTradeScreenDistance)
+	{
+		m_aiTradeScreenDistance = new int[GC.getNumEuropeInfos()];
+		for (int iI = 0; iI < GC.getNumEuropeInfos(); ++iI)
+		{
+			m_aiTradeScreenDistance[iI] = MAX_SHORT;
+		}
+	}
+	m_aiTradeScreenDistance[eTradeScreen]= iNewValue;
+}
+
+int CvPlot::getDistanceToTradeScreen(EuropeTypes eTradeScreen) const
+{
+	if (NULL == m_aiTradeScreenDistance)
+	{
+		return MAX_SHORT;
+	}
+
+	return m_aiTradeScreenDistance[eTradeScreen];
+}
+
+CvPlot* CvPlot::findNearbyTradeScreenPlot(EuropeTypes eTradeScreen, int iRandomization)
+{
+    CvPlot* pOceanPlot = this;
+
+    while (pOceanPlot->getDistanceToTradeScreen(eTradeScreen) > 0)
+    {
+        CvPlot* pBestPlot = NULL;
+        int iBestValue = MAX_INT;
+        for (int iDirection = 0; iDirection < NUM_DIRECTION_TYPES; iDirection++)
+        {
+            CvPlot* pDirectionPlot = plotDirection(pOceanPlot->getX_INLINE(), pOceanPlot->getY_INLINE(), (DirectionTypes)iDirection);
+            if (pDirectionPlot != NULL)
+            {
+				int iValue = pDirectionPlot->getDistanceToTradeScreen(eTradeScreen) * (1000 + GC.getGame().getSorenRandNum(10 * iRandomization, "find nearby ocean plot"));
+                if (iValue < iBestValue)
+                {
+                    iBestValue = iValue;
+                    pBestPlot = pDirectionPlot;
+                }
+            }
+        }
+        FAssert(pBestPlot != NULL);
+        if (pBestPlot == NULL)
+        {
+            return NULL;
+        }
+        pOceanPlot = pBestPlot;
+    }
+    return pOceanPlot;
+}
+bool CvPlot::isTradeScreenAccessPlot(EuropeTypes eEurope) const
+{
+	if(eEurope == NO_EUROPE)
+	{
+		return isEurope();
+	}
+    return HasBit(m_iTradeScreenAccess, eEurope);
+}
+
+void CvPlot::setTradeScreenAccess(EuropeTypes eEurope, bool bClear)
+{	
+        if (bClear)
+        {
+                ClrBit(m_iTradeScreenAccess, eEurope);
+        }
+        else
+        {
+	        SetBit(m_iTradeScreenAccess, eEurope);
+		}
+}
+
+EuropeTypes CvPlot::getNearestTradeScreenPlot(EuropeTypes eEurope, bool bAccessable) const
+{
+	const CvPlot* pCurrentPlot = this;
+
+	if (!pCurrentPlot->isWater())
+	{
+		for (int iDirection = 0; iDirection < NUM_DIRECTION_TYPES; ++iDirection)
+		{
+			CvPlot* pDirectionPlot = plotDirection(pCurrentPlot->getX_INLINE(), pCurrentPlot->getY_INLINE(), (DirectionTypes)iDirection);
+			if (pDirectionPlot != NULL)
+			{
+				if (pDirectionPlot->isWater() && pDirectionPlot->isEuropeAccessable())
+				{
+					pCurrentPlot = pDirectionPlot;
+					break;
+				}
+			}
+		}
+	}
+
+	int iHack = 0;
+	while (iHack++ < 1000)
+	{
+		const CvPlot* pBestPlot = NULL;
+		for (int iDirection = 0; iDirection < NUM_DIRECTION_TYPES; ++iDirection)
+		{
+			CvPlot* pDirectionPlot = plotDirection(pCurrentPlot->getX_INLINE(), pCurrentPlot->getY_INLINE(), (DirectionTypes)iDirection);
+			if (pDirectionPlot != NULL)
+			{
+				if (pDirectionPlot->isWater() && !pDirectionPlot->isImpassable())
+				{
+					if (pDirectionPlot->isTradeScreenAccessPlot(eEurope))
+					{
+						return eEurope;
+					}
+
+					if (pDirectionPlot->getDistanceToOcean() < pCurrentPlot->getDistanceToOcean())
+					{
+						pBestPlot = pDirectionPlot;
+						break;
+					}
+				}
+			}
+		}
+		if (pBestPlot == NULL)
+		{
+			return NO_EUROPE;
+		}
+		pCurrentPlot = pBestPlot;
+	}
+
+	FAssert(false);
+	return NO_EUROPE;
+}
+
+//Tke
 
 // This function finds an *inland* corner of this plot at which to place a river.
 // It then returns the plot with that corner at its SE.
@@ -7437,7 +7586,9 @@ void CvPlot::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iRiverCrossingCount);
 	pStream->Read(&m_iDistanceToOcean);
 	pStream->Read(&m_iCrumbs);
-
+	///TKs TradeScreen
+	pStream->Read(&m_iTradeScreenAccess);
+	///Tke
 	pStream->Read(&bVal);
 	m_bStartingPlot = bVal;
 	pStream->Read(&bVal);
@@ -7484,6 +7635,17 @@ void CvPlot::read(FDataStreamBase* pStream)
 		}
 	}
 	/// PlotGroup - end - Nightinggale
+
+	//Tks TradeScreen
+	//pStream->Read(GC.getNumEuropeInfos(), m_aiTradeScreenDistance);
+	/*SAFE_DELETE_ARRAY(m_aiTradeScreenDistance);
+	pStream->Read(&cCount);
+	if (cCount > 0)
+	{
+		m_aiTradeScreenDistance = new int[cCount];
+		pStream->Read(cCount, m_aiTradeScreenDistance);
+	}*/
+	//tke
 
 	SAFE_DELETE_ARRAY(m_aiCulture);
 	pStream->Read(&cCount);
@@ -7663,7 +7825,9 @@ void CvPlot::write(FDataStreamBase* pStream)
 	pStream->Write(m_iRiverCrossingCount);
 	pStream->Write(m_iDistanceToOcean);
 	pStream->Write(m_iCrumbs);
-
+	///TKs TradeScreen
+	pStream->Write(m_iTradeScreenAccess);
+	///Tke
 	pStream->Write(m_bStartingPlot);
 	pStream->Write(m_bHills);
 	pStream->Write(m_bNOfRiver);
@@ -7703,7 +7867,6 @@ void CvPlot::write(FDataStreamBase* pStream)
 		pStream->Write(MAX_PLAYERS, m_aiPlotGroup);
 	}
 	/// PlotGroup - end - Nightinggale
-
 	if (NULL == m_aiCulture)
 	{
 		pStream->Write((char)0);
@@ -7810,7 +7973,18 @@ void CvPlot::write(FDataStreamBase* pStream)
 		pStream->Write((int)GC.getNumBuildInfos());
 		pStream->Write(GC.getNumBuildInfos(), m_paiBuildProgress);
 	}
-
+	///TKs TradeScreen
+	//pStream->Write(GC.getNumEuropeInfos(), m_aiTradeScreenDistance);
+	/*if (NULL == m_aiTradeScreenDistance)
+	{
+		pStream->Write((int)0);
+	}
+	else
+	{
+		pStream->Write((int)GC.getNumEuropeInfos());
+		pStream->Write(GC.getNumEuropeInfos(), m_aiTradeScreenDistance);
+	}*/
+	//Tke
 	if (NULL == m_apaiCultureRangeCities)
 	{
 		pStream->Write((char)0);

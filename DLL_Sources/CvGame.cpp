@@ -7343,6 +7343,109 @@ void CvGame::changeYieldBoughtTotal(PlayerTypes eMainEurope, YieldTypes eYield, 
 		}
 	}
 }
+///Tks TradeScreen
+//void CvGame::updateTradeScreenDistances()
+//{
+//	PROFILE_FUNC();
+//
+//	std::deque<CvPlot*> plotQueue;
+//	for(int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+//	{
+//		CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+//		if (pLoopPlot->isEurope())
+//		{
+//			pLoopPlot->setDistanceToOcean(0);
+//			plotQueue.push_back(pLoopPlot);
+//		}
+//		else
+//		{
+//			pLoopPlot->setDistanceToOcean(MAX_SHORT);
+//		}
+//
+//		for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+//		{
+//			if (pLoopPlot->isTradeScreenAccessPlot((EuropeTypes)iJ))
+//			{
+//				pLoopPlot->setDistanceToTradeScreen((EuropeTypes)iJ, 0);
+//				//plotQueue.push_back(pLoopPlot);
+//			}
+//			else
+//			{
+//				pLoopPlot->setDistanceToTradeScreen((EuropeTypes)iJ, MAX_SHORT);
+//			}
+//		}
+//	}
+//
+//	int iVisits = 0;
+//	while (!plotQueue.empty())
+//	{
+//		iVisits++;
+//		CvPlot* pPlot = plotQueue.front();
+//		plotQueue.pop_front();
+//
+//		int iDistance = pPlot->getDistanceToOcean();
+//		iDistance += 1;
+//		std::vector<int> iTradeScreenCount;
+//		int iTSDistance = 0;
+//			
+//		for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+//		{		
+//			iTSDistance = pPlot->getDistanceToTradeScreen((EuropeTypes)iJ);
+//			iTSDistance += 1;
+//			iTradeScreenCount.push_back(iTSDistance);
+//		}
+//
+//		if (!pPlot->isWater())
+//		{
+//			iDistance += 2;
+//			/*iTSDistance += 2;
+//			for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+//			{		
+//				iTradeScreenCount[iJ] += iTSDistance;
+//			}*/
+//		}
+//
+//		if (pPlot->isImpassable())
+//		{
+//			iDistance += 50;
+//			iTSDistance += 50;
+//			for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+//			{		
+//				iTradeScreenCount[iJ] = +iTSDistance;
+//			}
+//		}
+//
+//		for (int iDirection = 0; iDirection < NUM_DIRECTION_TYPES; iDirection++)
+//		{
+//			CvPlot* pDirectionPlot = plotDirection(pPlot->getX_INLINE(), pPlot->getY_INLINE(), (DirectionTypes)iDirection);
+//			if (pDirectionPlot != NULL)
+//			{
+//				if ((pPlot->isWater() && pDirectionPlot->isWater() && pPlot->isAdjacentWaterPassable(pDirectionPlot))
+//					|| (pPlot->isWater() && !pDirectionPlot->isWater())
+//					|| (!pPlot->isWater() && !pDirectionPlot->isWater()))
+//				{
+//					if (iDistance < pDirectionPlot->getDistanceToOcean())
+//					{
+//						pDirectionPlot->setDistanceToOcean(iDistance);
+//						plotQueue.push_back(pDirectionPlot);
+//					}
+//
+//					for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+//					 {
+//						if (iTradeScreenCount[iJ] < pDirectionPlot->getDistanceToTradeScreen((EuropeTypes)iJ))
+//						{
+//							pDirectionPlot->setDistanceToTradeScreen((EuropeTypes)iJ, iTradeScreenCount[iJ]);
+//						}
+//
+//					}
+//
+//				}
+//			}
+//		}
+//	}
+//
+//	OutputDebugString(CvString::format("[CvGame::updateOceanDistances] Plots: %i, Visits: %i\n", GC.getMapINLINE().numPlotsINLINE(), iVisits).GetCString());
+//}
 
 void CvGame::updateOceanDistances()
 {
@@ -7361,6 +7464,19 @@ void CvGame::updateOceanDistances()
 		{
 			pLoopPlot->setDistanceToOcean(MAX_SHORT);
 		}
+
+		for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+		{
+			if (pLoopPlot->isTradeScreenAccessPlot((EuropeTypes)iJ))
+			{
+				pLoopPlot->setDistanceToTradeScreen((EuropeTypes)iJ, 0);
+				//plotQueue.push_back(pLoopPlot);
+			}
+			else
+			{
+				pLoopPlot->setDistanceToTradeScreen((EuropeTypes)iJ, MAX_SHORT);
+			}
+		}
 	}
 
 	int iVisits = 0;
@@ -7372,15 +7488,34 @@ void CvGame::updateOceanDistances()
 
 		int iDistance = pPlot->getDistanceToOcean();
 		iDistance += 1;
+		std::vector<int> iTradeScreenCount;
+		int iTSDistance = 0;
+			
+		for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+		{		
+			iTSDistance = pPlot->getDistanceToTradeScreen((EuropeTypes)iJ);
+			iTSDistance += 1;
+			iTradeScreenCount.push_back(iTSDistance);
+		}
 
 		if (!pPlot->isWater())
 		{
 			iDistance += 2;
+			/*iTSDistance += 2;
+			for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+			{		
+				iTradeScreenCount[iJ] += iTSDistance;
+			}*/
 		}
 
 		if (pPlot->isImpassable())
 		{
 			iDistance += 50;
+			iTSDistance += 50;
+			for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+			{		
+				iTradeScreenCount[iJ] = +iTSDistance;
+			}
 		}
 
 		for (int iDirection = 0; iDirection < NUM_DIRECTION_TYPES; iDirection++)
@@ -7397,6 +7532,20 @@ void CvGame::updateOceanDistances()
 						pDirectionPlot->setDistanceToOcean(iDistance);
 						plotQueue.push_back(pDirectionPlot);
 					}
+
+				}
+
+			
+				if (pPlot->getArea() == pDirectionPlot->getArea() || pPlot->isWater() && pDirectionPlot->getDistanceToOcean() != MAX_SHORT)
+				{
+					for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+					{
+						if (iTradeScreenCount[iJ] < pDirectionPlot->getDistanceToTradeScreen((EuropeTypes)iJ))
+						{
+							pDirectionPlot->setDistanceToTradeScreen((EuropeTypes)iJ, iTradeScreenCount[iJ]);
+						}
+
+					}
 				}
 			}
 		}
@@ -7405,7 +7554,6 @@ void CvGame::updateOceanDistances()
 	OutputDebugString(CvString::format("[CvGame::updateOceanDistances] Plots: %i, Visits: %i\n", GC.getMapINLINE().numPlotsINLINE(), iVisits).GetCString());
 }
 
-///TKs Invention Core Mod v 1.0
 int CvGame::getIdeasResearched(CivicTypes eIndex) const
 {
 	return m_aiIdeasResearched[eIndex];

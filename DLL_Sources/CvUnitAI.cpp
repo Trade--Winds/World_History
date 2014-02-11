@@ -151,7 +151,7 @@ bool CvUnitAI::AI_update()
 				break;
             ///TKs Med
 			case AUTOMATE_SAIL:
-				AI_sailToEurope(false, TRADE_ROUTE_EUROPE);
+				AI_sailToEurope(false, NO_EUROPE);
 				break;
             ///TKe
 			case AUTOMATE_TRANSPORT_ROUTES:
@@ -179,11 +179,10 @@ bool CvUnitAI::AI_update()
                 AI_travelToHomeCity(TRADE_ROUTE_FAIR);
                 break;
             case AUTOMATE_TRAVEL_SILK_ROAD:
-                //AI_travelToHomeCity(TRADE_ROUTE_SILK_ROAD);
-                AI_sailToEurope(true, TRADE_ROUTE_SILK_ROAD);
+                AI_sailToEurope(true, NO_EUROPE);
                 break;
              case AUTOMATE_SAIL_SPICE_ROUTE:
-                AI_sailToEurope(true, TRADE_ROUTE_SPICE_ROUTE);
+                AI_sailToEurope(true, NO_EUROPE);
                 break;
             ///TKe
 			default:
@@ -5107,56 +5106,37 @@ bool CvUnitAI::AI_europeAssaultSea()
 	return true;
 }
 ///TKs Med
-bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
+bool CvUnitAI::AI_sailToEurope(bool bMove, EuropeTypes eTradeScreenType)
 {
     UnitTravelStates eTravelState = UNIT_TRAVEL_STATE_TO_EUROPE;
     bool bLandRoute = false;
-    if (eTradeRouteType == TRADE_ROUTE_SPICE_ROUTE)
-    {
-        eTravelState = UNIT_TRAVEL_STATE_TO_SPICE_ROUTE;
-    }
-    else if (eTradeRouteType == TRADE_ROUTE_SILK_ROAD)
-    {
-        eTravelState = UNIT_TRAVEL_STATE_TO_SILK_ROAD;
-        bLandRoute = true;
-    }
-	else if (eTradeRouteType == NO_TRADE_ROUTES)
-    {
-        eTradeRouteType = TRADE_ROUTE_EUROPE;
-		bLandRoute = (getDomainType() == DOMAIN_LAND);
-
-    }
-//    bool bAIForce = false;
-//    if (!isHuman())
-//    {
-//
-//    }
-
-	if (canCrossOcean(plot(), eTravelState, eTradeRouteType))
+	bool bTradeScreen = false;
+	if (isHuman())
 	{
-		if (eTradeRouteType == TRADE_ROUTE_EUROPE || eTradeRouteType == NO_TRADE_ROUTES)
-        {
-            crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE);
-        }
-        else if (eTradeRouteType == TRADE_ROUTE_SPICE_ROUTE)
-        {
-            crossOcean(UNIT_TRAVEL_STATE_TO_SPICE_ROUTE);
-        }
-        else if (eTradeRouteType == TRADE_ROUTE_SILK_ROAD)
-        {
-            crossOcean(UNIT_TRAVEL_STATE_TO_SILK_ROAD);
-        }
+		bMove = true;
+		if (getUnitTradeMarket() != NO_EUROPE)
+		{
+			eTradeScreenType = getUnitTradeMarket();
+		}
+	}
 
-		//if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
-		//{
-			AI_setUnitAIState(UNITAI_STATE_DEFAULT);
-		//}
+	if (eTradeScreenType != NO_EUROPE)
+	{
+		bLandRoute = GC.getEuropeInfo(eTradeScreenType).getMinLandDistance() == 0;
+		bTradeScreen = true;
+	}
 
-		//if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+	if (canCrossOcean(plot(), eTravelState, NO_TRADE_ROUTES, false, eTradeScreenType))
+	{
+		
+		crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE, false, eTradeScreenType);
+		AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+		
 		if (getGroup()->isAutomated())
 		{
 			getGroup()->setAutomateType(NO_AUTOMATE);
 		}
+		setUnitTradeMarket(eTradeScreenType);
 		return true;
 	}
 
@@ -5177,7 +5157,7 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 		{
 			if (pLoopPlot->isRevealed(getTeam(), false))
 			{
-				if (canCrossOcean(pLoopPlot, eTravelState, eTradeRouteType))
+				if (canCrossOcean(pLoopPlot, eTravelState, NO_TRADE_ROUTES, false, eTradeScreenType))
 				{
 				    if (bLandRoute)
 				    {
@@ -5212,7 +5192,7 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 
             if (AI_plotValid(pLoopPlot) && !pLoopPlot->isVisibleEnemyDefender(this))
             {
-                if (canCrossOcean(pLoopPlot, eTravelState, eTradeRouteType))
+                if (canCrossOcean(pLoopPlot, eTravelState, NO_TRADE_ROUTES, false, eTradeScreenType))
                 {
                     int iPathTurns;
                     if (generatePath(pLoopPlot, MOVE_BUST_FOG, true, &iPathTurns))
@@ -5244,7 +5224,7 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 
             if (AI_plotValid(pLoopPlot) && !pLoopPlot->isVisibleEnemyDefender(this))
             {
-                if (canCrossOcean(pLoopPlot, eTravelState, eTradeRouteType, true))
+                if (canCrossOcean(pLoopPlot, eTravelState, NO_TRADE_ROUTES, true))
                 {
                     int iPathTurns;
                     if (generatePath(pLoopPlot, MOVE_BUST_FOG, true, &iPathTurns))
@@ -5267,42 +5247,27 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, TradeRouteTypes eTradeRouteType)
 	if (pBestPlot != NULL)
 	{
 		getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), MOVE_BUST_FOG, false, false, MISSIONAI_SAIL_TO_EUROPE, pBestMissionPlot);
-		if (plot()->isEurope())
+		if (plot()->isTradeScreenAccessPlot(eTradeScreenType))
 		{
-			if (canCrossOcean(plot(), eTravelState, eTradeRouteType))
+			if (canCrossOcean(plot(), eTravelState, NO_TRADE_ROUTES, false, eTradeScreenType))
 			{
-			    if (eTradeRouteType == TRADE_ROUTE_EUROPE)
-                {
-                    crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE);
-                }
-                else if (eTradeRouteType == TRADE_ROUTE_SPICE_ROUTE)
-                {
-                    crossOcean(UNIT_TRAVEL_STATE_TO_SPICE_ROUTE);
-                }
-                else if (eTradeRouteType == TRADE_ROUTE_SILK_ROAD)
-                {
-                    crossOcean(UNIT_TRAVEL_STATE_TO_SILK_ROAD);
-                }
-				//if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
-				//{
-					AI_setUnitAIState(UNITAI_STATE_DEFAULT);
-				//}
-				//if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+				crossOcean(UNIT_TRAVEL_STATE_TO_EUROPE, false, eTradeScreenType);
+				AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+				
 				if (getGroup()->isAutomated())
 				{
 					getGroup()->setAutomateType(NO_AUTOMATE);
 				}
+				setUnitTradeMarket(eTradeScreenType);
 			}
 		}
 		return true;
 	}
-	if (eTradeRouteType == TRADE_ROUTE_SILK_ROAD)
+	if (eTradeScreenType != NO_EUROPE)
     {
-        //if (AI_getUnitAIState() == UNITAI_STATE_SAIL || AI_getUnitAIState() == UNITAI_STATE_ADVANCING)
-        //{
-            AI_setUnitAIState(UNITAI_STATE_DEFAULT);
-        //}
-        //if (getGroup()->getAutomateType() == AUTOMATE_SAIL || getGroup()->getAutomateType() == AUTOMATE_SAIL_SPICE_ROUTE || getGroup()->getAutomateType() == AUTOMATE_TRAVEL_SILK_ROAD)
+        
+        AI_setUnitAIState(UNITAI_STATE_DEFAULT);
+        
         if (getGroup()->isAutomated())
         {
             getGroup()->setAutomateType(NO_AUTOMATE);

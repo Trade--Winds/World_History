@@ -915,6 +915,16 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 
             szTempBuffer.Format(L"\nUnitAI Type = %s(%d).", GC.getUnitAIInfo(pUnit->AI_getUnitAIType()).getDescription(), pUnit->AI_getUnitAIState());
             szString.append(szTempBuffer);
+			if (pUnit->getUnitTradeMarket() != NO_EUROPE)
+			{
+				szTempBuffer.Format(L"\nTradeScreen = %s.", GC.getEuropeInfo(pUnit->getUnitTradeMarket()).getHelp());
+				szString.append(szTempBuffer);
+			}
+			else
+			{
+				szTempBuffer.Format(L"\nNo TradeScreen.");
+				szString.append(szTempBuffer);
+			}
             ///TKe
             szTempBuffer.Format(L"\nSacrifice Value = %d.", pUnit->AI_sacrificeValue(NULL));
             szString.append(szTempBuffer);
@@ -2196,11 +2206,24 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		tempChar = 'x';
 		///TKs Med Trade Routes
 		//EuropeTypes eNearestEurope = pPlot->getNearestEurope();
-		EuropeTypes eNearestEurope = pPlot->getEurope();
-		if (eNearestEurope != NO_EUROPE)
+		//EuropeTypes eNearestEurope = pPlot->getEurope();
+		if (pPlot->getDistanceToOcean() != MAX_SHORT)
 		{
-			szTempBuffer.Format(L"\nTrade Route: %s", GC.getEuropeInfo(eNearestEurope).getDescription());
+			szTempBuffer.Format(L"\nDistance to Ocean: %d", pPlot->getDistanceToOcean());
 			szString.append(szTempBuffer);
+		}
+		for (int iJ = 0; iJ < GC.getNumEuropeInfos(); iJ++)
+		{
+			if (pPlot->isTradeScreenAccessPlot((EuropeTypes)iJ))
+			{
+				szTempBuffer.Format(L"\nTrade Screen: %s", GC.getEuropeInfo((EuropeTypes)iJ).getHelp());
+				szString.append(szTempBuffer);
+			}
+			else if (!GC.getEuropeInfo((EuropeTypes)iJ).isNoEuropePlot())
+			{
+				szTempBuffer.Format(L"\nDistance to %s: %d", GC.getEuropeInfo((EuropeTypes)iJ).getHelp(), pPlot->getDistanceToTradeScreen((EuropeTypes)iJ));
+				szString.append(szTempBuffer);
+			}
 		}
         ///TKe
 		if(pPlot->getRouteType() != NO_ROUTE)

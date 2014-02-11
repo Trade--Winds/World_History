@@ -142,6 +142,7 @@ public:
 	void clearSpecialty();
 	///Tks Med TradeScreens
 	bool canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteType=NO_TRADE_ROUTES, bool bAIForce=false) const;
+	bool canAutoSailTradeScreen(const CvPlot* pPlot, EuropeTypes eTradeScreenType=NO_EUROPE, bool bAIForce=false) const;
 	bool canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, TradeRouteTypes eTradeRouteType=NO_TRADE_ROUTES, bool bAIForce=false, EuropeTypes eEuropeTradeRoute=NO_EUROPE) const;
 	void crossOcean(UnitTravelStates eNewState, bool bAIForce=false, EuropeTypes eTradeMarket=NO_EUROPE);
 	//TKe

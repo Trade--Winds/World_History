@@ -10,7 +10,7 @@
 			<Type>EUROPE_EAST</Type>
 			<Description>TXT_KEY_COMMAND_SAIL_SPICE_ROUTE</Description>
       <Strategy>TXT_KEY_AUTO_SELL_SPICE_ROUTE_HELP</Strategy>
-      <Help>TXT_KEY_AUTO_SELL_SPICE_ROUTE_HELP</Help>
+      <Help>AI Route</Help>
 			<Direction>east</Direction>
       <DirectionArrays>
         <DirectionArray>
@@ -23,6 +23,7 @@
 			<iTripLength>3</iTripLength>
 			<iMinLandDistance>4</iMinLandDistance>
 			<iWidthPercent>20</iWidthPercent>
+      <bNoEuropePlot>1</bNoEuropePlot>
       <TradeScreenTypes/>
       <PythonTradeScreen>showSpiceRouteScreen</PythonTradeScreen>
       <DefaultColor>PLAYERCOLOR_BLUE</DefaultColor>

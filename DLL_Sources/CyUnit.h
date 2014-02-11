@@ -278,6 +278,7 @@ public:
 	// < JAnimals Mod End >
 	//TKs Med **TradeRoute**
 	bool canCrossOcean(CyPlot* pPlot, int /*UnitTravelStates*/ eNewState, int /*TradeRouteTypes*/ eTradeRouteType, bool bAIForce, int /*EuropeTypes*/ eEuropeTradeRoute);
+	bool canAutoSailTradeScreen(CyPlot* pPlot, int /*EuropeTypes*/ eEuropeTradeRoute,  bool bAIForce);
 	int /*EuropeType*/ getUnitTradeMarket();
 	void setUnitTradeMarket(int /*EuropeType*/ eMarket);
 	//TKe

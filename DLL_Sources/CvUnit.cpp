@@ -3575,6 +3575,15 @@ bool CvUnit::canAutomate(AutomateTypes eAutomate) const
 		break;
 
 	case AUTOMATE_SAIL:
+		//TKs Trade Screen
+		//if (isHuman())
+		//{
+			//if (!canAutoSailTradeScreen(plot()))
+			//{
+				//return false;
+			//}
+		//}
+		//Tke
 		if (!canAutoCrossOcean(plot()))
 		{
 			return false;
@@ -4486,6 +4495,66 @@ bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteT
 	return true;
 }
 ///Tks Med
+bool CvUnit::canAutoSailTradeScreen(const CvPlot* pPlot, EuropeTypes eTradeScreenType, bool bAIForce) const
+{
+	if (!isHuman())
+	{
+		return false;
+	}
+
+	if (!GET_PLAYER(getOwnerINLINE()).canTradeWithEurope())
+	{
+		return false;
+	}
+
+	if (cargoSpace() <= 0)
+	{
+        return false;
+	}
+
+	if (getTransportUnit() != NULL)
+	{
+		return false;
+	}
+
+	if (m_pUnitInfo->isPreventTraveling())
+	{
+	    return false;
+	}
+
+	FAssert(pPlot != NULL);
+	if (pPlot == NULL)
+	{
+		return false;
+	}
+	bool bWaterRoute = false;
+	
+	bWaterRoute = (GC.getEuropeInfo(eTradeScreenType).getMinLandDistance() > 0);
+	if (bWaterRoute)
+	{
+		if (getDomainType() != DOMAIN_SEA)
+		{
+			return false;
+		}
+	}
+	else if (getDomainType() != DOMAIN_LAND)
+	{
+		return false;
+	}
+
+	if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_EUROPE, NO_TRADE_ROUTES, bAIForce, eTradeScreenType))
+    {
+        return false;
+    }
+
+	if (pPlot->getDistanceToTradeScreen(eTradeScreenType) == MAX_SHORT)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, TradeRouteTypes eTradeRouteType, bool bAIForce, EuropeTypes eEuropeTradeRoute) const
 {
 	if (cargoSpace() <= 0)
