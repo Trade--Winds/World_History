@@ -755,12 +755,14 @@ public:
 
 	// cache XML - start - Nightinggale
 public:
-	int getXMLval(XMLconstantTypes eVal);
-	int getXMLvalConst(XMLconstantTypes eVal) const;
+	int getXMLval(XMLconstantTypes eVal) const;
 	int getXMLuncached(XMLconstantTypes eVal) const;
 	void cacheXMLval();
 protected:
 	int m_aiDefineCache[NUM_XML_CONSTANTS];
+#ifdef XML_CACHE_COUNT
+	unsigned int m_aiDefineCacheCount[NUM_XML_CONSTANTS];
+#endif
 	// cache XML - end - Nightinggale
 
 protected:
@@ -1159,36 +1161,15 @@ inline FAStar& CvGlobals::getPlotGroupFinder()
 /// PlotGroup - end - Nightinggale
 
 // cache XML - start - Nightinggale
-inline int CvGlobals::getXMLval(XMLconstantTypes eVal)
+inline int CvGlobals::getXMLval(XMLconstantTypes eVal) const
 {
 	FAssert(eVal >= 0 && eVal < NUM_XML_CONSTANTS);
 
-	int iVal = this->m_aiDefineCache[eVal];
-	if (iVal == XML_INIT_VALUE)
-	{
-		// cache is unset
-		iVal = this->getXMLuncached(eVal);
-		this->m_aiDefineCache[eVal] = iVal;
-	}
-	return iVal;
-}
-
-// the const function is faster and can be called from const functions.
-// however unlike the non-const function it will NOT cache uncached values meaning it can cause a serious performance penalty.
-// use only this function in const functions as failure to cache seriously hurts performance.
-// The difference between the functions are only performance related. They should always return the same value.
-inline int CvGlobals::getXMLvalConst(XMLconstantTypes eVal) const
-{
-	FAssert(eVal >= 0 && eVal < NUM_XML_CONSTANTS);
-
-	int iVal = this->m_aiDefineCache[eVal];
-	if (iVal == XML_INIT_VALUE)
-	{
-		// cache is unset
-		FAssertMsg(false, "const reading unset XML val");
-		return this->getXMLuncached(eVal);
-	}
-	return iVal;
+#ifdef XML_CACHE_COUNT
+		this->m_aiDefineCacheCount[eVal]++;
+		FAssert(m_aiDefineCacheCount[eVal] < (MAX_UNSIGNED_INT - 1));																																													
+#endif
+	return m_aiDefineCache[eVal];
 }
 // cache XML - end - Nightinggale
 

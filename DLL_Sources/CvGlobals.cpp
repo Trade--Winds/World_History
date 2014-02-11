@@ -2355,13 +2355,6 @@ void CvGlobals::cacheGlobals()
 	m_iUSE_ON_UPDATE_CALLBACK = getDefineINT("USE_ON_UPDATE_CALLBACK");
 	m_iUSE_ON_UNIT_CREATED_CALLBACK = getDefineINT("USE_ON_UNIT_CREATED_CALLBACK");
 	m_iUSE_ON_UNIT_LOST_CALLBACK = getDefineINT("USE_ON_UNIT_LOST_CALLBACK");
-
-	// cache XML - start - Nightinggale
-	for (int i = 0; i < NUM_XML_CONSTANTS; i++)
-	{
-		this->m_aiDefineCache[i] = XML_INIT_VALUE;
-	}
-	// cache XML - end - Nightinggale
 }
 
 // cache XML - start - Nightinggale
@@ -3316,14 +3309,12 @@ void CvGlobals::cacheXMLval()
 	}
 	// discoverable yield detection - end - Nightinggale
 
-	// cache as many XML values as possible. However if a value is 0, then we can't tell if it is 0 or not read yet.
 	for (int i = 0; i < NUM_XML_CONSTANTS; i++)
 	{
-		int iVal = this->getXMLuncached((XMLconstantTypes)i);
-		if (iVal != 0)
-		{
-			this->m_aiDefineCache[i] = iVal;
-		}
+		this->m_aiDefineCache[i] = this->getXMLuncached((XMLconstantTypes)i);
+#ifdef XML_CACHE_COUNT
+		this->m_aiDefineCacheCount[i] = 0;
+#endif
 	}
 }
 // cache XML - end - Nightinggale
