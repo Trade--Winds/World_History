@@ -1114,6 +1114,14 @@
     <Spanish>[ICON_BULLET]+%d1 Max Population</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_BUILDING_CENTER_PLOT_BONUS</Tag>
+    <English>[ICON_BULLET]Increases production by [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT] for all center plot yields</English>
+    <French>[ICON_BULLET]Increases production by [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT] for all center plot yields</French>
+    <German>[ICON_BULLET]Increases production by [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT] for all center plot yields</German>
+    <Italian>[ICON_BULLET]Increases production by [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT] for all center plot yields</Italian>
+    <Spanish>[ICON_BULLET]Increases production by [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT] for all center plot yields</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_RESEARCH_GROWTH_INCREASE</Tag>
     <English>[ICON_BULLET]%d1 Cheaper Population Growth</English>
     <French>[ICON_BULLET]%d1 Cheaper Population Growth</French>

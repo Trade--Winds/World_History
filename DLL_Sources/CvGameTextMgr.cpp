@@ -6400,6 +6400,13 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
 
 	}
 
+	if (kBuilding.getCenterPlotBonus() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_CENTER_PLOT_BONUS", kBuilding.getCenterPlotBonus()));
+	}
+
+
     if (kBuilding.isIncreasesCityPopulation() != 0)
 	{
 		szBuffer.append(NEWLINE);
