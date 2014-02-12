@@ -92,13 +92,16 @@ public:
 	}
 
 	// used when constructor isn't called, like in an array
-	// can also be used if constructor is called before XML is read as getNum..Infos() functions will be incorrect in that case.
+	// use this as a last resort when you have problems calling the constructor
+protected:
 	void init(int iLength)
 	{
 		tArray = NULL;
 		m_iLength = iLength;
+		m_eDefault = 0;
 	}
 
+public:
 	inline T get(int iIndex) const
 	{
 		FAssert(iIndex >= 0);
@@ -214,6 +217,7 @@ class YieldArray: public JustInTimeArray<T>
 {
 public:
 	YieldArray() : JustInTimeArray<T>(NUM_YIELD_TYPES){};
+	YieldArray(T eDefault) : JustInTimeArray<T>(NUM_YIELD_TYPES, eDefault){};
 	void init() {  JustInTimeArray<T>::init(NUM_YIELD_TYPES);}
 };
 
@@ -222,6 +226,7 @@ class YieldCargoArray: public JustInTimeArray<T>
 {
 public:
 	YieldCargoArray() : JustInTimeArray<T>(NUM_CARGO_YIELD_TYPES){};
+	YieldCargoArray(T eDefault) : JustInTimeArray<T>(NUM_CARGO_YIELD_TYPES, eDefault){};
 	void init() {  JustInTimeArray<T>::init(NUM_CARGO_YIELD_TYPES);}
 };
 
@@ -230,7 +235,7 @@ class UnitArray: public JustInTimeArray<T>
 {
 public:
     UnitArray() : JustInTimeArray<T>(GC.getNumUnitInfos()){};
-	void init() { JustInTimeArray<T>::init(GC.getNumUnitInfos());}
+	UnitArray(T eDefault) : JustInTimeArray<T>(GC.getNumUnitInfos(), eDefault){};
 };
 
 template<class T>
@@ -238,7 +243,7 @@ class ProfessionArray: public JustInTimeArray<T>
 {
 public:
     ProfessionArray() : JustInTimeArray<T>(GC.getNumProfessionInfos()){};
-	void init() { JustInTimeArray<T>::init(GC.getNumProfessionInfos());}
+	ProfessionArray(T eDefault) : JustInTimeArray<T>(GC.getNumProfessionInfos(), eDefault){};
 };
 
 template<class T>
@@ -246,7 +251,7 @@ class PromotionArray: public JustInTimeArray<T>
 {
 public:
     PromotionArray() : JustInTimeArray<T>(GC.getNumPromotionInfos()){};
-	void init() { JustInTimeArray<T>::init(GC.getNumPromotionInfos());}
+	PromotionArray(T eDefault) : JustInTimeArray<T>(GC.getNumPromotionInfos(), eDefault){};
 };
 
 template<class T>
@@ -254,7 +259,7 @@ class UnitCombatArray: public JustInTimeArray<T>
 {
 public:
     UnitCombatArray() : JustInTimeArray<T>(GC.getNumUnitCombatInfos()){};
-	void init() { JustInTimeArray<T>::init(GC.getNumUnitCombatInfos());}
+	UnitCombatArray(T eDefault) : JustInTimeArray<T>(GC.getNumUnitCombatInfos(), eDefault){};
 };
 
 template<class T>
@@ -262,7 +267,7 @@ class BonusArray: public JustInTimeArray<T>
 {
 public:
     BonusArray() : JustInTimeArray<T>(GC.getNumBonusInfos()){};
-	void init() { JustInTimeArray<T>::init(GC.getNumBonusInfos());}
+	BonusArray(T eDefault) : JustInTimeArray<T>(GC.getNumBonusInfos(), eDefault){};
 };
 
 template<class T>
@@ -270,7 +275,7 @@ class PlayerArray: public JustInTimeArray<T>
 {
 public:
 	PlayerArray() : JustInTimeArray<T>(MAX_PLAYERS){};
-	void init() {  JustInTimeArray<T>::init(MAX_PLAYERS);}
+	PlayerArray(T eDefault) : JustInTimeArray<T>(MAX_PLAYERS, eDefault){};
 };
 
 template<class T>
@@ -279,5 +284,4 @@ class EuropeArray: public JustInTimeArray<T>
 public:
 	EuropeArray() : JustInTimeArray<T>(GC.getNumEuropeInfos()){};
 	EuropeArray(T eDefault) : JustInTimeArray<T>(GC.getNumEuropeInfos(), eDefault){};
-	void init() {  JustInTimeArray<T>::init(GC.getNumEuropeInfos());}
 };
