@@ -2660,7 +2660,7 @@ void CvPlayer::verifyCivics()
 	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 	{
 	    ///TK Update 1.1b
-	    if (iI = CIVICOPTION_INVENTIONS)
+	    if (iI == CIVICOPTION_INVENTIONS)
 	    {
 	        continue;
 	    }

@@ -159,9 +159,7 @@ class CvSpiceRouteScreen:
 		STACK_BAR_HEIGHT = int((2.7 * self.YResolution) / 100)	
 		ScrollButtonSize = LARGE_BUTTON_SIZE
 		#Trade Screen quick screen links
-		#self.TRADE_SCREEN_SPICE_ROUTE_MARKET = CvUtil.findInfoTypeNum('TRADE_SCREEN_SPICE_ROUTE_MARKET')
 		self.TRADE_SCREEN_SILK_ROAD_MARKET = CvUtil.findInfoTypeNum('TRADE_SCREEN_SILK_ROAD_MARKET')
-		#self.TRADE_SCREEN_TRADE_FAIR_MARKET = CvUtil.findInfoTypeNum('TRADE_SCREEN_TRADE_FAIR_MARKET')	
 		if (gc.getPlayer(gc.getGame().getActivePlayer()).getHasTradeRouteType(self.TRADE_SCREEN_SILK_ROAD_MARKET)):
 			screen.setImageButton("ImmigratioinScreen",ArtFileMgr.getInterfaceArtInfo("INTERFACE_IMMIGRATION").getPath(), (self.XResolution * 35 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_IMMIGRATION_SCREEN).getActionInfoIndex(), -1)
 			screen.setImageButton("SilkRoadScreen",ArtFileMgr.getInterfaceArtInfo("INTERFACE_SILK_ROAD").getPath(), (self.XResolution * 65 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_SILK_ROAD_SCREEN).getActionInfoIndex(), -1)
