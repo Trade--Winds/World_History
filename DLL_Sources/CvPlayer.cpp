@@ -418,12 +418,6 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	// Uninit class
 	uninit();
 
-	// just-in-time array constructor might run before XML is read.
-	// init here to ensure length is set correctly.
-	m_abBannedUnits.init();
-	m_abBannedProfessions.init();
-	m_abBannedBonus.init();
-
 	m_iStartingX = INVALID_PLOT_COORD;
 	m_iStartingY = INVALID_PLOT_COORD;
 	///TKs ME
