@@ -2882,7 +2882,7 @@ void CvTeam::doRevolution()
 	bool bHasConstitution = false;
     for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
     {
-        if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+        if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
         {
             CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
             if (kCivicInfo.isStartConstitution())

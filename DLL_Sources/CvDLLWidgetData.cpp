@@ -1454,7 +1454,7 @@ void CvDLLWidgetData::parseCityNameHelp(CvWidgetDataStruct &widgetDataStruct, Cv
                             {
                                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                                 {	CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-                                    if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                                    if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
                                     {
                                         //if (eBuilding != NO_BUILDING)
                                        // {
@@ -1833,7 +1833,7 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
                                             {
                                                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                                                 {	CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-                                                    if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                                                    if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
                                                     {
                                                         if (kCivicInfo.getAllowsBuildingTypes(GC.getBuildingInfo(eBuilding).getBuildingClassType()) > 0)
                                                         {
@@ -4084,12 +4084,12 @@ void CvDLLWidgetData::doInventorsHouse(const CvWidgetDataStruct& widgetDataStruc
 	{
 	    //pHeadSelectedCity->setYieldRateDirty();
 	    //gDLL->getInterfaceIFace()->setDirty(CityScreen_DIRTY_BIT, true);
-		CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_INVENTION, (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS),  pHeadSelectedCity->getID());
+		CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_INVENTION, CIVICOPTION_INVENTIONS,  pHeadSelectedCity->getID());
 		gDLL->getInterfaceIFace()->addPopup(pInfo, NO_PLAYER, true);
 	}
 	else
 	{
-	    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_INVENTION, (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS), 1);
+	    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_INVENTION, CIVICOPTION_INVENTIONS, 1);
 		gDLL->getInterfaceIFace()->addPopup(pInfo, NO_PLAYER, true);
 	}
 

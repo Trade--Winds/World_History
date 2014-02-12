@@ -2636,7 +2636,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		     YieldTypes eBonusYield = NO_YIELD;
                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                 {
-                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                     {
                         for (int i = 0; i < GC.getNUM_YIELD_TYPES(); ++i)
                         {
@@ -2653,7 +2653,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
                 {
                     for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                     {
-                        if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                        if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                         {
                             CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                             if (kCivicInfo.getAllowsYields(eBonusYield) > 0 || kCivicInfo.getAllowsBonuses(eBonus) > 0)
@@ -5051,7 +5051,7 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
         for (int iLoopCivic = 0; iLoopCivic < GC.getNumCivicInfos(); ++iLoopCivic)
         {
             CvCivicInfo& kLoopCivicInfo = GC.getCivicInfo((CivicTypes) iLoopCivic);
-            if ((CivicTypes)iLoopCivic != eCivic && kLoopCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if ((CivicTypes)iLoopCivic != eCivic && kLoopCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 if ((CivicTypes)kLoopCivicInfo.getRequiredInvention() == eCivic)
                 {
@@ -8658,7 +8658,7 @@ int CvGameTextMgr::setCityYieldModifierString(CvWStringBuffer& szBuffer, YieldTy
 	iCivicMod = 0;
 	for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); iCivic++)
     {
-        if (GC.getCivicInfo((CivicTypes)iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+        if (GC.getCivicInfo((CivicTypes)iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
         {
             if (kOwner.getIdeasResearched((CivicTypes) iCivic) > 0)
             {

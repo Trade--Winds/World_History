@@ -7892,7 +7892,7 @@ UnitTypes CvUnit::getCaptureUnitType(CivilizationTypes eCivilization) const
 	    {
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                     if (kCivicInfo.getAllowsYields(YIELD_FROM_ANIMALS) > 0)
@@ -8104,7 +8104,7 @@ bool CvUnit::canBuildRoute() const
 		    ///TKs Med
 		    for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                     if (kCivicInfo.getAllowsRoute(GC.getBuildInfo((BuildTypes)iI).getRoute()) > 0)
@@ -11608,7 +11608,7 @@ void CvUnit::setProfession(ProfessionTypes eProfession, bool bForce)
 	        {
 	            iPlotCityID = plot()->getPlotCity()->getID();
 	        }
-	        CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_INVENTION, (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS), iPlotCityID);
+	        CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_INVENTION, CIVICOPTION_INVENTIONS, iPlotCityID);
             gDLL->getInterfaceIFace()->addPopup(pInfo, getOwner(), true);
 	    }
 	}
@@ -13218,7 +13218,7 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
 	{
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                 if (ePromotion != NO_PROMOTION && kCivicInfo.getAllowsPromotions(ePromotion) > 0)

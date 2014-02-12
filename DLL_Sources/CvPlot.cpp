@@ -433,7 +433,7 @@ void CvPlot::doImprovementUpgrade()
 		{
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                     if (kCivicInfo.getAllowsBuildTypes(eImprovementUpdrade) > 0)
@@ -1867,7 +1867,7 @@ int CvPlot::getBuildTime(BuildTypes eBuild) const
         //{
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 
@@ -2266,7 +2266,7 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
         {
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                     if (kCivicInfo.getRouteMovementMod(getRouteType()) != 0)
@@ -5012,7 +5012,7 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 			BonusTypes eBonus = getBonusType();
 			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 			{
-				if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+				if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
 				{
 					CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 					//if (GET_TEAM(eTeam).isHuman())

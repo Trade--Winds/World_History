@@ -813,7 +813,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
                                     CivicTypes eNewTech = NO_CIVIC;
                                     for (int iLoopCivic = 0; iLoopCivic < GC.getNumCivicInfos(); ++iLoopCivic)
                                     {
-                                        if (GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                                        if (GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                                         {
                                             if (GC.getCivicInfo((CivicTypes)iLoopCivic).getRequiredFatherPoints(eFatherPoint) > 0)
                                             {
@@ -3313,7 +3313,7 @@ bool CvDLLButtonPopup::launchCivicOptionPopup(CvPopup* pPopup, CvPopupInfo &info
     FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
     if (info.getData1() == -3)
     {
-        CivicOptionTypes eCivicOption = (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS);
+        CivicOptionTypes eCivicOption = CIVICOPTION_INVENTIONS;
         FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
         gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_CHOOSE_TRADING_PERK"));
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
@@ -3340,7 +3340,7 @@ bool CvDLLButtonPopup::launchCivicOptionPopup(CvPopup* pPopup, CvPopupInfo &info
     ///TKe
 	CivicOptionTypes eCivicOption = (CivicOptionTypes) info.getData1();
     ///TKs Invention Core Mod v 1.0
-	if (eCivicOption == NO_CIVICOPTION || eCivicOption == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+	if (eCivicOption == NO_CIVICOPTION || eCivicOption == CIVICOPTION_INVENTIONS)
 	{
 		return false;
 	}
@@ -3676,13 +3676,6 @@ bool CvDLLButtonPopup::launchTalkNativesPopup(CvPopup* pPopup, CvPopupInfo& info
 ///TKs Invention Core Mod v 1.0
 bool CvDLLButtonPopup::launchChooseInventionPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
-    CivicOptionTypes eCivicOption = (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS);
-
-	if (eCivicOption == NO_CIVICOPTION)
-	{
-		return false;
-	}
-
 	PlayerTypes ePlayer = GC.getGameINLINE().getActivePlayer();
 	if (ePlayer == NO_PLAYER)
 	{
@@ -3806,7 +3799,7 @@ bool CvDLLButtonPopup::launchChooseInventionPopup(CvPopup* pPopup, CvPopupInfo &
 	    //bIsTrait = false;
 		CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 		FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
-		if (kCivicInfo.getCivicOptionType() == eCivicOption)
+		if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
 		{
 			if (info.getData3() == 1 || ((GET_PLAYER(ePlayer).canDoCivics((CivicTypes) iCivic) && eCurrentResearch != (CivicTypes)iCivic) && (GC.getCivicInfo((CivicTypes)iCivic).getRequiredFatherPoints(eFatherPoint) <= 0)) && kCivicInfo.getInventionCategory() != (CivicTypes) GC.getXMLval(XML_MEDIEVAL_CENSURE))
 			{
@@ -4068,7 +4061,7 @@ bool CvDLLButtonPopup::launchArmorsmithPopup(CvPopup* pPopup, CvPopupInfo &info)
         {
             //for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             //{
-             //   if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+             //   if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
              //   {
              //       CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
              //       if (kCivicInfo.getAllowsYields(eArmor) > 0)
