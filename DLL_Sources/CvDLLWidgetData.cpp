@@ -188,6 +188,11 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 			szBuffer.append(GC.getEuropeInfo((EuropeTypes) widgetDataStruct.m_iData1).getStrategy());
 		}
 		break;
+	case WIDGET_POP_UP_SCREEN:
+		{			
+			//szBuffer.append(GC.getEuropeInfo((EuropeTypes) widgetDataStruct.m_iData1).getDescription());
+		}
+		break;
 ///TKe
 
 	case WIDGET_GOTO_CITY:
@@ -691,6 +696,18 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 				//pHeadSelectedUnit->automate(AUTOMATE_SAIL);
 				pHeadSelectedUnit->getGroup()->setAutomateType(AUTOMATE_SAIL);
 			}
+		}
+		break;
+	case WIDGET_POP_UP_SCREEN:
+		{
+				const CvPopupQueue& kPopups = GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getPopups();
+				FAssert((EuropeTypes) widgetDataStruct.m_iData1 != NO_EUROPE);
+				FAssert((EuropeTypes) widgetDataStruct.m_iData1 < GC.getNumEuropeInfos());
+				CvWString szTradeRoute = GC.getEuropeInfo((EuropeTypes) widgetDataStruct.m_iData1).getPythonTradeScreen();
+				CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_PYTHON_SCREEN);
+				pInfo->setText(szTradeRoute);
+				gDLL->getInterfaceIFace()->addPopup(pInfo, GC.getGameINLINE().getActivePlayer(), false);
+		
 		}
 		break;
 	///TKe
