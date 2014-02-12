@@ -269,7 +269,7 @@ void CvPlayer::init(PlayerTypes eID)
 
                     }
 
-                    if (bSetTrade == false && GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                    if (bSetTrade == false && GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                     {
                         if (GC.getCivicInfo((CivicTypes)iLoopCivic).getRequiredFatherPoints(eFatherPoint) > 0)
                         {
@@ -302,7 +302,7 @@ void CvPlayer::init(PlayerTypes eID)
                 CivicTypes eCivic = NO_CIVIC;
                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                 {
-                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                     {
                         if (GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() != -1 && GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == GC.getXMLval(XML_NATIVE_TECH))
                         {
@@ -2660,7 +2660,7 @@ void CvPlayer::verifyCivics()
 	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 	{
 	    ///TK Update 1.1b
-	    if (iI = GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+	    if (iI = CIVICOPTION_INVENTIONS)
 	    {
 	        continue;
 	    }
@@ -4324,7 +4324,7 @@ bool CvPlayer::canReceiveGoody(CvPlot* pPlot, GoodyTypes eGoody, const CvUnit* p
         {
             CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iX);
             FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS) && canDoCivics((CivicTypes) iX))
+            if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS && canDoCivics((CivicTypes) iX))
             {
                 if (!kCivicInfo.isGoodyTech() && GC.getCivicInfo((CivicTypes)iX).getRequiredFatherPoints(eFatherPoint) <= 0)
                 {
@@ -4656,7 +4656,7 @@ int CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
             CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iX);
             FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
 
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS) && canDoCivics((CivicTypes) iX))
+            if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS && canDoCivics((CivicTypes) iX))
             {
                 if (!kCivicInfo.isGoodyTech() && GC.getCivicInfo((CivicTypes)iX).getRequiredFatherPoints(eFatherPoint) <= 0)
                 {    bFoundTech = true;
@@ -4815,7 +4815,7 @@ bool CvPlayer::canFound(int iX, int iY, bool bTestVisible, int iCityType) const
 	{
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                 if (kCivicInfo.getFoundCityType() == iCityType)
@@ -5080,7 +5080,7 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 #if 0
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                 if (kCivicInfo.getAllowsUnitClasses(eUnitClass) > 0)
@@ -5193,7 +5193,7 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 		// TODO cache which buildings this loop allows. Even though it calculates a lot the output is fixed as long as the player doesn't get new inventions
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {	CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 if (eBuilding != NO_BUILDING)
                 {
@@ -5779,7 +5779,7 @@ bool CvPlayer::canBuild(const CvPlot* pPlot, BuildTypes eBuild, bool bTestEra, b
 	{
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                 if (GC.getBuildInfo(eBuild).getRoute() != NO_ROUTE)
@@ -5980,7 +5980,7 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
             ///Disallow Tech Code
             for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                 {
                     CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                     if (kCivicInfo.getDisallowsTech() == eCivic)
@@ -6001,7 +6001,7 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
                 }
             }
             CvCivicInfo& kCivicInfo = GC.getCivicInfo(eCivic);
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 if (getIdeasResearched(eCivic) > 0)
                 {
@@ -7880,7 +7880,7 @@ bool CvPlayer::isBuildingFree(BuildingTypes eIndex)	const
 		// TODO get rid of building loop by caching which buildings are allowed with current inventions
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {	CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-            if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 if (eIndex != NO_BUILDING && kCivicInfo.getAllowsBuildingTypes(GC.getBuildingInfo(eIndex).getBuildingClassType()) > 0)
                 {
@@ -8246,7 +8246,7 @@ void CvPlayer::setCivic(CivicOptionTypes eIndex, CivicTypes eNewValue)
     CivicTypes eOldCivic;
     ///TK Update 1.1b
    // bool bIdea = false;
-    if (eIndex == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+    if (eIndex == CIVICOPTION_INVENTIONS)
     {
         return;
         //eOldCivic = NO_CIVIC;
@@ -12674,7 +12674,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
         {
             //for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
            // {
-                //if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                //if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                 //{
                     /*if (getIdeasResearched((CivicTypes)kTrigger.getCivic()) <= 0)
                     {
@@ -14241,7 +14241,7 @@ int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 
 //		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 //        {
-//            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+//            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
 //            {
 //                if (iCivic == kTrigger.getCivic() && getIdeasResearched((CivicTypes) iCivic) > 0)
 //                {
@@ -14931,7 +14931,7 @@ int CvPlayer::getEuropeUnitBuyPrice(UnitTypes eUnit, EuropeTypes eTradeScreenTyp
 			eUnitClass = ((UnitClassTypes)kUnit.getUnitClassType());
 			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 			{
-				if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+				if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
 				{
 					CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 					if (kCivicInfo.getAllowsUnitClasses(eUnitClass) > 0)
@@ -16097,7 +16097,7 @@ bool CvPlayer::isProfessionValid(ProfessionTypes eProfession, UnitTypes eUnit) c
             {
                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                 {
-                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                     {
                         CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
                         CvProfessionInfo& kProfessionInfo = GC.getProfessionInfo(eProfession);
@@ -16375,7 +16375,7 @@ UnitTypes CvPlayer::pickBestImmigrant()
 		bool bAllowed = true;
 		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 		{
-			if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+			if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
 			{
 				CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
 				if (kCivicInfo.getAllowsUnitClasses(iUnitClass) > 0)
@@ -16795,7 +16795,7 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
         case TRADE_IDEAS:
 			for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
             {
-                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                 {
                     CivicTypes eCivic = (CivicTypes) iCivic;
                     if (getIdeasResearched(eCivic) > 0)
@@ -17564,7 +17564,7 @@ int CvPlayer::getIdea(bool Research, PlayerTypes ePlayer) const
         FatherPointTypes eFatherPoint = (FatherPointTypes)GC.getXMLval(XML_FATHER_POINT_REAL_TRADE);
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 CivicTypes eCivic = (CivicTypes) iCivic;
                 if (!GC.getCivicInfo((CivicTypes)iCivic).isGoodyTech() && GC.getCivicInfo((CivicTypes)iCivic).getRequiredFatherPoints(eFatherPoint) <= 0)
@@ -17604,7 +17604,7 @@ int CvPlayer::getIdea(bool Research, PlayerTypes ePlayer) const
         std::vector<int> eIdea;
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 CivicTypes eCivic = (CivicTypes) iCivic;
                 if (getIdeasResearched(eCivic) > 0 && GET_PLAYER(ePlayer).getIdeasResearched(eCivic) == 0)
@@ -17723,7 +17723,7 @@ void CvPlayer::doSetupIdeas(bool Cheat)
                 CivicTypes eCivic = NO_CIVIC;
                 for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
                 {
-                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                    if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                     {
                         CivicTypes eCivic = (CivicTypes) iCivic;
 
@@ -17798,7 +17798,7 @@ void CvPlayer::doSetupIdeas(bool Cheat)
         CivicTypes eCivic = NO_CIVIC;
         for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
         {
-            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+            if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
             {
                 if (GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() != -1 && GC.getCivicInfo((CivicTypes)iCivic).getInventionCategory() == GC.getXMLval(XML_NATIVE_TECH))
                 {
@@ -17967,7 +17967,7 @@ void CvPlayer::doIdeas(bool Cheat)
                     CivicTypes eSpiceRoute = (CivicTypes)GC.getXMLval(XML_TRADE_ROUTE_SPICE);
                     for (int iLoopCivic = 0; iLoopCivic < GC.getNumCivicInfos(); ++iLoopCivic)
                     {
-                        if (GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                        if (GC.getCivicInfo((CivicTypes) iLoopCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
                         {
                             if (GC.getCivicInfo((CivicTypes)iLoopCivic).getRequiredFatherPoints(eFatherPoint) > 0)
                             {
@@ -19127,7 +19127,7 @@ void CvPlayer::updateInventionEffectCache()
 		for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 		{
 			CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-			if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+			if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
 			{
 				int iBonus = kCivicInfo.getAllowsBonuses(eBonus);
 				if (iBonus > 0)
@@ -19231,7 +19231,7 @@ void CvPlayer::updateInventionEffectCache()
 	for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
 	{
 		CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-		if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+		if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
 		{
 			//for (int iTradeScreen = 0; iTradeScreen < GC.getNumEuropeInfos(); ++iTradeScreen)
 			if (kCivicInfo.getAllowsTradeScreen() != NO_EUROPE)

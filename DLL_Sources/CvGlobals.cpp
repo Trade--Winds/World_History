@@ -2285,15 +2285,6 @@ FVariableSystem* CvGlobals::getDefinesVarSystem()
 
 void CvGlobals::cacheGlobals()
 {
-	// cache XML - start - Nightinggale
-	// init all variables into a value we hope not to use for real
-	// this way we can later assert if a variable is unset
-	for (int i=0; i <NUM_XML_CONSTANTS; i++)
-	{
-		this->m_aiDefineCache[i] = -31337;
-	}
-	// cache XML - end - Nightinggale
-
 	m_iMOVE_DENOMINATOR = getDefineINT("MOVE_DENOMINATOR");
 	m_iFOOD_CONSUMPTION_PER_POPULATION = getDefineINT("FOOD_CONSUMPTION_PER_POPULATION");
 	m_iMAX_HIT_POINTS = getDefineINT("MAX_HIT_POINTS");
@@ -2478,9 +2469,6 @@ int CvGlobals::getXMLuncached(XMLconstantTypes eVal) const
 		case XML_CITY_PILGRAM_RANDOM:
 			return this->getDefineINT("CITY_PILGRAM_RANDOM");
 			break;
-		case XML_CIVICOPTION_INVENTIONS:
-			return this->getDefineINT("CIVICOPTION_INVENTIONS");
-			break;
 		case XML_COLONIAL_FORCED_PEACE_TURNS:
 			return this->getDefineINT("COLONIAL_FORCED_PEACE_TURNS");
 			break;
@@ -2576,9 +2564,6 @@ int CvGlobals::getXMLuncached(XMLconstantTypes eVal) const
 			break;
 		case XML_DEFAULT_VIKING_ERA:
 			return this->getDefineINT("DEFAULT_VIKING_ERA");
-			break;
-		case XML_DEFAULT_YIELD_ARMOR_TYPE:
-			return this->getDefineINT("DEFAULT_YIELD_ARMOR_TYPE");
 			break;
 		case XML_DIPLAY_NEW_VIDEOS:
 			return this->getDefineINT("DIPLAY_NEW_VIDEOS");
@@ -3316,6 +3301,8 @@ void CvGlobals::cacheXMLval()
 		this->m_aiDefineCacheCount[i] = 0;
 #endif
 	}
+
+	FAssertMsg(getInfoTypeForString("CIVICOPTION_INVENTIONS") == CIVICOPTION_INVENTIONS, CvString::format("Must have index %d", CIVICOPTION_INVENTIONS).c_str());
 }
 // cache XML - end - Nightinggale
 

@@ -319,7 +319,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
                             }
                         }
 
-                        if (kCivicInfo.getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+                        if (kCivicInfo.getCivicOptionType() == CIVICOPTION_INVENTIONS)
                         {
                             for (int iI = 0; iI < GC.getNumProfessionInfos(); iI++)
                             {
@@ -392,7 +392,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
             {
                 if (GET_PLAYER(getOwnerINLINE()).getCurrentResearch() == NO_CIVIC)
                 {
-                    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_INVENTION, (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS));
+                    CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_INVENTION, CIVICOPTION_INVENTIONS);
                     gDLL->getInterfaceIFace()->addPopup(pInfo, getOwnerINLINE(), false);
                 }
             }
@@ -2916,7 +2916,7 @@ int CvCity::growthThreshold() const
 
     for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
     {
-        if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == (CivicOptionTypes)GC.getXMLval(XML_CIVICOPTION_INVENTIONS))
+        if (GC.getCivicInfo((CivicTypes) iCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
         {
             CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
             if (GET_PLAYER(getOwner()).getIdeasResearched((CivicTypes) iCivic) > 0)
@@ -4324,7 +4324,7 @@ int CvCity::getBaseRawYieldProduced(YieldTypes eYieldType, SpecialBuildingTypes 
 				YieldTypes eYieldProduced = NO_YIELD;
 				int i = 0;
 				bool bArmor = false;
-				if ((YieldTypes)kProfessionInfo.getYieldsProduced(0) == (YieldTypes)GC.getXMLval(XML_DEFAULT_YIELD_ARMOR_TYPE))
+				if ((YieldTypes)kProfessionInfo.getYieldsProduced(0) == YIELD_DEFAULT_ARMOR_TYPE)
 				{
 				    bArmor = true;
 				}
@@ -11280,7 +11280,7 @@ YieldTypes CvCity::getSelectedArmor() const
 {
     if (m_eSelectedArmor == NO_YIELD)
     {
-        return (YieldTypes)GC.getXMLval(XML_DEFAULT_YIELD_ARMOR_TYPE);
+        return YIELD_DEFAULT_ARMOR_TYPE;
     }
     else
     {

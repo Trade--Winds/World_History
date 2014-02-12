@@ -947,10 +947,6 @@ bool CvXMLLoadUtility::SetPostGlobalsGlobalDefines()
 		idx = FindInInfoClass(szVal);
 		GC.getDefinesVarSystem()->SetValue("CONTACT_YIELD_GIFT_TECH", idx);
 
-		SetGlobalDefine("DEFAULT_YIELD_ARMOR_TYPE", szVal);
-		idx = FindInInfoClass(szVal);
-		GC.getDefinesVarSystem()->SetValue("DEFAULT_YIELD_ARMOR_TYPE", idx);
-
 		SetGlobalDefine("DEFAULT_GRAIN_GROWTH_UNIT_CLASS", szVal);
 		idx = FindInInfoClass(szVal);
 		GC.getDefinesVarSystem()->SetValue("DEFAULT_GRAIN_GROWTH_UNIT_CLASS", idx);
