@@ -63,6 +63,8 @@
       <!--Place a Trait here to have it Processed along with this Tech. See CIV4TraitInfos for examples-->
       <AllowsTrait/>
       <!--This is "Improvements". Place Improvements here to allow or disallow-->
+      <AllowsTradeScreen/>
+      <!--Allows the EuropeType or TradeScreen to be accessable-->
       <AllowsBuildTypes/>
       <!--Checks the below terrains for the Improvements above. Not fully tested yet-->
       <AllowsBuildTypesTerrain/>
@@ -400,7 +402,7 @@
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-      <Type>ASTROLOGY</Type>
+      <Type>MEDIEVAL_TECH_ASTROLOGY</Type>
       <Description>Astrology</Description>
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -473,7 +475,7 @@
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-      <Type>ASTROLOBE</Type>
+      <Type>MEDIEVAL_TECH_ASTROLOBE</Type>
       <Description>Astrolobe</Description>
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -504,7 +506,7 @@
       <InventionCategory>MEDIEVAL_TECH</InventionCategory>
       <iX_Location>7</iX_Location>
       <iY_Location>1</iY_Location>
-      <RequiredInvention>ASTROLOGY</RequiredInvention>
+      <RequiredInvention>MEDIEVAL_TECH_ASTROLOGY</RequiredInvention>
       <RequiredInvention2>MACHINERY</RequiredInvention2>
       <RequiredInventionOr/>
       <RequiredUnitType/>
@@ -515,7 +517,7 @@
       <AllowsUnitClasses/>
       <AllowsPromotions/>
       <AllowsProfessions/>
-      <AllowsTrait>INVENTION_ASTROLOBE</AllowsTrait>
+      <AllowsTrait>MEDIEVAL_TECH_ASTROLOBE</AllowsTrait>
       <AllowsBuildTypes/>
       <AllowsBuildTypesTerrain/>
       <ConvertsUnitsFrom/>
@@ -540,7 +542,7 @@
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-      <Type>ALCHEMY</Type>
+      <Type>MEDIEVAL_TECH_ALCHEMY</Type>
       <Description>Alchemy</Description>
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -572,7 +574,7 @@
       <iX_Location>4</iX_Location>
       <iY_Location>5</iY_Location>
       <RequiredInvention>MATHEMATICS</RequiredInvention>
-      <RequiredInvention2>ALPHABET</RequiredInvention2>
+      <RequiredInvention2>MEDIEVAL_TECH_ALPHABET</RequiredInvention2>
       <RequiredInventionOr/>
       <RequiredUnitType/>
       <RequiredYields/>
@@ -626,7 +628,7 @@
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-      <Type>ALPHABET</Type>
+      <Type>MEDIEVAL_TECH_ALPHABET</Type>
       <Description>Alphabet</Description>
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -657,7 +659,7 @@
       <InventionCategory>MEDIEVAL_TECH</InventionCategory>
       <iX_Location>3</iX_Location>
       <iY_Location>3</iY_Location>
-      <RequiredInvention>MONASTICISM</RequiredInvention>
+      <RequiredInvention>MEDIEVAL_TECH_MONASTICISM</RequiredInvention>
       <RequiredInvention2>MANORIALISM</RequiredInvention2>
       <RequiredInventionOr/>
       <RequiredUnitType/>
@@ -699,7 +701,7 @@
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-      <Type>BLOCKPRINTING</Type>
+      <Type>MEDIEVAL_TECH_BLOCKPRINTING</Type>
       <Description>Block Printing</Description>
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -776,7 +778,7 @@
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-      <Type>CODE_OF_LAWS</Type>
+      <Type>MEDIEVAL_TECH_CODE_OF_LAWS</Type>
       <Description>Code of Laws</Description>
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -807,8 +809,8 @@
       <InventionCategory>MEDIEVAL_TECH</InventionCategory>
       <iX_Location>2</iX_Location>
       <iY_Location>2</iY_Location>
-      <RequiredInvention>MONASTICISM</RequiredInvention>
-      <RequiredInvention2>ALPHABET</RequiredInvention2>
+      <RequiredInvention>MEDIEVAL_TECH_MONASTICISM</RequiredInvention>
+      <RequiredInvention2>MEDIEVAL_TECH_ALPHABET</RequiredInvention2>
       <RequiredInventionOr/>
       <RequiredUnitType/>
       <RequiredYields/>
@@ -859,7 +861,7 @@
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-      <Type>MONASTICISM</Type>
+      <Type>MEDIEVAL_TECH_MONASTICISM</Type>
       <Description>Monasticism</Description>
       <Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
       <Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -973,7 +975,7 @@
       <InventionCategory>MEDIEVAL_TECH</InventionCategory>
       <iX_Location>3</iX_Location>
       <iY_Location>1</iY_Location>
-      <RequiredInvention>CODE_OF_LAWS</RequiredInvention>
+      <RequiredInvention>MEDIEVAL_TECH_CODE_OF_LAWS</RequiredInvention>
       <RequiredInvention2>THEOLOGY</RequiredInvention2>
       <RequiredInventionOr/>
       <RequiredUnitType/>
@@ -1041,7 +1043,7 @@
       <InventionCategory>MEDIEVAL_TECH</InventionCategory>
       <iX_Location>2</iX_Location>
       <iY_Location>5</iY_Location>
-      <RequiredInvention>MONASTICISM</RequiredInvention>
+      <RequiredInvention>MEDIEVAL_TECH_MONASTICISM</RequiredInvention>
       <RequiredInvention2>METALCASTING</RequiredInvention2>
       <RequiredInventionOr/>
       <RequiredUnitType/>
@@ -1193,7 +1195,7 @@
       <InventionCategory>MEDIEVAL_TECH</InventionCategory>
       <iX_Location>7</iX_Location>
       <iY_Location>3</iY_Location>
-      <RequiredInvention>ASTROLOGY</RequiredInvention>
+      <RequiredInvention>MEDIEVAL_TECH_ASTROLOGY</RequiredInvention>
       <RequiredInvention2/>
       <RequiredInventionOr/>
       <RequiredUnitType/>
@@ -3427,7 +3429,7 @@
       <iX_Location>3</iX_Location>
       <iY_Location>12</iY_Location>
       <RequiredInvention>INVENTION_HUNTING</RequiredInvention>
-      <RequiredInvention2>CODE_OF_LAWS</RequiredInvention2>
+      <RequiredInvention2>MEDIEVAL_TECH_CODE_OF_LAWS</RequiredInvention2>
       <RequiredInventionOr/>
       <RequiredUnitType/>
       <RequiredYields/>
@@ -3812,7 +3814,7 @@
       <InventionCategory>MEDIEVAL_TECH</InventionCategory>
       <iX_Location>4</iX_Location>
       <iY_Location>2</iY_Location>
-      <RequiredInvention>ALPHABET</RequiredInvention>
+      <RequiredInvention>MEDIEVAL_TECH_ALPHABET</RequiredInvention>
       <RequiredInvention2/>
       <RequiredInventionOr/>
       <RequiredUnitType/>
@@ -4119,7 +4121,7 @@
       <InventionCategory>MEDIEVAL_TECH</InventionCategory>
       <iX_Location>5</iX_Location>
       <iY_Location>4</iY_Location>
-      <RequiredInvention>ALCHEMY</RequiredInvention>
+      <RequiredInvention>MEDIEVAL_TECH_ALCHEMY</RequiredInvention>
       <RequiredInvention2/>
       <RequiredInventionOr/>
       <RequiredUnitType/>
@@ -4349,7 +4351,7 @@
       <InventionCategory>MEDIEVAL_TECH</InventionCategory>
       <iX_Location>8</iX_Location>
       <iY_Location>1</iY_Location>
-      <RequiredInvention>ASTROLOBE</RequiredInvention>
+      <RequiredInvention>MEDIEVAL_TECH_ASTROLOBE</RequiredInvention>
       <RequiredInvention2/>
       <RequiredInventionOr/>
       <RequiredUnitType/>
@@ -5171,6 +5173,7 @@
       <AllowsPromotions/>
       <AllowsProfessions/>
       <AllowsTrait/>
+      <AllowsTradeScreen>TRADE_SCREEN_SPICE_ROUTE_MARKET</AllowsTradeScreen>
       <AllowsBuildTypes/>
       <AllowsBuildTypesTerrain/>
       <ConvertsUnitsFrom/>
@@ -5483,6 +5486,7 @@
       <AllowsPromotions/>
       <AllowsProfessions/>
       <AllowsTrait/>
+      <AllowsTradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</AllowsTradeScreen>
       <AllowsBuildTypes/>
       <AllowsBuildTypesTerrain/>
       <ConvertsUnitsFrom/>
@@ -5565,6 +5569,7 @@
       <AllowsPromotions/>
       <AllowsProfessions/>
       <AllowsTrait/>
+      <AllowsTradeScreen>TRADE_SCREEN_TRADE_FAIR_MARKET</AllowsTradeScreen>
       <AllowsBuildTypes/>
       <AllowsBuildTypesTerrain/>
       <ConvertsUnitsFrom/>

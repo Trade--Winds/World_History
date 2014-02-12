@@ -3576,14 +3576,6 @@ bool CvUnit::canAutomate(AutomateTypes eAutomate) const
 
 	case AUTOMATE_SAIL:
 		//TKs Trade Screen
-		//if (isHuman())
-		//{
-			//if (!canAutoSailTradeScreen(plot()))
-			//{
-				//return false;
-			//}
-		//}
-		//Tke
 		if (!canAutoCrossOcean(plot()))
 		{
 			return false;
@@ -4702,91 +4694,6 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 			}
 
 			return true;
-			//if (isHuman())
-			//{
-				//return false;
-			//}
-		////*************OLD TRADE ROUTE
-//		if (eNewState == UNIT_TRAVEL_STATE_TO_SPICE_ROUTE)
-//		{
-//			/*if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SPICE_ROUTE))
-//		    {
-//		        return false;
-//		    }*/
-//
-//		    if (pPlot->isEurope())
-//            {
-//                //EuropeTypes eEurope = (EuropeTypes)pPlot->getEurope();
-//                if (GC.getEuropeInfo(pPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SPICE_ROUTE))
-//                {
-//                    return true;
-//                }
-//            }
-//
-//            return false;
-//		}
-//		else if (eNewState == UNIT_TRAVEL_STATE_TO_SILK_ROAD)
-//		{
-//			if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_SILK_ROAD))
-//		    {
-//		        return false;
-//		    }
-//
-//		   /* if (bWaterRoute && getDomainType() != DOMAIN_SEA)
-//		    {
-//		        return false;
-//		    }
-//			else if (getDomainType() != DOMAIN_LAND)
-//			{
-//				return false;
-//			}*/
-//            //EuropeTypes eEurope = (EuropeTypes)pPlot->getEurope();
-//		    if (pPlot->isEurope())
-//            {
-//                if (GC.getEuropeInfo(pPlot->getEurope()).getTradeScreensValid(TRADE_SCREEN_SILK_ROAD))
-//                {
-//                    return true;
-//                }
-//            }
-//
-//            if (!isHuman() && bAIForce)
-//            {
-//                CvCity* pCity = plot()->getPlotCity();
-//                if (pCity != NULL)
-//                {
-////                    if (pCity->isNative())
-////                    {
-////                        return false;
-////                    }
-//
-//                    if (pCity->getOwner() != getOwner())
-//                    {
-//                        return true;
-//                    }
-//
-//                }
-//            }
-//
-//            return false;
-//
-//
-//		}
-//		else if (eNewState == UNIT_TRAVEL_STATE_TO_TRADE_FAIR)
-//		{
-//		    if (getDomainType() != DOMAIN_LAND)
-//		    {
-//		        return false;
-//		    }
-//		    if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(TRADE_ROUTE_FAIR))
-//		    {
-//		        return false;
-//		    }
-//
-//		}
-		if (!GET_PLAYER(getOwnerINLINE()).canTradeWithEurope())
-		{
-			return false;
-		}
 		}
 		break;
 	case UNIT_TRAVEL_STATE_IN_EUROPE:
@@ -4820,45 +4727,6 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 		break;
 	}
 
-	/*if(isHuman() && !GC.getCivilizationInfo(getCivilizationType()).isWaterStart() && GC.getEuropeInfo(eEuropeTradeRoute).isNoEuropePlot())
-	{
-
-        if (getDomainType() != DOMAIN_LAND)
-        {
-           return false;
-        }
-
-        if (!plot()->isCity() && getUnitTravelState() == NO_UNIT_TRAVEL_STATE)
-	    {
-	        return false;
-	    }
-
-	    CvCity* pCity = plot()->getPlotCity();
-	    if (pCity != NULL)
-	    {
-	        if (pCity->isNative())
-	        {
-	            return false;
-	        }
-	        if (pCity->getOwner() != getOwner())
-	        {
-	            return false;
-	        }
-	        else
-	        {
-	            if (GC.getXMLval(XML_CHEAT_TRAVEL_ALL))
-                {
-                    return true;
-                }
-
-	        }
-
-	    }
-
-	    return true;
-	}*/
-	///TKe
-
 	FAssert(pPlot != NULL);
 	if (!pPlot->isEurope() && !isHuman())
 	{
@@ -4868,76 +4736,16 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 	return true;
 }
 ///Tke
+///TKs
 void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce, EuropeTypes eTradeMarket)
 {
-	///TKs
-    /*TradeRouteTypes eTradeRoute = NO_TRADE_ROUTES;
-    TradeScreenTypes eTradeScreen = TRADE_SCREEN_DEFAULT;
-    switch (eNewState)
-    {
-        case UNIT_TRAVEL_STATE_TO_EUROPE:
-        case UNIT_TRAVEL_STATE_IN_EUROPE:
-        case UNIT_TRAVEL_STATE_FROM_EUROPE:
-            {
-                eTradeRoute = TRADE_ROUTE_EUROPE;
-                eTradeScreen = TRADE_SCREEN_EUROPE;
-            }
-            break;
-        case UNIT_TRAVEL_STATE_TO_SPICE_ROUTE:
-        case UNIT_TRAVEL_STATE_IN_SPICE_ROUTE:
-        case UNIT_TRAVEL_STATE_FROM_SPICE_ROUTE:
-            {
-                eTradeRoute = TRADE_ROUTE_SPICE_ROUTE;
-                eTradeScreen = TRADE_SCREEN_SPICE_ROUTE;
-            }
-            break;
-        case UNIT_TRAVEL_STATE_TO_SILK_ROAD:
-        case UNIT_TRAVEL_STATE_IN_SILK_ROAD:
-        case UNIT_TRAVEL_STATE_FROM_SILK_ROAD:
-            {
-                eTradeRoute = TRADE_ROUTE_SILK_ROAD;
-                eTradeScreen = TRADE_SCREEN_SILK_ROAD;
-            }
-            break;
-        case UNIT_TRAVEL_STATE_TO_TRADE_FAIR:
-        case UNIT_TRAVEL_STATE_IN_TRADE_FAIR:
-        case UNIT_TRAVEL_STATE_FROM_TRADE_FAIR:
-            {
-                eTradeRoute = TRADE_ROUTE_FAIR;
-                eTradeScreen = TRADE_SCREEN_TRADE_FAIR;
-            }
-            break;
-        default:
-            break;
-	}*/
-	///TKe MEd
+	
+   
 
 	if (!bAIForce && !canCrossOcean(plot(), eNewState, NO_TRADE_ROUTES, false, eTradeMarket))
 	{
 		return;
 	}
-
-//	if(isHuman() && !GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
-//	{
-//        if (getUnitTravelState() == NO_UNIT_TRAVEL_STATE)
-//        {
-//            setUnitTravelState(UNIT_TRAVEL_STATE_TO_EUROPE, true);
-//            setUnitTravelTimer(1);
-//            doUnitTravelTimer();
-//            finishMoves();
-//        }
-//        else  if (getUnitTravelState() == UNIT_TRAVEL_STATE_IN_EUROPE)
-//        {
-//            setUnitTravelState(UNIT_TRAVEL_STATE_FROM_EUROPE, false);
-//            setUnitTravelTimer(1);
-//            doUnitTravelTimer();
-//        }
-//
-//
-//	    return;
-//
-//	}
-
 
 	int iTravelTime = 0;
     if (plot()->isEurope() != false)

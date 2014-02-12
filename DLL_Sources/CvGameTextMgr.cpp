@@ -4574,7 +4574,7 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
         szHelpText.append(NEWLINE);
         szHelpText.append(gDLL->getText("TXT_KEY_INCREASED_IMMIGRATION", kCivicInfo.getIncreasedImmigrants()));
     }
-    ModCodeTypes iModdersCode = (ModCodeTypes)kCivicInfo.getModdersCode1();
+   /* ModCodeTypes iModdersCode = (ModCodeTypes)kCivicInfo.getModdersCode1();
 	if (iModdersCode != NO_MOD_CODE)
 	{
 
@@ -4583,6 +4583,12 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	        szHelpText.append(NEWLINE);
             szHelpText.append(gDLL->getText("TXT_KEY_NEW_TRADE_ROUTE", kCivicInfo.getDescription()));
 	    }
+	}*/
+
+	if (kCivicInfo.getAllowsTradeScreen() != NO_EUROPE)
+    {
+		szHelpText.append(NEWLINE);
+        szHelpText.append(gDLL->getText("TXT_KEY_NEW_TRADE_ROUTE", kCivicInfo.getDescription()));
 	}
 
 	if (kCivicInfo.getConvertsResearchYield() != NO_YIELD)

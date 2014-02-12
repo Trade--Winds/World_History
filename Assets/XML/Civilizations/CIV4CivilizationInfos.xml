@@ -172,7 +172,7 @@
       <CivilizationActionSound>AS3D_ENGLAND_ORDER</CivilizationActionSound>
       <FreeTechs>
         <FreeTech>
-          <Tech>MONASTICISM</Tech>
+          <Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
           <bFree>1</bFree>
         </FreeTech>
       </FreeTechs>
@@ -406,7 +406,7 @@
       <CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
       <FreeTechs>
         <FreeTech>
-          <Tech>MONASTICISM</Tech>
+          <Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
           <bFree>1</bFree>
         </FreeTech>
       </FreeTechs>
@@ -601,7 +601,7 @@
       <CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
       <FreeTechs>
         <FreeTech>
-          <Tech>MONASTICISM</Tech>
+          <Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
           <bFree>1</bFree>
         </FreeTech>
       </FreeTechs>
@@ -835,7 +835,7 @@
       <CivilizationActionSound>AS3D_OTTOMAN_ORDER</CivilizationActionSound>
       <FreeTechs>
         <FreeTech>
-          <Tech>MONASTICISM</Tech>
+          <Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
           <bFree>1</bFree>
         </FreeTech>
       </FreeTechs>
@@ -1026,7 +1026,7 @@
       <CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
       <FreeTechs>
         <FreeTech>
-          <Tech>MONASTICISM</Tech>
+          <Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
           <bFree>1</bFree>
         </FreeTech>
       </FreeTechs>
