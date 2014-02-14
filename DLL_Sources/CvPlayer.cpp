@@ -97,8 +97,8 @@ CvPlayer::CvPlayer()
 	m_ppiBuildingYieldChange = NULL;
 
 	// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
-	m_cache_YieldEquipmentAmount = NULL;
-	m_cache_AltYieldEquipmentAmount = NULL;
+	m_cache_YieldEquipmentAmount = new YieldArray<ProfessionYieldCost>[GC.getNumProfessionInfos()];
+	m_cache_AltYieldEquipmentAmount = new YieldArray<short>[GC.getNumProfessionInfos()];
 	// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
 
 	reset(NO_PLAYER, true);
@@ -15990,7 +15990,7 @@ void CvPlayer::setProfessionEquipmentModifier(ProfessionTypes eProfession, int i
 }
 
 // cache CvPlayer::getYieldEquipmentAmount - function rename - Nightinggale
-int CvPlayer::getYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const
+ProfessionYieldCost CvPlayer::getYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const
 {
 	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
 	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
@@ -16035,18 +16035,6 @@ void CvPlayer::Update_cache_YieldEquipmentAmount()
 	{
 		// Some update calls gets triggered during player init. They can safely be ignored.
 		return;
-	}
-
-	if (m_cache_YieldEquipmentAmount == NULL)
-	{
-		// only init NULL pointers.
-		// don't do anything about already allocated arrays as data is overwritten anyway.
-		m_cache_YieldEquipmentAmount = new YieldArray<int>[GC.getNumProfessionInfos()];
-		m_cache_AltYieldEquipmentAmount = new YieldArray<int>[GC.getNumProfessionInfos()];
-		for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++) {
-			m_cache_YieldEquipmentAmount[iProfession].init();
-			m_cache_AltYieldEquipmentAmount[iProfession].init();
-		}
 	}
 
 	for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++) {
@@ -18998,7 +18986,7 @@ int CvPlayer::getMultiYieldRate(YieldTypes eIndex) const
     return 0;
 }
 
-int CvPlayer::getAltYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const
+short CvPlayer::getAltYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const
 {
 	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
 	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
