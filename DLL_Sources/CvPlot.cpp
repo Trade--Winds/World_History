@@ -33,6 +33,9 @@
 // Public Functions...
 
 CvPlot::CvPlot()
+	///Tks TradeScreen
+	: m_asTradeScreenDistance(EuropeArray<short>(MAX_SHORT))
+	//Tke
 {
 	m_aiYield = new short[NUM_YIELD_TYPES];
 
@@ -42,9 +45,6 @@ CvPlot::CvPlot()
 	m_aiVisibilityCount = NULL;
 	m_aiRevealedOwner = NULL;
 	m_abRiverCrossing = NULL;
-	///Tks TradeScreen
-	m_asTradeScreenDistance = EuropeArray<short>(MAX_SHORT);
-	//Tke
 /// player bitmap - start - Nightinggale
 	//m_abRevealed = NULL;
 	m_bmRevealed = 0;

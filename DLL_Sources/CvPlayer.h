@@ -30,6 +30,13 @@ typedef std::vector< std::pair<UnitCombatTypes, PromotionTypes> > UnitCombatProm
 typedef std::vector< std::pair<UnitClassTypes, PromotionTypes> > UnitClassPromotionArray;
 typedef std::vector< std::pair<CivilizationTypes, LeaderHeadTypes> > CivLeaderArray;
 
+// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
+// set amount of memory allocated to store yield cost for professions (each yield)
+// unsigned char: 0 to 255
+// unsigned short: 0-65535 (that should certainly be enough!)
+typedef unsigned char ProfessionYieldCost;
+// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
+
 class CvPlayer
 {
 public:
@@ -537,7 +544,7 @@ public:
 	DllExport PlayerTypes getMinorVassal() const;
 	DllExport void setVassalOwner(PlayerTypes eParent);
 	DllExport void setMinorVassal(PlayerTypes eParent);
-	int getAltYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const;
+	short getAltYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const;
 	int getMultiYieldRate(YieldTypes eIndex) const;
 	int getCensureType(CensureType eCensure) const;
 	CvPlot* getStartingTradeRoutePlot(EuropeTypes eTradeRoute) const;
@@ -657,13 +664,13 @@ public:
 
 	int getProfessionEquipmentModifier(ProfessionTypes eProfession) const;
 	void setProfessionEquipmentModifier(ProfessionTypes eProfession, int iValue);
-	int getYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const;
 	// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
+	ProfessionYieldCost getYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const;
 	bool hasContentsYieldEquipmentAmount(ProfessionTypes eProfession) const;
 	bool hasContentsAltYieldEquipmentAmount(ProfessionTypes eProfession) const;
-	int getYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const;
+	ProfessionYieldCost getYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const;
 	bool hasContentsYieldEquipmentAmountSecure(ProfessionTypes eProfession) const;
-	int getAltYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const;
+	short getAltYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const;
 	bool hasContentsAltYieldEquipmentAmountSecure(ProfessionTypes eProfession) const;
 	bool hasContentsAnyYieldEquipmentAmount(ProfessionTypes eProfession) const;
 	bool hasContentsAnyYieldEquipmentAmountSecure(ProfessionTypes eProfession) const;
@@ -889,12 +896,12 @@ protected:
 	int* m_aiTraitCount;
 
 	// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
-	YieldArray<int> *m_cache_YieldEquipmentAmount;
-	YieldArray<int> *m_cache_AltYieldEquipmentAmount;
+	YieldArray<ProfessionYieldCost> *m_cache_YieldEquipmentAmount;
+	YieldArray<short> *m_cache_AltYieldEquipmentAmount;
 	void Update_cache_YieldEquipmentAmount();
 	void Update_cache_YieldEquipmentAmount(ProfessionTypes eProfession);
-	int getYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const;
-	int getAltYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const;
+	ProfessionYieldCost getYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const;
+	short getAltYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const;
 	// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
 
 	std::vector<EventTriggerTypes> m_triggersFired;
@@ -1014,14 +1021,14 @@ public:
 };
 
 // cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
-inline int CvPlayer::getYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const
+inline ProfessionYieldCost CvPlayer::getYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const
 {
 	FAssert(m_cache_YieldEquipmentAmount != NULL);
 	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
 	return m_cache_YieldEquipmentAmount[eProfession].get(eYield);
 }
 
-inline int CvPlayer::getAltYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const
+inline short CvPlayer::getAltYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const
 {
 	FAssert(m_cache_AltYieldEquipmentAmount != NULL);
 	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
@@ -1049,7 +1056,7 @@ inline bool CvPlayer::hasContentsAltYieldEquipmentAmount(ProfessionTypes eProfes
 }
 
 // same functions, but with the added return 0 if professions is NO_PROFESSION or INVALID_PROFESSION
-inline int CvPlayer::getYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const
+inline ProfessionYieldCost CvPlayer::getYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const
 {
 	return eProfession > NO_PROFESSION ? getYieldEquipmentAmount(eProfession, eYield) : 0;
 }
@@ -1059,7 +1066,7 @@ inline bool CvPlayer::hasContentsYieldEquipmentAmountSecure(ProfessionTypes ePro
 	return eProfession > NO_PROFESSION ? hasContentsYieldEquipmentAmount(eProfession) : false;
 }
 
-inline int CvPlayer::getAltYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const
+inline short CvPlayer::getAltYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const
 {
 	return eProfession > NO_PROFESSION ? getAltYieldEquipmentAmount(eProfession, eYield) : 0;
 }

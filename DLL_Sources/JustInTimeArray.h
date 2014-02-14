@@ -46,16 +46,15 @@ template<class T> class JustInTimeArray
 {
 private:
 	T* tArray;
-	int m_iLength;
-	T m_eDefault;
+	const int m_iLength;
+	const T m_eDefault;
 
 public:
 	JustInTimeArray(int iLength, T eDefault = 0)
-	{
-		tArray = NULL;
-		m_iLength = iLength;
-		m_eDefault = eDefault;
-	}
+	: tArray(NULL)
+	, m_iLength(iLength)
+	, m_eDefault(eDefault)
+	{}
 
 	~JustInTimeArray()
 	{
@@ -91,17 +90,6 @@ public:
 		return m_iLength;
 	}
 
-	// used when constructor isn't called, like in an array
-	// use this as a last resort when you have problems calling the constructor
-protected:
-	void init(int iLength)
-	{
-		tArray = NULL;
-		m_iLength = iLength;
-		m_eDefault = 0;
-	}
-
-public:
 	inline T get(int iIndex) const
 	{
 		FAssert(iIndex >= 0);
@@ -218,7 +206,6 @@ class YieldArray: public JustInTimeArray<T>
 public:
 	YieldArray() : JustInTimeArray<T>(NUM_YIELD_TYPES){};
 	YieldArray(T eDefault) : JustInTimeArray<T>(NUM_YIELD_TYPES, eDefault){};
-	void init() {  JustInTimeArray<T>::init(NUM_YIELD_TYPES);}
 };
 
 template<class T>
@@ -227,7 +214,6 @@ class YieldCargoArray: public JustInTimeArray<T>
 public:
 	YieldCargoArray() : JustInTimeArray<T>(NUM_CARGO_YIELD_TYPES){};
 	YieldCargoArray(T eDefault) : JustInTimeArray<T>(NUM_CARGO_YIELD_TYPES, eDefault){};
-	void init() {  JustInTimeArray<T>::init(NUM_CARGO_YIELD_TYPES);}
 };
 
 template<class T>
