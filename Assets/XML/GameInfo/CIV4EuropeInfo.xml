@@ -79,7 +79,7 @@
       <!-- Sets what percent of map is used for Europe Tiles for each Direction -->
       <iWidthPercent>20</iWidthPercent>
       <!-- This Europe Requires a Tech in order to be research. Use CIV4CivicInfos.XML to set up the tech -->
-      <bRequiresTech>0</bRequiresTech>
+      <bRequiresTech>1</bRequiresTech>
       <!-- If using one of the Below methods of Travel this must be set to 1 as Plots are not assigned a Europe with those methods -->
       <bNoEuropePlot>0</bNoEuropePlot>
       <!-- Sets where the Units can leave from -->
@@ -119,6 +119,7 @@
 			<iMinLandDistance>0</iMinLandDistance>
       <iMaxLandCoverage>4</iMaxLandCoverage>
 			<iWidthPercent>20</iWidthPercent>
+      <bRequiresTech>1</bRequiresTech>
       <TradeScreenTypes/>
       <PythonTradeScreen>showSilkRoadScreen</PythonTradeScreen>
       <Button>Art/Interface/Game Hud/Actions/travelsilkroad.dds</Button>
@@ -134,6 +135,7 @@
       <iTripLength>3</iTripLength>
       <iMinLandDistance>0</iMinLandDistance>
       <iWidthPercent>20</iWidthPercent>
+      <bRequiresTech>1</bRequiresTech>
       <bNoEuropePlot>1</bNoEuropePlot>
       <bLeaveFromOwnedCity>1</bLeaveFromOwnedCity>
       <TradeScreenTypes>

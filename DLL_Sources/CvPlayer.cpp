@@ -5962,7 +5962,7 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
 	PROFILE_FUNC();
 
 	///TKs Invention Core Mod v 1.0
-	if (eCivic != NO_CIVIC)
+	if (eCivic != NO_CIVIC && GC.getCivicInfo(eCivic).getCivicOptionType() == CIVICOPTION_INVENTIONS)
 	{
         if (GC.getCivicInfo(eCivic).getConvertsResearchYield() != NO_YIELD)
         {
@@ -6046,12 +6046,14 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
                 }
 
             }
+
+			return true;
 	}
 	///TKe
 
 	if (eCivic == NO_CIVIC)
 	{
-		return false;
+		return true;
 	}
 
 	if(GC.getUSE_CAN_DO_CIVIC_CALLBACK())
@@ -11041,6 +11043,7 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	if ((EuropeTypes)kCivicInfo.getAllowsTradeScreen() != NO_EUROPE)
 	{
 		setHasTradeRouteType((EuropeTypes)kCivicInfo.getAllowsTradeScreen(), true);
+		gDLL->getInterfaceIFace()->setDirty(GameData_DIRTY_BIT, true);
 	}
     ///TKe
     if (kCivicInfo.getGoldBonusForFirstToResearch() > 0)
@@ -16176,15 +16179,21 @@ void CvPlayer::doPrices()
             if (kChildPlayer.isAlive())
             {
                 ///Tks Med Trade Routes. If Economy type = 2 Do Prices want start unless you have a Trade Screen discovered.
-                if (isHuman() && GC.getLeaderHeadInfo(kChildPlayer.getLeaderType()).getEconomyType() == 2)
+                if (kChildPlayer.isHuman() && GC.getLeaderHeadInfo(kChildPlayer.getLeaderType()).getEconomyType() == 2)
                 {
 					bool bFoundRoute = false;
 					for (int iRoute = 0; iRoute < GC.getNumEuropeInfos(); ++iRoute)
 					{
-						if (kChildPlayer.getHasTradeRouteType((EuropeTypes)iRoute))
+						if (!GC.getEuropeInfo((EuropeTypes)iRoute).isAIonly())
 						{
-							bFoundRoute = true;
-							break;
+							if (GC.getEuropeInfo((EuropeTypes)iRoute).isRequiresTech())
+							{
+								if (kChildPlayer.getHasTradeRouteType((EuropeTypes)iRoute))
+								{
+									bFoundRoute = true;
+									break;
+								}
+							}
 						}
 					}
 					if (!bFoundRoute)
