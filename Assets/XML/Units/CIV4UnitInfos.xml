@@ -368,7 +368,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -736,7 +736,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -1167,7 +1167,7 @@
           <bIsNotAllowed>1</bIsNotAllowed>
         </ProfessionNotAllowed>
       </ProfessionsNotAllowed>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>6</iCasteAttribute>
       <bPreventFounding>1</bPreventFounding>
       <bPreventTraveling>1</bPreventTraveling>
@@ -1590,7 +1590,7 @@
           <bIsNotAllowed>1</bIsNotAllowed>
         </ProfessionNotAllowed>
       </ProfessionsNotAllowed>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>1</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -2008,7 +2008,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>6</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -2458,7 +2458,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -2840,7 +2840,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -3201,7 +3201,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -3562,7 +3562,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -3927,7 +3927,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -4292,7 +4292,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -4662,7 +4662,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -5032,7 +5032,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -5443,7 +5443,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -5826,7 +5826,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -6209,7 +6209,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -6592,7 +6592,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -6974,7 +6974,7 @@
           <bIsNotAllowed>1</bIsNotAllowed>
         </ProfessionNotAllowed>
       </ProfessionsNotAllowed>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>2</iCasteAttribute>
       <bPreventFounding>1</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -9563,7 +9563,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>4</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -9914,7 +9914,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -10648,7 +10648,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -11015,7 +11015,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -11382,7 +11382,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -11748,7 +11748,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -12118,7 +12118,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -12480,7 +12480,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -12842,7 +12842,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -13204,7 +13204,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -13571,7 +13571,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -13942,7 +13942,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -14315,7 +14315,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -17668,7 +17668,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -18404,7 +18404,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>4</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -19357,7 +19357,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -19574,7 +19574,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -19791,7 +19791,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -20309,7 +20309,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -20459,7 +20459,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -20609,7 +20609,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -20845,7 +20845,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -21004,7 +21004,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -21160,7 +21160,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -21320,7 +21320,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -21481,7 +21481,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -21640,7 +21640,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -21794,7 +21794,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -21957,7 +21957,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -22121,7 +22121,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -22267,7 +22267,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>1</bPreventTraveling>
@@ -22417,7 +22417,7 @@
       <LeaderPromotion/>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>5</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -22568,7 +22568,7 @@
       <LeaderPromotion/>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -22709,7 +22709,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -22858,7 +22858,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -23004,7 +23004,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -23170,7 +23170,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -23339,7 +23339,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>7</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -23480,7 +23480,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -23647,7 +23647,7 @@
 			<LeaderPromotion>PROMOTION_LEADER</LeaderPromotion>
 			<iLeaderExperience>20</iLeaderExperience>
 			<ProfessionsNotAllowed/>
-			<KnightDubbingWeight>-1</KnightDubbingWeight>
+			<KnightDubbingWeight>0</KnightDubbingWeight>
 			<iCasteAttribute>0</iCasteAttribute>
 			<bPreventFounding>0</bPreventFounding>
 			<bPreventTraveling>0</bPreventTraveling>
@@ -23814,7 +23814,7 @@
       <LeaderPromotion>PROMOTION_LEADER</LeaderPromotion>
       <iLeaderExperience>20</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -24234,7 +24234,7 @@
           <bIsNotAllowed>1</bIsNotAllowed>
         </ProfessionNotAllowed>
       </ProfessionsNotAllowed>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>6</iCasteAttribute>
       <bPreventFounding>1</bPreventFounding>
       <bPreventTraveling>1</bPreventTraveling>
@@ -24394,7 +24394,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -24558,7 +24558,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -24708,7 +24708,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -24858,7 +24858,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -24999,7 +24999,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>7</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -25140,7 +25140,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>7</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -25281,7 +25281,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -25431,7 +25431,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -25581,7 +25581,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -25722,7 +25722,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -25863,7 +25863,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -26022,7 +26022,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -26181,7 +26181,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -26336,7 +26336,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -26477,7 +26477,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -26633,7 +26633,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -26774,7 +26774,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -26915,7 +26915,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -27056,7 +27056,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -27197,7 +27197,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -27338,7 +27338,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -27479,7 +27479,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -27620,7 +27620,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -27761,7 +27761,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -27902,7 +27902,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -28043,7 +28043,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -28184,7 +28184,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -28325,7 +28325,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -28466,7 +28466,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -28607,7 +28607,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -28748,7 +28748,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -28889,7 +28889,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -29030,7 +29030,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -29171,7 +29171,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -29312,7 +29312,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -29453,7 +29453,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -29594,7 +29594,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -29735,7 +29735,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -29876,7 +29876,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -30017,7 +30017,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -30158,7 +30158,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -30299,7 +30299,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -30440,7 +30440,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -30581,7 +30581,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>
@@ -30722,7 +30722,7 @@
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
       <ProfessionsNotAllowed/>
-      <KnightDubbingWeight>-1</KnightDubbingWeight>
+      <KnightDubbingWeight>0</KnightDubbingWeight>
       <iCasteAttribute>0</iCasteAttribute>
       <bPreventFounding>0</bPreventFounding>
       <bPreventTraveling>0</bPreventTraveling>

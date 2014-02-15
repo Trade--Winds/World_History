@@ -14,6 +14,14 @@
     <Spanish></Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_MAIN_MENU_CIVILOPEDIA</Tag>
+    <English>Medievopedia</English>
+    <French>Medievop&#233;dia</French>
+    <German>Medievop&#228;die</German>
+    <Italian>Medievopedia</Italian>
+    <Spanish>Medievopedia</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_BUILDING_DRYDOCK</Tag>
     <English>Sea Port</English>
     <French>

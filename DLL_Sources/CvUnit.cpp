@@ -4489,12 +4489,8 @@ bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteT
 ///Tks Med
 bool CvUnit::canAutoSailTradeScreen(const CvPlot* pPlot, EuropeTypes eTradeScreenType, bool bAIForce) const
 {
-	if (!isHuman())
-	{
-		return false;
-	}
-
-	if (!GET_PLAYER(getOwnerINLINE()).canTradeWithEurope())
+	FAssert(eTradeScreenType != NO_EUROPE);
+	if (eTradeScreenType == NO_EUROPE)
 	{
 		return false;
 	}
@@ -4519,8 +4515,24 @@ bool CvUnit::canAutoSailTradeScreen(const CvPlot* pPlot, EuropeTypes eTradeScree
 	{
 		return false;
 	}
+
 	bool bWaterRoute = false;
-	
+	if (GC.getEuropeInfo(eTradeScreenType).isAIonly())
+	{
+		if (isHuman())
+		{
+			return false;
+		}
+	}
+
+	if (GC.getEuropeInfo(eTradeScreenType).isRequiresTech())
+	{
+		if (!GET_PLAYER(getOwnerINLINE()).getHasTradeRouteType(eTradeScreenType))
+		{
+			return false;
+		}
+	}
+
 	bWaterRoute = (GC.getEuropeInfo(eTradeScreenType).getMinLandDistance() > 0);
 	if (bWaterRoute)
 	{
@@ -14313,7 +14325,6 @@ void CvUnit::setYieldStored(int iYieldAmount)
 					{
                         ///TKe Update
 					    ///Tks Med
-					    ///TKs Med Update 1.1c
 					    if (m_pUnitInfo->getKnightDubbingWeight() > 0 && !isHasRealPromotion((PromotionTypes)GC.getXMLval(XML_DEFAULT_KNIGHT_PROMOTION)))
 					    {
 					        ///TKe Update
@@ -14323,8 +14334,6 @@ void CvUnit::setYieldStored(int iYieldAmount)
                                 return;
                             }
                             setHasRealPromotion((PromotionTypes)GC.getXMLval(XML_DEFAULT_KNIGHT_PROMOTION), true);
-//                            setHasRealPromotion(((PromotionTypes)GC.getDefineINT("DEFAULT_UNTRAINED_PROMOTION")), false);
-                            //setHasRealPromotion(((PromotionTypes)GC.getDefineINT("DEFAULT_TRAINED_PROMOTION")), true);
                             setYieldStored(0);
 					        if (m_pUnitInfo->getEducationUnitClass() != NO_UNITCLASS)
                             {

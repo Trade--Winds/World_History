@@ -9044,7 +9044,7 @@ void CvGameTextMgr::setCitizenHelp(CvWStringBuffer &szString, const CvCity& kCit
                 }
                 ///TKe Update 1.1g
                 ///TKs Med Update 1.1c
-				if (eProfessionYield == YIELD_EDUCATION && kUnit.getUnitInfo().getStudentWeight() > 0 && GC.getUnitInfo(kUnit.getUnitType()).getKnightDubbingWeight() <= 0)
+				if (eProfessionYield == YIELD_EDUCATION && kUnit.getUnitInfo().getStudentWeight() > 0 && GC.getUnitInfo(kUnit.getUnitType()).getKnightDubbingWeight() == 0)
 				{
 					int iEducationProduced = kCity.calculateNetYield(YIELD_EDUCATION);
 
