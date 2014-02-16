@@ -18,11 +18,23 @@ enum PROFESSION_INFO_BM
 {
 	PROFESSION_INFO_BM_PARENT_START             = 0,
 	PROFESSION_INFO_BM_PARENT_NUM_BITS          = 9,
-	PROFESSION_INFO_BM_IS_PARENT                = PROFESSION_INFO_BM_PARENT_START + PROFESSION_INFO_BM_PARENT_NUM_BITS,
-	PROFESSION_INFO_BM_NUM_CHILDREN_START,
+	PROFESSION_INFO_BM_NUM_CHILDREN_START       = PROFESSION_INFO_BM_PARENT_START + PROFESSION_INFO_BM_PARENT_NUM_BITS,
 	PROFESSION_INFO_BM_NUM_CHILDREN_NUM_BITS    = 4,
+	PROFESSION_INFO_BM_NATIVE_INVALID           = PROFESSION_INFO_BM_NUM_CHILDREN_START + PROFESSION_INFO_BM_NUM_CHILDREN_NUM_BITS,
+	PROFESSION_INFO_BM_EUROPE_INVALID,
+	PROFESSION_INFO_BM_COLONIAL_INVALID,
+	PROFESSION_INFO_BM_WORK_PLOT,
+	PROFESSION_INFO_BM_CITIZEN,
+	PROFESSION_INFO_BM_WATER,
+	PROFESSION_INFO_BM_SCOUT,
+	PROFESSION_INFO_BM_CITY_DFENDER,
+	PROFESSION_INFO_BM_CAN_FOUND,
+	PROFESSION_INFO_BM_UNARMED,
+	PROFESSION_INFO_BM_NO_DEFENSIVE_BONUS,
+
+	NUM_PROFESSION_INFO_BM,
 };
-/// info subclass - start - Nightinggale
+/// info subclass - end - Nightinggale
 
 class CvProfessionInfo: public CvInfoBase
 {
@@ -100,6 +112,10 @@ public:
 	/// info subclass - start - Nightinggale
 	bool readSub(CvXMLLoadUtility* pXML, int* pSub);
 	TCHAR* getSubTag() { return "ProfessionSubTypes";};
+
+	bool isParent() const;
+	ProfessionTypes getParent() const;
+	int getNumSubTypes() const;
 	/// info subclass - end - Nightinggale
 
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
@@ -112,9 +128,9 @@ protected:
 	/// info subclass - end - Nightinggale
 
 	///TK Professions Pedia
-	bool m_ibNativesInvalid;
-	bool m_ibEuropeInvalid;
-	bool m_ibColonialInvalid;
+	//bool m_ibNativesInvalid;
+	//bool m_ibEuropeInvalid;
+	//bool m_ibColonialInvalid;
 	int m_iArtTagUnit;
 	int m_iTaxCollectRate;
 	int m_iExperenceLevel;
@@ -129,14 +145,14 @@ protected:
 	int m_iMissionaryRate;
 	int m_iPowerValue;
 	int m_iAssetValue;
-	bool m_bWorkPlot;
-	bool m_bCitizen;
+	//bool m_bWorkPlot;
+	/*bool m_bCitizen;
 	bool m_bWater;
 	bool m_bScout;
 	bool m_bCityDefender;
 	bool m_bCanFound;
 	bool m_bUnarmed;
-	bool m_bNoDefensiveBonus;
+	bool m_bNoDefensiveBonus;*/
 
 	struct YieldEquipment
 	{
@@ -176,5 +192,74 @@ inline bool CvProfessionInfo::hasCombatGearTypes() const
 	return m_aiCombatGearTypes.isAllocated();
 }
 // CombatGearTypes - end - Nightinggale
+
+///TKs Professions Pedia
+inline int CvProfessionInfo::getArtTagUnitClass() const
+{
+	return m_iArtTagUnit;
+}
+inline bool CvProfessionInfo::isNativesInvalid() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_NATIVE_INVALID);
+}
+inline bool CvProfessionInfo::isEuropeInvalid() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_EUROPE_INVALID);
+}
+inline bool CvProfessionInfo::isColonialInvalid() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_COLONIAL_INVALID);
+}
+///TKs Med
+inline bool CvProfessionInfo::isWorkPlot() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_WORK_PLOT);
+}
+inline bool CvProfessionInfo::isCitizen() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_CITIZEN);
+}
+inline bool CvProfessionInfo::isWater() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_WATER);
+}
+inline bool CvProfessionInfo::isScout() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_SCOUT);
+}
+inline bool CvProfessionInfo::isCityDefender() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_CITY_DFENDER);
+}
+inline bool CvProfessionInfo::canFound() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_CAN_FOUND);
+}
+inline bool CvProfessionInfo::isUnarmed() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_UNARMED);
+}
+inline bool CvProfessionInfo::isNoDefensiveBonus() const
+{
+	return HasBit(m_bfA, PROFESSION_INFO_BM_NO_DEFENSIVE_BONUS);
+}
+
+/// info subclass - start - Nightinggale
+inline bool CvProfessionInfo::isParent() const
+{
+	return getNumSubTypes() > 0;
+}
+
+inline ProfessionTypes CvProfessionInfo::getParent() const
+{
+	ProfessionTypes eProfession = (ProfessionTypes)GETBITS(m_bfA, PROFESSION_INFO_BM_PARENT_START, PROFESSION_INFO_BM_PARENT_NUM_BITS);
+	return eProfession == SETBITS(PROFESSION_INFO_BM_PARENT_NUM_BITS, 0) ? NO_PROFESSION : eProfession;
+}
+
+inline int CvProfessionInfo::getNumSubTypes() const
+{
+	return GETBITS(m_bfA, PROFESSION_INFO_BM_NUM_CHILDREN_START, PROFESSION_INFO_BM_NUM_CHILDREN_NUM_BITS);
+}
+/// info subclass - end - Nightinggale
 
 #endif

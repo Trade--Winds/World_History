@@ -6,6 +6,12 @@
 #include "CvPlayerAI.h"
 #include "CvGameAI.h"
 
+
+
+
+// assert at compile time if the bitmask tries to more bits than allocated in the bitfield.
+BOOST_STATIC_ASSERT(NUM_PROFESSION_INFO_BM <= 32);
+
 //======================================================================================================
 //					CvProfessionInfo
 //======================================================================================================
@@ -23,9 +29,6 @@ CvProfessionInfo::CvProfessionInfo() :
 	/// info subclass - end - Nightinggale
 	///TK Professions Pedia
 	m_iArtTagUnit(NO_UNITCLASS),
-	m_ibNativesInvalid(false),
-	m_ibEuropeInvalid(false),
-	m_ibColonialInvalid(false),
 	m_iUpgradeProfession(NO_PROFESSION),
 	m_iLeadUnit(NO_UNITCLASS),
 	m_iTaxCollectRate(0),
@@ -38,19 +41,10 @@ CvProfessionInfo::CvProfessionInfo() :
 	m_iMissionaryRate(0),
 	m_iPowerValue(0),
 	m_iAssetValue(0),
-	m_bWorkPlot(false),
-	m_bCitizen(false),
-	m_bWater(false),
-	m_bScout(false),
-	m_bCityDefender(false),
-	m_bCanFound(false),
-	m_bUnarmed(false),
-	m_bNoDefensiveBonus(false),
 	m_abFreePromotions(NULL),
 	///TKs Med Battle Mod
 	m_aiAltEquipmentTypes(NULL),
 	m_abAltFreePromotions(NULL),
-	//m_iCombatYieldsGathered(NULL),
 	m_iRequiredBuilding(NO_BUILDINGCLASS),
 	iRequiredPromotion(NO_PROMOTION),
 	iCivType(-1),
@@ -80,24 +74,6 @@ int CvProfessionInfo::getUnitCombatType() const
 	return m_iUnitCombatType;
 }
 
-///TKs Professions Pedia
-int CvProfessionInfo::getArtTagUnitClass() const
-{
-	return m_iArtTagUnit;
-}
-bool CvProfessionInfo::isNativesInvalid() const
-{
-	return m_ibNativesInvalid;
-}
-bool CvProfessionInfo::isEuropeInvalid() const
-{
-	return m_ibEuropeInvalid;
-}
-bool CvProfessionInfo::isColonialInvalid() const
-{
-	return m_ibColonialInvalid;
-}
-///TKs Med
 int CvProfessionInfo::getUpgradeProfession() const
 {
 	return m_iUpgradeProfession;
@@ -165,38 +141,6 @@ int CvProfessionInfo::getPowerValue() const
 int CvProfessionInfo::getAssetValue() const
 {
 	return m_iAssetValue;
-}
-bool CvProfessionInfo::isWorkPlot() const
-{
-	return m_bWorkPlot;
-}
-bool CvProfessionInfo::isCitizen() const
-{
-	return m_bCitizen;
-}
-bool CvProfessionInfo::isWater() const
-{
-	return m_bWater;
-}
-bool CvProfessionInfo::isScout() const
-{
-	return m_bScout;
-}
-bool CvProfessionInfo::isCityDefender() const
-{
-	return m_bCityDefender;
-}
-bool CvProfessionInfo::canFound() const
-{
-	return m_bCanFound;
-}
-bool CvProfessionInfo::isUnarmed() const
-{
-	return m_bUnarmed;
-}
-bool CvProfessionInfo::isNoDefensiveBonus() const
-{
-	return m_bNoDefensiveBonus;
 }
 int CvProfessionInfo::getYieldEquipmentAmount(int iYield) const
 {
@@ -371,6 +315,9 @@ void CvProfessionInfo::read(FDataStreamBase* stream)
 	uint uiFlag=0;
 	stream->Read(&uiFlag);		// flag for expansion
 	stream->Read(&m_iUnitCombatType);
+	/// info subclass - start - Nightinggale
+	stream->Read(&m_bfA);
+	/// info subclass - end - Nightinggale
 	stream->Read(&m_iDefaultUnitAIType);
 	stream->Read(&m_iYieldProduced);
 	stream->Read(&m_iYieldConsumed);
@@ -381,16 +328,9 @@ void CvProfessionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iMissionaryRate);
 	stream->Read(&m_iPowerValue);
 	stream->Read(&m_iAssetValue);
-	stream->Read(&m_bWorkPlot);
-	stream->Read(&m_bCitizen);
-	stream->Read(&m_bWater);
-	stream->Read(&m_bScout);
 	///TKs Professions Pedia
 	stream->Read(&m_iTaxCollectRate);
 	stream->Read(&m_iExperenceLevel);
-	stream->Read(&m_ibNativesInvalid);
-	stream->Read(&m_ibEuropeInvalid);
-	stream->Read(&m_ibColonialInvalid);
 	stream->Read(&m_iArtTagUnit);
 	///TKs Med
 	stream->Read(&m_iUpgradeProfession);
@@ -400,10 +340,6 @@ void CvProfessionInfo::read(FDataStreamBase* stream)
 	stream->Read(&iCivType);
 	stream->Read(&m_iFoundCityType);
 	///TKe
-	stream->Read(&m_bCityDefender);
-	stream->Read(&m_bCanFound);
-	stream->Read(&m_bUnarmed);
-	stream->Read(&m_bNoDefensiveBonus);
 
 	m_aYieldEquipments.clear();
 	int iYieldEquipmentSize = 0;
@@ -457,6 +393,9 @@ void CvProfessionInfo::write(FDataStreamBase* stream)
 	uint uiFlag = 0;
 	stream->Write(uiFlag);		// flag for expansion
 	stream->Write(m_iUnitCombatType);
+	/// info subclass - start - Nightinggale
+	stream->Write(m_bfA);
+	/// info subclass - end - Nightinggale
 	stream->Write(m_iDefaultUnitAIType);
 	stream->Write(m_iYieldProduced);
 	stream->Write(m_iYieldConsumed);
@@ -467,16 +406,9 @@ void CvProfessionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iMissionaryRate);
 	stream->Write(m_iPowerValue);
 	stream->Write(m_iAssetValue);
-	stream->Write(m_bWorkPlot);
-	stream->Write(m_bCitizen);
-	stream->Write(m_bWater);
-	stream->Write(m_bScout);
 	///TKs Professions Pedia
 	stream->Write(m_iTaxCollectRate);
 	stream->Write(m_iExperenceLevel);
-	stream->Write(m_ibNativesInvalid);
-	stream->Write(m_ibEuropeInvalid);
-	stream->Write(m_ibColonialInvalid);
 	stream->Write(m_iArtTagUnit);
 	///TKs Med
 	stream->Write(m_iUpgradeProfession);
@@ -486,10 +418,6 @@ void CvProfessionInfo::write(FDataStreamBase* stream)
 	stream->Write(iCivType);
 	stream->Write(m_iFoundCityType);
 	///TKe
-	stream->Write(m_bCityDefender);
-	stream->Write(m_bCanFound);
-	stream->Write(m_bUnarmed);
-	stream->Write(m_bNoDefensiveBonus);
 
 	stream->Write((int)m_aYieldEquipments.size());
 	for(int i=0;i<(int)m_aYieldEquipments.size();i++)
@@ -524,6 +452,7 @@ void CvProfessionInfo::write(FDataStreamBase* stream)
 bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 {
 	CvString szTextVal;
+	bool bBoolBuffer = false;
 	/*if (!CvInfoBase::read(pXML))
 	{
 		return false;
@@ -537,11 +466,23 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 //m_iUpgradeProfession
 	pXML->GetChildXmlValByName(szTextVal, "ArtTagUnitClass");
 	m_iArtTagUnit = pXML->FindInInfoClass(szTextVal);
-	pXML->GetChildXmlValByName(&m_ibNativesInvalid, "bNativesInvalid");
-	pXML->GetChildXmlValByName(&m_ibEuropeInvalid, "bEuropeInvalid");
-	pXML->GetChildXmlValByName(&m_ibColonialInvalid, "bColonialInvalid");
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bNativesInvalid");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_NATIVE_INVALID);
+	}
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bEuropeInvalid");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_EUROPE_INVALID);
+	}
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bColonialInvalid");
 
     pXML->GetChildXmlValByName(szTextVal, "RequiredPromotion");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_COLONIAL_INVALID);
+	}
 	iRequiredPromotion = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&iCivType, "CivType");
@@ -591,14 +532,46 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iMissionaryRate, "iMissionaryRate");
 	pXML->GetChildXmlValByName(&m_iPowerValue, "iPower");
 	pXML->GetChildXmlValByName(&m_iAssetValue, "iAsset");
-	pXML->GetChildXmlValByName(&m_bWorkPlot, "bWorkPlot");
-	pXML->GetChildXmlValByName(&m_bCitizen, "bCitizen");
-	pXML->GetChildXmlValByName(&m_bWater, "bWater");
-	pXML->GetChildXmlValByName(&m_bScout, "bScout");
-	pXML->GetChildXmlValByName(&m_bCityDefender, "bCityDefender");
-	pXML->GetChildXmlValByName(&m_bCanFound, "bCanFound");
-	pXML->GetChildXmlValByName(&m_bUnarmed, "bUnarmed");
-	pXML->GetChildXmlValByName(&m_bNoDefensiveBonus, "bNoDefensiveBonus");
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bWorkPlot");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_WORK_PLOT);
+	}
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bCitizen");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_CITIZEN);
+	}
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bWater");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_WATER);
+	}
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bScout");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_SCOUT);
+	}
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bCityDefender");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_CITY_DFENDER);
+	}
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bCanFound");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_CAN_FOUND);
+	}
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bUnarmed");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_UNARMED);
+	}
+	pXML->GetChildXmlValByName(&bBoolBuffer, "bNoDefensiveBonus");
+	if (bBoolBuffer)
+	{
+		SetBit(m_bfA, PROFESSION_INFO_BM_NO_DEFENSIVE_BONUS);
+	}
 	m_aYieldEquipments.clear();
 	int *aiYieldAmounts;
 	pXML->SetVariableListTagPair(&aiYieldAmounts, "YieldEquipedNums", NUM_YIELD_TYPES, 0);
@@ -697,7 +670,7 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 /// info subclass - start - Nightinggale
 bool CvProfessionInfo::readSub(CvXMLLoadUtility* pXML, int* pSub)
 {
-	return CvInfoBase::readSub(pXML, pSub, &m_bfA, PROFESSION_INFO_BM_PARENT_NUM_BITS, PROFESSION_INFO_BM_PARENT_START, PROFESSION_INFO_BM_NUM_CHILDREN_NUM_BITS, PROFESSION_INFO_BM_NUM_CHILDREN_START, PROFESSION_INFO_BM_IS_PARENT);
+	return CvInfoBase::readSub(pXML, pSub, &m_bfA, PROFESSION_INFO_BM_PARENT_NUM_BITS, PROFESSION_INFO_BM_PARENT_START, PROFESSION_INFO_BM_NUM_CHILDREN_NUM_BITS, PROFESSION_INFO_BM_NUM_CHILDREN_START);
 }
 /// info subclass - end - Nightinggale
 

@@ -63,7 +63,7 @@ public:
 	/// info subclass - start - Nightinggale
 	virtual bool readSub(CvXMLLoadUtility* pXML, int* pSub) { return CvInfoBase::read(pXML);};
 	bool readSub(CvXMLLoadUtility* pXML, int* pSub, int* pCount);
-	bool readSub(CvXMLLoadUtility* pXML, int* pSub, unsigned int* bmMask, int iParentBits, int iParentOffset, int iNumChildBits, int iNumChildOffset, int iIsParent);
+	bool readSub(CvXMLLoadUtility* pXML, int* pSub, unsigned int* bmMask, int iParentBits, int iParentOffset, int iNumChildBits, int iNumChildOffset);
 	bool getSub(CvXMLLoadUtility* pXML);
 	virtual TCHAR* getSubTag() { FAssertMsg(false, "Override this"); return NULL;};
 	/// info subclass - end - Nightinggale

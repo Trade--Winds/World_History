@@ -274,7 +274,7 @@ bool CvInfoBase::readSub(CvXMLLoadUtility* pXML, int* pSub, int* pCount)
 	return true;
 }
 
-bool CvInfoBase::readSub(CvXMLLoadUtility* pXML, int* pSub, unsigned int* bmMask, int iParentBits, int iParentOffset, int iNumChildBits, int iNumChildOffset, int iIsParent)
+bool CvInfoBase::readSub(CvXMLLoadUtility* pXML, int* pSub, unsigned int* bmMask, int iParentBits, int iParentOffset, int iNumChildBits, int iNumChildOffset)
 {
 	int iCount = -1;
 
@@ -294,7 +294,6 @@ bool CvInfoBase::readSub(CvXMLLoadUtility* pXML, int* pSub, unsigned int* bmMask
 			if ((*pSub) == 0)
 			{
 				// set is parent
-				*bmMask |= SETBIT(iIsParent);
 				iParent = iType;
 				FAssert(iCount < SETBIT(iNumChildBits));
 				*bmMask |= iCount << iNumChildOffset;
