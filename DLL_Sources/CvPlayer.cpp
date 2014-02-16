@@ -28,6 +28,7 @@
 #include <numeric>
 
 #include "CvPlotGroup.h"
+#include "CvInfoProfessions.h"
 
 #include "CvDLLInterfaceIFaceBase.h"
 #include "CvDLLEntityIFaceBase.h"

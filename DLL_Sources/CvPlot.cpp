@@ -27,6 +27,8 @@
 #include "CvDLLPythonIFaceBase.h"
 #include "CvGameTextMgr.h"
 
+#include "CvInfoProfessions.h"
+
 #define STANDARD_MINIMAP_ALPHA		(0.6f)
 
 

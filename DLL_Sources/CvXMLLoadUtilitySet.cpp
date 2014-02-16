@@ -14,6 +14,8 @@
 #include "FVariableSystem.h"
 #include "CvGameCoreUtils.h"
 
+#include "CvInfoProfessions.h"
+
 // XML length check - start - Nightinggale
 #ifdef FASSERT_ENABLE
 char f_szXMLname[1024];

@@ -24,6 +24,8 @@
 #include "CvPopupInfo.h"
 #include "CvTradeRoute.h"
 
+#include "CvInfoProfessions.h"
+
 // Public Functions...
 
 CvSelectionGroup::CvSelectionGroup()

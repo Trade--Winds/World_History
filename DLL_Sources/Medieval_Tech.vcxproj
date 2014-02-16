@@ -35,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CvInfoProfessions.cpp" />
     <ClCompile Include="FDataStreamBase.cpp" />
     <ClCompile Include="CyPlotGroup.cpp" />
     <ClCompile Include="CyPlotGroupInterface1.cpp" />
@@ -141,6 +142,7 @@
     <None Include="interfaceDirtyBits.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CvInfoProfessions.h" />
     <ClInclude Include="CyPlotGroup.h" />
     <ClInclude Include="CvPlotGroup.h" />
     <ClInclude Include="YieldsTestBase.h" />

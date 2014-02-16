@@ -27,6 +27,8 @@
 #include "FAStarNode.h"
 #include "CvTradeRoute.h"
 
+#include "CvInfoProfessions.h"
+
 #define DANGER_RANGE				(4)
 #define GREATER_FOUND_RANGE			(5)
 #define CIVIC_CHANGE_DELAY			(25)

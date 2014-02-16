@@ -19,6 +19,8 @@
 #include "CvPopupInfo.h"
 #include "FProfiler.h"
 
+#include "CvInfoProfessions.h"
+
 CvDLLWidgetData* CvDLLWidgetData::m_pInst = NULL;
 
 CvDLLWidgetData& CvDLLWidgetData::getInstance()

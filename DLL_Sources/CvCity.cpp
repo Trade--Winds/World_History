@@ -17,6 +17,8 @@
 #include "CvUnitAI.h"
 #include <numeric>
 
+#include "CvInfoProfessions.h"
+
 // interfaces used
 #include "CvDLLEngineIFaceBase.h"
 #include "CvDLLPythonIFaceBase.h"
