@@ -60,6 +60,14 @@ public:
 	DllExport virtual bool readPass2(CvXMLLoadUtility* pXML) { return false; }
 	DllExport virtual bool readPass3() { FAssertMsg(false, "Override this"); return false; }
 
+	/// info subclass - start - Nightinggale
+	virtual bool readSub(CvXMLLoadUtility* pXML, int* pSub) { return CvInfoBase::read(pXML);};
+	bool readSub(CvXMLLoadUtility* pXML, int* pSub, int* pCount);
+	bool readSub(CvXMLLoadUtility* pXML, int* pSub, unsigned int* bmMask, int iParentBits, int iParentOffset, int iNumChildBits, int iNumChildOffset, int iIsParent);
+	bool getSub(CvXMLLoadUtility* pXML);
+	virtual TCHAR* getSubTag() { FAssertMsg(false, "Override this"); return NULL;};
+	/// info subclass - end - Nightinggale
+
 protected:
 	bool doneReadingXML(CvXMLLoadUtility* pXML);
 	bool m_bGraphicalOnly;
@@ -336,6 +344,18 @@ protected:
 //  DESC:
 //
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+/// info subclass - start - Nightinggale
+enum PROFESSION_INFO_BM 
+{
+	PROFESSION_INFO_BM_PARENT_START             = 0,
+	PROFESSION_INFO_BM_PARENT_NUM_BITS          = 9,
+	PROFESSION_INFO_BM_IS_PARENT                = PROFESSION_INFO_BM_PARENT_START + PROFESSION_INFO_BM_PARENT_NUM_BITS,
+	PROFESSION_INFO_BM_NUM_CHILDREN_START,
+	PROFESSION_INFO_BM_NUM_CHILDREN_NUM_BITS    = 4,
+};
+/// info subclass - start - Nightinggale
+
 class CvProfessionInfo :	public CvInfoBase
 {
 	//---------------------------------------PUBLIC INTERFACE---------------------------------
@@ -409,10 +429,19 @@ public:
     ///Tke
 	//DllExport bool readPass3();
 
+	/// info subclass - start - Nightinggale
+	bool readSub(CvXMLLoadUtility* pXML, int* pSub);
+	TCHAR* getSubTag() { return "ProfessionSubTypes";};
+	/// info subclass - end - Nightinggale
+
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 protected:
 	int m_iUnitCombatType;
 	int m_iDefaultUnitAIType;
+
+	/// info subclass - start - Nightinggale
+	unsigned int m_bfA;
+	/// info subclass - end - Nightinggale
 
 	///TK Professions Pedia
 	bool m_ibNativesInvalid;

@@ -229,9 +229,121 @@ bool CvInfoBase::read(CvXMLLoadUtility* pXML)
 	// BUTTON
 	pXML->GetChildXmlValByName(m_szButton, "Button");
 
-	GC.XMLlength++; // XML length check - Nightinggale
 	return true;
 }
+
+/// info subclass - start - Nightinggale
+bool CvInfoBase::readSub(CvXMLLoadUtility* pXML, int* pSub, int* pCount)
+{
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	int iCount = 0;
+
+	if ( gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(), getSubTag()))
+	{
+		int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+		if (iNumSibs > 0)
+		{
+			if (gDLL->getXMLIFace()->SetToChild(pXML->GetXML()))
+			{
+				do
+				{
+					if (*pSub == iCount)
+					{
+						pXML->GetChildXmlValByName(m_szType, "Type");
+					}
+					iCount++;
+				} while(gDLL->getXMLIFace()->NextSibling(pXML->GetXML()));
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	(*pCount) = iCount;
+	(*pSub)++;
+
+	if (iCount <= *pSub)
+	{
+		*pSub = -1;
+	}
+
+	return true;
+}
+
+bool CvInfoBase::readSub(CvXMLLoadUtility* pXML, int* pSub, unsigned int* bmMask, int iParentBits, int iParentOffset, int iNumChildBits, int iNumChildOffset, int iIsParent)
+{
+	int iCount = -1;
+
+	if (!readSub(pXML, pSub, &iCount))
+	{
+		return false;
+	}
+
+	static int iParent = -1;
+	int iType = GC.getInfoTypeForString(getType(), true);
+
+	if (iType != -1)
+	{
+		bool bIsChild = false;
+		if (iCount > 0)
+		{
+			if ((*pSub) == 0)
+			{
+				// set is parent
+				*bmMask |= SETBIT(iIsParent);
+				iParent = iType;
+				FAssert(iCount < SETBIT(iNumChildBits));
+				*bmMask |= iCount << iNumChildOffset;
+			} else {
+				// is sub-> set parent
+				bIsChild = true;
+				FAssert(iParent > -1);
+				FAssert(iParent < SETBIT(iParentBits));
+				*bmMask |= iParent << PROFESSION_INFO_BM_PARENT_START;
+			}
+		} else {
+			iParent = -1;
+		}
+
+		if (!bIsChild)
+		{
+			*bmMask |= SETBITS(iParentBits, iParentOffset);
+		}
+	}
+	return true;
+}
+
+bool CvInfoBase::getSub(CvXMLLoadUtility* pXML)
+{
+	if ( gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(), getSubTag()))
+	{
+		int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+		if (iNumSibs > 0)
+		{
+			if (gDLL->getXMLIFace()->SetToChild(pXML->GetXML()))
+			{
+				do
+				{
+					CvString szType;
+					pXML->GetChildXmlValByName(szType, "Type");
+					if (szType == m_szType)
+					{
+						return true;
+					}
+				} while(gDLL->getXMLIFace()->NextSibling(pXML->GetXML()));
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	return false;
+}
+/// info subclass - end - Nightinggale
 
 //======================================================================================================
 //					CvScalableInfo
@@ -1868,10 +1980,10 @@ void CvProfessionInfo::write(FDataStreamBase* stream)
 bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 {
 	CvString szTextVal;
-	if (!CvInfoBase::read(pXML))
+	/*if (!CvInfoBase::read(pXML))
 	{
 		return false;
-	}
+	}*/
 	pXML->GetChildXmlValByName(szTextVal, "Combat");
 	m_iUnitCombatType = pXML->FindInInfoClass(szTextVal);
 
@@ -2023,8 +2135,27 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
 	// MultipleYieldsConsumed End
+
+	/// info subclass - start - Nightinggale
+	if (getSub(pXML))
+	{
+		pXML->GetChildXmlValByName(m_szTextKey, "Description");
+
+		// restore XML
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	/// info subclass - end - Nightinggale
+
 	return true;
 }
+
+/// info subclass - start - Nightinggale
+bool CvProfessionInfo::readSub(CvXMLLoadUtility* pXML, int* pSub)
+{
+	return CvInfoBase::readSub(pXML, pSub, &m_bfA, PROFESSION_INFO_BM_PARENT_NUM_BITS, PROFESSION_INFO_BM_PARENT_START, PROFESSION_INFO_BM_NUM_CHILDREN_NUM_BITS, PROFESSION_INFO_BM_NUM_CHILDREN_START, PROFESSION_INFO_BM_IS_PARENT);
+}
+/// info subclass - end - Nightinggale
 
 
 #if 0

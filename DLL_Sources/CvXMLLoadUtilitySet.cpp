@@ -22,9 +22,11 @@ char f_szXMLname[1024];
 
 /// XML load - start - Nightinggale
 bool bFirstLoadRound;
+bool bLoadOnce;
 
 void CvXMLLoadUtility::loadXMLFiles()
 {
+	bLoadOnce = false;
 	loadXMLFile(XML_FILE_CIV4BasicInfos);
 	loadXMLFile(XML_FILE_CIV4CalendarInfos);
 	loadXMLFile(XML_FILE_CIV4SeasonInfos);
@@ -99,6 +101,7 @@ void CvXMLLoadUtility::loadXMLFiles()
 	{
 		// type less XML files
 		// these files will produce an error if loaded more than once
+		bLoadOnce = true;
 		loadXMLFile(XML_FILE_CIV4Hints);
 		loadXMLFile(XML_FILE_CIV4SlideShowInfos);
 		loadXMLFile(XML_FILE_CIV4SlideShowRandomInfos);
@@ -2103,6 +2106,7 @@ void CvXMLLoadUtility::SetGlobalClassInfo(std::vector<T*>& aInfos, const char* s
 	// if we successfully locate the tag name in the xml file
 	if (gDLL->getXMLIFace()->LocateNode(m_pFXml, szTagName))
 	{
+		int iSub = -1; /// info subclass - Nightinggale
 		// loop through each tag
 		do
 		{
@@ -2118,7 +2122,15 @@ void CvXMLLoadUtility::SetGlobalClassInfo(std::vector<T*>& aInfos, const char* s
 
 			/// XML load - start - Nightinggale
 			//bool bSuccess = pClassInfo->read(this);
-			bool bSuccess = bFirstLoadRound ? pClassInfo->CvInfoBase::read(this) : pClassInfo->read(this);
+			bool bSuccess = false;
+			if (!bLoadOnce)
+			{
+				bSuccess = pClassInfo->readSub(this, &iSub);
+			}
+			if (!bFirstLoadRound)
+			{
+				bSuccess = pClassInfo->read(this);
+			}
 			/// XML load - end - Nightinggale
 			FAssert(bSuccess);
 			if (!bSuccess)
@@ -2126,6 +2138,8 @@ void CvXMLLoadUtility::SetGlobalClassInfo(std::vector<T*>& aInfos, const char* s
 				delete pClassInfo;
 				break;
 			}
+
+			GC.XMLlength++; // XML length check - Nightinggale
 
 			int iIndex = -1;
 			if (NULL != pClassInfo->getType())
@@ -2144,6 +2158,7 @@ void CvXMLLoadUtility::SetGlobalClassInfo(std::vector<T*>& aInfos, const char* s
 			else
 			{
 // XML length check - start - Nightinggale
+				FAssert(!bLoadOnce && !bFirstLoadRound);
 #ifdef FASSERT_ENABLE
 				if (strlen(pClassInfo->getType()) >= sizeof(f_szXMLname))
 				{
@@ -2158,8 +2173,10 @@ void CvXMLLoadUtility::SetGlobalClassInfo(std::vector<T*>& aInfos, const char* s
 				aInfos[iIndex] = pClassInfo;
 			}
 
-
-		} while (gDLL->getXMLIFace()->NextSibling(m_pFXml));
+		/// info subclass - start - Nightinggale
+		//} while (gDLL->getXMLIFace()->NextSibling(m_pFXml));
+		} while (iSub != -1 || gDLL->getXMLIFace()->NextSibling(m_pFXml));
+		/// info subclass - end - Nightinggale
 
 		//readPass2
 		{
@@ -2199,6 +2216,7 @@ void CvXMLLoadUtility::SetDiplomacyInfo(std::vector<CvDiplomacyInfo*>& DiploInfo
 		// loop through each tag
 		do
 		{
+			GC.XMLlength++; // XML length check - Nightinggale
 			SkipToNextVal();	// skip to the next non-comment node
 
 			CvString szType;
@@ -2758,6 +2776,7 @@ DllExport bool CvXMLLoadUtility::LoadPlayerOptions()
 	
 /// XML load - start - Nightinggale
 	bFirstLoadRound = false;
+	bLoadOnce = true;
 
 	// hardcode NONE to -1 when reading XML files
 	GC.setInfoTypeFromString("NONE", -1);
