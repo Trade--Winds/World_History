@@ -858,6 +858,16 @@
   <ElementType name="RequiredPromotion" content="textOnly"/>
   <ElementType name="CivType" content="textOnly"/>
   <ElementType name="iFoundCityType" content="textOnly"/>
+  
+	<ElementType name="ProfessionSubType" content="eltOnly">
+		<element type="Type"/>
+		<element type="Description"/>
+	</ElementType>
+	<ElementType name="ProfessionSubTypes" content="eltOnly">
+		<element type="ProfessionSubType" maxOccurs="*" minOccurs="0"/>
+	</ElementType>
+  
+  
 	<ElementType name="ProfessionInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -906,6 +916,7 @@
     <element type="iFoundCityType" minOccurs="0"/>
     <element type="CivType" minOccurs="0"/>
 		<element type="Button" maxOccurs="*"/>
+		<element type="ProfessionSubTypes"/>
 	</ElementType>
 	<ElementType name="ProfessionInfos" content="eltOnly">
 		<element type="ProfessionInfo" maxOccurs="*"/>

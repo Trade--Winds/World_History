@@ -62,6 +62,9 @@ updateFile ("ConvertsToBuildingClass", "<ConvertsToGold>0</ConvertsToGold>");
 
 writeFile();
 
+openFile('Units/CIV4ProfessionInfos.xml');
+updateFile ("Button",       "<ProfessionSubTypes/>");
+writeFile();
 
 # end if setup. The following code handles actual file handling etc.
 

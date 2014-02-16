@@ -17,6 +17,9 @@
 #include "CvInfos.h"
 #include "FProfiler.h"
 #include "FAStarNode.h"
+
+#include "CvInfoProfessions.h"
+
 ///TKs Invention Core Mod v 1.0 Aymeric Changes are here
 // interface uses
 #include "CvDLLInterfaceIFaceBase.h"

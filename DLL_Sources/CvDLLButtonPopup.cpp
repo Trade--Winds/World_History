@@ -22,6 +22,8 @@
 #include "CvDLLEngineIFaceBase.h"
 #include "CvDLLEventReporterIFaceBase.h"
 
+#include "CvInfoProfessions.h"
+
 // Public Functions...
 
 #define PASSWORD_DEFAULT (L"*****")

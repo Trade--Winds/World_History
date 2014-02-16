@@ -32,6 +32,8 @@
 #include "CyArgsList.h"
 #include "CvDLLPythonIFaceBase.h"
 
+#include "CvInfoProfessions.h"
+
 int shortenID(int iId)
 {
 	return iId;

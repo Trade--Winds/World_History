@@ -11,6 +11,8 @@
 #include "CvMap.h"
 #include "CvUnitAI.h"
 
+#include "CvInfoProfessions.h"
+
 #include "CvDLLPythonIFaceBase.h"
 #include "CvDLLInterfaceIFaceBase.h"
 #include "CvDLLFAStarIFaceBase.h"

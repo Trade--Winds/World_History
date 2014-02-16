@@ -154,6 +154,14 @@ __forceinline float DWtoF( dword n ) { return *(float*)&n; }
 __forceinline float MaxFloat() { return DWtoF(0x7f7fffff); }
 
 /// bitmap - start - Nightinggale
+// variableless versions assuming the argument to be 0
+// useful for enums
+#define SETBIT( x ) (1 << x)
+#define SETBITS( x, y ) (((1 << x) - 1 ) << y)
+
+#define GETBIT ( x, y ) ((x >> y) & 1)
+#define GETBITS( x, y, z ) ((x >> y) & ((1 << z) - 1 ))
+
 template <typename T>
 static inline bool HasBit(const T x, const int y)
 {

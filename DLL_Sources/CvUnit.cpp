@@ -29,6 +29,8 @@
 #include "CvDiploParameters.h"
 #include "CvTradeRoute.h"
 
+#include "CvInfoProfessions.h"
+
 // Public Functions...
 
 CvUnitTemporaryStrengthModifier::CvUnitTemporaryStrengthModifier(CvUnit* pUnit, ProfessionTypes eProfession) :
