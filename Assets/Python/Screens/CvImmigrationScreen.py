@@ -83,7 +83,7 @@ class CvImmigrationScreen:
 		self.Y_DOCKS_OFFSET = 50
 		self.H_DOCK = (self.PANE_HEIGHT - (self.H_TEXT_MARGIN * 2)) * 35 / 100
 		
-		self.EUROPE_EAST = CvUtil.findInfoTypeNum('EUROPE_EAST')
+		self.EUROPE_EAST = CvUtil.findInfoTypeNum('TRADE_SCREEN_MOTHERLAND')
 		#self.EUROPE_WEST = CvUtil.findInfoTypeNum('EUROPE_WEST')
 		#From Military Advisor
 		self.viewMargin = 10
@@ -179,15 +179,32 @@ class CvImmigrationScreen:
 		STACK_BAR_HEIGHT = int((2.7 * self.YResolution) / 100)	
 		ScrollButtonSize = LARGE_BUTTON_SIZE
 		#Trade Screen quick screen links
-		self.TRADE_SCREEN_SPICE_ROUTE_MARKET = CvUtil.findInfoTypeNum('TRADE_SCREEN_SPICE_ROUTE_MARKET')
-		self.TRADE_SCREEN_SILK_ROAD_MARKET = CvUtil.findInfoTypeNum('TRADE_SCREEN_SILK_ROAD_MARKET')
-		self.TRADE_SCREEN_TRADE_FAIR_MARKET = CvUtil.findInfoTypeNum('TRADE_SCREEN_TRADE_FAIR_MARKET')
-		if (gc.getPlayer(gc.getGame().getActivePlayer()).getHasTradeRouteType(self.TRADE_SCREEN_SPICE_ROUTE_MARKET)):	
-			screen.setImageButton("SpiceRouteScreen",ArtFileMgr.getInterfaceArtInfo("INTERFACE_SPICE_ROUTE").getPath(), (self.XResolution * 65 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_SPICE_ROUTE_SCREEN).getActionInfoIndex(), -1)
-		if (gc.getPlayer(gc.getGame().getActivePlayer()).getHasTradeRouteType(self.TRADE_SCREEN_TRADE_FAIR_MARKET)):
-			screen.setImageButton("TradeFairScreen",ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE").getPath(), (self.XResolution * 35 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_TRADE_FAIR_SCREEN).getActionInfoIndex(), -1)
-		elif (gc.getPlayer(gc.getGame().getActivePlayer()).getHasTradeRouteType(self.TRADE_SCREEN_SILK_ROAD_MARKET)):
-			screen.setImageButton("SilkRoadScreen",ArtFileMgr.getInterfaceArtInfo("INTERFACE_SILK_ROAD").getPath(), (self.XResolution * 35 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_SILK_ROAD_SCREEN).getActionInfoIndex(), -1)
+		#self.TRADE_SCREEN_SPICE_ROUTE_MARKET = CvUtil.findInfoTypeNum('TRADE_SCREEN_SPICE_ROUTE_MARKET')
+		#self.TRADE_SCREEN_SILK_ROAD_MARKET = CvUtil.findInfoTypeNum('TRADE_SCREEN_SILK_ROAD_MARKET')
+		#self.TRADE_SCREEN_TRADE_FAIR_MARKET = CvUtil.findInfoTypeNum('TRADE_SCREEN_TRADE_FAIR_MARKET')
+		#if (gc.getPlayer(gc.getGame().getActivePlayer()).getHasTradeRouteType(self.TRADE_SCREEN_SPICE_ROUTE_MARKET)):	
+			#screen.setImageButton("SpiceRouteScreen",ArtFileMgr.getInterfaceArtInfo("INTERFACE_SPICE_ROUTE").getPath(), (self.XResolution * 65 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_SPICE_ROUTE_SCREEN).getActionInfoIndex(), -1)
+		#if (gc.getPlayer(gc.getGame().getActivePlayer()).getHasTradeRouteType(self.TRADE_SCREEN_TRADE_FAIR_MARKET)):
+			#screen.setImageButton("TradeFairScreen",ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE").getPath(), (self.XResolution * 35 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_TRADE_FAIR_SCREEN).getActionInfoIndex(), -1)
+		#elif (gc.getPlayer(gc.getGame().getActivePlayer()).getHasTradeRouteType(self.TRADE_SCREEN_SILK_ROAD_MARKET)):
+			#screen.setImageButton("SilkRoadScreen",ArtFileMgr.getInterfaceArtInfo("INTERFACE_SILK_ROAD").getPath(), (self.XResolution * 35 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_SILK_ROAD_SCREEN).getActionInfoIndex(), -1)
+		iRoute = 0
+		iNumEuropeInfos = gc.getNumEuropeInfos()
+		ThisScreen = 0
+		#HasImmigrationScreen = gc.getLeaderHeadInfo(gc.getPlayer(gc.getGame().getActivePlayer()).getLeaderType()).getTravelCommandType() == 1
+		FinalRoute = -1
+		FirstRoute = -1
+		DiscoveredCout = 0;
+		for iRoute in range(iNumEuropeInfos):
+			if (iRoute != ThisScreen and gc.getPlayer(gc.getGame().getActivePlayer()).getHasTradeRouteType(iRoute)):
+				if (FirstRoute == -1):	
+					screen.setImageButton("QickLink1",gc.getEuropeInfo(iRoute).getButton(), (self.XResolution * 65 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_POP_UP_SCREEN, iRoute, 1)
+					FirstRoute = iRoute
+			if (gc.getPlayer(gc.getGame().getActivePlayer()).getHasTradeRouteType(iRoute)):
+				FinalRoute = iRoute
+				DiscoveredCout = DiscoveredCout + 1
+		if (FinalRoute != -1 and FirstRoute != FinalRoute and DiscoveredCout > 2):
+			screen.setImageButton("QickLink2",gc.getEuropeInfo(FinalRoute).getButton(), (self.XResolution * 35 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_POP_UP_SCREEN, FinalRoute, 1)
 		# draw the contents
 		self.drawContents()
 

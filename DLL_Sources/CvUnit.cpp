@@ -4442,17 +4442,23 @@ bool CvUnit::canAutoCrossOcean(const CvPlot* pPlot, TradeRouteTypes eTradeRouteT
 	{
 		return false;
 	}*/
-	bool bWaterRoute = false;
+	//bool bWaterRoute = false;
 	if (pPlot != NULL && pPlot->isEurope())
 	{
-		bWaterRoute = (GC.getEuropeInfo((EuropeTypes)pPlot->getEurope()).getMinLandDistance() > 0);
-		if (bWaterRoute && getDomainType() != DOMAIN_SEA)
+		//bWaterRoute = (GC.getEuropeInfo((EuropeTypes)pPlot->getEurope()).getMinLandDistance() > 0);
+		if (!GC.getEuropeInfo((EuropeTypes)pPlot->getEurope()).getDomainsValid(DOMAIN_SEA))
 		{
-			return false;
+			if (getDomainType() == DOMAIN_SEA)
+			{
+				return false;
+			}
 		}
-		else if (getDomainType() != DOMAIN_LAND)
+		if (!GC.getEuropeInfo((EuropeTypes)pPlot->getEurope()).getDomainsValid(DOMAIN_LAND))
 		{
-			return false;
+			if (getDomainType() == DOMAIN_LAND)
+			{
+				return false;
+			}
 		}
 	}
 
@@ -4516,7 +4522,7 @@ bool CvUnit::canAutoSailTradeScreen(const CvPlot* pPlot, EuropeTypes eTradeScree
 		return false;
 	}
 
-	bool bWaterRoute = false;
+	//bool bWaterRoute = false;
 	if (GC.getEuropeInfo(eTradeScreenType).isAIonly())
 	{
 		if (isHuman())
@@ -4533,17 +4539,20 @@ bool CvUnit::canAutoSailTradeScreen(const CvPlot* pPlot, EuropeTypes eTradeScree
 		}
 	}
 
-	bWaterRoute = (GC.getEuropeInfo(eTradeScreenType).getMinLandDistance() > 0);
-	if (bWaterRoute)
+	//bWaterRoute = (GC.getEuropeInfo(eTradeScreenType).getMinLandDistance() > 0);
+	if (!GC.getEuropeInfo(eTradeScreenType).getDomainsValid(DOMAIN_SEA))
 	{
-		if (getDomainType() != DOMAIN_SEA)
+		if (getDomainType() == DOMAIN_SEA)
 		{
 			return false;
 		}
 	}
-	else if (getDomainType() != DOMAIN_LAND)
+	if (!GC.getEuropeInfo(eTradeScreenType).getDomainsValid(DOMAIN_LAND))
 	{
-		return false;
+		if (getDomainType() == DOMAIN_LAND)
+		{
+			return false;
+		}
 	}
 
 	if (canCrossOcean(pPlot, UNIT_TRAVEL_STATE_TO_EUROPE, NO_TRADE_ROUTES, bAIForce, eTradeScreenType))
@@ -4588,7 +4597,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 
 			FAssert(pPlot != NULL);
 
-			bool bWaterRoute = false;
+			//bool bWaterRoute = false;
 			if (isHuman())
 			{
 				
@@ -4613,17 +4622,20 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 					}
 				}
 
-				bWaterRoute = (GC.getEuropeInfo(eEuropeTradeRoute).getMinLandDistance() > 0);
-				if (bWaterRoute)
+				//bWaterRoute = (GC.getEuropeInfo(eEuropeTradeRoute).getMinLandDistance() > 0);
+				if (!GC.getEuropeInfo(eEuropeTradeRoute).getDomainsValid(DOMAIN_SEA))
 				{
-					if (getDomainType() != DOMAIN_SEA)
+					if (getDomainType() == DOMAIN_SEA)
 					{
 						return false;
 					}
 				}
-				else if (getDomainType() != DOMAIN_LAND)
+				if (!GC.getEuropeInfo(eEuropeTradeRoute).getDomainsValid(DOMAIN_LAND))
 				{
-					return false;
+					if (getDomainType() == DOMAIN_LAND)
+					{
+						return false;
+					}
 				}
 
 				if (GC.getEuropeInfo(eEuropeTradeRoute).isNoEuropePlot())
@@ -4698,7 +4710,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 					return false;
 				}
 
-				if (pPlot->getEurope() != eEuropeTradeRoute)
+				if (!pPlot->isTradeScreenAccessPlot(eEuropeTradeRoute))
 				{
 					return false;
 				}
@@ -4752,7 +4764,7 @@ bool CvUnit::canCrossOcean(const CvPlot* pPlot, UnitTravelStates eNewState, Trad
 void CvUnit::crossOcean(UnitTravelStates eNewState, bool bAIForce, EuropeTypes eTradeMarket)
 {
 	
-   
+ 
 
 	if (!bAIForce && !canCrossOcean(plot(), eNewState, NO_TRADE_ROUTES, false, eTradeMarket))
 	{

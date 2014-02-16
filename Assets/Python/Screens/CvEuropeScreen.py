@@ -80,7 +80,7 @@ class CvEuropeScreen:
 		self.Y_DOCKS_OFFSET = 50
 		self.H_DOCK = (self.PANE_HEIGHT - (self.H_TEXT_MARGIN * 2)) * 35 / 100
 		
-		self.EUROPE_EAST = CvUtil.findInfoTypeNum('EUROPE_EAST')
+		self.EUROPE_EAST = CvUtil.findInfoTypeNum('TRADE_SCREEN_MOTHERLAND')
 		#self.EUROPE_WEST = CvUtil.findInfoTypeNum('EUROPE_WEST')
 
 		# Set the background and exit button, and show the screen

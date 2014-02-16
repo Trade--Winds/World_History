@@ -64,12 +64,12 @@
   <ElementType name="bLeaveFromAnyCity" content="textOnly" dt:type="boolean"/>
   <ElementType name="CityRequiredBuildingClass" content="textOnly"/>
   <ElementType name="DefaultColor" content="textOnly"/>
-  <ElementType name="TradeScreenType" content="eltOnly">
-    <element type="TradeScreen"/>
+  <ElementType name="DomainType" content="eltOnly">
+    <element type="Domain"/>
     <element type="bValue"/>
   </ElementType>
-  <ElementType name="TradeScreenTypes" content="eltOnly">
-    <element type="TradeScreenType" minOccurs="0" maxOccurs="*"/>
+  <ElementType name="DomainTypes" content="eltOnly">
+    <element type="DomainType" minOccurs="1" maxOccurs="*"/>
   </ElementType>
   <ElementType name="DirectionArray" content="eltOnly">
     <element type="Direction"/>
@@ -98,7 +98,7 @@
     <element type="bLeaveFromOwnedCity" minOccurs="0"/>
     <element type="bLeaveFromAnyCity" minOccurs="0"/>
     <element type="CityRequiredBuildingClass" minOccurs="0"/>
-    <element type="TradeScreenTypes" minOccurs="0"/>
+    <element type="DomainTypes" minOccurs="0"/>
     <element type="PythonTradeScreen"/>
     <element type="DefaultColor" minOccurs="0"/>
     <element type="Button"/>
@@ -679,6 +679,7 @@
 	<ElementType name="iGreatGeneralPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iEventChancePerTurn" content="textOnly" dt:type="int"/>
 	<ElementType name="iRevolutionTurns" content="textOnly" dt:type="int"/>
+  <ElementType name="Domain" content="textOnly"/>
   <ElementType name="TradeScreen" content="textOnly"/>
   <ElementType name="TradeRouteTripLength" content="eltOnly">
     <element type="TradeScreen"/>

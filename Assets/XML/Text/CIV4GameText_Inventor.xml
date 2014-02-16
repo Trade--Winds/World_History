@@ -1115,7 +1115,7 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_CENTER_PLOT_BONUS</Tag>
-    <English>[ICON_BULLET]Increases production by [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT] for all center plot yields</English>
+    <English>[ICON_BULLET]Center Plot yield increase of [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT]</English>
     <French>[ICON_BULLET]Increases production by [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT] for all center plot yields</French>
     <German>[ICON_BULLET]Increases production by [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT] for all center plot yields</German>
     <Italian>[ICON_BULLET]Increases production by [COLOR_HIGHLIGHT_TEXT]+%d1[COLOR_REVERT] for all center plot yields</Italian>

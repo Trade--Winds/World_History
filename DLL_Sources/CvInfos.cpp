@@ -4175,7 +4175,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
 	pXML->SetVariableListTagPair(&m_abFreePromotions, "FreePromotions", GC.getNumPromotionInfos(), false);
-	///TK Med Viscos Mod
+	///TK Med
 	pXML->SetVariableListTagPair(&m_abProfessionsNotAllowed, "ProfessionsNotAllowed", GC.getNumProfessionInfos(), false);
 	pXML->SetVariableListTagPair(&m_aiTradeScreenPrice, "TradeScreenTypes", GC.getNumEuropeInfos(), -1);
 	///TK end
@@ -11098,7 +11098,7 @@ CvEuropeInfo::CvEuropeInfo() :
 	m_bLeaveFromAnyCity(false),
 	m_iDefaultColor(NO_PLAYERCOLOR),
 	m_iCityRequiredBuilding(NO_BUILDINGCLASS),
-	m_aiTradeScreens(NULL),
+	m_aiDomainTypes(NULL),
 	m_aiDirectionArrays(NULL)
 
 {
@@ -11106,16 +11106,16 @@ CvEuropeInfo::CvEuropeInfo() :
 
 CvEuropeInfo::~CvEuropeInfo()
 {
-    SAFE_DELETE_ARRAY(m_aiTradeScreens);
+    SAFE_DELETE_ARRAY(m_aiDomainTypes);
 	SAFE_DELETE_ARRAY(m_aiDirectionArrays);
 }
 const char* CvEuropeInfo::getTradeRouteButton() const
 {
 	return m_szTradeRouteButton;
 }
-int CvEuropeInfo::getTradeScreensValid(int i) const
+int CvEuropeInfo::getDomainsValid(int i) const
 {
-	return m_aiTradeScreens ? m_aiTradeScreens[i] : 0;
+	return m_aiDomainTypes ? m_aiDomainTypes[i] : -1;
 }
 
 int CvEuropeInfo::getDefaultColor() const
@@ -11237,7 +11237,7 @@ bool CvEuropeInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bLeaveFromForeignCity, "bLeaveFromForeignCity");
 	pXML->GetChildXmlValByName(&m_bLeaveFromOwnedCity, "bLeaveFromOwnedCity");
 	pXML->GetChildXmlValByName(&m_bLeaveFromAnyCity, "bLeaveFromAnyCity");
-	pXML->SetVariableListTagPair(&m_aiTradeScreens, "TradeScreenTypes", NUM_TRADE_SCREEN_TYPES, 0);
+	pXML->SetVariableListTagPair(&m_aiDomainTypes, "DomainTypes", NUM_DOMAIN_TYPES, 0);
 	pXML->SetVariableListTagPair(&m_aiDirectionArrays, "DirectionArrays", NUM_DIRECTION_TYPES, 0);
 	///TKe
 

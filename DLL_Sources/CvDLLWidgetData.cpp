@@ -706,7 +706,7 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 				CvWString szTradeRoute = GC.getEuropeInfo((EuropeTypes) widgetDataStruct.m_iData1).getPythonTradeScreen();
 				CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_PYTHON_SCREEN);
 				pInfo->setText(szTradeRoute);
-				gDLL->getInterfaceIFace()->addPopup(pInfo, GC.getGameINLINE().getActivePlayer(), false);
+				gDLL->getInterfaceIFace()->addPopup(pInfo, GC.getGameINLINE().getActivePlayer(), widgetDataStruct.m_iData2);
 		
 		}
 		break;

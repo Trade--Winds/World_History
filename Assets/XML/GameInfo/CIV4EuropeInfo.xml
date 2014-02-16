@@ -7,15 +7,35 @@
 <Civ4EuropeInfo xmlns="x-schema:CIV4GameInfoSchema.xml">
 	<EuropeInfos>
 		<EuropeInfo>
-			<Type>EUROPE_EAST</Type>
-			<Description>TXT_KEY_COMMAND_SAIL_SPICE_ROUTE</Description>
-      <Strategy>TXT_KEY_AUTO_SELL_SPICE_ROUTE_HELP</Strategy>
-      <Help>AI Route</Help>
+			<Type>TRADE_SCREEN_MOTHERLAND</Type>
+			<Description>TXT_KEY_EUROPE_SCREEN_TITLE</Description>
+      <Strategy>TXT_KEY_COMMAND_SAIL_TO_EUROPE</Strategy>
+      <Help>TXT_KEY_EUROPE_SCREEN_TITLE</Help>
 			<Direction>east</Direction>
       <DirectionArrays>
         <DirectionArray>
+          <Direction>DIRECTION_EAST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_WEST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
           <Direction>DIRECTION_NORTHEAST</Direction>
-          <bValue>0</bValue>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_NORTHWEST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_SOUTHEAST</Direction>
+          <bValue>1</bValue>
+        </DirectionArray>
+        <DirectionArray>
+          <Direction>DIRECTION_SOUTHWEST</Direction>
+          <bValue>1</bValue>
         </DirectionArray>
       </DirectionArrays>
 			<bStart>1</bStart>
@@ -24,7 +44,12 @@
 			<iMinLandDistance>4</iMinLandDistance>
 			<iWidthPercent>20</iWidthPercent>
       <bNoEuropePlot>1</bNoEuropePlot>
-      <TradeScreenTypes/>
+      <DomainTypes>
+        <DomainType>
+          <Domain>DOMAIN_SEA</Domain>
+          <bValue>1</bValue>
+        </DomainType>
+      </DomainTypes>
       <PythonTradeScreen>showSpiceRouteScreen</PythonTradeScreen>
       <DefaultColor>PLAYERCOLOR_BLUE</DefaultColor>
       <Button>Art/Interface/Game Hud/Actions/trade_goods_high_res.dds</Button>
@@ -75,10 +100,10 @@
       <!-- Land must be this far away to apply the Europe. For Water Routes only -->
       <iMinLandDistance>4</iMinLandDistance>
       <!-- Used to set Land Based Routes max distance from Edge of map that land tiles will be used. If > 0 this route will be considered a Land Route-->
-      <iMaxLandCoverage>0</iMaxLandCoverage>
+      <iMaxLandCoverage>4</iMaxLandCoverage>
       <!-- Sets what percent of map is used for Europe Tiles for each Direction -->
       <iWidthPercent>20</iWidthPercent>
-      <!-- This Europe Requires a Tech in order to be research. Use CIV4CivicInfos.XML to set up the tech -->
+      <!-- This Europe Requires a Tech in order Travel. Use CIV4CivicInfos.XML to set up the tech -->
       <bRequiresTech>1</bRequiresTech>
       <!-- If using one of the Below methods of Travel this must be set to 1 as Plots are not assigned a Europe with those methods -->
       <bNoEuropePlot>0</bNoEuropePlot>
@@ -89,8 +114,17 @@
       <bLeaveFromAnyCity>0</bLeaveFromAnyCity>
       <!-- This building is required in the City in order to Travel to Trade Screen -->
       <!-- <CityRequiredBuildingClass></CityRequiredBuildingClass>-->
-      <!-- TradeScreenTypes is Currently Not Used -->
-      <TradeScreenTypes/>
+      <!--Select the Domain of this TradeScreen, Land, Sea, or Land and Sea -->
+      <DomainTypes>
+        <DomainType>
+          <Domain>DOMAIN_LAND</Domain>
+          <bValue>1</bValue>
+        </DomainType>
+        <DomainType>
+          <Domain>DOMAIN_SEA</Domain>
+          <bValue>1</bValue>
+        </DomainType>
+      </DomainTypes>
       <!-- This sets what screen is popped up when a unit arrives at the Trade Screen. Get the character string from CvScreensInterface.py-->
       <PythonTradeScreen>showSpiceRouteScreen</PythonTradeScreen>
       <!-- Sets the color of the trade route. The first Water route is always the players color, first land route is Purple, the rest must be set here -->
@@ -120,7 +154,12 @@
       <iMaxLandCoverage>4</iMaxLandCoverage>
 			<iWidthPercent>20</iWidthPercent>
       <bRequiresTech>1</bRequiresTech>
-      <TradeScreenTypes/>
+      <DomainTypes>
+        <DomainType>
+          <Domain>DOMAIN_LAND</Domain>
+          <bValue>1</bValue>
+        </DomainType>
+      </DomainTypes>
       <PythonTradeScreen>showSilkRoadScreen</PythonTradeScreen>
       <Button>Art/Interface/Game Hud/Actions/travelsilkroad.dds</Button>
 		</EuropeInfo>
@@ -138,14 +177,14 @@
       <bRequiresTech>1</bRequiresTech>
       <bNoEuropePlot>1</bNoEuropePlot>
       <bLeaveFromOwnedCity>1</bLeaveFromOwnedCity>
-      <TradeScreenTypes>
-        <TradeScreenType>
-          <TradeScreen>TRADE_SCREEN_SILK_ROAD</TradeScreen>
+      <DomainTypes>
+        <DomainType>
+          <Domain>DOMAIN_LAND</Domain>
           <bValue>1</bValue>
-        </TradeScreenType>
-      </TradeScreenTypes>
+        </DomainType>
+      </DomainTypes>
       <PythonTradeScreen>showTradeFairScreen</PythonTradeScreen>
       <Button>Art/Interface/Game Hud/Actions/TraveltoFair.dds</Button>
-    </EuropeInfo>
+  </EuropeInfo>
 	</EuropeInfos>
 </Civ4EuropeInfo>

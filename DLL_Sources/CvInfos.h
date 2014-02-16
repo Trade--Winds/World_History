@@ -3111,7 +3111,7 @@ public:
 	DllExport bool isAIonly() const;
 	DllExport bool isRequiresTech() const;
 	DllExport bool isNoEuropePlot() const;
-    DllExport int getTradeScreensValid(int i) const;
+    DllExport int getDomainsValid(int i) const;
 	DllExport int getDirectionValid(int i) const;
 	DllExport int getCityRequiredBuilding() const;
 	DllExport int getDefaultColor() const;
@@ -3136,7 +3136,7 @@ protected:
 	bool m_bNoEuropePlot;
 	CvString m_szPythonTradeScreen;
 	CvString m_szTradeRouteButton;
-    int* m_aiTradeScreens;
+    int* m_aiDomainTypes;
 	int* m_aiDirectionArrays;
 	bool m_bLeaveFromBarbarianCity;
 	bool m_bLeaveFromForeignCity;

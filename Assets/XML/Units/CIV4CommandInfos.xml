@@ -470,7 +470,7 @@
       <bCtrlDownAlt>0</bCtrlDownAlt>
       <iHotKeyPriorityAlt>0</iHotKeyPriorityAlt>
       <bVisible>1</bVisible>
-      <EuropeTradeRoute>EUROPE_EAST</EuropeTradeRoute>
+      <EuropeTradeRoute/>
       <Button>Art/Interface/Game Hud/Actions/travelSpiceRoute.dds</Button>
     </CommandInfo>
     <CommandInfo>

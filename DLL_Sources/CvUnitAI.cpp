@@ -5122,7 +5122,13 @@ bool CvUnitAI::AI_sailToEurope(bool bMove, EuropeTypes eTradeScreenType)
 
 	if (eTradeScreenType != NO_EUROPE)
 	{
-		bLandRoute = GC.getEuropeInfo(eTradeScreenType).getMinLandDistance() == 0;
+		if (GC.getEuropeInfo(eTradeScreenType).getDomainsValid(DOMAIN_LAND))
+		{
+			if (getDomainType() == DOMAIN_LAND)
+			{
+				bLandRoute = true;
+			}
+		}
 		bTradeScreen = true;
 	}
 

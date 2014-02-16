@@ -2371,7 +2371,7 @@ int CvGlobals::getXMLuncached(XMLconstantTypes eVal) const
 			return this->getDefineINT("UNITWEAPON_BLUNT");
 			break;
 		case XML_EUROPE_EAST:
-			return this->getDefineINT("EUROPE_EAST");
+			return this->getDefineINT("TRADE_SCREEN_MOTHERLAND");
 			break;
 		case XML_AI_ADVANCED_TECH_START:
 			return this->getDefineINT("AI_ADVANCED_TECH_START");

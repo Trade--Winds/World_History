@@ -1309,19 +1309,21 @@ void CvGame::updateColoredPlots()
 				        colorC.a = 0.5f;
                         gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), colorC, AREA_BORDER_LAYER_EUROPE);
 				    }
-				    
-				    if (GC.getEuropeInfo(pLoopPlot->getEurope()).getMaxLandCoverage() <= 0)
-				    {
-				        color.a = 0.5f;
-                        gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), color, AREA_BORDER_LAYER_EUROPE);
-				    }
+					else
+					{
+						if (GC.getEuropeInfo(pLoopPlot->getEurope()).getDomainsValid(DOMAIN_SEA))
+						{
+							color.a = 0.5f;
+							gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), color, AREA_BORDER_LAYER_EUROPE);
+						}
 
-				    if (GC.getEuropeInfo(pLoopPlot->getEurope()).getMaxLandCoverage() > 0)
-				    {
-				        //NiColorA color(GC.getColorInfo((ColorTypes)GC.getInfoTypeForString("COLOR_WHITE")).getColor());
-						colorB.a = 0.5f;
-                        gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), colorB, AREA_BORDER_LAYER_EUROPE);
-				    }
+						if (GC.getEuropeInfo(pLoopPlot->getEurope()).getDomainsValid(DOMAIN_LAND))
+						{
+							//NiColorA color(GC.getColorInfo((ColorTypes)GC.getInfoTypeForString("COLOR_WHITE")).getColor());
+							colorB.a = 0.5f;
+							gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), colorB, AREA_BORDER_LAYER_EUROPE);
+						}
+					}
 				}
 			}
 		}
