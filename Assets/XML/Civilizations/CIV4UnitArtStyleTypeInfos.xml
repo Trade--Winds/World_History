@@ -131,6 +131,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_HEAVY_CALVARY</ArtDefineTag>
@@ -409,6 +416,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
@@ -529,6 +543,13 @@
         <StyleUnit>
           <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
           </UnitMeshGroup>
@@ -774,6 +795,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
@@ -894,6 +922,13 @@
         <StyleUnit>
           <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_ARAB_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_ARAB_CALVARY</ArtDefineTag>
           </UnitMeshGroup>
@@ -1139,6 +1174,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
@@ -1259,6 +1301,13 @@
         <StyleUnit>
           <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
           </UnitMeshGroup>
@@ -1511,6 +1560,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
@@ -1645,6 +1701,13 @@
         <StyleUnit>
           <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
           </UnitMeshGroup>

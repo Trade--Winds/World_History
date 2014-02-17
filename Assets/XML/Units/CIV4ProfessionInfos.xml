@@ -658,18 +658,8 @@
           <iYieldAmount>50</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_LEATHER_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_ATTACK_LEATHER</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
+	   <AltEquipmentTypes/>
+	   <AltFreePromotions/>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_FLANKING1</PromotionType>
@@ -688,7 +678,41 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,10</Button>
-      <ProfessionSubTypes/>
+      <ProfessionSubTypes>
+		<ProfessionSubType>
+			<Type>PROFESSION_CALVARY_LEATHER</Type>
+			<Description>Horseman(leather)</Description>
+			<iPower>175</iPower>
+			<YieldEquipedNums>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_HORSES</YieldType>
+				  <iYieldAmount>50</iYieldAmount>
+				</YieldEquipedNum>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_WEAPONS</YieldType>
+				  <iYieldAmount>50</iYieldAmount>
+				</YieldEquipedNum>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_LEATHER_ARMOR</YieldType>
+				  <iYieldAmount>25</iYieldAmount>
+				</YieldEquipedNum>
+			  </YieldEquipedNums>
+			  <FreePromotions>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_FLANKING1</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_MOUNTED</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_ATTACK_LEATHER</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+	  </ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_MISSLEMAN</Type>

@@ -994,6 +994,24 @@ void CvGameTextMgr::setProfessionHelp(CvWStringBuffer &szBuffer, ProfessionTypes
 		szBuffer.append(szTempBuffer);
 	}
 
+	/// info subclass - start - Nightinggale
+	if (kProfession.isParent() || kProfession.isSubType())
+	{
+		// print links to all sub professions and/or parent
+		ProfessionTypes eLoopProfession = kProfession.isParent() ? eProfession : kProfession.getParent();
+		int iMax = eLoopProfession + GC.getProfessionInfo(eLoopProfession).getNumSubTypes();
+		for (int iSub = eLoopProfession; iSub <= iMax; iSub++)
+		{
+			if (iSub != eProfession)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getSymbolID(BULLET_CHAR));
+                szBuffer.append(gDLL->getText("TXT_KEY_ALT_EQUIPMENT_LINK", GC.getProfessionInfo((ProfessionTypes)iSub).getTextKeyWide()));
+			}
+		}
+	}
+	/// info subclass - end - Nightinggale
+
 	if (!bCivilopediaText)
 	{
 	    ///Tks Med
