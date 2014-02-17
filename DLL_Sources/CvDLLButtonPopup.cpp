@@ -690,6 +690,21 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 				gDLL->sendDoTask(info.getData1(), TASK_CHANGE_PROFESSION, info.getData2(), pPopupReturn->getButtonClicked(), false, false, false, false);
 			}
 		}
+		/// info subclass - start - Nightinggale
+		else if (pPopupReturn->getButtonClicked() >= SETBIT(16))
+		{
+			int iData3 = info.getData3();
+			FAssert(iData3 >= -1 || iData3 <= 1);
+			if (iData3 == -1)
+			{
+				iData3 = 3;
+			}
+			SetBit(iData3, 2);
+			iData3 |= ((pPopupReturn->getButtonClicked() - SETBIT(16)) << 3);
+			CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSE_PROFESSION, info.getData1(), info.getData2(), iData3);
+			gDLL->getInterfaceIFace()->addPopup(pInfo, GC.getGameINLINE().getActivePlayer(), true, true);
+		}
+		/// info subclass - end - Nightinggale
 		break;
         ///TK Tax this is not used for anything
     case BUTTONPOPUP_TAX_ADVISOR:
@@ -3017,8 +3032,10 @@ bool CvDLLButtonPopup::launchChooseProfessionPopup(CvPopup* pPopup, CvPopupInfo 
 		return false;
 	}
 
-	bool bShowOnlyNonCitizens = (info.getData3() == 0);
-	bool bShowOnlyPlotCitizens = (info.getData3() == 1);
+	/// info subclass - start - Nightinggale
+	bool bShowOnlyNonCitizens = ((info.getData3()&3) == 0);
+	bool bShowOnlyPlotCitizens = ((info.getData3()&3) == 1);
+	/// info subclass - end - Nightinggale
 
 	CvPlot* pWorkingPlot = NULL;
 	if (pCity != NULL)
@@ -3052,11 +3069,102 @@ bool CvDLLButtonPopup::launchChooseProfessionPopup(CvPopup* pPopup, CvPopupInfo 
 		}
 	}
 
+	/// info subclass - start - Nightinggale
+	ProfessionTypes eLoopParent = NO_PROFESSION;
+	ProfessionTypes eLoopFirst = (ProfessionTypes)SETBIT(16);
+	int iMax = -1;
+	if (info.getData3() > 0 && HasBit(info.getData3(), 2))
+	{
+		eLoopParent = (ProfessionTypes)(info.getData3() >> 3);
+		iMax = eLoopParent + GC.getProfessionInfo(eLoopParent).getNumSubTypes();
+	}
+	int iNumSubTypes = 0;
+	/// info subclass - end - Nightinggale
+
 	int iNumButtons = 0;
 	for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); ++iProfession)
 	{
 		ProfessionTypes eLoopProfession = (ProfessionTypes) iProfession;
 		CvProfessionInfo& kProfession = GC.getProfessionInfo(eLoopProfession);
+
+		/// info subclass - start - Nightinggale
+		if (iMax >= 0)
+		{
+			if (eLoopProfession < eLoopParent || eLoopProfession > iMax)
+			{
+				continue;
+			}
+		}
+		else
+		{
+			if (eLoopParent != NO_PROFESSION)
+			{
+				if (kProfession.getParent() == eLoopParent)
+				{
+					if ((iProfession != pUnit->getProfession() || bShowOnlyPlotCitizens) && pUnit->canHaveProfession(eLoopProfession, false))
+					{
+						iNumSubTypes++;
+						if (eLoopFirst > eLoopProfession)
+						{
+							eLoopFirst = eLoopProfession;
+						}
+
+					}
+					continue;
+				}
+
+				if (iNumSubTypes > 0)
+				{
+					int iNewProfession = eLoopFirst;
+					CvProfessionInfo& kProfessionParent = GC.getProfessionInfo(eLoopFirst);
+
+					CvWString szText = kProfessionParent.getDescription();
+					if (iNumSubTypes > 1)
+					{
+						szText += CvWString::format(L" (%d)", iNumSubTypes);
+						iNewProfession += SETBIT(16);
+					}
+					else if (bEuropeUnit)
+					{
+						int iCost = pUnit->getEuropeProfessionChangeCost((ProfessionTypes)iNewProfession);
+						if (iCost > 0)
+						{
+							szText += gDLL->getText("TXT_KEY_EUROPE_CHANGE_PROFESSION_COST", iCost);
+						}
+						else if (iCost < 0)
+						{
+							szText += gDLL->getText("TXT_KEY_EUROPE_CHANGE_PROFESSION_REFUND", -iCost);
+						}
+					}
+					else
+					{
+						szText += gDLL->getText("TXT_KEY_PROFESSION_NON_CITIZEN");
+					}
+
+					++iNumButtons;
+					gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, szText, kProfessionParent.getButton(), iNewProfession, WIDGET_GENERAL);
+				}
+
+				eLoopParent = NO_PROFESSION;
+				iNumSubTypes = 0;
+			}
+
+			if (kProfession.isParent())
+			{
+				iNumSubTypes = 0;
+				eLoopParent = eLoopProfession;
+				if ((iProfession != pUnit->getProfession() || bShowOnlyPlotCitizens) && pUnit->canHaveProfession(eLoopProfession, false))
+				{
+					iNumSubTypes = 1;
+					eLoopFirst = eLoopProfession;
+				} else {
+					eLoopFirst = (ProfessionTypes)SETBIT(16);
+				}
+				continue;
+			}
+		}
+		/// info subclass - end - Nightinggale
+
 
 		if ((iProfession != pUnit->getProfession() || bShowOnlyPlotCitizens) && pUnit->canHaveProfession(eLoopProfession, false))
 		{
