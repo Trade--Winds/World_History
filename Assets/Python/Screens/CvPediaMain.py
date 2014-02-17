@@ -259,7 +259,10 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
 	def placeProfessions(self):
 		screen = self.getScreen()
 		# Create and place a profession pane
-		list = self.getSortedList( gc.getNumProfessionInfos(), gc.getProfessionInfo )
+		### info subclass - start - Nightinggale
+		# list = self.getSortedList( gc.getNumProfessionInfos(), gc.getProfessionInfo )
+		list = self.pediaProfessionScreen.getSortedListProfession()
+		### info subclass - end - Nightinggale
 
 		ButtonSize = 24
 		nColumns = 2

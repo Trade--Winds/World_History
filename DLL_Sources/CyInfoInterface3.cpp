@@ -500,6 +500,12 @@ void CyInfoPythonInterface3()
 		.def("getNumYieldsConsumedPedia", &CvProfessionInfo::getNumYieldsConsumedPedia, "int ()")
 		///TKe
 		// MultipleYieldsConsumed End
+		/// info subclass - start - Nightinggale
+		.def("isParent", &CvProfessionInfo::isParent, "bool ()")
+		.def("isSubType", &CvProfessionInfo::isSubType, "bool ()")
+		.def("getParent", &CvProfessionInfo::getParent, "int ()")
+		.def("getNumSubTypes", &CvProfessionInfo::getNumSubTypes, "int ()")
+		/// info subclass - end - Nightinggale
 		;
 	python::class_<CvFatherInfo, python::bases<CvInfoBase> >("CvFatherInfo")
 		.def("getFatherCategory", &CvFatherInfo::getFatherCategory, "int ()")

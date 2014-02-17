@@ -733,4 +733,12 @@ Multiple repeating units is possible and an equal number will be trained of each
 		<Italian>On the domestic market of %s1_city goods for %d2[ICON_GOLD] have been sold.</Italian>
 		<Spanish>On the domestic market of %s1_city goods for %d2[ICON_GOLD] have been sold.</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ALT_EQUIPMENT_LINK</Tag>
+		<English>Alt equipment: [LINK=literal]%s1_default_unit[\LINK]</English>
+		<French>Remplace : [LINK=literal]%s1_default_unit[\LINK]</French>
+		<German>Ersetzt [LINK=literal]%s1_default_unit[\LINK]</German>
+		<Italian>Sostituisce l'unit&#224; [LINK=literal]%s1_default_unit[\LINK]</Italian>
+		<Spanish>Reemplaza a la unidad de [LINK=literal]%s1_default_unit[\LINK]</Spanish>
+	</TEXT>
 </Civ4GameText>

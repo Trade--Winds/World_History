@@ -114,6 +114,7 @@ public:
 	TCHAR* getSubTag() { return "ProfessionSubTypes";};
 
 	bool isParent() const;
+	bool isSubType() const;
 	ProfessionTypes getParent() const;
 	int getNumSubTypes() const;
 	/// info subclass - end - Nightinggale
@@ -248,6 +249,11 @@ inline bool CvProfessionInfo::isNoDefensiveBonus() const
 inline bool CvProfessionInfo::isParent() const
 {
 	return getNumSubTypes() > 0;
+}
+
+inline bool CvProfessionInfo::isSubType() const
+{
+	return getParent() != NO_PROFESSION;
 }
 
 inline ProfessionTypes CvProfessionInfo::getParent() const
