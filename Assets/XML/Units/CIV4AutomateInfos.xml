@@ -76,7 +76,7 @@
 			<iHotKeyPriorityAlt>0</iHotKeyPriorityAlt>
 			<Command>COMMAND_AUTOMATE</Command>
 			<Automate>AUTOMATE_SAIL</Automate>
-			<bVisible>1</bVisible>
+			<bVisible>0</bVisible>
 			<Button>Art/Interface/Game Hud/Actions/ReturnMotherland.dds</Button>
 		</AutomateInfo>
     <AutomateInfo>

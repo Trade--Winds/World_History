@@ -827,7 +827,7 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_NEW_TREASURE</Tag>
-    <English>You have obtained a new %s1_unit. This unit can be transported to any of your settlements. Once there click the Unload button and the Gold will be added to your stockpiles. You can then transport the Gold to sell.</English>
+    <English>You have obtained a new %s1_unit. This unit can be transported to any of your settlements. You can then transport the Gold to sell.</English>
     <French>Vous avez acquis une nouvelle unit&#233; : %s1_unit. Cette unit&#233; ne peut &#234;tre transport&#233;e que par galion. Si vous n'en poss&#233;dez pas, votre roi peut la transporter pour vous. Pour cela, il vous suffit de la d&#233;placer dans une colonie c&#244;ti&#232;re puis de cliquer sur le bouton appropri&#233;.</French>
     <German>Sie haben eine neue Einheit %s1_unit erhalten. Diese Einheit kann nur von einer Galeone transportiert werden. Wenn Sie keine Galeone haben, kann Ihr K&#246;nig die Einheit f&#252;r Sie transportieren. Bewegen Sie sie einfach in eine K&#252;stenstadt und klicken Sie auf den entsprechenden Befehl.</German>
     <Italian>Hai ottenuto un %s1_unit. Pu&#242; essere trasportato esclusivamente da un galeone. Se non hai un galeone puoi chiedere al re di farlo trasportare per te. Spostati in un insediamento costiero e clicca sul pulsante relativo.</Italian>
@@ -1879,19 +1879,19 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_COMMAND_SAIL_TO_EUROPE</Tag>
-    <English>Return to Motherland</English>
-    <French>Return to Motherland</French>
-    <German>Return to Motherland</German>
-    <Italian>Return to Motherland</Italian>
-    <Spanish>Return to Motherland</Spanish>
+    <English>[COLOR_HIGHLIGHT_TEXT]Return to Motherland[COLOR_REVERT][NEWLINE]</English>
+    <French>[COLOR_HIGHLIGHT_TEXT]Return to Motherland[COLOR_REVERT][NEWLINE]</French>
+    <German>[COLOR_HIGHLIGHT_TEXT]Return to Motherland[COLOR_REVERT][NEWLINE]</German>
+    <Italian>[COLOR_HIGHLIGHT_TEXT]Return to Motherland[COLOR_REVERT][NEWLINE]</Italian>
+    <Spanish>[COLOR_HIGHLIGHT_TEXT]Return to Motherland[COLOR_REVERT][NEWLINE]</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_COMMAND_SAIL_TO_EUROPE_HELP</Tag>
-    <English>The unit travels off the map and can be accessed through the The Trade Fair Screen.</English>
-    <French>The unit travels off the map and can be accessed through the The Trade Fair Screen.</French>
-    <German>The unit travels off the map and can be accessed through the The Trade Fair Screen.</German>
-    <Italian>The unit travels off the map and can be accessed through the The Trade Fair Screen.</Italian>
-    <Spanish>The unit travels off the map and can be accessed through the The Trade Fair Screen.</Spanish>
+    <English>The unit travels off the map and can be accessed through the Trade Screen.</English>
+    <French>The unit travels off the map and can be accessed through the Trade Screen.</French>
+    <German>The unit travels off the map and can be accessed through the Trade Screen.</German>
+    <Italian>The unit travels off the map and can be accessed through the Trade Screen.</Italian>
+    <Spanish>The unit travels off the map and can be accessed through the Trade Screen.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_COMMAND_TRAVEL_TO_FAIR_HELP</Tag>

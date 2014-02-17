@@ -680,6 +680,10 @@
       <Path>Art/Interface/Game Hud/Top_buttons/ImmigrationTopBut.dds</Path>
     </InterfaceArtInfo>
     <InterfaceArtInfo>
+      <Type>INTERFACE_MOTHER_LAND</Type>
+      <Path>Art/Interface/Game Hud/Top_buttons/motherlandtopbut.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
       <Type>INTERFACE_SPICE_ROUTE</Type>
       <Path>Art/Interface/Game Hud/Top_buttons/SpiceRouteTopBut.dds</Path>
     </InterfaceArtInfo>

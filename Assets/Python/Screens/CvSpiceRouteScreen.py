@@ -377,10 +377,10 @@ class CvSpiceRouteScreen:
 			kYield = gc.getYieldInfo(iYield)
 			if kYield.isCargo():
 				#TradeScreen Code
-				if (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN_SPICE_ROUTE_MARKET, UnitTypes.NO_UNIT)):
-					YieldList.append(iYield)
-				else:
-					iDiscoverCount += 1
+				#if (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN_SPICE_ROUTE_MARKET, UnitTypes.NO_UNIT)):
+				YieldList.append(iYield)
+				#else:
+					#iDiscoverCount += 1
 		WidthMod = 33
 		BoxWithMod = -3
 		iDiscoverCount = len(YieldList) + iDiscoverCount
@@ -403,20 +403,34 @@ class CvSpiceRouteScreen:
 			
 			if (kYield.isMilitary()):
 				screen.addDDSGFC(self.getNextWidgetName(), ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE_BOX_PRICE").getPath(), xMilitaryLocation - MilitaryBoxSize, Military_Y_RATES, MilitaryBoxSize, MilitaryBoxSize, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1 )
-				screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xMilitaryLocation - MilitaryBoxSize + (MilitaryBoxSize / 8), Military_Y_RATES + (MilitaryBoxSize / 3), MilitaryBoxSize * 3 / 4, MilitaryBoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+				if not (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN_SPICE_ROUTE_MARKET, UnitTypes.NO_UNIT)):
+					screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xMilitaryLocation - MilitaryBoxSize + (MilitaryBoxSize / 8), Military_Y_RATES + (MilitaryBoxSize / 3), MilitaryBoxSize * 3 / 4, MilitaryBoxSize * 3 / 4, WidgetTypes.WIDGET_HELP_YIELD, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+				else:	
+					screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xMilitaryLocation - MilitaryBoxSize + (MilitaryBoxSize / 8), Military_Y_RATES + (MilitaryBoxSize / 3), MilitaryBoxSize * 3 / 4, MilitaryBoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
 				szPrices = u"<font=3>%d/%d</font>" % (iBuyPrice, iSellPrice)
-				#TradeScreen Code
 				if not player.isYieldEuropeTradable(iYield, self.TRADE_SCREEN_SPICE_ROUTE_MARKET):
 					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
+				elif not (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN_SPICE_ROUTE_MARKET, UnitTypes.NO_UNIT)):
+					iBuyPrice = playerEurope.getYieldBuyPrice(iYield, -1)
+					szPrices = u"<font=3>%d/-</font>" % (iBuyPrice)
+					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
+					
 				screen.setLabel(self.getNextWidgetName(), "Background", szPrices, CvUtil.FONT_CENTER_JUSTIFY, xMilitaryLocation - (MilitaryBoxSize / 2), Military_Y_RATES, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1)
 	
 				xMilitaryLocation += MilitaryBoxSize
 			else:	
 				screen.addDDSGFC(self.getNextWidgetName(), ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE_BOX_PRICE").getPath(), xLocation - BoxSize, self.Y_RATES - 10, BoxSize, BoxSize, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1 )
-				screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xLocation - BoxSize + (BoxSize / 8), self.Y_RATES + (BoxSize / 3) - 10, BoxSize * 3 / 4, BoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+				if not (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN_SPICE_ROUTE_MARKET, UnitTypes.NO_UNIT)):
+					screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xLocation - BoxSize + (BoxSize / 8), self.Y_RATES + (BoxSize / 3) - 10, BoxSize * 3 / 4, BoxSize * 3 / 4, WidgetTypes.WIDGET_HELP_YIELD, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+				else:
+					screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xLocation - BoxSize + (BoxSize / 8), self.Y_RATES + (BoxSize / 3) - 10, BoxSize * 3 / 4, BoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
 				szPrices = u"<font=3>%d/%d</font>" % (iBuyPrice, iSellPrice)
-				#TradeScreen Code
 				if not player.isYieldEuropeTradable(iYield, self.TRADE_SCREEN_SPICE_ROUTE_MARKET):
+					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
+				elif not (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN_SPICE_ROUTE_MARKET, UnitTypes.NO_UNIT)):
+					#iSellPrice = playerEurope.getYieldSellPrice(iYield, self.TRADE_SCREEN)
+					iBuyPrice = playerEurope.getYieldBuyPrice(iYield, -1)
+					szPrices = u"<font=3>%d/-</font>" % (iBuyPrice)
 					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
 				screen.setLabel(self.getNextWidgetName(), "Background", szPrices, CvUtil.FONT_CENTER_JUSTIFY, xLocation - (BoxSize / 2), self.Y_RATES - 10, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1)
 	

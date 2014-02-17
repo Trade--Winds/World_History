@@ -3548,21 +3548,9 @@ CardinalDirectionTypes CvPlot::getRiverWEDirection() const
 {
 	return (CardinalDirectionTypes)m_eRiverWEDirection;
 }
-
+///Tks Med
 EuropeTypes CvPlot::getEurope() const
-{
-    ///TKs Med
-//    PlayerTypes ePlayer = GC.getGameINLINE().getActivePlayer();
-//    if (ePlayer != NO_PLAYER)
-//    {
-//        if(GET_PLAYER(ePlayer).isHuman() && !GC.getCivilizationInfo(GET_PLAYER(ePlayer).getCivilizationType()).isWaterStart())
-//        {
-//            //return (EuropeTypes)0;
-//        }
-//    }
-
-
-    ///TKe
+{   
 	if (m_eEurope != NO_EUROPE)
 	{
 		return (EuropeTypes)m_eEurope;
@@ -3572,7 +3560,7 @@ EuropeTypes CvPlot::getEurope() const
 		return NO_EUROPE;
 	}
 }
-
+///TKe
 void CvPlot::setEurope(EuropeTypes eEurope)
 {
 	m_eEurope = (char)eEurope;

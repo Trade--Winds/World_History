@@ -3430,9 +3430,9 @@
       <AttackForceKey>Retribution Force</AttackForceKey>
       <DeclareKey>Declare Emperor</DeclareKey>
       <DawnKey>None</DawnKey>
-      <iVictoryType>4</iVictoryType>
-      <iTravelCommandType>0</iTravelCommandType>
-      <iEconomyType>3</iEconomyType>
+      <iVictoryType>0</iVictoryType>
+      <iTravelCommandType>2</iTravelCommandType>
+      <iEconomyType>1</iEconomyType>
       <EraTraits/>
       <iBaseAttitude>-2</iBaseAttitude>
       <iNativeAttitude>0</iNativeAttitude>
@@ -3850,12 +3850,12 @@
     </LeaderHeadInfo>
     <LeaderHeadInfo>
       <Type>LEADER_VIKING_ADVISOR</Type>
-      <Description>Viking Advisor</Description>
+      <Description>Viking King</Description>
       <Civilopedia>?????</Civilopedia>
       <ArtDefineTag>ART_DEF_LEADER_ADVISOR_VIKING</ArtDefineTag>
       <AlarmType>NONE</AlarmType>
       <AttackForceKey>Retribution Force</AttackForceKey>
-      <DeclareKey>Declare Emperor</DeclareKey>
+      <DeclareKey>Declare Viking King</DeclareKey>
       <DawnKey>None</DawnKey>
       <iBaseAttitude>-2</iBaseAttitude>
       <iNativeAttitude>0</iNativeAttitude>
@@ -4275,9 +4275,9 @@
       <AttackForceKey>Retribution Force</AttackForceKey>
       <DeclareKey>Declare Emperor</DeclareKey>
       <DawnKey>None</DawnKey>
-      <iVictoryType>4</iVictoryType>
-      <iTravelCommandType>0</iTravelCommandType>
-      <iEconomyType>3</iEconomyType>
+      <iVictoryType>0</iVictoryType>
+      <iTravelCommandType>2</iTravelCommandType>
+      <iEconomyType>1</iEconomyType>
       <EraTraits/>
       <iBaseAttitude>-2</iBaseAttitude>
       <iNativeAttitude>0</iNativeAttitude>

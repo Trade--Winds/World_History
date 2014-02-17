@@ -191,7 +191,6 @@ class CvImmigrationScreen:
 		iRoute = 0
 		iNumEuropeInfos = gc.getNumEuropeInfos()
 		ThisScreen = 0
-		#HasImmigrationScreen = gc.getLeaderHeadInfo(gc.getPlayer(gc.getGame().getActivePlayer()).getLeaderType()).getTravelCommandType() == 1
 		FinalRoute = -1
 		FirstRoute = -1
 		DiscoveredCout = 0;
@@ -205,6 +204,7 @@ class CvImmigrationScreen:
 				DiscoveredCout = DiscoveredCout + 1
 		if (FinalRoute != -1 and FirstRoute != FinalRoute and DiscoveredCout > 2):
 			screen.setImageButton("QickLink2",gc.getEuropeInfo(FinalRoute).getButton(), (self.XResolution * 35 / 100) - (ScrollButtonSize / 2), (STACK_BAR_HEIGHT / 2) - (ScrollButtonSize / 3), ScrollButtonSize, ScrollButtonSize, WidgetTypes.WIDGET_POP_UP_SCREEN, FinalRoute, 1)
+		
 		# draw the contents
 		self.drawContents()
 

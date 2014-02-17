@@ -3598,7 +3598,7 @@ void CvGameTextMgr::parseLeaderTraits(CvWStringBuffer &szHelpString, LeaderHeadT
         ///Tks Med
         if (!bDawnOfMan)
         {
-            int iVictoryType = GC.getLeaderHeadInfo(eLeader).getVictoryType();
+            int EconomyType = GC.getLeaderHeadInfo(eLeader).getEconomyType();
             if (eCivilization != NO_CIVILIZATION)
             {
                 if (GC.getCivilizationInfo(eCivilization).isWaterStart())
@@ -3613,7 +3613,7 @@ void CvGameTextMgr::parseLeaderTraits(CvWStringBuffer &szHelpString, LeaderHeadT
                 }
             }
 
-            if (iVictoryType == 4)
+            if (EconomyType == 1)
             {
                 szHelpString.append(NEWLINE);
                 szHelpString.append(gDLL->getText("TXT_KEY_CIVILIZATION_INVADER"));

@@ -8,8 +8,8 @@
 	<EuropeInfos>
 		<EuropeInfo>
 			<Type>TRADE_SCREEN_MOTHERLAND</Type>
-			<Description>TXT_KEY_EUROPE_SCREEN_TITLE</Description>
-      <Strategy>TXT_KEY_COMMAND_SAIL_TO_EUROPE</Strategy>
+			<Description>TXT_KEY_COMMAND_SAIL_TO_EUROPE</Description>
+      <Strategy>TXT_KEY_COMMAND_SAIL_TO_EUROPE_HELP</Strategy>
       <Help>TXT_KEY_EUROPE_SCREEN_TITLE</Help>
 			<Direction>east</Direction>
       <DirectionArrays>
@@ -39,20 +39,20 @@
         </DirectionArray>
       </DirectionArrays>
 			<bStart>1</bStart>
-      <bAIRoute>1</bAIRoute>
+      <bAIRoute>0</bAIRoute>
 			<iTripLength>3</iTripLength>
 			<iMinLandDistance>4</iMinLandDistance>
 			<iWidthPercent>20</iWidthPercent>
-      <bNoEuropePlot>1</bNoEuropePlot>
+      <bNoEuropePlot>0</bNoEuropePlot>
       <DomainTypes>
         <DomainType>
           <Domain>DOMAIN_SEA</Domain>
           <bValue>1</bValue>
         </DomainType>
       </DomainTypes>
-      <PythonTradeScreen>showSpiceRouteScreen</PythonTradeScreen>
+      <PythonTradeScreen>showEuropeScreen</PythonTradeScreen>
       <DefaultColor>PLAYERCOLOR_BLUE</DefaultColor>
-      <Button>Art/Interface/Game Hud/Actions/trade_goods_high_res.dds</Button>
+      <Button>Art/Interface/Game Hud/Actions/ReturnMotherland.dds</Button>
 		</EuropeInfo>
     <EuropeInfo>
       <Type>TRADE_SCREEN_SPICE_ROUTE_MARKET</Type>
@@ -116,10 +116,6 @@
       <!-- <CityRequiredBuildingClass></CityRequiredBuildingClass>-->
       <!--Select the Domain of this TradeScreen, Land, Sea, or Land and Sea -->
       <DomainTypes>
-        <DomainType>
-          <Domain>DOMAIN_LAND</Domain>
-          <bValue>1</bValue>
-        </DomainType>
         <DomainType>
           <Domain>DOMAIN_SEA</Domain>
           <bValue>1</bValue>

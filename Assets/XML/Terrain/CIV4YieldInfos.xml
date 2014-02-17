@@ -89,6 +89,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>200</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
     </YieldInfo>
     <YieldInfo>
@@ -259,6 +263,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>350</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
 		</YieldInfo>
     <YieldInfo>
@@ -301,6 +309,10 @@
         <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>350</iPricePercent>
+        </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
     </YieldInfo>
@@ -387,6 +399,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>25</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
     </YieldInfo>
     <YieldInfo>
@@ -430,6 +446,10 @@
         <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>75</iPricePercent>
+        </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
     </YieldInfo>
@@ -516,6 +536,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>25</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
 		</YieldInfo>
 		<YieldInfo>
@@ -557,6 +581,10 @@
         <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>60</iPricePercent>
+        </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>100</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
 		</YieldInfo>
@@ -600,6 +628,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
 		</YieldInfo>
 		<YieldInfo>
@@ -642,6 +674,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>200</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>300</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
 		</YieldInfo>
 		<YieldInfo>
@@ -683,6 +719,10 @@
         <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>80</iPricePercent>
+        </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
 		</YieldInfo>
@@ -768,6 +808,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>75</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>100</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
 		</YieldInfo>
 		<YieldInfo>
@@ -809,6 +853,10 @@
         <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>225</iPricePercent>
+        </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>
 		</YieldInfo>
@@ -928,6 +976,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>150</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>200</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
 		</YieldInfo>
     <YieldInfo>
@@ -1007,6 +1059,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>175</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
     </YieldInfo>
     <YieldInfo>
@@ -1052,6 +1108,10 @@
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
           <iPricePercent>175</iPricePercent>
         </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
+        </TradeScreenType>
       </TradeScreenTypes>
     </YieldInfo>
     <YieldInfo>
@@ -1095,6 +1155,10 @@
         </TradeScreenType>
         <TradeScreenType>
           <TradeScreen>TRADE_SCREEN_SILK_ROAD_MARKET</TradeScreen>
+          <iPricePercent>-1</iPricePercent>
+        </TradeScreenType>
+        <TradeScreenType>
+          <TradeScreen>TRADE_SCREEN_MOTHERLAND</TradeScreen>
           <iPricePercent>-1</iPricePercent>
         </TradeScreenType>
       </TradeScreenTypes>

@@ -122,6 +122,10 @@
           <PromotionType>PROMOTION_AMPHIBIOUS</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
+        <FreePromotion>
+          <PromotionType>PROMOTION_GRENADIER1</PromotionType>
+          <bFreePromotion>1</bFreePromotion>
+        </FreePromotion>
       </FreePromotions>
       <FreePromotionUnitCombats>
         <FreePromotionUnitCombat>

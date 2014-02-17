@@ -3078,7 +3078,7 @@
           <Attitudes/>
           <DiplomacyPowers/>
           <DiplomacyText>
-            <Text>AI_DIPLO_ADVISOR_KISS_PINKY_1</Text>
+            <Text>AI_DIPLO_KISS_PINKY_1</Text>
           </DiplomacyText>
         </Response>
         <Response>
@@ -3139,7 +3139,7 @@
           <Attitudes/>
           <DiplomacyPowers/>
           <DiplomacyText>
-            <Text>AI_DIPLO_ADVISOR_KISS_PINKY_1</Text>
+            <Text>USER_DIPLO_KISS_PINKY_1</Text>
           </DiplomacyText>
         </Response>
 				<Response>
@@ -3200,7 +3200,7 @@
           <Attitudes/>
           <DiplomacyPowers/>
           <DiplomacyText>
-            <Text>USER_DIPLO_TAX_ADVISOR_PARTY_1</Text>
+            <Text>USER_DIPLO_TAX_PARTY_1</Text>
           </DiplomacyText>
         </Response>
 				<Response>
@@ -3277,6 +3277,14 @@
               <LeaderType>LEADER_CALIPH</LeaderType>
               <bLeaderType>1</bLeaderType>
             </Leader>
+            <Leader>
+              <LeaderType>LEADER_VIKING_ADVISOR</LeaderType>
+              <bLeaderType>1</bLeaderType>
+            </Leader>
+            <Leader>
+              <LeaderType>LEADER_MONGOL_ADVISOR</LeaderType>
+              <bLeaderType>1</bLeaderType>
+            </Leader>
           </Leaders>
 					<Attitudes/>
 					<DiplomacyPowers/>
@@ -3320,6 +3328,14 @@
               <LeaderType>LEADER_CALIPH</LeaderType>
               <bLeaderType>1</bLeaderType>
             </Leader>
+            <Leader>
+              <LeaderType>LEADER_VIKING_ADVISOR</LeaderType>
+              <bLeaderType>1</bLeaderType>
+            </Leader>
+            <Leader>
+              <LeaderType>LEADER_MONGOL_ADVISOR</LeaderType>
+              <bLeaderType>1</bLeaderType>
+            </Leader>
           </Leaders>
 					<Attitudes/>
 					<DiplomacyPowers/>
@@ -3332,6 +3348,24 @@
 		<DiplomacyInfo>
 			<Type>AI_DIPLOCOMMENT_REJECT_PINKY</Type>
 			<Responses>
+        <Response>
+          <Civilizations/>
+          <Leaders>
+            <Leader>
+              <LeaderType>LEADER_VIKING_ADVISOR</LeaderType>
+              <bLeaderType>1</bLeaderType>
+            </Leader>
+            <Leader>
+              <LeaderType>LEADER_MONGOL_ADVISOR</LeaderType>
+              <bLeaderType>1</bLeaderType>
+            </Leader>
+          </Leaders>
+          <Attitudes/>
+          <DiplomacyPowers/>
+          <DiplomacyText>
+            <Text>AI_DIPLO_REJECT_PINKY_1</Text>
+          </DiplomacyText>
+        </Response>
 				<Response>
 					<Civilizations/>
           <Leaders>
@@ -3375,6 +3409,24 @@
 		<DiplomacyInfo>
 			<Type>USER_DIPLOCOMMENT_REJECT_PINKY</Type>
 			<Responses>
+        <Response>
+          <Civilizations/>
+          <Leaders>
+            <Leader>
+              <LeaderType>LEADER_VIKING_ADVISOR</LeaderType>
+              <bLeaderType>1</bLeaderType>
+            </Leader>
+            <Leader>
+              <LeaderType>LEADER_MONGOL_ADVISOR</LeaderType>
+              <bLeaderType>1</bLeaderType>
+            </Leader>
+          </Leaders>
+          <Attitudes/>
+          <DiplomacyPowers/>
+          <DiplomacyText>
+            <Text>USER_DIPLO_REJECT_PINKY_1</Text>
+          </DiplomacyText>
+        </Response>
 				<Response>
 					<Civilizations/>
           <Leaders>
@@ -3435,9 +3487,11 @@
           <Attitudes/>
           <DiplomacyPowers/>
           <DiplomacyText>
-            <Text>AI_DIPLO_ADVISOR_ASK_FOR_GOLD_1</Text>
-            <Text>AI_DIPLO_ADVISOR_ASK_FOR_GOLD_2</Text>
-            <Text>AI_DIPLO_ADVISOR_ASK_FOR_GOLD_3</Text>
+            <Text>AI_DIPLO_KING_ASK_FOR_GOLD_1</Text>
+            <Text>AI_DIPLO_KING_ASK_FOR_GOLD_2</Text>
+            <Text>AI_DIPLO_KING_ASK_FOR_GOLD_3</Text>
+            <Text>AI_DIPLO_KING_ASK_FOR_GOLD_4</Text>
+            <Text>AI_DIPLO_KING_ASK_FOR_GOLD_5</Text>
           </DiplomacyText>
         </Response>
         <Response>
@@ -3956,7 +4010,7 @@
           <Attitudes/>
           <DiplomacyPowers/>
           <DiplomacyText>
-            <Text>AI_DIPLO_ADVISOR_REVIVE_1</Text>
+            <Text>AI_DIPLO_KING_REVIVE_1</Text>
           </DiplomacyText>
         </Response>
         <Response>
@@ -6302,7 +6356,7 @@
           <Attitudes/>
           <DiplomacyPowers/>
           <DiplomacyText>
-            <Text>USER_DIPLO_BUY_UNITS_FROM_ADVISOR_1</Text>
+            <Text>USER_DIPLO_BUY_UNITS_1</Text>
           </DiplomacyText>
         </Response>
 				<Response>
@@ -6363,7 +6417,7 @@
           <Attitudes/>
           <DiplomacyPowers/>
           <DiplomacyText>
-            <Text>USER_DIPLO_BUY_UNITS_FROM_ADVISOR_1</Text>
+            <Text>AI_DIPLO_BUY_UNITS_1</Text>
           </DiplomacyText>
         </Response>
 				<Response>
@@ -6424,7 +6478,7 @@
           <Attitudes/>
           <DiplomacyPowers/>
           <DiplomacyText>
-            <Text>AI_DIPLO_REJECT_BUY_UNITS_FROM_ADVISOR_1</Text>
+            <Text>AI_DIPLO_REJECT_BUY_UNIS_1</Text>
           </DiplomacyText>
         </Response>
 				<Response>
@@ -6485,7 +6539,7 @@
           <Attitudes/>
           <DiplomacyPowers/>
           <DiplomacyText>
-            <Text>AI_DIPLO_ACCEPT_BUY_UNITS_FROM_ADVISOR_1</Text>
+            <Text>USER_DIPLO_ACCEPT_BUY_UNITS_1</Text>
           </DiplomacyText>
         </Response>
 				<Response>

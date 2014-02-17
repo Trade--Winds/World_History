@@ -7196,14 +7196,14 @@ bool CvPlayerAI::AI_doDiploKissPinky(PlayerTypes ePlayer)
 	{
 		return false;
 	}
-	if (!kPlayer.isFeatAccomplished(FEAT_CITY_NO_FOOD))
+	if ((GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() == 1 || GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() == 3) && !kPlayer.isFeatAccomplished(FEAT_CITY_NO_FOOD))
 	{
 	    return false;
 	}
 
 
 	//if (AI_getMemoryCount(ePlayer, MEMORY_REFUSED_TAX)) ATTITUDE_ANNOYED
-	if (kPlayer.isHuman() && GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() == 1)
+	if (kPlayer.isHuman() && (GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() == 1 || GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() == 3))
     {
 
         if (AI_getAttitude(ePlayer, false) <= ATTITUDE_ANNOYED)

@@ -310,7 +310,7 @@
 			<bShiftDownAlt>0</bShiftDownAlt>
 			<bCtrlDownAlt>0</bCtrlDownAlt>
 			<iHotKeyPriorityAlt>0</iHotKeyPriorityAlt>
-			<bVisible>1</bVisible>
+			<bVisible>0</bVisible>
 			<Button>Art/Interface/Game Hud/Actions/ReturnMotherland.dds</Button>
 		</CommandInfo>
 		<CommandInfo>

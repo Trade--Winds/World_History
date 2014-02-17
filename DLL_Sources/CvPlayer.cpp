@@ -982,6 +982,16 @@ CvUnit* CvPlayer::addFreeUnit(UnitTypes eUnit, ProfessionTypes eProfession, Unit
 	{
 		CvUnit* pUnit = initUnit(eUnit, eProfession, pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), eUnitAI);
 		///TKs Med
+		EuropeTypes eEurope = pStartingPlot->getEurope();
+		if (eEurope != NO_EUROPE)
+		{
+			CvEuropeInfo& kEurope = GC.getEuropeInfo(eEurope);
+			int iWidthPercent = kEurope.getWidthPercent();
+			if (pStartingPlot->getX_INLINE() < iWidthPercent * GC.getMapINLINE().getGridWidthINLINE() / 100)
+			{
+				pUnit->setFacingDirection(DIRECTION_EAST);
+			}
+		}
 		YieldTypes eYield = pUnit->getYield();
         if (eYield != NO_YIELD)
         {
@@ -2529,7 +2539,7 @@ void CvPlayer::doTurnUnits()
 	}
 
     bool bWaterStart = GC.getCivilizationInfo(getCivilizationType()).isWaterStart();
-	if (bWaterStart && !isHuman() && getParent() != NO_PLAYER)
+	if (bWaterStart && getParent() != NO_PLAYER)
 	{
 		CvPlayer& kEurope = GET_PLAYER(getParent());
 		if (kEurope.isAlive() && kEurope.isEurope() && !::atWar(getTeam(), kEurope.getTeam()))
@@ -3227,7 +3237,7 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
 			AI_changeMemoryCount(ePlayer, MEMORY_REFUSED_TAX, 1);
 			CvPlayer& kPlayer = GET_PLAYER(ePlayer);
 
-			if (kPlayer.isHuman() && GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() == 1)
+			if (kPlayer.isHuman() && (GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() == 1 || GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() == 3))
             {
                 if (AI_getAttitude(ePlayer, false) <= ATTITUDE_ANNOYED)
                 {
@@ -3372,14 +3382,15 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
 	case DIPLOEVENT_TRANSPORT_TREASURE:
 		{
 		     ///TKs Med
-//            if (GC.getCivilizationInfo(GET_PLAYER(ePlayer).getCivilizationType()).isWaterStart())
-//            {
-//                CvUnit* pUnit = GET_PLAYER(ePlayer).getUnit(iData1);
-//                if (pUnit != NULL)
-//                {
-//                    pUnit->doKingTransport();
-//                }
-//            }
+            //if (GC.getCivilizationInfo(GET_PLAYER(ePlayer).getCivilizationType()).isWaterStart())
+            //{
+                CvUnit* pUnit = GET_PLAYER(ePlayer).getUnit(iData1);
+                if (pUnit != NULL)
+                {
+                    pUnit->doKingTransport();
+                }
+            //}
+			///Tke
 		}
 		break;
 
@@ -9454,23 +9465,24 @@ void CvPlayer::doBells()
                     ///TKs Med
                     ///<!--VICTORY: 0 = Kill King; 1 = Pope; 2 = Crusaders; 3 = Ottomans; 4 = Retribution-->///
                     CvWString szBuffer;
-                    if (GC.getLeaderHeadInfo(getLeaderType()).getVictoryType() == 0)
+					int iVictoryType = GC.getLeaderHeadInfo(getLeaderType()).getVictoryType();
+                    if (iVictoryType == 0)
                     {
                          szBuffer = gDLL->getText("TXT_KEY_NEW_EUROPE_ARMY_NEW", iNumUnits);
                     }
-                    else if (GC.getLeaderHeadInfo(getLeaderType()).getVictoryType() == 1)
+                    else if (iVictoryType == 1)
                     {
                          szBuffer = gDLL->getText("TXT_KEY_NEW_POPE_ARMY_NEW", kParent.getCivilizationShortDescriptionKey(), iNumUnits);
                     }
-                    else if (GC.getLeaderHeadInfo(getLeaderType()).getVictoryType() == 2)
+                    else if (iVictoryType == 2)
                     {
                          szBuffer = gDLL->getText("TXT_KEY_NEW_CRUSADER_ARMY_NEW", getCivilizationAdjectiveKey(), iNumUnits);
                     }
-                    else if (GC.getLeaderHeadInfo(getLeaderType()).getVictoryType() == 3)
+                    else if (iVictoryType == 3)
                     {
                          szBuffer = gDLL->getText("TXT_KEY_NEW_OTTOMAN_ARMY_NEW", iNumUnits);
                     }
-                    else if (GC.getLeaderHeadInfo(getLeaderType()).getVictoryType() == 4)
+                    else if (iVictoryType == 4)
                     {
                          szBuffer = gDLL->getText("TXT_KEY_NEW_RETRIBUTION_ARMY_NEW", getCivilizationAdjectiveKey(), iNumUnits);
                     }
@@ -9507,7 +9519,7 @@ void CvPlayer::doCrosses()
 		changeFatherPoints(ePointType, iCrossRate * GC.getFatherPointInfo(ePointType).getYieldPoints(YIELD_CROSSES));
 	}
 	 ///TKs Med
-    if (isHuman() && !isFeatAccomplished(FEAT_CITY_NO_FOOD) && getCrossesStored() >= 4)
+    if (isHuman() && (GC.getLeaderHeadInfo(getLeaderType()).getVictoryType() == 1 || GC.getLeaderHeadInfo(getLeaderType()).getVictoryType() == 3) && !isFeatAccomplished(FEAT_CITY_NO_FOOD) && getCrossesStored() >= 4)
     {
         DiploCommentTypes eDiploComment = NO_DIPLOCOMMENT;
         eDiploComment = (DiploCommentTypes) GC.getInfoTypeForString("AI_DIPLOCOMMENT_MEET_THE_POP");
@@ -14629,9 +14641,12 @@ int CvPlayer::getYieldBuyPrice(YieldTypes eYield, EuropeTypes eTradeScreen) cons
         if (getTradeScreenPriceMod(eYield, eTradeScreen) > 0 && iPrice == 0)
         {
             iPrice = 1;
+			iPrice = (iPrice * getTradeScreenPriceMod(eYield, eTradeScreen)) / 100;
         }
-        ///Tke
-        iPrice = (iPrice * getTradeScreenPriceMod(eYield, eTradeScreen)) / 100;
+		else if (getTradeScreenPriceMod(eYield, eTradeScreen) > 0)
+        {
+             iPrice = (iPrice * getTradeScreenPriceMod(eYield, eTradeScreen)) / 100;
+        }
 	}
 
 	return std::max(1, iPrice);
@@ -16537,7 +16552,7 @@ void CvPlayer::doImmigrant(int iIndex, int iReason)
 
             CvUnit* pUnit = NULL;
 
-            if (!GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
+            if (GC.getLeaderHeadInfo(getLeaderType()).getTravelCommandType() >= 1)
             {
                 CvCity* pPrimaryCity = getPrimaryCity();
                 CvCity* pImmigationCity = findImmigrationCity(pPrimaryCity, GC.getXMLval(XML_IMMIGRATION_MAX_CITY_DISTANCE));
@@ -16556,6 +16571,10 @@ void CvPlayer::doImmigrant(int iIndex, int iReason)
                         iReason = -1;
                     }
                 }
+				else if (GC.getLeaderHeadInfo(getLeaderType()).getTravelCommandType() == 2)
+				{
+					pUnit = initEuropeUnit(eBestUnit);
+				}
                 else if (pPrimaryCity != NULL)
                 {
 
@@ -16584,7 +16603,7 @@ void CvPlayer::doImmigrant(int iIndex, int iReason)
                         iReason = -1;
                     }
                 }
-                FAssert(pPrimaryCity != NULL);
+                //FAssert(pPrimaryCity != NULL && GC.getLeaderHeadInfo(getLeaderType()).getTravelCommandType() != 2);
             }
             else
             {

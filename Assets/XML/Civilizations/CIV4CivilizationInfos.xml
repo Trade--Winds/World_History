@@ -1041,7 +1041,7 @@
       <ArtDefineTag>ART_DEF_CIVILIZATION_VIKING</ArtDefineTag>
       <ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
       <UnitArtStyleType>UNIT_ARTSTYLE_SCANDINAVIA</UnitArtStyleType>
-      <bPlayable>0</bPlayable>
+      <bPlayable>1</bPlayable>
       <bAIPlayable>1</bAIPlayable>
       <bWaterStart>1</bWaterStart>
       <bOpenBorders>0</bOpenBorders>
@@ -1141,7 +1141,7 @@
         </FreeUnitClass>
         <FreeUnitClass>
           <UnitClassType>UNITCLASS_VETERAN</UnitClassType>
-          <FreeUnitProfession>PROFESSION_PIONEER</FreeUnitProfession>
+          <FreeUnitProfession>PROFESSION_SKIRMISHER1</FreeUnitProfession>
         </FreeUnitClass>
         <FreeUnitClass>
           <UnitClassType>UNITCLASS_VETERAN</UnitClassType>

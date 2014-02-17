@@ -80,7 +80,7 @@ class CvEuropeScreen:
 		self.Y_DOCKS_OFFSET = 50
 		self.H_DOCK = (self.PANE_HEIGHT - (self.H_TEXT_MARGIN * 2)) * 35 / 100
 		
-		self.EUROPE_EAST = CvUtil.findInfoTypeNum('TRADE_SCREEN_MOTHERLAND')
+		self.TRADE_SCREEN = CvUtil.findInfoTypeNum('TRADE_SCREEN_MOTHERLAND')
 		#self.EUROPE_WEST = CvUtil.findInfoTypeNum('EUROPE_WEST')
 
 		# Set the background and exit button, and show the screen
@@ -143,6 +143,7 @@ class CvEuropeScreen:
 			screen.setText("HireButtonText", "Background", u"<font=4>" + szText + u"</font>", CvUtil.FONT_LEFT_JUSTIFY, (self.XResolution * 8 / 10) + (self.CARGO_ICON_SIZE), 40 + ((self.CARGO_ICON_SIZE * 1 / 2) - 10), 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, self.BUY_UNIT_BUTTON_ID, -1)
 		#TKs
 		self.TOTAL_CLOTH = 0
+		
 		#iVictoryYield = gc.getDefineINT("INDUSTRIAL_VICTORY_SINGLE_YIELD")
 		#self.TOTAL_CLOTH = gc.getPlayer(gc.getGame().getActivePlayer()).getVictoryYieldCount(iVictoryYield);
 		#if (gc.getGame().isIndustrialVictoryAll()):
@@ -174,7 +175,7 @@ class CvEuropeScreen:
 		OutboundUnitsList = []
 		(unit, iter) = player.firstUnit()
 		while (unit):
-			if (not unit.isCargo() and not unit.isDelayedDeath()):
+			if (not unit.isCargo() and not unit.isDelayedDeath() and (unit.getUnitTradeMarket() <= 0)):
 				if (unit.getUnitTravelState() == UnitTravelStates.UNIT_TRAVEL_STATE_IN_EUROPE):
 					EuropeUnitsList.append(unit)
 				elif (unit.getUnitTravelState() == UnitTravelStates.UNIT_TRAVEL_STATE_TO_EUROPE):
@@ -225,10 +226,10 @@ class CvEuropeScreen:
 					iCargoCount = iCargoCount + 1
 
 			if (YieldOnBoard):
-				screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", gc.getActionInfo(gc.getInfoTypeForString("COMMAND_YIELD_TRADE")).getButton(), ShipPanelWidth - (self.CARGO_ICON_SIZE * 2 / 2), yLocation_InPort + self.SHIP_ICON_SIZE + (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SELL_ALL, unit.getID())
+				screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", gc.getActionInfo(gc.getInfoTypeForString("COMMAND_CHOOSE_TRADE_ROUTES")).getButton(), ShipPanelWidth - (self.CARGO_ICON_SIZE * 2 / 2), yLocation_InPort + self.SHIP_ICON_SIZE + (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SELL_ALL, unit.getID())
 
 			if (not unit.isFull() and player.getNumEuropeUnits() > 0):
-				screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", gc.getActionInfo(gc.getInfoTypeForString("COMMAND_LOAD")).getButton(), ShipPanelWidth - (self.CARGO_ICON_SIZE * 2 / 2), yLocation_InPort + self.SHIP_ICON_SIZE - (self.CARGO_ICON_SIZE * 3 / 8), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.LOAD_ALL, unit.getID())
+				screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", gc.getActionInfo(gc.getInfoTypeForString("COMMAND_LOAD_CARGO")).getButton(), ShipPanelWidth - (self.CARGO_ICON_SIZE * 2 / 2), yLocation_InPort + self.SHIP_ICON_SIZE - (self.CARGO_ICON_SIZE * 3 / 8), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.LOAD_ALL, unit.getID())
 			#TKs Med in port
 			UnitInfo = gc.getUnitInfo(unit.getUnitType())
 			iProfession = unit.getProfession()
@@ -238,7 +239,7 @@ class CvEuropeScreen:
 				screen.addDragableButtonAt("LoadingList", self.getNextWidgetName(), unit.getFullLengthIcon(), "", 0, yLocation_InPort, self.SHIP_ICON_SIZE * 2, self.SHIP_ICON_SIZE * 2, WidgetTypes.WIDGET_SHIP_CARGO, unit.getID(), -1, ButtonStyles.BUTTON_STYLE_LABEL)
 			#Tke
 #			screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE_SAIL").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE * 2) - (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD, unit.getID())
-			if (unit.canSailEurope(self.EUROPE_EAST)):
+			if (unit.canSailEurope(self.TRADE_SCREEN)):
 				if gc.getCivilizationInfo(player.getCivilizationType()).isWaterStart():
 					screen.setImageButtonAt(self.getNextWidgetName(), "LoadingList", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEAVE_PORT").getPath(), - (self.CARGO_ICON_SIZE / 3) + 4, yLocation_InPort + (self.SHIP_ICON_SIZE * 2) - (self.CARGO_ICON_SIZE * 3 / 4), self.CARGO_ICON_SIZE * 3 / 2, self.CARGO_ICON_SIZE * 3 / 2, WidgetTypes.WIDGET_GENERAL, self.SAIL_TO_NEW_WORLD, unit.getID())
 				else:
@@ -341,10 +342,10 @@ class CvEuropeScreen:
 		for iYield in range(YieldTypes.NUM_YIELD_TYPES):
 			kYield = gc.getYieldInfo(iYield)
 			if kYield.isCargo():
-				if (pPlayer.canUnitBeTraded(iYield, self.EUROPE_EAST, UnitTypes.NO_UNIT)):
-					YieldList.append(iYield)
-				else:
-					iDiscoverCount += 1
+				#if (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN, UnitTypes.NO_UNIT)):
+				YieldList.append(iYield)
+				#else:
+				#iDiscoverCount += 1
 		WidthMod = 33
 		BoxWithMod = -3
 		iDiscoverCount = len(YieldList) + iDiscoverCount
@@ -362,23 +363,40 @@ class CvEuropeScreen:
 		for iYield in YieldList:
 			kYield = gc.getYieldInfo(iYield)
 			#TKs Med
-			iSellPrice = playerEurope.getYieldSellPrice(iYield, self.EUROPE_EAST)
-			iBuyPrice = playerEurope.getYieldBuyPrice(iYield, self.EUROPE_EAST)
-			#Tke
+			iSellPrice = playerEurope.getYieldSellPrice(iYield, self.TRADE_SCREEN)
+			iBuyPrice = playerEurope.getYieldBuyPrice(iYield, self.TRADE_SCREEN)
+			
 			if (kYield.isMilitary()):
 				screen.addDDSGFC(self.getNextWidgetName(), ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE_BOX_PRICE").getPath(), xMilitaryLocation - MilitaryBoxSize, Military_Y_RATES, MilitaryBoxSize, MilitaryBoxSize, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1 )
-				screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xMilitaryLocation - MilitaryBoxSize + (MilitaryBoxSize / 8), Military_Y_RATES + (MilitaryBoxSize / 3), MilitaryBoxSize * 3 / 4, MilitaryBoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+				if not (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN, UnitTypes.NO_UNIT)):
+					screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xMilitaryLocation - MilitaryBoxSize + (MilitaryBoxSize / 8), Military_Y_RATES + (MilitaryBoxSize / 3), MilitaryBoxSize * 3 / 4, MilitaryBoxSize * 3 / 4, WidgetTypes.WIDGET_HELP_YIELD, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+				else:	
+					screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xMilitaryLocation - MilitaryBoxSize + (MilitaryBoxSize / 8), Military_Y_RATES + (MilitaryBoxSize / 3), MilitaryBoxSize * 3 / 4, MilitaryBoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
 				szPrices = u"<font=3>%d/%d</font>" % (iBuyPrice, iSellPrice)
-				if not player.isYieldEuropeTradable(iYield, self.EUROPE_EAST):
+				if not player.isYieldEuropeTradable(iYield, self.TRADE_SCREEN):
 					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
+				elif not (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN, UnitTypes.NO_UNIT)):
+					#iSellPrice = playerEurope.getYieldSellPrice(iYield, self.TRADE_SCREEN)
+					iBuyPrice = playerEurope.getYieldBuyPrice(iYield, -1)
+					szPrices = u"<font=3>%d/-</font>" % (iBuyPrice)
+					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
+					
 				screen.setLabel(self.getNextWidgetName(), "Background", szPrices, CvUtil.FONT_CENTER_JUSTIFY, xMilitaryLocation - (MilitaryBoxSize / 2), Military_Y_RATES, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1)
 	
 				xMilitaryLocation += MilitaryBoxSize
 			else:	
 				screen.addDDSGFC(self.getNextWidgetName(), ArtFileMgr.getInterfaceArtInfo("INTERFACE_EUROPE_BOX_PRICE").getPath(), xLocation - BoxSize, self.Y_RATES - 10, BoxSize, BoxSize, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1 )
-				screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xLocation - BoxSize + (BoxSize / 8), self.Y_RATES + (BoxSize / 3) - 10, BoxSize * 3 / 4, BoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+				if not (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN, UnitTypes.NO_UNIT)):
+					screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xLocation - BoxSize + (BoxSize / 8), self.Y_RATES + (BoxSize / 3) - 10, BoxSize * 3 / 4, BoxSize * 3 / 4, WidgetTypes.WIDGET_HELP_YIELD, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
+				else:
+					screen.addDragableButton(self.getNextWidgetName(), gc.getYieldInfo(iYield).getIcon(), "", xLocation - BoxSize + (BoxSize / 8), self.Y_RATES + (BoxSize / 3) - 10, BoxSize * 3 / 4, BoxSize * 3 / 4, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1, ButtonStyles.BUTTON_STYLE_IMAGE )
 				szPrices = u"<font=3>%d/%d</font>" % (iBuyPrice, iSellPrice)
-				if not player.isYieldEuropeTradable(iYield, self.EUROPE_EAST):
+				if not player.isYieldEuropeTradable(iYield, self.TRADE_SCREEN):
+					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
+				elif not (pPlayer.canUnitBeTraded(iYield, self.TRADE_SCREEN, UnitTypes.NO_UNIT)):
+					#iSellPrice = playerEurope.getYieldSellPrice(iYield, self.TRADE_SCREEN)
+					iBuyPrice = playerEurope.getYieldBuyPrice(iYield, -1)
+					szPrices = u"<font=3>%d/-</font>" % (iBuyPrice)
 					szPrices = u"<color=255,0,0>" + szPrices + u"</color>"
 				screen.setLabel(self.getNextWidgetName(), "Background", szPrices, CvUtil.FONT_CENTER_JUSTIFY, xLocation - (BoxSize / 2), self.Y_RATES - 10, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_MOVE_CARGO_TO_TRANSPORT, iYield, -1)
 	
@@ -431,7 +449,7 @@ class CvEuropeScreen:
 					activePlayer = gc.getPlayer(gc.getGame().getActivePlayer())
 					transport = activePlayer.getUnit(inputClass.getData2())
 					if (not transport.isNone()) and transport.getUnitTravelState() != UnitTravelStates.UNIT_TRAVEL_STATE_FROM_EUROPE:
-						CyMessageControl().sendDoCommand(inputClass.getData2(), CommandTypes.COMMAND_SAIL_TO_EUROPE, UnitTravelStates.UNIT_TRAVEL_STATE_FROM_EUROPE, self.EUROPE_EAST, false)
+						CyMessageControl().sendDoCommand(inputClass.getData2(), CommandTypes.COMMAND_SAIL_TO_EUROPE, UnitTravelStates.UNIT_TRAVEL_STATE_FROM_EUROPE, self.TRADE_SCREEN, false)
 
 				#elif (inputClass.getData1() == self.SAIL_TO_NEW_WORLD_WEST) :
 					#activePlayer = gc.getPlayer(gc.getGame().getActivePlayer())

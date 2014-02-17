@@ -5298,17 +5298,7 @@ int CvUnit::getLearnTime() const
 ///TKs Med
 bool CvUnit::canKingTransport(bool bTestVisible) const
 {
-	//PlayerTypes eParent = GET_PLAYER(getOwnerINLINE()).getParent();
-//	if (eParent == NO_PLAYER || !GET_PLAYER(eParent).isAlive() || ::atWar(getTeam(), GET_PLAYER(eParent).getTeam()))
-//	{
-//		return false;
-//	}
-
-//	if (!canMove())
-//	{
-//		return false;
-//	}
-    if (!m_pUnitInfo->isTreasure())
+	if (!m_pUnitInfo->isTreasure())
 	{
 		return false;
 	}
@@ -5317,10 +5307,24 @@ bool CvUnit::canKingTransport(bool bTestVisible) const
 	{
 		return false;
 	}
+	CvCity* pCity = plot()->getPlotCity();
+	if (GC.getLeaderHeadInfo(GET_PLAYER(getOwner()).getLeaderType()).getVictoryType() <= 0)
+	{
+		PlayerTypes eParent = GET_PLAYER(getOwnerINLINE()).getParent();
+		if (eParent == NO_PLAYER || !GET_PLAYER(eParent).isAlive() || ::atWar(getTeam(), GET_PLAYER(eParent).getTeam()))
+		{
+			return false;
+		}
+
+		if (!pCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+		{
+			return false;
+		}
+
+	}
 
 if (!bTestVisible)
 {
-	CvCity* pCity = pPlot->getPlotCity();
 	if (pCity != NULL)
 	{
         if (pPlot->getTeam() != getTeam())
@@ -5406,9 +5410,9 @@ void CvUnit::kingTransport(bool bSkipPopup)
 		return;
 	}
     ///TKs SkipDip
-    bSkipPopup = true;
+    //bSkipPopup = true;
     ///Tke
-	if (isHuman() && !bSkipPopup)
+	if (isHuman() && GC.getLeaderHeadInfo(GET_PLAYER(getOwner()).getLeaderType()).getVictoryType() <= 0)
 	{
 		CvDiploParameters* pDiplo = new CvDiploParameters(GET_PLAYER(getOwnerINLINE()).getParent());
 		pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_TREASURE_TRANSPORT"));
@@ -5442,27 +5446,18 @@ void CvUnit::kingTransport(bool bSkipPopup)
 		doKingTransport();
 	}
 }
-
+//Tks Med
 void CvUnit::doKingTransport()
 {
-    ///TKs Invention Core Mod v 1.0
-//    int iCommission = GC.getDefineINT("KING_TRANSPORT_TREASURE_COMISSION");
-//    for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
-//    {
-//
-//        CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes) iCivic);
-//        if (kCivicInfo.getKingTreasureTransportMod() > 0)
-//        {
-//            if (GET_PLAYER(getOwner()).getIdeasResearched((CivicTypes) iCivic) > 0)
-//            {
-//                iCommission = iCommission * kCivicInfo.getKingTreasureTransportMod() / 100;
-//            }
-//        }
-//
-//    }
-//    iCommission = 0;
-//
-//	GET_PLAYER(getOwnerINLINE()).sellYieldUnitToEurope(this, getYieldStored(), iCommission);
+		if (m_pUnitInfo->getConvertsToBuildingClass() == NO_BUILDINGCLASS && GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getLeaderType()).getVictoryType() <= 0)
+		{
+			GET_PLAYER(getOwnerINLINE()).sellYieldUnitToEurope(this, getYieldStored(), GC.getDefineINT("KING_TRANSPORT_TREASURE_COMISSION"));
+		
+            plot()->addCrumbs(10);
+            kill(true);
+			return;
+		}
+
         bool bKill = false;
         bool bRequiresBuilding = false;
         CvCity* ePlotCity = plot()->getPlotCity();
@@ -6252,8 +6247,8 @@ bool CvUnit::canFound(const CvPlot* pPlot, bool bTestVisible, int iFoundType) co
 		}
 	}
 
-    int iVictoryType = GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getLeaderType()).getVictoryType();
-    if (GC.getGameINLINE().isFinalInitialized() && isHuman() && iVictoryType == 4)
+    int iEconomyType = GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getLeaderType()).getEconomyType();
+    if (GC.getGameINLINE().isFinalInitialized() && isHuman() && iEconomyType == 1)
     {
         if (!GET_PLAYER(getOwnerINLINE()).isFirstCityRazed())
         {
@@ -6293,17 +6288,17 @@ bool CvUnit::found(int iType)
 		bool bInland = !plot()->isCoastalLand(GC.getXMLval(XML_MIN_WATER_SIZE_FOR_OCEAN));
 
 		DiploCommentTypes eDiploComment = NO_DIPLOCOMMENT;
-		///TKs SkipDip
-//		if (iFoodDifference < 0 && kPlayer.shouldDisplayFeatPopup(FEAT_CITY_NO_FOOD))
-//		{
-//			eDiploComment = (DiploCommentTypes) GC.getInfoTypeForString("AI_DIPLOCOMMENT_FOUND_CITY_NO_FOOD");
-//			kPlayer.setFeatAccomplished(FEAT_CITY_NO_FOOD, true);
-//		}
-//		else if (bInland && kPlayer.shouldDisplayFeatPopup(FEAT_CITY_INLAND))
-//		{
-//			eDiploComment = (DiploCommentTypes) GC.getInfoTypeForString("AI_DIPLOCOMMENT_FOUND_CITY_INLAND");
-//			kPlayer.setFeatAccomplished(FEAT_CITY_INLAND, true);
-//		}
+		///TKs Med
+		if (iFoodDifference < 0 && GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() <= 0 && kPlayer.shouldDisplayFeatPopup(FEAT_CITY_NO_FOOD))
+		{
+			eDiploComment = (DiploCommentTypes) GC.getInfoTypeForString("AI_DIPLOCOMMENT_FOUND_CITY_NO_FOOD");
+			kPlayer.setFeatAccomplished(FEAT_CITY_NO_FOOD, true);
+		}
+		else if (bInland && GC.getLeaderHeadInfo(kPlayer.getLeaderType()).getVictoryType() <= 0 && kPlayer.shouldDisplayFeatPopup(FEAT_CITY_INLAND))
+		{
+			eDiploComment = (DiploCommentTypes) GC.getInfoTypeForString("AI_DIPLOCOMMENT_FOUND_CITY_INLAND");
+			kPlayer.setFeatAccomplished(FEAT_CITY_INLAND, true);
+		}
         ///TKe
 		if (eDiploComment != NO_DIPLOCOMMENT)
 		{
