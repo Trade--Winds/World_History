@@ -657,6 +657,21 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 	if (getSub(pXML))
 	{
 		pXML->GetChildXmlValByName(m_szTextKey, "Description");
+		pXML->GetChildXmlValByName(&m_iPowerValue, "iPower");
+		m_aYieldEquipments.clear();
+		pXML->SetVariableListTagPair(&aiYieldAmounts, "YieldEquipedNums", NUM_YIELD_TYPES, 0);
+		for (int i = 0; i < NUM_YIELD_TYPES; ++i)
+		{
+			if (aiYieldAmounts[i] != 0)
+			{
+				YieldEquipment kYieldEquipment;
+				kYieldEquipment.iYieldType = i;
+				kYieldEquipment.iYieldAmount = aiYieldAmounts[i];
+				m_aYieldEquipments.push_back(kYieldEquipment);
+			}
+		}
+		SAFE_DELETE_ARRAY(aiYieldAmounts);
+		pXML->SetVariableListTagPair(&m_abFreePromotions, "FreePromotions", GC.getNumPromotionInfos(), false);
 
 		// restore XML
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());

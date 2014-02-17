@@ -303,6 +303,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -661,6 +672,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_ARAB_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -1090,6 +1112,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -1531,6 +1564,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -1944,6 +1988,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -2404,6 +2459,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -2781,6 +2847,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -3147,6 +3224,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -3498,6 +3586,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -3873,6 +3972,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -4228,6 +4338,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -4608,6 +4729,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -4968,6 +5100,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -5344,6 +5487,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -5759,6 +5913,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -6132,6 +6297,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -6525,6 +6701,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -6885,6 +7072,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -7282,6 +7480,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -7634,6 +7843,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -7997,6 +8217,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -8373,6 +8604,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -8762,6 +9004,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -9119,6 +9372,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -9500,6 +9764,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -9850,6 +10125,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -10212,6 +10498,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -10589,6 +10886,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -10956,6 +11264,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -11313,6 +11632,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -11694,6 +12024,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -12054,6 +12395,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -12426,6 +12778,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -12788,6 +13151,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -13140,6 +13514,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -13517,6 +13902,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -13869,6 +14265,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -14256,6 +14663,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -14624,6 +15042,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -14982,6 +15411,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -15376,6 +15816,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -15750,6 +16201,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -16144,6 +16606,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -16511,6 +16984,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -16864,6 +17348,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -17242,6 +17737,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -17599,6 +18105,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -17977,6 +18494,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -18335,6 +18863,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -18713,6 +19252,17 @@
           </UnitMeshGroup>
         </UnitMeshGroups>
         <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
           <ProfessionType>PROFESSION_KNIGHT_MAIL</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
@@ -19071,6 +19621,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -20090,6 +20651,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>
@@ -24153,6 +24725,17 @@
         </UnitMeshGroups>
         <UnitMeshGroups>
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
+          <fMaxSpeed>1.75</fMaxSpeed>
+          <fPadTime>1</fPadTime>
+          <iMeleeWaveSize>4</iMeleeWaveSize>
+          <iRangedWaveSize>0</iRangedWaveSize>
+          <UnitMeshGroup>
+            <iRequired>1</iRequired>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </UnitMeshGroups>
+        <UnitMeshGroups>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
           <fMaxSpeed>1.75</fMaxSpeed>
           <fPadTime>1</fPadTime>
           <iMeleeWaveSize>4</iMeleeWaveSize>

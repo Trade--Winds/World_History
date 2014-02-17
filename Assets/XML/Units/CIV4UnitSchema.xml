@@ -862,6 +862,9 @@
 	<ElementType name="ProfessionSubType" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
+		<element type="iPower"/>
+		<element type="YieldEquipedNums"/>
+		<element type="FreePromotions"/>
 	</ElementType>
 	<ElementType name="ProfessionSubTypes" content="eltOnly">
 		<element type="ProfessionSubType" maxOccurs="*" minOccurs="0"/>

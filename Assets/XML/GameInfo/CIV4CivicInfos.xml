@@ -3448,6 +3448,10 @@
           <ProfessionType>PROFESSION_CALVARY</ProfessionType>
           <iChange>1</iChange>
         </AllowsProfession>
+		<AllowsProfession>
+          <ProfessionType>PROFESSION_CALVARY_LEATHER</ProfessionType>
+          <iChange>1</iChange>
+        </AllowsProfession>
       </AllowsProfessions>
       <AllowsTrait/>
       <AllowsBuildTypes/>
