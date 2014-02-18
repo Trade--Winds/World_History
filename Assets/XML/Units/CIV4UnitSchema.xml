@@ -858,11 +858,14 @@
   <ElementType name="RequiredPromotion" content="textOnly"/>
   <ElementType name="CivType" content="textOnly"/>
   <ElementType name="iFoundCityType" content="textOnly"/>
+  <ElementType name="ArrayEnable" content="textOnly" dt:type="int"/>
   
 	<ElementType name="ProfessionSubType" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
 		<element type="iPower"/>
+		<element type="ArrayEnable"/>
+		<element type="CombatGearTypes"/>
 		<element type="YieldEquipedNums"/>
 		<element type="FreePromotions"/>
 	</ElementType>

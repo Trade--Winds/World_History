@@ -69,7 +69,7 @@ public:
 	DllExport bool canFound() const;
 	DllExport bool isUnarmed() const;
 	DllExport bool isNoDefensiveBonus() const;
-	DllExport int getYieldEquipmentAmount(int iYield) const;
+	DllExport ProfessionYieldCost getYieldEquipmentAmount(int iYield) const;
 	DllExport bool isFreePromotion(int i) const;
 	///TKs Med BM
 	DllExport bool isAltFreePromotion(int i) const;
@@ -161,8 +161,10 @@ protected:
 		int iYieldAmount;
 	};
 
-	std::vector<YieldEquipment> m_aYieldEquipments;
-	bool* m_abFreePromotions;
+	//std::vector<YieldEquipment> m_aYieldEquipments;
+	YieldArray<ProfessionYieldCost> m_acYieldEquipments;
+	//bool* m_abFreePromotions;
+	PromotionArray<bool> m_abFreePromotions;
 	///TKs Med BM
 	UnitCombatArray<bool> m_aiCombatGearTypes; // CombatGearTypes - Nightinggale
 	int* m_aiAltEquipmentTypes;
@@ -268,4 +270,13 @@ inline int CvProfessionInfo::getNumSubTypes() const
 }
 /// info subclass - end - Nightinggale
 
+inline ProfessionYieldCost CvProfessionInfo::getYieldEquipmentAmount(int iYield) const
+{
+	return m_acYieldEquipments.get(iYield);
+}
+
+inline bool CvProfessionInfo::isFreePromotion(int i) const
+{
+	return m_abFreePromotions.get(i);
+}
 #endif

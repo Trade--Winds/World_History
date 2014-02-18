@@ -30,13 +30,6 @@ typedef std::vector< std::pair<UnitCombatTypes, PromotionTypes> > UnitCombatProm
 typedef std::vector< std::pair<UnitClassTypes, PromotionTypes> > UnitClassPromotionArray;
 typedef std::vector< std::pair<CivilizationTypes, LeaderHeadTypes> > CivLeaderArray;
 
-// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
-// set amount of memory allocated to store yield cost for professions (each yield)
-// unsigned char: 0 to 255
-// unsigned short: 0-65535 (that should certainly be enough!)
-typedef unsigned char ProfessionYieldCost;
-// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
-
 class CvPlayer
 {
 public:

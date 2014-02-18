@@ -63,7 +63,7 @@ CvProfessionInfo::CvProfessionInfo() :
 //------------------------------------------------------------------------------------------------------
 CvProfessionInfo::~CvProfessionInfo()
 {
-	SAFE_DELETE_ARRAY(m_abFreePromotions);
+	//SAFE_DELETE_ARRAY(m_abFreePromotions);
 	///TKs Med BM
 	SAFE_DELETE_ARRAY(m_aiAltEquipmentTypes);
 	SAFE_DELETE_ARRAY(m_abAltFreePromotions);
@@ -142,6 +142,7 @@ int CvProfessionInfo::getAssetValue() const
 {
 	return m_iAssetValue;
 }
+/*
 int CvProfessionInfo::getYieldEquipmentAmount(int iYield) const
 {
 	for (uint i = 0; i < m_aYieldEquipments.size(); ++i)
@@ -161,6 +162,7 @@ bool CvProfessionInfo::isFreePromotion(int i) const
 	FAssertMsg(i > -1, "Index out of bounds");
 	return m_abFreePromotions ? m_abFreePromotions[i] : false;
 }
+*/
 
 ///TKs Med BM
 int CvProfessionInfo::getAltEquipmentTypes(int i) const
@@ -341,7 +343,7 @@ void CvProfessionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iFoundCityType);
 	///TKe
 
-	m_aYieldEquipments.clear();
+/*	m_aYieldEquipments.clear();
 	int iYieldEquipmentSize = 0;
 	stream->Read(&iYieldEquipmentSize);
 	for(int i=0;i<iYieldEquipmentSize;i++)
@@ -352,9 +354,14 @@ void CvProfessionInfo::read(FDataStreamBase* stream)
 		m_aYieldEquipments.push_back(kEquipment);
 	}
 
-	SAFE_DELETE_ARRAY(m_abFreePromotions);
-	m_abFreePromotions = new bool[GC.getNumPromotionInfos()];
-	stream->Read(GC.getNumPromotionInfos(), m_abFreePromotions);
+	SAFE_DELETE_ARRAY(m_abFreePromotions);*/
+	bool bLoad;
+	stream->Read(&bLoad);
+	m_acYieldEquipments.read(stream, bLoad);
+	//m_abFreePromotions = new bool[GC.getNumPromotionInfos()];
+	//stream->Read(GC.getNumPromotionInfos(), m_abFreePromotions);
+	m_acYieldEquipments.read(stream, bLoad);
+	m_abFreePromotions.read(stream, bLoad);
 
 	///TKs Med BM
 	m_aiCombatGearTypes.read(stream, true); // CombatGearTypes - Nightinggale
@@ -419,14 +426,21 @@ void CvProfessionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iFoundCityType);
 	///TKe
 
-	stream->Write((int)m_aYieldEquipments.size());
+	/*stream->Write((int)m_aYieldEquipments.size());
 	for(int i=0;i<(int)m_aYieldEquipments.size();i++)
 	{
 		stream->Write(m_aYieldEquipments[i].iYieldType);
 		stream->Write(m_aYieldEquipments[i].iYieldAmount);
-	}
+	}*/
+	m_acYieldEquipments.hasContent();
+	stream->Write(m_acYieldEquipments.isAllocated());
+	m_acYieldEquipments.write(stream, m_acYieldEquipments.isAllocated());
 
-	stream->Write(GC.getNumPromotionInfos(), m_abFreePromotions);
+	//stream->Write(GC.getNumPromotionInfos(), m_abFreePromotions);
+
+	m_abFreePromotions.hasContent();
+	stream->Write(m_abFreePromotions.isAllocated());
+	m_abFreePromotions.write(stream, m_abFreePromotions.isAllocated());
 	///TKs Med BM
 	m_aiCombatGearTypes.write(stream, true); // CombatGearTypes - Nightinggale
 	stream->Write(NUM_YIELD_TYPES, m_aiAltEquipmentTypes);
@@ -572,7 +586,7 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 	{
 		SetBit(m_bfA, PROFESSION_INFO_BM_NO_DEFENSIVE_BONUS);
 	}
-	m_aYieldEquipments.clear();
+	/*m_aYieldEquipments.clear();
 	int *aiYieldAmounts;
 	pXML->SetVariableListTagPair(&aiYieldAmounts, "YieldEquipedNums", NUM_YIELD_TYPES, 0);
 	for (int i = 0; i < NUM_YIELD_TYPES; ++i)
@@ -585,8 +599,12 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 			m_aYieldEquipments.push_back(kYieldEquipment);
 		}
 	}
-	SAFE_DELETE_ARRAY(aiYieldAmounts);
-	pXML->SetVariableListTagPair(&m_abFreePromotions, "FreePromotions", GC.getNumPromotionInfos(), false);
+	SAFE_DELETE_ARRAY(aiYieldAmounts);*/
+	m_acYieldEquipments.read(pXML, "YieldEquipedNums");
+
+
+//	pXML->SetVariableListTagPair(&m_abFreePromotions, "FreePromotions", GC.getNumPromotionInfos(), false);
+	m_abFreePromotions.read(pXML, "FreePromotions");
 	///TKs Med BM
 	// CombatGearTypes - start - Nightinggale
 	m_aiCombatGearTypes.read(pXML, "CombatGearTypes");
@@ -658,20 +676,72 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 	{
 		pXML->GetChildXmlValByName(m_szTextKey, "Description");
 		pXML->GetChildXmlValByName(&m_iPowerValue, "iPower");
-		m_aYieldEquipments.clear();
-		pXML->SetVariableListTagPair(&aiYieldAmounts, "YieldEquipedNums", NUM_YIELD_TYPES, 0);
-		for (int i = 0; i < NUM_YIELD_TYPES; ++i)
+
+		int iArrayEnable = 0;
+		pXML->GetChildXmlValByName(&iArrayEnable, "ArrayEnable");
+
+		int iEnablePromotions   =  iArrayEnable         % 10;
+		int iEnableYieldEquiped = (iArrayEnable / 10)   % 10;
+		int iEnableGear         = (iArrayEnable / 100)  % 10;
+
+
+
+		if (iEnableGear == 1)
 		{
-			if (aiYieldAmounts[i] != 0)
+			m_aiCombatGearTypes.read(pXML, "CombatGearTypes");
+		}
+		else if (iEnableGear == 2)
+		{
+			UnitCombatArray<bool> aiCombatGearTypes;
+			aiCombatGearTypes.read(pXML, "CombatGearTypes");
+			if (aiCombatGearTypes.isAllocated())
 			{
-				YieldEquipment kYieldEquipment;
-				kYieldEquipment.iYieldType = i;
-				kYieldEquipment.iYieldAmount = aiYieldAmounts[i];
-				m_aYieldEquipments.push_back(kYieldEquipment);
+				for (int i = 0; i < aiCombatGearTypes.length(); ++i)
+				{
+					if (!m_aiCombatGearTypes.get(i))
+					{
+						m_aiCombatGearTypes.set(aiCombatGearTypes.get(i), i);
+					}
+				}
 			}
 		}
-		SAFE_DELETE_ARRAY(aiYieldAmounts);
-		pXML->SetVariableListTagPair(&m_abFreePromotions, "FreePromotions", GC.getNumPromotionInfos(), false);
+
+		if (iEnableYieldEquiped == 1)
+		{
+			m_acYieldEquipments.read(pXML, "YieldEquipedNums");
+		}
+		else if (iEnableYieldEquiped == 2)
+		{
+			YieldArray<ProfessionYieldCost> acYieldEquipments;
+			acYieldEquipments.read(pXML, "YieldEquipedNums");
+			if (acYieldEquipments.isAllocated())
+			{
+				for (int i = 0; i < NUM_YIELD_TYPES; ++i)
+				{
+					m_acYieldEquipments.add(acYieldEquipments.get(i), i);
+				}
+			}
+		}
+
+		if (iEnablePromotions == 1)
+		{
+			m_abFreePromotions.read(pXML, "FreePromotions");
+		}
+		else if (iEnablePromotions == 2)
+		{
+			PromotionArray<bool> abFreePromotions;
+			abFreePromotions.read(pXML, "FreePromotions");
+			if (abFreePromotions.isAllocated())
+			{
+				for (int i = 0; i < abFreePromotions.length(); ++i)
+				{
+					if (!m_abFreePromotions.get(i))
+					{
+						m_abFreePromotions.set(abFreePromotions.get(i), i);
+					}
+				}
+			}
+		}
 
 		// restore XML
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
