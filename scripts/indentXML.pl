@@ -3,7 +3,7 @@
 #
 # author: Nightinggale
 #
-# Update XML files to add new tags to existing files
+# Indent XML files
 #
 
 use strict;
