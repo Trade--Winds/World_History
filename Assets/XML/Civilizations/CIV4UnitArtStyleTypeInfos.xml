@@ -61,7 +61,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARCHER</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_LONGBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_LONGBOWMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -75,7 +89,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ANGLO_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SWORDSMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -89,7 +117,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_CROSSBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_ARMED_PEASANT</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARMED_PEASANT</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARMOURED_PEASANT_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_ARMED_PEASANT</ArtDefineTag>
           </UnitMeshGroup>
@@ -103,6 +145,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ANGLO_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SPEARMAN</ArtDefineTag>
@@ -110,7 +159,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_PIKEMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_PIKEMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -139,6 +202,13 @@
         <StyleUnit>
           <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_HEAVY_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_HEAVY_CALVARY</ArtDefineTag>
           </UnitMeshGroup>
@@ -246,6 +316,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PAPAL_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_PAPAL_HEAVY_CALVARY</ArtDefineTag>
@@ -260,6 +337,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_IMPERIAL_REGULAR</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_IMPERIAL_HEAVY_CALVARY</ArtDefineTag>
@@ -268,6 +352,13 @@
         <StyleUnit>
           <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -346,7 +437,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
           </UnitMeshGroup>
@@ -360,7 +465,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
           </UnitMeshGroup>
@@ -374,7 +493,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
           <ProfessionType>PROFESSION_ARMED_PEASANT</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_ARMOURED_PEASANT_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
           </UnitMeshGroup>
@@ -388,6 +521,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
@@ -395,7 +535,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
           </UnitMeshGroup>
@@ -424,6 +578,13 @@
         <StyleUnit>
           <UnitType>UNIT_DOG</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_DOG</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_DOG</ArtDefineTag>
           </UnitMeshGroup>
@@ -479,7 +640,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARCHER</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_LONGBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_LONGBOWMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -493,7 +668,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SWORDSMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -507,7 +696,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_CROSSBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_ARMED_PEASANT</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARMED_PEASANT</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARMOURED_PEASANT_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_ARMED_PEASANT</ArtDefineTag>
           </UnitMeshGroup>
@@ -521,6 +724,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_BYZANTINE_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SPEARMAN</ArtDefineTag>
@@ -528,7 +738,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_PIKEMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_PIKEMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -557,6 +781,13 @@
         <StyleUnit>
           <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_BYZANTINE_HEAVY_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_BYZANTINE_HEAVY_CALVARY</ArtDefineTag>
           </UnitMeshGroup>
@@ -626,6 +857,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PAPAL_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_PAPAL_HEAVY_CALVARY</ArtDefineTag>
@@ -640,6 +878,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_IMPERIAL_REGULAR</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_IMPERIAL_HEAVY_CALVARY</ArtDefineTag>
@@ -648,6 +893,13 @@
         <StyleUnit>
           <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -725,7 +977,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -739,7 +1005,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -753,7 +1033,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_ARMED_PEASANT</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_ARMOURED_PEASANT_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -767,6 +1061,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
@@ -774,7 +1075,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -803,6 +1118,13 @@
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -858,7 +1180,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARAB_ARCHER</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARAB_LONGBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_ARAB_LONGBOWMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -872,7 +1208,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARAB_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARAB_HEAVY_AXEMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_ARAB_HEAVY_AXEMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -886,7 +1236,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARAB_CROSSBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_ARMED_PEASANT</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARAB_ARMED_PEASANT</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARMOURED_PEASANT_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_ARAB_ARMED_PEASANT</ArtDefineTag>
           </UnitMeshGroup>
@@ -900,6 +1264,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARAB_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_ARAB_HEAVY_SPEARMAN</ArtDefineTag>
@@ -907,7 +1278,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARAB_HEAVY_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARAB_PIKEMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_ARAB_PIKEMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -936,6 +1321,13 @@
         <StyleUnit>
           <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_ARAB_HEAVY_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_ARAB_HEAVY_CALVARY</ArtDefineTag>
           </UnitMeshGroup>
@@ -1005,6 +1397,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PAPAL_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_PAPAL_HEAVY_CALVARY</ArtDefineTag>
@@ -1019,6 +1418,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_IMPERIAL_REGULAR</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_IMPERIAL_HEAVY_CALVARY</ArtDefineTag>
@@ -1027,6 +1433,13 @@
         <StyleUnit>
           <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -1104,7 +1517,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1118,7 +1545,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1132,7 +1573,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_ARMED_PEASANT</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_ARMOURED_PEASANT_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1146,6 +1601,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
@@ -1153,7 +1615,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1182,6 +1658,13 @@
         <StyleUnit>
           <UnitType>UNIT_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1237,7 +1720,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARCHER</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_LONGBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_LONGBOWMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -1251,7 +1748,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ANGLO_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SWORDSMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -1265,7 +1776,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_CROSSBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_ARMED_PEASANT</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARMED_PEASANT</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARMOURED_PEASANT_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_ARMED_PEASANT</ArtDefineTag>
           </UnitMeshGroup>
@@ -1279,6 +1804,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ANGLO_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SPEARMAN</ArtDefineTag>
@@ -1286,7 +1818,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_PIKEMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_PIKEMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -1315,6 +1861,13 @@
         <StyleUnit>
           <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_HEAVY_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_HEAVY_CALVARY</ArtDefineTag>
           </UnitMeshGroup>
@@ -1350,6 +1903,13 @@
         <StyleUnit>
           <UnitType>UNIT_VIKING_VETERAN</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER1</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_VIKING_AXEMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_VIKING_VETERAN</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_VIKING_AXEMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -1391,6 +1951,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PAPAL_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_PAPAL_HEAVY_CALVARY</ArtDefineTag>
@@ -1405,6 +1972,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_IMPERIAL_REGULAR</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_IMPERIAL_HEAVY_CALVARY</ArtDefineTag>
@@ -1413,6 +1987,13 @@
         <StyleUnit>
           <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -1490,7 +2071,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1504,7 +2099,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1518,7 +2127,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_ARMED_PEASANT</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_ARMOURED_PEASANT_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1532,6 +2155,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
@@ -1539,7 +2169,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1568,6 +2212,13 @@
         <StyleUnit>
           <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_ARAB_GREAT_GENERAL</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_ARAB_GREAT_GENERAL</ArtDefineTag>
           </UnitMeshGroup>
@@ -1637,7 +2288,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARCHER</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_LONGBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_LONGBOWMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -1651,7 +2316,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ANGLO_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SWORDSMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -1665,7 +2344,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_CROSSBOWMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_ARMED_PEASANT</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ARMED_PEASANT</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_ARMOURED_PEASANT_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_ARMED_PEASANT</ArtDefineTag>
           </UnitMeshGroup>
@@ -1679,6 +2372,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_ANGLO_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SPEARMAN</ArtDefineTag>
@@ -1686,7 +2386,21 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_HEAVY_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_PIKEMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_PIKEMAN</ArtDefineTag>
           </UnitMeshGroup>
@@ -1715,6 +2429,13 @@
         <StyleUnit>
           <UnitType>NONE</UnitType>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PROFESSION_HEAVY_CALVARY</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>NONE</UnitType>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_HEAVY_CALVARY</ArtDefineTag>
           </UnitMeshGroup>
@@ -1750,6 +2471,13 @@
         <StyleUnit>
           <UnitType>UNIT_MONGOL_VETERAN</UnitType>
           <ProfessionType>PROFESSION_MISSLEMAN</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_PROFESSION_VETERAN_MONGOL_ARCHER</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_MONGOL_VETERAN</UnitType>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_PROFESSION_VETERAN_MONGOL_ARCHER</ArtDefineTag>
           </UnitMeshGroup>
@@ -1791,6 +2519,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_PAPAL_SPEARMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_CRUSADER_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_PAPAL_HEAVY_CALVARY</ArtDefineTag>
@@ -1805,6 +2540,13 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_IMPERIAL_REGULAR</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_REGULAR</UnitType>
           <ProfessionType>PROFESSION_KNIGHT_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_PROFESSION_IMPERIAL_HEAVY_CALVARY</ArtDefineTag>
@@ -1813,6 +2555,13 @@
         <StyleUnit>
           <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
           <ProfessionType>PROFESSION_INFANTRY3</ProfessionType>
+          <UnitMeshGroup>
+            <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
+          </UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_OTTOMAN_REGULAR</UnitType>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
           <UnitMeshGroup>
             <ArtDefineTag>ART_DEF_UNIT_OTTOMAN_SWORDSMAN</ArtDefineTag>
           </UnitMeshGroup>

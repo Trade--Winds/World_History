@@ -1623,6 +1623,12 @@
           <iChange>1</iChange>
         </AllowsProfession>
       </AllowsProfessions>
+	   <AllowsProfessions>
+        <AllowsProfession>
+          <ProfessionType>PROFESSION_PIKEMAN_PLATE</ProfessionType>
+          <iChange>1</iChange>
+        </AllowsProfession>
+      </AllowsProfessions>
       <AllowsTrait/>
       <AllowsBuildTypes/>
       <AllowsBuildTypesTerrain/>
@@ -1853,6 +1859,10 @@
           <ProfessionType>PROFESSION_SKIRMISHER3</ProfessionType>
           <iChange>1</iChange>
         </AllowsProfession>
+		<AllowsProfession>
+          <ProfessionType>PROFESSION_CROSSBOWMAN_MAIL</ProfessionType>
+          <iChange>1</iChange>
+        </AllowsProfession>
       </AllowsProfessions>
       <AllowsTrait/>
       <AllowsBuildTypes/>
@@ -2068,8 +2078,16 @@
           <ProfessionType>PROFESSION_MISSLEMAN2</ProfessionType>
           <iChange>1</iChange>
         </AllowsProfession>
+		<AllowsProfession>
+          <ProfessionType>PROFESSION_LONGBOWMAN_LEATHER</ProfessionType>
+          <iChange>1</iChange>
+        </AllowsProfession>
         <AllowsProfession>
           <ProfessionType>PROFESSION_MISSLEMAN</ProfessionType>
+          <iChange>-1</iChange>
+        </AllowsProfession>
+		<AllowsProfession>
+          <ProfessionType>PROFESSION_ARCHER_LEATHER</ProfessionType>
           <iChange>-1</iChange>
         </AllowsProfession>
       </AllowsProfessions>
@@ -2239,6 +2257,10 @@
       <AllowsProfessions>
         <AllowsProfession>
           <ProfessionType>PROFESSION_SKIRMISHER1</ProfessionType>
+          <iChange>1</iChange>
+        </AllowsProfession>
+		<AllowsProfession>
+          <ProfessionType>PROFESSION_SKIRMISHER_SCALE</ProfessionType>
           <iChange>1</iChange>
         </AllowsProfession>
       </AllowsProfessions>
@@ -2561,6 +2583,12 @@
       <AllowsProfessions>
         <AllowsProfession>
           <ProfessionType>PROFESSION_INFANTRY2</ProfessionType>
+          <iChange>1</iChange>
+        </AllowsProfession>
+      </AllowsProfessions>
+	  <AllowsProfessions>
+        <AllowsProfession>
+          <ProfessionType>PROFESSION_HEAVY_INFANTRY_MAIL</ProfessionType>
           <iChange>1</iChange>
         </AllowsProfession>
       </AllowsProfessions>
@@ -3022,6 +3050,10 @@
       <AllowsProfessions>
         <AllowsProfession>
           <ProfessionType>PROFESSION_HEAVY_CALVARY</ProfessionType>
+          <iChange>1</iChange>
+        </AllowsProfession>
+		<AllowsProfession>
+          <ProfessionType>PROFESSION_HEAVY_CAVALRY_MAIL</ProfessionType>
           <iChange>1</iChange>
         </AllowsProfession>
       </AllowsProfessions>
@@ -3536,6 +3568,10 @@
         </AllowsProfession>
         <AllowsProfession>
           <ProfessionType>PROFESSION_SKIRMISHER2</ProfessionType>
+          <iChange>1</iChange>
+        </AllowsProfession>
+		<AllowsProfession>
+          <ProfessionType>PROFESSION_HEAVY_SKIRMISHER_PLATE</ProfessionType>
           <iChange>1</iChange>
         </AllowsProfession>
       </AllowsProfessions>

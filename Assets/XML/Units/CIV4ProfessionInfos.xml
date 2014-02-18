@@ -186,7 +186,7 @@
       <iMovesChange>0</iMovesChange>
       <iWorkRate>0</iWorkRate>
       <iMissionaryRate>0</iMissionaryRate>
-      <iPower>100</iPower>
+      <iPower>75</iPower>
       <iAsset>0</iAsset>
       <YieldEquipedNums>
         <YieldEquipedNum>
@@ -194,18 +194,6 @@
           <iYieldAmount>25</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_LEATHER_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_ATTACK_LEATHER</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
       <FreePromotions/>
       <YieldsProduced>
         <YieldType>NONE</YieldType>
@@ -214,7 +202,27 @@
         <YieldType>NONE</YieldType>
       </YieldsConsumed>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,2,10</Button>
-      <ProfessionSubTypes/>
+      <ProfessionSubTypes>
+		<ProfessionSubType>
+			<Type>PROFESSION_ARMOURED_PEASANT_LEATHER</Type>
+			<Description>Armoured Peasant(leather)</Description>
+			<iPower>100</iPower>
+			<ArrayEnable>022</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_LEATHER_ARMOR</YieldType>
+				  <iYieldAmount>25</iYieldAmount>
+				</YieldEquipedNum>
+			  </YieldEquipedNums>
+			  <FreePromotions>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_ATTACK_LEATHER</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+	  </ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_MERCHANT</Type>
@@ -587,22 +595,6 @@
           <iYieldAmount>25</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_SCALE_ARMOR</YieldType>
-          <iYieldAmount>-25</iYieldAmount>
-        </AltEquipmentType>
-        <AltEquipmentType>
-          <YieldType>YIELD_MAIL_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_ATTACK_MAIL</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_FLANKING1</PromotionType>
@@ -621,7 +613,35 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,10</Button>
-      <ProfessionSubTypes/>
+       <ProfessionSubTypes>
+		<ProfessionSubType>
+			<Type>PROFESSION_HEAVY_CAVALRY_MAIL</Type>
+			<Description>Heavy Cavalry(Mail)</Description>
+			<iPower>175</iPower>
+			<ArrayEnable>012</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+				<YieldEquipedNum>
+					<YieldType>YIELD_HORSES</YieldType>
+					<iYieldAmount>50</iYieldAmount>
+				</YieldEquipedNum>
+				<YieldEquipedNum>
+					<YieldType>YIELD_WEAPONS</YieldType>
+					<iYieldAmount>50</iYieldAmount>
+				</YieldEquipedNum>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_MAIL_ARMOR</YieldType>
+				  <iYieldAmount>25</iYieldAmount>
+				</YieldEquipedNum>
+			  </YieldEquipedNums>
+			  <FreePromotions>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_ATTACK_MAIL</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+	  </ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_CALVARY</Type>
@@ -658,8 +678,6 @@
           <iYieldAmount>50</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-	   <AltEquipmentTypes/>
-	   <AltFreePromotions/>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_FLANKING1</PromotionType>
@@ -732,18 +750,6 @@
           <iYieldAmount>50</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_LEATHER_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_DEFENSE_LEATHER</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_FIRSTSTRIKE</PromotionType>
@@ -762,7 +768,27 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,3,10</Button>
-      <ProfessionSubTypes/>
+       <ProfessionSubTypes>
+		<ProfessionSubType>
+			<Type>PROFESSION_ARCHER_LEATHER</Type>
+			<Description>Archer(leather)</Description>
+			<iPower>125</iPower>
+			<ArrayEnable>022</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_LEATHER_ARMOR</YieldType>
+				  <iYieldAmount>25</iYieldAmount>
+				</YieldEquipedNum>
+			  </YieldEquipedNums>
+			  <FreePromotions>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_DEFENSE_LEATHER</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+	  </ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_MISSLEMAN2</Type>
@@ -796,18 +822,6 @@
           <iYieldAmount>50</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_LEATHER_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_DEFENSE_LEATHER</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_LONGBOW</PromotionType>
@@ -822,7 +836,27 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,3,10</Button>
-      <ProfessionSubTypes/>
+      <ProfessionSubTypes>
+		<ProfessionSubType>
+			<Type>PROFESSION_LONGBOWMAN_LEATHER</Type>
+			<Description>Longbowman(leather)</Description>
+			<iPower>125</iPower>
+			<ArrayEnable>022</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_LEATHER_ARMOR</YieldType>
+				  <iYieldAmount>25</iYieldAmount>
+				</YieldEquipedNum>
+			  </YieldEquipedNums>
+			  <FreePromotions>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_DEFENSE_LEATHER</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+	  </ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_SKIRMISHER1</Type>
@@ -860,18 +894,6 @@
           <iYieldAmount>25</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_SCALE_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_ATTACK_LEATHER</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_SKIRMISHER1</PromotionType>
@@ -886,7 +908,35 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,2,10</Button>
-      <ProfessionSubTypes/>
+      <ProfessionSubTypes>
+		<ProfessionSubType>
+			<Type>PROFESSION_SKIRMISHER_SCALE</Type>
+			<Description>Skirmisher(Scale)</Description>
+			<iPower>125</iPower>
+			<ArrayEnable>011</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+			<YieldEquipedNum>
+				<YieldType>YIELD_WEAPONS</YieldType>
+				<iYieldAmount>50</iYieldAmount>
+				</YieldEquipedNum>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_SCALE_ARMOR</YieldType>
+				  <iYieldAmount>25</iYieldAmount>
+				</YieldEquipedNum>
+			  </YieldEquipedNums>
+			  <FreePromotions>
+			  <FreePromotion>
+          <PromotionType>PROMOTION_SKIRMISHER1</PromotionType>
+          <bFreePromotion>1</bFreePromotion>
+        </FreePromotion>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_ATTACK_LEATHER</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+	  </ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_SKIRMISHER2</Type>
@@ -924,18 +974,6 @@
           <iYieldAmount>25</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_PLATE_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_ATTACK_MAIL</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_SKIRMISHER1</PromotionType>
@@ -950,7 +988,35 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,2,10</Button>
-      <ProfessionSubTypes/>
+	  <ProfessionSubTypes>
+      <ProfessionSubType>
+			<Type>PROFESSION_HEAVY_SKIRMISHER_PLATE</Type>
+			<Description>Heavy Skirmisher(Scale)</Description>
+			<iPower>125</iPower>
+			<ArrayEnable>011</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+			<YieldEquipedNum>
+				<YieldType>YIELD_WEAPONS</YieldType>
+				<iYieldAmount>50</iYieldAmount>
+				</YieldEquipedNum>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_PLATE_ARMOR</YieldType>
+				  <iYieldAmount>25</iYieldAmount>
+				</YieldEquipedNum>
+			  </YieldEquipedNums>
+			  <FreePromotions>
+			  <FreePromotion>
+          <PromotionType>PROMOTION_SKIRMISHER1</PromotionType>
+          <bFreePromotion>1</bFreePromotion>
+        </FreePromotion>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_ATTACK_MAIL</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+	  </ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_SKIRMISHER3</Type>
@@ -987,22 +1053,6 @@
           <iYieldAmount>25</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_LEATHER_ARMOR</YieldType>
-          <iYieldAmount>-25</iYieldAmount>
-        </AltEquipmentType>
-        <AltEquipmentType>
-          <YieldType>YIELD_MAIL_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_DEFENSE_MAIL</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_SKIRMISHER1</PromotionType>
@@ -1025,7 +1075,43 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,4,10</Button>
-      <ProfessionSubTypes/>
+      <ProfessionSubTypes>
+      <ProfessionSubType>
+			<Type>PROFESSION_CROSSBOWMAN_MAIL</Type>
+			<Description>Crossbowman(Mail)</Description>
+			<iPower>125</iPower>
+			<ArrayEnable>011</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+			<YieldEquipedNum>
+				<YieldType>YIELD_WEAPONS</YieldType>
+				<iYieldAmount>50</iYieldAmount>
+				</YieldEquipedNum>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_MAIL_ARMOR</YieldType>
+				  <iYieldAmount>25</iYieldAmount>
+				</YieldEquipedNum>
+			  </YieldEquipedNums>
+			  <FreePromotions>
+			  <FreePromotion>
+          <PromotionType>PROMOTION_SKIRMISHER1</PromotionType>
+          <bFreePromotion>1</bFreePromotion>
+        </FreePromotion>
+        <FreePromotion>
+          <PromotionType>PROMOTION_FIRSTSTRIKE</PromotionType>
+          <bFreePromotion>1</bFreePromotion>
+        </FreePromotion>
+        <FreePromotion>
+          <PromotionType>PROMOTION_ARCHER</PromotionType>
+          <bFreePromotion>1</bFreePromotion>
+        </FreePromotion>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_DEFENSE_MAIL</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+		</ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_INFANTRY1</Type>
@@ -1058,18 +1144,6 @@
           <iYieldAmount>50</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_LEATHER_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_ATTACK_LEATHER</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_FORMATION</PromotionType>
@@ -1084,7 +1158,27 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,2,10</Button>
-      <ProfessionSubTypes/>
+        <ProfessionSubTypes>
+      <ProfessionSubType>
+			<Type>PROFESSION_INFANTRY_MAIL</Type>
+			<Description>Crossbowman(Mail)</Description>
+			<iPower>125</iPower>
+			<ArrayEnable>022</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+				<YieldEquipedNum>
+				  <YieldType>YIELD_LEATHER_ARMOR</YieldType>
+				  <iYieldAmount>25</iYieldAmount>
+				</YieldEquipedNum>
+			  </YieldEquipedNums>
+			  <FreePromotions>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_ATTACK_LEATHER</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+		</ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_INFANTRY2</Type>
@@ -1122,22 +1216,6 @@
           <iYieldAmount>25</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_SCALE_ARMOR</YieldType>
-          <iYieldAmount>-25</iYieldAmount>
-        </AltEquipmentType>
-        <AltEquipmentType>
-          <YieldType>YIELD_MAIL_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_ATTACK_MAIL</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_FORMATION</PromotionType>
@@ -1152,7 +1230,35 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,2,10</Button>
-      <ProfessionSubTypes/>
+         <ProfessionSubTypes>
+      <ProfessionSubType>
+			<Type>PROFESSION_HEAVY_INFANTRY_MAIL</Type>
+			<Description>Heavy Infantry(Mail)</Description>
+			<iPower>125</iPower>
+			<ArrayEnable>011</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+				<YieldEquipedNum>
+          <YieldType>YIELD_WEAPONS</YieldType>
+          <iYieldAmount>50</iYieldAmount>
+        </YieldEquipedNum>
+        <YieldEquipedNum>
+          <YieldType>YIELD_MAIL_ARMOR</YieldType>
+          <iYieldAmount>25</iYieldAmount>
+        </YieldEquipedNum>
+		</YieldEquipedNums>
+			  <FreePromotions>
+			  <FreePromotion>
+					<PromotionType>PROMOTION_FORMATION</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_ATTACK_MAIL</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+		</ProfessionSubTypes>
     </ProfessionInfo>
     <ProfessionInfo>
       <Type>PROFESSION_INFANTRY3</Type>
@@ -1196,23 +1302,7 @@
           <iYieldAmount>25</iYieldAmount>
         </YieldEquipedNum>
       </YieldEquipedNums>
-      <AltEquipmentTypes>
-        <AltEquipmentType>
-          <YieldType>YIELD_MAIL_ARMOR</YieldType>
-          <iYieldAmount>-25</iYieldAmount>
-        </AltEquipmentType>
-        <AltEquipmentType>
-          <YieldType>YIELD_PLATE_ARMOR</YieldType>
-          <iYieldAmount>25</iYieldAmount>
-        </AltEquipmentType>
-      </AltEquipmentTypes>
-      <AltFreePromotions>
-        <AltFreePromotion>
-          <PromotionType>PROMOTION_ATTACK_PLATE</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </AltFreePromotion>
-      </AltFreePromotions>
-      <FreePromotions>
+        <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_FORMATION</PromotionType>
           <bFreePromotion>1</bFreePromotion>
@@ -1226,7 +1316,35 @@
       </YieldsConsumed>
       <iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
       <Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,2,10</Button>
-      <ProfessionSubTypes/>
+         <ProfessionSubTypes>
+      <ProfessionSubType>
+			<Type>PROFESSION_PIKEMAN_PLATE</Type>
+			<Description>Pikeman(Plate)</Description>
+			<iPower>125</iPower>
+			<ArrayEnable>011</ArrayEnable>
+			<CombatGearTypes/>
+			<YieldEquipedNums>
+				<YieldEquipedNum>
+          <YieldType>YIELD_WEAPONS</YieldType>
+          <iYieldAmount>50</iYieldAmount>
+        </YieldEquipedNum>
+        <YieldEquipedNum>
+          <YieldType>YIELD_PLATE_ARMOR</YieldType>
+          <iYieldAmount>25</iYieldAmount>
+        </YieldEquipedNum>
+		</YieldEquipedNums>
+			  <FreePromotions>
+			  <FreePromotion>
+					<PromotionType>PROMOTION_FORMATION</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+				  <PromotionType>PROMOTION_ATTACK_PLATE</PromotionType>
+				  <bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			  </FreePromotions>
+		</ProfessionSubType>
+		</ProfessionSubTypes>
     </ProfessionInfo>
 		<ProfessionInfo>
 			<Type>PROFESSION_FARMER</Type>

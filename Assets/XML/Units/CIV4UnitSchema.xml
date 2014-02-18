@@ -820,20 +820,6 @@
 	<ElementType name="YieldEquipedNums" content="eltOnly">
 		<element type="YieldEquipedNum" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-  <ElementType name="AltEquipmentType" content="eltOnly">
-    <element type="YieldType"/>
-    <element type="iYieldAmount"/>
-  </ElementType>
-  <ElementType name="AltEquipmentTypes" content="eltOnly">
-    <element type="AltEquipmentType" minOccurs="0" maxOccurs="*"/>
-  </ElementType>
-  <ElementType name="AltFreePromotion" content="eltOnly">
-    <element type="PromotionType"/>
-    <element type="bFreePromotion"/>
-  </ElementType>
-  <ElementType name="AltFreePromotions" content="eltOnly">
-    <element type="AltFreePromotion" minOccurs="0" maxOccurs="*"/>
-  </ElementType>
   <ElementType name="iTaxCollectRate" content="textOnly" dt:type="int"/>
   <ElementType name="GearType" content="textOnly"/>
   <ElementType name="iAmount" content="textOnly" dt:type="boolean"/>
@@ -908,9 +894,7 @@
     <element type="iTaxCollectRate" minOccurs="0"/>
     <element type="CombatGearTypes" minOccurs="0"/>
 		<element type="YieldEquipedNums"/>
-    <element type="AltEquipmentTypes" minOccurs="0"/>
-    <element type="AltFreePromotions" minOccurs="0"/>
-    <element type="FreePromotions"/>
+     <element type="FreePromotions"/>
 <!-- MultipleYieldsProduced Start -->
 		<element type="YieldsProduced"/>
 <!-- MultipleYieldsProduced End -->
