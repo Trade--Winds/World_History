@@ -2323,21 +2323,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_POPUP_IMPORT_FEEDER_HELP</Tag>
-		<English>Import feeder
-			Turn import on at 75%
-		Turn import off at 100%</English>
-		<French>Import feeder
-			Turn import on at 75%
-		Turn import off at 100%</French>
-		<German>Import feeder
-			Turn import on at 75%
-		Turn import off at 100%</German>
-		<Italian>Import feeder
-			Turn import on at 75%
-		Turn import off at 100%</Italian>
-		<Spanish>Import feeder
-			Turn import on at 75%
-		Turn import off at 100%</Spanish>
+		<English>Import feeder[NEWLINE]Turn import on at 75%[NEWLINE]Turn import off at 100%</English>
+		<French>Import feeder[NEWLINE]Turn import on at 75%[NEWLINE]Turn import off at 100%</French>
+		<German>Import feeder[NEWLINE]Turn import on at 75%[NEWLINE]Turn import off at 100%</German>
+		<Italian>Import feeder[NEWLINE]Turn import on at 75%[NEWLINE]Turn import off at 100%</Italian>
+		<Spanish>Import feeder[NEWLINE]Turn import on at 75%[NEWLINE]Turn import off at 100%</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_DOMESTIC_ADVISOR_WAREHOUSE</Tag>
