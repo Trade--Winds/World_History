@@ -1164,21 +1164,12 @@ void CvGameTextMgr::setProfessionHelp(CvWStringBuffer &szBuffer, ProfessionTypes
         for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
         {
             int iYieldAmount = GC.getGameINLINE().getActivePlayer() != NO_PLAYER ? GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getYieldEquipmentAmount(eProfession, (YieldTypes) iYield) : kProfession.getYieldEquipmentAmount((YieldTypes) iYield);
-            ///TKs Med Update 1.1c
             if (iYieldAmount != 0)
             {
                 szTempBuffer.Format(gDLL->getText("TXT_KEY_UNIT_REQUIRES_YIELD_QUANTITY_STRING", iYieldAmount, GC.getYieldInfo((YieldTypes) iYield).getChar()));
                 szBuffer.append(NEWLINE);
                 szBuffer.append(szTempBuffer);
             }
-            //int iNumRequired = GET_PLAYER(eActivePlayer).getAltYieldEquipmentAmount(eProfession, eYield);
-            int iNumRequired = GC.getGameINLINE().getActivePlayer() != NO_PLAYER ? GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getAltYieldEquipmentAmount(eProfession, (YieldTypes) iYield) : kProfession.getAltEquipmentTypes((YieldTypes) iYield);
-			if (iNumRequired > 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_YIELD_ALTERNATE_FOR_PROFESSION_PEDIA", iNumRequired, GC.getYieldInfo((YieldTypes) iYield).getChar()));
-			}
-            ///TKe Update
         }
     }
     ///TKs Med Update 1.1c

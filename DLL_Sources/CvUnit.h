@@ -573,8 +573,6 @@ public:
 	///Tks Med
 	EuropeTypes getUnitTradeMarket() const;
 	void setUnitTradeMarket(EuropeTypes eMarket);
-	int getAltEquipmentTypes(YieldTypes eIndex) const;
-	void changeAltEquipmentTypes(YieldTypes eIndex, int iChange);
 	CvPlot* getTravelPlot() const;
 	void setTravelPlot();
 	bool doUnitPilgram();

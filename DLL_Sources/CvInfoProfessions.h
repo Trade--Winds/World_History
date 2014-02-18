@@ -72,16 +72,8 @@ public:
 	DllExport ProfessionYieldCost getYieldEquipmentAmount(int iYield) const;
 	DllExport bool isFreePromotion(int i) const;
 	///TKs Med BM
-	DllExport bool isAltFreePromotion(int i) const;
 	DllExport bool getCombatGearTypes(int i) const;
 	DllExport bool hasCombatGearTypes() const; // CombatGearTypes - Nightinggale
-	DllExport int getAltEquipmentTypes(int i) const;
-	//int getAltEquipmentTypesArray();
-	int getAltEquipmentAt(int i) const;
-	//int getNumAltEquipmentTypes() const;
-	int getAltFreePromotionAt(int i) const;
-	//int getNumAltFreePromotion() const;
-	//bool* getAltFreePromotionArray();
 	DllExport int getRequiredBuilding() const;
 	DllExport int getUpgradeProfession() const;
 	DllExport int getLeadUnit() const;
@@ -167,8 +159,6 @@ protected:
 	PromotionArray<bool> m_abFreePromotions;
 	///TKs Med BM
 	UnitCombatArray<bool> m_aiCombatGearTypes; // CombatGearTypes - Nightinggale
-	int* m_aiAltEquipmentTypes;
-	bool* m_abAltFreePromotions;
 	int m_iRequiredBuilding;
 	int m_iUpgradeProfession;
 	int m_iLeadUnit;

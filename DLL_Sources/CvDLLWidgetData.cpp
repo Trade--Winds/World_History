@@ -3241,13 +3241,6 @@ void CvDLLWidgetData::parseCityYieldHelp(CvWidgetDataStruct &widgetDataStruct, C
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_YIELD_NEEDED_FOR_PROFESSION", iNumRequired, GC.getProfessionInfo(eProfession).getTextKeyWide()));
 			}
-			///TKs Med
-			iNumRequired = GET_PLAYER(eActivePlayer).getAltYieldEquipmentAmount(eProfession, eYield);
-			if (iNumRequired > 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_YIELD_ALTERNATE_FOR_PROFESSION", iNumRequired, GC.getProfessionInfo(eProfession).getTextKeyWide()));
-			}
 		}
 	}
 	if (NULL == pCity)

@@ -11775,7 +11775,6 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 		if (!pCity->AI_isWorkforceHack())
 		{
 			// restructured to fully exploit speed gain from cache - Nightinggale
-			bool bTryAlt = false;
 			if (kOwner.hasContentsYieldEquipmentAmount(eProfession))
 			{
 				for (int i=0; i < NUM_YIELD_TYPES; ++i)
@@ -11784,7 +11783,7 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 					int iYieldCarried = 0;
 					if (getProfession() != NO_PROFESSION)
 					{
-						iYieldCarried = kOwner.getYieldEquipmentAmount(getProfession(), eYieldType) + getAltEquipmentTypes(eYieldType);
+						iYieldCarried = kOwner.getYieldEquipmentAmount(getProfession(), eYieldType);
 					}
 					int iYieldRequired = kOwner.getYieldEquipmentAmount(eProfession, eYieldType);
 					if (iYieldRequired > 0)
@@ -11792,40 +11791,12 @@ bool CvUnit::canHaveProfession(ProfessionTypes eProfession, bool bBumpOther, con
 						int iMissing = iYieldRequired - iYieldCarried;
 						if (iMissing > pCity->getYieldStored(eYieldType))
 						{
-							bTryAlt = true;
-							break;
-						}
-					}
-				}
-			}
-			if (bTryAlt && kOwner.hasContentsYieldEquipmentAmount(eProfession))
-			{
-				bTryAlt = false;
-				for (int i=0; i < NUM_YIELD_TYPES; ++i)
-				{
-					YieldTypes eYieldType = (YieldTypes) i;
-					int iYieldCarried = 0;
-					if (getProfession() != NO_PROFESSION)
-					{
-						iYieldCarried = kOwner.getYieldEquipmentAmount(getProfession(), eYieldType) + getAltEquipmentTypes(eYieldType);
-					}
-					int iYieldRequired = kOwner.getYieldEquipmentAmount(eProfession, eYieldType) + kOwner.getAltYieldEquipmentAmount(eProfession, eYieldType);
-					if (iYieldRequired > 0)
-					{
-						int iMissing = iYieldRequired - iYieldCarried;
-						if (iMissing > pCity->getYieldStored(eYieldType))
-						{
-							bTryAlt = true;
-							break;
+							return false;
 						}
 					}
 				}
 			}
 			// end of reconstruction - Nightinggale
-			if (bTryAlt)
-			{
-				return false;
-			}
 #if 0
 					if (bTryAlt)
 					{
@@ -11976,20 +11947,6 @@ void CvUnit::processProfession(ProfessionTypes eProfession, int iChange, bool bU
         pCity = pPlot->getPlotCity();
     }
 
-	int iaAltEquipment[NUM_YIELD_TYPES];
-    for (int i = 0; i < NUM_YIELD_TYPES; ++i)
-    {
-        YieldTypes eYield = (YieldTypes) i;
-        if (getAltEquipmentTypes(eYield) != 0)
-        {
-            iaAltEquipment[i] = getAltEquipmentTypes(eYield);
-        }
-        else
-        {
-            iaAltEquipment[i] = 0;
-        }
-
-    }
 	if (iChange != 0)
 	{
 	    //std::vector<YieldTypes> aAltEquipment;
@@ -12068,28 +12025,8 @@ void CvUnit::processProfession(ProfessionTypes eProfession, int iChange, bool bU
 			{
 				for (int i = 0; i < NUM_YIELD_TYPES; i++)
 				{
-
 					YieldTypes eYield = (YieldTypes) i;
-					///TKs Med
-					int iYieldStoredCheck = (-iChange * kOwner.getYieldEquipmentAmount(eProfession, eYield));
-					//int iAltYieldStoredCheck = (-iChange * kOwner.getYieldEquipmentAmount(eProfession, eYield));
-					//if (iYieldStoredCheck = 0)
-					//{
-                    iYieldStoredCheck += (-iChange * getAltEquipmentTypes(eYield));
-                    iYieldStoredCheck += iaAltEquipment[i];
-					//}
-
-					if (iYieldStoredCheck < 0 && pCity->getYieldStored(eYield) < kOwner.getYieldEquipmentAmount(eProfession, eYield))
-					{
-						pCity->setYieldStored(eYield, 0);
-					}
-					else
-					{
-						pCity->changeYieldStored(eYield, iYieldStoredCheck);
-					}
-
-					///TKe
-
+					pCity->changeYieldStored(eYield, -iChange * kOwner.getYieldEquipmentAmount(eProfession, eYield));
 				}
 			}
 		}
@@ -12115,79 +12052,7 @@ void CvUnit::processProfessionStats(ProfessionTypes eProfession, int iChange)
 		CvPlayer& kOwner = GET_PLAYER(getOwnerINLINE());
 		if (eProfession != NO_PROFESSION)
 		{
-		    ///TKs Med
-		    CvCity* pCity = NULL;
-            CvPlot* pPlot = plot();
-            if (pPlot != NULL)
-            {
-                pCity = pPlot->getPlotCity();
-            }
-            int iAmount = 0;
-            bool bAddAltPromotions = false;
-            int iNumAltEquipment = 0;
-            int iNumAltEquipmentFound = 0;
-            std::vector<YieldTypes> aAltEquipments;
-            if (pCity != NULL)
-            {
-                for (int i = 0; i < NUM_YIELD_TYPES; i++)
-				{
-					YieldTypes eYield = (YieldTypes) i;
-					//if (getAltEquipmentTypes(eYield) != 0)
-					//{
-                    changeAltEquipmentTypes(eYield, 0);
-					//}
-                    if (iChange > 0)
-                    {
-                        iAmount = GET_PLAYER(getOwnerINLINE()).getAltYieldEquipmentAmount(eProfession, eYield);
-                        if (iAmount > 0)
-                        {
-                            iNumAltEquipment++;
-                            aAltEquipments.push_back(eYield);
-                            if (pCity->getYieldStored(eYield) >= iAmount)
-                            {
-                                iNumAltEquipmentFound++;
-
-                            }
-                        }
-                        if (iAmount < 0)
-                        {
-                            aAltEquipments.push_back(eYield);
-                        }
-
-                    }
-
-                }
-            }
-
-            if (iNumAltEquipment > 0 && iNumAltEquipment == iNumAltEquipmentFound)
-            {
-                for(int i=0;i<(int)aAltEquipments.size();i++)
-                {
-                    YieldTypes eYield = aAltEquipments[i];
-                    if (eYield != NO_YIELD)
-                    {
-                        iAmount = GET_PLAYER(getOwnerINLINE()).getAltYieldEquipmentAmount(eProfession, eYield);
-                        changeAltEquipmentTypes(eYield, iAmount);
-                    }
-                }
-                bAddAltPromotions = true;
-            }
-            //
-//                else if (iNumAltEquipment > 0)
-//                {
-//                    for(int i=0;i<(int)aAltEquipments.size();i++)
-//                    {
-//                        YieldTypes eYield = aAltEquipments[i];
-//                        if (eYield != NO_YIELD)
-//                        {
-//                            iAmount = GET_PLAYER(getOwnerINLINE()).getAltYieldEquipmentAmount(eProfession, eYield);
-//                            changeAltEquipmentTypes(eYield, -iAmount);
-//                        }
-//                    }
-//                }
-
-
-			CvProfessionInfo& kProfession = GC.getProfessionInfo(eProfession);
+		    CvProfessionInfo& kProfession = GC.getProfessionInfo(eProfession);
 			setBaseCombatStr(baseCombatStr() + iChange * (kProfession.getCombatChange() + kOwner.getProfessionCombatChange(eProfession)));
 			changeExtraMoves(iChange * kProfession.getMovesChange());
 			changeExtraWorkRate(iChange *  kProfession.getWorkRate());
@@ -12205,24 +12070,6 @@ void CvUnit::processProfessionStats(ProfessionTypes eProfession, int iChange)
 				if (kProfession.isFreePromotion(iPromotion))
 				{
 					changeFreePromotionCount((PromotionTypes) iPromotion, iChange);
-				}
-
-				if (iChange < 0)
-				{
-				    if (kProfession.isAltFreePromotion(iPromotion))
-				    {
-                        if (getFreePromotionCount((PromotionTypes)iPromotion) > 0)
-                        {
-                            changeFreePromotionCount((PromotionTypes) iPromotion, iChange);
-                        }
-                    }
-				}
-				else if (iChange > 0 && bAddAltPromotions)
-				{
-                    if (kProfession.isAltFreePromotion(iPromotion))
-				    {
-				        changeFreePromotionCount((PromotionTypes) iPromotion, iChange);
-                    }
 				}
 			}
 		}
@@ -15357,19 +15204,7 @@ CvPlot* CvUnit::findNearestValidMarauderPlot(CvCity* pSpawnCity, CvCity* pVictim
 
 	return pBestPlot;
 }
-int CvUnit::getAltEquipmentTypes(YieldTypes eIndex) const
-{
-	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
-	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
-	return m_paiAltEquipmentTypes[eIndex];
-}
-void CvUnit::changeAltEquipmentTypes(YieldTypes eIndex, int iChange)
-{
-	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
-	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
-	m_paiAltEquipmentTypes[eIndex] = iChange;
-	//FAssert(getAltEquipmentTypes(eIndex) >= 0);
-}
+
 bool CvUnit::doRansomKnight(int iKillerPlayerID)
 {
 // TODO (Teddy Mac#1#): Restart Ransom Knights\

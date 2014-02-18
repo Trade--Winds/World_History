@@ -43,8 +43,6 @@ CvProfessionInfo::CvProfessionInfo() :
 	m_iAssetValue(0),
 	m_abFreePromotions(NULL),
 	///TKs Med Battle Mod
-	m_aiAltEquipmentTypes(NULL),
-	m_abAltFreePromotions(NULL),
 	m_iRequiredBuilding(NO_BUILDINGCLASS),
 	iRequiredPromotion(NO_PROMOTION),
 	iCivType(-1),
@@ -63,11 +61,6 @@ CvProfessionInfo::CvProfessionInfo() :
 //------------------------------------------------------------------------------------------------------
 CvProfessionInfo::~CvProfessionInfo()
 {
-	//SAFE_DELETE_ARRAY(m_abFreePromotions);
-	///TKs Med BM
-	SAFE_DELETE_ARRAY(m_aiAltEquipmentTypes);
-	SAFE_DELETE_ARRAY(m_abAltFreePromotions);
-	///TKe
 }
 int CvProfessionInfo::getUnitCombatType() const
 {
@@ -164,45 +157,6 @@ bool CvProfessionInfo::isFreePromotion(int i) const
 }
 */
 
-///TKs Med BM
-int CvProfessionInfo::getAltEquipmentTypes(int i) const
-{
-    FAssertMsg(i < NUM_YIELD_TYPES, "Index out of bounds");
-	FAssertMsg(i > -1, "Index out of bounds");
-	return m_aiAltEquipmentTypes ? m_aiAltEquipmentTypes[i] : 0;
-}
-//int CvProfessionInfo::getAltEquipmentTypesArray()
-//{
-//	return m_aiAltEquipmentTypes;
-//}
-int CvProfessionInfo::getAltEquipmentAt(int i) const
-{
-	return m_aiAltEquipmentTypes[i];
-}
-//int CvProfessionInfo::getNumAltEquipmentTypes() const
-//{
-//	return (int)m_aiAltEquipmentTypes.size();
-//}
-bool CvProfessionInfo::isAltFreePromotion(int i) const
-{
-	FAssertMsg(i < GC.getNumPromotionInfos(), "Index out of bounds");
-	FAssertMsg(i > -1, "Index out of bounds");
-	return m_abAltFreePromotions ? m_abAltFreePromotions[i] : false;
-}
-int CvProfessionInfo::getAltFreePromotionAt(int i) const
-{
-	return m_abAltFreePromotions[i];
-}
-//int CvProfessionInfo::getNumAltFreePromotion() const
-//{
-//	return (int)m_abAltFreePromotions.size();
-//}
-
-//bool* CvProfessionInfo::getAltFreePromotionArray()
-//{
-//	return m_abAltFreePromotions;
-//}
-///TKe
 // MultipleYieldsProduced Start by Aymerick 22/01/2010
 int CvProfessionInfo::getYieldsProduced(int i) const
 {
@@ -365,14 +319,6 @@ void CvProfessionInfo::read(FDataStreamBase* stream)
 
 	///TKs Med BM
 	m_aiCombatGearTypes.read(stream, true); // CombatGearTypes - Nightinggale
-
-	SAFE_DELETE_ARRAY(m_aiAltEquipmentTypes);
-	m_aiAltEquipmentTypes = new int[NUM_YIELD_TYPES];
-	stream->Read(NUM_YIELD_TYPES, m_aiAltEquipmentTypes);
-
-	SAFE_DELETE_ARRAY(m_abAltFreePromotions);
-	m_abAltFreePromotions = new bool[GC.getNumPromotionInfos()];
-	stream->Read(GC.getNumPromotionInfos(), m_abAltFreePromotions);
 	///TKe
 
 	// MultipleYieldsProduced Start by Aymerick 22/01/2010
@@ -443,8 +389,6 @@ void CvProfessionInfo::write(FDataStreamBase* stream)
 	m_abFreePromotions.write(stream, m_abFreePromotions.isAllocated());
 	///TKs Med BM
 	m_aiCombatGearTypes.write(stream, true); // CombatGearTypes - Nightinggale
-	stream->Write(NUM_YIELD_TYPES, m_aiAltEquipmentTypes);
-	stream->Write(GC.getNumPromotionInfos(), m_abAltFreePromotions);
 	///TKe
 
 	// MultipleYieldsProduced Start by Aymerick 22/01/2010
@@ -613,8 +557,6 @@ bool CvProfessionInfo::read(CvXMLLoadUtility* pXML)
 		m_aiCombatGearTypes.set(true, this->getUnitCombatType());
 	}
 	// CombatGearTypes - end - Nightinggale
-	pXML->SetVariableListTagPair(&m_aiAltEquipmentTypes, "AltEquipmentTypes", NUM_YIELD_TYPES, 0);
-	pXML->SetVariableListTagPair(&m_abAltFreePromotions, "AltFreePromotions", GC.getNumPromotionInfos(), false);
 	///TKe
 
 	// MultipleYieldsProduced Start by Aymerick 22/01/2010

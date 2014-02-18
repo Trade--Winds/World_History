@@ -99,7 +99,6 @@ CvPlayer::CvPlayer()
 
 	// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
 	m_cache_YieldEquipmentAmount = new YieldArray<ProfessionYieldCost>[GC.getNumProfessionInfos()];
-	m_cache_AltYieldEquipmentAmount = new YieldArray<short>[GC.getNumProfessionInfos()];
 	// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
 
 	reset(NO_PLAYER, true);
@@ -139,13 +138,6 @@ CvPlayer::~CvPlayer()
  			m_cache_YieldEquipmentAmount[iProfession].reset();
  		}
  		SAFE_DELETE_ARRAY(m_cache_YieldEquipmentAmount);
- 	}
-	if (m_cache_AltYieldEquipmentAmount != NULL)
- 	{
- 		for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++) {
- 			m_cache_AltYieldEquipmentAmount[iProfession].reset();
- 		}
- 		SAFE_DELETE_ARRAY(m_cache_AltYieldEquipmentAmount);
  	}
  	// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
 }
@@ -16038,10 +16030,8 @@ void CvPlayer::Update_cache_YieldEquipmentAmount(ProfessionTypes eProfession)
 {
 	for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++) {
 		m_cache_YieldEquipmentAmount[eProfession].set(getYieldEquipmentAmountUncached(eProfession, (YieldTypes)iYield), iYield);
-		m_cache_AltYieldEquipmentAmount[eProfession].set(getAltYieldEquipmentAmountUncached(eProfession, (YieldTypes)iYield), iYield);
 	}
 	m_cache_YieldEquipmentAmount[eProfession].isEmpty(); // This will release the array if it's empty
-	m_cache_AltYieldEquipmentAmount[eProfession].isEmpty();
 }
 
 void CvPlayer::Update_cache_YieldEquipmentAmount()
@@ -19004,33 +18994,6 @@ int CvPlayer::getMultiYieldRate(YieldTypes eIndex) const
     }
 
     return 0;
-}
-
-short CvPlayer::getAltYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const
-{
-	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
-	FAssert(eYield >= 0 && eYield < NUM_YIELD_TYPES);
-    ///TKs Med
-    if (GC.isEquipmentType(eYield, EQUIPMENT_HEAVY_ARMOR) && !isHuman() && !isNative() && GC.getXMLval(XML_AI_MILITARY_PROFESSION_HACK) > 0)
-    {
-        return 0;
-    }
-    ///TKe
-	int iAmount = GC.getProfessionInfo(eProfession).getAltEquipmentTypes(eYield);
-
-	iAmount *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
-	iAmount /= 100;
-
-	if (!isHuman())
-	{
-		iAmount *= GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAITrainPercent();
-		iAmount /= 100;
-	}
-
-	iAmount *= 100 + getProfessionEquipmentModifier(eProfession);
-	iAmount /= 100;
-    return iAmount;
-	//return std::max(0, iAmount);
 }
 
 PlayerTypes CvPlayer::getVassalOwner() const

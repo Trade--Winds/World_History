@@ -537,7 +537,6 @@ public:
 	DllExport PlayerTypes getMinorVassal() const;
 	DllExport void setVassalOwner(PlayerTypes eParent);
 	DllExport void setMinorVassal(PlayerTypes eParent);
-	short getAltYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const;
 	int getMultiYieldRate(YieldTypes eIndex) const;
 	int getCensureType(CensureType eCensure) const;
 	CvPlot* getStartingTradeRoutePlot(EuropeTypes eTradeRoute) const;
@@ -660,10 +659,8 @@ public:
 	// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
 	ProfessionYieldCost getYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const;
 	bool hasContentsYieldEquipmentAmount(ProfessionTypes eProfession) const;
-	bool hasContentsAltYieldEquipmentAmount(ProfessionTypes eProfession) const;
 	ProfessionYieldCost getYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const;
 	bool hasContentsYieldEquipmentAmountSecure(ProfessionTypes eProfession) const;
-	short getAltYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const;
 	bool hasContentsAltYieldEquipmentAmountSecure(ProfessionTypes eProfession) const;
 	bool hasContentsAnyYieldEquipmentAmount(ProfessionTypes eProfession) const;
 	bool hasContentsAnyYieldEquipmentAmountSecure(ProfessionTypes eProfession) const;
@@ -890,11 +887,9 @@ protected:
 
 	// cache CvPlayer::getYieldEquipmentAmount - start - Nightinggale
 	YieldArray<ProfessionYieldCost> *m_cache_YieldEquipmentAmount;
-	YieldArray<short> *m_cache_AltYieldEquipmentAmount;
 	void Update_cache_YieldEquipmentAmount();
 	void Update_cache_YieldEquipmentAmount(ProfessionTypes eProfession);
 	ProfessionYieldCost getYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const;
-	short getAltYieldEquipmentAmountUncached(ProfessionTypes eProfession, YieldTypes eYield) const;
 	// cache CvPlayer::getYieldEquipmentAmount - end - Nightinggale
 
 	std::vector<EventTriggerTypes> m_triggersFired;
@@ -1021,13 +1016,6 @@ inline ProfessionYieldCost CvPlayer::getYieldEquipmentAmount(ProfessionTypes ePr
 	return m_cache_YieldEquipmentAmount[eProfession].get(eYield);
 }
 
-inline short CvPlayer::getAltYieldEquipmentAmount(ProfessionTypes eProfession, YieldTypes eYield) const
-{
-	FAssert(m_cache_AltYieldEquipmentAmount != NULL);
-	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
-	return m_cache_AltYieldEquipmentAmount[eProfession].get(eYield);
-}
-
 inline bool CvPlayer::hasContentsYieldEquipmentAmount(ProfessionTypes eProfession) const
 {
 	// strictly speaking it returns true if the array is allocated without considering the content of the array.
@@ -1036,16 +1024,6 @@ inline bool CvPlayer::hasContentsYieldEquipmentAmount(ProfessionTypes eProfessio
 	FAssert(m_cache_YieldEquipmentAmount != NULL);
 	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
 	return m_cache_YieldEquipmentAmount[eProfession].isAllocated();
-}
-
-inline bool CvPlayer::hasContentsAltYieldEquipmentAmount(ProfessionTypes eProfession) const
-{
-	// strictly speaking it returns true if the array is allocated without considering the content of the array.
-	// The reason why it works is because Update_cache_YieldEquipmentAmount() will only allocate arrays if they contain anything
-	//   and deallocate them if it is changed to contain only 0.
-	FAssert(m_cache_AltYieldEquipmentAmount != NULL);
-	FAssert(eProfession >= 0 && eProfession < GC.getNumProfessionInfos());
-	return m_cache_AltYieldEquipmentAmount[eProfession].isAllocated();
 }
 
 // same functions, but with the added return 0 if professions is NO_PROFESSION or INVALID_PROFESSION
@@ -1057,16 +1035,6 @@ inline ProfessionYieldCost CvPlayer::getYieldEquipmentAmountSecure(ProfessionTyp
 inline bool CvPlayer::hasContentsYieldEquipmentAmountSecure(ProfessionTypes eProfession) const
 {
 	return eProfession > NO_PROFESSION ? hasContentsYieldEquipmentAmount(eProfession) : false;
-}
-
-inline short CvPlayer::getAltYieldEquipmentAmountSecure(ProfessionTypes eProfession, YieldTypes eYield) const
-{
-	return eProfession > NO_PROFESSION ? getAltYieldEquipmentAmount(eProfession, eYield) : 0;
-}
-
-inline bool CvPlayer::hasContentsAltYieldEquipmentAmountSecure(ProfessionTypes eProfession) const
-{
-	return eProfession > NO_PROFESSION ? hasContentsAltYieldEquipmentAmount(eProfession) : false;
 }
 
 // shortcut to check both normal and alt equipment
