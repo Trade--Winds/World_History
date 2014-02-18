@@ -13,7 +13,7 @@
 	<ElementType name="Help" content="textOnly"/>
 	<ElementType name="Strategy" content="textOnly"/>
 	<ElementType name="iTime" content="textOnly" dt:type="int"/>
-  <ElementType name="iCityType" content="textOnly" dt:type="int"/>
+	<ElementType name="iCityType" content="textOnly" dt:type="int"/>
 	<ElementType name="bKill" content="textOnly" dt:type="boolean"/>
 	<ElementType name="ImprovementType" content="textOnly"/>
 	<ElementType name="RouteType" content="textOnly"/>
@@ -57,7 +57,7 @@
 		<element type="RouteType"/>
 		<element type="EntityEvent"/>
 		<element type="FeatureStructs"/>
-    <element type="iCityType" minOccurs="0"/>
+		<element type="iCityType" minOccurs="0"/>
 		<element type="HotKey"/>
 		<element type="bAltDown"/>
 		<element type="bShiftDown"/>
@@ -97,11 +97,11 @@
 	<ElementType name="Domain" content="textOnly"/>
 	<ElementType name="DefaultUnitAI" content="textOnly"/>
   <!--TK ArtTagUnitClass -->
-  <ElementType name="bNativesInvalid" content="textOnly" dt:type="boolean"/>
-  <ElementType name="bEuropeInvalid" content="textOnly" dt:type="boolean"/>
-  <ElementType name="bColonialInvalid" content="textOnly" dt:type="boolean"/>
-  <ElementType name="UpgradeProfession" content="textOnly"/>
-  <ElementType name="LeadUnit" content="textOnly"/>
+	<ElementType name="bNativesInvalid" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bEuropeInvalid" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bColonialInvalid" content="textOnly" dt:type="boolean"/>
+	<ElementType name="UpgradeProfession" content="textOnly"/>
+	<ElementType name="LeadUnit" content="textOnly"/>
 	<ElementType name="DefaultProfession" content="textOnly"/>
 	<ElementType name="Invisible" content="textOnly"/>
 	<ElementType name="SeeInvisible" content="textOnly"/>
@@ -167,7 +167,7 @@
 	<ElementType name="bBuilding" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bPrereq" content="textOnly" dt:type="boolean"/>
 	<ElementType name="PrereqBuilding" content="textOnly"/>
-  <ElementType name="FreeBuildingClass" content="textOnly"/>
+	<ElementType name="FreeBuildingClass" content="textOnly"/>
 	<ElementType name="PrereqOrBuilding" content="eltOnly">
 		<element type="BuildingClass"/>
 		<element type="bPrereq"/>
@@ -190,15 +190,15 @@
 	<ElementType name="iAdvancedStartCost" content="textOnly" dt:type="int"/>
 	<ElementType name="iAdvancedStartCostIncrease" content="textOnly" dt:type="int"/>
 	<ElementType name="iEuropeCost" content="textOnly" dt:type="int"/>
-  <ElementType name="iPricePercent" content="textOnly" dt:type="int"/>
-  <ElementType name="TradeScreen" content="textOnly"/>
-  <ElementType name="TradeScreenType" content="eltOnly">
-    <element type="TradeScreen"/>
-    <element type="iPricePercent"/>
-  </ElementType>
-  <ElementType name="TradeScreenTypes" content="eltOnly">
-    <element type="TradeScreenType" minOccurs="0" maxOccurs="*"/>
-  </ElementType>
+	<ElementType name="iPricePercent" content="textOnly" dt:type="int"/>
+	<ElementType name="TradeScreen" content="textOnly"/>
+	<ElementType name="TradeScreenType" content="eltOnly">
+		<element type="TradeScreen"/>
+		<element type="iPricePercent"/>
+	</ElementType>
+	<ElementType name="TradeScreenTypes" content="eltOnly">
+		<element type="TradeScreenType" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 	<ElementType name="iEuropeCostIncrease" content="textOnly" dt:type="int"/>
 	<ElementType name="iImmigrationWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iImmigrationWeightDecay" content="textOnly" dt:type="int"/>
@@ -320,7 +320,7 @@
 	</ElementType>
 	<ElementType name="UnitCombatType" content="textOnly"/>
 	<ElementType name="iUnitCombatMod" content="textOnly" dt:type="int"/>
-  <ElementType name="UnitCombatMod" content="eltOnly">
+	<ElementType name="UnitCombatMod" content="eltOnly">
 		<element type="UnitCombatType"/>
 		<element type="iUnitCombatMod"/>
 	</ElementType>
@@ -402,26 +402,26 @@
 	<ElementType name="LeaderPromotion" content="textOnly"/>
 	<ElementType name="iLeaderExperience" content="textOnly" dt:type="int"/>
   <!--TKs Mods -->
-  <ElementType name="VoidProfessionType" content="textOnly"/>
-  <ElementType name="bIsNotAllowed" content="textOnly" dt:type="boolean"/>
-  <ElementType name="ProfessionNotAllowed" content="eltOnly">
-    <element type="VoidProfessionType"/>
-    <element type="bIsNotAllowed"/>
-  </ElementType>
-  <ElementType name="ProfessionsNotAllowed" content="eltOnly">
-    <element type="ProfessionNotAllowed" minOccurs="0" maxOccurs="*"/>
-  </ElementType>
-  <ElementType name="KnightDubbingWeight" content="textOnly" dt:type="int"/>
-  <ElementType name="iCasteAttribute" content="textOnly" dt:type="int"/>
-  <ElementType name="bPreventFounding" content="textOnly" dt:type="boolean"/>
-  <ElementType name="bPreventTraveling" content="textOnly" dt:type="boolean"/>
-  <ElementType name="ConvertsToBuildingClass" content="textOnly"/>
-  <ElementType name="EducationUnitClass" content="textOnly"/>
-  <ElementType name="RehibilitateUnitClass" content="textOnly"/>
-  <ElementType name="LaborForceUnitClass" content="textOnly"/>
-  <ElementType name="ConvertsToYield" content="textOnly"/>
-  <ElementType name="ConvertsToGold" content="textOnly"/>
-  <ElementType name="iTradeBonus" content="textOnly" dt:type="int"/>
+	<ElementType name="VoidProfessionType" content="textOnly"/>
+	<ElementType name="bIsNotAllowed" content="textOnly" dt:type="boolean"/>
+	<ElementType name="ProfessionNotAllowed" content="eltOnly">
+		<element type="VoidProfessionType"/>
+		<element type="bIsNotAllowed"/>
+	</ElementType>
+	<ElementType name="ProfessionsNotAllowed" content="eltOnly">
+		<element type="ProfessionNotAllowed" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="KnightDubbingWeight" content="textOnly" dt:type="int"/>
+	<ElementType name="iCasteAttribute" content="textOnly" dt:type="int"/>
+	<ElementType name="bPreventFounding" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bPreventTraveling" content="textOnly" dt:type="boolean"/>
+	<ElementType name="ConvertsToBuildingClass" content="textOnly"/>
+	<ElementType name="EducationUnitClass" content="textOnly"/>
+	<ElementType name="RehibilitateUnitClass" content="textOnly"/>
+	<ElementType name="LaborForceUnitClass" content="textOnly"/>
+	<ElementType name="ConvertsToYield" content="textOnly"/>
+	<ElementType name="ConvertsToGold" content="textOnly"/>
+	<ElementType name="iTradeBonus" content="textOnly" dt:type="int"/>
 	<ElementType name="YieldCost" content="eltOnly">
 		<element type="YieldType"/>
 		<element type="iCost"/>
@@ -496,7 +496,7 @@
 		<element type="iAdvancedStartCost"/>
 		<element type="iAdvancedStartCostIncrease"/>
 		<element type="iEuropeCost"/>
-    <element type="TradeScreenTypes" minOccurs="0"/>
+		<element type="TradeScreenTypes" minOccurs="0"/>
 		<element type="iEuropeCostIncrease"/>
 		<element type="iImmigrationWeight"/>
 		<element type="iImmigrationWeightDecay"/>
@@ -530,7 +530,7 @@
 		<element type="UnitClassDefenseMods"/>
 		<element type="UnitCombatMods"/>
 		<element type="DomainMods"/>
-    <element type="FreeBuildingClass" minOccurs="0"/>
+		<element type="FreeBuildingClass" minOccurs="0"/>
 		<element type="YieldModifiers"/>
 		<element type="YieldChanges"/>
 		<element type="BonusYieldChanges"/>
@@ -637,7 +637,7 @@
 	<ElementType name="bConfirmCommand" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bVisible" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAll" content="textOnly" dt:type="boolean"/>
-  <ElementType name="EuropeTradeRoute" content="textOnly"/>
+	<ElementType name="EuropeTradeRoute" content="textOnly"/>
 	<ElementType name="CommandInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -656,7 +656,7 @@
 		<element type="bConfirmCommand" minOccurs="0"/>
 		<element type="bVisible" minOccurs="0"/>
 		<element type="bAll" minOccurs="0"/>
-    <element type="EuropeTradeRoute" minOccurs="0"/>
+		<element type="EuropeTradeRoute" minOccurs="0"/>
 		<element type="Button" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="CommandInfos" content="eltOnly">
@@ -688,9 +688,9 @@
 	<ElementType name="PromotionPrereqOr1" content="textOnly"/>
 	<ElementType name="PromotionPrereqOr2" content="textOnly"/>
 	<ElementType name="bLeader" content="textOnly" dt:type="boolean"/>
-  <ElementType name="iFirstStrikesChange" content="textOnly" dt:type="int"/>
-  <ElementType name="iChanceFirstStrikesChange" content="textOnly" dt:type="int"/>
-  <ElementType name="bImmuneToFirstStrikes" content="textOnly" dt:type="boolean"/>
+	<ElementType name="iFirstStrikesChange" content="textOnly" dt:type="int"/>
+	<ElementType name="iChanceFirstStrikesChange" content="textOnly" dt:type="int"/>
+	<ElementType name="bImmuneToFirstStrikes" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bBlitz" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAmphib" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bRiver" content="textOnly" dt:type="boolean"/>
@@ -734,8 +734,8 @@
 	<ElementType name="FeatureDoubleMoves" content="eltOnly">
 		<element type="FeatureDoubleMove" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-  <ElementType name="bNonePromotion" content="textOnly" dt:type="boolean"/>
-  <ElementType name="EscortUnitClass" content="textOnly"/>
+	<ElementType name="bNonePromotion" content="textOnly" dt:type="boolean"/>
+	<ElementType name="EscortUnitClass" content="textOnly"/>
 	<ElementType name="PromotionInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -746,9 +746,9 @@
 		<element type="PromotionPrereqOr2"/>
 		<element type="bLeader"/>
 		<element type="iFirstStrikesChange" minOccurs="0"/>
-    <element type="iChanceFirstStrikesChange" minOccurs="0"/>
-    <element type="bImmuneToFirstStrikes" minOccurs="0"/>
-    <element type="bBlitz"/>
+		<element type="iChanceFirstStrikesChange" minOccurs="0"/>
+		<element type="bImmuneToFirstStrikes" minOccurs="0"/>
+		<element type="bBlitz"/>
 		<element type="bAmphib"/>
 		<element type="bRiver"/>
 		<element type="bEnemyRoute"/>
@@ -788,11 +788,11 @@
 		<element type="bAltDown"/>
 		<element type="bShiftDown"/>
 		<element type="bCtrlDown"/>
-    <element type="bNonePromotion" minOccurs="0"/>
-    <element type="bNoBadGoodies" minOccurs="0"/>
-    <element type="EscortUnitClass" minOccurs="0"/>
-    <element type="bGraphicalOnly"/>
-    <element type="iHotKeyPriority"/>
+		<element type="bNonePromotion" minOccurs="0"/>
+		<element type="bNoBadGoodies" minOccurs="0"/>
+		<element type="EscortUnitClass" minOccurs="0"/>
+		<element type="bGraphicalOnly"/>
+		<element type="iHotKeyPriority"/>
 		<element type="Button"/>
 		<element type="iOrderPriority" minOccurs="0"/>
 	</ElementType>
@@ -800,7 +800,7 @@
 		<element type="PromotionInfo" maxOccurs="*"/>
 	</ElementType>
   <!--TK ArtTagUnitClass -->
-  <ElementType name="ArtTagUnitClass" content="textOnly"/>
+	<ElementType name="ArtTagUnitClass" content="textOnly"/>
 	<ElementType name="SpecialBuilding" content="textOnly"/>
 	<ElementType name="bWorkPlot" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bCitizen" content="textOnly" dt:type="boolean"/>
@@ -809,7 +809,7 @@
 	<ElementType name="bCityDefender" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bCanFound" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bUnarmed" content="textOnly" dt:type="boolean"/>
-  <ElementType name="iExperenceLevel" content="textOnly" dt:type="int"/>
+	<ElementType name="iExperenceLevel" content="textOnly" dt:type="int"/>
 	<ElementType name="iMissionaryRate" content="textOnly" dt:type="int"/>
 	<ElementType name="YieldType" content="textOnly"/>
 	<ElementType name="iYieldAmount" content="textOnly" dt:type="int"/>
@@ -820,16 +820,16 @@
 	<ElementType name="YieldEquipedNums" content="eltOnly">
 		<element type="YieldEquipedNum" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-  <ElementType name="iTaxCollectRate" content="textOnly" dt:type="int"/>
-  <ElementType name="GearType" content="textOnly"/>
-  <ElementType name="iAmount" content="textOnly" dt:type="boolean"/>
-  <ElementType name="CombatGearType" content="eltOnly">
-    <element type="GearType"/>
-    <element type="iAmount"/>
-  </ElementType>
-  <ElementType name="CombatGearTypes" content="eltOnly">
-    <element type="CombatGearType" minOccurs="0" maxOccurs="*"/>
-  </ElementType>
+	<ElementType name="iTaxCollectRate" content="textOnly" dt:type="int"/>
+	<ElementType name="GearType" content="textOnly"/>
+	<ElementType name="iAmount" content="textOnly" dt:type="boolean"/>
+	<ElementType name="CombatGearType" content="eltOnly">
+		<element type="GearType"/>
+		<element type="iAmount"/>
+	</ElementType>
+	<ElementType name="CombatGearTypes" content="eltOnly">
+		<element type="CombatGearType" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
   <!-- MultipleYieldsProduced Start -->
 	<ElementType name="YieldsProduced" content="eltOnly">
 		<element type="YieldType" minOccurs="0" maxOccurs="*"/>
@@ -840,12 +840,12 @@
 		<element type="YieldType" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 <!-- MultipleYieldsConsumed End -->
-  <ElementType name="RequiredBuilding" content="textOnly"/>
-  <ElementType name="RequiredPromotion" content="textOnly"/>
-  <ElementType name="CivType" content="textOnly"/>
-  <ElementType name="iFoundCityType" content="textOnly"/>
-  <ElementType name="ArrayEnable" content="textOnly" dt:type="int"/>
-  
+	<ElementType name="RequiredBuilding" content="textOnly"/>
+	<ElementType name="RequiredPromotion" content="textOnly"/>
+	<ElementType name="CivType" content="textOnly"/>
+	<ElementType name="iFoundCityType" content="textOnly"/>
+	<ElementType name="ArrayEnable" content="textOnly" dt:type="int"/>
+	
 	<ElementType name="ProfessionSubType" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -858,8 +858,8 @@
 	<ElementType name="ProfessionSubTypes" content="eltOnly">
 		<element type="ProfessionSubType" maxOccurs="*" minOccurs="0"/>
 	</ElementType>
-  
-  
+	
+	
 	<ElementType name="ProfessionInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -867,15 +867,15 @@
 		<element type="Strategy"/>
 		<element type="Help" minOccurs="0" maxOccurs="*"/>
     <!--TK ArtTagUnitClass -->
-    <element type="bNativesInvalid" minOccurs="0"/>
-    <element type="bEuropeInvalid" minOccurs="0"/>
-    <element type="bColonialInvalid" minOccurs="0"/>
-    <element type="ArtTagUnitClass" minOccurs="0"/>
-    <element type="Combat"/>
+		<element type="bNativesInvalid" minOccurs="0"/>
+		<element type="bEuropeInvalid" minOccurs="0"/>
+		<element type="bColonialInvalid" minOccurs="0"/>
+		<element type="ArtTagUnitClass" minOccurs="0"/>
+		<element type="Combat"/>
 		<element type="DefaultUnitAI"/>
 		<element type="SpecialBuilding"/>
-    <element type="UpgradeProfession" minOccurs="0"/>
-    <element type="LeadUnit" minOccurs="0"/>
+		<element type="UpgradeProfession" minOccurs="0"/>
+		<element type="LeadUnit" minOccurs="0"/>
 		<element type="bWorkPlot"/>
 		<element type="bCitizen"/>
 		<element type="bWater"/>
@@ -888,23 +888,23 @@
 		<element type="iMovesChange"/>
 		<element type="iWorkRate"/>
 		<element type="iMissionaryRate"/>
-    <element type="iExperenceLevel" minOccurs="0"/>
-    <element type="iPower"/>
+		<element type="iExperenceLevel" minOccurs="0"/>
+		<element type="iPower"/>
 		<element type="iAsset"/>
-    <element type="iTaxCollectRate" minOccurs="0"/>
-    <element type="CombatGearTypes" minOccurs="0"/>
+		<element type="iTaxCollectRate" minOccurs="0"/>
+		<element type="CombatGearTypes" minOccurs="0"/>
 		<element type="YieldEquipedNums"/>
-     <element type="FreePromotions"/>
+		<element type="FreePromotions"/>
 <!-- MultipleYieldsProduced Start -->
 		<element type="YieldsProduced"/>
 <!-- MultipleYieldsProduced End -->
 <!-- MultipleYieldsConsumed Start -->
 		<element type="YieldsConsumed"/>
 <!-- MultipleYieldsConsumed End -->
-    <element type="RequiredBuilding" minOccurs="0"/>
-    <element type="RequiredPromotion" minOccurs="0"/>
-    <element type="iFoundCityType" minOccurs="0"/>
-    <element type="CivType" minOccurs="0"/>
+		<element type="RequiredBuilding" minOccurs="0"/>
+		<element type="RequiredPromotion" minOccurs="0"/>
+		<element type="iFoundCityType" minOccurs="0"/>
+		<element type="CivType" minOccurs="0"/>
 		<element type="Button" maxOccurs="*"/>
 		<element type="ProfessionSubTypes"/>
 	</ElementType>

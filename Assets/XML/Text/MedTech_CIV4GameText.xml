@@ -598,15 +598,15 @@
 	<TEXT>
 		<Tag>TXT_KEY_EDIT_TEACHER_LIST_POPUP_TEXT</Tag>
 		<English>%s1_city can train the following units.
-Select how many units you want to be trained of each profession.</English>
+		Select how many units you want to be trained of each profession.</English>
 		<French>%s1_city can train the following units.
-Select how many units you want to be trained of each profession.</French>
+		Select how many units you want to be trained of each profession.</French>
 		<German>%s1_city can train the following units.
-Select how many units you want to be trained of each profession.</German>
+		Select how many units you want to be trained of each profession.</German>
 		<Italian>%s1_city can train the following units.
-Select how many units you want to be trained of each profession.</Italian>
+		Select how many units you want to be trained of each profession.</Italian>
 		<Spanish>%s1_city can train the following units.
-Select how many units you want to be trained of each profession.</Spanish>
+		Select how many units you want to be trained of each profession.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EDIT_TEACHER_LIST_POPUP_NO_SCHOOL_TEXT</Tag>
@@ -643,15 +643,15 @@ Select how many units you want to be trained of each profession.</Spanish>
 	<TEXT>
 		<Tag>TXT_KEY_EDIT_TEACHER_LIST_POPUP_REPEAT_HELP</Tag>
 		<English>Orders a new unit automatically whenever no unit is trained.
-Multiple repeating units is possible and an equal number will be trained of each.</English>
+		Multiple repeating units is possible and an equal number will be trained of each.</English>
 		<French>Orders a new unit automatically whenever no unit is trained.
-Multiple repeating units is possible and an equal number will be trained of each.</French>
+		Multiple repeating units is possible and an equal number will be trained of each.</French>
 		<German>Orders a new unit automatically whenever no unit is trained.
-Multiple repeating units is possible and an equal number will be trained of each.</German>
+		Multiple repeating units is possible and an equal number will be trained of each.</German>
 		<Italian>Orders a new unit automatically whenever no unit is trained.
-Multiple repeating units is possible and an equal number will be trained of each.</Italian>
+		Multiple repeating units is possible and an equal number will be trained of each.</Italian>
 		<Spanish>Orders a new unit automatically whenever no unit is trained.
-Multiple repeating units is possible and an equal number will be trained of each.</Spanish>
+		Multiple repeating units is possible and an equal number will be trained of each.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EDIT_TEACHER_LIST_NO_TEACHER</Tag>
