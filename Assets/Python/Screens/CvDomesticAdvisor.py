@@ -140,6 +140,7 @@ class CvDomesticAdvisor:
 		self.BUILDING_STATE           = self.addButton("INTERFACE_CITY_BUILD_BUTTON",          "TXT_KEY_BUILDINGS")
 		self.IMPORTEXPORT_STATE       = self.addButton("INTERFACE_CITY_GOVENOR_BUTTON",        "TXT_KEY_CONCEPT_TRADE_ROUTE")
 		self.CITIZEN_STATE            = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN")
+		self.CITIZEN_COUNT_STATE      = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_COUNT")
 		self.TOTAL_PRODUCTION_STATE   = self.addButton("INTERFACE_WAREHOUSE_STORAGE_BUTTON",    "TXT_KEY_CONCEPT_TOTAL_PRODUCTION")  # total production page - Nightinggale
 		self.TRADEROUTE_STATE         = self.addButton("INTERFACE_IMPORT_EXPORT_BUTTON",       "TXT_KEY_DOMESTIC_ADVISOR_STATE_TRADEROUTE")
 		self.NATIVE_STATE             = self.addButton("INTERFACE_NATIVE_VILLAGES_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_STATE_NATIVE")
@@ -159,15 +160,29 @@ class CvDomesticAdvisor:
 		#self.MAX_YIELDS_IN_A_PAGE = 19
 		#self.MAX_BUILDINGS_IN_A_PAGE = 26
 		self.MAX_BUILDINGS_IN_A_PAGE = 18
+		self.MAX_UNITS_IN_A_PAGE = 20
 		
 		self.WAREHOUSE_COLUMN_SIZE = (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH - self.iWareHouseW) / self.MAX_YIELDS_IN_A_PAGE
 		self.PRODUCTION_COLUMN_SIZE = (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / self.MAX_YIELDS_IN_A_PAGE
 		self.BUILDING_COLUMN_SIZE = (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / self.MAX_BUILDINGS_IN_A_PAGE
+		self.UNIT_COLUMN_SIZE = (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / self.MAX_UNITS_IN_A_PAGE
 		## R&R, Robert Surcouf,  Domestic Advisor Screen END
 		
 		#TKs Med
 		self.GENERAL_COLUMN_SIZE = (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / (12 + self.inventions + self.culture)
 		#TKe Med
+		
+		self.AllowedUnits = []
+		self.AllowedUnitIndex = []
+		
+		player = gc.getPlayer(gc.getGame().getActivePlayer())
+		for iUnit in range(gc.getNumUnitInfos()):
+			iIndex = -1
+			if (player.canUseUnit(iUnit)):
+				if (gc.getUnitInfo(iUnit).isFound()):
+					iIndex = len(self.AllowedUnits)
+					self.AllowedUnits.append(iUnit)
+			self.AllowedUnitIndex.append(iIndex)
 		
 		self.RebuildArrays()
 
@@ -269,6 +284,15 @@ class CvDomesticAdvisor:
 		# Citizen Headers
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][0] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN", ()).upper() + "</font>", self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH)
 			
+		# Citizen count header
+		for iIndex in range(len(self.AllowedUnits)):
+			iIndexOnPage = iIndex % self.MAX_UNITS_IN_A_PAGE
+			iPage = iIndex // self.MAX_UNITS_IN_A_PAGE
+			self.createSubpage(self.CITIZEN_COUNT_STATE, iPage)
+			iUnit = self.AllowedUnits[iIndex]
+			screen.setTableColumnHeader( self.StatePages[self.CITIZEN_COUNT_STATE][iPage] + "ListBackground", iIndexOnPage + 2, "<font=2> " + gc.getUnitInfo(iUnit).getDescription() + "</font>", (self.UNIT_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
+
+		
 		#Default State on Screen opening
 		self.CurrentState = self.GENERAL_STATE
 		self.CurrentPage = 0
@@ -527,7 +551,24 @@ class CvDomesticAdvisor:
 
 			screen.setTableText(szState + "ListBackground", 1, i, "<font=2>" + pLoopCity.getName() + "</font>", "", WidgetTypes.WIDGET_YIELD_IMPORT_EXPORT, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 			# RR - Domestic Advisor Screen - END
-			
+		
+		elif(self.CurrentState == self.CITIZEN_COUNT_STATE):
+			cityPopList = [0] * len(self.AllowedUnits)
+			for iCitizen in range(pLoopCity.getPopulation() - 1, -1, -1):
+				pCitizen = pLoopCity.getPopulationUnitByIndex(iCitizen)
+				iType = pCitizen.getUnitType()
+				cityPopList[self.AllowedUnitIndex[iType]] += 1
+				
+			start = self.CitizenStart()
+			for iUnitIndex in range(start, self.CitizenEnd()):
+				iUnitCount = cityPopList[iUnitIndex]
+				if (iUnitCount > 0):
+					szText = str(iUnitCount);
+				else:
+					szText =u""
+				
+				screen.setTableInt(szState + "ListBackground", iUnitIndex - start + 2, i, u"<font=2>" + szText + u"</font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+		
 		## R&R, Robert Surcouf,  Domestic Advisor Screen START
 		elif(self.CurrentState == self.GENERAL_STATE and self.CurrentPage == 1): 
 			#Culture rate
@@ -952,12 +993,18 @@ class CvDomesticAdvisor:
 		return (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / iNum 
 	## R&R, Robert Surcouf,  Domestic Advisor Screen - End
 	
-	# two small functions to get the yields on the current page - Nightinggale
+	# small functions to simplify looping though columns in current page - Nightinggale
 	def YieldStart(self):
 		return self.MAX_YIELDS_IN_A_PAGE * self.CurrentPage
 		
 	def YieldEnd(self):
 		return min((self.MAX_YIELDS_IN_A_PAGE * (self.CurrentPage + 1)), self.num_yields)
+		
+	def CitizenStart(self):
+		return self.MAX_UNITS_IN_A_PAGE * self.CurrentPage
+		
+	def CitizenEnd(self):
+		return min((self.MAX_UNITS_IN_A_PAGE * (self.CurrentPage + 1)), len(self.AllowedUnits))
 	
 	# auto-generated list creation - start - Nightinggale
 	def addButton(self, state_button, state_help):

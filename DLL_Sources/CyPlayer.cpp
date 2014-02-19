@@ -1250,3 +1250,17 @@ std::wstring CyPlayer::getTradeMessage(int i) const
 {
 	return m_pPlayer ? m_pPlayer->getTradeMessage(i) : L"";
 }
+
+// invention effect cache - start - Nightinggale
+bool CyPlayer::canUseUnit(int iUnit) const
+{
+	if (m_pPlayer != NULL)
+	{
+		if (iUnit > NO_UNIT && iUnit < GC.getNumUnitInfos())
+		{
+			return m_pPlayer->canUseUnit((UnitTypes)iUnit);
+		}
+	}
+	return false;
+}
+// invention effect cache - end - Nightinggale
