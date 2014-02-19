@@ -3661,6 +3661,7 @@ void CvGameTextMgr::parseLeaderTraits(CvWStringBuffer &szHelpString, LeaderHeadT
 		if (!bDawnOfMan && eCivilization != NO_CIVILIZATION)
 		{
             bool bFoundTech = false;
+			bool bInGame = GC.getGameINLINE().getActivePlayer() == NO_PLAYER;
             for (int iLoopCivic = 0; iLoopCivic < GC.getNumCivicInfos(); ++iLoopCivic)
             {
                 if (GC.getCivilizationInfo(eCivilization).getCivilizationTechs(iLoopCivic) != -1)
@@ -3675,7 +3676,7 @@ void CvGameTextMgr::parseLeaderTraits(CvWStringBuffer &szHelpString, LeaderHeadT
                     CvWStringBuffer szBuffer;
                     CvCivicInfo& kLoopCivicInfo = GC.getCivicInfo((CivicTypes) iLoopCivic);
                     szHelpString.append(gDLL->getText("TXT_KEY_YELLOW_NAME", kLoopCivicInfo.getDescription()));
-                    GAMETEXT.parseCivicInfo(szBuffer, (CivicTypes) iLoopCivic, false, false, true, false, eCivilization);
+                    GAMETEXT.parseCivicInfo(szBuffer, (CivicTypes) iLoopCivic, bInGame, false, true, false, eCivilization);
                     szHelpString.append(szBuffer);
                 }
             }

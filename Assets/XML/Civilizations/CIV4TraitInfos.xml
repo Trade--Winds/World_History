@@ -4778,7 +4778,7 @@
 			<GoodyFactors/>
 		</TraitInfo>
 		<TraitInfo>
-			<Type>INVENTION_CALENDER</Type>
+			<Type>INVENTION_MEDIEVAL_TECH_CALENDER</Type>
 			<Description>Calender</Description>
 			<ShortDescription>TXT_KEY_TRAIT_TOLERANT_SHORT</ShortDescription>
 			<iLevelExperienceModifier>0</iLevelExperienceModifier>

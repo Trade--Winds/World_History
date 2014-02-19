@@ -398,81 +398,7 @@
 			<iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
 			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,7,5</Button>
 			<ProfessionSubTypes/>
-		</ProfessionInfo>
-		<ProfessionInfo>
-			<Type>PROFESSION_KNIGHT_PLATE</Type>
-			<Description>Heavy Knight</Description>
-			<Civilopedia>TXT_KEY_PROFESSION_DRAGOON_PEDIA</Civilopedia>
-			<Strategy>TXT_KEY_PROFESSION_DRAGOON_STRATEGY</Strategy>
-			<Help/>
-			<bNativesInvalid>1</bNativesInvalid>
-			<bEuropeInvalid>0</bEuropeInvalid>
-			<Combat>UNITCOMBAT_MOUNTED</Combat>
-			<DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
-			<SpecialBuilding>NONE</SpecialBuilding>
-			<bWorkPlot>0</bWorkPlot>
-			<bCitizen>0</bCitizen>
-			<bWater>0</bWater>
-			<bScout>0</bScout>
-			<bCityDefender>0</bCityDefender>
-			<bCanFound>1</bCanFound>
-			<bUnarmed>0</bUnarmed>
-			<bNoDefensiveBonus>1</bNoDefensiveBonus>
-			<iCombatChange>8</iCombatChange>
-			<iMovesChange>1</iMovesChange>
-			<iWorkRate>0</iWorkRate>
-			<iMissionaryRate>0</iMissionaryRate>
-			<iExperenceLevel>2</iExperenceLevel>
-			<iPower>150</iPower>
-			<iAsset>0</iAsset>
-			<CombatGearTypes>
-				<CombatGearType>
-					<GearType>UNITARMOR_PLATE</GearType>
-					<iAmount>1</iAmount>
-				</CombatGearType>
-				<CombatGearType>
-					<GearType>UNITARMOR_SHIELD</GearType>
-					<iAmount>1</iAmount>
-				</CombatGearType>
-			</CombatGearTypes>
-			<YieldEquipedNums>
-				<YieldEquipedNum>
-					<YieldType>YIELD_HORSES</YieldType>
-					<iYieldAmount>50</iYieldAmount>
-				</YieldEquipedNum>
-				<YieldEquipedNum>
-					<YieldType>YIELD_WEAPONS</YieldType>
-					<iYieldAmount>50</iYieldAmount>
-				</YieldEquipedNum>
-				<YieldEquipedNum>
-					<YieldType>YIELD_PLATE_ARMOR</YieldType>
-					<iYieldAmount>50</iYieldAmount>
-				</YieldEquipedNum>
-				<YieldEquipedNum>
-					<YieldType>YIELD_MAIL_ARMOR</YieldType>
-					<iYieldAmount>50</iYieldAmount>
-				</YieldEquipedNum>
-			</YieldEquipedNums>
-			<FreePromotions>
-				<FreePromotion>
-					<PromotionType>PROMOTION_DRAGOON</PromotionType>
-					<bFreePromotion>1</bFreePromotion>
-				</FreePromotion>
-				<FreePromotion>
-					<PromotionType>PROMOTION_MOUNTED</PromotionType>
-					<bFreePromotion>1</bFreePromotion>
-				</FreePromotion>
-			</FreePromotions>
-			<YieldsProduced>
-				<YieldType>NONE</YieldType>
-			</YieldsProduced>
-			<YieldsConsumed>
-				<YieldType>NONE</YieldType>
-			</YieldsConsumed>
-			<RequiredPromotion>PROMOTION_KNIGHT</RequiredPromotion>
-			<iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
-			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,10</Button>
-			<ProfessionSubTypes/>
+    <!--ArrayEnable 0: Use Parent; 1: Use Sub Profession; 2: Merge Sub with Parent  -->
 		</ProfessionInfo>
 		<ProfessionInfo>
 			<Type>PROFESSION_KNIGHT_MAIL</Type>
@@ -533,6 +459,10 @@
 					<PromotionType>PROMOTION_MOUNTED</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+        <FreePromotion>
+          <PromotionType>PROMOTION_ATTACK_MAIL</PromotionType>
+          <bFreePromotion>1</bFreePromotion>
+        </FreePromotion>
 			</FreePromotions>
 			<YieldsProduced>
 				<YieldType>NONE</YieldType>
@@ -543,7 +473,52 @@
 			<RequiredPromotion>PROMOTION_KNIGHT</RequiredPromotion>
 			<iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
 			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,10</Button>
-			<ProfessionSubTypes/>
+      <ProfessionSubTypes>
+        <ProfessionSubType>
+          <Type>PROFESSION_KNIGHT_PLATE</Type>
+          <Description>Heavy Knight</Description>
+          <iPower>175</iPower>
+          <ArrayEnable>211</ArrayEnable>
+          <CombatGearTypes>
+            <CombatGearType>
+              <GearType>UNITARMOR_PLATE</GearType>
+              <iAmount>1</iAmount>
+            </CombatGearType>
+          </CombatGearTypes>
+          <YieldEquipedNums>
+            <YieldEquipedNum>
+              <YieldType>YIELD_HORSES</YieldType>
+              <iYieldAmount>50</iYieldAmount>
+            </YieldEquipedNum>
+            <YieldEquipedNum>
+              <YieldType>YIELD_WEAPONS</YieldType>
+              <iYieldAmount>50</iYieldAmount>
+            </YieldEquipedNum>
+            <YieldEquipedNum>
+              <YieldType>YIELD_PLATE_ARMOR</YieldType>
+              <iYieldAmount>50</iYieldAmount>
+            </YieldEquipedNum>
+            <YieldEquipedNum>
+              <YieldType>YIELD_MAIL_ARMOR</YieldType>
+              <iYieldAmount>50</iYieldAmount>
+            </YieldEquipedNum>
+          </YieldEquipedNums>
+          <FreePromotions>
+            <FreePromotion>
+              <PromotionType>PROMOTION_DRAGOON</PromotionType>
+              <bFreePromotion>1</bFreePromotion>
+            </FreePromotion>
+            <FreePromotion>
+              <PromotionType>PROMOTION_MOUNTED</PromotionType>
+              <bFreePromotion>1</bFreePromotion>
+            </FreePromotion>
+            <FreePromotion>
+              <PromotionType>PROMOTION_ATTACK_PLATE</PromotionType>
+              <bFreePromotion>1</bFreePromotion>
+            </FreePromotion>
+          </FreePromotions>
+        </ProfessionSubType>
+      </ProfessionSubTypes>
 		</ProfessionInfo>
 		<ProfessionInfo>
 			<Type>PROFESSION_HEAVY_CALVARY</Type>
@@ -1161,7 +1136,7 @@
 			<ProfessionSubTypes>
 				<ProfessionSubType>
 					<Type>PROFESSION_INFANTRY_MAIL</Type>
-					<Description>Crossbowman(Mail)</Description>
+					<Description>Infantry(Leather)</Description>
 					<iPower>125</iPower>
 					<ArrayEnable>022</ArrayEnable>
 					<CombatGearTypes/>

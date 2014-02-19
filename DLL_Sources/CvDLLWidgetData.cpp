@@ -3304,19 +3304,23 @@ void CvDLLWidgetData::parseImprovementHelp(CvWidgetDataStruct &widgetDataStruct,
 void CvDLLWidgetData::parseCivicHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {   bool bShowYields = false;
     bool bSkipName = false;
-   if (widgetDataStruct.m_iData2 == 1)
-   {
-       bShowYields = true;
-   }
-   if (widgetDataStruct.m_iData2 == 2)
-   {
-       bShowYields = true;
-       bSkipName = true;
-   }
+	bool bNoPlayer = GC.getGameINLINE().getActivePlayer() == NO_PLAYER;
+	if (!bNoPlayer)
+	{
+	   if (widgetDataStruct.m_iData2 == 1)
+	   {
+		   bShowYields = true;
+	   }
+	   if (widgetDataStruct.m_iData2 == 2)
+	   {
+		   bShowYields = true;
+		   bSkipName = true;
+	   }
+	}
 //	{
 //	if (widgetDataStruct.m_iData2 != 0)
 //	{
-		GAMETEXT.parseCivicInfo(szBuffer, (CivicTypes)widgetDataStruct.m_iData1, false, bShowYields, bSkipName, false);
+		GAMETEXT.parseCivicInfo(szBuffer, (CivicTypes)widgetDataStruct.m_iData1, bNoPlayer, bShowYields, bSkipName, false);
 	//}
 }
 ///TKe

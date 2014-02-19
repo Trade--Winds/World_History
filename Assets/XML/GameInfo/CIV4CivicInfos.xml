@@ -573,7 +573,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>4</iX_Location>
 			<iY_Location>5</iY_Location>
-			<RequiredInvention>MATHEMATICS</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_MATHEMATICS</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_ALPHABET</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -737,7 +737,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>9</iX_Location>
 			<iY_Location>3</iY_Location>
-			<RequiredInvention>PAPER</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_PAPER</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -944,7 +944,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>JURYTRIAL</Type>
+			<Type>MEDIEVAL_TECH_JURYTRIAL</Type>
 			<Description>Jury Trial</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1012,7 +1012,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>MATHEMATICS</Type>
+			<Type>MEDIEVAL_TECH_MATHEMATICS</Type>
 			<Description>Mathematics</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1090,7 +1090,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>WHEELBARROW</Type>
+			<Type>MEDIEVAL_TECH_WHEELBARROW</Type>
 			<Description>Wheelbarrow</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1164,7 +1164,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>CALENDER</Type>
+			<Type>MEDIEVAL_TECH_CALENDER</Type>
 			<Description>Calender</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1211,7 +1211,7 @@
 			<AllowsUnitClasses/>
 			<AllowsPromotions/>
 			<AllowsProfessions/>
-			<AllowsTrait>INVENTION_CALENDER</AllowsTrait>
+			<AllowsTrait>INVENTION_MEDIEVAL_TECH_CALENDER</AllowsTrait>
 			<AllowsBuildTypes/>
 			<AllowsBuildTypesTerrain/>
 			<ConvertsUnitsFrom/>
@@ -1237,7 +1237,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>PAPER</Type>
+			<Type>MEDIEVAL_TECH_PAPER</Type>
 			<Description>Paper</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1268,7 +1268,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>8</iX_Location>
 			<iY_Location>3</iY_Location>
-			<RequiredInvention>CALENDER</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_CALENDER</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2321,7 +2321,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>4</iX_Location>
 			<iY_Location>9</iY_Location>
-			<RequiredInvention>WHEELBARROW</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_WHEELBARROW</RequiredInvention>
 			<RequiredInvention2>METALCASTING</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2401,7 +2401,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>2</iX_Location>
 			<iY_Location>10</iY_Location>
-			<RequiredInvention>WHEELBARROW</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_WHEELBARROW</RequiredInvention>
 			<RequiredInvention2>MONARCHY</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2484,7 +2484,7 @@
 			<iX_Location>3</iX_Location>
 			<iY_Location>10</iY_Location>
 			<RequiredInvention>MOTTEANDBAILEY</RequiredInvention>
-			<RequiredInvention2>MATHEMATICS</RequiredInvention2>
+			<RequiredInvention2>MEDIEVAL_TECH_MATHEMATICS</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -2748,7 +2748,7 @@
 			<iX_Location>7</iX_Location>
 			<iY_Location>9</iY_Location>
 			<RequiredInvention>WHEELEDPLOW</RequiredInvention>
-			<RequiredInvention2>CALENDER</RequiredInvention2>
+			<RequiredInvention2>MEDIEVAL_TECH_CALENDER</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -3700,7 +3700,7 @@
 			<iX_Location>11</iX_Location>
 			<iY_Location>12</iY_Location>
 			<RequiredInvention>FUEDALISM</RequiredInvention>
-			<RequiredInvention2>PAPER</RequiredInvention2>
+			<RequiredInvention2>MEDIEVAL_TECH_PAPER</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>

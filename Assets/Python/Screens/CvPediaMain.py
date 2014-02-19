@@ -516,9 +516,9 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
 		for item in list:
 			#TKs
 			Constitute = ""
-			if gc.getCivicInfo(item[1]).getCivicOptionType() == 5 and gc.getCivicInfo(item[1]).getInventionCategory() == -1:
+			if gc.getCivicInfo(item[1]).getCivicOptionType() == 0 and gc.getCivicInfo(item[1]).getInventionCategory() == -1:
 				continue
-			if gc.getCivicInfo(item[1]).getCivicOptionType() != 5:
+			if gc.getCivicInfo(item[1]).getCivicOptionType() != 0:
 				#Constitute = localText.getText("TXT_KEY_CONSTITUTE", ())
 				continue
 			
