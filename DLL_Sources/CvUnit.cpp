@@ -15604,3 +15604,45 @@ void CvUnit::changeInvisibleTimer(int iChange)
 //	}
 //}
 ///TKe
+
+/// Expert working - start - Nightinggale
+bool CvUnit::isCitizenExpertWorking() const
+{
+	// tell if a citizen is producing yields where the unit type gains a bonus
+	ProfessionTypes eProfession = this->getProfession();
+	if (eProfession != NO_PROFESSION)
+	{
+		CvProfessionInfo& kProfession = GC.getProfessionInfo(eProfession);
+		if (kProfession.isCitizen())
+		{
+			CvUnitInfo& kUnit = getUnitInfo();
+
+			bool bWater = kProfession.isWater();
+			if (kProfession.isWorkPlot())
+			{
+				if(kProfession.isWater())
+				{
+					if (!kUnit.isWaterYieldChanges())
+					{
+						return false;
+					}
+				}
+				else if (!kUnit.isLandYieldChanges())
+				{
+					return false;
+				}
+			}
+
+			for (int iIndex = 0; iIndex < kProfession.getNumYieldsProduced(); iIndex++)
+			{
+				int iYield = kProfession.getYieldsProduced(iIndex);
+				if (kUnit.getYieldChange(iYield) > 0 || kUnit.getYieldModifier(iYield) > 0)
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+/// Expert working - end - Nightinggale

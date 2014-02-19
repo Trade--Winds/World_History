@@ -141,6 +141,7 @@ class CvDomesticAdvisor:
 		self.IMPORTEXPORT_STATE       = self.addButton("INTERFACE_CITY_GOVENOR_BUTTON",        "TXT_KEY_CONCEPT_TRADE_ROUTE")
 		self.CITIZEN_STATE            = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN")
 		self.CITIZEN_COUNT_STATE      = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_COUNT")
+		self.CITIZEN_WRONG_STATE      = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_WRONG")
 		self.TOTAL_PRODUCTION_STATE   = self.addButton("INTERFACE_WAREHOUSE_STORAGE_BUTTON",    "TXT_KEY_CONCEPT_TOTAL_PRODUCTION")  # total production page - Nightinggale
 		self.TRADEROUTE_STATE         = self.addButton("INTERFACE_IMPORT_EXPORT_BUTTON",       "TXT_KEY_DOMESTIC_ADVISOR_STATE_TRADEROUTE")
 		self.NATIVE_STATE             = self.addButton("INTERFACE_NATIVE_VILLAGES_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_STATE_NATIVE")
@@ -149,6 +150,10 @@ class CvDomesticAdvisor:
 		self.YieldPages.add(self.WAREHOUSE_STATE)
 		self.YieldPages.add(self.TOTAL_PRODUCTION_STATE)
 		self.YieldPages.add(self.IMPORTEXPORT_STATE)
+		
+		self.CitizenPages = []
+		self.CitizenPages.append(self.CITIZEN_COUNT_STATE)
+		self.CitizenPages.append(self.CITIZEN_WRONG_STATE)
 		
 		## R&R, Robert Surcouf,  Domestic Advisor Screen START
 		
@@ -288,9 +293,11 @@ class CvDomesticAdvisor:
 		for iIndex in range(len(self.AllowedUnits)):
 			iIndexOnPage = iIndex % self.MAX_UNITS_IN_A_PAGE
 			iPage = iIndex // self.MAX_UNITS_IN_A_PAGE
-			self.createSubpage(self.CITIZEN_COUNT_STATE, iPage)
 			iUnit = self.AllowedUnits[iIndex]
-			screen.setTableColumnHeader( self.StatePages[self.CITIZEN_COUNT_STATE][iPage] + "ListBackground", iIndexOnPage + 2, "<font=2> " + gc.getUnitInfo(iUnit).getDescription() + "</font>", (self.UNIT_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
+			for iStateIndez in range(len(self.CitizenPages)):
+				state = self.CitizenPages[iStateIndez]
+				self.createSubpage(state, iPage)
+				screen.setTableColumnHeader( self.StatePages[state][iPage] + "ListBackground", iIndexOnPage + 2, "<font=2> " + gc.getUnitInfo(iUnit).getDescription() + "</font>", (self.UNIT_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
 
 		
 		#Default State on Screen opening
@@ -552,12 +559,13 @@ class CvDomesticAdvisor:
 			screen.setTableText(szState + "ListBackground", 1, i, "<font=2>" + pLoopCity.getName() + "</font>", "", WidgetTypes.WIDGET_YIELD_IMPORT_EXPORT, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 			# RR - Domestic Advisor Screen - END
 		
-		elif(self.CurrentState == self.CITIZEN_COUNT_STATE):
+		elif(self.CurrentState in self.CitizenPages):
 			cityPopList = [0] * len(self.AllowedUnits)
 			for iCitizen in range(pLoopCity.getPopulation() - 1, -1, -1):
 				pCitizen = pLoopCity.getPopulationUnitByIndex(iCitizen)
 				iType = pCitizen.getUnitType()
-				cityPopList[self.AllowedUnitIndex[iType]] += 1
+				if (self.CurrentState == self.CITIZEN_COUNT_STATE or not pCitizen.isCitizenExpertWorking()):
+					cityPopList[self.AllowedUnitIndex[iType]] += 1
 				
 			start = self.CitizenStart()
 			for iUnitIndex in range(start, self.CitizenEnd()):
@@ -927,7 +935,8 @@ class CvDomesticAdvisor:
 					if(self.CurrentState != iData):
 						screen.hide(self.StatePages[self.CurrentState][self.CurrentPage] + "ListBackground")
 						if self.CurrentState not in self.YieldPages or iData not in self.YieldPages:
-							self.CurrentPage = 0
+							if self.CurrentState not in self.CitizenPages or iData not in self.CitizenPages:
+								self.CurrentPage = 0
 						self.CurrentState = iData
 						self.drawContents()
 				# auto-generated list creation - start - Nightinggale

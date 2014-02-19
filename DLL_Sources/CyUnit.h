@@ -287,6 +287,11 @@ public:
 	std::string getFullLengthIcon() const;
 	// Python Helper Functions
 	void centerCamera();
+
+	/// Expert working - start - Nightinggale
+	bool isCitizenExpertWorking() const;
+	/// Expert working - end -  Nightinggale
+
 protected:
 	CvUnit* m_pUnit;
 };
