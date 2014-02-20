@@ -146,10 +146,11 @@ class CvDomesticAdvisor:
 		self.TRADEROUTE_STATE         = self.addButton("INTERFACE_IMPORT_EXPORT_BUTTON",       "TXT_KEY_DOMESTIC_ADVISOR_STATE_TRADEROUTE")
 		self.NATIVE_STATE             = self.addButton("INTERFACE_NATIVE_VILLAGES_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_STATE_NATIVE")
 		
-		self.YieldPages = set([self.PRODUCTION_STATE])
-		self.YieldPages.add(self.WAREHOUSE_STATE)
-		self.YieldPages.add(self.TOTAL_PRODUCTION_STATE)
-		self.YieldPages.add(self.IMPORTEXPORT_STATE)
+		self.YieldPages = []
+		self.YieldPages.append(self.PRODUCTION_STATE)
+		self.YieldPages.append(self.WAREHOUSE_STATE)
+		self.YieldPages.append(self.TOTAL_PRODUCTION_STATE)
+		self.YieldPages.append(self.IMPORTEXPORT_STATE)
 		
 		self.CitizenPages = []
 		self.CitizenPages.append(self.CITIZEN_COUNT_STATE)
@@ -177,10 +178,21 @@ class CvDomesticAdvisor:
 		self.GENERAL_COLUMN_SIZE = (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / (12 + self.inventions + self.culture)
 		#TKe Med
 		
+		self.AllowedYields = []
+		self.AllowedYieldIndex = []
+		
 		self.AllowedUnits = []
 		self.AllowedUnitIndex = []
 		
 		player = gc.getPlayer(gc.getGame().getActivePlayer())
+		
+		for iYield in range(self.num_yields):
+			iIndex = -1
+			if (player.canUseYield(iYield)):
+				iIndex = len(self.AllowedYields)
+				self.AllowedYields.append(iYield)
+			self.AllowedYieldIndex.append(iIndex)
+		
 		for iUnit in range(gc.getNumUnitInfos()):
 			iIndex = -1
 			if (player.canUseUnit(iUnit)):
@@ -267,9 +279,10 @@ class CvDomesticAdvisor:
 				for PageName in self.StatePages[self.WAREHOUSE_STATE]:
 					screen.setTableColumnHeader( PageName + "ListBackground", 2, "<font=2>" + "MAX" + "</font>", self.iWareHouseW)
 				
-			for iYield in range(YieldTypes.YIELD_FOOD, self.num_yields):
-				iYieldOnPage = iYield % self.MAX_YIELDS_IN_A_PAGE
-				iPage = iYield // self.MAX_YIELDS_IN_A_PAGE
+			for iYieldIndex in range(len(self.AllowedYields)):
+				iYield = self.AllowedYields[iYieldIndex]
+				iYieldOnPage = iYieldIndex % self.MAX_YIELDS_IN_A_PAGE
+				iPage = iYieldIndex // self.MAX_YIELDS_IN_A_PAGE
 				self.createSubpage(iState, iPage)
 				screen.setTableColumnHeader( self.StatePages[iState][iPage] + "ListBackground", iYieldOnPage + 2 + offset, "<font=2> " + (u" %c" % gc.getYieldInfo(iYield).getChar()) + "</font>", (self.PRODUCTION_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
 
@@ -427,7 +440,8 @@ class CvDomesticAdvisor:
 
 		elif(self.CurrentState == self.PRODUCTION_STATE):
 			start = self.YieldStart()
-			for iYield in range(start, self.YieldEnd()):
+			for iYieldIndex in range(start, self.YieldEnd()):
+				iYield = self.AllowedYields[iYieldIndex]
 				iNetYield = pLoopCity.calculateNetYield(iYield)
 				szText = unicode(iNetYield)
 				if iNetYield > 0:
@@ -436,7 +450,7 @@ class CvDomesticAdvisor:
 					szText = localText.getText("TXT_KEY_COLOR_NEGATIVE", ()) + szText + localText.getText("TXT_KEY_COLOR_REVERT", ())
 				elif iNetYield == 0:
 					szText = ""
-				screen.setTableInt(szState + "ListBackground", iYield - start + 2, i, "<font=1>" + szText + "<font/>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+				screen.setTableInt(szState + "ListBackground", iYieldIndex - start + 2, i, "<font=1>" + szText + "<font/>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 				
 		elif(self.CurrentState == self.WAREHOUSE_STATE):
 #VET NewCapacity - begin 4/4
@@ -495,13 +509,14 @@ class CvDomesticAdvisor:
 				szText += u"/" + str(iMaxYield) + u"</color></font>"
 				screen.setTableInt(self.StatePages[self.WAREHOUSE_STATE][self.CurrentPage] + "ListBackground", 2, i, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 				
-			for iYield in range(self.YieldStart(), self.YieldEnd()):
+			for iYieldIndex in range(self.YieldStart(), self.YieldEnd()):
+				iYield = self.AllowedYields[iYieldIndex]
 				iNetYield = pLoopCity.getYieldStored(iYield)
 				szText = unicode(iNetYield)
 				if iNetYield == 0:
 					szText = ""
 				else:
-					screen.setTableInt(szState + "ListBackground", (iYield % self.MAX_YIELDS_IN_A_PAGE) + 2 + self.bNewCapacity, i, u"<font=2><color=0,255,0>" + szText + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+					screen.setTableInt(szState + "ListBackground", (iYieldIndex % self.MAX_YIELDS_IN_A_PAGE) + 2 + self.bNewCapacity, i, u"<font=2><color=0,255,0>" + szText + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 			#else:
 			#	screen.setTableInt(self.StatePages[self.WAREHOUSE_STATE][0] + "ListBackground", 2, i, u"<font=2><color=255,255,255>" + str(pLoopCity.getMaxYieldCapacity()) + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 			#	for iYield in range(YieldTypes.NUM_YIELD_TYPES):
@@ -545,16 +560,17 @@ class CvDomesticAdvisor:
 						
 		elif(self.CurrentState == self.IMPORTEXPORT_STATE):
 			start = self.YieldStart()
-			for iYield in range(start, self.YieldEnd()):
+			for iYieldIndex in range(start, self.YieldEnd()):
+				iYield = self.AllowedYields[iYieldIndex]
 				bExportYield = pLoopCity.isExport(iYield)
 				bImportYield = pLoopCity.isImport(iYield)
 				## R&R, Robert Surcouf,  Domestic Advisor Screen - End
 				if (bExportYield and bImportYield):
-					screen.setTableInt(szState + "ListBackground", iYield - start + 2, i, u"<font=2><color=255,255,0>" + localText.getText("TXT_KEY_IN_AND_OUT", ()) + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+					screen.setTableInt(szState + "ListBackground", iYieldIndex - start + 2, i, u"<font=2><color=255,255,0>" + localText.getText("TXT_KEY_IN_AND_OUT", ()) + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 				elif (not bExportYield and bImportYield):
-					screen.setTableInt(szState + "ListBackground", iYield - start + 2, i, u"<font=2><color=0,255,0>" + localText.getText("TXT_KEY_IN", ()) + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+					screen.setTableInt(szState + "ListBackground", iYieldIndex - start + 2, i, u"<font=2><color=0,255,0>" + localText.getText("TXT_KEY_IN", ()) + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 				elif (bExportYield and not bImportYield):
-					screen.setTableInt(szState + "ListBackground", iYield - start + 2, i, u"<font=2><color=255,0,0>" + localText.getText("TXT_KEY_OUT", ()) + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+					screen.setTableInt(szState + "ListBackground", iYieldIndex - start + 2, i, u"<font=2><color=255,0,0>" + localText.getText("TXT_KEY_OUT", ()) + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 
 			screen.setTableText(szState + "ListBackground", 1, i, "<font=2>" + pLoopCity.getName() + "</font>", "", WidgetTypes.WIDGET_YIELD_IMPORT_EXPORT, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 			# RR - Domestic Advisor Screen - END
@@ -1022,7 +1038,7 @@ class CvDomesticAdvisor:
 		return self.MAX_YIELDS_IN_A_PAGE * self.CurrentPage
 		
 	def YieldEnd(self):
-		return min((self.MAX_YIELDS_IN_A_PAGE * (self.CurrentPage + 1)), self.num_yields)
+		return min((self.MAX_YIELDS_IN_A_PAGE * (self.CurrentPage + 1)), len(self.AllowedYields))
 		
 	def CitizenStart(self):
 		return self.MAX_UNITS_IN_A_PAGE * self.CurrentPage
