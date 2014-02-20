@@ -51,7 +51,7 @@ class CvDomesticAdvisor:
 		self.nScreenHeight = (screen.getYResolution() - (screen.getYResolution() * 31 / 100))
 		
 #VET NewCapacity - begin 1/4
-		self.num_yields = YieldTypes.YIELD_HAMMERS
+		self.num_yields = YieldTypes.NUM_CARGO_YIELD_TYPES
 
 		self.bNewCapacity = (gc.getDefineINT("NEW_CAPACITY") > 0)
 		self.useLuxuryGoods = (gc.getDefineINT("PRICE_DIFF_EUROPE_DOMESTIC_LUXURY_GOODS") > 0)
@@ -152,6 +152,9 @@ class CvDomesticAdvisor:
 		self.YieldPages.append(self.TOTAL_PRODUCTION_STATE)
 		self.YieldPages.append(self.IMPORTEXPORT_STATE)
 		
+		self.BuildingPages = []
+		self.BuildingPages.append(self.BUILDING_STATE)
+		
 		self.CitizenPages = []
 		self.CitizenPages.append(self.CITIZEN_COUNT_STATE)
 		self.CitizenPages.append(self.CITIZEN_WRONG_STATE)
@@ -184,7 +187,9 @@ class CvDomesticAdvisor:
 		self.AllowedUnits = []
 		self.AllowedUnitIndex = []
 		
-		player = gc.getPlayer(gc.getGame().getActivePlayer())
+		self.AllowedBuildings = []
+		self.AllowedBuildingIndex = []
+		self.AllowedSpecialBuildings = []
 		
 		for iYield in range(self.num_yields):
 			iIndex = -1
@@ -200,7 +205,24 @@ class CvDomesticAdvisor:
 					iIndex = len(self.AllowedUnits)
 					self.AllowedUnits.append(iUnit)
 			self.AllowedUnitIndex.append(iIndex)
+			
+		specialBuildings = [] 
+		for iBuilding in range(gc.getNumSpecialBuildingInfos()):
+			specialBuildings.append([])
+
+		for iBuilding in range(gc.getNumBuildingInfos()):
+			if (player.canUseBuilding(iBuilding)):
+				specialBuilding = gc.getBuildingInfo(iBuilding).getSpecialBuildingType()
+				specialBuildings[specialBuilding].append(iBuilding)
 		
+		for BuildingArray in range(len(specialBuildings)):
+			iIndex = -1
+			if (len(specialBuildings[BuildingArray]) > 0):
+				iIndex = len(self.AllowedBuildings)
+				self.AllowedBuildings.append(specialBuildings[BuildingArray])
+				self.AllowedSpecialBuildings.append(len(self.AllowedBuildingIndex))
+			self.AllowedBuildingIndex.append(iIndex)
+
 		self.RebuildArrays()
 
 		#Initialize the Lists
@@ -288,16 +310,24 @@ class CvDomesticAdvisor:
 
 				
 		# Building Headers
-		for iSpecial in range(gc.getNumSpecialBuildingInfos()):	
-			if (iSpecial != gc.getInfoTypeForString("SPECIALBUILDING_BELLS")):
-				iBuildingOnPage = (iSpecial-1) % self.MAX_BUILDINGS_IN_A_PAGE
-				iPage = (iSpecial-1) // self.MAX_BUILDINGS_IN_A_PAGE
-				self.createSubpage(self.BUILDING_STATE, iPage)
+		for iIndex in range(len(self.AllowedBuildings)):
+			iIndexOnPage = iIndex % self.MAX_BUILDINGS_IN_A_PAGE
+			iPage = iIndex // self.MAX_BUILDINGS_IN_A_PAGE
+			iSpecial = self.AllowedSpecialBuildings[iIndex]
+			for state in self.BuildingPages:
+				self.createSubpage(state, iPage)
+				screen.setTableColumnHeader( self.StatePages[state][iPage] + "ListBackground", iIndexOnPage + 2, "<font=2> " + (u" %c" %  gc.getSpecialBuildingInfo(iSpecial).getChar()) + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
+		
+		#for iSpecial in range(gc.getNumSpecialBuildingInfos()):	
+		#	if (iSpecial != gc.getInfoTypeForString("SPECIALBUILDING_BELLS")):
+		#		iBuildingOnPage = (iSpecial-1) % self.MAX_BUILDINGS_IN_A_PAGE
+		#		iPage = (iSpecial-1) // self.MAX_BUILDINGS_IN_A_PAGE
+		#		self.createSubpage(self.BUILDING_STATE, iPage)
 			
-				if (iSpecial == self.WhaleOil):
-					screen.setTableColumnHeader( self.StatePages[self.BUILDING_STATE][iPage] + "ListBackground", iBuildingOnPage + 2, "<font=2> " + (u" %c" %  gc.getYieldInfo(YieldTypes.YIELD_WHALE_OIL).getChar()) + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )				
-				else:
-					screen.setTableColumnHeader( self.StatePages[self.BUILDING_STATE][iPage] + "ListBackground", iBuildingOnPage + 2, "<font=2> " + (u" %c" %  gc.getSpecialBuildingInfo(iSpecial).getChar())         + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
+		#		if (iSpecial == self.WhaleOil):
+		#			screen.setTableColumnHeader( self.StatePages[self.BUILDING_STATE][iPage] + "ListBackground", iBuildingOnPage + 2, "<font=2> " + (u" %c" %  gc.getYieldInfo(YieldTypes.YIELD_WHALE_OIL).getChar()) + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )				
+		#		else:
+		#			screen.setTableColumnHeader( self.StatePages[self.BUILDING_STATE][iPage] + "ListBackground", iBuildingOnPage + 2, "<font=2> " + (u" %c" %  gc.getSpecialBuildingInfo(iSpecial).getChar())         + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
 	
 		# Citizen Headers
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][0] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN", ()).upper() + "</font>", self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH)
@@ -339,10 +369,22 @@ class CvDomesticAdvisor:
 					screen.setImageButton("HighlightButton", ArtFileMgr.getInterfaceArtInfo("INTERFACE_HIGHLIGHTED_BUTTON").getPath(), (self.iButtonSpacing * iState) + (self.iButtonSpacing / 2) - ((self.iButtonSize * RelativeButtonSize / 100) / 2) + (self.iButtonSize / 2), self.Y_LOWER_ROW - ((self.iButtonSize * RelativeButtonSize / 100) / 2) + (self.iButtonSize / 2), self.iButtonSize * RelativeButtonSize / 100, self.iButtonSize * RelativeButtonSize / 100, WidgetTypes.WIDGET_GENERAL, iState, -1 )
 				
 				
-				# auto-generated list creation - Nightinggale
-				# Added hardcoded button values 100 and 102
-				screen.setImageButton("MainLeftButton", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[len(self.StateButtons)-2]).getPath(), 15, 20, 2*self.iButtonSize/3, 2*self.iButtonSize/3, WidgetTypes.WIDGET_GENERAL, 100, -1 )
-				screen.setImageButton("MainRightButton", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[len(self.StateButtons)-1]).getPath(), self.nScreenWidth -50, 20, 2*self.iButtonSize/3, 2*self.iButtonSize/3, WidgetTypes.WIDGET_GENERAL, 102, -1 )
+		# auto-generated list creation - Nightinggale
+		# Added hardcoded button values 100 and 102
+		#
+		# turn the button on and off with y_offset
+		# as ignoring a button can leave a ghost behind, turning a button off is done by drawing it outside the screen (y = -1000)
+		# kind of a hack, but it works
+		y_offset = 20
+		if (self.CurrentPage == 0):
+			y_offset = -1000
+		screen.setImageButton("MainLeftButton", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[len(self.StateButtons)-2]).getPath(), 15, y_offset, 2*self.iButtonSize/3, 2*self.iButtonSize/3, WidgetTypes.WIDGET_GENERAL, 100, -1 )
+				
+		y_offset = -1000
+		if (self.CurrentPage < (len(self.StatePages[self.CurrentState]) - 1)):
+			y_offset = 20
+		screen.setImageButton("MainRightButton", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[len(self.StateButtons)-1]).getPath(), self.nScreenWidth -50, y_offset, 2*self.iButtonSize/3, 2*self.iButtonSize/3, WidgetTypes.WIDGET_GENERAL, 102, -1 )
+
 			## R&R, Robert Surcouf,  Domestic Advisor Screen END
 	# Function to draw the contents of the cityList passed in
 	def drawContents (self):
@@ -544,19 +586,31 @@ class CvDomesticAdvisor:
 #VET NewCapacity - end 4/4
 				
 		elif(self.CurrentState == self.BUILDING_STATE):
-			start = (self.MAX_BUILDINGS_IN_A_PAGE * self.CurrentPage) + 1
-			end = min((self.MAX_BUILDINGS_IN_A_PAGE * (self.CurrentPage + 1)) + 1, gc.getNumSpecialBuildingInfos()-1)
+			start = self.BuildingStart()
+			for iBuildingIndex in range(start, self.BuildingEnd()):
+				iSpecial = self.AllowedSpecialBuildings[iBuildingIndex]
+				iIconBuilding = -1
+				for iBuilding in self.AllowedBuildings[iBuildingIndex]:
+					if pLoopCity.isHasBuilding(iBuilding):
+						iIconBuilding = iBuilding
+						break
+				if iIconBuilding != -1:
+					screen.setTableInt(szState + "ListBackground", iBuildingIndex - start  + 2, i, "", gc.getBuildingInfo(iIconBuilding).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, iIconBuilding, -1, CvUtil.FONT_LEFT_JUSTIFY )
 		
-			for iSpecial in range(start, end):
-				if (iSpecial != gc.getInfoTypeForString("SPECIALBUILDING_BELLS")):
-					iIconBuilding = -1
-					for iBuilding in range(gc.getNumBuildingInfos()):
-						if gc.getBuildingInfo(iBuilding).getSpecialBuildingType() == iSpecial:
-							if pLoopCity.isHasBuilding(iBuilding):
-								iIconBuilding = iBuilding
-								break
-					if iIconBuilding != -1:
-						screen.setTableInt(szState + "ListBackground", iSpecial - start  + 2, i, "", gc.getBuildingInfo(iBuilding).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, iBuilding, -1, CvUtil.FONT_LEFT_JUSTIFY )
+		
+			#start = (self.MAX_BUILDINGS_IN_A_PAGE * self.CurrentPage) + 1
+			#end = min((self.MAX_BUILDINGS_IN_A_PAGE * (self.CurrentPage + 1)) + 1, gc.getNumSpecialBuildingInfos()-1)
+		
+			#for iSpecial in range(start, end):
+			#	if (iSpecial != gc.getInfoTypeForString("SPECIALBUILDING_BELLS")):
+			#		iIconBuilding = -1
+			#		for iBuilding in range(gc.getNumBuildingInfos()):
+			#			if gc.getBuildingInfo(iBuilding).getSpecialBuildingType() == iSpecial:
+			#				if pLoopCity.isHasBuilding(iBuilding):
+			#					iIconBuilding = iBuilding
+			#					break
+			#		if iIconBuilding != -1:
+			#			screen.setTableInt(szState + "ListBackground", iSpecial - start  + 2, i, "", gc.getBuildingInfo(iBuilding).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, iBuilding, -1, CvUtil.FONT_LEFT_JUSTIFY )
 						
 		elif(self.CurrentState == self.IMPORTEXPORT_STATE):
 			start = self.YieldStart()
@@ -1040,6 +1094,12 @@ class CvDomesticAdvisor:
 	def YieldEnd(self):
 		return min((self.MAX_YIELDS_IN_A_PAGE * (self.CurrentPage + 1)), len(self.AllowedYields))
 		
+	def BuildingStart(self):
+		return self.MAX_BUILDINGS_IN_A_PAGE * self.CurrentPage
+		
+	def BuildingEnd(self):
+		return min((self.MAX_BUILDINGS_IN_A_PAGE * (self.CurrentPage + 1)), len(self.AllowedSpecialBuildings))
+	
 	def CitizenStart(self):
 		return self.MAX_UNITS_IN_A_PAGE * self.CurrentPage
 		

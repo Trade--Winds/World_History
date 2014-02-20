@@ -307,6 +307,7 @@ public:
 	void forcePeace(int iPlayer);
 
 	// invention effect cache - start - Nightinggale
+	bool canUseBuilding(int iBuilding) const;
 	bool canUseUnit(int iUnit) const;
 	// invention effect cache - end - Nightinggale
 
