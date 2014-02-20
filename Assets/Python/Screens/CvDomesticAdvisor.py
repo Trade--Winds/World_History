@@ -567,15 +567,30 @@ class CvDomesticAdvisor:
 				if (self.CurrentState == self.CITIZEN_COUNT_STATE or not pCitizen.isCitizenExpertWorking()):
 					cityPopList[self.AllowedUnitIndex[iType]] += 1
 				
+			iTeachLevelCity = pLoopCity.getTeachLevel()
 			start = self.CitizenStart()
 			for iUnitIndex in range(start, self.CitizenEnd()):
 				iUnitCount = cityPopList[iUnitIndex]
-				if (iUnitCount > 0):
-					szText = str(iUnitCount);
-				else:
-					szText =u""
+				iUnit = self.AllowedUnits[iUnitIndex]
+				ITeachLevelUnit = gc.getUnitInfo(iUnit).getTeachLevel()
 				
-				screen.setTableInt(szState + "ListBackground", iUnitIndex - start + 2, i, u"<font=2>" + szText + u"</font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+				if (pLoopCity.getSpecialistTuition(iUnit) != -1):
+					szText = u"<color=0,255,0>"
+				elif (ITeachLevelUnit > 100):
+					szText = u"<color=255,255,255>"
+				elif (iTeachLevelCity >= ITeachLevelUnit):
+					szText = u"<color=255,255,0>"
+				else:
+					szText =u"<color=255,0,0>"
+				
+				if (iUnitCount > 0):
+					szText += unicode(iUnitCount)
+				else:
+					# a single green line is too tricky to see
+					# 3 lines are visible while they still do not take attention away from the numbers
+					szText += u"---"
+				
+				screen.setTableInt(szState + "ListBackground", iUnitIndex - start + 2, i, u"<font=2>" + szText + u"</font>", "", WidgetTypes.WIDGET_PEDIA_JUMP_TO_UNIT, iUnit, -1, CvUtil.FONT_LEFT_JUSTIFY )
 		
 		## R&R, Robert Surcouf,  Domestic Advisor Screen START
 		elif(self.CurrentState == self.GENERAL_STATE and self.CurrentPage == 1): 

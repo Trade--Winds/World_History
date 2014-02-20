@@ -304,6 +304,11 @@ public:
 	CyPlotGroup* getCityPlotGroup();
 	/// PlotGroup - end - Nightinggale
 
+	// EDU remake - start - Nightinggale
+	int getSpecialistTuition(int iUnit) const;
+	bool getTeachLevel() const;
+	// EDU remake - end - Nightinggale
+
 	python::tuple isOrderWaitingForYield(int /*YieldTypes*/ eYield);
 
 private:

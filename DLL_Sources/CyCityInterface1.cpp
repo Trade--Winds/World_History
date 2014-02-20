@@ -303,6 +303,11 @@ void CyCityPythonInterface1(python::class_<CyCity>& x)
 		.def("getCityPlotGroup", &CyCity::getCityPlotGroup, python::return_value_policy<python::manage_new_object>(), "CyPlotGroup* ()")
 		/// PlotGroup - end - Nightinggale
 
+		// EDU remake - start - Nightinggale
+		.def("getSpecialistTuition", &CyCity::getSpecialistTuition, "int (int /* UnitTypes */ )")
+		.def("getTeachLevel", &CyCity::getTeachLevel, "int ()")
+		// EDU remake - end - Nightinggale
+
 		.def("isOrderWaitingForYield", &CyCity::isOrderWaitingForYield, "python::tuple isOrderWaitingForYield(int /*YieldTypes*/ eYield)")
 		;
 }
