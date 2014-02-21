@@ -223,14 +223,22 @@ class CvDomesticAdvisor:
 				self.AllowedSpecialBuildings.append(len(self.AllowedBuildingIndex))
 			self.AllowedBuildingIndex.append(iIndex)
 
+		# set number of columns in a page
+		# first argument is minimum column width
+		# second argument is number of columns (presumably array length)
+		
+		self.MAX_YIELDS_IN_A_PAGE      = self.getNumColumns(59, len(self.AllowedYields))
+		self.MAX_BUILDINGS_IN_A_PAGE   = self.getNumColumns(59, len(self.AllowedBuildings))
+		self.MAX_UNITS_IN_A_PAGE       = self.getNumColumns(49, len(self.AllowedUnits))
+			
 		self.RebuildArrays()
 
 		#Initialize the Lists
 		for iState in range(len(self.StatePages)):
 			if iState != self.TRADEROUTE_STATE and iState != self.NATIVE_STATE:
-				self.initPage(iState, 0)
+				self.initPage(iState, 0, 80)
 
-		self.createSubpage(self.GENERAL_STATE, 1)
+		self.createSubpage(self.GENERAL_STATE, 0, 16 + self.inventions + self.culture)
 		
 		#GeneralState Headers
 		szListName = self.StatePages[self.GENERAL_STATE][0] + "ListBackground"
@@ -266,6 +274,7 @@ class CvDomesticAdvisor:
 		# Set width to 3 * self.GENERAL_COLUMN_SIZE + whatever is left due to rounding.
 		screen.setTableColumnHeader( szListName, 15 + self.inventions + self.culture, "<font=2>" + localText.getText("TXT_KEY_DOMESTIC_ADVISOR_PRODUCING", ()).upper() + "</font>", self.nTableWidth - ((9 + self.inventions + self.culture) * self.GENERAL_COLUMN_SIZE) )
 
+		self.createSubpage(self.GENERAL_STATE, 1, 4)
 		## R&R, Robert Surcouf,  Domestic Advisor Screen START
 		szListName = self.StatePages[self.GENERAL_STATE][1] + "ListBackground"
 		# Culture Column
@@ -305,8 +314,9 @@ class CvDomesticAdvisor:
 				iYield = self.AllowedYields[iYieldIndex]
 				iYieldOnPage = iYieldIndex % self.MAX_YIELDS_IN_A_PAGE
 				iPage = iYieldIndex // self.MAX_YIELDS_IN_A_PAGE
-				self.createSubpage(iState, iPage)
-				screen.setTableColumnHeader( self.StatePages[iState][iPage] + "ListBackground", iYieldOnPage + 2 + offset, "<font=2> " + (u" %c" % gc.getYieldInfo(iYield).getChar()) + "</font>", (self.PRODUCTION_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
+				[ iWidth, iColumns ] = self.getColumnWidth(iYieldIndex, len(self.AllowedYields), self.MAX_YIELDS_IN_A_PAGE, iPage)
+				self.createSubpage(iState, iPage, iColumns)
+				screen.setTableColumnHeader( self.StatePages[iState][iPage] + "ListBackground", iYieldOnPage + 2 + offset, "<font=2> " + (u" %c" % gc.getYieldInfo(iYield).getChar()) + "</font>", iWidth )
 
 				
 		# Building Headers
@@ -314,9 +324,10 @@ class CvDomesticAdvisor:
 			iIndexOnPage = iIndex % self.MAX_BUILDINGS_IN_A_PAGE
 			iPage = iIndex // self.MAX_BUILDINGS_IN_A_PAGE
 			iSpecial = self.AllowedSpecialBuildings[iIndex]
+			[ iWidth, iColumns ] = self.getColumnWidth(iIndex, len(self.AllowedBuildings), self.MAX_BUILDINGS_IN_A_PAGE, iPage)
 			for state in self.BuildingPages:
-				self.createSubpage(state, iPage)
-				screen.setTableColumnHeader( self.StatePages[state][iPage] + "ListBackground", iIndexOnPage + 2, "<font=2> " + (u" %c" %  gc.getSpecialBuildingInfo(iSpecial).getChar()) + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
+				self.createSubpage(state, iPage, iColumns)
+				screen.setTableColumnHeader( self.StatePages[state][iPage] + "ListBackground", iIndexOnPage + 2, "<font=2> " + (u" %c" %  gc.getSpecialBuildingInfo(iSpecial).getChar()) + "</font>", iWidth)
 		
 		#for iSpecial in range(gc.getNumSpecialBuildingInfos()):	
 		#	if (iSpecial != gc.getInfoTypeForString("SPECIALBUILDING_BELLS")):
@@ -330,6 +341,7 @@ class CvDomesticAdvisor:
 		#			screen.setTableColumnHeader( self.StatePages[self.BUILDING_STATE][iPage] + "ListBackground", iBuildingOnPage + 2, "<font=2> " + (u" %c" %  gc.getSpecialBuildingInfo(iSpecial).getChar())         + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
 	
 		# Citizen Headers
+		self.createSubpage(self.CITIZEN_STATE, 0, 3)
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][0] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN", ()).upper() + "</font>", self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH)
 			
 		# Citizen count header
@@ -337,10 +349,11 @@ class CvDomesticAdvisor:
 			iIndexOnPage = iIndex % self.MAX_UNITS_IN_A_PAGE
 			iPage = iIndex // self.MAX_UNITS_IN_A_PAGE
 			iUnit = self.AllowedUnits[iIndex]
+			[ iWidth, iColumns ] = self.getColumnWidth(iIndex, len(self.AllowedUnits), self.MAX_UNITS_IN_A_PAGE, iPage)
 			for iStateIndez in range(len(self.CitizenPages)):
 				state = self.CitizenPages[iStateIndez]
-				self.createSubpage(state, iPage)
-				screen.setTableColumnHeader( self.StatePages[state][iPage] + "ListBackground", iIndexOnPage + 2, "<font=2> " + gc.getUnitInfo(iUnit).getDescription() + "</font>", (self.UNIT_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
+				self.createSubpage(state, iPage, iColumns)
+				screen.setTableColumnHeader( self.StatePages[state][iPage] + "ListBackground", iIndexOnPage + 2, "<font=2> " + gc.getUnitInfo(iUnit).getDescription() + "</font>", iWidth )
 
 		
 		#Default State on Screen opening
@@ -1114,24 +1127,24 @@ class CvDomesticAdvisor:
 		self.StateHelp.append(state_help)
 		return index
 		
-	def createSubpage(self, iState, iPage):
+	def createSubpage(self, iState, iPage, iColumns):
 		length = len(self.StatePages[iState])
-		if (length <= iPage):
+		if (length == iPage):
 			self.StatePages[iState].append(self.StatePages[iState][0] + "Page" + str(length))
-			self.initPage(iState, length)
-			self.createSubpage(iState, iPage)
+			self.initPage(iState, length, iColumns)
+			#self.createSubpage(iState, iPage, iColumns)
 			
-	def initPage(self, iState, iPage):
+	def initPage(self, iState, iPage, iColumns):
 		if iState != self.TRADEROUTE_STATE and iState != self.NATIVE_STATE:
 			screen = CyGInterfaceScreen( "DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR )
 			szStateName = self.StatePages[iState][iPage] + "ListBackground"
 			## R&R, Robert Surcouf,  Domestic Advisor Screen START
 			#screen.addTableControlGFC(szStateName, 22, (self.nScreenWidth - self.nTableWidth) / 2, 60, self.nTableWidth, self.nTableHeight, True, False, self.iCityButtonSize, self.iCityButtonSize, TableStyles.TABLE_STYLE_STANDARD )
-			screen.addTableControlGFC(szStateName, self.MAX_YIELDS_IN_A_PAGE + 4, (self.nScreenWidth - self.nTableWidth) / 2, 60, self.nTableWidth, self.nTableHeight, True, False, self.iCityButtonSize, self.iCityButtonSize, TableStyles.TABLE_STYLE_STANDARD )
+			screen.addTableControlGFC(szStateName, iColumns, (self.nScreenWidth - self.nTableWidth) / 2, 60, self.nTableWidth, self.nTableHeight, True, False, self.iCityButtonSize, self.iCityButtonSize, TableStyles.TABLE_STYLE_STANDARD )
 			screen.setStyle(szStateName, "Table_StandardCiv_Style")
 			screen.hide(szStateName)
-			screen.setTableColumnHeader(szStateName, 0, "", 45 )
-			#screen.setTableColumnHeader(szStateName, 0, "", 56 )
+			#screen.setTableColumnHeader(szStateName, 0, "", 45 )
+			screen.setTableColumnHeader(szStateName, 0, "", 56 )
 			## R&R, Robert Surcouf,  Domestic Advisor Screen END
 			screen.setTableColumnHeader(szStateName, 1, "<font=2>" + localText.getText("TXT_KEY_DOMESTIC_ADVISOR_NAME", ()).upper() + "</font>", self.CITY_NAME_COLUMN_WIDTH - 56 )
 
@@ -1148,4 +1161,33 @@ class CvDomesticAdvisor:
 			# total production page - end - Nightinggale
 				screen.appendTableRow(szStateName)
 				screen.setTableRowHeight(szStateName, iCity, self.ROW_HIGHT)
-	# auto-generated list creation - end - Nightinggale 
+				
+	def getNumColumns(self, iMinSpace, iNumColumns):
+		iSpace = self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH
+		
+		iMaxOnPage = iSpace // iMinSpace
+		iPages = iNumColumns // iMaxOnPage
+		if ((iPages * iMaxOnPage) < iNumColumns):
+			iPages += 1
+		
+		iColumnsOnPage = iNumColumns // iPages
+		if ((iColumnsOnPage * iPages) < iNumColumns):
+			iColumnsOnPage += 1
+		
+		return iColumnsOnPage
+		
+	def getColumnWidth(self, iIndex, iMax, iNumOnPage, iPage):
+		iSpace = self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH
+		
+		if ((iMax // iNumOnPage) == iPage):
+			iCount = iMax % iNumOnPage
+		else:
+			iCount = iNumOnPage
+		
+		iWidth = iSpace // iCount
+		
+		if ((iIndex + 1) == iMax or ((iIndex + 1) % iNumOnPage) == 0):
+			iWidth += iSpace % iCount
+		
+		return [ iWidth, iCount + 2 ]
+	# auto-generated list creation - end - Nightinggale
