@@ -459,10 +459,10 @@
 					<PromotionType>PROMOTION_MOUNTED</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_ATTACK_MAIL</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ATTACK_MAIL</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<YieldsProduced>
 				<YieldType>NONE</YieldType>
@@ -473,52 +473,52 @@
 			<RequiredPromotion>PROMOTION_KNIGHT</RequiredPromotion>
 			<iFoundCityType>CITYTYPE_OUTPOST</iFoundCityType>
 			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,10</Button>
-      <ProfessionSubTypes>
-        <ProfessionSubType>
-          <Type>PROFESSION_KNIGHT_PLATE</Type>
-          <Description>Heavy Knight</Description>
-          <iPower>175</iPower>
-          <ArrayEnable>211</ArrayEnable>
-          <CombatGearTypes>
-            <CombatGearType>
-              <GearType>UNITARMOR_PLATE</GearType>
-              <iAmount>1</iAmount>
-            </CombatGearType>
-          </CombatGearTypes>
-          <YieldEquipedNums>
-            <YieldEquipedNum>
-              <YieldType>YIELD_HORSES</YieldType>
-              <iYieldAmount>50</iYieldAmount>
-            </YieldEquipedNum>
-            <YieldEquipedNum>
-              <YieldType>YIELD_WEAPONS</YieldType>
-              <iYieldAmount>50</iYieldAmount>
-            </YieldEquipedNum>
-            <YieldEquipedNum>
-              <YieldType>YIELD_PLATE_ARMOR</YieldType>
-              <iYieldAmount>50</iYieldAmount>
-            </YieldEquipedNum>
-            <YieldEquipedNum>
-              <YieldType>YIELD_MAIL_ARMOR</YieldType>
-              <iYieldAmount>50</iYieldAmount>
-            </YieldEquipedNum>
-          </YieldEquipedNums>
-          <FreePromotions>
-            <FreePromotion>
-              <PromotionType>PROMOTION_DRAGOON</PromotionType>
-              <bFreePromotion>1</bFreePromotion>
-            </FreePromotion>
-            <FreePromotion>
-              <PromotionType>PROMOTION_MOUNTED</PromotionType>
-              <bFreePromotion>1</bFreePromotion>
-            </FreePromotion>
-            <FreePromotion>
-              <PromotionType>PROMOTION_ATTACK_PLATE</PromotionType>
-              <bFreePromotion>1</bFreePromotion>
-            </FreePromotion>
-          </FreePromotions>
-        </ProfessionSubType>
-      </ProfessionSubTypes>
+			<ProfessionSubTypes>
+				<ProfessionSubType>
+					<Type>PROFESSION_KNIGHT_PLATE</Type>
+					<Description>Heavy Knight</Description>
+					<iPower>175</iPower>
+					<ArrayEnable>211</ArrayEnable>
+					<CombatGearTypes>
+						<CombatGearType>
+							<GearType>UNITARMOR_PLATE</GearType>
+							<iAmount>1</iAmount>
+						</CombatGearType>
+					</CombatGearTypes>
+					<YieldEquipedNums>
+						<YieldEquipedNum>
+							<YieldType>YIELD_HORSES</YieldType>
+							<iYieldAmount>50</iYieldAmount>
+						</YieldEquipedNum>
+						<YieldEquipedNum>
+							<YieldType>YIELD_WEAPONS</YieldType>
+							<iYieldAmount>50</iYieldAmount>
+						</YieldEquipedNum>
+						<YieldEquipedNum>
+							<YieldType>YIELD_PLATE_ARMOR</YieldType>
+							<iYieldAmount>50</iYieldAmount>
+						</YieldEquipedNum>
+						<YieldEquipedNum>
+							<YieldType>YIELD_MAIL_ARMOR</YieldType>
+							<iYieldAmount>50</iYieldAmount>
+						</YieldEquipedNum>
+					</YieldEquipedNums>
+					<FreePromotions>
+						<FreePromotion>
+							<PromotionType>PROMOTION_DRAGOON</PromotionType>
+							<bFreePromotion>1</bFreePromotion>
+						</FreePromotion>
+						<FreePromotion>
+							<PromotionType>PROMOTION_MOUNTED</PromotionType>
+							<bFreePromotion>1</bFreePromotion>
+						</FreePromotion>
+						<FreePromotion>
+							<PromotionType>PROMOTION_ATTACK_PLATE</PromotionType>
+							<bFreePromotion>1</bFreePromotion>
+						</FreePromotion>
+					</FreePromotions>
+				</ProfessionSubType>
+			</ProfessionSubTypes>
 		</ProfessionInfo>
 		<ProfessionInfo>
 			<Type>PROFESSION_HEAVY_CALVARY</Type>

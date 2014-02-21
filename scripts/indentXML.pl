@@ -12,34 +12,10 @@ use warnings;
 
 use XMLaccess;
 
-updateDir(".");
 
-
-
-sub updateDir
+foreach (getAllXMLfiles())
 {
-	my $dirname = $_[0];
-	
-	my $pathdirname = getXMLlocation() . "/" . $dirname;
-	
-	opendir my($dh), $pathdirname or die "Couldn't open dir '$pathdirname': $!";
-	my @files = grep { !/^\.\.?$/ } readdir $dh;
-	closedir $dh;
-
-	foreach (@files)
-	{
-		my $filename = $dirname . "/" . $_;
-		my $pathfilename = getXMLlocation() . "/" . $filename;
-		if (-d $pathfilename)
-		{
-			updateDir($dirname . "/". $filename);
-		}
-		elsif (substr($_, -4) eq '.xml')
-		{
-			updateFile($filename);
-		}
-		
-	}
+	updateFile($_);
 }
 
 
@@ -79,7 +55,16 @@ sub updateFile
 				$prefix .= "	";
 			}
 			
-			$line = $prefix . $line;
+			if (substr($line, 0, 1) eq "<")
+			{
+				$line = $prefix . $line;
+			}
+			else
+			{
+				# this doesn't appear to be proper XML code
+				# leave it alone as indenting could have sideeffects
+				$line = $_;
+			}
 			
 			if (index($_, '</') == -1 and index($_, '/>') == -1 and index($_, '<') != -1)
 			{
@@ -89,9 +74,9 @@ sub updateFile
 		else
 		{
 			if (index($_, '?>') != -1 or index($_, '-->') != -1)
-		{
-			$comments = 0;
-		}
+			{
+				$comments = 0;
+			}
 		}
 	
 		push ( @lines, $line);
