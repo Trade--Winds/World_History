@@ -288,7 +288,7 @@
 	</Define>
 	<Define>
 		<DefineName>DEFAULT_FUEDALISM_TECH</DefineName>
-		<DefineTextVal>FUEDALISM</DefineTextVal>
+		<DefineTextVal>MEDIEVAL_TECH_FUEDALISM</DefineTextVal>
 	</Define>
 	<Define>
 		<DefineName>COLONIAL_FORCED_PEACE_TURNS</DefineName>

@@ -438,7 +438,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>6</iX_Location>
 			<iY_Location>3</iY_Location>
-			<RequiredInvention>GLASSMAKING</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_GLASSMAKING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -507,7 +507,7 @@
 			<iX_Location>7</iX_Location>
 			<iY_Location>1</iY_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ASTROLOGY</RequiredInvention>
-			<RequiredInvention2>MACHINERY</RequiredInvention2>
+			<RequiredInvention2>MEDIEVAL_TECH_MACHINERY</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -660,7 +660,7 @@
 			<iX_Location>3</iX_Location>
 			<iY_Location>3</iY_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MONASTICISM</RequiredInvention>
-			<RequiredInvention2>MANORIALISM</RequiredInvention2>
+			<RequiredInvention2>MEDIEVAL_TECH_MANORIALISM</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -976,7 +976,7 @@
 			<iX_Location>3</iX_Location>
 			<iY_Location>1</iY_Location>
 			<RequiredInvention>MEDIEVAL_TECH_CODE_OF_LAWS</RequiredInvention>
-			<RequiredInvention2>THEOLOGY</RequiredInvention2>
+			<RequiredInvention2>MEDIEVAL_TECH_THEOLOGY</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -1044,7 +1044,7 @@
 			<iX_Location>2</iX_Location>
 			<iY_Location>5</iY_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MONASTICISM</RequiredInvention>
-			<RequiredInvention2>METALCASTING</RequiredInvention2>
+			<RequiredInvention2>MEDIEVAL_TECH_METALCASTING</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -1304,7 +1304,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>INVENTION_PAVED_ROADS</Type>
+			<Type>MEDIEVAL_TECH_ROADS</Type>
 			<Description>Stone-Paved Roads</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1335,7 +1335,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>10</iX_Location>
 			<iY_Location>6</iY_Location>
-			<RequiredInvention>ENGINEERING</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_ENGINEERING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -1392,7 +1392,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>MACHINERY</Type>
+			<Type>MEDIEVAL_TECH_MACHINERY</Type>
 			<Description>Medieval Mechinery</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1423,7 +1423,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>10</iX_Location>
 			<iY_Location>9</iY_Location>
-			<RequiredInvention>CROSSBOW</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_CROSSBOW</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -1475,7 +1475,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>ENGINEERING</Type>
+			<Type>MEDIEVAL_TECH_ENGINEERING</Type>
 			<Description>Medieval Engineering</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1506,8 +1506,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>7</iX_Location>
 			<iY_Location>6</iY_Location>
-			<RequiredInvention>GLASSMAKING</RequiredInvention>
-			<RequiredInvention2>CONSTRUCTION</RequiredInvention2>
+			<RequiredInvention>MEDIEVAL_TECH_GLASSMAKING</RequiredInvention>
+			<RequiredInvention2>MEDIEVAL_TECH_CONSTRUCTION</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -1561,7 +1561,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>PLATEARMOR</Type>
+			<Type>MEDIEVAL_TECH_PLATEARMOR</Type>
 			<Description>Blast Furnace</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1592,7 +1592,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>11</iX_Location>
 			<iY_Location>6</iY_Location>
-			<RequiredInvention>INVENTION_PAVED_ROADS</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_ROADS</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -1654,7 +1654,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>STONEWORK</Type>
+			<Type>MEDIEVAL_TECH_STONEWORK</Type>
 			<Description>Great Stonework</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1685,7 +1685,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>11</iX_Location>
 			<iY_Location>4</iY_Location>
-			<RequiredInvention>INVENTION_PAVED_ROADS</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_ROADS</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -1735,7 +1735,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>INVENTION_DIKES</Type>
+			<Type>MEDIEVAL_TECH_INVENTION_DIKES</Type>
 			<Description>Dikes</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1766,7 +1766,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>12</iX_Location>
 			<iY_Location>3</iY_Location>
-			<RequiredInvention>STONEWORK</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_STONEWORK</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -1813,7 +1813,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>CROSSBOW</Type>
+			<Type>MEDIEVAL_TECH_CROSSBOW</Type>
 			<Description>Mechanical Crank</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1844,7 +1844,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>9</iX_Location>
 			<iY_Location>9</iY_Location>
-			<RequiredInvention>ENGINEERING</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_ENGINEERING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -1889,7 +1889,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>SPINNINGWHEEL</Type>
+			<Type>MEDIEVAL_TECH_SPINNINGWHEEL</Type>
 			<Description>Spinning Wheel</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1920,7 +1920,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>11</iX_Location>
 			<iY_Location>9</iY_Location>
-			<RequiredInvention>MACHINERY</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_MACHINERY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -1965,7 +1965,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>CLOCK</Type>
+			<Type>MEDIEVAL_TECH_CLOCK</Type>
 			<Description>Mechanical Clock</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -1996,7 +1996,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>12</iX_Location>
 			<iY_Location>9</iY_Location>
-			<RequiredInvention>SPINNINGWHEEL</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_SPINNINGWHEEL</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2032,7 +2032,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>LONGBOW</Type>
+			<Type>MEDIEVAL_TECH_LONGBOW</Type>
 			<Description>Longbow</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2063,7 +2063,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>13</iX_Location>
 			<iY_Location>3</iY_Location>
-			<RequiredInvention>INVENTION_DIKES</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_INVENTION_DIKES</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2116,7 +2116,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>MINING</Type>
+			<Type>MEDIEVAL_TECH_MINING</Type>
 			<Description>Medieval Mining</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2147,8 +2147,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>4</iX_Location>
 			<iY_Location>7</iY_Location>
-			<RequiredInvention>MAILARMOR</RequiredInvention>
-			<RequiredInvention2>CONSTRUCTION</RequiredInvention2>
+			<RequiredInvention>MEDIEVAL_TECH_MAILARMOR</RequiredInvention>
+			<RequiredInvention2>MEDIEVAL_TECH_CONSTRUCTION</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -2203,7 +2203,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>METALCASTING</Type>
+			<Type>MEDIEVAL_TECH_METALCASTING</Type>
 			<Description>Metal Casting</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2290,7 +2290,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>WHEELEDPLOW</Type>
+			<Type>MEDIEVAL_TECH_WHEELEDPLOW</Type>
 			<Description>Moaldboard Plow</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2322,7 +2322,7 @@
 			<iX_Location>4</iX_Location>
 			<iY_Location>9</iY_Location>
 			<RequiredInvention>MEDIEVAL_TECH_WHEELBARROW</RequiredInvention>
-			<RequiredInvention2>METALCASTING</RequiredInvention2>
+			<RequiredInvention2>MEDIEVAL_TECH_METALCASTING</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -2370,7 +2370,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>MOTTEANDBAILEY</Type>
+			<Type>MEDIEVAL_TECH_MOTTEANDBAILEY</Type>
 			<Description>Motte and Bailey</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2402,7 +2402,7 @@
 			<iX_Location>2</iX_Location>
 			<iY_Location>10</iY_Location>
 			<RequiredInvention>MEDIEVAL_TECH_WHEELBARROW</RequiredInvention>
-			<RequiredInvention2>MONARCHY</RequiredInvention2>
+			<RequiredInvention2>MEDIEVAL_TECH_MONARCHY</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -2452,7 +2452,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>CONSTRUCTION</Type>
+			<Type>MEDIEVAL_TECH_CONSTRUCTION</Type>
 			<Description>Medieval Construction</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2483,7 +2483,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>3</iX_Location>
 			<iY_Location>10</iY_Location>
-			<RequiredInvention>MOTTEANDBAILEY</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_MOTTEANDBAILEY</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_MATHEMATICS</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2529,7 +2529,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>MAILARMOR</Type>
+			<Type>MEDIEVAL_TECH_MAILARMOR</Type>
 			<Description>Mail Armor</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2560,7 +2560,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>3</iX_Location>
 			<iY_Location>7</iY_Location>
-			<RequiredInvention>HORSESHOES</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_HORSESHOES</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2617,7 +2617,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>CHIVALRY</Type>
+			<Type>MEDIEVAL_TECH_CHIVALRY</Type>
 			<Description>Chivalry</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2653,8 +2653,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>6</iX_Location>
 			<iY_Location>11</iY_Location>
-			<RequiredInvention>FUEDALISM</RequiredInvention>
-			<RequiredInvention2>DRAMA</RequiredInvention2>
+			<RequiredInvention>MEDIEVAL_TECH_FUEDALISM</RequiredInvention>
+			<RequiredInvention2>MEDIEVAL_TECH_DRAMA</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -2694,7 +2694,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>CROPROTATION</Type>
+			<Type>MEDIEVAL_TECH_CROPROTATION</Type>
 			<Description>Crop Rotation</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2747,7 +2747,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>7</iX_Location>
 			<iY_Location>9</iY_Location>
-			<RequiredInvention>WHEELEDPLOW</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_WHEELEDPLOW</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_CALENDER</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2783,7 +2783,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>HORSESHOES</Type>
+			<Type>MEDIEVAL_TECH_HORSESHOES</Type>
 			<Description>Horseshoes</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2819,7 +2819,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>2</iX_Location>
 			<iY_Location>7</iY_Location>
-			<RequiredInvention>METALCASTING</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_METALCASTING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2860,7 +2860,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>HORSEBREADING</Type>
+			<Type>MEDIEVAL_TECH_HORSEBREADING</Type>
 			<Description>Horse Breading</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2901,7 +2901,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>8</iX_Location>
 			<iY_Location>11</iY_Location>
-			<RequiredInvention>CROPROTATION</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_CROPROTATION</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -2939,7 +2939,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>HORSECOLLAR</Type>
+			<Type>MEDIEVAL_TECH_HORSECOLLAR</Type>
 			<Description>Horse Collar</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -2970,7 +2970,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>9</iX_Location>
 			<iY_Location>11</iY_Location>
-			<RequiredInvention>HORSEBREADING</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_HORSEBREADING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -3006,7 +3006,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>STIRRUP</Type>
+			<Type>MEDIEVAL_TECH_STIRRUP</Type>
 			<Description>Stirrup</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3037,8 +3037,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>5</iX_Location>
 			<iY_Location>10</iY_Location>
-			<RequiredInvention>WHEELEDPLOW</RequiredInvention>
-			<RequiredInvention2>MAILARMOR</RequiredInvention2>
+			<RequiredInvention>MEDIEVAL_TECH_WHEELEDPLOW</RequiredInvention>
+			<RequiredInvention2>MEDIEVAL_TECH_MAILARMOR</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -3082,7 +3082,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>IRONPLOW</Type>
+			<Type>MEDIEVAL_TECH_IRONPLOW</Type>
 			<Description>Iron Plow</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3123,8 +3123,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>5</iX_Location>
 			<iY_Location>7</iY_Location>
-			<RequiredInvention>MINING</RequiredInvention>
-			<RequiredInvention2>HORSECOLLAR</RequiredInvention2>
+			<RequiredInvention>MEDIEVAL_TECH_MINING</RequiredInvention>
+			<RequiredInvention2>MEDIEVAL_TECH_HORSECOLLAR</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -3172,7 +3172,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>COTTON</Type>
+			<Type>MEDIEVAL_TECH_COTTON</Type>
 			<Description>Cotton</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3203,7 +3203,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>6</iX_Location>
 			<iY_Location>7</iY_Location>
-			<RequiredInvention>IRONPLOW</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_IRONPLOW</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -3249,7 +3249,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>MANORIALISM</Type>
+			<Type>MEDIEVAL_TECH_MANORIALISM</Type>
 			<Description>Manorialism</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3345,7 +3345,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>INVENTION_HUNTING</Type>
+			<Type>MEDIEVAL_TECH_HUNTING</Type>
 			<Description>Medieval Hunting</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3381,7 +3381,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>2</iX_Location>
 			<iY_Location>12</iY_Location>
-			<RequiredInvention>MANORIALISM</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_MANORIALISM</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -3429,7 +3429,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>MONARCHY</Type>
+			<Type>MEDIEVAL_TECH_MONARCHY</Type>
 			<Description>Monarchy</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3460,7 +3460,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>3</iX_Location>
 			<iY_Location>12</iY_Location>
-			<RequiredInvention>INVENTION_HUNTING</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_HUNTING</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_CODE_OF_LAWS</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -3511,7 +3511,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>FUEDALISM</Type>
+			<Type>MEDIEVAL_TECH_FUEDALISM</Type>
 			<Description>Fuedalism</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3542,8 +3542,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>5</iX_Location>
 			<iY_Location>12</iY_Location>
-			<RequiredInvention>MONARCHY</RequiredInvention>
-			<RequiredInvention2>STIRRUP</RequiredInvention2>
+			<RequiredInvention>MEDIEVAL_TECH_MONARCHY</RequiredInvention>
+			<RequiredInvention2>MEDIEVAL_TECH_STIRRUP</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -3600,7 +3600,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>DIVINERIGHT</Type>
+			<Type>MEDIEVAL_TECH_DIVINERIGHT</Type>
 			<Description>Divine Right</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3631,8 +3631,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>13</iX_Location>
 			<iY_Location>12</iY_Location>
-			<RequiredInvention>CIVILSERVICE</RequiredInvention>
-			<RequiredInvention2>CLOCK</RequiredInvention2>
+			<RequiredInvention>MEDIEVAL_TECH_CIVILSERVICE</RequiredInvention>
+			<RequiredInvention2>MEDIEVAL_TECH_CLOCK</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -3668,7 +3668,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>CIVILSERVICE</Type>
+			<Type>MEDIEVAL_TECH_CIVILSERVICE</Type>
 			<Description>Civil Service</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3699,7 +3699,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>11</iX_Location>
 			<iY_Location>12</iY_Location>
-			<RequiredInvention>FUEDALISM</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_FUEDALISM</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_PAPER</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -3740,7 +3740,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>LITERATURE</Type>
+			<Type>MEDIEVAL_TECH_LITERATURE</Type>
 			<Description>Literature</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3781,7 +3781,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>6</iX_Location>
 			<iY_Location>1</iY_Location>
-			<RequiredInvention>DRAMA</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_DRAMA</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -3818,7 +3818,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>THEOLOGY</Type>
+			<Type>MEDIEVAL_TECH_THEOLOGY</Type>
 			<Description>Theology</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3901,7 +3901,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>DRAMA</Type>
+			<Type>MEDIEVAL_TECH_DRAMA</Type>
 			<Description>Drama</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -3937,7 +3937,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>5</iX_Location>
 			<iY_Location>2</iY_Location>
-			<RequiredInvention>THEOLOGY</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_THEOLOGY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -3984,7 +3984,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>FLYINGBUTRESS</Type>
+			<Type>MEDIEVAL_TECH_FLYINGBUTRESS</Type>
 			<Description>Flying Butress</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -4015,8 +4015,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>12</iX_Location>
 			<iY_Location>5</iY_Location>
-			<RequiredInvention>STONEWORK</RequiredInvention>
-			<RequiredInvention2>THEOLOGY</RequiredInvention2>
+			<RequiredInvention>MEDIEVAL_TECH_STONEWORK</RequiredInvention>
+			<RequiredInvention2>MEDIEVAL_TECH_THEOLOGY</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -4057,7 +4057,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>RENAISSANCE</Type>
+			<Type>MEDIEVAL_TECH_RENAISSANCE</Type>
 			<Description>Renaissance</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -4088,8 +4088,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>13</iX_Location>
 			<iY_Location>9</iY_Location>
-			<RequiredInvention>CLOCK</RequiredInvention>
-			<RequiredInvention2>CIVILSERVICE</RequiredInvention2>
+			<RequiredInvention>MEDIEVAL_TECH_CLOCK</RequiredInvention>
+			<RequiredInvention2>MEDIEVAL_TECH_CIVILSERVICE</RequiredInvention2>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
 			<RequiredYields/>
@@ -4125,7 +4125,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>GLASSMAKING</Type>
+			<Type>MEDIEVAL_TECH_GLASSMAKING</Type>
 			<Description>Glass Making</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -4203,7 +4203,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>COMPASS</Type>
+			<Type>MEDIEVAL_TECH_COMPASS</Type>
 			<Description>Compass</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -4234,7 +4234,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>9</iX_Location>
 			<iY_Location>1</iY_Location>
-			<RequiredInvention>RUDDER</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_RUDDER</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -4279,7 +4279,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>LATLONG</Type>
+			<Type>MEDIEVAL_TECH_LATLONG</Type>
 			<Description>Latitude and Longitude</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -4310,7 +4310,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>10</iX_Location>
 			<iY_Location>1</iY_Location>
-			<RequiredInvention>COMPASS</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_COMPASS</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -4360,7 +4360,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>RUDDER</Type>
+			<Type>MEDIEVAL_TECH_RUDDER</Type>
 			<Description>Sternpost Rudder</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -4427,7 +4427,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>GREATGALLEY</Type>
+			<Type>MEDIEVAL_TECH_GREATGALLEY</Type>
 			<Description>Great Galley</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -4463,7 +4463,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>11</iX_Location>
 			<iY_Location>1</iY_Location>
-			<RequiredInvention>LATLONG</RequiredInvention>
+			<RequiredInvention>MEDIEVAL_TECH_LATLONG</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
