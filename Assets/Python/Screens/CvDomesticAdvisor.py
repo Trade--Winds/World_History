@@ -139,6 +139,7 @@ class CvDomesticAdvisor:
 		self.PRODUCTION_STATE         = self.addButton("INTERFACE_NET_YIELD_BUTTON",           "TXT_KEY_CONCEPT_PRODUCTION")
 		self.WAREHOUSE_STATE          = self.addButton("INTERFACE_STORES_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_WAREHOUSE")
 		self.BUILDING_STATE           = self.addButton("INTERFACE_CITY_BUILD_BUTTON",          "TXT_KEY_BUILDINGS")
+		self.BUILDING_VACANT_STATE    = self.addButton("INTERFACE_CITY_BUILD_BUTTON",          "TXT_KEY_BUILDING_VACANT")
 		self.IMPORTEXPORT_STATE       = self.addButton("INTERFACE_CITY_GOVENOR_BUTTON",        "TXT_KEY_CONCEPT_TRADE_ROUTE")
 		self.CITIZEN_STATE            = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN")
 		self.CITIZEN_COUNT_STATE      = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_COUNT")
@@ -165,6 +166,7 @@ class CvDomesticAdvisor:
 		
 		self.BuildingPages = []
 		self.BuildingPages.append(self.BUILDING_STATE)
+		self.BuildingPages.append(self.BUILDING_VACANT_STATE)
 		
 		self.CitizenPages = []
 		self.CitizenPages.append(self.CITIZEN_COUNT_STATE)
@@ -604,7 +606,35 @@ class CvDomesticAdvisor:
 							#screen.setTableText("WareHouseStatePage2ListBackground", iYield - self.MAX_YIELDS_IN_A_PAGE + 3, i, u"<font=1><color=255,0,0>" + szText + u"</color></font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 					## R&R, Robert Surcouf,  Domestic Advisor Screen - End
 #VET NewCapacity - end 4/4
-				
+		
+		elif(self.CurrentState == self.BUILDING_VACANT_STATE):
+			buildingUsageList = [0] * len(self.AllowedBuildings)
+			for iCitizen in range(pLoopCity.getPopulation() - 1, -1, -1):
+				pCitizen = pLoopCity.getPopulationUnitByIndex(iCitizen)
+				pProfession = gc.getProfessionInfo(pCitizen.getProfession())
+				iIndex = pProfession.getSpecialBuilding()
+				if iIndex != -1:
+					buildingUsageList[self.AllowedBuildingIndex[iIndex]] += 1
+			
+			start = self.BuildingStart()
+			for iBuildingIndex in range(start, self.BuildingEnd()):
+				iSpecial = self.AllowedSpecialBuildings[iBuildingIndex]
+				iIconBuilding = -1
+				for iBuilding in self.AllowedBuildings[iBuildingIndex]:
+					if pLoopCity.isHasBuilding(iBuilding):
+						iIconBuilding = iBuilding
+						break
+				if iIconBuilding != -1:
+					iMax = gc.getBuildingInfo(iIconBuilding).getMaxWorkers()
+					if iMax > 0:
+						iFree = iMax - buildingUsageList[iBuildingIndex]
+						if iFree > 0:
+							szText = localText.getText("TXT_KEY_COLOR_POSITIVE", ())
+						else:
+							szText = localText.getText("TXT_KEY_COLOR_NEGATIVE", ())
+						szText += unicode(iFree) + localText.getText("TXT_KEY_COLOR_REVERT", ())	
+						screen.setTableInt(szState + "ListBackground", iBuildingIndex - start  + 2, i, "<font=2>" + szText + "</font>", "", WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, iIconBuilding, -1, CvUtil.FONT_LEFT_JUSTIFY )
+		
 		elif(self.CurrentState == self.BUILDING_STATE):
 			start = self.BuildingStart()
 			for iBuildingIndex in range(start, self.BuildingEnd()):
