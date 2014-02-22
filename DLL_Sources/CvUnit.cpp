@@ -5497,9 +5497,12 @@ void CvUnit::doKingTransport()
                 }
 
             }
-
-            if (m_pUnitInfo->getConvertsToGold() != 0)
+			else if (m_pUnitInfo->getConvertsToGold() != 0)
             {
+				// is this code ever reached?
+				// is it working if it's reached?
+				// Nightinggale
+				FAssert(false);
                 GET_PLAYER(getOwnerINLINE()).changeGold(m_pUnitInfo->getConvertsToGold());
                 bKill = true;
             }
