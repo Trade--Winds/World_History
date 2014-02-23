@@ -2688,7 +2688,7 @@ class CvMainInterface:
 					#	screen.show("YieldIcon" + str(iYield))
 					#	szName = "BonusPane" + str(iYield) + "Discover"
 					#	screen.hide(szName)
-					if gc.getPlayer(ePlayer).canUnitBeTraded(iYield, 0, UnitTypes.NO_UNIT):
+					if gc.getPlayer(ePlayer).canUnitBeTraded(iYield, -1, UnitTypes.NO_UNIT):
 						screen.show("YieldIcon" + str(iYield))
 						szName = "BonusPane" + str(iYield) + "Discover"
 						screen.hide(szName)
@@ -2989,7 +2989,7 @@ class CvMainInterface:
 # VET DynamicYieldsIcon - 13/15 - end				
 				
 				#TKs Med
-				if not gc.getPlayer(pCity.getOwner()).canUnitBeTraded(i, 0, UnitTypes.NO_UNIT):
+				if not gc.getPlayer(pCity.getOwner()).canUnitBeTraded(i, -1, UnitTypes.NO_UNIT):
 					continue
 				iStored = pCity.getYieldStored(i)
 				iRate = pCity.calculateNetYield(i)
