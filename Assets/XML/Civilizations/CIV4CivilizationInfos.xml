@@ -156,7 +156,7 @@
 				</FreeYield>
 			</FreeYields>
 			<CapturedCityUnitClass>NONE</CapturedCityUnitClass>
-			<InitialCivics/>
+      <InitialCivics/>
 			<Leaders>
 				<Leader>
 					<LeaderName>LEADER_OFFA</LeaderName>
@@ -1109,6 +1109,10 @@
 					<UnitClassType>UNITCLASS_VETERAN</UnitClassType>
 					<UnitType>UNIT_VIKING_VETERAN</UnitType>
 				</Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_TREASURE</UnitClassType>
+          <UnitType>UNIT_PLUNDERED_TREASURE</UnitType>
+        </Unit>
 			</Units>
 			<Professions>
 				<Profession>
