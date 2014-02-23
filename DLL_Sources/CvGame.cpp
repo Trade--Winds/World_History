@@ -1303,27 +1303,27 @@ void CvGame::updateColoredPlots()
 				CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(i);
 				if(pLoopPlot->isEurope() && pLoopPlot->isRevealed(getActiveTeam(), true))
 				{
-					if (GC.getEuropeInfo(pLoopPlot->getEurope()).getDefaultColor() != NO_PLAYERCOLOR)
-				    {
-						NiColorA colorC = (GC.getColorInfo((ColorTypes)GC.getEuropeInfo(pLoopPlot->getEurope()).getDefaultColor()).getColor());
-				        colorC.a = 0.5f;
-                        gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), colorC, AREA_BORDER_LAYER_EUROPE);
-				    }
-					else
-					{
-						if (GC.getEuropeInfo(pLoopPlot->getEurope()).getDomainsValid(DOMAIN_SEA))
+					//if (GC.getEuropeInfo(pLoopPlot->getEurope()).getDefaultColor() != NO_PLAYERCOLOR)
+				   // {
+						//NiColorA colorC = (GC.getColorInfo((ColorTypes)GC.getEuropeInfo(pLoopPlot->getEurope()).getDefaultColor()).getColor());
+				       // colorC.a = 0.5f;
+                       // gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), colorC, AREA_BORDER_LAYER_EUROPE);
+				    //}
+					//else
+					//{
+						//if (GC.getEuropeInfo(pLoopPlot->getEurope()).getDomainsValid(DOMAIN_SEA))
+						if(pLoopPlot->isWater())
 						{
 							color.a = 0.5f;
 							gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), color, AREA_BORDER_LAYER_EUROPE);
 						}
-
-						if (GC.getEuropeInfo(pLoopPlot->getEurope()).getDomainsValid(DOMAIN_LAND))
+						else
 						{
 							//NiColorA color(GC.getColorInfo((ColorTypes)GC.getInfoTypeForString("COLOR_WHITE")).getColor());
 							colorB.a = 0.5f;
 							gDLL->getEngineIFace()->fillAreaBorderPlot(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), colorB, AREA_BORDER_LAYER_EUROPE);
 						}
-					}
+					//}
 				}
 			}
 		}

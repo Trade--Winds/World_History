@@ -14821,7 +14821,7 @@ CvUnit* CvPlayer::buyYieldUnitFromEurope(YieldTypes eYield, int iAmount, CvUnit*
 	FAssert(pTransport->getOwnerINLINE() == getID());
 	FAssert(getParent() != NO_PLAYER);
 	CvPlayer& kPlayerEurope = GET_PLAYER(getParent());
-	int iTradeRoutePrice = kPlayerEurope.getYieldSellPrice(eYield, pTransport->plot()->getEurope());
+	int iTradeRoutePrice = kPlayerEurope.getYieldSellPrice(eYield, pTransport->getUnitTradeMarket());
 	int iPrice = iAmount * iTradeRoutePrice;
 	//FAssert(iPrice <= getGold());
 	if (iPrice > getGold())
@@ -15049,7 +15049,7 @@ CvUnit* CvPlayer::buyEuropeUnit(UnitTypes eUnit, int iPriceModifier, EuropeTypes
 		    if (eTradeScreen != NO_EUROPE)
             {
                 CvPlot* pStartingTradePlot = getStartingTradeRoutePlot(eTradeScreen);
-                if (pStartingPlot->getEurope() != eTradeScreen && pStartingTradePlot == NULL)
+                if (!pStartingPlot->isTradeScreenAccessPlot(eTradeScreen) && pStartingTradePlot == NULL)
                 {
                     CvPlot* pNewPlot = NULL;
                     CvCity* pPortCity = GC.getMapINLINE().findCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), getID(), NO_TEAM, false, true);
