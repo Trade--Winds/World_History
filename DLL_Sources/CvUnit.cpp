@@ -14627,17 +14627,26 @@ bool CvUnit::setSailEurope(EuropeTypes eEurope)
 	}
 	return false;
 }
-
+///TKe Med
 bool CvUnit::canSailEurope(EuropeTypes eEurope)
 {
 	if (eEurope == NO_EUROPE)
 	{
 		return true;
 	}
-
-	if (plot()->getEurope() == eEurope)
+	if (!isHuman())
 	{
-		return true;
+		if (plot()->getEurope() == eEurope)
+		{
+			return true;
+		}
+	}
+	else
+	{
+		if (plot()->isTradeScreenAccessPlot(eEurope))
+		{
+			return true;
+		}
 	}
 
 	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
@@ -14645,14 +14654,24 @@ bool CvUnit::canSailEurope(EuropeTypes eEurope)
 		CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
 		if (pPlot->isRevealed(getTeam(), false))
 		{
-			if (pPlot->getEurope() == eEurope)
+			if (!isHuman())
 			{
-				return true;
+				if (pPlot->getEurope() == eEurope)
+				{
+					return true;
+				}
+			}
+			else
+			{
+				if (pPlot->isTradeScreenAccessPlot(eEurope))
+				{
+					return true;
+				}
 			}
 		}
 	}
 
-	///TKe ME
+	
 	if(isHuman() && !GC.getCivilizationInfo(getCivilizationType()).isWaterStart())
 	{
 	    if (cargoSpace() > 0 && getDomainType() == DOMAIN_LAND)

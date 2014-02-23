@@ -3302,7 +3302,7 @@ bool CvDLLButtonPopup::launchChooseProfessionPopup(CvPopup* pPopup, CvPopupInfo 
 
 	return true;
 }
-
+///TKs Med
 bool CvDLLButtonPopup::launchPurchaseEuropeUnitPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
 	PlayerTypes ePlayer = GC.getGameINLINE().getActivePlayer();
@@ -3316,27 +3316,33 @@ bool CvDLLButtonPopup::launchPurchaseEuropeUnitPopup(CvPopup* pPopup, CvPopupInf
 	gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_NEVER_MIND"), ARTFILEMGR.getInterfaceArtInfo("INTERFACE_BUTTONS_CANCEL")->getPath(), GC.getNumUnitInfos(), WIDGET_GENERAL);
 
 	bool bFound = false;
+	bool bWaterUnitReady = true;
 	for (int iUnitClass = 0; iUnitClass < GC.getNumUnitClassInfos(); ++iUnitClass)
 	{
 		UnitTypes eUnit = (UnitTypes) GC.getCivilizationInfo(kPlayer.getCivilizationType()).getCivilizationUnits(iUnitClass);
 		if (NO_UNIT != eUnit)
 		{
-		    EuropeTypes eTradeScreen = (EuropeTypes)info.getData3();
-			//TradeRouteTypes eTradeRoute = (TradeRouteTypes)info.getData3();
-           /* if (eTradeRoute != NO_TRADE_ROUTES)
-            {
-                if (eTradeRoute == TRADE_ROUTE_SPICE_ROUTE)
-                {
-                    eTradeScreen = TRADE_SCREEN_SPICE_ROUTE;
-                }
-                else if (eTradeRoute == TRADE_ROUTE_SILK_ROAD)
-                {
-                    eTradeScreen = TRADE_SCREEN_SILK_ROAD;
-                }
-            }*/
+			EuropeTypes eTradeScreen = (EuropeTypes)info.getData3();
+			FAssert(eTradeScreen != NO_EUROPE);
+			if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_SEA)
+			{
+				bWaterUnitReady = false;
+				for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+				{
+					CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+					if (pPlot->isRevealed(kPlayer.getTeam(), false))
+					{
+						if (pPlot->isTradeScreenAccessPlot(eTradeScreen))
+						{
+							bWaterUnitReady = true;
+							break;
+						}
+					}
+				}
+			}
 			int iCost = kPlayer.getEuropeUnitBuyPrice(eUnit, eTradeScreen);
 
-			if (iCost >= 0)
+			if (iCost >= 0 && bWaterUnitReady)
 			{
 				CvWString szText = gDLL->getText("TXT_KEY_EUROPE_UNIT_BUY_PRICE", GC.getUnitInfo(eUnit).getTextKeyWide(), iCost);
 				gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, szText, kPlayer.getUnitButton(eUnit), eUnit, WIDGET_PEDIA_JUMP_TO_UNIT, eUnit, 1);
@@ -3358,7 +3364,6 @@ bool CvDLLButtonPopup::launchPurchaseEuropeUnitPopup(CvPopup* pPopup, CvPopupInf
 bool CvDLLButtonPopup::launchFoundingFatherPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
 
-    ///TKs Med
     if (info.getData2() == 1)
     {
         CivicTypes eNewTech = (CivicTypes)info.getData1();
