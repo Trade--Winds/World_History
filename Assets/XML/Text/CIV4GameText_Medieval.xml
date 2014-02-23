@@ -2095,7 +2095,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_PILGRAMS_ARRIVE</Tag>
-		<English>Pilgrims have stopped to worship at %s1_Name leaving behind a bonus to Culture and %d2 in gold.</English>
+		<English>Pilgrims have stopped to worship at %s1_Name leaving behind a bonus to Culture and %d2[ICON_GOLD].</English>
 		<French>Pilgrims have stopped to worship at %s1_Name leaving behind a bonus to Culture and %d2 in gold.</French>
 		<German>Pilgrims have stopped to worship at %s1_Name leaving behind a bonus to Culture and %d2 in gold.</German>
 		<Italian>Pilgrims have stopped to worship at %s1_Name leaving behind a bonus to Culture and %d2 in gold.</Italian>
@@ -2103,7 +2103,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_RELIC_ARRIVES</Tag>
-		<English>A new Relic has been added to the Shrine at %s1_Name granting a bonus to Culture and %d2 in gold.</English>
+		<English>A Relic has been added to the Shrine at %s1_Name granting a bonus to Culture and %d2[ICON_GOLD].</English>
 		<French>A new Relic has been added to the Shrine at %s1_Name granting a bonus to Culture and %d2 in gold.</French>
 		<German>A new Relic has been added to the Shrine at %s1_Name granting a bonus to Culture and %d2 in gold.</German>
 		<Italian>A new Relic has been added to the Shrine at %s1_Name granting a bonus to Culture and %d2 in gold.</Italian>
@@ -2111,7 +2111,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_TREASURE_ARRIVES</Tag>
-		<English>Your Treasure has been unloaded at %s1_Name. %d2 units of gold have been added to the storehouse.</English>
+		<English>Your Treasure has been unloaded at %s1_Name. %d2[ICON_GOLD] have been added to the storehouse.</English>
 		<French>Your Treasure has been unloaded at %s1_Name. %d2 units of gold have been added to the storehouse.</French>
 		<German>Your Treasure has been unloaded at %s1_Name. %d2 units of gold have been added to the storehouse.</German>
 		<Italian>Your Treasure has been unloaded at %s1_Name. %d2 units of gold have been added to the storehouse.</Italian>

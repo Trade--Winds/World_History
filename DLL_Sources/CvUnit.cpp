@@ -5463,7 +5463,7 @@ void CvUnit::doKingTransport()
         CvCity* ePlotCity = plot()->getPlotCity();
         if (ePlotCity != NULL && m_pUnitInfo->getConvertsToBuildingClass() != NO_BUILDINGCLASS)
         {
-            //bRequiresBuilding = true;
+            bRequiresBuilding = true;
             BuildingTypes eBuilding = ((BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings((BuildingClassTypes)m_pUnitInfo->getConvertsToBuildingClass())));
             if (eBuilding != NO_BUILDING && ePlotCity->isCityType((MedCityTypes)GC.getBuildingInfo(eBuilding).getCityType()))
             {
@@ -5473,13 +5473,14 @@ void CvUnit::doKingTransport()
 			int iRand = GC.getGameINLINE().getSorenRandNum(GC.getXMLval(XML_PILGRAM_OFFER_GOLD), "Random Pilgram 1");
 			iRand *= 2;
 			//ePlotCity->changeYieldStored((YieldTypes)GC.getDefineINT("DEFAULT_TREASURE_YIELD") ,iRand);
-			GET_PLAYER(getOwner()).changeGold(iRand);
+			//GET_PLAYER(getOwner()).changeGold(getYieldStored());
 			//iRand = GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("PILGRAM_OFFER_GOLD"), "Random Pilgram 1");
 			ePlotCity->changeCulture(ePlotCity->getOwner(), iRand, true);
+			iRand = getYieldStored();
 			CvWString szBuffer = gDLL->getText("TXT_KEY_UNIT_RELIC_ARRIVES", ePlotCity->getNameKey(), iRand);
 			gDLL->getInterfaceIFace()->addMessage(ePlotCity->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_POSITIVE_DINK", MESSAGE_TYPE_MINOR_EVENT, GC.getUnitInfo(getUnitType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
         }
-        if (!bRequiresBuilding && ePlotCity != NULL)
+        if (ePlotCity != NULL)
         {
             int iGoldBars = 0;
             if (m_pUnitInfo->getConvertsToYield() != NO_YIELD)
@@ -5491,6 +5492,7 @@ void CvUnit::doKingTransport()
                     //iGoldBars = GET_PLAYER(getOwnerINLINE()).getYieldSellPrice(eGoldBars);
                     //iGoldBars = getYieldStored() / iGoldBars;
                     //ePlotCity->changeYieldStored(eGoldBars, iGoldBars);
+					iGoldBars = getYieldStored();
                     GET_PLAYER(getOwnerINLINE()).changeGold(getYieldStored());
                     bKill = true;
                     //GET_PLAYER(getOwnerINLINE()).getSellToEuropeProfit(eYield, iLoss)
@@ -5502,11 +5504,12 @@ void CvUnit::doKingTransport()
 				// is this code ever reached?
 				// is it working if it's reached?
 				// Nightinggale
-				FAssert(false);
+				//FAssert(false);
+				iGoldBars = m_pUnitInfo->getConvertsToGold();
                 GET_PLAYER(getOwnerINLINE()).changeGold(m_pUnitInfo->getConvertsToGold());
                 bKill = true;
             }
-            if (isHuman() && iGoldBars > 0)
+            if (isHuman() && !bRequiresBuilding)
             {
                 CvWString szBuffer = gDLL->getText("TXT_KEY_UNIT_TREASURE_ARRIVES", ePlotCity->getNameKey(), iGoldBars);
                 gDLL->getInterfaceIFace()->addMessage(ePlotCity->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_POSITIVE_DINK", MESSAGE_TYPE_MINOR_EVENT, GC.getUnitInfo(getUnitType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
