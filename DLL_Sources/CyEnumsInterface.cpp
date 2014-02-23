@@ -484,6 +484,7 @@ void CyEnumsPythonInterface()
 		.value("YIELD_POLLUTANTS",            YIELD_POLLUTANTS)
 		.value("YIELD_GOLD",                  YIELD_CREDITS)
 #endif
+		.value("NUM_CARGO_YIELD_TYPES", NUM_CARGO_YIELD_TYPES)
 		///TKe
 		.value("NUM_YIELD_TYPES", NUM_YIELD_TYPES)
 		;

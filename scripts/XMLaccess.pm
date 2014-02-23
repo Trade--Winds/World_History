@@ -25,7 +25,7 @@ package XMLaccess;
 
 use Exporter;
 our @ISA= qw( Exporter );
-our @EXPORT = qw( openFile writeFile getXMLlocation );
+our @EXPORT = qw( openFile writeFile getXMLlocation getAllXMLfiles);
 
 
 my $xml_location = '../Assets/xml';
@@ -162,3 +162,40 @@ sub writeFile
 	}
 	close WRITE_FILE;
 }
+
+sub getXMLfilesInDir
+{
+	my $dirname = $_[0];
+	
+	my @return_array = ();
+	
+	my $pathdirname = getXMLlocation() . "/" . $dirname;
+	
+	opendir my($dh), $pathdirname or die "Couldn't open dir '$pathdirname': $!";
+	my @files = grep { !/^\.\.?$/ } readdir $dh;
+	closedir $dh;
+
+	foreach (@files)
+	{
+		my $filename = $dirname . "/" . $_;
+		my $pathfilename = getXMLlocation() . "/" . $filename;
+		if (-d $pathfilename)
+		{
+			foreach (getXMLfilesInDir($filename))
+			{
+				push(@return_array, $_);
+			}
+		}
+		elsif (substr($_, -4) eq '.xml')
+		{
+			push(@return_array, $filename);
+		}
+	}
+	return @return_array;
+}
+
+sub getAllXMLfiles
+{
+	return getXMLfilesInDir(".");
+}
+

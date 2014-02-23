@@ -5497,9 +5497,12 @@ void CvUnit::doKingTransport()
                 }
 
             }
-
-            if (m_pUnitInfo->getConvertsToGold() != 0)
+			else if (m_pUnitInfo->getConvertsToGold() != 0)
             {
+				// is this code ever reached?
+				// is it working if it's reached?
+				// Nightinggale
+				FAssert(false);
                 GET_PLAYER(getOwnerINLINE()).changeGold(m_pUnitInfo->getConvertsToGold());
                 bKill = true;
             }
@@ -15604,3 +15607,45 @@ void CvUnit::changeInvisibleTimer(int iChange)
 //	}
 //}
 ///TKe
+
+/// Expert working - start - Nightinggale
+bool CvUnit::isCitizenExpertWorking() const
+{
+	// tell if a citizen is producing yields where the unit type gains a bonus
+	ProfessionTypes eProfession = this->getProfession();
+	if (eProfession != NO_PROFESSION)
+	{
+		CvProfessionInfo& kProfession = GC.getProfessionInfo(eProfession);
+		if (kProfession.isCitizen())
+		{
+			CvUnitInfo& kUnit = getUnitInfo();
+
+			bool bWater = kProfession.isWater();
+			if (kProfession.isWorkPlot())
+			{
+				if(kProfession.isWater())
+				{
+					if (!kUnit.isWaterYieldChanges())
+					{
+						return false;
+					}
+				}
+				else if (!kUnit.isLandYieldChanges())
+				{
+					return false;
+				}
+			}
+
+			for (int iIndex = 0; iIndex < kProfession.getNumYieldsProduced(); iIndex++)
+			{
+				int iYield = kProfession.getYieldsProduced(iIndex);
+				if (kUnit.getYieldChange(iYield) > 0 || kUnit.getYieldModifier(iYield) > 0)
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+/// Expert working - end - Nightinggale

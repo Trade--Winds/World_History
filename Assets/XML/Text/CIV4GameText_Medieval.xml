@@ -13,14 +13,14 @@
 		<Italian></Italian>
 		<Spanish></Spanish>
 	</TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_CIVICOPTION_INVENTIONS</Tag>
-    <English>Medieval Research</English>
-    <French>Medieval Research</French>
-    <German>Medieval Research</German>
-    <Italian>Medieval Research</Italian>
-    <Spanish>Medieval Research</Spanish>
-  </TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVICOPTION_INVENTIONS</Tag>
+		<English>Medieval Research</English>
+		<French>Medieval Research</French>
+		<German>Medieval Research</German>
+		<Italian>Medieval Research</Italian>
+		<Spanish>Medieval Research</Spanish>
+	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MAIN_MENU_CIVILOPEDIA</Tag>
 		<English>Medievopedia</English>

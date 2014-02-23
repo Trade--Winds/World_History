@@ -726,6 +726,10 @@ public:
 	virtual void AI_setOldProfession(ProfessionTypes eProfession) = 0;
 	virtual ProfessionTypes AI_getIdealProfession() const = 0;
 
+	/// Expert working - start - Nightinggale
+	// tell if unit is working his expert profession(s)
+	bool isCitizenExpertWorking() const;
+	/// Expert working - end - Nightinggale
 
 protected:
 

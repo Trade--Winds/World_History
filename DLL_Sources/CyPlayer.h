@@ -305,6 +305,12 @@ public:
 	void setScriptData(std::string szNewValue);
 	int AI_maxGoldTrade(int iPlayer);
 	void forcePeace(int iPlayer);
+
+	// invention effect cache - start - Nightinggale
+	bool canUseBuilding(int iBuilding) const;
+	bool canUseUnit(int iUnit) const;
+	// invention effect cache - end - Nightinggale
+
 private:
 	CvPlayer* m_pPlayer;
 };

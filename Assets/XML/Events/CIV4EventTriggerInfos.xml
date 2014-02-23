@@ -1218,7 +1218,7 @@
 			<iWeight>-1</iWeight>
 			<bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
 			<bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
-			<Civic>MOTTEANDBAILEY</Civic>
+			<Civic>MEDIEVAL_TECH_MOTTEANDBAILEY</Civic>
 			<iMinTreasury>0</iMinTreasury>
 			<iMinPopulation>0</iMinPopulation>
 			<iMaxPopulation>-1</iMaxPopulation>

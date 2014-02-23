@@ -1091,6 +1091,13 @@ void CyUnit::setUnitTradeMarket(int /*EuropeTypes*/ eMarket)
 		m_pUnit->setUnitTradeMarket((EuropeTypes) eMarket);
 }
 
+/// Expert working - start - Nightinggale
+bool CyUnit::isCitizenExpertWorking() const
+{
+	return m_pUnit ? m_pUnit->isCitizenExpertWorking() : false;
+}
+/// Expert working - end - Nightinggale
+
 // Python Helper Functions
 void CyUnit::centerCamera()
 {
@@ -1111,3 +1118,4 @@ std::string CyUnit::getFullLengthIcon() const
 {
 	return m_pUnit ? m_pUnit->getFullLengthIcon() : "";
 }
+

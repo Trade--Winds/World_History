@@ -986,6 +986,7 @@ protected:
 public:
 	bool canUseYield(YieldTypes eYield) const;
 	bool canUseUnit(UnitTypes eUnit) const;
+	bool canUseBuilding(BuildingTypes eBuilding) const;
 	bool canUseProfession(ProfessionTypes eProfession) const;
 	bool canUseBonus(BonusTypes eBonus) const;
 	int getCityPlotFoodBonus() const;
@@ -993,6 +994,7 @@ public:
 protected:
 	YieldArray<bool> m_abBannedYields;
 	UnitArray<bool> m_abBannedUnits;
+	BuildingArray<bool> m_abBannedBuildings;
 	ProfessionArray<bool> m_abBannedProfessions;
 	BonusArray<bool> m_abBannedBonus;
 
@@ -1060,6 +1062,11 @@ inline bool CvPlayer::canUseUnit(UnitTypes eUnit) const
 {
 	FAssert(eUnit < GC.getNumUnitInfos());
 	return eUnit >= 0 ? !this->m_abBannedUnits.get(eUnit) : false;
+}
+
+inline bool CvPlayer::canUseBuilding(BuildingTypes eBuilding) const
+{
+	return eBuilding >= 0 ? !this->m_abBannedBuildings.get(eBuilding) : false;
 }
 
 inline bool CvPlayer::canUseProfession(ProfessionTypes eProfession) const

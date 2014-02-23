@@ -19160,6 +19160,42 @@ void CvPlayer::updateInventionEffectCache()
 	}
 	this->m_abBannedUnits.hasContent(); // release memory if possible
 
+	// cache allowed units
+	for (int iBuilding = 0; iBuilding < GC.getNumBuildingInfos(); iBuilding++)
+	{
+		int iCurrent = 0;
+		int iMax = 0;
+
+		CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes) iBuilding);
+        int eBuildingClass = kBuilding.getBuildingClassType();
+
+		if (iBuilding != kCivilizationInfo.getCivilizationBuildings(eBuildingClass))
+		{
+			this->m_abBannedUnits.set(true, iBuilding);
+			continue;
+		}
+
+        for (int iCivic = 0; iCivic < GC.getNumCivicInfos(); ++iCivic)
+        {
+			CvCivicInfo& kCivicInfo = GC.getCivicInfo((CivicTypes)iCivic);
+			int iCivicWeight = kCivicInfo.getAllowsBuildingTypes(eBuildingClass);
+			if (iCivicWeight > 0)
+			{
+				iMax += iCivicWeight;
+			}
+			if (iCivicWeight != 0 && getIdeasResearched((CivicTypes) iCivic) > 0)
+			{
+				iCurrent += iCivicWeight;
+			}
+        }
+		if (iMax == 0)
+		{
+			iCurrent++;
+		}
+		this->m_abBannedBuildings.set(iCurrent <= 0, iBuilding);
+	}
+	this->m_abBannedBuildings.hasContent(); // release memory if possible
+
 	// cache allowed professions
 	for (int iProfession = 0; iProfession < GC.getNumProfessionInfos(); iProfession++)
 	{

@@ -1250,3 +1250,35 @@ std::wstring CyPlayer::getTradeMessage(int i) const
 {
 	return m_pPlayer ? m_pPlayer->getTradeMessage(i) : L"";
 }
+
+// invention effect cache - start - Nightinggale
+bool CyPlayer::canUseBuilding(int iBuilding) const
+{
+	FAssertMsg(m_pPlayer != NULL, "Python");
+	FAssertMsg(iBuilding > NO_BUILDING, "Python");
+	FAssertMsg(iBuilding < GC.getNumBuildingInfos(), "Python");
+	if (m_pPlayer != NULL)
+	{
+		if (iBuilding > NO_BUILDING && iBuilding < GC.getNumBuildingInfos())
+		{
+			return m_pPlayer->canUseBuilding((BuildingTypes)iBuilding);
+		}
+	}
+	return false;
+}
+
+bool CyPlayer::canUseUnit(int iUnit) const
+{
+	FAssertMsg(m_pPlayer != NULL, "Python");
+	FAssertMsg(iUnit > NO_UNIT, "Python");
+	FAssertMsg(iUnit < GC.getNumUnitInfos(), "Python");
+	if (m_pPlayer != NULL)
+	{
+		if (iUnit > NO_UNIT && iUnit < GC.getNumUnitInfos())
+		{
+			return m_pPlayer->canUseUnit((UnitTypes)iUnit);
+		}
+	}
+	return false;
+}
+// invention effect cache - end - Nightinggale

@@ -271,3 +271,11 @@ public:
 	EuropeArray() : JustInTimeArray<T>(GC.getNumEuropeInfos()){};
 	EuropeArray(T eDefault) : JustInTimeArray<T>(GC.getNumEuropeInfos(), eDefault){};
 };
+
+template<class T>
+class BuildingArray: public JustInTimeArray<T>
+{
+public:
+    BuildingArray() : JustInTimeArray<T>(GC.getNumBuildingInfos()){};
+	BuildingArray(T eDefault) : JustInTimeArray<T>(GC.getNumBuildingInfos(), eDefault){};
+};

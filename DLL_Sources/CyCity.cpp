@@ -1283,6 +1283,22 @@ CyPlotGroup* CyCity::getCityPlotGroup()
 }
 /// PlotGroup - end - Nightinggale
 
+// EDU remake - start - Nightinggale
+int CyCity::getSpecialistTuition(int iUnit) const
+{
+	if (m_pCity == NULL || iUnit < 0 || iUnit >= GC.getNumUnitInfos())
+	{
+		return -1;	
+	}
+	return m_pCity->getSpecialistTuition((UnitTypes)iUnit);
+}
+
+bool CyCity::getTeachLevel() const
+{
+	return m_pCity ? m_pCity->getTeachLevel() : false;
+}
+// EDU remake - end - Nightinggale
+
 python::tuple CyCity::isOrderWaitingForYield(int /*YieldTypes*/ eYield)
 {
 	if (m_pCity)
