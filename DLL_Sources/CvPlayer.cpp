@@ -18234,13 +18234,19 @@ int CvPlayer::getIdeasResearched(CivicTypes eIndex) const
 
 }
 
-void CvPlayer::changeIdeasResearched(CivicTypes eIndex, int iChange)
+void CvPlayer::changeIdeasResearched(CivicTypes eIndex, int iChange, bool bUpdateCache) // invention effect cache - Nightinggale
 {
     //FAssert(false);
 	if (eIndex != NO_CIVIC)
 	{
 		m_aiIdeasResearched[eIndex] += iChange;
-		this->updateInventionEffectCache(); // invention effect cache - Nightinggale
+
+		// invention effect cache - start - Nightinggale
+		if (bUpdateCache)
+		{
+			this->updateInventionEffectCache();
+		}
+		// invention effect cache - end - Nightinggale
 	}
 }
 

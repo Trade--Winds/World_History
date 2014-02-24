@@ -596,7 +596,10 @@ public:
 	void setCurrentResearch(CivicTypes eCurrentResearch);
 	void setCurrentTradeResearch(CivicTypes eCurrentResearch);
 	int getIdeasResearched(CivicTypes eIndex) const;
-	void changeIdeasResearched(CivicTypes eIndex, int iChange);
+	// invention effect cache - start - Nightinggale
+	//void changeIdeasResearched(CivicTypes eIndex, int iChange);
+	void changeIdeasResearched(CivicTypes eIndex, int iChange, bool bUpdateCache = true);
+	// invention effect cache - end - Nightinggale
 	int getCurrentResearchProgress(bool bGetTurns, CivicTypes eCivic = NO_CIVIC);
 	int getTurnstoCompleteResearch(bool bReturnNetResearch=false, CivicTypes eCivic = NO_CIVIC);
 	void processCivics(CivicTypes eCivic, int iChange);
