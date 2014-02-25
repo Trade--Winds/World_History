@@ -135,17 +135,17 @@ class CvDomesticAdvisor:
 		# Button generation
 		# index                       = self.addButton( button icon name,                      help popup string)
 		
-		self.GENERAL_STATE            = self.addButton("INTERFACE_CITY_MAP_BUTTON",            "TXT_KEY_DOMESTIC_ADVISOR_STATE_GENERAL")
-		self.PRODUCTION_STATE         = self.addButton("INTERFACE_NET_YIELD_BUTTON",           "TXT_KEY_CONCEPT_PRODUCTION")
-		self.WAREHOUSE_STATE          = self.addButton("INTERFACE_STORES_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_WAREHOUSE")
-		self.BUILDING_STATE           = self.addButton("INTERFACE_CITY_BUILD_BUTTON",          "TXT_KEY_BUILDINGS")
-		self.BUILDING_VACANT_STATE    = self.addButton("INTERFACE_CITY_BUILD_BUTTON",          "TXT_KEY_BUILDING_VACANT")
-		self.IMPORTEXPORT_STATE       = self.addButton("INTERFACE_CITY_GOVENOR_BUTTON",        "TXT_KEY_CONCEPT_TRADE_ROUTE")
-		self.CITIZEN_STATE            = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN")
-		self.CITIZEN_COUNT_STATE      = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_COUNT")
-		self.CITIZEN_WRONG_STATE      = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",        "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_WRONG")
-		self.TOTAL_PRODUCTION_STATE   = self.addButton("INTERFACE_WAREHOUSE_STORAGE_BUTTON",    "TXT_KEY_CONCEPT_TOTAL_PRODUCTION")  # total production page - Nightinggale
-		self.TRADEROUTE_STATE         = self.addButton("INTERFACE_IMPORT_EXPORT_BUTTON",       "TXT_KEY_DOMESTIC_ADVISOR_STATE_TRADEROUTE")
+		self.GENERAL_STATE            = self.addButton("INTERFACE_CITY_MAP_BUTTON",                     "TXT_KEY_DOMESTIC_ADVISOR_STATE_GENERAL")
+		self.PRODUCTION_STATE         = self.addButton("INTERFACE_NET_YIELD_BUTTON",                    "TXT_KEY_CONCEPT_PRODUCTION")
+		self.WAREHOUSE_STATE          = self.addButton("INTERFACE_STORES_BUTTON",                       "TXT_KEY_DOMESTIC_ADVISOR_WAREHOUSE")
+		self.BUILDING_STATE           = self.addButton("INTERFACE_CITY_BUILD_BUTTON",                   "TXT_KEY_BUILDINGS")
+		self.BUILDING_VACANT_STATE    = self.addButton("INTERFACE_CITY_VACANT_BUILDING_BUTTON",         "TXT_KEY_BUILDING_VACANT")
+		self.IMPORTEXPORT_STATE       = self.addButton("INTERFACE_CITY_GOVENOR_BUTTON",                 "TXT_KEY_CONCEPT_TRADE_ROUTE")
+		self.CITIZEN_STATE            = self.addButton("INTERFACE_CITY_CITIZEN_BUTTON",                 "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN")
+		self.CITIZEN_COUNT_STATE      = self.addButton("INTERFACE_CITY_CITIZEN_COUNT_BUTTON",           "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_COUNT")
+		self.CITIZEN_WRONG_STATE      = self.addButton("INTERFACE_CITY_CITIZEN_WRONG_BUTTON",           "TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_WRONG")
+		self.TOTAL_PRODUCTION_STATE   = self.addButton("INTERFACE_WAREHOUSE_STORAGE_BUTTON",            "TXT_KEY_CONCEPT_TOTAL_PRODUCTION")  # total production page - Nightinggale
+		self.TRADEROUTE_STATE         = self.addButton("INTERFACE_IMPORT_EXPORT_BUTTON",                "TXT_KEY_DOMESTIC_ADVISOR_STATE_TRADEROUTE")
 		self.NATIVE_STATE             = self.addButton("INTERFACE_NATIVE_VILLAGES_BUTTON",              "TXT_KEY_DOMESTIC_ADVISOR_STATE_NATIVE")
 		
 		# make sure there is room enough on the screen for all buttons

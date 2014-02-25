@@ -895,6 +895,20 @@
 			<Type>INTERFACE_CITY_GOVENOR_BUTTON</Type>
 			<Path>Art/Interface/Screens/City_Management/import_export.dds</Path>
 		</InterfaceArtInfo>
+		<!-- domestic advisor upgrade - start - nightinggale -->
+		<InterfaceArtInfo>
+			<Type>INTERFACE_CITY_VACANT_BUILDING_BUTTON</Type>
+			<Path>Art/Interface/Screens/City_Management/Build.dds</Path>
+		</InterfaceArtInfo>
+		<InterfaceArtInfo>
+			<Type>INTERFACE_CITY_CITIZEN_COUNT_BUTTON</Type>
+			<Path>Art/Interface/Screens/City_Management/Dude.dds</Path>
+		</InterfaceArtInfo>
+		<InterfaceArtInfo>
+			<Type>INTERFACE_CITY_CITIZEN_WRONG_BUTTON</Type>
+			<Path>Art/Interface/Screens/City_Management/Dude.dds</Path>
+		</InterfaceArtInfo>
+		<!-- domestic advisor upgrade - end - nightinggale -->
 		<InterfaceArtInfo>
 			<Type>INTERFACE_BOX_NEG_END</Type>
 			<Path>Art/Interface/Screens/City_Management/BottomBoxEND.dds</Path>
