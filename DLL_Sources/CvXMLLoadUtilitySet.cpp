@@ -2160,7 +2160,7 @@ void CvXMLLoadUtility::SetGlobalClassInfo(std::vector<T*>& aInfos, const char* s
 			else
 			{
 // XML length check - start - Nightinggale
-				FAssert(!bLoadOnce && !bFirstLoadRound);
+				FAssertMsg(!bLoadOnce && !bFirstLoadRound, CvString::format("Type %s already in use when read in %s", pClassInfo->getType(), szTagName).c_str());
 #ifdef FASSERT_ENABLE
 				if (strlen(pClassInfo->getType()) >= sizeof(f_szXMLname))
 				{
