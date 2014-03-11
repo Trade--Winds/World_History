@@ -3,108 +3,176 @@
 # Script to autogenerate needed lists for yields
 # Written by Nightinggale
 
-# arguments (order doesn't matter)
-# 2071: input/output is for Colonization 2071 instead of Medieval Conquest
-#
-# YieldGroup* or Check_YieldGroup*: The return line is generated based on the group in the cpp file
-#
-# python: outputs the code for CyEnumsInterface.cpp
-#
-# checkXML: outputs the code for BaseCheckYieldGroup::checkXML in Yields_(mod).cpp
-#
-# makegroups: generate all groups and write them directly into the header file
-#
-# newyield: calls python and checkXML and writes the result directly into the source
+# Autogenerates needed code for yields in DLL
+# triggers on all source files starting with Yields_ and ends with .h
+
+# Updates:
+#   group functions in header
+#   XML check in cpp file
+#   python enum
 
 use strict;
 use warnings;
 
-my $target = 'Medieval_Tech';
+my $target = '';
 my $group = "";
 
-# read all arguments and look for known keywords
-foreach (@ARGV)
-{
-	if ($_ eq '2071') {
-		$target = 'Colonization_2071';
-	} elsif (substr($_,0, 10) eq 'YieldGroup' or substr($_,0, 16) eq 'Check_YieldGroup') {
-		if (substr($_,0, 1) eq 'C') {
-			$group = $_;
-		} else {
-			$group = 'Check_' . $_;
-		}
-	} elsif ($_ eq 'python') {
-		$group = 'python';
-	} elsif ($_ eq 'checkXML') {
-		$group = 'checkXML';
-	} elsif ($_ eq 'makegroups') {
-		$group = 'makegroups';
-	} elsif ($_ eq 'newyield') {
-		$group = 'newyield';
-	} 
-}
-
-my $HEADER_FILE = "../DLL_Sources/Yields_" . $target . ".h";
-my $SOURCE_FILE = "../DLL_Sources/Yields_" . $target . ".cpp";
-
-my $to_file = 0;
-
-##
-## generate a hash and an array with all yields
-##
-open (FILE, "< ../DLL_Sources/Yields_" . $target . ".h") or die "Can't open file DLL_Sources/Yields_" . $target . ".h";
-
-my $status = 0;
+my $HEADER_FILE = "";
+my $SOURCE_FILE = "";
 
 my @yield_array = ();
 my %yield_hash = ();
 my %yield_convertion = ();
 
-while (<FILE>) {
-	my $comment_index = index($_, '//');
-	my $yield_index = index($_, 'YIELD');
-	
-	if ($comment_index != -1 and $comment_index < $yield_index)
+my $DEFINE_FLAG = "";
+
+my $to_file = 1;
+
+my @needed_yields = ();
+push(@needed_yields, "YIELD_FOOD");
+push(@needed_yields, "YIELD_LUMBER");
+push(@needed_yields, "YIELD_STONE");
+push(@needed_yields, "YIELD_ORE");
+push(@needed_yields, "YIELD_TOOLS");
+push(@needed_yields, "YIELD_WEAPONS");
+push(@needed_yields, "YIELD_HORSES");
+push(@needed_yields, "YIELD_TRADE_GOODS");
+push(@needed_yields, "YIELD_HAMMERS");
+push(@needed_yields, "YIELD_BELLS");
+push(@needed_yields, "YIELD_CROSSES");
+push(@needed_yields, "YIELD_EDUCATION");
+push(@needed_yields, "YIELD_IDEAS");
+push(@needed_yields, "YIELD_CULTURE");
+push(@needed_yields, "YIELD_GOLD");
+
+chdir "../DLL_sources";
+
+opendir my($dh), "." or die "Couldn't open dir '../DLL_sources': $!";
+my @files = grep { !/^\.\.?$/ } readdir $dh;
+closedir $dh;
+
+
+foreach (@files)
+{
+	if (substr($_,0,7) eq "Yields_")
 	{
-		next;
-	}
-	
-	if ($status == 0) {
-		if (index($_, 'NO_YIELD = -1') != -1) {
-			$status = 1;
-		}
-	} elsif ($status == 1) {
-		if (index($_, 'NUM_YIELD_TYPES') != -1) {
-			$status = 2;
-		} elsif (index($_, 'YIELD_') != -1) {
-			my $line = substr($_,index($_, 'YIELD_'));
-			$line = substr($line, 0, index($line, ','));
-			$yield_hash{$line} = scalar(@yield_array);
-			$yield_convertion{$line} = $line;
-			push(@yield_array, $line);
-		}
-	} elsif ($status == 2) {
-		if (substr($_,0,1) eq '}') {
-			last;
-		} elsif (index($_, '=') != -1) {
-			my $left = substr($_, index($_, 'Y'));
-			$left = substr($left, 0, index($left, ' ') );
-			
-			my $right = substr($_, index($_, '='));
-			$right = substr($right, index($right, 'Y'));
-			$right = substr($right,0,index($right, ',') );
-			
-			if ($left ne "YIELD_FROM_ANIMALS")
-			{
-				$yield_convertion{$right} = $left;
-			}
+		if (substr($_,-2) eq ".h" )
+		{
+			$target = substr($_,7, -2);
+			updateTarget();
 		}
 	}
 }
 
-close FILE;
 
-# at this point we can look up yield_names by index in @yield_array and yield_index by name in %yield_hash
+exit;
+
+
+sub updateTarget
+{
+	print "\nWorking on " . $target . "\n";
+	
+	@yield_array = ();
+	%yield_hash = ();
+	%yield_convertion = ();
+	$DEFINE_FLAG = "";
+
+	$HEADER_FILE = "Yields_" . $target . ".h";
+	$SOURCE_FILE = "Yields_" . $target . ".cpp";
+	
+	open (FILE, "< " . $SOURCE_FILE) or die "Can't open file " . $SOURCE_FILE;
+	while (<FILE>)
+	{
+		if (substr($_, 0, 7) eq "#ifdef ")
+		{
+			$DEFINE_FLAG = substr($_, 7);
+			$DEFINE_FLAG =~ s/\r\n/\n/g;
+			chomp $DEFINE_FLAG;
+			last;
+		}
+	}
+	close FILE;
+
+	die "Can't find #ifdef in " . $SOURCE_FILE if $DEFINE_FLAG eq "";
+
+	##
+	## generate a hash and an array with all yields
+	##
+	open (FILE, "< " . $HEADER_FILE) or die "Can't open file " . $HEADER_FILE;
+
+	my $status = 0;
+
+	while (<FILE>) {
+		my $comment_index = index($_, '//');
+		my $yield_index = index($_, 'YIELD');
+		
+		if ($comment_index != -1 and $comment_index < $yield_index)
+		{
+			next;
+		}
+		
+		if ($status == 0) {
+			if (index($_, 'NO_YIELD = -1') != -1) {
+				$status = 1;
+			}
+		} elsif ($status == 1) {
+			if (index($_, 'NUM_YIELD_TYPES') != -1) {
+				$status = 2;
+			} elsif (index($_, 'YIELD_') != -1) {
+				my $line = substr($_,index($_, 'YIELD_'));
+				$line = substr($line, 0, index($line, ','));
+				$yield_hash{$line} = scalar(@yield_array);
+				$yield_convertion{$line} = $line;
+				push(@yield_array, $line);
+			}
+		}
+		elsif ($status == 2) {
+			if (substr($_,0,1) eq '}') {
+				last;
+			} elsif (index($_, '=') != -1) {
+				my $left = substr($_, index($_, 'Y'));
+				$left = substr($left, 0, index($left, ' ') );
+				
+				my $right = substr($_, index($_, '='));
+				$right = substr($right, index($right, 'Y'));
+				$right = substr($right,0,index($right, ',') );
+				
+				if ($left eq "YIELD_FROM_ANIMALS")
+				{
+					last;
+				}
+				else
+				{
+					$yield_convertion{$right} = $left;
+				}
+			}
+		}
+		
+		if ($status gt 0 and substr($_,0,1) eq '}')
+		{
+			last;
+		}
+	}
+
+	close FILE;
+
+	# at this point we can look up yield_names by index in @yield_array and yield_index by name in %yield_hash
+	
+	OUTER:
+	foreach my $needed_yield (@needed_yields)
+	{
+		foreach (@yield_array)
+		{
+			next OUTER if $yield_convertion{$_} eq $needed_yield;
+		}
+		die $needed_yield . " is unknown";
+	}
+	
+	makeAllGroups();
+	writeYieldXMLAccess();
+	writeYieldPythonAccess();
+
+}
 
 sub writeoutput {
 	if ($to_file == 0) {
@@ -142,6 +210,18 @@ sub GetOptimizedgroup{
 				{
 					my $yield = substr($_,index($_, '(') + 1);
 					$yield = substr($yield, 0, index($yield, ')'));
+					
+					my $found = 0;
+					for (keys %yield_hash)
+					{
+						if ($_ eq $yield)
+						{
+							$found = 1;
+							last;
+						}
+					}
+					die $yield . " used in cpp without being defined in header" if $found == 0; 
+					
 					$active_yields[$yield_hash{$yield}] = $yield_hash{$yield};
 				}
 			}
@@ -282,7 +362,7 @@ sub writeYieldXMLAccess {
 }
 
 sub writeYieldPythonAccess {
-	my $source = "../DLL_Sources/CyEnumsInterface.cpp";
+	my $source = "CyEnumsInterface.cpp";
 	open (FILE, "< " . $source) or die "Can't open file " . $source . "\n" . $!;
 	my @lines = <FILE>;
 	close FILE;
@@ -290,18 +370,6 @@ sub writeYieldPythonAccess {
 	open (WRITE_FILE, "> " . $source) or die "Can't open file " . $source . "\n" . $!;
 	
 	$to_file = 1;
-	
-	my $define = "";
-	
-	if ($target eq 'Medieval_Tech')
-	{
-		$define = "MEDIEVAL_TECH";
-	} elsif ($target eq 'Colonization_2071')
-	{
-		$define = "COLONIZATION_2071";
-	} else {
-		die "unknown target!\n";
-	}
 	
 	my $status = 0;
 	foreach (@lines)
@@ -311,11 +379,24 @@ sub writeYieldPythonAccess {
 		{
 			$status = 1;
 			print WRITE_FILE $_;
-		} elsif ($status == 1 and substr($_, 0, 1) eq "#" and index($_, $define) != -1)
+		} elsif ($status == 1 and substr($_, 0, 1) eq "#")
 		{
-			$status = 2;
+			if (substr($_, 0, 6) eq "#endif")
+			{
+				# define flag is not present in file
+				# create a new block for this flag
+				$status = 3;
+				print WRITE_FILE "#elif defined(" . $DEFINE_FLAG . ")\n";
+				createPythonAccess();
+			}
+		
 			print WRITE_FILE $_;
-			createPythonAccess();
+		
+			if (index($_, $DEFINE_FLAG) != -1)
+			{
+				$status = 2;
+				createPythonAccess();
+			}
 		} elsif ($status == 2)
 		{
 			if (substr($_, 0, 1) eq "#") {
@@ -342,7 +423,7 @@ sub makeAllGroups {
 	
 	foreach (@lines)
 	{
-		if (substr($_,0,29) eq "static inline bool YieldGroup")
+		if (substr($_,0,29) eq "static inline bool YieldGroup" and index ($_, "YieldGroup_Luxury_Food") == -1)
 		{
 			$function = substr($_, index($_, "YieldGroup"));
 			$function = substr($function, 0, index($function, "("));
@@ -359,18 +440,3 @@ sub makeAllGroups {
 	close WRITE_FILE;
 }
 
-
-# call the subroutines ordered by command line arguments
-
-if (substr($group,0, 16) eq 'Check_YieldGroup') {
-	GetOptimizedgroup($group);
-} elsif ($group eq 'python') {
-	createPythonAccess();
-} elsif ($group eq 'checkXML') {
-	checkXML();
-} elsif ($group eq 'makegroups') {
-	makeAllGroups();
-} elsif ($group eq 'newyield') {
-	writeYieldXMLAccess();
-	writeYieldPythonAccess();
-}

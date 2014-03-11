@@ -74,57 +74,57 @@ enum DllExport YieldTypes
 
 static inline bool YieldGroup_AI_Sell(YieldTypes eYield)
 {
-	return (eYield >= YIELD_CLOTH && eYield <= YIELD_WINE) || eYield == YIELD_SILVER || eYield == YIELD_TRADE_GOODS;
+	return (eYield <= YIELD_WINE && eYield >= YIELD_CLOTH) || (eYield == YIELD_SILVER) || (eYield == YIELD_TRADE_GOODS);
 }
 
 static inline bool YieldGroup_AI_Sell_To_Europe(YieldTypes eYield)
 {
-	return (eYield >= YIELD_SILVER && eYield <= YIELD_WINE) || (eYield >= YIELD_CATTLE && eYield <= YIELD_WOOL);
+	return (eYield <= YIELD_WOOL && eYield >= YIELD_CATTLE) || (eYield <= YIELD_WINE && eYield >= YIELD_SILVER);
 }
 
 static inline bool YieldGroup_AI_Buy_From_Natives(YieldTypes eYield)
 {
-	return eYield == YIELD_SPICES || eYield == YIELD_TOOLS || eYield ==  YIELD_GRAIN || eYield == YIELD_CATTLE;
+	return (eYield <= YIELD_CATTLE && eYield >= YIELD_GRAIN) || (eYield == YIELD_SPICES) || (eYield == YIELD_TOOLS);
 }
 
 static inline bool YieldGroup_AI_Buy_From_Europe(YieldTypes eYield)
 {
-	return (eYield >= YIELD_TOOLS && eYield <= YIELD_TRADE_GOODS) || eYield == YIELD_SPICES;
+	return (eYield >= YIELD_TOOLS && eYield <= YIELD_TRADE_GOODS) || (eYield == YIELD_SPICES);
 }
 
 static inline bool YieldGroup_AI_Raw_Material(YieldTypes eYield)
 {
-	return (eYield >= YIELD_SALT && eYield <= YIELD_ORE) || (eYield <= YIELD_STONE && eYield >= YIELD_CATTLE && eYield != YIELD_LUMBER);
+	return (eYield <= YIELD_WOOL && eYield >= YIELD_CATTLE) || (eYield <= YIELD_ORE && eYield >= YIELD_SALT) || (eYield == YIELD_STONE);
 }
 
 static inline bool YieldGroup_AI_Native_Product(YieldTypes eYield)
 {
-	return eYield <= YIELD_WOOL && eYield >= YIELD_CATTLE;
+	return (eYield <= YIELD_WOOL && eYield >= YIELD_CATTLE);
 }
 
 static inline bool YieldGroup_City_Billboard(YieldTypes eYield)
 {
-	return eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_CATTLE || eYield == YIELD_SHEEP || eYield == YIELD_SALT || eYield == YIELD_TOOLS;
+	return (eYield <= YIELD_SHEEP && eYield >= YIELD_CATTLE) || (eYield <= YIELD_SPICES && eYield >= YIELD_SALT) || (eYield == YIELD_TOOLS) || (eYield == YIELD_HORSES);
 }
 
 static inline bool YieldGroup_City_Billboard_Offset_Fix(YieldTypes eYield)
 {
-	return eYield == YIELD_SPICES || eYield == YIELD_HORSES || eYield == YIELD_SALT || eYield == YIELD_TOOLS;
+	return (eYield <= YIELD_SPICES && eYield >= YIELD_SALT) || (eYield == YIELD_TOOLS) || (eYield == YIELD_HORSES);
 }
 
 static inline bool YieldGroup_Armor(YieldTypes eYield)
 {
-	return eYield >= YIELD_LEATHER_ARMOR && eYield <= YIELD_PLATE_ARMOR;
+	return (eYield >= YIELD_LEATHER_ARMOR && eYield <= YIELD_PLATE_ARMOR);
 }
 
 static inline bool YieldGroup_Light_Armor(YieldTypes eYield)
 {
-	return eYield == YIELD_LEATHER_ARMOR;
+	return (eYield == YIELD_LEATHER_ARMOR);
 }
 
 static inline bool YieldGroup_Heavy_Armor(YieldTypes eYield)
 {
-	return eYield >= YIELD_SCALE_ARMOR && eYield <= YIELD_PLATE_ARMOR;
+	return (eYield >= YIELD_SCALE_ARMOR && eYield <= YIELD_PLATE_ARMOR);
 }
 
 static inline bool YieldGroup_Luxury_Food(YieldTypes eYield)
