@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Alex Mantzaris (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!-- Civic Option -->
+<Civ4CivicOptionInfos xmlns="x-schema:CIV4GameInfoSchema.xml">
+	<CivicOptionInfos>
+		<!-- CIVICOPTION_INVENTIONS is hardcoded as being first in DLL for performance reasons -->
+		<CivicOptionInfo>
+			<Type>CIVICOPTION_INVENTIONS</Type>
+			<Description>TXT_KEY_CIVICOPTION_INVENTIONS</Description>
+		</CivicOptionInfo>
+		<CivicOptionInfo>
+			<Type>CIVICOPTION_SLAVERY</Type>
+			<Description>TXT_KEY_CIVICOPTION_SLAVERY</Description>
+		</CivicOptionInfo>
+		<CivicOptionInfo>
+			<Type>CIVICOPTION_ELECTION</Type>
+			<Description>TXT_KEY_CIVICOPTION_ELECTION</Description>
+		</CivicOptionInfo>
+		<CivicOptionInfo>
+			<Type>CIVICOPTION_NATIVES</Type>
+			<Description>TXT_KEY_CIVICOPTION_NATIVES</Description>
+		</CivicOptionInfo>
+		<CivicOptionInfo>
+			<Type>CIVICOPTION_RELIGION</Type>
+			<Description>Censures</Description>
+		</CivicOptionInfo>
+		<CivicOptionInfo>
+			<Type>CIVICOPTION_SECURITY</Type>
+			<Description>TXT_KEY_CIVICOPTION_SECURITY</Description>
+		</CivicOptionInfo>
+	</CivicOptionInfos>
+</Civ4CivicOptionInfos>

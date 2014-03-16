@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- strings for domestic advisor -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_VACANT</Tag>
+		<English>Free workplaces in buildings</English>
+		<French>Free workplaces in buildings</French>
+		<German>Free workplaces in buildings</German>
+		<Italian>Free workplaces in buildings</Italian>
+		<Spanish>Free workplaces in buildings</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_COUNT</Tag>
+		<English>Number of units</English>
+		<French>Number of units</French>
+		<German>Number of units</German>
+		<Italian>Number of units</Italian>
+		<Spanish>Number of units</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN_WRONG</Tag>
+		<English>Number of units without bonus in their current profession</English>
+		<French>Number of units without bonus in their current profession</French>
+		<German>Number of units without bonus in their current profession</German>
+		<Italian>Number of units without bonus in their current profession</Italian>
+		<Spanish>Number of units without bonus in their current profession</Spanish>
+	</TEXT>
+</Civ4GameText>
