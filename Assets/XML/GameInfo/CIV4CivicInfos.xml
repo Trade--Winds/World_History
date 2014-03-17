@@ -43,6 +43,8 @@
       <!--X and Y location of the tech on the tech grid-->
 			<iX_Location>0</iX_Location>
 			<iY_Location>0</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       <!--These 3 are the pre required techs. On the tech tree grid if all three are used RequiredInvention will be set as "Also Requires"-->
       <!--and arrows will point at RequiredInvention2 and RequiredInventionOr. If RequiredInvention2 is not used arrows will point at RequiredInvention and RequiredInventionOr.-->
       <!--If the Or tech is not used then RequiredInvention2 wil be set as the "Also Requires" if it is used.-->
@@ -143,6 +145,8 @@
       <!--X and Y location of the tech on the tech grid-->
 			<iX_Location>0</iX_Location>
 			<iY_Location>0</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       <!--These 3 are the pre required techs. On the tech tree grid if all three are used RequiredInvention will be set as "Also Requires"-->
       <!--and arrows will point at RequiredInvention2 and RequiredInventionOr. If RequiredInvention2 is not used arrows will point at RequiredInvention and RequiredInventionOr.-->
       <!--If the Or tech is not used then RequiredInvention2 wil be set as the "Also Requires" if it is used.-->
@@ -241,6 +245,8 @@
       <!--X and Y location of the tech on the tech grid-->
 			<iX_Location>0</iX_Location>
 			<iY_Location>0</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       <!--These 3 are the pre required techs. On the tech tree grid if all three are used RequiredInvention will be set as "Also Requires"-->
       <!--and arrows will point at RequiredInvention2 and RequiredInventionOr. If RequiredInvention2 is not used arrows will point at RequiredInvention and RequiredInventionOr.-->
       <!--If the Or tech is not used then RequiredInvention2 wil be set as the "Also Requires" if it is used.-->
@@ -339,6 +345,8 @@
       <!--X and Y location of the tech on the tech grid-->
 			<iX_Location>0</iX_Location>
 			<iY_Location>0</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       <!--These 3 are the pre required techs. On the tech tree grid if all three are used RequiredInvention will be set as "Also Requires"-->
       <!--and arrows will point at RequiredInvention2 and RequiredInventionOr. If RequiredInvention2 is not used arrows will point at RequiredInvention and RequiredInventionOr.-->
       <!--If the Or tech is not used then RequiredInvention2 wil be set as the "Also Requires" if it is used.-->
@@ -435,6 +443,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>1</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention/>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -523,6 +533,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>1</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention/>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -611,6 +623,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>1</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention/>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -680,6 +694,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>1</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention/>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -753,6 +769,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>3</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_FARMING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -845,6 +863,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>3</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_SHEPERDING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -935,6 +955,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>3</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_FIRE</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1013,6 +1035,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>3</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_DANGER</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1091,6 +1115,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>5</iX_Location>
 				<iY_Location>4</iY_Location>
+				<iX_Relative_Location>0</iX_Relative_Location>
+				<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_BUTCHERY</RequiredInvention>
 				<RequiredInvention2/>
 				<RequiredInventionOr/>
@@ -1188,6 +1214,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>5</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_DOMESTICATION</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1258,6 +1286,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>5</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_WOOD_GATHERING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1343,6 +1373,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>5</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_HUNTING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1429,6 +1461,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>7</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_CRUDE_CLOTHING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1513,6 +1547,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>7</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ANIMAL_LABOUR</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1591,6 +1627,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>7</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_STONE_GATHERING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1661,6 +1699,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>7</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_STONE_TOOL_MAKING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1751,6 +1791,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>9</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_LEATHER_ARMOUR_MAKING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1840,6 +1882,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>9</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_RIDING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1921,6 +1965,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>9</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_RAFT_BUILDING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -1998,6 +2044,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>9</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_STONE_WEAPON_MAKING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2084,6 +2132,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>11</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_WEAVING</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_RAFT_BUILDING</RequiredInvention2>
 			<RequiredInventionOr/>		
@@ -2162,6 +2212,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>11</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_ARCHERY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2259,6 +2311,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>11</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_KILNS</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2331,6 +2385,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>11</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_PIT_MINING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2408,6 +2464,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>13</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_CULTIVATION</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2496,6 +2554,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>13</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_EARLY_SMELTING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2568,6 +2628,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>13</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_CLASSICAL_CONSTRUCTION</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2652,6 +2714,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>15</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_EARLY_CLASSICAL_SHIP_BUILDING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2734,6 +2798,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>15</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_WINE_MAKING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2808,6 +2874,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>15</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_BRONZE_SMELTING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2880,6 +2948,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>15</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_CARPENTRY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -2965,6 +3035,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>17</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_BRONZE_ARMOUR_MAKING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -3033,6 +3105,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>17</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_WINE_MAKING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -3114,6 +3188,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>17</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_CARPENTRY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -3189,6 +3265,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>19</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_EARLY_CLASSICAL_SHIP_BUILDING</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_CARPENTRY</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -3274,6 +3352,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>19</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_OX_COLLAR</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -3348,6 +3428,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>19</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_STONE_MASONRY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -3421,6 +3503,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>21</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_EARLY_IRON_SMELTING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -3504,6 +3588,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>23</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_IRON_TOOL_MAKING</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_IRON_WEAPON_MAKING</RequiredInvention2>			
 			<RequiredInventionOr/>
@@ -3592,6 +3678,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>23</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_STONE_MASONRY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -3668,6 +3756,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>23</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_EARLY_IRON_SMELTING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -3751,6 +3841,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>25</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_CLASSICAL_ROAD_BUILDING</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_LATE_CLASSICAL_SHIP_BUILDING</RequiredInvention2>			
 			<RequiredInventionOr/>
@@ -3827,6 +3919,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>25</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_BANDED_IRON_ARMOUR</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_PATRICIAN_NOBILITY</RequiredInvention2>			
 			<RequiredInventionOr/>
@@ -3912,6 +4006,8 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>25</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
       			<RequiredInvention>MEDIEVAL_TECH_CLASSICAL_ROAD_BUILDING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -3982,6 +4078,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>27</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_CLASICAL_SIEGE_CRAFT</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_HEAVY_CLASSICAL_SHIP_BUILDING</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -4051,6 +4149,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>29</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_CASUS_BELI</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_MILITARY_PRIVILEGE</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -4126,6 +4226,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>36</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_GLASSMAKING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -4194,6 +4296,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>37</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ASTROLOGY</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_MACHINERY</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -4261,6 +4365,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>34</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MATHEMATICS</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_ALPHABET</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -4347,6 +4453,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>33</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MONASTICISM</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_MANORIALISM</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -4425,6 +4533,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>39</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_PAPER</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -4497,6 +4607,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>32</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MONASTICISM</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_ALPHABET</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -4580,6 +4692,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>31</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_DARK_AGES</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -4663,6 +4777,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>33</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_CODE_OF_LAWS</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_THEOLOGY</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -4731,6 +4847,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>32</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MONASTICISM</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_METALCASTING</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -4809,6 +4927,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>31</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_DARK_AGES</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -4883,6 +5003,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>37</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ASTROLOGY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -4956,6 +5078,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>38</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_CALENDER</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5023,6 +5147,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>40</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ENGINEERING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5107,6 +5233,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>40</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_CROSSBOW</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5190,6 +5318,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>37</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_GLASSMAKING</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_CONSTRUCTION</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -5276,6 +5406,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>41</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ROADS</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5369,6 +5501,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>41</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ROADS</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5450,6 +5584,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>42</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_STONEWORK</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5528,6 +5664,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>39</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ENGINEERING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5604,6 +5742,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>41</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MACHINERY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5680,6 +5820,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>42</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_SPINNINGWHEEL</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5747,6 +5889,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>43</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_INVENTION_DIKES</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -5831,6 +5975,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>34</iX_Location>
 			<iY_Location>8</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MAILARMOR</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_CONSTRUCTION</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -5918,6 +6064,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>31</iX_Location>
 			<iY_Location>6</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_DARK_AGES</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -6005,6 +6153,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>34</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_WHEELBARROW</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_METALCASTING</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -6085,6 +6235,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>32</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_WHEELBARROW</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_MONARCHY</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -6167,6 +6319,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>33</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MOTTEANDBAILEY</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_MATHEMATICS</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -6244,6 +6398,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>33</iX_Location>
 			<iY_Location>8</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_HORSESHOES</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -6337,6 +6493,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>36</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_FUEDALISM</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_DRAMA</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -6431,6 +6589,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>37</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_WHEELEDPLOW</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_CALENDER</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -6503,6 +6663,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>32</iX_Location>
 			<iY_Location>8</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_METALCASTING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -6585,6 +6747,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>38</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_CROPROTATION</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -6654,6 +6818,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>39</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_HORSEBREADING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -6721,6 +6887,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>35</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_WHEELEDPLOW</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_MAILARMOR</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -6807,6 +6975,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>35</iX_Location>
 			<iY_Location>8</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MINING</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_HORSECOLLAR</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -6887,6 +7057,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>36</iX_Location>
 			<iY_Location>8</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_IRONPLOW</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -6960,6 +7132,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>31</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_DARK_AGES</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -7057,6 +7231,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>32</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MANORIALISM</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -7132,6 +7308,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>33</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_HUNTING</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_CODE_OF_LAWS</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -7214,6 +7392,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>35</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_MONARCHY</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_STIRRUP</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -7303,6 +7483,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>43</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_CIVILSERVICE</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_CLOCK</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -7371,6 +7553,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>41</iX_Location>
 			<iY_Location>12</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_FUEDALISM</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_PAPER</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -7453,6 +7637,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>36</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_DRAMA</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -7526,6 +7712,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>34</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ALPHABET</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -7609,6 +7797,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>35</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_THEOLOGY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -7687,6 +7877,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>42</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_STONEWORK</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_THEOLOGY</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -7760,6 +7952,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>43</iX_Location>
 			<iY_Location>10</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_CLOCK</RequiredInvention>
 			<RequiredInvention2>MEDIEVAL_TECH_CIVILSERVICE</RequiredInvention2>
 			<RequiredInventionOr/>
@@ -7833,6 +8027,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>35</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ALCHEMY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -7906,6 +8102,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>39</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_RUDDER</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -7982,6 +8180,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>40</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_COMPASS</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -8063,6 +8263,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>38</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_ASTROLOBE</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -8135,6 +8337,8 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>41</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>MEDIEVAL_TECH_LATLONG</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -8547,6 +8751,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>31</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention/>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -8629,6 +8835,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>12</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_TRADEPOST</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -8704,6 +8912,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>12</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_TRADEPOST</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -8779,6 +8989,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>13</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_PERK1</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr>TRADING_PERK2</RequiredInventionOr>
@@ -8868,6 +9080,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>14</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_MARKET</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -8946,6 +9160,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>15</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_TRADE_ROUTE_2</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -9030,6 +9246,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>16</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_CURRENCY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -9105,6 +9323,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>16</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_CURRENCY</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -9181,6 +9401,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>17</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_PERK3</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr>TRADING_PERK4</RequiredInventionOr>
@@ -9259,6 +9481,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>18</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_TRADE_ROUTE_1</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -9341,6 +9565,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>19</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_FAIR</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -9426,6 +9652,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>20</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_GUILDS</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -9505,6 +9733,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>211</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>BANKING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -9580,6 +9810,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>212</iX_Location>
 			<iY_Location>2</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_COMMUNE</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -9655,6 +9887,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>212</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_COMMUNE</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
@@ -9730,6 +9964,8 @@
 			<InventionCategory>MEDIEVAL_TRADE_TECH</InventionCategory>
 			<iX_Location>213</iX_Location>
 			<iY_Location>4</iY_Location>
+			<iX_Relative_Location>0</iX_Relative_Location>
+			<iY_Relative_Location>0</iY_Relative_Location>
 			<RequiredInvention>TRADING_PERK5</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr>TRADING_PERK6</RequiredInventionOr>
