@@ -347,9 +347,9 @@
 			<UnitClass>UNITCLASS_STONE_TOOLS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,5,15</Icon>
+			<Icon>Art/buttons/resources/stone_tools_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,5,2</HighlightIcon>
-			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,5,2</Button>
+			<Button>Art/buttons/resources/stone_tools.dds</Button>
 		</YieldInfo>
 		<YieldInfo>
 			<Type>YIELD_STONE_WEAPONS</Type>
@@ -379,9 +379,9 @@
 			<UnitClass>UNITCLASS_STONE_WEAPONS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Weapons_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/stonew_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Weapons.dds</Button>
+			<Button>Art/Buttons/Resources/stonew.dds</Button>
 			<bIsMilitary>1</bIsMilitary>
 			<TradeScreenTypes>
 				<TradeScreenType>
@@ -442,7 +442,7 @@
 		</YieldInfo>
 		<YieldInfo>
 			<Type>YIELD_PRECIOUS_METALS</Type>
-			<Description>TXT_KEY_PRECIOUS_METALS</Description>
+			<Description>TXT_KEY_YIELD_PRECIOUS_METALS</Description>
 			<Civilopedia>TXT_KEY_YIELD_SILVER_PEDIA</Civilopedia>
 			<bCargo>1</bCargo>
 			<iBuyPriceLow>19</iBuyPriceLow>
@@ -636,9 +636,9 @@
 			<UnitClass>UNITCLASS_CLAY</UnitClass>
 			<iTextureIndex>5</iTextureIndex>
 			<iWaterTextureIndex>5</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Salt_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/clay_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Salt.dds</Button>
+			<Button>Art/Buttons/Resources/clay.dds</Button>
 			<bIsNativeTrade>1</bIsNativeTrade>
 			<TradeScreenTypes>
 				<TradeScreenType>
@@ -683,9 +683,9 @@
 			<UnitClass>UNITCLASS_POTTERY</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,8,15</Icon>
+			<Icon>Art/Buttons/Resources/porcelain_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,8,2</HighlightIcon>
-			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,8,2</Button>
+			<Button>Art/Buttons/Resources/porcelain.dds</Button>
 		</YieldInfo>
 		<YieldInfo>
 			<Type>YIELD_COTTON</Type>
@@ -970,9 +970,9 @@
 			<UnitClass>UNITCLASS_COPPER</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/copper_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/copper.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1019,9 +1019,9 @@
 			<UnitClass>UNITCLASS_TIN</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/tin_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/tin.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1068,9 +1068,9 @@
 			<UnitClass>UNITCLASS_BRONZE</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/bronze_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/bronze.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1117,9 +1117,9 @@
 			<UnitClass>UNITCLASS_BRONZE_WEAPONS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/bronze_weapon_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/bronze_weapon.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1166,9 +1166,9 @@
 			<UnitClass>UNITCLASS_BRONZE_ARMOR</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/bronze_armour_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/bronze_armour.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1215,9 +1215,9 @@
 			<UnitClass>UNITCLASS_RICH_FOOD</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/food_iconx.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/foodx.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1356,9 +1356,9 @@
 			<UnitClass>UNITCLASS_SUGAR</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,6,14</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,6,1</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1405,9 +1405,9 @@
 			<UnitClass>UNITCLASS_RUM</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,3,15</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,3,2</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1454,9 +1454,9 @@
 			<UnitClass>UNITCLASS_WOODEN_GOODS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/wooden_goods_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/wooden_goods.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1503,9 +1503,9 @@
 			<UnitClass>UNITCLASS_CUT_STONE</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/cut_stone_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/cut_stone.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1552,9 +1552,9 @@
 			<UnitClass>UNITCLASS_IRON</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/iron_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/iron.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1601,9 +1601,9 @@
 			<UnitClass>UNITCLASS_COAL</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/coal_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/coal.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1650,9 +1650,9 @@
 			<UnitClass>UNITCLASS_STEEL</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/steel_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/steel.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1699,9 +1699,9 @@
 			<UnitClass>UNITCLASS_GEMS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/gems_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/gems.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1748,9 +1748,9 @@
 			<UnitClass>UNITCLASS_IVORY</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/ivory_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/ivory.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1797,9 +1797,9 @@
 			<UnitClass>UNITCLASS_CARVED_IVORY</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/ivory_carved_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/ivory_carved.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1894,9 +1894,9 @@
 			<UnitClass>UNITCLASS_SILK_WORM</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/silk_worm_Icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/silk_worm.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1943,9 +1943,9 @@
 			<UnitClass>UNITCLASS_SILK</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/silk_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/silk.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -1992,9 +1992,9 @@
 			<UnitClass>UNITCLASS_DYE</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/dye_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/dye.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2041,9 +2041,9 @@
 			<UnitClass>UNITCLASS_FINE_CLOTH</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/salt_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/salt.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2090,9 +2090,9 @@
 			<UnitClass>UNITCLASS_JADE</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/jade_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/jade.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2139,9 +2139,9 @@
 			<UnitClass>UNITCLASS_JADE_CARVING</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/jade_carving_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/jade_carving.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2188,9 +2188,9 @@
 			<UnitClass>UNITCLASS_JEWELLERY</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/jewellery_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/jewellery.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2237,9 +2237,9 @@
 			<UnitClass>UNITCLASS_IRON_TOOLS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,5,15</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,5,2</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2286,9 +2286,9 @@
 			<UnitClass>UNITCLASS_IRON_WEAPONS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/weapons_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/weapons.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2335,9 +2335,9 @@
 			<UnitClass>UNITCLASS_STEEL_WEAPONS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/weapons_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/weapons.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2531,9 +2531,9 @@
 			<UnitClass>UNITCLASS_TINNED_FOOD</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/tinned_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/tinned.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2580,9 +2580,9 @@
 			<UnitClass>UNITCLASS_OIL</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/oil_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/oil.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2629,9 +2629,9 @@
 			<UnitClass>UNITCLASS_PLASTIC</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/plastic_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/plastic.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2678,9 +2678,9 @@
 			<UnitClass>UNITCLASS_RUBBER</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/rubber_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/rubber.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2727,9 +2727,9 @@
 			<UnitClass>UNITCLASS_SILICON</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/silicon_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/silicon.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2776,9 +2776,9 @@
 			<UnitClass>UNITCLASS_ELECTRONICS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/electronics_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/electronics.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2825,9 +2825,9 @@
 			<UnitClass>UNITCLASS_ALUMINIUM</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/aluminium_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/aluminium.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2874,9 +2874,9 @@
 			<UnitClass>UNITCLASS_FUEL</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/fuel_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/fuel.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2923,9 +2923,9 @@
 			<UnitClass>UNITCLASS_CERAMICS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/ceramics_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/ceramics.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -2972,9 +2972,9 @@
 			<UnitClass>UNITCLASS_STEAM_ENGINES</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/steam_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/steam.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3021,9 +3021,9 @@
 			<UnitClass>UNITCLASS_TAILORED_CLOTHING</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/tailored_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/tailored.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3070,9 +3070,9 @@
 			<UnitClass>UNITCLASS_HOUSEHOLD_GOODS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/goods_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/goods.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3118,9 +3118,9 @@
 			<UnitClass>UNITCLASS_APPLIANCES</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/appliances_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/appliances.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3167,9 +3167,9 @@
 			<UnitClass>UNITCLASS_CARS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/car_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/car.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3216,9 +3216,9 @@
 			<UnitClass>UNITCLASS_MODERN_CARS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/mcar_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/mcar.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3265,9 +3265,9 @@
 			<UnitClass>UNITCLASS_COMPUTERS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/computer_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/computer.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3314,9 +3314,9 @@
 			<UnitClass>UNITCLASS_ARTILLERY_PARTS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/artillery_parts_Icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/artillery_parts.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3363,9 +3363,9 @@
 			<UnitClass>UNITCLASS_POWER_TOOLS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/ptool_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/ptool.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3412,9 +3412,9 @@
 			<UnitClass>UNITCLASS_MUSKETS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/musket_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/musket.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3461,9 +3461,9 @@
 			<UnitClass>UNITCLASS_RIFLES</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/rifle_Icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/rifle.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3510,9 +3510,9 @@
 			<UnitClass>UNITCLASS_AUTOMATIC_WEAPONS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/automatic_weapons_Icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/automatic_weapons.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3559,9 +3559,9 @@
 			<UnitClass>UNITCLASS_ROCKETS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/rocket_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/rocket.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3608,9 +3608,9 @@
 			<UnitClass>UNITCLASS_GUIDED_MISSILES</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/guided_missile_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/guided_missile.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3657,9 +3657,9 @@
 			<UnitClass>UNITCLASS_ENGINE_PARTS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/engine_parts_Icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/engine_parts.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3706,9 +3706,9 @@
 			<UnitClass>UNITCLASS_ARMOR</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/armour_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/armour.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3755,9 +3755,9 @@
 			<UnitClass>UNITCLASS_MODERN_ARMOR</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>Art/Buttons/Resources/Plate_Armor_Icon.dds</Icon>
+			<Icon>Art/Buttons/Resources/modern_armour_Icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,1</HighlightIcon>
-			<Button>Art/Buttons/Resources/Plate_Armor.dds</Button>
+			<Button>Art/Buttons/Resources/modern_armour.dds</Button>
 			<bIsArmor>1</bIsArmor>
 			<bIsMilitary>1</bIsMilitary>
 			<bIsMustBeDiscovered>1</bIsMustBeDiscovered>
@@ -3804,13 +3804,13 @@
 			<UnitClass>UNITCLASS_AERIAL_PARTS</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,8,15</Icon>
+			<Icon>Art/Buttons/Resources/aerial_parts_icon.dds</Icon>
 			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,8,2</HighlightIcon>
-			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,8,2</Button>
+			<Button>Art/Buttons/Resources/aerial_parts.dds</Button>
 		</YieldInfo>
 		<YieldInfo>
 			<Type>YIELD_TOOLS</Type>
-			<Description>TXT_KEY_YIELD_AERIAL_PARTS</Description>
+			<Description>remove tools</Description>
 			<Civilopedia>TXT_KEY_YIELD_AERIAL_PARTS_PEDIA</Civilopedia>
 			<bCargo>1</bCargo>
 			<iBuyPriceLow>1</iBuyPriceLow>
@@ -3842,67 +3842,67 @@
 		</YieldInfo>
 		<YieldInfo>
 			<Type>YIELD_WEAPONS</Type>
-			<Description>TXT_KEY_YIELD_AERIAL_PARTS</Description>
-			<Civilopedia>TXT_KEY_YIELD_AERIAL_PARTS_PEDIA</Civilopedia>
-			<bCargo>1</bCargo>
-			<iBuyPriceLow>1</iBuyPriceLow>
-			<iBuyPriceHigh>2</iBuyPriceHigh>
-			<iSellPriceDifference>1</iSellPriceDifference>
-			<iPriceChangeThreshold>500</iPriceChangeThreshold>
-			<iPriceCorrectionPercent>2</iPriceCorrectionPercent>
-			<iNativeBuyPrice>5</iNativeBuyPrice>
+			<Description>Remove Weapons</Description>
+			<Civilopedia>TXT_KEY_YIELD_HAMMERS_PEDIA</Civilopedia>
+			<bCargo>0</bCargo>
+			<iBuyPriceLow>0</iBuyPriceLow>
+			<iBuyPriceHigh>0</iBuyPriceHigh>
+			<iSellPriceDifference>0</iSellPriceDifference>
+			<iPriceChangeThreshold>0</iPriceChangeThreshold>
+			<iPriceCorrectionPercent>0</iPriceCorrectionPercent>
+			<iNativeBuyPrice>-1</iNativeBuyPrice>
 			<iNativeSellPrice>-1</iNativeSellPrice>
-			<iNativeConsumptionPercent>40</iNativeConsumptionPercent>
-			<iNativeHappy>2</iNativeHappy>
+			<iNativeConsumptionPercent>-1</iNativeConsumptionPercent>
+			<iNativeHappy>0</iNativeHappy>
 			<iHillsChange>0</iHillsChange>
 			<iPeakChange>0</iPeakChange>
 			<iLakeChange>0</iLakeChange>
-			<iCityChange>0</iCityChange>
+			<iCityChange>1</iCityChange>
 			<iMinCity>0</iMinCity>
 			<iAIWeightPercent>100</iAIWeightPercent>
-			<iAIBaseValue>0</iAIBaseValue>
+			<iAIBaseValue>6</iAIBaseValue>
 			<iNativeBaseValue>0</iNativeBaseValue>
 			<iPower>0</iPower>
-			<iAsset>1</iAsset>
+			<iAsset>0</iAsset>
 			<ColorType>COLOR_YIELD_FOOD</ColorType>
-			<UnitClass>UNITCLASS_AERIAL_PARTS</UnitClass>
+			<UnitClass>NONE</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,8,15</Icon>
-			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,8,2</HighlightIcon>
-			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,8,2</Button>
+			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,5,16</Icon>
+			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,16</HighlightIcon>
+			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,1,16</Button>
 		</YieldInfo>
-		<YieldInfo>
+				<YieldInfo>
 			<Type>YIELD_TRADE_GOODS</Type>
-			<Description>TXT_KEY_YIELD_AERIAL_PARTS</Description>
-			<Civilopedia>TXT_KEY_YIELD_AERIAL_PARTS_PEDIA</Civilopedia>
-			<bCargo>1</bCargo>
-			<iBuyPriceLow>1</iBuyPriceLow>
-			<iBuyPriceHigh>2</iBuyPriceHigh>
-			<iSellPriceDifference>1</iSellPriceDifference>
-			<iPriceChangeThreshold>500</iPriceChangeThreshold>
-			<iPriceCorrectionPercent>2</iPriceCorrectionPercent>
-			<iNativeBuyPrice>5</iNativeBuyPrice>
+			<Description>Remove Trade Goods</Description>
+			<Civilopedia>TXT_KEY_YIELD_HAMMERS_PEDIA</Civilopedia>
+			<bCargo>0</bCargo>
+			<iBuyPriceLow>0</iBuyPriceLow>
+			<iBuyPriceHigh>0</iBuyPriceHigh>
+			<iSellPriceDifference>0</iSellPriceDifference>
+			<iPriceChangeThreshold>0</iPriceChangeThreshold>
+			<iPriceCorrectionPercent>0</iPriceCorrectionPercent>
+			<iNativeBuyPrice>-1</iNativeBuyPrice>
 			<iNativeSellPrice>-1</iNativeSellPrice>
-			<iNativeConsumptionPercent>40</iNativeConsumptionPercent>
-			<iNativeHappy>2</iNativeHappy>
+			<iNativeConsumptionPercent>-1</iNativeConsumptionPercent>
+			<iNativeHappy>0</iNativeHappy>
 			<iHillsChange>0</iHillsChange>
 			<iPeakChange>0</iPeakChange>
 			<iLakeChange>0</iLakeChange>
-			<iCityChange>0</iCityChange>
+			<iCityChange>1</iCityChange>
 			<iMinCity>0</iMinCity>
 			<iAIWeightPercent>100</iAIWeightPercent>
-			<iAIBaseValue>0</iAIBaseValue>
+			<iAIBaseValue>6</iAIBaseValue>
 			<iNativeBaseValue>0</iNativeBaseValue>
 			<iPower>0</iPower>
-			<iAsset>1</iAsset>
+			<iAsset>0</iAsset>
 			<ColorType>COLOR_YIELD_FOOD</ColorType>
-			<UnitClass>UNITCLASS_AERIAL_PARTS</UnitClass>
+			<UnitClass>NONE</UnitClass>
 			<iTextureIndex>-1</iTextureIndex>
 			<iWaterTextureIndex>-1</iWaterTextureIndex>
-			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,8,15</Icon>
-			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,8,2</HighlightIcon>
-			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,8,2</Button>
+			<Icon>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,5,16</Icon>
+			<HighlightIcon>,Art/Interface/Screens/City_Management/Colonization_Yield_Highlight_Icon_Atlas.dds.dds,1,16</HighlightIcon>
+			<Button>,Art/Interface/Buttons/Unit_Resource_Colonization_Atlas.dds,1,16</Button>
 		</YieldInfo>
 		<YieldInfo>
 			<Type>YIELD_HAMMERS</Type>

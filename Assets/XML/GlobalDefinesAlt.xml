@@ -428,7 +428,7 @@
 	</Define>
 	<Define>
 		<DefineName>START_YEAR</DefineName>
-		<iDefineIntVal>476</iDefineIntVal>
+		<iDefineIntVal>-10000</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>POPULATION_STAGNANT_THRESHOLD</DefineName>
@@ -464,7 +464,7 @@
 	</Define>
 	<Define>
 		<DefineName>DEFAULT_TREASURE_YIELD</DefineName>
-		<DefineTextVal>YIELD_SILVER</DefineTextVal>
+		<DefineTextVal>YIELD_PRECIOUS_METALS</DefineTextVal>
 	</Define>
 	<Define>
 		<DefineName>PILGRAM_OFFER_GOLD</DefineName>

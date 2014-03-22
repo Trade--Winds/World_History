@@ -31,6 +31,18 @@
 			<Button>Art/Interface/Buttons/Buildings/BombShelters.dds</Button>
 		</SpecialBuildingInfo>
 		<SpecialBuildingInfo>
+			<Type>SPECIALBUILDING_WOODEN_GOODS</Type>
+			<Description>TXT_KEY_SPECIALBUILDING_WOODEN_GOODS</Description>
+			<bValid>1</bValid>
+			<FontButtonIndex>28</FontButtonIndex>
+			<iPosX>1</iPosX>
+			<iPosY>1</iPosY>
+			<iSizeX>1</iSizeX>
+			<iSizeY>1</iSizeY>
+			<ProductionTraits/>
+			<Button>Art/Interface/Buttons/Buildings/BombShelters.dds</Button>
+		</SpecialBuildingInfo>
+		<SpecialBuildingInfo>
 			<Type>SPECIALBUILDING_HIDES</Type>
 			<Description>TXT_KEY_SPECIALBUILDING_COATS</Description>
 			<bValid>1</bValid>

@@ -165,7 +165,7 @@
 		</ProfessionInfo>
 		<ProfessionInfo>
 			<Type>PROFESSION_ARMED_PEASANT</Type>
-			<Description>Armed Peasant</Description>
+			<Description>Warrior</Description>
 			<Civilopedia>TXT_KEY_PROFESSION_SOLDIER_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_PROFESSION_SOLDIER_STRATEGY</Strategy>
 			<Help/>
@@ -1430,7 +1430,7 @@
 		</ProfessionInfo>
 		<ProfessionInfo>
 			<Type>PROFESSION_HORSE_HERDSMAN</Type>
-			<Description>Horse Heardsman</Description>
+			<Description>Horse Herdsman</Description>
 			<Civilopedia>TXT_KEY_UNIT_FARMER_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_PROFESSION_FARMER_STRATEGY</Strategy>
 			<Help/>
@@ -1802,7 +1802,7 @@
 			</YieldsProduced>
 			<YieldsConsumed>
 				<YieldType>YIELD_FOOD</YieldType>
-				<YieldType>YIELD_SPICE</YieldType>
+				<YieldType>YIELD_SPICES</YieldType>
 			</YieldsConsumed>
 			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,8,9</Button>
 			<ProfessionSubTypes/>
@@ -1839,7 +1839,7 @@
 				<YieldType>YIELD_HIDES</YieldType>
 			</YieldsProduced>
 			<YieldsConsumed>
-				<YieldType>YIELD_SPICE</YieldType>
+				<YieldType>YIELD_SPICES</YieldType>
 				<YieldType>YIELD_CATTLE</YieldType>
 			</YieldsConsumed>
 			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,8,9</Button>
@@ -2156,6 +2156,40 @@
 				<YieldType>YIELD_FOOD</YieldType>
 			</YieldsConsumed>
 			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,1,9</Button>
+			<ProfessionSubTypes/>
+		</ProfessionInfo>
+		<ProfessionInfo>
+			<Type>PROFESSION_CARPENTER1</Type>
+			<Description>TXT_KEY_PROFESSION_CARPENTER1</Description>
+			<Civilopedia>TXT_KEY_UNIT_CARPENTER1_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_PROFESSION_CARPENTER1_STRATEGY</Strategy>
+			<Help/>
+			<Combat>NONE</Combat>
+			<DefaultUnitAI>NONE</DefaultUnitAI>
+			<SpecialBuilding>SPECIALBUILDING_WOODEN_GOODS</SpecialBuilding>
+			<bWorkPlot>0</bWorkPlot>
+			<bCitizen>1</bCitizen>
+			<bWater>0</bWater>
+			<bScout>0</bScout>
+			<bCityDefender>0</bCityDefender>
+			<bCanFound>0</bCanFound>
+			<bUnarmed>0</bUnarmed>
+			<bNoDefensiveBonus>0</bNoDefensiveBonus>
+			<iCombatChange>0</iCombatChange>
+			<iMovesChange>0</iMovesChange>
+			<iWorkRate>0</iWorkRate>
+			<iMissionaryRate>0</iMissionaryRate>
+			<iPower>0</iPower>
+			<iAsset>0</iAsset>
+			<YieldEquipedNums/>
+			<FreePromotions/>
+			<YieldsProduced>
+				<YieldType>YIELD_WOODEN_GOODS</YieldType>
+			</YieldsProduced>
+			<YieldsConsumed>
+				<YieldType>YIELD_LUMBER</YieldType>
+			</YieldsConsumed>
+			<Button>,Art/Interface/Buttons/Civilizations/Colonization_Civilizations_Leaders.dds,2,7</Button>
 			<ProfessionSubTypes/>
 		</ProfessionInfo>
 		<ProfessionInfo>

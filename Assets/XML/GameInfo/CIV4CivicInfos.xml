@@ -492,7 +492,7 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_INVENTIONS</CivicOptionType>
-			<Type>MEDIEVAL_TECH_SHEPERDING</Type>
+			<Type>MEDIEVAL_TECH_SHEPHERDING</Type>
 			<Description>Sheperding</Description>
 			<Civilopedia>TXT_KEY_NEED_DESCRIPTION</Civilopedia>
 			<Strategy>TXT_KEY_NEED_DESCRIPTION</Strategy>
@@ -752,8 +752,8 @@
 			<ImmigrationConversion>NONE</ImmigrationConversion>
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>3</iX_Location>
-			<iY_Location>4</iY_Location>
-      			<RequiredInvention>MEDIEVAL_TECH_FARMING</RequiredInvention>
+				<iY_Location>4</iY_Location>
+      		<RequiredInvention>MEDIEVAL_TECH_SHEPHERDING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
      			<RequiredUnitType/>
@@ -845,7 +845,7 @@
       			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
       			<iX_Location>3</iX_Location>
 			<iY_Location>6</iY_Location>
-      			<RequiredInvention>MEDIEVAL_TECH_SHEPERDING</RequiredInvention>
+      			<RequiredInvention>MEDIEVAL_TECH_SHEPHERDING</RequiredInvention>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
      			<RequiredUnitType/>
@@ -935,7 +935,7 @@
 			<InventionCategory>MEDIEVAL_TECH</InventionCategory>
 			<iX_Location>3</iX_Location>
 			<iY_Location>10</iY_Location>
-			<RequiredInvention>MEDIEVAL_TECH_FIRE</RequiredInvention>
+			<RequiredInvention/>
 			<RequiredInvention2/>
 			<RequiredInventionOr/>
 			<RequiredUnitType/>
@@ -946,16 +946,16 @@
         			</RequiredYield>       
       			</RequiredYields>
 			<iCostToResearch>6</iCostToResearch>
-			<AllowsYields>
-				<AllowsYield>
-					<YieldType>YIELD_LUMBER</YieldType>
-					<iChange>1</iChange>
-				</AllowsYield>
-			</AllowsYields>
+			<AllowsYields/>
 			<AllowsBuildingTypes/>
 			<AllowsUnitClasses/>
 			<AllowsPromotions/>
-			<AllowsProfessions/>
+				<AllowsProfessions>
+				<AllowsProfession>
+					<ProfessionType>PROFESSION_LUMBERJACK</ProfessionType>
+					<iChange>1</iChange>
+				</AllowsProfession>
+			</AllowsProfessions>
 			<AllowsTrait/>
 			<AllowsBuildTypes/>
 			<AllowsBuildTypesTerrain/>
@@ -2585,14 +2585,14 @@
 		<!-- Implement BUILDINGCLASS_CARPENTER_HOUSE (Should really be given when founding cities?) [Trade Winds] -->			
 			<AllowsUnitClasses>
 				<AllowsUnitClass>
-					<AllowsUnit>UNITCLASS_CARPENTER</AllowsUnit>
+					<AllowsUnit>UNITCLASS_CARPENTER1</AllowsUnit>
 					<iChange>1</iChange>
 				</AllowsUnitClass>
 			</AllowsUnitClasses>
 			<AllowsPromotions/>
 			<AllowsProfessions>
 				<AllowsProfession>
-					<ProfessionType>PROFESSION_CARPENTER</ProfessionType>
+					<ProfessionType>PROFESSION_CARPENTER1</ProfessionType>
 					<iChange>1</iChange>
 				</AllowsProfession>
 			</AllowsProfessions>

@@ -313,6 +313,12 @@
 			<VictoryThresholds/>
 		</BuildingClassInfo>
 		<BuildingClassInfo>
+			<Type>BUILDINGCLASS_CARPENTER1_SHOP</Type>
+			<Description>TXT_KEY_BUILDING_CARPENTER1_SHOP</Description>
+			<DefaultBuilding>BUILDING_CARPENTER1_SHOP</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo>
 			<Type>BUILDINGCLASS_LUMBER_MILL</Type>
 			<Description>TXT_KEY_BUILDING_LUMBER_MILL</Description>
 			<DefaultBuilding>BUILDING_LUMBER_MILL</DefaultBuilding>

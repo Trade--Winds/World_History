@@ -129,11 +129,11 @@
 				</FreeBuildingClass>
 				<FreeBuildingClass>
 					<BuildingClassType>BUILDINGCLASS_BLACKSMITH_HOUSE</BuildingClassType>
-					<bFreeBuildingClass>1</bFreeBuildingClass>
+					<bFreeBuildingClass>0</bFreeBuildingClass>
 				</FreeBuildingClass>
 				<FreeBuildingClass>
 					<BuildingClassType>BUILDINGCLASS_MONASTERY</BuildingClassType>
-					<bFreeBuildingClass>1</bFreeBuildingClass>
+					<bFreeBuildingClass>0</bFreeBuildingClass>
 				</FreeBuildingClass>
 				<FreeBuildingClass>
 					<BuildingClassType>BUILDINGCLASS_TOWNHALL</BuildingClassType>
@@ -172,7 +172,7 @@
 			<CivilizationActionSound>AS3D_ENGLAND_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -406,7 +406,7 @@
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -601,7 +601,7 @@
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -835,7 +835,7 @@
 			<CivilizationActionSound>AS3D_OTTOMAN_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -1026,7 +1026,7 @@
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MONASTICISM</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -1226,7 +1226,7 @@
 			<CivilizationActionSound>AS3D_VIKING_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_METALCASTING</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -1415,7 +1415,7 @@
 			<CivilizationActionSound>AS3D_BYZANTIUM_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MANORIALISM</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -1606,7 +1606,7 @@
 			<CivilizationActionSound>AS3D_GERMANY_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_METALCASTING</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -1792,7 +1792,7 @@
 			<CivilizationActionSound>AS3D_SPAIN_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_METALCASTING</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -1978,7 +1978,7 @@
 			<CivilizationActionSound>AS3D_MONGOL_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_METALCASTING</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -2140,15 +2140,7 @@
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -2310,15 +2302,7 @@
 			<CivilizationActionSound>AS3D_ENGLAND_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -2484,15 +2468,7 @@
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -2658,15 +2634,7 @@
 			<CivilizationActionSound>AS3D_SPAIN_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -2832,15 +2800,7 @@
 			<CivilizationActionSound>AS3D_SPAIN_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -3006,15 +2966,7 @@
 			<CivilizationActionSound>AS3D_NETHERLANDS_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -3180,15 +3132,7 @@
 			<CivilizationActionSound>AS3D_NETHERLANDS_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -3354,15 +3298,7 @@
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -3528,15 +3464,7 @@
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>
@@ -3702,15 +3630,7 @@
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 			<FreeTechs>
 				<FreeTech>
-					<Tech>MEDIEVAL_TECH_PLATEARMOR</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_FUEDALISM</Tech>
-					<bFree>1</bFree>
-				</FreeTech>
-				<FreeTech>
-					<Tech>MEDIEVAL_TECH_MACHINERY</Tech>
+					<Tech>MEDIEVAL_TECH_FIRE</Tech>
 					<bFree>1</bFree>
 				</FreeTech>
 			</FreeTechs>

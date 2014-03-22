@@ -152,6 +152,11 @@
 			<DefaultUnit>UNIT_CARPENTER</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
+			<Type>UNITCLASS_CARPENTER1</Type>
+			<Description>TXT_KEY_UNIT_CARPENTER1</Description>
+			<DefaultUnit>UNIT_CARPENTER1</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
 			<Type>UNITCLASS_COAT_MAKER</Type>
 			<Description>TXT_KEY_UNIT_HORSES</Description>
 			<DefaultUnit>UNIT_COAT_MAKER</DefaultUnit>

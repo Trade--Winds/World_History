@@ -21,7 +21,7 @@
 					<iValue>2</iValue>
 				</YieldIntegerPair>
 				<YieldIntegerPair>
-					<YieldType>YIELD_SPICE</YieldType>
+					<YieldType>YIELD_SPICES</YieldType>
 					<iValue>4</iValue>
 				</YieldIntegerPair>
 			</Yields>
@@ -157,7 +157,7 @@
 					<iValue>2</iValue>
 				</YieldIntegerPair>
 				<YieldIntegerPair>
-					<YieldType>YIELD_SPICE</YieldType>
+					<YieldType>YIELD_SPICES</YieldType>
 					<iValue>4</iValue>
 				</YieldIntegerPair>
 			</Yields>

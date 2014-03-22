@@ -719,12 +719,7 @@ class CvMainInterface:
 		screen.setHitMargins("TradeFairScreenButton", self.ADVISOR_BUTTON_SIZE / 6, self.ADVISOR_BUTTON_SIZE / 6)
 		screen.hide("TradeFairScreenButton")
 		
-		iBtnX += self.ADVISOR_BUTTON_SPACING
-		screen.setImageButton("EuroZoneScreenButton", ArtFileMgr.getInterfaceArtInfo("INTERFACE_SPICE_ROUTE").getPath(), iBtnX, (TOP_CENTER_HUD_HEIGHT - self.ADVISOR_BUTTON_SIZE) / 2, self.ADVISOR_BUTTON_SIZE, self.ADVISOR_BUTTON_SIZE, WidgetTypes.WIDGET_POP_UP_SCREEN, TRADE_SCREEN_EURO_ZONE_MARKET, -1)
-		screen.setImageShape("EuroZoneScreenButton", ImageShapes.IMAGE_SHAPE_ELLIPSE, -1)
-		screen.setHitMargins("EuroZoneScreenButton", self.ADVISOR_BUTTON_SIZE / 6, self.ADVISOR_BUTTON_SIZE / 6)
-		screen.hide("EuroZoneScreenButton")
-		
+
 	# MINIMAP RING
 		screen.addPanel("MiniMapRing", u"", u"", True, False, 0, yResolution - SADDLE_HEIGHT, SADDLE_HEIGHT, SADDLE_HEIGHT, PanelStyles.PANEL_STYLE_STANDARD, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 		screen.addDrawControl("MiniMapRing", ArtFileMgr.getInterfaceArtInfo("SCREEN_MINI_MAP_RING").getPath(), 0, yResolution - SADDLE_HEIGHT, SADDLE_HEIGHT, SADDLE_HEIGHT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
@@ -2569,12 +2564,6 @@ class CvMainInterface:
 				
 			else:
 				screen.hide("SpiceRouteScreenButton")
-			
-			if (pPlayer.getHasTradeRouteType(TRADE_SCREEN_EURO_ZONE_MARKET)):	
-				screen.show("EuroZoneScreenButton")
-				
-			else:
-				screen.hide("EuroZoneScreenButton")
 				
 			if (pPlayer.getHasTradeRouteType(TRADE_SCREEN_SILK_ROAD_MARKET)):	
 				screen.show("SilkRoadScreenButton")
